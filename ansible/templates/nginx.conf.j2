@@ -12,12 +12,15 @@
 # Domain: solarityai.com, www.solarityai.com
 # ----------------------------------------------------------------------------
 server {
-    listen 80;
+    listen 80 default_server;
     server_name {% if landing_domain_names and landing_domain_names | length > 0 %}{{ landing_domain_names | join(' ') }}{% else %}_{% endif %};
 
     # Document root for landing page
     root {{ landing_page_root }};
     index index.html;
+    
+    # Disable directory listing
+    autoindex off;
 
     # Logging
     access_log /var/log/nginx/solarityai_access.log;
