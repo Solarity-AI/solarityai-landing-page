@@ -64,23 +64,61 @@ cat > /tmp/deploy-landing-files.yml <<EOF
   tasks:
     - name: Create landing page directory
       file:
-        path: /usr/share/nginx/html/landing
+        path: /usr/share/nginx/html/solarityai
         state: directory
         owner: root
         group: nginx
         mode: '0755'
     
-    - name: Upload landing page files
+    - name: Upload landing page HTML files
       copy:
-        src: "${LANDING_PAGE_SOURCE}/"
-        dest: /usr/share/nginx/html/landing/
+        src: "{{ item }}"
+        dest: /usr/share/nginx/html/solarityai/
+        owner: root
+        group: nginx
+        mode: '0644'
+        backup: yes
+      loop:
+        - "{{ landing_page_source }}/index.html"
+        - "{{ landing_page_source }}/about.html"
+        - "{{ landing_page_source }}/blog.html"
+        - "{{ landing_page_source }}/blog-details.html"
+        - "{{ landing_page_source }}/contact.html"
+        - "{{ landing_page_source }}/error.html"
+        - "{{ landing_page_source }}/login.html"
+        - "{{ landing_page_source }}/pricing.html"
+        - "{{ landing_page_source }}/thanks.html"
+        - "{{ landing_page_source }}/404.html"
+      vars:
+        landing_page_source: "${LANDING_PAGE_SOURCE}"
+      ignore_errors: yes
+    
+    - name: Upload assets directory
+      copy:
+        src: "{{ landing_page_source }}/assets/"
+        dest: /usr/share/nginx/html/solarityai/assets/
         owner: root
         group: nginx
         mode: '0755'
         backup: yes
+      vars:
+        landing_page_source: "${LANDING_PAGE_SOURCE}"
+      ignore_errors: yes
+    
+    - name: Upload footer-pages directory
+      copy:
+        src: "{{ landing_page_source }}/footer-pages/"
+        dest: /usr/share/nginx/html/solarityai/footer-pages/
+        owner: root
+        group: nginx
+        mode: '0755'
+        backup: yes
+      vars:
+        landing_page_source: "${LANDING_PAGE_SOURCE}"
+      ignore_errors: yes
       
     - name: Verify files uploaded
-      shell: ls -lah /usr/share/nginx/html/landing/ | head -10
+      shell: ls -lah /usr/share/nginx/html/solarityai/ | head -10
       register: landing_files
       changed_when: false
     
@@ -127,7 +165,7 @@ echo "✅ Landing page deployed successfully!"
 echo ""
 
 # Get domain from Terraform or group_vars
-LANDING_DOMAIN=$(grep -E "^\s+- \"[^\"]+\"" "${ANSIBLE_DIR}/group_vars/all.yml" | head -1 | sed 's/.*"\([^"]*\)".*/\1/' || echo "")
+LANDING_DOMAIN=$(grep -E '^\s+- "' "${ANSIBLE_DIR}/group_vars/all.yml" | head -1 | sed 's/.*"\([^"]*\)".*/\1/' || echo "")
 
 # Get frontend IP from inventory
 FRONTEND_IP=$(grep "ansible_host:" "${ANSIBLE_DIR}/inventory/hosts.yml" | awk '{print $2}' | head -1 || echo "")
@@ -155,4 +193,3 @@ if [ -n "$FRONTEND_IP" ]; then
     echo "   🖥️  Direct IP (HTTP): http://${FRONTEND_IP}"
 fi
 echo ""
-

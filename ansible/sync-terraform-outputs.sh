@@ -50,50 +50,37 @@ else
     SSH_KEY=$(terraform output frontend_ssh_key_path 2>/dev/null | sed 's/"//g' | awk '{print $3}' || echo "")
 fi
 
-# Get landing page domain from Terraform output (preferred method)
+# Get landing page domains from Terraform configuration
 LANDING_DOMAINS=""
-if [ "$USE_JQ" = true ]; then
-    LANDING_PAGE_DOMAIN=$(terraform output -json 2>/dev/null | jq -r '.landing_page_domain_name.value // empty' || echo "")
-else
-    LANDING_PAGE_DOMAIN=$(terraform output landing_page_domain_name 2>/dev/null | sed 's/"//g' | awk '{print $3}' || echo "")
-fi
+DOMAIN_NAME=$(grep -E "^\s*domain_name\s*=" "${TERRAFORM_DIR}/terraform.tfvars" 2>/dev/null | head -1 | sed -E 's/^[^"]*"([^"]+)".*/\1/' || echo "")
 
-# Fallback: Get landing page subdomain from Terraform variables file
-if [ -z "$LANDING_PAGE_DOMAIN" ]; then
-    LANDING_PAGE_SUBDOMAIN=$(grep -E "^\s*landing_page_subdomain\s*=" "${TERRAFORM_DIR}/terraform.tfvars" 2>/dev/null | sed 's/.*=\s*\([^#]*\).*/\1/' | awk '{print $1}' | tr -d ' "' || echo "")
-    if [ -n "$LANDING_PAGE_SUBDOMAIN" ]; then
-        # Get root domain from domain_name variable
-        DOMAIN_NAME=$(grep -E "^\s*domain_name\s*=" "${TERRAFORM_DIR}/terraform.tfvars" 2>/dev/null | sed 's/.*=\s*"\([^"]*\)".*/\1/' || echo "")
-        if [ -n "$DOMAIN_NAME" ]; then
-            LANDING_PAGE_DOMAIN="${LANDING_PAGE_SUBDOMAIN}.${DOMAIN_NAME}"
+# Check if root domain and www should be included
+ROOT_DOMAIN_TO_FRONTEND=$(grep -E "^\s*root_domain_to_frontend\s*=" "${TERRAFORM_DIR}/terraform.tfvars" 2>/dev/null | head -1 | sed -E 's/^[^=]*=\s*([^#]+).*/\1/' | awk '{print $1}' | tr -d ' "' || echo "false")
+CREATE_WWW_RECORD=$(grep -E "^\s*create_www_record\s*=" "${TERRAFORM_DIR}/terraform.tfvars" 2>/dev/null | head -1 | sed -E 's/^[^=]*=\s*([^#]+).*/\1/' | awk '{print $1}' | tr -d ' "' || echo "false")
+
+# Build list of landing page domains
+if [ -n "$DOMAIN_NAME" ]; then
+    if [ "$ROOT_DOMAIN_TO_FRONTEND" = "true" ]; then
+        LANDING_DOMAINS="${DOMAIN_NAME}"
+    fi
+    if [ "$CREATE_WWW_RECORD" = "true" ]; then
+        if [ -n "$LANDING_DOMAINS" ]; then
+            LANDING_DOMAINS="${LANDING_DOMAINS} www.${DOMAIN_NAME}"
+        else
+            LANDING_DOMAINS="www.${DOMAIN_NAME}"
         fi
     fi
 fi
 
-# Legacy support: fallback to root_domain_to_frontend
-if [ -z "$LANDING_PAGE_DOMAIN" ]; then
-    ROOT_DOMAIN_TO_FRONTEND=$(grep -E "^\s*root_domain_to_frontend\s*=" "${TERRAFORM_DIR}/terraform.tfvars" 2>/dev/null | sed 's/.*=\s*\([^#]*\).*/\1/' | awk '{print $1}' | tr -d ' "' || echo "false")
-    CREATE_WWW_RECORD=$(grep -E "^\s*create_www_record\s*=" "${TERRAFORM_DIR}/terraform.tfvars" 2>/dev/null | sed 's/.*=\s*\([^#]*\).*/\1/' | awk '{print $1}' | tr -d ' "' || echo "false")
-    
-    if [ "$ROOT_DOMAIN_TO_FRONTEND" = "true" ] || [ "$CREATE_WWW_RECORD" = "true" ]; then
-        DOMAIN_NAME=$(grep -E "^\s*domain_name\s*=" "${TERRAFORM_DIR}/terraform.tfvars" 2>/dev/null | sed 's/.*=\s*"\([^"]*\)".*/\1/' || echo "")
-        if [ -n "$DOMAIN_NAME" ]; then
-            if [ "$ROOT_DOMAIN_TO_FRONTEND" = "true" ]; then
-                LANDING_PAGE_DOMAIN="${DOMAIN_NAME}"
-            fi
-            if [ "$CREATE_WWW_RECORD" = "true" ]; then
-                if [ -n "$LANDING_PAGE_DOMAIN" ]; then
-                    LANDING_PAGE_DOMAIN="${LANDING_PAGE_DOMAIN} www.${DOMAIN_NAME}"
-                else
-                    LANDING_PAGE_DOMAIN="www.${DOMAIN_NAME}"
-                fi
-            fi
-        fi
+# Also include landing page subdomain if configured
+LANDING_PAGE_SUBDOMAIN=$(grep -E "^\s*landing_page_subdomain\s*=" "${TERRAFORM_DIR}/terraform.tfvars" 2>/dev/null | sed 's/.*=\s*\([^#]*\).*/\1/' | awk '{print $1}' | tr -d ' "' || echo "")
+if [ -n "$LANDING_PAGE_SUBDOMAIN" ] && [ -n "$DOMAIN_NAME" ]; then
+    SUBDOMAIN_DOMAIN="${LANDING_PAGE_SUBDOMAIN}.${DOMAIN_NAME}"
+    if [ -n "$LANDING_DOMAINS" ]; then
+        LANDING_DOMAINS="${LANDING_DOMAINS} ${SUBDOMAIN_DOMAIN}"
+    else
+        LANDING_DOMAINS="${SUBDOMAIN_DOMAIN}"
     fi
-fi
-
-if [ -n "$LANDING_PAGE_DOMAIN" ]; then
-    LANDING_DOMAINS="${LANDING_PAGE_DOMAIN}"
 fi
 
 # Update inventory file

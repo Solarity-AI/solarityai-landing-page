@@ -12,7 +12,7 @@
 # Domain: solarityai.com, www.solarityai.com
 # ----------------------------------------------------------------------------
 server {
-    listen 80 default_server;
+    listen 80;
     server_name {% if landing_domain_names and landing_domain_names | length > 0 %}{{ landing_domain_names | join(' ') }}{% else %}_{% endif %};
 
     # Document root for landing page
