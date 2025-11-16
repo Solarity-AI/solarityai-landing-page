@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Deploy Static SolarityAI Landing Page to Frontend EC2
+# Deploy Static Landing Page to Frontend EC2
 # This script uploads static landing page files to the Nginx document root
 
 set -euo pipefail
@@ -13,8 +13,8 @@ if [ -z "${LANDING_PAGE_SOURCE:-}" ]; then
     LANDING_PAGE_SOURCE="${LANDING_PAGE_ROOT}"
 fi
 
-echo "🚀 SolarityAI Landing Page Deployment"
-echo "======================================"
+echo "🚀 Landing Page Deployment"
+echo "=========================="
 echo ""
 
 # Check if landing page source directory exists
@@ -55,16 +55,16 @@ echo "[2/4] Uploading landing page files..."
 cd "${ANSIBLE_DIR}"
 
 # Create temporary playbook for file upload
-cat > /tmp/deploy-solarityai-landing-files.yml <<EOF
+cat > /tmp/deploy-landing-files.yml <<EOF
 ---
-- name: Upload SolarityAI Landing Page Files
+- name: Upload Landing Page Files
   hosts: all
   become: yes
   gather_facts: no
   tasks:
     - name: Create landing page directory
       file:
-        path: /usr/share/nginx/html/solarityai
+        path: /usr/share/nginx/html/landing
         state: directory
         owner: root
         group: nginx
@@ -73,14 +73,14 @@ cat > /tmp/deploy-solarityai-landing-files.yml <<EOF
     - name: Upload landing page files
       copy:
         src: "${LANDING_PAGE_SOURCE}/"
-        dest: /usr/share/nginx/html/solarityai/
+        dest: /usr/share/nginx/html/landing/
         owner: root
         group: nginx
         mode: '0755'
         backup: yes
       
     - name: Verify files uploaded
-      shell: ls -lah /usr/share/nginx/html/solarityai/ | head -10
+      shell: ls -lah /usr/share/nginx/html/landing/ | head -10
       register: landing_files
       changed_when: false
     
@@ -111,19 +111,19 @@ cat > /tmp/deploy-solarityai-landing-files.yml <<EOF
       when: nginx_test.rc != 0
 EOF
 
-ansible-playbook -i inventory/hosts.yml /tmp/deploy-solarityai-landing-files.yml || {
+ansible-playbook -i inventory/hosts.yml /tmp/deploy-landing-files.yml || {
     echo "❌ Error: Failed to upload landing page files"
-    rm -f /tmp/deploy-solarityai-landing-files.yml
+    rm -f /tmp/deploy-landing-files.yml
     exit 1
 }
 
-rm -f /tmp/deploy-solarityai-landing-files.yml
+rm -f /tmp/deploy-landing-files.yml
 
 echo ""
 echo "[3/4] Deployment verification complete"
 
 echo ""
-echo "✅ SolarityAI landing page deployed successfully!"
+echo "✅ Landing page deployed successfully!"
 echo ""
 
 # Get domain from Terraform or group_vars

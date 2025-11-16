@@ -1,5 +1,5 @@
 ---
-- name: Deploy SolarityAI Landing Page to EC2
+- name: Deploy Landing Page to EC2
   hosts: all
   become: yes
   gather_facts: yes
@@ -38,21 +38,21 @@
     - name: Configure Nginx (Amazon Linux / RedHat)
       template:
         src: templates/nginx.conf.j2
-        dest: /etc/nginx/conf.d/solarityai-landing-page.conf
+        dest: /etc/nginx/conf.d/landing-page.conf
         mode: '0644'
       when: ansible_os_family == "RedHat"
 
     - name: Configure Nginx (Ubuntu / Debian)
       template:
         src: templates/nginx.conf.j2
-        dest: /etc/nginx/sites-available/solarityai-landing-page
+        dest: /etc/nginx/sites-available/landing-page
         mode: '0644'
       when: ansible_os_family == "Debian"
 
     - name: Enable Nginx site (Ubuntu / Debian)
       file:
-        src: /etc/nginx/sites-available/solarityai-landing-page
-        dest: /etc/nginx/sites-enabled/solarityai-landing-page
+        src: /etc/nginx/sites-available/landing-page
+        dest: /etc/nginx/sites-enabled/landing-page
         state: link
       when: ansible_os_family == "Debian"
 
