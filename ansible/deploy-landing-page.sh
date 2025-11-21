@@ -70,52 +70,31 @@ cat > /tmp/deploy-landing-files.yml <<EOF
         group: nginx
         mode: '0755'
     
-    - name: Upload landing page HTML files
-      copy:
-        src: "{{ item }}"
+    - name: Upload landing page files (using rsync - faster and supports exclusions)
+      synchronize:
+        src: "${LANDING_PAGE_SOURCE}/"
         dest: /usr/share/nginx/html/solarityai/
-        owner: root
-        group: nginx
-        mode: '0644'
-        backup: yes
-      loop:
-        - "{{ landing_page_source }}/index.html"
-        - "{{ landing_page_source }}/about.html"
-        - "{{ landing_page_source }}/blog.html"
-        - "{{ landing_page_source }}/blog-details.html"
-        - "{{ landing_page_source }}/contact.html"
-        - "{{ landing_page_source }}/error.html"
-        - "{{ landing_page_source }}/login.html"
-        - "{{ landing_page_source }}/pricing.html"
-        - "{{ landing_page_source }}/thanks.html"
-        - "{{ landing_page_source }}/404.html"
-      vars:
-        landing_page_source: "${LANDING_PAGE_SOURCE}"
-      ignore_errors: yes
-    
-    - name: Upload assets directory
-      copy:
-        src: "{{ landing_page_source }}/assets/"
-        dest: /usr/share/nginx/html/solarityai/assets/
+        delete: no
+        recursive: yes
+        rsync_opts:
+          - "--exclude=.git"
+          - "--exclude=.gitignore"
+          - "--exclude=ansible"
+          - "--exclude=*.bak"
+          - "--exclude=*.backup"
+          - "--exclude=TestCommit"
+          - "--exclude=README.md"
+          - "--exclude=LICENCE"
+          - "--progress"
+      become: no
+      
+    - name: Set correct ownership and permissions
+      file:
+        path: /usr/share/nginx/html/solarityai
         owner: root
         group: nginx
         mode: '0755'
-        backup: yes
-      vars:
-        landing_page_source: "${LANDING_PAGE_SOURCE}"
-      ignore_errors: yes
-    
-    - name: Upload footer-pages directory
-      copy:
-        src: "{{ landing_page_source }}/footer-pages/"
-        dest: /usr/share/nginx/html/solarityai/footer-pages/
-        owner: root
-        group: nginx
-        mode: '0755'
-        backup: yes
-      vars:
-        landing_page_source: "${LANDING_PAGE_SOURCE}"
-      ignore_errors: yes
+        recurse: yes
       
     - name: Verify files uploaded
       shell: ls -lah /usr/share/nginx/html/solarityai/ | head -10
