@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4958a1eb-9d7f-4c96-95d1-fb186f878a0b" name="Changes" comment="sitemap">
-      <change beforePath="$PROJECT_DIR$/ansible/group_vars/all.yml" beforeDir="false" afterPath="$PROJECT_DIR$/ansible/group_vars/all.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ansible/group_vars/all.yml.bak" beforeDir="false" afterPath="$PROJECT_DIR$/ansible/group_vars/all.yml.bak" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/override.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/override.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-    </list>
+    <list default="true" id="4958a1eb-9d7f-4c96-95d1-fb186f878a0b" name="Changes" comment="sitemap" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

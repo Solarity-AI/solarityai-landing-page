@@ -260,8 +260,8 @@ h1, h2, h3, h4 {
 
 .ud-hero-content .ud-hero-desc {
     color: #ffffff !important;
-    font-size: 20px;
-    line-height: 32px;
+    font-size: 18px;
+    line-height: 30px;
     opacity: 1;
     max-width: 680px;
     margin: 0 auto 30px;
@@ -274,8 +274,8 @@ h1, h2, h3, h4 {
     }
 
     .ud-hero-content .ud-hero-desc {
-        font-size: 18px;
-        line-height: 28px;
+        font-size: 16px;
+        line-height: 26px;
     }
 }
 
@@ -1371,7 +1371,7 @@ section#partners {
 
 .ud-contact-title h2 {
     color: #ffffff !important;
-    font-size: 1.65rem !important;
+    font-size: 1.35rem !important;
     line-height: 1.4 !important;
 }
 
