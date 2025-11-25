@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="4958a1eb-9d7f-4c96-95d1-fb186f878a0b" name="Changes" comment="sitemap">
+      <change beforePath="$PROJECT_DIR$/ansible/group_vars/all.yml" beforeDir="false" afterPath="$PROJECT_DIR$/ansible/group_vars/all.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ansible/group_vars/all.yml.bak" beforeDir="false" afterPath="$PROJECT_DIR$/ansible/group_vars/all.yml.bak" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/override.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/override.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="ata-updates" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitToolBoxStore">
+    <option name="recentBranches">
+      <RecentBranches>
+        <option name="branchesForRepo">
+          <list>
+            <RecentBranchesForRepo>
+              <option name="branches">
+                <list>
+                  <RecentBranch>
+                    <option name="branchName" value="develop" />
+                    <option name="lastUsedInstant" value="1763914567" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="ata-updates" />
+                    <option name="lastUsedInstant" value="1763913754" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="SolarityAl_Navigation" />
+                    <option name="lastUsedInstant" value="1763308705" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="main" />
+                    <option name="lastUsedInstant" value="1763308704" />
+                  </RecentBranch>
+                </list>
+              </option>
+              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$" />
+            </RecentBranchesForRepo>
+          </list>
+        </option>
+      </RecentBranches>
+    </option>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="35ZBjGnOoNCPibZev9IN4JZhhhj" />
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
+    "app.teamhub.selectedTeam": "https://github.com/Solarity-AI/solarityai-landing-page",
+    "git-widget-placeholder": "develop",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/umurinan/Documents/dev/ai-agency/solarityai-landing-page",
+    "settings.editor.selected.configurable": "aws.dynamicresources"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.23892.409" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4958a1eb-9d7f-4c96-95d1-fb186f878a0b" name="Changes" comment="" />
+      <created>1763307846613</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1763307846613</updated>
+    </task>
+    <task id="LOCAL-00001" summary="ansible">
+      <option name="closed" value="true" />
+      <created>1763309740482</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1763309740482</updated>
+    </task>
+    <task id="LOCAL-00002" summary="ansible">
+      <option name="closed" value="true" />
+      <created>1763310855215</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1763310855215</updated>
+    </task>
+    <task id="LOCAL-00003" summary="ansible">
+      <option name="closed" value="true" />
+      <created>1763311806075</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1763311806075</updated>
+    </task>
+    <task id="LOCAL-00004" summary="gtag">
+      <option name="closed" value="true" />
+      <created>1763767812206</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1763767812206</updated>
+    </task>
+    <task id="LOCAL-00005" summary="sitemap">
+      <option name="closed" value="true" />
+      <created>1763829277412</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1763829277412</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="ansible" />
+    <MESSAGE value="gtag" />
+    <MESSAGE value="sitemap" />
+    <option name="LAST_COMMIT_MESSAGE" value="sitemap" />
+  </component>
+</project>

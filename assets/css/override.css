@@ -51,14 +51,23 @@ html {
 .ud-app-preview,
 .ud-social-follow,
 .ud-features,
-.ud-testimonials,
 .ud-pricing {
     background: linear-gradient(
             180deg,
             #ffffff 0%,
             #E3F9F0 50%,
             #D6F0FF 100%
-    );
+    ) !important;
+}
+
+/* Partners section - Black background to match other sections */
+.ud-testimonials {
+    background: #000000 !important;
+}
+
+/* Partners section specific styling */
+#partners.ud-testimonials {
+    background: #000000 !important;
 }
 
 /* Hero section - Full black background */
@@ -863,8 +872,10 @@ p, li, a, span {
 
 
 /* === Global Font Setup === */
-body {
+html, body {
     font-family: 'Poppins', sans-serif;
+    background: #000000 !important;
+    color: #ffffff;
 }
 
 /* === Hero Text Customization === */
@@ -1210,6 +1221,138 @@ body {
     font-size: 1.05rem !important;
     line-height: 1.6;
     font-weight: 400;
+}
+
+/* ============================= */
+/* Partners Section Styling */
+/* ============================= */
+
+/* Partners section - Black background to match other sections */
+#partners,
+#partners.ud-testimonials,
+section#partners {
+    background: #000000 !important;
+    padding-top: 120px;
+    padding-bottom: 80px;
+    min-height: 400px;
+}
+
+#partners .ud-section-title span {
+    color: #D4AF37 !important;
+    font-weight: 600 !important;
+}
+
+#partners .ud-section-title h2 {
+    color: #D4AF37 !important;
+    font-weight: 700 !important;
+}
+
+#partners .ud-section-title p {
+    color: #ffffff !important;
+}
+
+/* Partners brands container - better layout */
+#partners .ud-brands {
+    padding: 40px 0;
+}
+
+#partners .ud-brands-logo {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Override default grayscale filter from base styles */
+#partners .ud-brands-logo .ud-single-logo img {
+    -webkit-filter: brightness(1.2) contrast(1.1) grayscale(0) !important;
+    filter: brightness(1.2) contrast(1.1) grayscale(0) !important;
+}
+
+/* Partners logos - ensure they're visible on black background */
+#partners .ud-single-logo {
+    margin: 20px 30px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+#partners .ud-single-logo img {
+    filter: brightness(1.2) contrast(1.1) grayscale(0) !important;
+    opacity: 0.9 !important;
+    transition: all 0.3s ease;
+    max-width: 180px;
+    max-height: 100px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    padding: 10px;
+}
+
+#partners .ud-single-logo:hover img {
+    filter: brightness(1.4) contrast(1.2) grayscale(0) !important;
+    opacity: 1 !important;
+    transform: scale(1.1);
+}
+
+/* TÜBİTAK logo specific styling - enhance visibility */
+#partners .tubitak-logo {
+    padding: 15px 25px;
+}
+
+#partners .tubitak-logo img {
+    filter: brightness(1.6) contrast(1.4) grayscale(0) !important;
+    opacity: 1 !important;
+    max-width: 200px;
+    max-height: 120px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+#partners .tubitak-logo:hover img {
+    filter: brightness(1.8) contrast(1.5) grayscale(0) !important;
+    opacity: 1 !important;
+    transform: scale(1.15);
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+}
+
+/* Partner text logos styling (when image files are not available) */
+#partners .partner-text-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    min-height: 100px;
+    padding: 20px 30px;
+    transition: all 0.3s ease;
+}
+
+#partners .partner-name {
+    font-size: 18px;
+    font-weight: 600;
+    color: #ffffff !important;
+    text-align: center;
+    line-height: 1.4;
+    transition: all 0.3s ease;
+}
+
+#partners .ud-single-logo:hover .partner-name {
+    color: #D4AF37 !important;
+    transform: scale(1.1);
+}
+
+#partners .ud-single-logo a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100px;
+    width: 100%;
 }
 
 /* ============================= */
