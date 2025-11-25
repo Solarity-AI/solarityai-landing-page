@@ -1,24 +1,34 @@
-/* overrides.css - Mindmate brand overrides */
+/* overrides.css - Solarity AI brand overrides */
 
-/* Brand color palette */
+/* Professional color palette */
 :root {
-    --bs-primary: #82CDE0;
-    --bs-secondary: #FFDDBF;
-    --bs-primary-rgb: 130, 205, 224;
-    --bs-secondary-rgb: 255, 221, 191;
+    --bs-primary: #2563eb;
+    --bs-secondary: #1e40af;
+    --bs-primary-rgb: 37, 99, 235;
+    --bs-secondary-rgb: 30, 64, 175;
+    --text-primary: #1f2937;
+    --text-secondary: #4b5563;
+    --text-tertiary: #6b7280;
+    --accent-blue: #2563eb;
 }
 
 /* ============================= */
-/* Global Font Scaling           */
+/* Global Font Scaling & Typography */
 /* ============================= */
-html {
-    font-size: 115%;
+html, body {
+    font-size: 100%;
+    background: #ffffff !important;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    color: var(--text-primary);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 /* Optional: for mobile responsiveness */
 @media (max-width: 768px) {
-    html {
-        font-size: 115%;
+    html, body {
+        font-size: 100%;
     }
 }
 
@@ -52,27 +62,22 @@ html {
 .ud-social-follow,
 .ud-features,
 .ud-pricing {
-    background: linear-gradient(
-            180deg,
-            #ffffff 0%,
-            #E3F9F0 50%,
-            #D6F0FF 100%
-    ) !important;
+    background: #ffffff !important;
 }
 
-/* Partners section - Black background to match other sections */
+/* Partners section - Pure white background */
 .ud-testimonials {
-    background: #000000 !important;
+    background: #ffffff !important;
 }
 
 /* Partners section specific styling */
 #partners.ud-testimonials {
-    background: #000000 !important;
+    background: #ffffff !important;
 }
 
-/* Hero section - Full black background */
+/* Hero section - Pure white background */
 .ud-hero {
-    background: #000000 !important;
+    background: #ffffff !important;
 }
 
 /* Default logo (desktop) */
@@ -102,39 +107,35 @@ html {
 
 
 
-
 /* ============================= */
-/* Buttons (ud-main-btn, ud-white-btn) */
+/* Animated Coming Soon Modal    */
 /* ============================= */
-.ud-main-btn {
-    background-color: var(--bs-primary) !important;
-    border: 1px solid var(--bs-primary) !important;
-    color: #fff !important;
-    transition: all 0.3s ease;
+/* Animated Coming Soon Modal */
+.coming-soon-modal .modal-content {
+    background: linear-gradient(135deg, var(--bs-primary) 0%, var(--bs-secondary) 100%);
+    border: none;
+    border-radius: 16px;
+    padding: 40px 30px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
 }
 
-.ud-main-btn:hover,
-.ud-main-btn:focus {
-    background-color: #6cb9cf !important;
-    border-color: #6cb9cf !important;
-    color: #fff !important;
+/* Simple fade-in animation */
+.coming-soon-modal .modal-dialog {
+    animation: fadeInScale 0.4s ease-out;
 }
 
-.ud-white-btn {
-    background-color: #fff !important;
-    color: var(--bs-primary) !important;
-    border: 1px solid var(--bs-primary) !important;
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
-
-.ud-white-btn:hover,
-.ud-white-btn:focus {
-    background-color: var(--bs-primary) !important;
-    color: #fff !important;
-}
-
-/* ============================= */
-/* Navbar links                  */
-/* ============================= */
 
 .ud-header a:hover {
     color: #6cb9cf !important;
@@ -144,83 +145,70 @@ html {
 /* Navigation Background Color   */
 /* ============================= */
 .ud-header {
-    background: #000000 !important;
+    background: #ffffff !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08) !important;
 }
 
 .ud-header.sticky {
-    background: #000000 !important;
+    background: #ffffff !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
 }
 
-/* Navigation link colors - Always gold (default and sticky) */
+/* Navigation link colors - Dark text for light background */
 .ud-header .navbar-nav .nav-item a {
-    color: #D4AF37 !important;
+    color: var(--text-primary) !important;
     opacity: 1 !important;
     visibility: visible !important;
+    font-weight: 500 !important;
 }
 
 .ud-header .navbar-nav .nav-item a:hover {
-    color: #D4AF37 !important;
+    color: var(--accent-blue) !important;
     opacity: 1 !important;
     visibility: visible !important;
 }
 
 .ud-header .navbar-nav .nav-item a.active {
-    color: #D4AF37 !important;
+    color: var(--accent-blue) !important;
     opacity: 1 !important;
     visibility: visible !important;
 }
 
-/* Same color in sticky state but active link is brighter */
+/* Same style in sticky state */
 .ud-header.sticky .navbar-nav .nav-item a {
-    color: #D4AF37 !important;
+    color: #1a1a1a !important;
     opacity: 1 !important;
     visibility: visible !important;
 }
 
 .ud-header.sticky .navbar-nav .nav-item a:hover {
-    color: #D4AF37 !important;
+    color: #0066cc !important;
     opacity: 1 !important;
     visibility: visible !important;
 }
 
 .ud-header.sticky .navbar-nav .nav-item a.active {
-    color: #F4D03F !important;
+    color: #0066cc !important;
     opacity: 1 !important;
     visibility: visible !important;
 }
 
-/* ============================= */
-/* FAQ accordion (ud-faq-btn)    */
-/* ============================= */
-.ud-faq-btn:not(.collapsed) {
-    background-color: var(--bs-secondary) !important;
-    color: #000 !important;
-    border-color: var(--bs-secondary) !important;
+/* Mobile menu toggle button (hamburger) */
+.ud-header .navbar-toggler {
+    border-color: #1a1a1a !important;
 }
 
-/* ============================= */
-/* Headings                      */
-/* ============================= */
-h1, h2, h3, h4 {
-    font-weight: 600;
+.ud-header .navbar-toggler span {
+    background-color: #1a1a1a !important;
 }
 
-
-/* ============================= */
-/* Store Badges (App Store / Google Play ) */
-/* ============================= */
-.store-badge img {
-    height: 40px;
-    border-radius: 12px;
-    background: transparent;
-    box-shadow: none;
-    transition: transform 0.2s ease;
+.ud-header.sticky .navbar-toggler {
+    border-color: #1a1a1a !important;
 }
 
-.store-badge img:hover {
-    transform: scale(1.03);
+.ud-header.sticky .navbar-toggler span {
+    background-color: #1a1a1a !important;
 }
-
 
 /* ============================= */
 /* Store Badges adjustments      */
@@ -249,33 +237,52 @@ h1, h2, h3, h4 {
 /* Hero Heading & Description    */
 /* ============================= */
 .ud-hero-content .ud-hero-title {
-    /*font-family: 'MidasSans-Semi-Bold', Arial, sans-serif;*/
-    /*font-style: normal;*/
-    /*font-weight: 550;*/
-    /*font-size: 55px;*/
-    /*line-height: 70px;*/
-    /*margin-bottom: 20px;*/
-    color: #D4AF37 !important;
+    color: var(--text-primary) !important;
+    font-weight: 700 !important;
+    font-size: 3.5rem !important;
+    line-height: 1.2 !important;
+    letter-spacing: -0.02em !important;
+    margin-bottom: 1.5rem !important;
 }
 
 .ud-hero-content .ud-hero-desc {
-    color: #ffffff !important;
-    font-size: 18px;
-    line-height: 30px;
-    opacity: 1;
-    max-width: 680px;
-    margin: 0 auto 30px;
+    color: var(--text-secondary) !important;
+    font-size: 1.25rem !important;
+    line-height: 1.7 !important;
+    font-weight: 400 !important;
+    max-width: 720px;
+    margin: 0 auto 2rem;
 }
 
 @media screen and (max-width: 991px) {
     .ud-hero-content .ud-hero-title {
-        font-size: 36px;
-        line-height: 48px;
+        font-size: 2.5rem !important;
+        line-height: 1.3 !important;
     }
 
     .ud-hero-content .ud-hero-desc {
-        font-size: 16px;
-        line-height: 26px;
+        font-size: 1.125rem !important;
+        line-height: 1.6 !important;
+    }
+    
+    .ud-hero {
+        padding: 80px 0 !important;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .ud-hero-content .ud-hero-title {
+        font-size: 2rem !important;
+        line-height: 1.2 !important;
+    }
+
+    .ud-hero-content .ud-hero-desc {
+        font-size: 1rem !important;
+        line-height: 1.5 !important;
+    }
+    
+    .ud-hero {
+        padding: 60px 0 !important;
     }
 }
 
@@ -303,242 +310,206 @@ h1, h2, h3, h4 {
     color: #fff !important;
 }
 
-
-
 /* ============================= */
-/* Global Button Responsive Fix  */
+/* Sign In / Sign Up Buttons     */
 /* ============================= */
-@media (max-width: 576px) {
-    .ud-main-btn,
-    .ud-white-btn,
-    .signup-btn {
-        padding: 8px 24px;
-        font-size: 0.95rem;
-        min-width: 100px;
-    }
-}
+/*.navbar-btn {*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    gap: 16px;*/
+/*}*/
 
-/* === FAQ Section Custom Overrides === */
+/*.navbar-btn .signin-btn {*/
+/*    font-size: 1rem;*/
+/*    font-weight: 500;*/
+/*    color: var(--bs-primary);          !* turquoise text *!*/
+/*    background-color: transparent;      !* no background *!*/
+/*    border: none;*/
+/*    padding: 8px 20px;*/
+/*    transition: color 0.3s ease;*/
+/*}*/
 
-/* Faster and smoother accordion animation */
-.accordion-collapse {
-    transition: height 0.18s ease-out !important;
-    background: #f9f9f9;
-    border-radius: 8px;
-    margin-top: 6px;
-}
+/*.navbar-btn .signin-btn:hover,*/
+/*.navbar-btn .signin-btn:focus {*/
+/*    color: #6abac5 !important;*/
+/*    text-decoration: underline;*/
+/*}*/
 
-/* Answer box styling */
-.ud-faq-body {
-    background: #f9f9f9;
-    padding: 14px 18px;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-}
-
-/* FAQ button hover state */
-.ud-faq-btn:hover {
-    background-color: #f2f2f2;
-}
-
-/* Highlight active FAQ question */
-.ud-faq-btn:not(.collapsed) {
-    background-color: #f2fdf9;
+/* ============================ */
+/* Button Classes               */
+/* ============================ */
+.signup-btn-mobile,
+.signup-btn,
+.ud-main-btn {
+    border-radius: 999px !important;
+    padding: 10px 28px;
     font-weight: 600;
-}
-
-/* Rotate chevron icon when open */
-.ud-faq-btn .lni-chevron-down {
-    transition: transform 0.2s ease;
-}
-.ud-faq-btn:not(.collapsed) .lni-chevron-down {
-    transform: rotate(180deg);
-}
-
-/* ============================= */
-/* Global Button Colour Fix */
-/* ============================= */
-
-/* Override feature icons */
-.ud-feature-icon {
-    background: var(--bs-primary) !important;
-    color: #fff !important;
-}
-
-/* Override section small titles */
-.ud-section-title span {
-    color: var(--bs-primary) !important;
-}
-
-/* ============================= */
-/* Social Account Image Size */
-/* ============================= */
-
-
-/* Default: Desktop (>=1200px) */
-.ud-widget-socials i {
-    font-size: 28px;
-    transition: transform 0.2s ease;
-}
-
-.ud-widget-socials i:hover {
-    transform: scale(1.2);
-}
-
-/* Tablet (>=768px and <1200px) */
-@media (max-width: 1199px) and (min-width: 768px) {
-    .ud-widget-socials i {
-        font-size: 24px;
-    }
-}
-
-/* Mobile (<=767px) */
-@media (max-width: 767px) {
-    .ud-widget-socials i {
-        font-size: 20px;
-    }
-}
-
-
-
-/* ============================= */
-/* === Testimonial Card Styling === */
-/* ============================= */
-
-/* === Testimonial Card Styling (real card look) === */
-/* === Testimonial Card Styling (adjusted spacing & font size) === */
-.ud-single-testimonial {
-    background: #fff;
-    border-radius: 16px;
-    padding: 26px;
-    min-height: 280px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.14);
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: flex;
-    flex-direction: column;
-}
-
-/* Hover effect */
-.ud-single-testimonial:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.18);
-}
-
-/* Swiper slide spacing (uniform, reduced gap) */
-.ud-testimonials-swiper .swiper-wrapper { gap: 20px; }
-.ud-testimonials-swiper .swiper-slide { display: flex; height: auto; }
-
-.swiper-slide {
-    display: flex;
-    height: auto;
-}
-
-/* Testimonial text (slightly larger font) */
-.ud-testimonial-content p {
-    font-size: 1.15rem;
-    line-height: 1.7;
-    color: #333;
-    margin-bottom: 18px;
-    flex-grow: 1;
-}
-
-/* Author info section */
-.ud-testimonial-info {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-top: auto;
-}
-
-
-/* ============================= */
-/* Social Media Follow Section */
-/* ============================= */
-
-/* === Social Follow Section (Bigger Icons, Perfect Alignment) === */
-.ud-social-follow {
-    padding: 200px 0;
+    font-size: 1rem;
+    display: inline-block;
     text-align: center;
-}
-
-.ud-social-follow .ud-section-title h2 {
-    margin-bottom: 70px !important;
-}
-
-/* Container for social icons */
-.ud-social-icons {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 40px;
-    flex-wrap: wrap;
-}
-
-/* Each social link style */
-.ud-social-icons li a {
-    width: 80px;
-    height: 80px;
-    font-size: 36px;
-    background: #1a1a1a;
-    border-radius: 50%;
-    color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    min-width: 120px;
+    background-color: var(--bs-primary) !important;
+    border: 1px solid var(--bs-primary) !important;
+    color: #fff !important;
     transition: all 0.3s ease;
 }
 
-/* Hover effect */
-.ud-social-icons li a:hover {
-    background: var(--bs-primary);
-    transform: translateY(-6px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+.signup-btn-mobile:hover,
+.signup-btn:hover,
+.ud-main-btn:hover,
+.signup-btn-mobile:focus,
+.signup-btn:focus,
+.ud-main-btn:focus {
+    background-color: #6abac5 !important;
+    border-color: #6bd8d4 !important;
+    color: #fff !important;
 }
 
-/* Responsive tweaks */
-@media (max-width: 768px) {
-    .ud-social-icons li a {
-        width: 65px;
-        height: 65px;
-        font-size: 28px;
+.signin-btn-mobile,
+.signin-btn {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--bs-primary);
+    background-color: transparent;
+    border: none;
+    padding: 8px 20px;
+    transition: color 0.3s ease;
+}
+
+.signin-btn-mobile:hover,
+.signin-btn:hover,
+.signin-btn-mobile:focus,
+.signin-btn:focus {
+    color: #6abac5 !important;
+    text-decoration: underline;
+}
+
+/* ============================ */
+/* Primary Button Variations    */
+/* ============================ */
+.ud-primary {
+    background-color: var(--bs-primary) !important;
+    border-color: var(--bs-primary) !important;
+    color: #ffffff !important;
+}
+
+.ud-primary:hover,
+.ud-primary:focus {
+    background-color: #6abac5 !important;
+    border-color: #6bd8d4 !important;
+    color: #ffffff !important;
+}
+
+/* ============================ */
+/* Hide Signin/Signup on Mobile */
+/* ============================ */
+@media (max-width: 991px) {
+    .navbar-btn {
+        display: none !important;
     }
+}
 
-    .ud-social-follow h2 {
-        font-size: 1.6rem;
+/* ============================ */
+/* Coming Soon Modal            */
+/* ============================ */
+.coming-soon-modal .modal-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+    margin-bottom: 15px;
+}
+
+.coming-soon-modal .modal-body {
+    font-size: 1.15rem;
+    color: #ffffff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.coming-soon-modal .close {
+    color: #fff;
+    opacity: 0.9;
+    font-size: 1.8rem;
+    background: transparent;
+    border: none;
+}
+
+.coming-soon-modal .close:hover {
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+}
+
+/* ============================ */
+/* Video Section Adjustments    */
+/* ============================ */
+.ud-app-preview video {
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Video Container Responsive Design */
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+}
+
+.video-container video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* On mobile: Make video fit better */
+@media (max-width: 767px) {
+    .ud-app-preview video {
+        border-radius: 12px;
+        width: 100%;
+        height: auto;
     }
 }
 
-
-
-/* === Fix Contact Section Bottom Spacing === */
-#contact {
-    margin-bottom: 0 !important;
-    padding-bottom: 20px !important;
+/* ============================ */
+/* Contact Section Colors       */
+/* ============================ */
+.ud-contact-title {
+    text-align: center;
 }
 
 
-/* ============================= */
-/* Footer Styling Overrides      */
-/* ============================= */
+.ud-contact-title span {
+    font-size: 2rem;
+    font-weight: 700;
+    display: inline-block;
+    margin-bottom: 10px;
+}
 
-/* Footer - Black background */
+.ud-contact-title h2 {
+    margin-bottom: 40px;
+}
+
+/* ============================ */
+/* Footer Colors                */
+/* ============================ */
 .ud-footer {
-    background: #000000 !important;
+    background: #ffffff !important;
 }
 
 .ud-footer-bottom {
-    background: #000000 !important;
+    background: #ffffff !important;
+    border-top: 1px solid #e9ecef !important;
 }
 
-/* === Footer Font Size Enhancements === */
+/* Footer widget text sizes */
 .ud-footer .ud-widget-title {
     font-size: 20px;
     font-weight: 700;
+    color: var(--text-primary) !important;
 }
 
 .ud-footer .ud-widget-links li a,
@@ -546,17 +517,31 @@ h1, h2, h3, h4 {
 .ud-footer .ud-widget-socials a {
     font-size: 18px;
     line-height: 1.7;
+    color: var(--text-secondary) !important;
+}
+
+.ud-footer .ud-widget-links li a:hover {
+    color: var(--accent-blue) !important;
+}
+
+.ud-footer .ud-widget-socials a {
+    color: var(--text-primary) !important;
+    font-size: 24px !important;
+}
+
+.ud-footer .ud-widget-socials a:hover {
+    color: var(--accent-blue) !important;
 }
 
 .ud-footer-bottom p {
     font-size: 17px;
     line-height: 1.6;
+    color: var(--text-secondary) !important;
 }
 
 /* ============================= */
-/* === Footer Mobile Center Alignment === */
+/* Mobile Footer Responsive Text */
 /* ============================= */
-
 @media (max-width: 767px) {
     .ud-footer .ud-widget,
     .ud-footer .ud-widget-title,
@@ -581,137 +566,20 @@ h1, h2, h3, h4 {
     }
 }
 
-/* ============================= */
-/* === Pricing Card Base === */
-/* ============================= */
-
-.ud-single-pricing {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-/* Hover effect for all cards */
-.ud-single-pricing:hover {
-    transform: scale(1.05);
-    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
-    z-index: 2;
-}
-
-/* Center card (the one with .active) */
-.ud-single-pricing.active {
-    transform: scale(1.08);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
-    z-index: 1;
-}
-
-/* On hover, center card grows even more */
-.ud-single-pricing.active:hover {
-    transform: scale(1.12);
-    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.18);
-    z-index: 3;
-}
-
-/* ============================= */
-/* Team profile images with subtle shadow */
-/* ============================= */
-
-.ud-testimonials-swiper .swiper-slide {
-    margin-right: 0 !important;
-}
-
-
-/* ============================= */
-/* Added decsription at below of Application download button*/
-/* ============================= */
-.ud-hero-powerwords {
-    background: linear-gradient(90deg, #E1FAF1, #D8F6FF, #FFF4E6);
-    border-radius: 12px;
-
-    position: relative;
-    width: 100vw;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
-    padding: 18px 0;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 18px;
-
-    text-align: center;
-    font-size: 1.2rem;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(10px);
-    border-top: 1px solid rgba(255, 255, 255, 0.15);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-}
-
-/* ============================= */
-/* === Unified Font Harmony & Scaling (Final Refined Version) === */
-/* ============================= */
-
-/* === 1. Features Section === */
-.ud-feature-title {
-    font-size: 1.3rem !important;
-    font-weight: 700;
-}
-
-.ud-feature-desc {
-    font-size: 1.05rem !important;
-    line-height: 1.75;
-}
-
-/* === 2. Pricing Section === */
-.ud-pricing-header h3 {
-    font-size: 1.4rem !important;
-    font-weight: 700;
-}
-
-.ud-pricing-header h4 {
-    font-size: 1.6rem !important;
-    color: var(--bs-primary);
-    font-weight: 700;
-}
-
-.ud-pricing-body ul li {
-    font-size: 1.02rem !important;
-    line-height: 1.7;
-}
-
-.ud-single-pricing .ud-main-btn {
-    font-size: 1rem !important;
-    padding: 10px 28px !important;
-}
-
-/* === 3. FAQ Section === */
-.ud-faq-btn {
-    font-size: 1.08rem !important;
-    font-weight: 600;
-    line-height: 1.6;
-}
-
-.ud-faq-body {
-    font-size: 1rem !important;
-    line-height: 1.75;
-}
-
-/* === 4. Team Section === */
-/* Team section - Black background */
+/* Team section */
 .ud-team {
-    background: #000000 !important;
+    background: #ffffff !important;
 }
 
-/* Team section text colors - Gold */
+
 .ud-team .ud-section-title span {
-    color: #D4AF37 !important;
-    font-weight: 700 !important;
-    font-size: 45px !important;
-    line-height: 60px !important;
+    color: var(--accent-blue) !important;
+    font-weight: 600 !important;
+    font-size: 1rem !important;
+    line-height: 1.5 !important;
     text-align: center !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important;
 }
 
 /* Team section span responsive - matching hero title */
@@ -720,6 +588,15 @@ h1, h2, h3, h4 {
         font-size: 38px !important;
         line-height: 50px !important;
     }
+    
+    .ud-team .ud-section-title h2 {
+        font-size: 2rem !important;
+    }
+    
+    .ud-team {
+        padding-top: 80px !important;
+        padding-bottom: 60px !important;
+    }
 }
 
 @media screen and (max-width: 575px) {
@@ -727,25 +604,41 @@ h1, h2, h3, h4 {
         font-size: 26px !important;
         line-height: 38px !important;
     }
+    
+    .ud-team .ud-section-title h2 {
+        font-size: 1.75rem !important;
+    }
+    
+    .ud-team {
+        padding-top: 60px !important;
+        padding-bottom: 40px !important;
+    }
 }
 
 .ud-team .ud-section-title h2 {
-    color: #D4AF37 !important;
+    color: var(--text-primary) !important;
+    font-size: 2.5rem !important;
+    font-weight: 700 !important;
+    line-height: 1.3 !important;
+    margin-top: 0.5rem !important;
 }
 
 .ud-team .ud-section-title p {
-    color: #D4AF37 !important;
+    color: var(--text-secondary) !important;
+    font-size: 1.125rem !important;
+    line-height: 1.7 !important;
 }
 
 .ud-team-info h5 {
-    font-size: 1.15rem !important;
-    font-weight: 700;
-    color: #ffffff !important;
+    font-size: 1.25rem !important;
+    font-weight: 600 !important;
+    color: var(--text-primary) !important;
 }
 
 .ud-team-info h6 {
     font-size: 1rem !important;
-    color: #ffffff !important;
+    font-weight: 400 !important;
+    color: var(--text-tertiary) !important;
 }
 
 /* LinkedIn icon inside each team member */
@@ -758,55 +651,26 @@ h1, h2, h3, h4 {
     transform: scale(1.2);
 }
 
-/* === 5. Testimonials === */
-.ud-testimonial-content p {
-    font-size: 1.1rem !important;
-    line-height: 1.75;
-}
 
-.ud-testimonial-info h4,
-.ud-testimonial-info h5 {
-    font-size: 1rem !important;
-}
-
-/* === 6. Section Headings General Boost === */
-.ud-section-title h2 {
-    font-size: 2.2rem !important;
-    line-height: 1.3;
-    font-weight: 700;
-}
-
-.ud-section-title span {
-    font-size: 1rem !important;
-    font-weight: 600;
-}
-
-.ud-section-title p {
-    font-size: 1.05rem !important;
-    line-height: 1.75;
-}
-
-/* === 7. Global Text & Links Consistency === */
-p, li, a, span {
-    font-size: 1rem;
-    line-height: 1.7;
-}
-
-/* === 8. Responsive Balance (Mobile) === */
-@media (max-width: 768px) {
-    .ud-section-title h2 {
-        font-size: 1.8rem !important;
+/* ============================= */
+/* General Responsive Font Sizes */
+/* ============================= */
+@media (max-width: 991px) {
+    .ud-section-title span {
+        font-size: 38px !important;
+        line-height: 50px !important;
     }
-    .ud-feature-title,
-    .ud-pricing-header h3 {
-        font-size: 1.15rem !important;
+}
+
+@media (max-width: 575px) {
+    .ud-section-title span {
+        font-size: 26px !important;
+        line-height: 38px !important;
     }
-    .ud-pricing-header h4 {
-        font-size: 1.4rem !important;
-    }
-    .ud-faq-btn {
-        font-size: 1rem !important;
-    }
+}
+
+/* Responsive sizing for all key elements */
+@media (max-width: 991px) {
     .ud-team-info h5 {
         font-size: 1.05rem !important;
     }
@@ -814,441 +678,50 @@ p, li, a, span {
         font-size: 0.95rem !important;
     }
     .ud-testimonial-content p {
-        font-size: 1.05rem !important;
+        font-size: 1rem !important;
     }
     .ud-team-socials i {
         font-size: 22px !important;
     }
 }
 
-
 /* ============================= */
-/* === Social Icons Hover Colors === */
-/* ============================= */
-
-/* Icons are white initially */
-.ud-widget-socials i {
-    color: #fff !important;
-    transition: color 0.3s ease, transform 0.2s ease;
-}
-
-/* YouTube hover */
-.ud-widget-socials a:hover .lni-youtube {
-    color: #FF0000 !important;
-    transform: scale(1.2);
-}
-
-/* === Instagram Gradient Hover === */
-.ud-widget-socials a:hover .lni-instagram-filled {
-    background: linear-gradient(45deg, #FEDA75, #FA7E1E, #D62976, #962FBF, #4F5BD5);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    transform: scale(1.25);
-    transition: all 0.3s ease;
-}
-
-
-/* === TikTok Gradient Hover === */
-.ud-widget-socials a:hover .lni-tiktok {
-    background: linear-gradient(135deg, #25F4EE, #FE2C55);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    transform: scale(1.25);
-    transition: all 0.3s ease;
-}
-
-
-/* Facebook hover */
-.ud-widget-socials a:hover .lni-facebook-filled {
-    color: #1877F2 !important;
-    transform: scale(1.2);
-}
-
-/* LinkedIn hover */
-.ud-widget-socials a:hover .lni-linkedin-original {
-    color: var(--primary-color) !important;
-    transform: scale(1.2);
-}
-
-
-/* === Global Font Setup === */
-html, body {
-    font-family: 'Poppins', sans-serif;
-    background: #000000 !important;
-    color: #ffffff;
-}
-
-/* === Hero Text Customization === */
-.ud-hero-desc {
-    font-family: 'Poppins', sans-serif !important;
-    font-weight: 600;
-    color: #ffffff !important;
-    letter-spacing: 0.3px;
-}
-
-/* Last paragraph (description) softer tone */
-.ud-hero-desc:last-of-type {
-    font-weight: 500;
-    opacity: 0.9;
-}
-
-/* === Refined Hook + Group Return Animation === */
-
-.ud-hero-content .ud-hero-desc {
-    color: #ffffff !important;
-    font-family: 'Poppins', sans-serif;
-    text-align: center;
-    letter-spacing: 0.3px;
-    line-height: 1.8;
-    opacity: 1 !important;
-    transform: none;
-    filter: none;
-}
-
-/* First three sentences appear one by one - Disabled for single paragraph */
-/* .ud-hero-content .ud-hero-desc:nth-of-type(1),
-.ud-hero-content .ud-hero-desc:nth-of-type(2),
-.ud-hero-content .ud-hero-desc:nth-of-type(3) {
-    animation: hookStep 2s ease-in-out forwards;
-} */
-
-/* Delays (sequencing) - Disabled */
-/* .ud-hero-content .ud-hero-desc:nth-of-type(1) { animation-delay: 0s; }
-.ud-hero-content .ud-hero-desc:nth-of-type(2) { animation-delay: 2s; }
-.ud-hero-content .ud-hero-desc:nth-of-type(3) { animation-delay: 4s; } */
-
-/* Bottom text: stays completely hidden initially - Disabled */
-/* .ud-hero-content .ud-hero-desc:nth-of-type(4) {
-    opacity: 0;
-} */
-
-/* === Group return (3 questions + bottom text together) === - Disabled */
-/* .ud-hero-content.show-all .ud-hero-desc {
-    animation: groupReturn 1.6s ease-out forwards;
-    animation-delay: 0s;
-} */
-
-/* --- Animation definitions --- */
-
-@keyframes hookStep {
-    0% {
-        opacity: 0;
-        transform: translateY(25px) scale(1.02);
-        filter: blur(2px);
-    }
-    30% {
-        opacity: 1;
-        transform: translateY(0) scale(1.01);
-        filter: blur(0.3px);
-    }
-    65% {
-        opacity: 1;
-        transform: translateY(-3px) scale(1.0);
-        filter: blur(0);
-    }
-    100% {
-        opacity: 0;
-        transform: translateY(-10px);
-        filter: blur(1px);
-    }
-}
-
-/* Group return (all lines + bottom text) */
-@keyframes groupReturn {
-    0% {
-        opacity: 0;
-        transform: translateY(20px);
-        filter: blur(2px);
-    }
-    40% {
-        opacity: 1;
-        transform: translateY(0);
-        filter: blur(0.3px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-        filter: blur(0);
-    }
-}
-
-/* Main image hover effect */
-.preview-wrapper {
-    display: inline-block;
-    position: relative;
-}
-.preview-main {
-    border-radius: 20px;
-    transition: all 0.35s ease;
-    cursor: pointer;
-}
-.preview-main:hover {
-    transform: scale(1.03);
-    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
-}
-
-/* Pop-up appearance */
-.popup-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.85);
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-}
-
-.popup-content {
-    background: #fff;
-    border-radius: 20px;
-    padding: 20px;
-    max-width: 420px;
-    width: 90%;
-    text-align: center;
-    position: relative;
-    animation: fadeIn 0.3s ease;
-}
-
-.popup-close {
-    position: absolute;
-    top: 10px;
-    right: 18px;
-    font-size: 28px;
-    color: #333;
-    cursor: pointer;
-    font-weight: bold;
-}
-.popup-close:hover {
-    color: #000;
-}
-
-/* Images inside Swiper */
-.popup-img {
-    width: 100%;
-    border-radius: 16px;
-}
-
-/* Swiper navigation colors */
-.swiper-button-next,
-.swiper-button-prev {
-    color: #5cbdb9;
-}
-.swiper-pagination-bullet-active {
-    background: #5cbdb9;
-}
-
-/* Animation */
-@keyframes fadeIn {
-    from { opacity: 0; transform: scale(0.95); }
-    to { opacity: 1; transform: scale(1); }
-}
-
-@media (max-width: 600px) {
-    .popup-content {
-        max-width: 340px;
-    }
-}
-
-/*!* ============================= *!*/
-/*!* === Instagram Gallery Section === *!*/
-/*!* ============================= *!*/
-
-/*.ud-instagram-gallery {*/
-/*    background: linear-gradient(180deg, #ffffff 0%, #E3F9F0 50%, #D6F0FF 100%);*/
-/*    padding: 100px 0;*/
-/*    !* border-top: 1px solid rgba(0, 0, 0, 0.05);  <-- removed *!*/
-/*}*/
-
-/*.ud-instagram-gallery h2 {*/
-/*    font-weight: 700;*/
-/*    color: #1a1a1a;*/
-/*    margin-bottom: 16px;*/
-/*}*/
-
-/*.ud-instagram-gallery .gallery-desc {*/
-/*    font-size: 1.1rem;*/
-/*    color: #334155;*/
-/*    max-width: 720px;*/
-/*    margin: 0 auto 40px;*/
-/*}*/
-
-/*!* 3-column responsive grid *!*/
-/*.instagram-grid {*/
-/*    display: grid;*/
-/*    grid-template-columns: repeat(3, 1fr);*/
-/*    gap: 28px;*/
-/*    justify-items: center;*/
-/*    align-items: start;*/
-/*}*/
-
-/*!* Instagram embeds styling *!*/
-/*.instagram-grid .instagram-media {*/
-/*    max-width: 350px;*/
-/*    width: 100%;*/
-/*    border-radius: 16px !important;*/
-/*    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);*/
-/*    background: #fff;*/
-/*    transition: all 0.3s ease;*/
-/*}*/
-
-/*.instagram-grid .instagram-media:hover {*/
-/*    transform: translateY(-6px) scale(1.02);*/
-/*    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.18);*/
-/*}*/
-
-/*!* Responsive tweaks *!*/
-/*@media (max-width: 992px) {*/
-/*    .instagram-grid {*/
-/*        grid-template-columns: repeat(2, 1fr);*/
-/*    }*/
-/*}*/
-
-/*@media (max-width: 600px) {*/
-/*    .instagram-grid {*/
-/*        grid-template-columns: 1fr;*/
-/*    }*/
-/*    .ud-instagram-gallery {*/
-/*        padding: 70px 0;*/
-/*    }*/
-/*}*/
-
-/* ====== Social Media Gallery Styling ====== */
-
-/* ====== Social Media Gallery (Unified Version) ====== */
-.ud-social-gallery {
-    background: linear-gradient(180deg, #ffffff 0%, #E3F9F0 50%, #D6F0FF 100%);
-    padding: 100px 0;
-    border-top: 1px solid rgba(0, 0, 0, 0.05);
-}
-
-.ud-social-gallery h2 {
-    font-weight: 700;
-    color: #1a1a1a;
-}
-
-.ud-social-gallery .gallery-desc {
-    font-size: 1.1rem;
-    color: #334155;
-    max-width: 720px;
-    margin: 0 auto 40px;
-}
-
-/* === GRID LAYOUT === */
-.social-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 24px;
-    justify-items: center;
-    align-items: start;
-}
-
-/* === UNIFIED ITEM BOXES === */
-.social-item {
-    width: 100%;
-    max-width: 360px;
-    height: 560px;
-    border-radius: 16px;
-    background: #fff;
-    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.social-item:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
-}
-
-/* === INNER EMBEDS (normalize heights) === */
-.social-item iframe,
-.social-item blockquote,
-.social-item .fb-post {
-    width: 100% !important;
-    height: 100% !important;
-    border: none !important;
-    margin: 0 !important;
-    padding: 0 !important;
-}
-
-/* === MOBILE GRID ADAPTATION === */
-@media (max-width: 992px) {
-    .social-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 576px) {
-    .social-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* === LEGACY SUPPORT (optional) === */
-/* So old styles like .youtube-embed, .tiktok-embed, .facebook-embed don't break */
-.youtube-embed,
-.tiktok-embed,
-.facebook-embed,
-.instagram-media {
-    max-width: 100%;
-    border-radius: 0 !important;
-    box-shadow: none;
-    background: transparent;
-    overflow: visible;
-    transition: none;
-}
-
-
-/* ============================= */
-/* === Contact title made bigger === */
-/* ============================= */
-.ud-contact-title span {
-    font-size: 2rem;
-    font-weight: 700;
-    display: inline-block;
-    color: #1a1a1a;
-}
-
-/* ============================= */
-/* === Contact Info Text Enlargement (2x Size) === */
-/* ============================= */
-
-/* Increases only the address and email text sizes */
-.ud-info-meta p {
-    font-size: 1.05rem !important;
-    line-height: 1.6;
-    font-weight: 400;
-}
-
-/* ============================= */
-/* Partners Section Styling */
+/* Partners section */
 /* ============================= */
 
 /* Partners section - Black background to match other sections */
-#partners,
-#partners.ud-testimonials,
-section#partners {
-    background: #000000 !important;
+#partners {
+    background: linear-gradient(
+            180deg,
+            #ffffff 0%,
+            #f8f9fa 50%,
+            #f0f4f8 100%
+    ) !important;
     padding-top: 120px;
     padding-bottom: 80px;
     min-height: 400px;
 }
 
 #partners .ud-section-title span {
-    color: #D4AF37 !important;
+    color: var(--accent-blue) !important;
     font-weight: 600 !important;
+    font-size: 1rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important;
 }
 
 #partners .ud-section-title h2 {
-    color: #D4AF37 !important;
+    color: var(--text-primary) !important;
     font-weight: 700 !important;
+    font-size: 2.5rem !important;
+    line-height: 1.3 !important;
+    margin-top: 0.5rem !important;
 }
 
 #partners .ud-section-title p {
-    color: #ffffff !important;
+    color: var(--text-secondary) !important;
+    font-size: 1.125rem !important;
+    line-height: 1.7 !important;
 }
 
 /* Partners brands container - better layout */
@@ -1261,10 +734,9 @@ section#partners {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    gap: 20px;
+    gap: 30px;
 }
 
-/* Override default grayscale filter from base styles */
 #partners .ud-brands-logo .ud-single-logo img {
     -webkit-filter: brightness(1.2) contrast(1.1) grayscale(0) !important;
     filter: brightness(1.2) contrast(1.1) grayscale(0) !important;
@@ -1281,45 +753,163 @@ section#partners {
 }
 
 #partners .ud-single-logo img {
-    filter: brightness(1.2) contrast(1.1) grayscale(0) !important;
-    opacity: 0.9 !important;
+    filter: brightness(1) contrast(1.1) saturate(1.1) grayscale(0) !important;
+    opacity: 0.85 !important;
     transition: all 0.3s ease;
-    max-width: 180px;
-    max-height: 100px;
+    max-width: 200px;
+    max-height: 120px;
     width: auto;
     height: auto;
     object-fit: contain;
-    padding: 10px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Specific styling for Novartis logo - wider horizontal logo */
+#partners .ud-single-logo img[alt="Novartis"],
+#partners .ud-single-logo img[src*="Novartis"] {
+    max-width: 250px !important;
+    max-height: 60px !important;
+    height: 60px !important;
+    width: auto !important;
+    padding: 10px 20px !important;
 }
 
 #partners .ud-single-logo:hover img {
-    filter: brightness(1.4) contrast(1.2) grayscale(0) !important;
+    filter: brightness(1) contrast(1.15) saturate(1.15) grayscale(0) !important;
     opacity: 1 !important;
-    transform: scale(1.1);
+    transform: scale(1.05);
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
-/* TÜBİTAK logo specific styling - enhance visibility */
+/* ============================= */
+/* Partners Section - Mobile Responsive */
+/* ============================= */
+@media (max-width: 991px) {
+    #partners {
+        padding-top: 80px !important;
+        padding-bottom: 60px !important;
+    }
+    
+    #partners .ud-section-title h2 {
+        font-size: 2rem !important;
+    }
+    
+    #partners .ud-section-title p {
+        font-size: 1rem !important;
+    }
+    
+    #partners .ud-brands-logo {
+        gap: 20px !important;
+    }
+    
+    #partners .ud-single-logo {
+        margin: 15px 20px !important;
+        padding: 15px !important;
+    }
+    
+    #partners .ud-single-logo img {
+        max-width: 160px !important;
+        max-height: 100px !important;
+        padding: 12px !important;
+    }
+    
+    /* Novartis logo mobile */
+    #partners .ud-single-logo img[alt="Novartis"],
+    #partners .ud-single-logo img[src*="Novartis"] {
+        max-width: 200px !important;
+        max-height: 50px !important;
+        height: 50px !important;
+        padding: 8px 15px !important;
+    }
+    
+    #partners .tubitak-logo img {
+        max-width: 180px !important;
+        max-height: 120px !important;
+        padding: 15px !important;
+    }
+}
+
+@media (max-width: 575px) {
+    #partners {
+        padding-top: 60px !important;
+        padding-bottom: 40px !important;
+        min-height: auto !important;
+    }
+    
+    #partners .ud-section-title h2 {
+        font-size: 1.75rem !important;
+    }
+    
+    #partners .ud-section-title p {
+        font-size: 0.95rem !important;
+    }
+    
+    #partners .ud-brands {
+        padding: 20px 0 !important;
+    }
+    
+    #partners .ud-brands-logo {
+        gap: 15px !important;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    #partners .ud-single-logo {
+        margin: 10px 0 !important;
+        padding: 12px !important;
+        width: 100%;
+        max-width: 280px;
+    }
+    
+    #partners .ud-single-logo img {
+        max-width: 140px !important;
+        max-height: 80px !important;
+        padding: 10px !important;
+    }
+    
+    /* Novartis logo mobile */
+    #partners .ud-single-logo img[alt="Novartis"],
+    #partners .ud-single-logo img[src*="Novartis"] {
+        max-width: 180px !important;
+        max-height: 45px !important;
+        height: 45px !important;
+        padding: 6px 12px !important;
+    }
+    
+    #partners .tubitak-logo img {
+        max-width: 160px !important;
+        max-height: 100px !important;
+        padding: 12px !important;
+    }
+}
+
+/* TÜBİTAK specific styling */
 #partners .tubitak-logo {
     padding: 15px 25px;
 }
 
 #partners .tubitak-logo img {
-    filter: brightness(1.6) contrast(1.4) grayscale(0) !important;
-    opacity: 1 !important;
-    max-width: 200px;
-    max-height: 120px;
-    padding: 15px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 8px;
+    filter: brightness(1) contrast(1.15) saturate(1.15) grayscale(0) !important;
+    opacity: 0.9 !important;
+    max-width: 220px;
+    max-height: 140px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 10px;
     transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
 #partners .tubitak-logo:hover img {
-    filter: brightness(1.8) contrast(1.5) grayscale(0) !important;
+    filter: brightness(1) contrast(1.2) saturate(1.2) grayscale(0) !important;
     opacity: 1 !important;
-    transform: scale(1.15);
-    background: rgba(255, 255, 255, 0.1);
-    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+    transform: scale(1.05);
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 /* Partner text logos styling (when image files are not available) */
@@ -1330,113 +920,170 @@ section#partners {
     text-decoration: none;
     min-height: 100px;
     padding: 20px 30px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
     transition: all 0.3s ease;
 }
 
+#partners .partner-text-logo:hover {
+    background: rgba(255, 255, 255, 0.12);
+    transform: translateY(-2px);
+}
+
 #partners .partner-name {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 600;
-    color: #ffffff !important;
+    color: #1a1a1a !important;
     text-align: center;
     line-height: 1.4;
     transition: all 0.3s ease;
 }
 
 #partners .ud-single-logo:hover .partner-name {
-    color: #D4AF37 !important;
-    transform: scale(1.1);
+    color: #0066cc !important;
+    transform: scale(1.05);
 }
 
-#partners .ud-single-logo a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100px;
-    width: 100%;
-}
-
-/* ============================= */
-/* Contact Section - Black Background and White Text */
-/* ============================= */
-
-/* Contact section - Black background */
+/* Contact section */
 .ud-contact {
-    background: #000000 !important;
+    background: #ffffff !important;
 }
 
-/* Contact title - Gold color (same as other titles) */
+
 .ud-contact-title span {
-    color: #D4AF37 !important;
+    color: var(--accent-blue) !important;
+    font-weight: 600 !important;
+    font-size: 1rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important;
 }
 
 .ud-contact-title h2 {
-    color: #ffffff !important;
-    font-size: 1.35rem !important;
-    line-height: 1.4 !important;
+    color: var(--text-primary) !important;
+    font-size: 2rem !important;
+    font-weight: 700 !important;
+    line-height: 1.3 !important;
+    margin-top: 0.5rem !important;
 }
 
-/* Contact info section - White text */
-.ud-info-meta h5 {
-    color: #ffffff !important;
+/* Contact section mobile responsive */
+@media (max-width: 991px) {
+    .ud-contact {
+        padding-top: 80px !important;
+        padding-bottom: 60px !important;
+    }
+    
+    .ud-contact-title h2 {
+        font-size: 1.75rem !important;
+    }
+    
+    .ud-contact-form-wrapper {
+        padding: 30px 20px !important;
+    }
 }
 
-.ud-info-meta p {
-    color: #ffffff !important;
+@media (max-width: 575px) {
+    .ud-contact {
+        padding-top: 60px !important;
+        padding-bottom: 40px !important;
+    }
+    
+    .ud-contact-title h2 {
+        font-size: 1.5rem !important;
+    }
+    
+    .ud-contact-form-wrapper {
+        padding: 25px 15px !important;
+    }
+    
+    .ud-contact-form input[type="text"],
+    .ud-contact-form input[type="email"],
+    .ud-contact-form textarea {
+        font-size: 16px !important; /* Prevents zoom on iOS */
+    }
 }
 
-.ud-info-icon i {
-    color: #ffffff !important;
+.ud-contact-info {
+    text-align: center;
+    margin-bottom: 40px;
 }
 
-/* Contact form wrapper - Black background with gold border */
+.ud-contact-info i {
+    font-size: 2rem;
+    color: var(--bs-primary);
+    margin-bottom: 10px;
+}
+
+.ud-contact-info h5 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
 .ud-contact-form-wrapper {
-    background: #000000 !important;
+    background: #ffffff !important;
     border: 1px solid #D4AF37 !important;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1) !important;
 }
 
 .ud-contact-form-title,
 .ud-contact-form-title h3 {
-    color: #ffffff !important;
+    color: var(--text-primary) !important;
+    font-weight: 600 !important;
+    font-size: 1.5rem !important;
 }
 
 .ud-contact-form label {
-    color: #ffffff !important;
-    font-size: 17px !important;
+    color: var(--text-primary) !important;
+    font-size: 0.95rem !important;
+    font-weight: 500 !important;
 }
 
-/* Contact form inputs - White text and borders */
+/* Form input styling */
 .ud-contact-form input[type="text"],
 .ud-contact-form input[type="email"],
 .ud-contact-form textarea {
-    color: #ffffff !important;
-    background-color: transparent !important;
-    border: none !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3) !important;
+    color: var(--text-primary) !important;
+    background-color: #f9fafb !important;
+    border: 1px solid #e5e7eb !important;
+    border-radius: 6px !important;
+    padding: 12px 16px !important;
+    font-size: 1rem !important;
+    font-weight: 400 !important;
+    transition: all 0.2s ease !important;
 }
 
 .ud-contact-form input[type="text"]:focus,
 .ud-contact-form input[type="email"]:focus,
 .ud-contact-form textarea:focus {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.6) !important;
+    border: 2px solid var(--accent-blue) !important;
+    background-color: #ffffff !important;
+    outline: none !important;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1) !important;
 }
 
 .ud-contact-form input::placeholder,
 .ud-contact-form textarea::placeholder {
-    color: rgba(255, 255, 255, 0.7) !important;
+    color: var(--text-tertiary) !important;
 }
 
-/* Contact form button - Gold theme */
+/* Button styling for contact form */
 .ud-contact-form .ud-main-btn {
-    background-color: #D4AF37 !important;
-    border: 1px solid #D4AF37 !important;
+    background-color: var(--accent-blue) !important;
+    border: 2px solid var(--accent-blue) !important;
     color: #ffffff !important;
-    transition: all 0.3s ease;
+    font-weight: 600 !important;
+    font-size: 1rem !important;
+    padding: 12px 32px !important;
+    border-radius: 6px !important;
+    transition: all 0.2s ease !important;
 }
 
 .ud-contact-form .ud-main-btn:hover,
 .ud-contact-form .ud-main-btn:focus {
-    background-color: #B8941F !important;
-    border-color: #B8941F !important;
+    background-color: var(--bs-secondary) !important;
+    border-color: var(--bs-secondary) !important;
     color: #ffffff !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3) !important;
 }
-

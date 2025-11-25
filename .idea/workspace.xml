@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4958a1eb-9d7f-4c96-95d1-fb186f878a0b" name="Changes" comment="sitemap" />
+    <list default="true" id="4958a1eb-9d7f-4c96-95d1-fb186f878a0b" name="Changes" comment="sitemap">
+      <change beforePath="$PROJECT_DIR$/assets/css/override.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/override.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/images/brands/novartis.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/images/brands/siemens.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/images/brands/ticaret-bakanligi.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/images/brands/tubitak.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
