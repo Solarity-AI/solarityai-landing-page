@@ -273,4 +273,36 @@ window.addEventListener("load", () => {
     }
 });
 
+// === LinkedIn Profile Click Tracking ===
+document.addEventListener("DOMContentLoaded", () => {
+    // Track all LinkedIn links in the team section
+    const linkedinLinks = document.querySelectorAll('#team a[href*="linkedin.com"]');
+    
+    linkedinLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            const linkedinUrl = this.getAttribute('href');
+            const teamMemberName = this.closest('.ud-single-team')?.querySelector('.ud-team-info h5')?.textContent || 'Unknown';
+            const clickType = this.closest('.ud-team-image') ? 'image' : 'icon';
+            
+            // Track with Google Analytics
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'linkedin_profile_click', {
+                    'event_category': 'Team',
+                    'event_label': teamMemberName,
+                    'linkedin_url': linkedinUrl,
+                    'click_type': clickType,
+                    'value': 1
+                });
+            }
+            
+            // Also log to console for debugging (optional, can be removed)
+            console.log('LinkedIn click tracked:', {
+                teamMember: teamMemberName,
+                url: linkedinUrl,
+                clickType: clickType
+            });
+        });
+    });
+});
+
 
