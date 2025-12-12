@@ -274,15 +274,30 @@ window.addEventListener("load", () => {
 });
 
 // === LinkedIn Profile Click Tracking ===
-document.addEventListener("DOMContentLoaded", () => {
+function setupLinkedInTracking() {
     // Track all LinkedIn links in the team section
     const linkedinLinks = document.querySelectorAll('#team a[href*="linkedin.com"]');
     
-    linkedinLinks.forEach(link => {
+    console.log('Setting up LinkedIn tracking. Found', linkedinLinks.length, 'LinkedIn links');
+    
+    if (linkedinLinks.length === 0) {
+        console.warn('No LinkedIn links found in team section. Check if team section exists and has id="team"');
+        return;
+    }
+    
+    linkedinLinks.forEach((link, index) => {
         link.addEventListener('click', function(e) {
             const linkedinUrl = this.getAttribute('href');
-            const teamMemberName = this.closest('.ud-single-team')?.querySelector('.ud-team-info h5')?.textContent || 'Unknown';
+            const teamMemberName = this.closest('.ud-single-team')?.querySelector('.ud-team-info h5')?.textContent?.trim() || 'Unknown';
             const clickType = this.closest('.ud-team-image') ? 'image' : 'icon';
+            
+            // Log to console for debugging
+            console.log('🔗 LinkedIn click tracked:', {
+                teamMember: teamMemberName,
+                url: linkedinUrl,
+                clickType: clickType,
+                timestamp: new Date().toISOString()
+            });
             
             // Track with Google Analytics
             if (typeof gtag !== 'undefined') {
@@ -293,16 +308,22 @@ document.addEventListener("DOMContentLoaded", () => {
                     'click_type': clickType,
                     'value': 1
                 });
+                console.log('✅ Event sent to Google Analytics');
+            } else {
+                console.warn('⚠️ Google Analytics (gtag) not loaded yet');
             }
-            
-            // Also log to console for debugging (optional, can be removed)
-            console.log('LinkedIn click tracked:', {
-                teamMember: teamMemberName,
-                url: linkedinUrl,
-                clickType: clickType
-            });
         });
+        
+        console.log(`LinkedIn link ${index + 1} tracking attached:`, link.getAttribute('href'));
     });
-});
+}
+
+// Run when DOM is ready, or immediately if already loaded
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupLinkedInTracking);
+} else {
+    // DOM already loaded, run immediately
+    setupLinkedInTracking();
+}
 
 
