@@ -1,0 +1,27 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Ata Turhan -- CEO -- https://www.linkedin.com/in/ataturhan/
+    Umur Inan -- CTO -- https://www.linkedin.com/in/umurinan/
+    Burak Hamuryen -- Chief Software Architect -- https://www.linkedin.com/in/burak-hamuryen-07b8b340/
+    Gokberk Serin -- Business Development Manager
+    Ali Yilmaz -- Business Development Manager -- https://www.linkedin.com/in/ali-yilmaz2/
+    Doğukan Süme -- Frontend Engineer -- https://www.linkedin.com/in/doğukansume/
+
+# THANKS
+
+    Bootstrap -- https://getbootstrap.com/
+    LineIcons -- https://lineicons.com/
+    WOW.js -- https://wowjs.uk/
+    Animate.css -- https://animate.style/
+
+# SITE
+
+    Last update: 2024/12/20
+    Standards: HTML5, CSS3, JavaScript (ES6+)
+    Components: Bootstrap 5, WOW.js, Animate.css
+    Software: Visual Studio Code, Git
+    Hosting: AWS EC2, Nginx
+
