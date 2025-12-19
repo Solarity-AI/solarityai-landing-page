@@ -249,6 +249,21 @@ img {
   padding: 0.5rem;
   position: relative;
   z-index: 1001;
+  background: transparent;
+  cursor: pointer;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  pointer-events: auto !important;
+}
+
+.navbar-toggler * {
+  pointer-events: none;
+}
+
+.navbar-toggler:active,
+.navbar-toggler:focus {
+  outline: none;
+  box-shadow: none;
 }
 
 .navbar-toggler .toggler-icon {
@@ -285,10 +300,32 @@ img {
   .navbar-collapse {
     background: var(--color-dark-secondary);
     margin-top: 1rem;
-    padding: 1rem;
+    padding: 0;
     border-radius: 8px;
     flex-grow: 0;
+    display: none !important;
     width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+  }
+  
+  .navbar-collapse.show {
+    display: flex !important;
+    max-height: 500px !important;
+    padding: 1rem !important;
+    width: 100% !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  
+  .navbar-collapse:not(.show) {
+    display: none !important;
+    max-height: 0 !important;
+    padding: 0 !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
   }
   
   .navbar-nav {
@@ -547,26 +584,12 @@ section {
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 2rem;
   align-items: center;
-  justify-items: center;
+  justify-items: start;
 }
 
-/* Center the last 3 logos (Techsign, TÜBİTAK, Akuakare) */
 @media (min-width: 992px) {
   .ud-partners-grid {
-    grid-template-columns: repeat(6, 1fr);
-  }
-  
-  /* Center the last 3 logos */
-  .ud-partners-grid > .ud-partner-logo:nth-child(7) {
-    grid-column: 2 / 3;
-  }
-  
-  .ud-partners-grid > .ud-partner-logo:nth-child(8) {
-    grid-column: 3 / 4;
-  }
-  
-  .ud-partners-grid > .ud-partner-logo:nth-child(9) {
-    grid-column: 4 / 5;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   }
 }
 
@@ -798,6 +821,28 @@ section {
 
 .ud-team .row > [class*="col-"] {
   margin-bottom: 2rem;
+}
+
+.ud-team-category-title {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid rgba(59, 130, 246, 0.3);
+  position: relative;
+}
+
+.ud-team-category-title::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 2px;
+  background: var(--gradient-blue);
+  border-radius: 2px;
 }
 
 .ud-single-team {

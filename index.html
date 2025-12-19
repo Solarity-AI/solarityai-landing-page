@@ -176,7 +176,7 @@
                 <img src="assets/images/logo/logo.webp" alt="Solarity AI" />
               </a>
               <button id="languageSwitcher" class="language-switcher" onclick="toggleLanguage()">EN</button>
-              <button class="navbar-toggler">
+              <button class="navbar-toggler" type="button" aria-label="Toggle navigation menu" id="mobileMenuToggle">
                 <span class="toggler-icon"></span>
                 <span class="toggler-icon"></span>
                 <span class="toggler-icon"></span>
@@ -287,7 +287,7 @@
               </div>
               <div class="ud-partner-logo">
                 <a href="https://www.novartis.com/" target="_blank" rel="noopener noreferrer">
-                  <img src="assets/images/brands/Novartis-Logo.svg" alt="Novartis" />
+                  <img src="assets/images/brands/Novartis-Logo.svg" alt="Novartis" style="width: 100%; height: auto; max-height: 90px; object-fit: contain;" />
                 </a>
               </div>
               <div class="ud-partner-logo">
@@ -305,17 +305,17 @@
                   <img src="assets/images/brands/Siemens_AG_logo.svg" alt="Siemens" />
                 </a>
               </div>
-              <div class="ud-partner-logo ud-partner-logo-centered">
+              <div class="ud-partner-logo">
                 <a href="https://www.techsign.com.tr/" target="_blank" rel="noopener noreferrer">
                   <img src="assets/images/brands/techsign.png" alt="Techsign" />
                 </a>
               </div>
-              <div class="ud-partner-logo ud-partner-logo-centered">
+              <div class="ud-partner-logo">
                 <a href="https://www.tubitak.gov.tr/" target="_blank" rel="noopener noreferrer">
                   <img src="assets/images/brands/TUBITAK_logo.svg" alt="TÜBİTAK" />
                 </a>
               </div>
-              <div class="ud-partner-logo ud-partner-logo-centered">
+              <div class="ud-partner-logo">
                 <a href="https://akuakare.com/" target="_blank" rel="noopener noreferrer">
                   <img src="assets/images/brands/akuakare.png" alt="Akuakare" />
                 </a>
@@ -406,7 +406,12 @@
           </div>
         </div>
 
-        <div class="row">
+        <!-- C-Level Executives -->
+        <div class="row mt-5">
+          <div class="col-lg-12">
+            <h3 class="ud-team-category-title text-center mb-4" data-i18n="teamCLevel">C-Level Executives</h3>
+          </div>
+          
           <!-- CEO -->
           <div class="col-xl-4 col-lg-4 col-sm-6">
             <div class="ud-single-team wow fadeInUp" data-wow-delay=".1s">
@@ -481,7 +486,14 @@
               </ul>
             </div>
           </div>
+        </div>
 
+        <!-- Managers -->
+        <div class="row mt-5">
+          <div class="col-lg-12">
+            <h3 class="ud-team-category-title text-center mb-4" data-i18n="teamManagers">Managers</h3>
+          </div>
+          
           <!-- Business Development Manager -->
           <div class="col-xl-4 col-lg-4 col-sm-6">
             <div class="ud-single-team wow fadeInUp" data-wow-delay=".25s">
@@ -531,10 +543,42 @@
               </ul>
             </div>
           </div>
+        </div>
+
+        <!-- Engineers -->
+        <div class="row mt-5">
+          <div class="col-lg-12">
+            <h3 class="ud-team-category-title text-center mb-4" data-i18n="teamEngineers">Engineers</h3>
+          </div>
+          
+          <!-- Full Stack Lead Software Engineer -->
+          <div class="col-xl-4 col-lg-4 col-sm-6">
+            <div class="ud-single-team wow fadeInUp" data-wow-delay=".35s">
+              <div class="ud-team-image-wrapper">
+                <div class="ud-team-image">
+                  <a href="https://www.linkedin.com/in/hasan-erdem-ak" target="_blank" rel="noopener noreferrer">
+                    <img src="assets/images/team/HasanErdemAk.webp" alt="Hasan Erdem Ak" />
+                  </a>
+                </div>
+              </div>
+              <div class="ud-team-info">
+                <h5>Hasan Erdem Ak</h5>
+                <h6 data-i18n="teamFullStackLead">Senior Software Engineer</h6>
+                <p class="ud-team-bio" data-i18n="teamFullStackLeadBio">Experienced software engineer with expertise in full-stack development, delivering robust and scalable solutions across frontend and backend technologies.</p>
+              </div>
+              <ul class="ud-team-socials">
+                <li>
+                  <a href="https://www.linkedin.com/in/hasan-erdem-ak" target="_blank" rel="noopener noreferrer">
+                    <i class="lni lni-linkedin-original"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
 
           <!-- Frontend Engineer -->
           <div class="col-xl-4 col-lg-4 col-sm-6">
-            <div class="ud-single-team wow fadeInUp" data-wow-delay=".3s">
+            <div class="ud-single-team wow fadeInUp" data-wow-delay=".4s">
               <div class="ud-team-image-wrapper">
                 <div class="ud-team-image">
                   <a href="https://www.linkedin.com/in/doğukansume/" target="_blank" rel="noopener noreferrer">
@@ -550,6 +594,31 @@
               <ul class="ud-team-socials">
                 <li>
                   <a href="https://www.linkedin.com/in/doğukansume/" target="_blank" rel="noopener noreferrer">
+                    <i class="lni lni-linkedin-original"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Frontend Engineer -->
+          <div class="col-xl-4 col-lg-4 col-sm-6">
+            <div class="ud-single-team wow fadeInUp" data-wow-delay=".45s">
+              <div class="ud-team-image-wrapper">
+                <div class="ud-team-image">
+                  <a href="https://www.linkedin.com/in/remzi-mert-tehneldere-601505286/" target="_blank" rel="noopener noreferrer">
+                    <img src="assets/images/team/RemziMertTehneldere.webp" alt="Remzi Mert Tehneldere" />
+                  </a>
+                </div>
+              </div>
+              <div class="ud-team-info">
+                <h5>Remzi Mert Tehneldere</h5>
+                <h6 data-i18n="teamIntern">Intern</h6>
+                <p class="ud-team-bio" data-i18n="teamInternBio">Learning and contributing to software development projects while gaining hands-on experience in modern technologies.</p>
+              </div>
+              <ul class="ud-team-socials">
+                <li>
+                  <a href="https://www.linkedin.com/in/remzi-mert-tehneldere-601505286/" target="_blank" rel="noopener noreferrer">
                     <i class="lni lni-linkedin-original"></i>
                   </a>
                 </li>
@@ -769,8 +838,126 @@
     <script src="assets/js/translations.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/wow.min.js"></script>
-    <script src="assets/js/main.js"></script>
     <script src="assets/js/language.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+      console.log('=== MOBILE MENU SCRIPT LOADING ===');
+      
+      // ULTRA SIMPLE DIRECT APPROACH
+      window.addEventListener('load', function() {
+        console.log('=== PAGE LOADED, INITIALIZING MENU ===');
+        
+        setTimeout(function() {
+          console.log('=== SETTING UP MENU NOW ===');
+          
+          const btn = document.getElementById('mobileMenuToggle');
+          const menu = document.querySelector('.navbar-collapse');
+          
+          console.log('Button found:', !!btn);
+          console.log('Menu found:', !!menu);
+          
+          if (!btn) {
+            console.error('BUTTON NOT FOUND!');
+            return;
+          }
+          
+          if (!menu) {
+            console.error('MENU NOT FOUND!');
+            return;
+          }
+
+          // Disable Bootstrap
+          btn.removeAttribute('data-bs-toggle');
+          btn.removeAttribute('data-bs-target');
+          
+          if (window.bootstrap) {
+            try {
+              const collapse = bootstrap.Collapse.getInstance(menu);
+              if (collapse) {
+                collapse.dispose();
+                console.log('Bootstrap collapse disposed');
+              }
+            } catch(e) {
+              console.log('Bootstrap error:', e);
+            }
+          }
+
+          // Replace button to remove all listeners
+          const newBtn = btn.cloneNode(true);
+          btn.parentNode.replaceChild(newBtn, btn);
+          console.log('Button replaced');
+
+          // Toggle function
+          function toggleMenu() {
+            const isOpen = menu.classList.contains('show');
+            console.log('TOGGLE CALLED - Menu open:', isOpen);
+            
+            if (isOpen) {
+              newBtn.classList.remove('active');
+              menu.classList.remove('show');
+              document.body.style.overflow = '';
+              console.log('✅ MENU CLOSED');
+            } else {
+              newBtn.classList.add('active');
+              menu.classList.add('show');
+              document.body.style.overflow = 'hidden';
+              console.log('✅ MENU OPENED');
+            }
+          }
+
+          // Direct onclick
+          newBtn.onclick = function(e) {
+            console.log('ONCLICK FIRED');
+            e.preventDefault();
+            e.stopPropagation();
+            e.stopImmediatePropagation();
+            toggleMenu();
+            return false;
+          };
+
+          // addEventListener backup
+          newBtn.addEventListener('click', function(e) {
+            console.log('ADDEVENTLISTENER FIRED');
+            e.preventDefault();
+            e.stopPropagation();
+            toggleMenu();
+          }, true);
+
+          // Test click
+          console.log('Adding test click handler...');
+          newBtn.addEventListener('mousedown', function() {
+            console.log('MOUSEDOWN on button!');
+          });
+
+          // Close on links
+          const links = menu.querySelectorAll('a');
+          links.forEach(function(link) {
+            link.addEventListener('click', function() {
+              setTimeout(function() {
+                newBtn.classList.remove('active');
+                menu.classList.remove('show');
+                document.body.style.overflow = '';
+              }, 100);
+            });
+          });
+
+          // Close on outside
+          document.addEventListener('click', function(e) {
+            if (menu.classList.contains('show')) {
+              if (!menu.contains(e.target) && !newBtn.contains(e.target)) {
+                newBtn.classList.remove('active');
+                menu.classList.remove('show');
+                document.body.style.overflow = '';
+              }
+            }
+          });
+
+          console.log('✅ MENU SETUP COMPLETE');
+          console.log('Button element:', newBtn);
+          console.log('Menu element:', menu);
+        }, 1000);
+      });
+    </script>
   </body>
 </html>
 

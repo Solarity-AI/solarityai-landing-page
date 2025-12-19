@@ -49,6 +49,9 @@ const translations = {
     team: "Team",
     teamSubtitle: "Meet Our Expert Team",
     teamSubtitleDesc: "Dedicated professionals driving innovation in AI and software development",
+    teamCLevel: "C-Level Executives",
+    teamManagers: "Managers",
+    teamEngineers: "Engineers",
     teamCEO: "Chief Executive Officer",
     teamCEOBio: "Strategic leader with extensive experience in technology and business development, driving Solarity AI's vision and growth.",
     teamCTO: "Chief Technology Officer",
@@ -60,6 +63,10 @@ const translations = {
     teamBusinessDevBio2: "Driving strategic partnerships and business growth through client relationships and market expansion.",
     teamFrontendEngineer: "Frontend Engineer",
     teamFrontendEngineerBio: "Expert in modern frontend technologies, building responsive and performant user interfaces.",
+    teamIntern: "Intern",
+    teamInternBio: "Learning and contributing to software development projects while gaining hands-on experience in modern technologies.",
+    teamFullStackLead: "Senior Software Engineer",
+    teamFullStackLeadBio: "Experienced software engineer with expertise in full-stack development, delivering robust and scalable solutions across frontend and backend technologies.",
     
     // Contact Section
     contact: "Contact Us",
@@ -210,6 +217,9 @@ const translations = {
     team: "Ekip",
     teamSubtitle: "Uzman Ekibimizle Tanışın",
     teamSubtitleDesc: "AI ve yazılım geliştirmede yenilikleri yönlendiren adanmış profesyoneller",
+    teamCLevel: "Üst Düzey Yöneticiler",
+    teamManagers: "Yöneticiler",
+    teamEngineers: "Mühendisler",
     teamCEO: "Genel Müdür",
     teamCEOBio: "Teknoloji ve iş geliştirmede geniş deneyime sahip stratejik lider, Solarity AI'nin vizyonunu ve büyümesini yönlendiriyor.",
     teamCTO: "Teknoloji Müdürü",
@@ -221,6 +231,10 @@ const translations = {
     teamBusinessDevBio2: "Müşteri ilişkileri ve pazar genişlemesi aracılığıyla stratejik ortaklıklar ve iş büyümesini yönlendirme.",
     teamFrontendEngineer: "Frontend Mühendisi",
     teamFrontendEngineerBio: "Modern frontend teknolojilerinde uzman, duyarlı ve performanslı kullanıcı arayüzleri oluşturuyor.",
+    teamIntern: "Stajyer",
+    teamInternBio: "Yazılım geliştirme projelerine katkıda bulunurken modern teknolojilerde pratik deneyim kazanıyor.",
+    teamFullStackLead: "Kıdemli Yazılım Mühendisi",
+    teamFullStackLeadBio: "Frontend ve backend teknolojilerinde uzman, tam yığın geliştirmede deneyimli, sağlam ve ölçeklenebilir çözümler sunan yazılım mühendisi.",
     
     // Contact Section
     contact: "İletişim",

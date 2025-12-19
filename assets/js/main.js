@@ -25,21 +25,8 @@
     }
   };
 
-  // ====== Close navbar-collapse when a link is clicked
-  let navbarToggler = document.querySelector(".navbar-toggler");
-  const navbarCollapse = document.querySelector(".navbar-collapse");
-
-  document.querySelectorAll(".ud-menu-scroll").forEach((e) =>
-    e.addEventListener("click", () => {
-      navbarToggler.classList.remove("active");
-      navbarCollapse.classList.remove("show");
-    })
-  );
-
-  navbarToggler.addEventListener("click", function () {
-    navbarToggler.classList.toggle("active");
-    navbarCollapse.classList.toggle("show");
-  });
+  // ====== Hamburger Menu Toggle - SIMPLE DIRECT APPROACH
+  // This will be handled by inline script in HTML for maximum reliability
 
   // ====== Smooth Scroll
   const pageLink = document.querySelectorAll(".ud-menu-scroll");
