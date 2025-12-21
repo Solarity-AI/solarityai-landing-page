@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+    <html lang="tr">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <!-- Primary Meta Tags -->
-    <title>Careers at Solarity AI - Join Our Team</title>
-    <meta name="title" content="Careers at Solarity AI - Join Our Team">
-    <meta name="description" content="Join Solarity AI and help build the future of AI-powered software solutions. We're looking for talented individuals passionate about AI, machine learning, and cutting-edge technology.">
+    <title>Solarity AI Kariyer - Ekibimize Katılın</title>
+    <meta name="title" content="Solarity AI Kariyer - Ekibimize Katılın">
+    <meta name="description" content="Solarity AI'ye katılın ve yapay zeka destekli yazılım çözümlerinin geleceğini inşa etmemize yardımcı olun. Yapay zeka, makine öğrenmesi ve son teknoloji konularında tutkulu yetenekli bireyler arıyoruz.">
     <meta name="keywords" content="careers, jobs, employment, AI jobs, software engineer jobs, machine learning jobs, tech careers">
     <meta name="author" content="Solarity AI">
     <meta name="robots" content="index, follow">
@@ -16,15 +16,15 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://solarityai.com/careers.html">
-    <meta property="og:title" content="Careers at Solarity AI - Join Our Team">
-    <meta property="og:description" content="Join Solarity AI and help build the future of AI-powered software solutions.">
+    <meta property="og:title" content="Solarity AI Kariyer - Ekibimize Katılın">
+    <meta property="og:description" content="Solarity AI'ye katılın ve yapay zeka destekli yazılım çözümlerinin geleceğini inşa etmemize yardımcı olun.">
     <meta property="og:image" content="https://solarityai.com/assets/images/logo/logo.webp">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://solarityai.com/careers.html">
-    <meta property="twitter:title" content="Careers at Solarity AI - Join Our Team">
-    <meta property="twitter:description" content="Join Solarity AI and help build the future of AI-powered software solutions.">
+    <meta property="twitter:title" content="Solarity AI Kariyer - Ekibimize Katılın">
+    <meta property="twitter:description" content="Solarity AI'ye katılın ve yapay zeka destekli yazılım çözümlerinin geleceğini inşa etmemize yardımcı olun.">
     <meta property="twitter:image" content="https://solarityai.com/assets/images/logo/logo.webp">
 
     <!-- Favicons -->
@@ -94,6 +94,135 @@
         font-size: 1.25rem;
         color: var(--color-text-secondary);
         line-height: 1.8;
+      }
+
+      .ud-open-positions-section {
+        padding: 4rem 0;
+        background: var(--color-dark-secondary);
+        position: relative;
+      }
+
+      .ud-open-positions-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.3), transparent);
+      }
+
+      .ud-open-positions-wrapper {
+        max-width: 1200px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .ud-open-positions-wrapper h2 {
+        font-size: 2.75rem;
+        font-weight: 700;
+        color: var(--color-text-primary);
+        margin-bottom: 1rem;
+        text-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+      }
+
+      .ud-open-positions-wrapper > p {
+        font-size: 1.125rem;
+        color: var(--color-text-secondary);
+        margin-bottom: 3rem;
+      }
+
+      .ud-positions-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+        margin-top: 2rem;
+      }
+
+      .ud-position-card {
+        background: var(--color-dark-bg);
+        border-radius: 12px;
+        padding: 2rem;
+        text-decoration: none;
+        color: var(--color-text-primary);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all var(--transition-base);
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), 0 4px 12px rgba(0, 0, 0, 0.2);
+      }
+
+      .ud-position-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: var(--gradient-blue);
+        transform: scaleX(0);
+        transition: transform var(--transition-base);
+      }
+
+      .ud-position-card:hover::before {
+        transform: scaleX(1);
+      }
+
+      .ud-position-card:hover {
+        transform: translateY(-8px);
+        border-color: var(--color-primary-light);
+        box-shadow: 0 20px 60px rgba(30, 64, 175, 0.3), 0 8px 24px rgba(0, 0, 0, 0.3);
+      }
+
+      .ud-position-icon {
+        width: 70px;
+        height: 70px;
+        border-radius: 12px;
+        background: var(--gradient-blue);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1.5rem;
+        font-size: 2rem;
+        color: var(--color-white);
+        box-shadow: 0 6px 20px rgba(30, 64, 175, 0.4);
+      }
+
+      .ud-position-card h3 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: var(--color-text-primary);
+      }
+
+      .ud-position-card > p {
+        font-size: 0.9375rem;
+        color: var(--color-text-tertiary);
+        margin-bottom: 1rem;
+      }
+
+      .ud-position-card .lni-arrow-right {
+        font-size: 1.25rem;
+        color: var(--color-primary-light);
+        transition: transform var(--transition-base);
+      }
+
+      .ud-position-card:hover .lni-arrow-right {
+        transform: translateX(5px);
+      }
+
+      @media (max-width: 768px) {
+        .ud-positions-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .ud-open-positions-wrapper h2 {
+          font-size: 2rem;
+        }
       }
 
       .ud-application-form-section {
@@ -364,8 +493,9 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
+        gap: 0.25rem;
         padding: 0.5rem 1rem;
-        min-width: 50px;
+        min-width: 65px;
         background: rgba(255, 255, 255, 0.1);
         border: 1px solid rgba(255, 255, 255, 0.2);
         border-radius: 8px;
@@ -436,7 +566,7 @@
               <a class="navbar-brand" href="index.html">
                 <img src="assets/images/logo/logo.webp" alt="Solarity AI" />
               </a>
-              <button id="languageSwitcher" class="language-switcher" onclick="toggleLanguage()">EN</button>
+              <button id="languageSwitcher" class="language-switcher" onclick="toggleLanguage()">🇺🇸 EN</button>
               <button class="navbar-toggler">
                 <span class="toggler-icon"></span>
                 <span class="toggler-icon"></span>
@@ -474,6 +604,55 @@
     </section>
     <!-- ====== Careers Hero Section End ====== -->
 
+    <!-- ====== Open Positions Section Start ====== -->
+    <section class="ud-open-positions-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="ud-open-positions-wrapper wow fadeInUp" data-wow-delay=".15s">
+              <h2 data-i18n="openPositionsTitle">Open Positions</h2>
+              <p data-i18n="openPositionsDesc">View detailed job descriptions for our current openings</p>
+              <div class="ud-positions-grid">
+                <a href="https://drive.google.com/drive/folders/1iOew815DHxi_TDBWtbpUp_433V-bamws" target="_blank" rel="noopener noreferrer" class="ud-position-card">
+                  <div class="ud-position-icon">
+                    <i class="lni lni-code-alt"></i>
+                  </div>
+                  <h3>Full Stack Engineer</h3>
+                  <p data-i18n="viewJobDescription">View Job Description</p>
+                  <i class="lni lni-arrow-right"></i>
+                </a>
+                <a href="https://drive.google.com/drive/folders/1iOew815DHxi_TDBWtbpUp_433V-bamws" target="_blank" rel="noopener noreferrer" class="ud-position-card">
+                  <div class="ud-position-icon">
+                    <i class="lni lni-bullhorn"></i>
+                  </div>
+                  <h3>Marketing Specialist</h3>
+                  <p data-i18n="viewJobDescription">View Job Description</p>
+                  <i class="lni lni-arrow-right"></i>
+                </a>
+                <a href="https://drive.google.com/drive/folders/1iOew815DHxi_TDBWtbpUp_433V-bamws" target="_blank" rel="noopener noreferrer" class="ud-position-card">
+                  <div class="ud-position-icon">
+                    <i class="lni lni-handshake"></i>
+                  </div>
+                  <h3>Business Development Manager</h3>
+                  <p data-i18n="viewJobDescription">View Job Description</p>
+                  <i class="lni lni-arrow-right"></i>
+                </a>
+                <a href="https://drive.google.com/drive/folders/1iOew815DHxi_TDBWtbpUp_433V-bamws" target="_blank" rel="noopener noreferrer" class="ud-position-card">
+                  <div class="ud-position-icon">
+                    <i class="lni lni-paint-bucket"></i>
+                  </div>
+                  <h3>UI/UX Designer</h3>
+                  <p data-i18n="viewJobDescription">View Job Description</p>
+                  <i class="lni lni-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ====== Open Positions Section End ====== -->
+
     <!-- ====== Application Form Section Start ====== -->
     <section class="ud-application-form-section">
       <div class="container">
@@ -489,11 +668,11 @@
 
               <form id="applicationForm" action="https://formsubmit.co/info@solarityai.com" method="POST" enctype="multipart/form-data">
                 <!-- Hidden FormSubmit Configuration -->
-                <input type="hidden" name="_subject" value="New Job Application - Solarity AI">
+                <input type="hidden" name="_subject" id="careersFormSubject" value="New Job Application - Solarity AI">
                 <input type="hidden" name="_template" value="box">
                 <input type="hidden" name="_captcha" value="false">
                 <input type="hidden" name="_next" value="https://solarityai.com/careers.html?success=true">
-                <input type="hidden" name="_autoresponse" value="Thank you for applying to Solarity AI! We have received your application and will review it carefully. Our team will get back to you soon.">
+                <input type="hidden" name="_autoresponse" id="careersFormAutoresponse" value="Thank you for applying to Solarity AI! We have received your application and will review it carefully. Our team will get back to you soon.">
 
                 <!-- Personal Information Section -->
                 <div class="ud-form-section-title">
@@ -526,7 +705,7 @@
 
                 <div class="ud-form-group">
                   <label for="location" data-i18n="careersLocation">Location</label>
-                  <input type="text" id="location" name="Location" placeholder="City, State/Country">
+                  <input type="text" id="location" name="Location" data-i18n="careersLocationPlaceholder" placeholder="City, State/Country">
                   <div class="ud-form-help-text" data-i18n="careersLocationHelp">Your current location (optional)</div>
                 </div>
 
@@ -540,15 +719,11 @@
                   <label for="position" data-i18n="careersPosition">Position Applying For <span class="required">*</span></label>
                   <select id="position" name="Position" required>
                     <option value="" data-i18n="selectPosition">Select a position</option>
-                    <option value="Senior AI/ML Engineer">Senior AI/ML Engineer</option>
-                    <option value="Full Stack Developer">Full Stack Developer</option>
-                    <option value="Mobile App Developer">Mobile App Developer</option>
-                    <option value="DevOps Engineer">DevOps Engineer</option>
-                    <option value="Software Architect">Software Architect</option>
-                    <option value="Product Manager">Product Manager</option>
-                    <option value="Business Development Manager">Business Development Manager</option>
-                    <option value="UI/UX Designer">UI/UX Designer</option>
-                    <option value="Other">Other</option>
+                    <option value="Full Stack Engineer" data-i18n="positionFullStack">Full Stack Engineer</option>
+                    <option value="Marketing Specialist" data-i18n="positionMarketing">Marketing Specialist</option>
+                    <option value="Business Development Manager" data-i18n="positionBusinessDev">Business Development Manager</option>
+                    <option value="UI/UX Designer" data-i18n="positionUIUX">UI/UX Designer</option>
+                    <option value="Other" data-i18n="other">Other</option>
                   </select>
                 </div>
 
@@ -559,13 +734,13 @@
 
                 <div class="ud-form-group">
                   <label for="linkedin" data-i18n="careersLinkedIn">LinkedIn Profile</label>
-                  <input type="url" id="linkedin" name="LinkedIn" placeholder="https://linkedin.com/in/yourprofile">
+                  <input type="url" id="linkedin" name="LinkedIn" data-i18n="careersLinkedInPlaceholder" placeholder="https://linkedin.com/in/yourprofile">
                   <div class="ud-form-help-text" data-i18n="careersLinkedInHelp">Your LinkedIn profile URL (optional but recommended)</div>
                 </div>
 
                 <div class="ud-form-group">
                   <label for="portfolio" data-i18n="careersPortfolio">Portfolio/Website</label>
-                  <input type="url" id="portfolio" name="Portfolio" placeholder="https://yourwebsite.com">
+                  <input type="url" id="portfolio" name="Portfolio" data-i18n="careersPortfolioPlaceholder" placeholder="https://yourwebsite.com">
                   <div class="ud-form-help-text" data-i18n="careersPortfolioHelp">Your personal website or portfolio (optional)</div>
                 </div>
 
@@ -573,11 +748,11 @@
                   <label for="experience" data-i18n="careersExperience">Years of Experience <span class="required">*</span></label>
                   <select id="experience" name="Experience" required>
                     <option value="" data-i18n="selectExperience">Select experience level</option>
-                    <option value="0-1 years">0-1 years</option>
-                    <option value="2-3 years">2-3 years</option>
-                    <option value="4-5 years">4-5 years</option>
-                    <option value="6-8 years">6-8 years</option>
-                    <option value="9+ years">9+ years</option>
+                    <option value="0-1 years" data-i18n="years0_1">0-1 years</option>
+                    <option value="2-3 years" data-i18n="years2_3">2-3 years</option>
+                    <option value="4-5 years" data-i18n="years4_5">4-5 years</option>
+                    <option value="6-8 years" data-i18n="years6_8">6-8 years</option>
+                    <option value="9+ years" data-i18n="years9Plus">9+ years</option>
                   </select>
                 </div>
 
@@ -589,7 +764,7 @@
 
                 <div class="ud-form-group">
                   <label for="university" data-i18n="careersUniversity">University/Institution <span class="required">*</span></label>
-                  <input type="text" id="university" name="University" required placeholder="e.g., University of Texas at Dallas">
+                  <input type="text" id="university" name="University" required data-i18n="careersUniversityPlaceholder" placeholder="e.g., University of Texas at Dallas">
                   <div class="ud-form-help-text" data-i18n="careersUniversityHelp">Name of your university or educational institution</div>
                 </div>
 
@@ -598,12 +773,12 @@
                     <label for="degree" data-i18n="careersDegree">Degree Level <span class="required">*</span></label>
                     <select id="degree" name="Degree" required>
                       <option value="" data-i18n="selectDegree">Select degree level</option>
-                      <option value="High School">High School</option>
-                      <option value="Associate's Degree">Associate's Degree</option>
-                      <option value="Bachelor's Degree">Bachelor's Degree</option>
-                      <option value="Master's Degree">Master's Degree</option>
-                      <option value="PhD/Doctorate">PhD/Doctorate</option>
-                      <option value="Other">Other</option>
+                      <option value="High School" data-i18n="highSchool">High School</option>
+                      <option value="Associate's Degree" data-i18n="associatesDegree">Associate's Degree</option>
+                      <option value="Bachelor's Degree" data-i18n="bachelorsDegree">Bachelor's Degree</option>
+                      <option value="Master's Degree" data-i18n="mastersDegree">Master's Degree</option>
+                      <option value="PhD/Doctorate" data-i18n="phdDoctorate">PhD/Doctorate</option>
+                      <option value="Other" data-i18n="other">Other</option>
                     </select>
                   </div>
                   <div class="ud-form-group">
@@ -619,9 +794,9 @@
                       <option value="2018">2018</option>
                       <option value="2017">2017</option>
                       <option value="2016">2016</option>
-                      <option value="2015 or earlier">2015 or earlier</option>
-                      <option value="Currently enrolled">Currently enrolled</option>
-                      <option value="Not applicable">Not applicable</option>
+                      <option value="2015 or earlier" data-i18n="year2015Earlier">2015 or earlier</option>
+                      <option value="Currently enrolled" data-i18n="currentlyEnrolled">Currently enrolled</option>
+                      <option value="Not applicable" data-i18n="notApplicable">Not applicable</option>
                     </select>
                   </div>
                 </div>
@@ -633,13 +808,13 @@
 
                 <div class="ud-form-group">
                   <label for="fieldOfStudy" data-i18n="careersFieldOfStudy">Field of Study/Major <span class="required">*</span></label>
-                  <input type="text" id="fieldOfStudy" name="Field of Study" required placeholder="e.g., Computer Science, Software Engineering, Data Science">
+                  <input type="text" id="fieldOfStudy" name="Field of Study" required data-i18n="careersFieldOfStudyPlaceholder" placeholder="e.g., Computer Science, Software Engineering, Data Science">
                   <div class="ud-form-help-text" data-i18n="careersFieldOfStudyHelp">Your major or field of study</div>
                 </div>
 
                 <div class="ud-form-group">
                   <label for="gpa" data-i18n="careersGPA">GPA</label>
-                  <input type="text" id="gpa" name="GPA" placeholder="e.g., 3.5/4.0 or 8.5/10.0">
+                  <input type="text" id="gpa" name="GPA" data-i18n="careersGPAPlaceholder" placeholder="e.g., 3.5/4.0 or 8.5/10.0">
                   <div class="ud-form-help-text" data-i18n="careersGPAHelp">Your GPA if available (include scale, e.g., 3.5/4.0) - Optional</div>
                 </div>
 
@@ -651,7 +826,7 @@
 
                 <div class="ud-form-group">
                   <label for="coverLetter" data-i18n="careersCoverLetter">Cover Letter <span class="required">*</span></label>
-                  <textarea id="coverLetter" name="Cover Letter" rows="6" required placeholder="Tell us about yourself, why you're interested in this position, and what you can bring to our team..."></textarea>
+                  <textarea id="coverLetter" name="Cover Letter" rows="6" required data-i18n="careersCoverLetterPlaceholder" placeholder="Tell us about yourself, why you're interested in this position, and what you can bring to our team..."></textarea>
                   <div class="ud-form-help-text" data-i18n="careersCoverLetterHelp">Minimum 200 characters. Share your motivation and relevant experience.</div>
                 </div>
 
@@ -692,7 +867,7 @@
                   <img src="assets/images/logo/logo.webp" alt="Solarity AI" />
                 </a>
               </div>
-              <p class="ud-widget-desc" data-i18n="footerDescription">AI-Native Software Company Creating High-Impact B2B and B2C Solutions with World-Class Quality.</p>
+              <p class="ud-widget-desc" data-i18n="footerDescription"></p>
             </div>
           </div>
           <div class="col-xl-3 col-lg-2 col-md-6 col-sm-6">
@@ -712,7 +887,7 @@
               <h5 class="ud-widget-title" data-i18n="footerContact">Contact</h5>
               <ul class="ud-widget-links">
                 <li><a href="mailto:info@solarityai.com">info@solarityai.com</a></li>
-                <li>Dallas, Texas, USA</li>
+                <li><span data-i18n="contactAddressValue">Dallas, Texas, USA</span></li>
                 <li><a href="careers.html" data-i18n="navCareers">Careers</a></li>
               </ul>
             </div>
@@ -722,7 +897,7 @@
               <h5 class="ud-widget-title" data-i18n="footerFollowUs">Follow Us</h5>
               <ul class="ud-widget-socials">
                 <li>
-                  <a href="https://www.linkedin.com/company/solarity-ai-llc" target="_blank" rel="noopener noreferrer" onclick="if(typeof gtag !== 'undefined') gtag('event', 'click', {'event_category': 'Social', 'event_label': 'LinkedIn Footer'});">
+                  <a href="https://www.linkedin.com/company/solarityai-llc" target="_blank" rel="noopener noreferrer" onclick="if(typeof gtag !== 'undefined') gtag('event', 'click', {'event_category': 'Social', 'event_label': 'LinkedIn Footer'});">
                     <i class="lni lni-linkedin-original"></i>
                   </a>
                 </li>
@@ -734,7 +909,7 @@
           <div class="row">
             <div class="col-md-12">
               <p class="ud-footer-bottom-right">
-                <span data-i18n="footerCopyright">© 2024 Solarity AI LLC. All rights reserved.</span>
+                <span data-i18n="footerCopyright">© 2025 Solarity AI LLC. All rights reserved.</span>
               </p>
             </div>
           </div>
@@ -793,9 +968,9 @@
         if (coverLetter.length < 200) {
           e.preventDefault();
           const currentLang = window.getCurrentLanguage ? window.getCurrentLanguage() : 'en';
-          const errorMsg = currentLang === 'tr' 
-            ? 'Lütfen en az 200 karakterlik bir ön yazı sağlayın.' 
-            : 'Please provide a cover letter with at least 200 characters.';
+          const errorMsg = translations[currentLang] && translations[currentLang]['careersErrorCoverLetter']
+            ? translations[currentLang]['careersErrorCoverLetter']
+            : (currentLang === 'tr' ? 'Lütfen en az 200 karakterlik bir ön yazı sağlayın.' : 'Please provide a cover letter with at least 200 characters.');
           alert(errorMsg);
           return false;
         }
@@ -807,9 +982,9 @@
           if (fileSize > 5) {
             e.preventDefault();
             const currentLang = window.getCurrentLanguage ? window.getCurrentLanguage() : 'en';
-            const errorMsg = currentLang === 'tr'
-              ? 'Özgeçmiş dosya boyutu 5MB\'den küçük olmalıdır. Lütfen dosyanızı sıkıştırın ve tekrar deneyin.'
-              : 'Resume file size must be less than 5MB. Please compress your file and try again.';
+            const errorMsg = translations[currentLang] && translations[currentLang]['careersErrorFileSize']
+              ? translations[currentLang]['careersErrorFileSize']
+              : (currentLang === 'tr' ? 'Özgeçmiş dosya boyutu 5MB\'den küçük olmalıdır. Lütfen dosyanızı sıkıştırın ve tekrar deneyin.' : 'Resume file size must be less than 5MB. Please compress your file and try again.');
             alert(errorMsg);
             return false;
           }

@@ -8,7 +8,6 @@
     Burak Hamuryen -- Chief Software Architect -- https://www.linkedin.com/in/burak-hamuryen-07b8b340/
     Gokberk Serin -- Business Development Manager
     Ali Yilmaz -- Business Development Manager -- https://www.linkedin.com/in/ali-yilmaz2/
-    Doğukan Süme -- Frontend Engineer -- https://www.linkedin.com/in/doğukansume/
 
 # THANKS
 
