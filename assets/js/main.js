@@ -136,7 +136,11 @@
 
       if (!isValid) {
         e.preventDefault();
-        alert("Please fill in all required fields.");
+        const currentLang = window.getCurrentLanguage ? window.getCurrentLanguage() : 'tr';
+        const errorMsg = translations[currentLang] && translations[currentLang]['formErrorRequiredFields'] 
+          ? translations[currentLang]['formErrorRequiredFields']
+          : 'Lütfen tüm zorunlu alanları doldurun.';
+        alert(errorMsg);
       } else {
         // Track form submission with Google Analytics
         if (typeof gtag !== 'undefined') {

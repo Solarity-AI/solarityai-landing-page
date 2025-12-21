@@ -214,7 +214,11 @@
   function updateLanguageSwitcher() {
     const switcher = document.getElementById('languageSwitcher');
     if (switcher) {
-      switcher.textContent = currentLang === 'tr' ? 'EN' : 'TR';
+      // Show flag and language code for the language that will be switched TO
+      const nextLang = currentLang === 'tr' ? 'en' : 'tr';
+      const flag = nextLang === 'tr' ? '🇹🇷' : '🇺🇸';
+      const langCode = nextLang === 'tr' ? 'TR' : 'EN';
+      switcher.textContent = `${flag} ${langCode}`;
       switcher.setAttribute('data-lang', currentLang);
       switcher.setAttribute('title', currentLang === 'tr' ? 'İngilizce\'ye Geç' : 'Switch to Turkish');
     }
