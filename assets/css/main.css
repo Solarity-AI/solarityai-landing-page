@@ -367,7 +367,7 @@ section {
 }
 
 .ud-section-title h2 {
-  font-size: 2.75rem;
+  font-size: 3rem;
   margin-bottom: 1rem;
   text-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
   letter-spacing: -0.02em;
@@ -414,22 +414,15 @@ section {
   text-align: left !important;
 }
 
-/* Center the last card when it's alone on a row (5th card) */
-.ud-capabilities-grid > .ud-capability-card:last-child:nth-child(5) {
-  grid-column: 1 / -1;
-  max-width: 280px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
 @media (min-width: 1200px) {
   .ud-capabilities-grid {
     grid-template-columns: repeat(4, 1fr);
   }
-  
+
   .ud-capabilities-grid > .ud-capability-card:last-child:nth-child(5) {
-    grid-column: 2 / 4;
-    max-width: 280px;
+    grid-column: 1 / -1;
+    width: calc((100% - 4.5rem) / 4);
+    justify-self: center;
   }
 }
 
@@ -1219,7 +1212,7 @@ section {
 }
 
 .ud-footer-logo img {
-  max-height: 100px;
+  max-height: 130px;
   margin-bottom: 1.5rem;
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
   transition: all var(--transition-base);
@@ -1357,7 +1350,7 @@ section {
   h2 { font-size: 2.25rem; }
   
   .ud-section-title h2 {
-    font-size: 2.5rem;
+    font-size: 2.75rem;
   }
 }
 
@@ -1367,11 +1360,17 @@ section {
   }
   
   .ud-about {
-    padding-top: 6rem;
+    padding-top: 8rem;
   }
   
   .ud-capabilities-grid {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .ud-capabilities-grid > .ud-capability-card:last-child:nth-child(5) {
+    grid-column: 1 / -1;
+    width: calc((100% - 1.5rem) / 2);
+    justify-self: center;
   }
   
   .ud-partners-grid {
@@ -1386,19 +1385,25 @@ section {
   h3 { font-size: 1.75rem; }
   
   .ud-section-title h2 {
-    font-size: 2.25rem;
+    font-size: 2.5rem;
   }
   
   section {
-    padding: 3rem 0;
+    padding: 4rem 0;
   }
   
   .ud-about {
-    padding-top: 5rem;
+    padding-top: 8rem;
   }
   
   .ud-capabilities-grid {
     grid-template-columns: 1fr;
+  }
+
+  .ud-capabilities-grid > .ud-capability-card:last-child:nth-child(5) {
+    grid-column: auto;
+    width: 100%;
+    justify-self: stretch;
   }
   
   .ud-partners-grid {
@@ -1431,7 +1436,7 @@ section {
   }
   
   .ud-section-title h2 {
-    font-size: 2rem;
+    font-size: 2.25rem;
   }
   
   .ud-capability-card {
@@ -1469,4 +1474,3 @@ html body .ud-capabilities-grid .ud-capability-card p {
   margin-left: 0 !important;
   width: 100% !important;
 }
-

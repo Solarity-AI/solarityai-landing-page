@@ -202,13 +202,15 @@
       .ud-position-card > p {
         font-size: 0.9375rem;
         color: var(--color-text-tertiary);
-        margin-bottom: 1rem;
+        margin-bottom: 0;
       }
 
       .ud-position-card .lni-arrow-right {
         font-size: 1.25rem;
         color: var(--color-primary-light);
         transition: transform var(--transition-base);
+        margin-top: auto;
+        padding-top: 1rem;
       }
 
       .ud-position-card:hover .lni-arrow-right {
@@ -306,7 +308,6 @@
       .ud-form-group input[type="email"],
       .ud-form-group input[type="tel"],
       .ud-form-group input[type="url"],
-      .ud-form-group input[type="file"],
       .ud-form-group select,
       .ud-form-group textarea {
         width: 100%;
@@ -346,27 +347,60 @@
         padding-right: 2.5rem;
       }
 
-      .ud-form-group input[type="file"] {
+      .ud-file-input {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        width: 100%;
         padding: 0.75rem;
-        cursor: pointer;
+        background: var(--color-dark-secondary);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.2), inset 0 1px 2px rgba(255, 255, 255, 0.05);
+        position: relative;
       }
 
-      .ud-form-group input[type="file"]::file-selector-button {
+      .ud-file-input input[type="file"] {
+        position: absolute;
+        left: -9999px;
+        width: 1px;
+        height: 1px;
+        opacity: 0;
+      }
+
+      .ud-file-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
         padding: 0.5rem 1rem;
-        margin-right: 1rem;
         background: var(--gradient-blue);
         color: var(--color-white);
-        border: none;
         border-radius: 6px;
         cursor: pointer;
         font-weight: 500;
         font-size: 0.875rem;
+        line-height: 1;
+        margin: 0;
         transition: all var(--transition-base);
+        white-space: nowrap;
       }
 
-      .ud-form-group input[type="file"]::file-selector-button:hover {
+      .ud-file-button:hover {
         opacity: 0.9;
         transform: translateY(-1px);
+      }
+
+      .ud-file-name {
+        display: inline-flex;
+        align-items: center;
+        color: var(--color-text-secondary);
+        font-size: 0.9375rem;
+        line-height: 1;
+        flex: 1;
+        min-width: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
 
       .ud-form-row {
@@ -471,6 +505,30 @@
         margin: 0;
       }
 
+      .ud-open-positions-link {
+        margin-top: 1rem;
+      }
+
+      .ud-open-positions-link a {
+        color: var(--color-primary-light);
+        font-weight: 600;
+      }
+
+      .ud-open-positions-link a:hover {
+        color: var(--color-primary);
+      }
+
+      .ud-form-error {
+        display: none;
+        color: #ef4444;
+        font-size: 0.875rem;
+        margin-top: 0.5rem;
+      }
+
+      .ud-form-error.show {
+        display: block;
+      }
+
       @keyframes spin {
         from {
           transform: rotate(0deg);
@@ -508,7 +566,7 @@
         z-index: 1000;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
       }
-      
+
       .language-switcher:hover {
         background: rgba(255, 255, 255, 0.2);
         border-color: var(--color-primary-light);
@@ -567,12 +625,12 @@
                 <img src="assets/images/logo/logo.webp" alt="Solarity AI" />
               </a>
               <button id="languageSwitcher" class="language-switcher" onclick="toggleLanguage()">🇺🇸 EN</button>
-              <button class="navbar-toggler">
+              <button id="mobileMenuToggle" class="navbar-toggler" type="button" data-i18n-aria-label="navToggleMenu" aria-label="Toggle navigation menu">
                 <span class="toggler-icon"></span>
                 <span class="toggler-icon"></span>
                 <span class="toggler-icon"></span>
               </button>
-              <div class="navbar-collapse">
+              <div class="navbar-collapse" id="careersNav">
                 <ul id="nav" class="navbar-nav mx-auto">
                   <li class="nav-item"><a href="index.html#about" data-i18n="navAbout">About</a></li>
                   <li class="nav-item"><a href="index.html#partnerships" data-i18n="navPartnerships">Partnerships</a></li>
@@ -612,28 +670,31 @@
             <div class="ud-open-positions-wrapper wow fadeInUp" data-wow-delay=".15s">
               <h2 data-i18n="openPositionsTitle">Open Positions</h2>
               <p data-i18n="openPositionsDesc">View detailed job descriptions for our current openings</p>
+              <p class="ud-open-positions-link">
+                <a href="https://drive.google.com/drive/folders/1iOew815DHxi_TDBWtbpUp_433V-bamws" target="_blank" rel="noopener noreferrer" data-i18n="openPositionsDriveLink">View all job posters (Drive folder)</a>
+              </p>
               <div class="ud-positions-grid">
-                <a href="https://drive.google.com/drive/folders/1iOew815DHxi_TDBWtbpUp_433V-bamws" target="_blank" rel="noopener noreferrer" class="ud-position-card">
+                <a href="https://drive.google.com/file/d/1i2Ea9Y7Aow1xVCK7cGg9KNbnW8whm5F4/view" target="_blank" rel="noopener noreferrer" class="ud-position-card">
                   <div class="ud-position-icon">
                     <i class="lni lni-code-alt"></i>
                   </div>
-                  <h3>Full Stack Engineer</h3>
+                  <h3 data-i18n="positionFullStack">Full Stack Engineer</h3>
                   <p data-i18n="viewJobDescription">View Job Description</p>
                   <i class="lni lni-arrow-right"></i>
                 </a>
-                <a href="https://drive.google.com/drive/folders/1iOew815DHxi_TDBWtbpUp_433V-bamws" target="_blank" rel="noopener noreferrer" class="ud-position-card">
+                <a href="https://drive.google.com/file/d/12PTUKekdKHBqm5T3HJmECdwMYkIH4iH_/view" target="_blank" rel="noopener noreferrer" class="ud-position-card">
                   <div class="ud-position-icon">
                     <i class="lni lni-bullhorn"></i>
                   </div>
-                  <h3>Marketing Specialist</h3>
+                  <h3 data-i18n="positionMarketing">Marketing Specialist</h3>
                   <p data-i18n="viewJobDescription">View Job Description</p>
                   <i class="lni lni-arrow-right"></i>
                 </a>
-                <a href="https://drive.google.com/drive/folders/1iOew815DHxi_TDBWtbpUp_433V-bamws" target="_blank" rel="noopener noreferrer" class="ud-position-card">
+                <a href="https://drive.google.com/file/d/1ztqakshEcnKPdaaioe3EFLRURfxk4Ywa/view" target="_blank" rel="noopener noreferrer" class="ud-position-card">
                   <div class="ud-position-icon">
                     <i class="lni lni-handshake"></i>
                   </div>
-                  <h3>Business Development Manager</h3>
+                  <h3 data-i18n="positionBusinessDev">Business Development Manager</h3>
                   <p data-i18n="viewJobDescription">View Job Description</p>
                   <i class="lni lni-arrow-right"></i>
                 </a>
@@ -641,7 +702,7 @@
                   <div class="ud-position-icon">
                     <i class="lni lni-paint-bucket"></i>
                   </div>
-                  <h3>UI/UX Designer</h3>
+                  <h3 data-i18n="positionUIUX">UI/UX Designer</h3>
                   <p data-i18n="viewJobDescription">View Job Description</p>
                   <i class="lni lni-arrow-right"></i>
                 </a>
@@ -696,6 +757,7 @@
                     <label for="email" data-i18n="careersEmail">Email Address <span class="required">*</span></label>
                     <input type="email" id="email" name="Email" required>
                     <div class="ud-form-help-text" data-i18n="careersEmailHelp">We'll use this to contact you about your application</div>
+                    <div class="ud-form-error" id="emailError" data-i18n="careersErrorEmail">Please enter a valid email address.</div>
                   </div>
                   <div class="ud-form-group">
                     <label for="phone" data-i18n="careersPhone">Phone Number <span class="required">*</span></label>
@@ -832,7 +894,11 @@
 
                 <div class="ud-form-group">
                   <label for="resume" data-i18n="careersResume">Resume/CV <span class="required">*</span></label>
-                  <input type="file" id="resume" name="Resume" accept=".pdf,.doc,.docx" required>
+                  <div class="ud-file-input">
+                    <input type="file" id="resume" name="Resume" accept=".pdf,.doc,.docx" required>
+                    <label class="ud-file-button" for="resume" data-i18n="careersResumeChooseFile">Choose File</label>
+                    <span class="ud-file-name" id="resumeFileName" data-i18n="careersResumeNoFile">No file chosen</span>
+                  </div>
                   <div class="ud-form-help-text" data-i18n="careersResumeHelp">Accepted formats: PDF, DOC, DOCX (Max size: 5MB)</div>
                 </div>
 
@@ -858,58 +924,69 @@
 
     <!-- ====== Footer Start ====== -->
     <footer class="ud-footer">
-      <div class="container">
-        <div class="row">
-          <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-            <div class="ud-footer-widget">
-              <div class="ud-footer-logo">
-                <a href="index.html">
+      <div class="ud-footer-widgets">
+        <div class="container">
+          <div class="row">
+            <div class="col-xl-4 col-lg-4 col-md-6">
+              <div class="ud-widget">
+                <a href="index.html" class="ud-footer-logo">
                   <img src="assets/images/logo/logo.webp" alt="Solarity AI" />
                 </a>
+                <p class="ud-widget-desc" data-i18n="footerDescription"></p>
               </div>
-              <p class="ud-widget-desc" data-i18n="footerDescription"></p>
             </div>
-          </div>
-          <div class="col-xl-3 col-lg-2 col-md-6 col-sm-6">
-            <div class="ud-footer-widget">
-              <h5 class="ud-widget-title" data-i18n="footerQuickLinks">Quick Links</h5>
-              <ul class="ud-widget-links">
-                <li><a href="index.html#about" data-i18n="navAbout">About</a></li>
-                <li><a href="index.html#partnerships" data-i18n="navPartnerships">Partnerships</a></li>
-                <li><a href="index.html#projects" data-i18n="navProjects">Projects</a></li>
-                <li><a href="index.html#team" data-i18n="navTeam">Team</a></li>
-                <li><a href="index.html#contact" data-i18n="navContact">Contact</a></li>
-              </ul>
+            <div class="col-xl-2 col-lg-2 col-md-6 col-sm-6">
+              <div class="ud-widget">
+                <h5 class="ud-widget-title" data-i18n="footerQuickLinks">Quick Links</h5>
+                <ul class="ud-widget-links">
+                  <li><a href="index.html#about" data-i18n="navAbout">About</a></li>
+                  <li><a href="index.html#partnerships" data-i18n="navPartnerships">Partnerships</a></li>
+                  <li><a href="index.html#projects" data-i18n="navProjects">Projects</a></li>
+                  <li><a href="index.html#team" data-i18n="navTeam">Team</a></li>
+                  <li><a href="index.html#contact" data-i18n="navContact">Contact</a></li>
+                </ul>
+              </div>
             </div>
-          </div>
-          <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
-            <div class="ud-footer-widget">
-              <h5 class="ud-widget-title" data-i18n="footerContact">Contact</h5>
-              <ul class="ud-widget-links">
-                <li><a href="mailto:info@solarityai.com">info@solarityai.com</a></li>
-                <li><span data-i18n="contactAddressValue">Dallas, Texas, USA</span></li>
-                <li><a href="careers.html" data-i18n="navCareers">Careers</a></li>
-              </ul>
+            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+              <div class="ud-widget">
+                <h5 class="ud-widget-title" data-i18n="footerContact">Contact</h5>
+                <ul class="ud-widget-links">
+                  <li>
+                    <i class="lni lni-envelope" style="margin-right: 0.5rem;"></i>
+                    <a href="mailto:info@solarityai.com">info@solarityai.com</a>
+                  </li>
+                  <li>
+                    <i class="lni lni-map-marker" style="margin-right: 0.5rem;"></i>
+                    <span data-i18n="contactAddressValue">Dallas, Texas, USA</span>
+                  </li>
+                  <li>
+                    <i class="lni lni-briefcase" style="margin-right: 0.5rem;"></i>
+                    <a href="careers.html" data-i18n="navCareers">Careers</a>
+                  </li>
+                </ul>
+              </div>
             </div>
-          </div>
-          <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
-            <div class="ud-footer-widget">
-              <h5 class="ud-widget-title" data-i18n="footerFollowUs">Follow Us</h5>
-              <ul class="ud-widget-socials">
-                <li>
-                  <a href="https://www.linkedin.com/company/solarityai-llc" target="_blank" rel="noopener noreferrer" onclick="if(typeof gtag !== 'undefined') gtag('event', 'click', {'event_category': 'Social', 'event_label': 'LinkedIn Footer'});">
-                    <i class="lni lni-linkedin-original"></i>
-                  </a>
-                </li>
-              </ul>
+            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+              <div class="ud-widget">
+                <h5 class="ud-widget-title" data-i18n="footerFollowUs">Follow Us</h5>
+                <ul class="ud-widget-socials">
+                  <li>
+                    <a href="https://www.linkedin.com/company/solarityai-llc" target="_blank" rel="noopener noreferrer" onclick="if(typeof gtag !== 'undefined') gtag('event', 'click', {'event_category': 'Social', 'event_label': 'LinkedIn Footer'});">
+                      <i class="lni lni-linkedin-original"></i>
+                    </a>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
-        <div class="ud-footer-bottom">
+      </div>
+      <div class="ud-footer-bottom">
+        <div class="container">
           <div class="row">
-            <div class="col-md-12">
-              <p class="ud-footer-bottom-right">
-                <span data-i18n="footerCopyright">© 2025 Solarity AI LLC. All rights reserved.</span>
+            <div class="col-md-12 text-center">
+              <p class="ud-footer-bottom-right" data-i18n="footerCopyright">
+                © 2025 Solarity AI LLC. All rights reserved.
               </p>
             </div>
           </div>
@@ -957,11 +1034,106 @@
         }
       });
 
+      // Mobile navigation toggle for careers page
+      const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+      const careersNav = document.getElementById('careersNav');
+      if (mobileMenuToggle && careersNav) {
+        mobileMenuToggle.addEventListener('click', function(e) {
+          e.preventDefault();
+          const isOpen = careersNav.classList.contains('show');
+          careersNav.classList.toggle('show');
+          mobileMenuToggle.classList.toggle('active', !isOpen);
+          document.body.style.overflow = isOpen ? '' : 'hidden';
+        });
+
+        careersNav.querySelectorAll('a').forEach(function(link) {
+          link.addEventListener('click', function() {
+            careersNav.classList.remove('show');
+            mobileMenuToggle.classList.remove('active');
+            document.body.style.overflow = '';
+          });
+        });
+
+        document.addEventListener('click', function(e) {
+          if (careersNav.classList.contains('show')) {
+            if (!careersNav.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+              careersNav.classList.remove('show');
+              mobileMenuToggle.classList.remove('active');
+              document.body.style.overflow = '';
+            }
+          }
+        });
+      }
+
+      // Email validation message
+      const emailInput = document.getElementById('email');
+      const emailError = document.getElementById('emailError');
+
+      function updateEmailError() {
+        if (!emailInput || !emailError) {
+          return;
+        }
+
+        const currentLang = window.getCurrentLanguage ? window.getCurrentLanguage() : 'en';
+        const errorMsg = translations[currentLang] && translations[currentLang]['careersErrorEmail']
+          ? translations[currentLang]['careersErrorEmail']
+          : (currentLang === 'tr' ? 'Lütfen geçerli bir e-posta adresi giriniz.' : 'Please enter a valid email address.');
+
+        if (emailInput.value && !emailInput.checkValidity()) {
+          emailError.textContent = errorMsg;
+          emailError.classList.add('show');
+          emailInput.setAttribute('aria-invalid', 'true');
+        } else {
+          emailError.classList.remove('show');
+          emailInput.removeAttribute('aria-invalid');
+        }
+      }
+
+      if (emailInput) {
+        emailInput.addEventListener('input', updateEmailError);
+        emailInput.addEventListener('blur', updateEmailError);
+      }
+
+      // Resume file label translation
+      const resumeInput = document.getElementById('resume');
+      const resumeFileName = document.getElementById('resumeFileName');
+
+      function updateResumeFileName() {
+        if (!resumeInput || !resumeFileName) {
+          return;
+        }
+
+        const currentLang = window.getCurrentLanguage ? window.getCurrentLanguage() : 'en';
+        const noFileText = translations[currentLang] && translations[currentLang]['careersResumeNoFile']
+          ? translations[currentLang]['careersResumeNoFile']
+          : (currentLang === 'tr' ? 'Dosya seçilmedi' : 'No file chosen');
+
+        if (resumeInput.files && resumeInput.files.length > 0) {
+          resumeFileName.textContent = resumeInput.files[0].name;
+          resumeFileName.removeAttribute('data-i18n');
+        } else {
+          resumeFileName.setAttribute('data-i18n', 'careersResumeNoFile');
+          resumeFileName.textContent = noFileText;
+        }
+      }
+
+      if (resumeInput) {
+        resumeInput.addEventListener('change', updateResumeFileName);
+        updateResumeFileName();
+      }
+
       // Handle form submission
       document.getElementById('applicationForm').addEventListener('submit', function(e) {
         const submitButton = document.getElementById('submitButton');
         const submitButtonText = document.getElementById('submitButtonText');
         const submitButtonLoading = document.getElementById('submitButtonLoading');
+
+        if (emailInput && !emailInput.checkValidity()) {
+          e.preventDefault();
+          updateEmailError();
+          emailInput.focus();
+          return false;
+        }
         
         // Validate cover letter length
         const coverLetter = document.getElementById('coverLetter').value;
@@ -976,8 +1148,7 @@
         }
 
         // Validate file size
-        const resumeInput = document.getElementById('resume');
-        if (resumeInput.files.length > 0) {
+        if (resumeInput && resumeInput.files.length > 0) {
           const fileSize = resumeInput.files[0].size / 1024 / 1024; // Size in MB
           if (fileSize > 5) {
             e.preventDefault();
@@ -1044,4 +1215,3 @@
     </script>
   </body>
 </html>
-
