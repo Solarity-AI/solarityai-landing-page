@@ -216,9 +216,21 @@
     if (switcher) {
       // Show flag and language code for the language that will be switched TO
       const nextLang = currentLang === 'tr' ? 'en' : 'tr';
-      const flag = nextLang === 'tr' ? '🇹🇷' : '🇺🇸';
       const langCode = nextLang === 'tr' ? 'TR' : 'EN';
-      switcher.textContent = `${flag} ${langCode}`;
+      const flagClass = nextLang === 'tr' ? 'flag-tr' : 'flag-en';
+      const flagEl = switcher.querySelector('.language-flag');
+      const codeEl = switcher.querySelector('.language-code');
+
+      if (flagEl) {
+        flagEl.classList.remove('flag-tr', 'flag-en');
+        flagEl.classList.add(flagClass);
+      }
+
+      if (codeEl) {
+        codeEl.textContent = langCode;
+      } else {
+        switcher.textContent = langCode;
+      }
       switcher.setAttribute('data-lang', currentLang);
       switcher.setAttribute('title', currentLang === 'tr' ? 'İngilizce\'ye Geç' : 'Switch to Turkish');
     }
@@ -352,4 +364,3 @@
   window.getCurrentLanguage = () => currentLang;
 
 })();
-
