@@ -171,6 +171,7 @@ window.translations = {
     // Common
     required: "*",
     optional: "Optional",
+    formCaptchaError: "Please verify you are human before submitting.",
     formErrorRequiredFields: "Please fill in all required fields.",
     
     // Select Options
@@ -367,6 +368,7 @@ window.translations = {
     // Common
     required: "*",
     optional: "İsteğe Bağlı",
+    formCaptchaError: "Lütfen göndermeden önce insan olduğunuzu doğrulayın.",
     formErrorRequiredFields: "Lütfen tüm zorunlu alanları doldurun.",
     
     // Select Options
