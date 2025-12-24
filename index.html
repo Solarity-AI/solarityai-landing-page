@@ -95,6 +95,9 @@
     }
     </script>
 
+    <!-- Cloudflare Turnstile -->
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -142,6 +145,23 @@
       
       .language-switcher:active {
         transform: translateY(-50%) translateY(0);
+      }
+
+      .ud-main-btn:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none;
+      }
+
+      .ud-form-error {
+        display: none;
+        color: #ef4444;
+        font-size: 0.875rem;
+        margin-top: 0.5rem;
+      }
+
+      .ud-form-error.show {
+        display: block;
       }
       
       @media (max-width: 991px) {
@@ -753,7 +773,7 @@
               <h3 class="ud-contact-form-title" data-i18n="contactSendMessage">Send Us a Message</h3>
 
               <!-- FormSubmit.co Contact Form -->
-              <form action="https://formsubmit.co/info@solarityai.com" method="POST" class="ud-contact-form">
+              <form action="https://formsubmit.co/info@solarityai.com" method="POST" class="ud-contact-form" id="contactForm">
                 <!-- Optional Settings -->
                 <input type="hidden" name="_captcha" value="false">
                 <input type="hidden" name="_next" value="https://solarityai.com/thanks.html">
@@ -784,9 +804,25 @@
                   <textarea name="message" id="message" rows="5" data-i18n="contactMessagePlaceholder" placeholder="Tell us about your project or inquiry..." required></textarea>
                 </div>
 
+                <!-- Cloudflare Turnstile -->
+                <div class="ud-form-group">
+                  <div
+                    class="cf-turnstile"
+                    data-sitekey="0x4AAAAAACI72SYLbDu1hDf5"
+                    data-response-field="false"
+                    data-callback="onContactTurnstileSuccess"
+                    data-expired-callback="onContactTurnstileExpired"
+                    data-error-callback="onContactTurnstileError"
+                  ></div>
+                  <input type="hidden" name="cf-turnstile-response" id="contactTurnstileToken">
+                  <div class="ud-form-error" id="contactCaptchaError" data-i18n="formCaptchaError" role="alert" aria-live="polite">
+                    Please verify you are human before submitting.
+                  </div>
+                </div>
+
                 <!-- Submit Button -->
                 <div class="ud-form-group mb-0">
-                  <button type="submit" class="ud-main-btn" data-i18n="contactSend">Send Message</button>
+                  <button type="submit" class="ud-main-btn" data-i18n="contactSend" id="contactSubmitButton" disabled>Send Message</button>
                 </div>
               </form>
             </div>
@@ -1006,6 +1042,86 @@
           console.log('Menu element:', menu);
         }, 1000);
       });
+    </script>
+    <script>
+      (function() {
+        const contactForm = document.getElementById('contactForm');
+        if (!contactForm) {
+          return;
+        }
+
+        const submitButton = document.getElementById('contactSubmitButton');
+        const tokenInput = document.getElementById('contactTurnstileToken');
+        const errorEl = document.getElementById('contactCaptchaError');
+
+        function setSubmitEnabled(enabled) {
+          if (submitButton) {
+            submitButton.disabled = !enabled;
+          }
+        }
+
+        function showError(show) {
+          if (!errorEl) {
+            return;
+          }
+          errorEl.classList.toggle('show', show);
+        }
+
+        function clearToken() {
+          if (tokenInput) {
+            tokenInput.value = '';
+          }
+        }
+
+        function resetTurnstile() {
+          if (window.turnstile && typeof window.turnstile.reset === 'function') {
+            window.turnstile.reset();
+          }
+        }
+
+        window.onContactTurnstileSuccess = function(token) {
+          if (tokenInput) {
+            tokenInput.value = token;
+          }
+          showError(false);
+          setSubmitEnabled(true);
+        };
+
+        window.onContactTurnstileExpired = function() {
+          clearToken();
+          setSubmitEnabled(false);
+          showError(true);
+          resetTurnstile();
+        };
+
+        window.onContactTurnstileError = function() {
+          clearToken();
+          setSubmitEnabled(false);
+          showError(true);
+        };
+
+        setSubmitEnabled(false);
+
+        contactForm.addEventListener('submit', function(e) {
+          if (!tokenInput || !tokenInput.value) {
+            e.preventDefault();
+            showError(true);
+            setSubmitEnabled(false);
+            resetTurnstile();
+            return false;
+          }
+
+          showError(false);
+          resetTurnstile();
+          return true;
+        });
+
+        contactForm.addEventListener('invalid', function() {
+          clearToken();
+          setSubmitEnabled(false);
+          resetTurnstile();
+        }, true);
+      })();
     </script>
   </body>
 </html>
