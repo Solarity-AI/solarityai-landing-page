@@ -2,8 +2,8 @@
 (function() {
   'use strict';
 
-  // Get current language from localStorage or default to 'tr'
-  let currentLang = localStorage.getItem('solarityai-lang') || 'tr';
+  // Get current language from localStorage or default to 'en'
+  let currentLang = localStorage.getItem('solarityai-lang') || 'en';
 
   // Initialize language on page load
   function initLanguage() {
