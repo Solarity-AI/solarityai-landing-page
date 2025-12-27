@@ -1,1 +1,0 @@
-# solarityai-landing-page

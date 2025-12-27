@@ -1,0 +1,1339 @@
+<!DOCTYPE html>
+    <html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Primary Meta Tags -->
+    <title>Solarity AI Kariyer - Ekibimize Katılın</title>
+    <meta name="title" content="Solarity AI Kariyer - Ekibimize Katılın">
+    <meta name="description" content="Solarity AI'ye katılın ve yapay zeka destekli yazılım çözümlerinin geleceğini inşa etmemize yardımcı olun. Yapay zeka, makine öğrenmesi ve son teknoloji konularında tutkulu yetenekli bireyler arıyoruz.">
+    <meta name="keywords" content="careers, jobs, employment, AI jobs, software engineer jobs, machine learning jobs, tech careers">
+    <meta name="author" content="Solarity AI">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://solarityai.com/careers.html">
+    <meta property="og:title" content="Solarity AI Kariyer - Ekibimize Katılın">
+    <meta property="og:description" content="Solarity AI'ye katılın ve yapay zeka destekli yazılım çözümlerinin geleceğini inşa etmemize yardımcı olun.">
+    <meta property="og:image" content="https://solarityai.com/assets/images/logo/logo.webp">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://solarityai.com/careers.html">
+    <meta property="twitter:title" content="Solarity AI Kariyer - Ekibimize Katılın">
+    <meta property="twitter:description" content="Solarity AI'ye katılın ve yapay zeka destekli yazılım çözümlerinin geleceğini inşa etmemize yardımcı olun.">
+    <meta property="twitter:image" content="https://solarityai.com/assets/images/logo/logo.webp">
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/webp" href="assets/images/logo/logo.webp" />
+    <link rel="shortcut icon" href="assets/images/logo/logo.webp" />
+    <link rel="apple-touch-icon" href="assets/images/logo/logo.webp" />
+    <meta name="theme-color" content="#1e40af" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://solarityai.com/careers.html" />
+
+    <!-- Cloudflare Turnstile -->
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KPPM46EHP9"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-KPPM46EHP9');
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/css/lineicons.css" />
+    <link rel="stylesheet" href="assets/css/animate.css" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    
+    <!-- Custom Careers Page Styles -->
+    <style>
+      .ud-careers-hero {
+        padding: 8rem 0 4rem;
+        background: var(--color-dark-bg);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .ud-careers-hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.3), transparent);
+      }
+
+      .ud-careers-hero-content {
+        text-align: center;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .ud-careers-hero h1 {
+        font-size: 3.5rem;
+        margin-bottom: 1.5rem;
+        background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .ud-careers-hero p {
+        font-size: 1.25rem;
+        color: var(--color-text-secondary);
+        line-height: 1.8;
+      }
+
+      .ud-open-positions-section {
+        padding: 4rem 0;
+        background: var(--color-dark-secondary);
+        position: relative;
+      }
+
+      .ud-open-positions-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.3), transparent);
+      }
+
+      .ud-open-positions-wrapper {
+        max-width: 1200px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .ud-open-positions-wrapper h2 {
+        font-size: 2.75rem;
+        font-weight: 700;
+        color: var(--color-text-primary);
+        margin-bottom: 1rem;
+        text-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+      }
+
+      .ud-open-positions-wrapper > p {
+        font-size: 1.125rem;
+        color: var(--color-text-secondary);
+        margin-bottom: 3rem;
+      }
+
+      .ud-positions-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+        margin-top: 2rem;
+      }
+
+      .ud-position-card {
+        background: var(--color-dark-bg);
+        border-radius: 12px;
+        padding: 2rem;
+        text-decoration: none;
+        color: var(--color-text-primary);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all var(--transition-base);
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), 0 4px 12px rgba(0, 0, 0, 0.2);
+      }
+
+      .ud-position-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: var(--gradient-blue);
+        transform: scaleX(0);
+        transition: transform var(--transition-base);
+      }
+
+      .ud-position-card:hover::before {
+        transform: scaleX(1);
+      }
+
+      .ud-position-card:hover {
+        transform: translateY(-8px);
+        border-color: var(--color-primary-light);
+        box-shadow: 0 20px 60px rgba(30, 64, 175, 0.3), 0 8px 24px rgba(0, 0, 0, 0.3);
+      }
+
+      .ud-position-icon {
+        width: 70px;
+        height: 70px;
+        border-radius: 12px;
+        background: var(--gradient-blue);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1.5rem;
+        font-size: 2rem;
+        color: var(--color-white);
+        box-shadow: 0 6px 20px rgba(30, 64, 175, 0.4);
+      }
+
+      .ud-position-card h3 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: var(--color-text-primary);
+      }
+
+      .ud-position-card > p {
+        font-size: 0.9375rem;
+        color: var(--color-text-tertiary);
+        margin-bottom: 0;
+      }
+
+      .ud-position-card .lni-arrow-right {
+        font-size: 1.25rem;
+        color: var(--color-primary-light);
+        transition: transform var(--transition-base);
+        margin-top: auto;
+        padding-top: 1rem;
+      }
+
+      .ud-position-card:hover .lni-arrow-right {
+        transform: translateX(5px);
+      }
+
+      @media (max-width: 768px) {
+        .ud-positions-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .ud-open-positions-wrapper h2 {
+          font-size: 2rem;
+        }
+      }
+
+      .ud-application-form-section {
+        padding: 4rem 0 6rem;
+        background: var(--color-dark-secondary);
+        position: relative;
+      }
+
+      .ud-application-form-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.3), transparent);
+      }
+
+      .ud-application-form-wrapper {
+        max-width: 900px;
+        margin: 0 auto;
+        background: var(--color-dark-bg);
+        border-radius: 16px;
+        padding: 3rem;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .ud-application-form-wrapper::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
+        z-index: 10;
+      }
+
+      .ud-form-section-title {
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .ud-form-section-title h3 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: var(--color-text-primary);
+        margin-bottom: 0.5rem;
+        letter-spacing: -0.01em;
+      }
+
+      .ud-form-section-title p {
+        font-size: 0.9375rem;
+        color: var(--color-text-tertiary);
+        margin: 0;
+      }
+
+      .ud-form-group {
+        margin-bottom: 1.75rem;
+      }
+
+      .ud-form-group label {
+        display: block;
+        font-size: 0.9375rem;
+        font-weight: 500;
+        color: var(--color-text-primary);
+        margin-bottom: 0.75rem;
+        letter-spacing: 0.01em;
+      }
+
+      .ud-form-group label .required {
+        color: #ef4444;
+        margin-left: 0.25rem;
+      }
+
+      .ud-form-group input[type="text"],
+      .ud-form-group input[type="email"],
+      .ud-form-group input[type="tel"],
+      .ud-form-group input[type="url"],
+      .ud-form-group select,
+      .ud-form-group textarea {
+        width: 100%;
+        padding: 0.875rem 1.25rem;
+        background: var(--color-dark-secondary);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        color: var(--color-text-primary);
+        font-size: 1rem;
+        font-family: var(--font-primary);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.2), inset 0 1px 2px rgba(255, 255, 255, 0.05);
+        transition: all var(--transition-base);
+        letter-spacing: 0.01em;
+      }
+
+      .ud-form-group input:focus,
+      .ud-form-group select:focus,
+      .ud-form-group textarea:focus {
+        outline: none;
+        border-color: var(--color-primary-light);
+        box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.2), 0 6px 20px rgba(30, 64, 175, 0.15), 0 2px 8px rgba(0, 0, 0, 0.3);
+        transform: translateY(-1px);
+      }
+
+      .ud-form-group textarea {
+        resize: vertical;
+        min-height: 120px;
+        line-height: 1.7;
+      }
+
+      .ud-form-group select {
+        cursor: pointer;
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23cbd5e1' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 1rem center;
+        padding-right: 2.5rem;
+      }
+
+      .ud-file-input {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        width: 100%;
+        padding: 0.75rem;
+        background: var(--color-dark-secondary);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.2), inset 0 1px 2px rgba(255, 255, 255, 0.05);
+        position: relative;
+      }
+
+      .ud-file-input input[type="file"] {
+        position: absolute;
+        left: -9999px;
+        width: 1px;
+        height: 1px;
+        opacity: 0;
+      }
+
+      .ud-file-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.5rem 1rem;
+        background: var(--gradient-blue);
+        color: var(--color-white);
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: 500;
+        font-size: 0.875rem;
+        line-height: 1;
+        margin: 0;
+        transition: all var(--transition-base);
+        white-space: nowrap;
+      }
+
+      .ud-file-button:hover {
+        opacity: 0.9;
+        transform: translateY(-1px);
+      }
+
+      .ud-file-name {
+        display: inline-flex;
+        align-items: center;
+        color: var(--color-text-secondary);
+        font-size: 0.9375rem;
+        line-height: 1;
+        flex: 1;
+        min-width: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .ud-form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+      }
+
+      @media (max-width: 768px) {
+        .ud-form-row {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .ud-form-help-text {
+        font-size: 0.8125rem;
+        color: var(--color-text-tertiary);
+        margin-top: 0.5rem;
+        line-height: 1.5;
+      }
+
+      .ud-submit-button {
+        width: 100%;
+        padding: 1.125rem 2rem;
+        background: var(--gradient-blue);
+        color: var(--color-white);
+        border: none;
+        border-radius: 8px;
+        font-size: 1.0625rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all var(--transition-base);
+        text-align: center;
+        box-shadow: 0 6px 20px rgba(30, 64, 175, 0.4), 0 2px 8px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        position: relative;
+        overflow: hidden;
+        margin-top: 1rem;
+        letter-spacing: 0.02em;
+      }
+
+      .ud-submit-button::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        transition: left 0.5s ease;
+      }
+
+      .ud-submit-button:hover::before {
+        left: 100%;
+      }
+
+      .ud-submit-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 32px rgba(30, 64, 175, 0.5), 0 4px 12px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        opacity: 0.95;
+      }
+
+      .ud-submit-button:active {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 16px rgba(30, 64, 175, 0.4), 0 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .ud-submit-button:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none;
+      }
+
+      .ud-success-message {
+        display: none;
+        background: rgba(5, 150, 105, 0.1);
+        border: 1px solid rgba(5, 150, 105, 0.3);
+        border-radius: 8px;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+        text-align: center;
+      }
+
+      .ud-success-message.show {
+        display: block;
+      }
+
+      .ud-success-message i {
+        font-size: 2.5rem;
+        color: #10b981;
+        margin-bottom: 1rem;
+        display: block;
+      }
+
+      .ud-success-message h4 {
+        color: #10b981;
+        margin-bottom: 0.5rem;
+      }
+
+      .ud-success-message p {
+        color: var(--color-text-secondary);
+        margin: 0;
+      }
+
+      .ud-open-positions-link {
+        margin-top: 1rem;
+      }
+
+      .ud-open-positions-link a {
+        color: var(--color-primary-light);
+        font-weight: 600;
+      }
+
+      .ud-open-positions-link a:hover {
+        color: var(--color-primary);
+      }
+
+      .ud-form-error {
+        display: none;
+        color: #ef4444;
+        font-size: 0.875rem;
+        margin-top: 0.5rem;
+      }
+
+      .ud-form-error.show {
+        display: block;
+      }
+
+      @keyframes spin {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .animate-spin {
+        animation: spin 1s linear infinite;
+        display: inline-block;
+      }
+
+      .language-switcher {
+        position: absolute;
+        top: 50%;
+        right: 1rem;
+        transform: translateY(-50%);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.25rem;
+        padding: 0.5rem 1rem;
+        min-width: 65px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 8px;
+        color: var(--color-text-primary);
+        font-weight: 600;
+        font-size: 0.875rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      }
+
+      .language-switcher:hover {
+        background: rgba(255, 255, 255, 0.2);
+        border-color: var(--color-primary-light);
+        color: var(--color-primary-light);
+        transform: translateY(-50%) translateY(-2px);
+        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+      }
+      
+      .language-switcher:active {
+        transform: translateY(-50%) translateY(0);
+      }
+
+      .language-flag {
+        width: 1.25rem;
+        height: 0.875rem;
+        border-radius: 2px;
+        display: inline-block;
+        background-size: cover;
+        background-position: center;
+        box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15);
+      }
+
+      .language-flag.flag-en {
+        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='16' viewBox='0 0 24 16'><rect width='24' height='16' fill='%23fff'/><rect y='0' width='24' height='2' fill='%23b22234'/><rect y='4' width='24' height='2' fill='%23b22234'/><rect y='8' width='24' height='2' fill='%23b22234'/><rect y='12' width='24' height='2' fill='%23b22234'/><rect width='10' height='7' fill='%233c3b6e'/></svg>");
+      }
+
+      .language-flag.flag-tr {
+        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='16' viewBox='0 0 24 16'><rect width='24' height='16' fill='%23e30a17'/><circle cx='10' cy='8' r='4.5' fill='%23fff'/><circle cx='11.5' cy='8' r='3.6' fill='%23e30a17'/><polygon points='14.8,8 16.2,8.5 15.7,7.1 16.9,6.1 15.3,6.1 14.8,4.7 14.3,6.1 12.7,6.1 13.9,7.1 13.4,8.5' fill='%23fff'/></svg>");
+      }
+
+      @media (max-width: 991px) {
+        .language-switcher {
+          position: relative;
+          top: auto;
+          right: auto;
+          transform: none;
+          margin-top: 1rem;
+          width: auto;
+          align-self: center;
+        }
+        
+        .language-switcher:hover {
+          transform: translateY(-2px);
+        }
+        
+        .language-switcher:active {
+          transform: translateY(0);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .ud-careers-hero h1 {
+          font-size: 2.5rem;
+        }
+
+        .ud-careers-hero p {
+          font-size: 1.125rem;
+        }
+
+        .ud-application-form-wrapper {
+          padding: 2rem 1.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ====== Header Start ====== -->
+    <header class="ud-header">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <nav class="navbar navbar-expand-lg">
+              <a class="navbar-brand" href="index.html">
+                <img src="assets/images/logo/logo.webp" alt="Solarity AI" />
+              </a>
+              <button id="languageSwitcher" class="language-switcher" onclick="toggleLanguage()">
+                <span class="language-flag flag-en" aria-hidden="true"></span>
+                <span class="language-code">EN</span>
+              </button>
+              <button id="mobileMenuToggle" class="navbar-toggler" type="button" data-i18n-aria-label="navToggleMenu" aria-label="Toggle navigation menu">
+                <span class="toggler-icon"></span>
+                <span class="toggler-icon"></span>
+                <span class="toggler-icon"></span>
+              </button>
+              <div class="navbar-collapse" id="careersNav">
+                <ul id="nav" class="navbar-nav mx-auto">
+                  <li class="nav-item"><a href="index.html#about" data-i18n="navAbout">About</a></li>
+                  <li class="nav-item"><a href="index.html#partnerships" data-i18n="navPartnerships">Partnerships</a></li>
+                  <li class="nav-item"><a href="index.html#projects" data-i18n="navProjects">Projects</a></li>
+                  <li class="nav-item"><a href="index.html#team" data-i18n="navTeam">Team</a></li>
+                  <li class="nav-item"><a href="index.html#contact" data-i18n="navContact">Contact</a></li>
+                  <li class="nav-item"><a href="careers.html" data-i18n="navCareers">Careers</a></li>
+                </ul>
+              </div>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- ====== Header End ====== -->
+
+    <!-- ====== Careers Hero Section Start ====== -->
+    <section class="ud-careers-hero">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="ud-careers-hero-content wow fadeInUp" data-wow-delay=".1s">
+              <h1 data-i18n="careersTitle">Join Our Team</h1>
+              <p data-i18n="careersSubtitle">We're building the future of AI-powered software solutions. Join us in creating innovative products that make a real impact.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ====== Careers Hero Section End ====== -->
+
+    <!-- ====== Open Positions Section Start ====== -->
+    <section class="ud-open-positions-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="ud-open-positions-wrapper wow fadeInUp" data-wow-delay=".15s">
+              <h2 data-i18n="openPositionsTitle">Open Positions</h2>
+              <p data-i18n="openPositionsDesc">View detailed job descriptions for our current openings</p>
+              <p class="ud-open-positions-link">
+                <a href="https://drive.google.com/drive/folders/1iOew815DHxi_TDBWtbpUp_433V-bamws" target="_blank" rel="noopener noreferrer" data-i18n="openPositionsDriveLink">View all job posters (Drive folder)</a>
+              </p>
+              <div class="ud-positions-grid">
+                <a href="https://drive.google.com/file/d/1i2Ea9Y7Aow1xVCK7cGg9KNbnW8whm5F4/view" target="_blank" rel="noopener noreferrer" class="ud-position-card">
+                  <div class="ud-position-icon">
+                    <i class="lni lni-code-alt"></i>
+                  </div>
+                  <h3 data-i18n="positionFullStack">Full Stack Engineer</h3>
+                  <p data-i18n="viewJobDescription">View Job Description</p>
+                  <i class="lni lni-arrow-right"></i>
+                </a>
+                <a href="https://drive.google.com/file/d/12PTUKekdKHBqm5T3HJmECdwMYkIH4iH_/view" target="_blank" rel="noopener noreferrer" class="ud-position-card">
+                  <div class="ud-position-icon">
+                    <i class="lni lni-bullhorn"></i>
+                  </div>
+                  <h3 data-i18n="positionMarketing">Marketing Specialist</h3>
+                  <p data-i18n="viewJobDescription">View Job Description</p>
+                  <i class="lni lni-arrow-right"></i>
+                </a>
+                <a href="https://drive.google.com/file/d/1ztqakshEcnKPdaaioe3EFLRURfxk4Ywa/view" target="_blank" rel="noopener noreferrer" class="ud-position-card">
+                  <div class="ud-position-icon">
+                    <i class="lni lni-handshake"></i>
+                  </div>
+                  <h3 data-i18n="positionBusinessDev">Business Development Manager</h3>
+                  <p data-i18n="viewJobDescription">View Job Description</p>
+                  <i class="lni lni-arrow-right"></i>
+                </a>
+                <a href="https://drive.google.com/file/d/1hmj2RH69Khw9YICfP4TA5McqpyKaalSo/view" target="_blank" rel="noopener noreferrer" class="ud-position-card">
+                  <div class="ud-position-icon">
+                    <i class="lni lni-paint-bucket"></i>
+                  </div>
+                  <h3 data-i18n="positionUIUX">UI/UX Designer</h3>
+                  <p data-i18n="viewJobDescription">View Job Description</p>
+                  <i class="lni lni-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ====== Open Positions Section End ====== -->
+
+    <!-- ====== Application Form Section Start ====== -->
+    <section class="ud-application-form-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="ud-application-form-wrapper wow fadeInUp" data-wow-delay=".2s">
+              <!-- Success Message -->
+              <div class="ud-success-message" id="successMessage">
+                <i class="lni lni-checkmark-circle"></i>
+                <h4 data-i18n="careersSuccessTitle">Application Submitted Successfully!</h4>
+                <p data-i18n="careersSuccessMessage">Thank you for your interest in joining Solarity AI. We've received your application and will review it shortly. Our team will get back to you soon.</p>
+              </div>
+
+              <form id="applicationForm" action="https://formsubmit.co/info@solarityai.com" method="POST" enctype="multipart/form-data">
+                <!-- Hidden FormSubmit Configuration -->
+                <input type="hidden" name="_subject" id="careersFormSubject" value="New Job Application - Solarity AI">
+                <input type="hidden" name="_template" value="box">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_next" value="https://solarityai.com/careers.html?success=true">
+                <input type="hidden" name="_autoresponse" id="careersFormAutoresponse" value="Thank you for applying to Solarity AI! We have received your application and will review it carefully. Our team will get back to you soon.">
+
+                <!-- Personal Information Section -->
+                <div class="ud-form-section-title">
+                  <h3 data-i18n="careersPersonalInfo">Personal Information</h3>
+                  <p data-i18n="careersPersonalInfoDesc">Please provide your basic contact details</p>
+                </div>
+
+                <div class="ud-form-row">
+                  <div class="ud-form-group">
+                    <label for="firstName" data-i18n="careersFirstName">First Name <span class="required">*</span></label>
+                    <input type="text" id="firstName" name="First Name" required>
+                  </div>
+                  <div class="ud-form-group">
+                    <label for="lastName" data-i18n="careersLastName">Last Name <span class="required">*</span></label>
+                    <input type="text" id="lastName" name="Last Name" required>
+                  </div>
+                </div>
+
+                <div class="ud-form-row">
+                  <div class="ud-form-group">
+                    <label for="email" data-i18n="careersEmail">Email Address <span class="required">*</span></label>
+                    <input type="email" id="email" name="Email" required>
+                    <div class="ud-form-help-text" data-i18n="careersEmailHelp">We'll use this to contact you about your application</div>
+                    <div class="ud-form-error" id="emailError" data-i18n="careersErrorEmail">Please enter a valid email address.</div>
+                  </div>
+                  <div class="ud-form-group">
+                    <label for="phone" data-i18n="careersPhone">Phone Number <span class="required">*</span></label>
+                    <input type="tel" id="phone" name="Phone" required>
+                  </div>
+                </div>
+
+                <div class="ud-form-group">
+                  <label for="location" data-i18n="careersLocation">Location</label>
+                  <input type="text" id="location" name="Location" data-i18n="careersLocationPlaceholder" placeholder="City, State/Country">
+                  <div class="ud-form-help-text" data-i18n="careersLocationHelp">Your current location (optional)</div>
+                </div>
+
+                <!-- Professional Information Section -->
+                <div class="ud-form-section-title" style="margin-top: 3rem;">
+                  <h3 data-i18n="careersProfessionalInfo">Professional Information</h3>
+                  <p data-i18n="careersProfessionalInfoDesc">Tell us about your professional background</p>
+                </div>
+
+                <div class="ud-form-group">
+                  <label for="position" data-i18n="careersPosition">Position Applying For <span class="required">*</span></label>
+                  <select id="position" name="Position" required>
+                    <option value="" data-i18n="selectPosition">Select a position</option>
+                    <option value="Full Stack Engineer" data-i18n="positionFullStack">Full Stack Engineer</option>
+                    <option value="Marketing Specialist" data-i18n="positionMarketing">Marketing Specialist</option>
+                    <option value="Business Development Manager" data-i18n="positionBusinessDev">Business Development Manager</option>
+                    <option value="UI/UX Designer" data-i18n="positionUIUX">UI/UX Designer</option>
+                    <option value="Other" data-i18n="other">Other</option>
+                  </select>
+                </div>
+
+                <div class="ud-form-group" id="otherPositionGroup" style="display: none;">
+                  <label for="otherPosition" data-i18n="careersOtherPosition">Please specify position</label>
+                  <input type="text" id="otherPosition" name="Other Position">
+                </div>
+
+                <div class="ud-form-group">
+                  <label for="linkedin" data-i18n="careersLinkedIn">LinkedIn Profile</label>
+                  <input type="url" id="linkedin" name="LinkedIn" data-i18n="careersLinkedInPlaceholder" placeholder="https://linkedin.com/in/yourprofile">
+                  <div class="ud-form-help-text" data-i18n="careersLinkedInHelp">Your LinkedIn profile URL (optional but recommended)</div>
+                </div>
+
+                <div class="ud-form-group">
+                  <label for="portfolio" data-i18n="careersPortfolio">Portfolio/Website</label>
+                  <input type="url" id="portfolio" name="Portfolio" data-i18n="careersPortfolioPlaceholder" placeholder="https://yourwebsite.com">
+                  <div class="ud-form-help-text" data-i18n="careersPortfolioHelp">Your personal website or portfolio (optional)</div>
+                </div>
+
+                <div class="ud-form-group">
+                  <label for="experience" data-i18n="careersExperience">Years of Experience <span class="required">*</span></label>
+                  <select id="experience" name="Experience" required>
+                    <option value="" data-i18n="selectExperience">Select experience level</option>
+                    <option value="0-1 years" data-i18n="years0_1">0-1 years</option>
+                    <option value="2-3 years" data-i18n="years2_3">2-3 years</option>
+                    <option value="4-5 years" data-i18n="years4_5">4-5 years</option>
+                    <option value="6-8 years" data-i18n="years6_8">6-8 years</option>
+                    <option value="9+ years" data-i18n="years9Plus">9+ years</option>
+                  </select>
+                </div>
+
+                <!-- Education Information Section -->
+                <div class="ud-form-section-title" style="margin-top: 3rem;">
+                  <h3 data-i18n="careersEducationInfo">Education Information</h3>
+                  <p data-i18n="careersEducationInfoDesc">Tell us about your educational background</p>
+                </div>
+
+                <div class="ud-form-group">
+                  <label for="university" data-i18n="careersUniversity">University/Institution <span class="required">*</span></label>
+                  <input type="text" id="university" name="University" required data-i18n="careersUniversityPlaceholder" placeholder="e.g., University of Texas at Dallas">
+                  <div class="ud-form-help-text" data-i18n="careersUniversityHelp">Name of your university or educational institution</div>
+                </div>
+
+                <div class="ud-form-row">
+                  <div class="ud-form-group">
+                    <label for="degree" data-i18n="careersDegree">Degree Level <span class="required">*</span></label>
+                    <select id="degree" name="Degree" required>
+                      <option value="" data-i18n="selectDegree">Select degree level</option>
+                      <option value="High School" data-i18n="highSchool">High School</option>
+                      <option value="Associate's Degree" data-i18n="associatesDegree">Associate's Degree</option>
+                      <option value="Bachelor's Degree" data-i18n="bachelorsDegree">Bachelor's Degree</option>
+                      <option value="Master's Degree" data-i18n="mastersDegree">Master's Degree</option>
+                      <option value="PhD/Doctorate" data-i18n="phdDoctorate">PhD/Doctorate</option>
+                      <option value="Other" data-i18n="other">Other</option>
+                    </select>
+                  </div>
+                  <div class="ud-form-group">
+                    <label for="graduationYear" data-i18n="careersGraduationYear">Graduation Year <span class="required">*</span></label>
+                    <select id="graduationYear" name="Graduation Year" required>
+                      <option value="" data-i18n="selectYear">Select year</option>
+                      <option value="2024">2024</option>
+                      <option value="2023">2023</option>
+                      <option value="2022">2022</option>
+                      <option value="2021">2021</option>
+                      <option value="2020">2020</option>
+                      <option value="2019">2019</option>
+                      <option value="2018">2018</option>
+                      <option value="2017">2017</option>
+                      <option value="2016">2016</option>
+                      <option value="2015 or earlier" data-i18n="year2015Earlier">2015 or earlier</option>
+                      <option value="Currently enrolled" data-i18n="currentlyEnrolled">Currently enrolled</option>
+                      <option value="Not applicable" data-i18n="notApplicable">Not applicable</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="ud-form-group" id="otherDegreeGroup" style="display: none;">
+                  <label for="otherDegree" data-i18n="careersOtherDegree">Please specify degree</label>
+                  <input type="text" id="otherDegree" name="Other Degree">
+                </div>
+
+                <div class="ud-form-group">
+                  <label for="fieldOfStudy" data-i18n="careersFieldOfStudy">Field of Study/Major <span class="required">*</span></label>
+                  <input type="text" id="fieldOfStudy" name="Field of Study" required data-i18n="careersFieldOfStudyPlaceholder" placeholder="e.g., Computer Science, Software Engineering, Data Science">
+                  <div class="ud-form-help-text" data-i18n="careersFieldOfStudyHelp">Your major or field of study</div>
+                </div>
+
+                <div class="ud-form-group">
+                  <label for="gpa" data-i18n="careersGPA">GPA</label>
+                  <input type="text" id="gpa" name="GPA" data-i18n="careersGPAPlaceholder" placeholder="e.g., 3.5/4.0 or 8.5/10.0">
+                  <div class="ud-form-help-text" data-i18n="careersGPAHelp">Your GPA if available (include scale, e.g., 3.5/4.0) - Optional</div>
+                </div>
+
+                <!-- Application Details Section -->
+                <div class="ud-form-section-title" style="margin-top: 3rem;">
+                  <h3 data-i18n="careersApplicationDetails">Application Details</h3>
+                  <p data-i18n="careersApplicationDetailsDesc">Help us understand why you'd be a great fit</p>
+                </div>
+
+                <div class="ud-form-group">
+                  <label for="coverLetter" data-i18n="careersCoverLetter">Cover Letter <span class="required">*</span></label>
+                  <textarea id="coverLetter" name="Cover Letter" rows="6" required data-i18n="careersCoverLetterPlaceholder" placeholder="Tell us about yourself, why you're interested in this position, and what you can bring to our team..."></textarea>
+                  <div class="ud-form-help-text" data-i18n="careersCoverLetterHelp">Minimum 200 characters. Share your motivation and relevant experience.</div>
+                </div>
+
+                <div class="ud-form-group">
+                  <label for="resume" data-i18n="careersResume">Resume/CV <span class="required">*</span></label>
+                  <div class="ud-file-input">
+                    <input type="file" id="resume" name="Resume" accept=".pdf,.doc,.docx" required>
+                    <label class="ud-file-button" for="resume" data-i18n="careersResumeChooseFile">Choose File</label>
+                    <span class="ud-file-name" id="resumeFileName" data-i18n="careersResumeNoFile">No file chosen</span>
+                  </div>
+                  <div class="ud-form-help-text" data-i18n="careersResumeHelp">Accepted formats: PDF, DOC, DOCX (Max size: 5MB)</div>
+                </div>
+
+                <div class="ud-form-group">
+                  <label for="additionalInfo" data-i18n="careersAdditionalInfo">Additional Information</label>
+                  <textarea id="additionalInfo" name="Additional Information" rows="4" data-i18n="careersAdditionalInfoPlaceholder" placeholder="Any additional information you'd like to share (optional)"></textarea>
+                </div>
+
+                <!-- Cloudflare Turnstile -->
+                <div class="ud-form-group">
+                  <div
+                    class="cf-turnstile"
+                    data-sitekey="0x4AAAAAACI72SYLbDu1hDf5"
+                    data-response-field="false"
+                    data-callback="onCareersTurnstileSuccess"
+                    data-expired-callback="onCareersTurnstileExpired"
+                    data-error-callback="onCareersTurnstileError"
+                  ></div>
+                  <input type="hidden" name="cf-turnstile-response" id="careersTurnstileToken">
+                  <div class="ud-form-error" id="careersCaptchaError" data-i18n="formCaptchaError" role="alert" aria-live="polite">
+                    Please verify you are human before submitting.
+                  </div>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="ud-submit-button" id="submitButton" disabled>
+                  <span id="submitButtonText" data-i18n="careersSubmitApplication">Submit Application</span>
+                  <span id="submitButtonLoading" style="display: none;">
+                    <i class="lni lni-spinner animate-spin"></i> <span data-i18n="careersSubmitting">Submitting...</span>
+                  </span>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ====== Application Form Section End ====== -->
+
+    <!-- ====== Footer Start ====== -->
+    <footer class="ud-footer">
+      <div class="ud-footer-widgets">
+        <div class="container">
+          <div class="row">
+            <div class="col-xl-4 col-lg-4 col-md-6">
+              <div class="ud-widget">
+                <a href="index.html" class="ud-footer-logo">
+                  <img src="assets/images/logo/logo.webp" alt="Solarity AI" />
+                </a>
+                <p class="ud-widget-desc" data-i18n="footerDescription"></p>
+              </div>
+            </div>
+            <div class="col-xl-2 col-lg-2 col-md-6 col-sm-6">
+              <div class="ud-widget">
+                <h5 class="ud-widget-title" data-i18n="footerQuickLinks">Quick Links</h5>
+                <ul class="ud-widget-links">
+                  <li><a href="index.html#about" data-i18n="navAbout">About</a></li>
+                  <li><a href="index.html#partnerships" data-i18n="navPartnerships">Partnerships</a></li>
+                  <li><a href="index.html#projects" data-i18n="navProjects">Projects</a></li>
+                  <li><a href="index.html#team" data-i18n="navTeam">Team</a></li>
+                  <li><a href="index.html#contact" data-i18n="navContact">Contact</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+              <div class="ud-widget">
+                <h5 class="ud-widget-title" data-i18n="footerContact">Contact</h5>
+                <ul class="ud-widget-links">
+                  <li>
+                    <i class="lni lni-envelope" style="margin-right: 0.5rem;"></i>
+                    <a href="mailto:info@solarityai.com">info@solarityai.com</a>
+                  </li>
+                  <li>
+                    <i class="lni lni-map-marker" style="margin-right: 0.5rem;"></i>
+                    <span data-i18n="contactAddressValue">Dallas, Texas, USA</span>
+                  </li>
+                  <li>
+                    <i class="lni lni-briefcase" style="margin-right: 0.5rem;"></i>
+                    <a href="careers.html" data-i18n="navCareers">Careers</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+              <div class="ud-widget">
+                <h5 class="ud-widget-title" data-i18n="footerFollowUs">Follow Us</h5>
+                <ul class="ud-widget-socials">
+                  <li>
+                    <a href="https://www.linkedin.com/company/solarityai-llc" target="_blank" rel="noopener noreferrer" onclick="if(typeof gtag !== 'undefined') gtag('event', 'click', {'event_category': 'Social', 'event_label': 'LinkedIn Footer'});">
+                      <i class="lni lni-linkedin-original"></i>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ud-footer-bottom">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12 text-center">
+              <p class="ud-footer-bottom-right" data-i18n="footerCopyright">
+                © 2025 Solarity AI LLC. All rights reserved.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- ====== Footer End ====== -->
+
+    <!-- ====== Back To Top Start ====== -->
+    <a href="javascript:void(0)" class="back-to-top">
+      <i class="lni lni-arrow-up"></i>
+    </a>
+    <!-- ====== Back To Top End ====== -->
+
+    <!-- ====== All Scripts ====== -->
+    <script src="assets/js/translations.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/wow.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/language.js"></script>
+
+    <!-- Application Form Scripts -->
+    <script>
+      // Handle "Other" position selection
+      document.getElementById('position').addEventListener('change', function() {
+        const otherGroup = document.getElementById('otherPositionGroup');
+        if (this.value === 'Other') {
+          otherGroup.style.display = 'block';
+          document.getElementById('otherPosition').required = true;
+        } else {
+          otherGroup.style.display = 'none';
+          document.getElementById('otherPosition').required = false;
+        }
+      });
+
+      // Handle "Other" degree selection
+      document.getElementById('degree').addEventListener('change', function() {
+        const otherDegreeGroup = document.getElementById('otherDegreeGroup');
+        if (this.value === 'Other') {
+          otherDegreeGroup.style.display = 'block';
+          document.getElementById('otherDegree').required = true;
+        } else {
+          otherDegreeGroup.style.display = 'none';
+          document.getElementById('otherDegree').required = false;
+        }
+      });
+
+      // Mobile navigation toggle for careers page
+      const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+      const careersNav = document.getElementById('careersNav');
+      if (mobileMenuToggle && careersNav) {
+        mobileMenuToggle.addEventListener('click', function(e) {
+          e.preventDefault();
+          const isOpen = careersNav.classList.contains('show');
+          careersNav.classList.toggle('show');
+          mobileMenuToggle.classList.toggle('active', !isOpen);
+          document.body.style.overflow = isOpen ? '' : 'hidden';
+        });
+
+        careersNav.querySelectorAll('a').forEach(function(link) {
+          link.addEventListener('click', function() {
+            careersNav.classList.remove('show');
+            mobileMenuToggle.classList.remove('active');
+            document.body.style.overflow = '';
+          });
+        });
+
+        document.addEventListener('click', function(e) {
+          if (careersNav.classList.contains('show')) {
+            if (!careersNav.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+              careersNav.classList.remove('show');
+              mobileMenuToggle.classList.remove('active');
+              document.body.style.overflow = '';
+            }
+          }
+        });
+      }
+
+      // Email validation message
+      const emailInput = document.getElementById('email');
+      const emailError = document.getElementById('emailError');
+
+      function updateEmailError() {
+        if (!emailInput || !emailError) {
+          return;
+        }
+
+        const currentLang = window.getCurrentLanguage ? window.getCurrentLanguage() : 'en';
+        const errorMsg = translations[currentLang] && translations[currentLang]['careersErrorEmail']
+          ? translations[currentLang]['careersErrorEmail']
+          : (currentLang === 'tr' ? 'Lütfen geçerli bir e-posta adresi giriniz.' : 'Please enter a valid email address.');
+
+        if (emailInput.value && !emailInput.checkValidity()) {
+          emailError.textContent = errorMsg;
+          emailError.classList.add('show');
+          emailInput.setAttribute('aria-invalid', 'true');
+        } else {
+          emailError.classList.remove('show');
+          emailInput.removeAttribute('aria-invalid');
+        }
+      }
+
+      if (emailInput) {
+        emailInput.addEventListener('input', updateEmailError);
+        emailInput.addEventListener('blur', updateEmailError);
+      }
+
+      // Resume file label translation
+      const resumeInput = document.getElementById('resume');
+      const resumeFileName = document.getElementById('resumeFileName');
+
+      function updateResumeFileName() {
+        if (!resumeInput || !resumeFileName) {
+          return;
+        }
+
+        const currentLang = window.getCurrentLanguage ? window.getCurrentLanguage() : 'en';
+        const noFileText = translations[currentLang] && translations[currentLang]['careersResumeNoFile']
+          ? translations[currentLang]['careersResumeNoFile']
+          : (currentLang === 'tr' ? 'Dosya seçilmedi' : 'No file chosen');
+
+        if (resumeInput.files && resumeInput.files.length > 0) {
+          resumeFileName.textContent = resumeInput.files[0].name;
+          resumeFileName.removeAttribute('data-i18n');
+        } else {
+          resumeFileName.setAttribute('data-i18n', 'careersResumeNoFile');
+          resumeFileName.textContent = noFileText;
+        }
+      }
+
+      if (resumeInput) {
+        resumeInput.addEventListener('change', updateResumeFileName);
+        updateResumeFileName();
+      }
+
+      // Cloudflare Turnstile handling
+      const applicationForm = document.getElementById('applicationForm');
+      const submitButton = document.getElementById('submitButton');
+      const submitButtonText = document.getElementById('submitButtonText');
+      const submitButtonLoading = document.getElementById('submitButtonLoading');
+      const captchaTokenInput = document.getElementById('careersTurnstileToken');
+      const captchaError = document.getElementById('careersCaptchaError');
+
+      function setSubmitEnabled(enabled) {
+        if (submitButton) {
+          submitButton.disabled = !enabled;
+        }
+      }
+
+      function showCaptchaError(show) {
+        if (!captchaError) {
+          return;
+        }
+        captchaError.classList.toggle('show', show);
+      }
+
+      function clearCaptchaToken() {
+        if (captchaTokenInput) {
+          captchaTokenInput.value = '';
+        }
+      }
+
+      function resetTurnstile() {
+        if (window.turnstile && typeof window.turnstile.reset === 'function') {
+          window.turnstile.reset();
+        }
+      }
+
+      window.onCareersTurnstileSuccess = function(token) {
+        if (captchaTokenInput) {
+          captchaTokenInput.value = token;
+        }
+        showCaptchaError(false);
+        setSubmitEnabled(true);
+      };
+
+      window.onCareersTurnstileExpired = function() {
+        clearCaptchaToken();
+        setSubmitEnabled(false);
+        showCaptchaError(true);
+        resetTurnstile();
+      };
+
+      window.onCareersTurnstileError = function() {
+        clearCaptchaToken();
+        setSubmitEnabled(false);
+        showCaptchaError(true);
+      };
+
+      setSubmitEnabled(false);
+
+      // Handle form submission
+      if (applicationForm) {
+        applicationForm.addEventListener('submit', function(e) {
+          if (!captchaTokenInput || !captchaTokenInput.value) {
+            e.preventDefault();
+            showCaptchaError(true);
+            setSubmitEnabled(false);
+            resetTurnstile();
+            return false;
+          }
+
+          showCaptchaError(false);
+
+          if (emailInput && !emailInput.checkValidity()) {
+            e.preventDefault();
+            updateEmailError();
+            emailInput.focus();
+            clearCaptchaToken();
+            setSubmitEnabled(false);
+            resetTurnstile();
+            return false;
+          }
+          
+          // Validate cover letter length
+          const coverLetter = document.getElementById('coverLetter').value;
+          if (coverLetter.length < 200) {
+            e.preventDefault();
+            const currentLang = window.getCurrentLanguage ? window.getCurrentLanguage() : 'en';
+            const errorMsg = translations[currentLang] && translations[currentLang]['careersErrorCoverLetter']
+              ? translations[currentLang]['careersErrorCoverLetter']
+              : (currentLang === 'tr' ? 'Lütfen en az 200 karakterlik bir ön yazı sağlayın.' : 'Please provide a cover letter with at least 200 characters.');
+            alert(errorMsg);
+            clearCaptchaToken();
+            setSubmitEnabled(false);
+            resetTurnstile();
+            return false;
+          }
+
+          // Validate file size
+          if (resumeInput && resumeInput.files.length > 0) {
+            const fileSize = resumeInput.files[0].size / 1024 / 1024; // Size in MB
+            if (fileSize > 5) {
+              e.preventDefault();
+              const currentLang = window.getCurrentLanguage ? window.getCurrentLanguage() : 'en';
+              const errorMsg = translations[currentLang] && translations[currentLang]['careersErrorFileSize']
+                ? translations[currentLang]['careersErrorFileSize']
+                : (currentLang === 'tr' ? 'Özgeçmiş dosya boyutu 5MB\'den küçük olmalıdır. Lütfen dosyanızı sıkıştırın ve tekrar deneyin.' : 'Resume file size must be less than 5MB. Please compress your file and try again.');
+              alert(errorMsg);
+              clearCaptchaToken();
+              setSubmitEnabled(false);
+              resetTurnstile();
+              return false;
+            }
+          }
+
+          // Show loading state
+          submitButton.disabled = true;
+          submitButtonText.style.display = 'none';
+          submitButtonLoading.style.display = 'inline-block';
+          resetTurnstile();
+
+          // Track form submission
+          if (typeof gtag !== 'undefined') {
+            gtag('event', 'form_submit', {
+              'event_category': 'Career Application',
+              'event_label': 'Application Form Submitted'
+            });
+          }
+        });
+      }
+
+      if (applicationForm) {
+        applicationForm.addEventListener('invalid', function() {
+          clearCaptchaToken();
+          setSubmitEnabled(false);
+          resetTurnstile();
+        }, true);
+      }
+
+      // Check for success parameter in URL
+      window.addEventListener('DOMContentLoaded', function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('success') === 'true') {
+          document.getElementById('successMessage').classList.add('show');
+          document.getElementById('applicationForm').style.display = 'none';
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      });
+
+      // Character counter for cover letter
+      const coverLetterTextarea = document.getElementById('coverLetter');
+      const helpText = coverLetterTextarea.nextElementSibling;
+      coverLetterTextarea.addEventListener('input', function() {
+        const length = this.value.length;
+        const currentLang = window.getCurrentLanguage ? window.getCurrentLanguage() : 'en';
+        if (length < 200) {
+          if (currentLang === 'tr') {
+            helpText.textContent = `Minimum 200 karakter. Motivasyonunuzu ve ilgili deneyiminizi paylaşın. (${length}/200)`;
+          } else {
+            helpText.textContent = `Minimum 200 characters. Share your motivation and relevant experience. (${length}/200)`;
+          }
+          helpText.style.color = 'var(--color-text-tertiary)';
+        } else {
+          if (currentLang === 'tr') {
+            helpText.textContent = `Harika! Ön yazınız ${length} karakter.`;
+          } else {
+            helpText.textContent = `Great! Your cover letter is ${length} characters.`;
+          }
+          helpText.style.color = '#10b981';
+        }
+      });
+      
+      // Update character counter on language change
+      if (coverLetterTextarea.value.length > 0) {
+        coverLetterTextarea.dispatchEvent(new Event('input'));
+      }
+    </script>
+  </body>
+</html>

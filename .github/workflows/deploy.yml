@@ -1,0 +1,127 @@
+name: Deploy Static Website to AWS
+
+on:
+  push:
+    branches:
+      - develop
+  workflow_dispatch: # Allow manual trigger
+
+permissions:
+  id-token: write # Required for OIDC
+  contents: read  # Required for checkout
+
+jobs:
+  deploy:
+    name: Deploy to S3 and Invalidate CloudFront
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: us-east-1
+
+      - name: Validate required secrets
+        run: |
+          if [ -z "${{ secrets.AWS_ROLE_ARN }}" ]; then
+            echo "❌ Error: AWS_ROLE_ARN secret is not set"
+            echo "Get the role ARN from Terraform output: terraform output github_actions_role_arn"
+            exit 1
+          fi
+          if [ -z "${{ secrets.S3_BUCKET_NAME }}" ]; then
+            echo "❌ Error: S3_BUCKET_NAME secret is not set"
+            echo "Get the bucket name from Terraform output: terraform output s3_bucket_id"
+            exit 1
+          fi
+          if [ -z "${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}" ]; then
+            echo "❌ Error: CLOUDFRONT_DISTRIBUTION_ID secret is not set"
+            echo "Get the distribution ID from Terraform output: terraform output cloudfront_distribution_id"
+            exit 1
+          fi
+          echo "✅ All required secrets are set"
+
+      - name: Deploy to S3
+        run: |
+          echo "📤 Uploading files to S3 bucket: ${{ secrets.S3_BUCKET_NAME }}"
+          
+          # Upload static assets (CSS, JS, images, fonts) with long cache
+          echo "📦 Uploading static assets (CSS, JS, images, fonts)..."
+          aws s3 sync . s3://${{ secrets.S3_BUCKET_NAME }}/ \
+            --exclude ".git/*" \
+            --exclude ".github/*" \
+            --exclude "ansible/*" \
+            --exclude "*.md" \
+            --exclude "**/*.md" \
+            --exclude ".gitignore" \
+            --exclude ".cursor/*" \
+            --exclude ".vscode/*" \
+            --exclude "*.bak" \
+            --exclude "*.backup" \
+            --exclude "TestCommit" \
+            --exclude "*.html" \
+            --exclude "robots.txt" \
+            --exclude "sitemap.xml" \
+            --exclude "humans.txt" \
+            --cache-control "public, max-age=31536000, immutable" \
+            --delete
+          
+          # Upload HTML files and metadata files with shorter cache
+          echo "📄 Uploading HTML files and metadata..."
+          aws s3 sync . s3://${{ secrets.S3_BUCKET_NAME }}/ \
+            --exclude "*" \
+            --include "*.html" \
+            --include "robots.txt" \
+            --include "sitemap.xml" \
+            --include "humans.txt" \
+            --cache-control "public, max-age=3600, must-revalidate" \
+            --delete
+          
+          echo "✅ Files uploaded successfully"
+
+      - name: Invalidate CloudFront cache
+        run: |
+          echo "🔄 Invalidating CloudFront distribution: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}"
+          INVALIDATION_ID=$(aws cloudfront create-invalidation \
+            --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} \
+            --paths "/*" \
+            --query 'Invalidation.Id' \
+            --output text)
+          
+          echo "✅ CloudFront cache invalidation created: $INVALIDATION_ID"
+          echo "⏳ Waiting for invalidation to complete (this may take a few minutes)..."
+          
+          # Wait for invalidation to complete (with timeout)
+          aws cloudfront wait invalidation-completed \
+            --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} \
+            --id $INVALIDATION_ID \
+            --max-attempts 30 \
+            --delay 10 || echo "⚠️  Invalidation is in progress (may take 5-15 minutes to complete)"
+          
+          echo "✅ CloudFront cache invalidated"
+
+      - name: Deployment summary
+        run: |
+          echo "## 🚀 Deployment Complete" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Deployment Details" >> $GITHUB_STEP_SUMMARY
+          echo "- **Branch:** \`${{ github.ref_name }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "- **Commit:** \`${{ github.sha }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "- **Author:** ${{ github.actor }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **S3 Bucket:** \`${{ secrets.S3_BUCKET_NAME }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "- **CloudFront Distribution:** \`${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 🌐 Website URLs" >> $GITHUB_STEP_SUMMARY
+          echo "- **Production:** https://solarityai.com" >> $GITHUB_STEP_SUMMARY
+          echo "- **WWW:** https://www.solarityai.com" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### ⏱️ Timeline" >> $GITHUB_STEP_SUMMARY
+          echo "Changes will be live in 1-2 minutes after CloudFront propagation completes." >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "---" >> $GITHUB_STEP_SUMMARY
+          echo "*Deployed via GitHub Actions using OIDC authentication*" >> $GITHUB_STEP_SUMMARY
+
