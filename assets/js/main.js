@@ -136,10 +136,10 @@
 
       if (!isValid) {
         e.preventDefault();
-        const currentLang = window.getCurrentLanguage ? window.getCurrentLanguage() : 'tr';
+        const currentLang = window.getCurrentLanguage ? window.getCurrentLanguage() : 'en';
         const errorMsg = translations[currentLang] && translations[currentLang]['formErrorRequiredFields'] 
           ? translations[currentLang]['formErrorRequiredFields']
-          : 'Lütfen tüm zorunlu alanları doldurun.';
+          : 'Please fill in all required fields.';
         alert(errorMsg);
       } else {
         // Track form submission with Google Analytics
@@ -267,4 +267,3 @@
   }
 
 })();
-
