@@ -594,7 +594,7 @@ section {
   justify-items: start;
 }
 
-@media (min-width: 992px) {
+@media (min-width: 991px) {
   .ud-partners-grid {
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   }
@@ -1194,7 +1194,7 @@ section {
   width: 100%;
 }
 
-@media (min-width: 576px) {
+@media (min-width: 575px) {
   .ud-team-org .ud-single-team {
     height: auto;
     aspect-ratio: auto;
@@ -1286,17 +1286,22 @@ section {
     font-size: 2.4rem;
   }
 
+
   .team-tier-grid {
     padding-top: 1.5rem;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
   }
 
-  .team-tier-grid::before,
-  .team-tier-title::after,
-  .team-tier-connector,
-  .team-card::before,
+  .team-tier-grid .team-card {
+    flex: 0 0 calc((100% - 2rem) / 3);
+    max-width: calc((100% - 2rem) / 3);
+  }
+
   .team-card::after {
-    display: none;
+    top: calc(-1.5rem - 4px);
   }
 
   .team-card--featured {
@@ -1305,8 +1310,23 @@ section {
 }
 
 @media (max-width: 575px) {
-  .team-tier-grid {
-    grid-template-columns: 1fr;
+
+  .ud-team-org-chart {
+    margin: auto 4rem;
+  }
+
+  .team-tier-grid::before {
+    display: none;
+  }
+
+  .team-tier-grid .team-card {
+    flex: 0 0 100%;
+    max-width: 100%;
+    overflow: hidden;
+  }
+  
+  .ud-team-org .team-tier-grid + .team-tier-grid {
+    margin-top: -2rem;
   }
 
   .team-tier-grid--executives .team-card--featured {
@@ -1324,6 +1344,7 @@ section {
   .ud-single-team {
     min-height: 450px;
     aspect-ratio: 2 / 3;
+    margin-bottom: 1rem;
   }
 }
 
