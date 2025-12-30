@@ -1150,6 +1150,11 @@ section {
   max-width: 1200px;
 }
 
+.team-tier-grid--engineers.team-tier-grid--subrow {
+  grid-template-columns: repeat(2, minmax(260px, 360px));
+  max-width: 900px;
+}
+
 .team-tier-connector {
   width: 2px;
   height: 46px;
