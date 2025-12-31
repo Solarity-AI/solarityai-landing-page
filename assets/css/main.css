@@ -1312,7 +1312,7 @@ section {
 @media (max-width: 575px) {
 
   .ud-team-org-chart {
-    margin: auto 4rem;
+    margin: auto 1rem;
   }
 
   .team-tier-grid::before {
