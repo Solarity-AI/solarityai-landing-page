@@ -127,6 +127,10 @@ img {
   display: block;
 }
 
+.mirror {
+  transform: scaleX(-1);
+}
+
 /* =============================
    Header & Navigation
    ============================= */
