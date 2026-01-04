@@ -1159,6 +1159,11 @@ section {
   max-width: 900px;
 }
 
+.team-tier-grid--designers {
+  grid-template-columns: repeat(1, minmax(260px, 360px));
+  max-width: 380px;
+}
+
 .team-tier-connector {
   width: 2px;
   height: 46px;
@@ -1865,5 +1870,3 @@ html body .ud-capabilities-grid .ud-capability-card p {
   margin-left: 0 !important;
   width: 100% !important;
 }
-
-/* test */
