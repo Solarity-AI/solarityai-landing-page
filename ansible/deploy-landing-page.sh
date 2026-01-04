@@ -42,7 +42,7 @@ echo ""
 
 # Sync Terraform outputs first
 if [ -f "${ANSIBLE_DIR}/sync-terraform-outputs.sh" ]; then
-    echo "[1/4] Syncing Terraform outputs..."
+    echo "[1/5] Syncing Terraform outputs..."
     "${ANSIBLE_DIR}/sync-terraform-outputs.sh" || {
         echo "⚠️  Warning: Failed to sync Terraform outputs"
         echo "   Continuing with existing configuration..."
@@ -50,8 +50,23 @@ if [ -f "${ANSIBLE_DIR}/sync-terraform-outputs.sh" ]; then
     }
 fi
 
+# Build cache-busted assets before upload
+BUILD_SCRIPT="${LANDING_PAGE_ROOT}/scripts/build-cache-busted.py"
+BUILD_OUTPUT="${LANDING_PAGE_ROOT}/dist"
+if [ -f "${BUILD_SCRIPT}" ]; then
+    if ! command -v python3 >/dev/null 2>&1; then
+        echo "❌ Error: python3 is required to build cache-busted assets"
+        exit 1
+    fi
+    echo "[2/5] Building cache-busted assets..."
+    python3 "${BUILD_SCRIPT}" --source "${LANDING_PAGE_SOURCE}" --output "${BUILD_OUTPUT}"
+    LANDING_PAGE_SOURCE="${BUILD_OUTPUT}"
+else
+    echo "⚠️  Warning: build script not found, deploying source files as-is"
+fi
+
 # Upload landing page files via Ansible playbook
-echo "[2/4] Uploading landing page files..."
+echo "[3/5] Uploading landing page files..."
 cd "${ANSIBLE_DIR}"
 
 # Create temporary playbook for file upload
@@ -137,7 +152,7 @@ ansible-playbook -i inventory/hosts.yml /tmp/deploy-landing-files.yml || {
 rm -f /tmp/deploy-landing-files.yml
 
 echo ""
-echo "[3/4] Deployment verification complete"
+echo "[4/5] Deployment verification complete"
 
 echo ""
 echo "✅ Landing page deployed successfully!"

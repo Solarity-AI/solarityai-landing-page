@@ -20,6 +20,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Build cache-busted assets
+        run: |
+          python3 scripts/build-cache-busted.py --output dist
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -51,34 +55,22 @@ jobs:
           
           # Upload static assets (CSS, JS, images, fonts) with long cache
           echo "📦 Uploading static assets (CSS, JS, images, fonts)..."
-          aws s3 sync . s3://${{ secrets.S3_BUCKET_NAME }}/ \
-            --exclude ".git/*" \
-            --exclude ".github/*" \
-            --exclude "ansible/*" \
-            --exclude "*.md" \
-            --exclude "**/*.md" \
-            --exclude ".gitignore" \
-            --exclude ".cursor/*" \
-            --exclude ".vscode/*" \
-            --exclude "*.bak" \
-            --exclude "*.backup" \
-            --exclude "TestCommit" \
+          aws s3 sync dist/ s3://${{ secrets.S3_BUCKET_NAME }}/ \
             --exclude "*.html" \
             --exclude "robots.txt" \
             --exclude "sitemap.xml" \
             --exclude "humans.txt" \
-            --cache-control "public, max-age=31536000, immutable" \
-            --delete
+            --cache-control "public, max-age=31536000, immutable"
           
           # Upload HTML files and metadata files with shorter cache
           echo "📄 Uploading HTML files and metadata..."
-          aws s3 sync . s3://${{ secrets.S3_BUCKET_NAME }}/ \
+          aws s3 sync dist/ s3://${{ secrets.S3_BUCKET_NAME }}/ \
             --exclude "*" \
             --include "*.html" \
             --include "robots.txt" \
             --include "sitemap.xml" \
             --include "humans.txt" \
-            --cache-control "public, max-age=3600, must-revalidate" \
+            --cache-control "no-store, no-cache, must-revalidate, max-age=0" \
             --delete
           
           echo "✅ Files uploaded successfully"
@@ -124,4 +116,3 @@ jobs:
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "---" >> $GITHUB_STEP_SUMMARY
           echo "*Deployed via GitHub Actions using OIDC authentication*" >> $GITHUB_STEP_SUMMARY
-
