@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="500" viewBox="0 0 400 500" role="img" aria-labelledby="title">
+  <title id="title">Hilal Genc</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#1d4ed8" />
+    </linearGradient>
+    <linearGradient id="glow" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.5" />
+      <stop offset="100%" stop-color="#a5f3fc" stop-opacity="0.8" />
+    </linearGradient>
+  </defs>
+  <rect width="400" height="500" fill="url(#bg)" />
+  <circle cx="200" cy="210" r="110" fill="url(#glow)" opacity="0.75" />
+  <circle cx="200" cy="210" r="92" fill="#0f172a" opacity="0.6" />
+  <text x="200" y="245" text-anchor="middle" font-size="96" font-family="'Poppins', 'Helvetica Neue', Arial, sans-serif" font-weight="700" fill="#e2e8f0">H</text>
+</svg>

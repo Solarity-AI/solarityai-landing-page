@@ -1160,8 +1160,8 @@ section {
 }
 
 .team-tier-grid--designers {
-  grid-template-columns: repeat(1, minmax(260px, 360px));
-  max-width: 380px;
+  grid-template-columns: repeat(3, minmax(260px, 360px));
+  max-width: 1200px;
 }
 
 .team-tier-connector {
