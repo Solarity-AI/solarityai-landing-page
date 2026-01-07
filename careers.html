@@ -36,9 +36,6 @@
     <!-- Canonical URL -->
     <link rel="canonical" href="https://solarityai.com/careers.html" />
 
-    <!-- Cloudflare Turnstile -->
-    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-KPPM46EHP9"></script>
     <script>
@@ -755,7 +752,7 @@
                 <!-- Hidden FormSubmit Configuration -->
                 <input type="hidden" name="_subject" id="careersFormSubject" value="New Job Application - Solarity AI">
                 <input type="hidden" name="_template" value="box">
-                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_captcha" value="true">
                 <input type="hidden" name="_next" value="https://solarityai.com/careers.html?success=true">
                 <input type="hidden" name="_autoresponse" id="careersFormAutoresponse" value="Thank you for applying to Solarity AI! We have received your application and will review it carefully. Our team will get back to you soon.">
 
@@ -931,24 +928,8 @@
                   <textarea id="additionalInfo" name="Additional Information" rows="4" data-i18n="careersAdditionalInfoPlaceholder" placeholder="Any additional information you'd like to share (optional)"></textarea>
                 </div>
 
-                <!-- Cloudflare Turnstile -->
-                <div class="ud-form-group">
-                  <div
-                    class="cf-turnstile"
-                    data-sitekey="0x4AAAAAACI72SYLbDu1hDf5"
-                    data-response-field="false"
-                    data-callback="onCareersTurnstileSuccess"
-                    data-expired-callback="onCareersTurnstileExpired"
-                    data-error-callback="onCareersTurnstileError"
-                  ></div>
-                  <input type="hidden" name="cf-turnstile-response" id="careersTurnstileToken">
-                  <div class="ud-form-error" id="careersCaptchaError" data-i18n="formCaptchaError" role="alert" aria-live="polite">
-                    Please verify you are human before submitting.
-                  </div>
-                </div>
-
                 <!-- Submit Button -->
-                <button type="submit" class="ud-submit-button" id="submitButton" disabled>
+                <button type="submit" class="ud-submit-button" id="submitButton">
                   <span id="submitButtonText" data-i18n="careersSubmitApplication">Submit Application</span>
                   <span id="submitButtonLoading" style="display: none;">
                     <i class="lni lni-spinner animate-spin"></i> <span data-i18n="careersSubmitting">Submitting...</span>
@@ -1162,82 +1143,18 @@
         updateResumeFileName();
       }
 
-      // Cloudflare Turnstile handling
       const applicationForm = document.getElementById('applicationForm');
       const submitButton = document.getElementById('submitButton');
       const submitButtonText = document.getElementById('submitButtonText');
       const submitButtonLoading = document.getElementById('submitButtonLoading');
-      const captchaTokenInput = document.getElementById('careersTurnstileToken');
-      const captchaError = document.getElementById('careersCaptchaError');
-
-      function setSubmitEnabled(enabled) {
-        if (submitButton) {
-          submitButton.disabled = !enabled;
-        }
-      }
-
-      function showCaptchaError(show) {
-        if (!captchaError) {
-          return;
-        }
-        captchaError.classList.toggle('show', show);
-      }
-
-      function clearCaptchaToken() {
-        if (captchaTokenInput) {
-          captchaTokenInput.value = '';
-        }
-      }
-
-      function resetTurnstile() {
-        if (window.turnstile && typeof window.turnstile.reset === 'function') {
-          window.turnstile.reset();
-        }
-      }
-
-      window.onCareersTurnstileSuccess = function(token) {
-        if (captchaTokenInput) {
-          captchaTokenInput.value = token;
-        }
-        showCaptchaError(false);
-        setSubmitEnabled(true);
-      };
-
-      window.onCareersTurnstileExpired = function() {
-        clearCaptchaToken();
-        setSubmitEnabled(false);
-        showCaptchaError(true);
-        resetTurnstile();
-      };
-
-      window.onCareersTurnstileError = function() {
-        clearCaptchaToken();
-        setSubmitEnabled(false);
-        showCaptchaError(true);
-      };
-
-      setSubmitEnabled(false);
 
       // Handle form submission
       if (applicationForm) {
         applicationForm.addEventListener('submit', function(e) {
-          if (!captchaTokenInput || !captchaTokenInput.value) {
-            e.preventDefault();
-            showCaptchaError(true);
-            setSubmitEnabled(false);
-            resetTurnstile();
-            return false;
-          }
-
-          showCaptchaError(false);
-
           if (emailInput && !emailInput.checkValidity()) {
             e.preventDefault();
             updateEmailError();
             emailInput.focus();
-            clearCaptchaToken();
-            setSubmitEnabled(false);
-            resetTurnstile();
             return false;
           }
           
@@ -1250,9 +1167,6 @@
               ? translations[currentLang]['careersErrorCoverLetter']
               : (currentLang === 'tr' ? 'Lütfen en az 200 karakterlik bir ön yazı sağlayın.' : 'Please provide a cover letter with at least 200 characters.');
             alert(errorMsg);
-            clearCaptchaToken();
-            setSubmitEnabled(false);
-            resetTurnstile();
             return false;
           }
 
@@ -1266,9 +1180,6 @@
                 ? translations[currentLang]['careersErrorFileSize']
                 : (currentLang === 'tr' ? 'Özgeçmiş dosya boyutu 5MB\'den küçük olmalıdır. Lütfen dosyanızı sıkıştırın ve tekrar deneyin.' : 'Resume file size must be less than 5MB. Please compress your file and try again.');
               alert(errorMsg);
-              clearCaptchaToken();
-              setSubmitEnabled(false);
-              resetTurnstile();
               return false;
             }
           }
@@ -1277,7 +1188,6 @@
           submitButton.disabled = true;
           submitButtonText.style.display = 'none';
           submitButtonLoading.style.display = 'inline-block';
-          resetTurnstile();
 
           // Track form submission
           if (typeof gtag !== 'undefined') {
@@ -1287,14 +1197,6 @@
             });
           }
         });
-      }
-
-      if (applicationForm) {
-        applicationForm.addEventListener('invalid', function() {
-          clearCaptchaToken();
-          setSubmitEnabled(false);
-          resetTurnstile();
-        }, true);
       }
 
       // Check for success parameter in URL
