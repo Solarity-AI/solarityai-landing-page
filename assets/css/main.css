@@ -60,6 +60,9 @@
   --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
   --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.2);
   --shadow-xl: 0 12px 40px rgba(0, 0, 0, 0.25);
+
+  /* Reserved space for brand (logo) in navbar on desktop */
+  --brand-space: clamp(200px, 20vw, 340px);
 }
 
 /* =============================
@@ -143,7 +146,7 @@ img {
   background: rgba(15, 23, 42, 0.85);
   backdrop-filter: blur(20px);
   transition: all var(--transition-base);
-  padding: 1rem 0;
+  padding: 0.75rem 0;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2), 0 2px 8px rgba(0, 0, 0, 0.1);
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
@@ -151,7 +154,7 @@ img {
 .ud-header.sticky {
   background: rgba(15, 23, 42, 0.95);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 4px 16px rgba(0, 0, 0, 0.2);
-  padding: 0.75rem 0;
+  padding: 0.5rem 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
@@ -162,11 +165,26 @@ img {
   justify-content: center;
   width: 100%;
   position: relative;
+  min-height: 88px; /* 96px -> 88px: bar yüksekliği biraz daha azaltıldı */
+  padding-left: var(--brand-space); /* masaüstünde sol boşluk: logo nav ile çakışmasın */
+}
+
+/* Global sticky min-height kuralını tamamen kaldırıyoruz (sadece desktop’ta tanımlı kalacak) */
+/* .ud-header.sticky .navbar { min-height: 84px; } */
+
+.ud-header.sticky .navbar {
+  min-height: 76px; /* 84px -> 76px */
 }
 
 .navbar-brand {
   position: absolute;
   left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  width: var(--brand-space);
+  min-width: var(--brand-space);
 }
 
 .navbar-collapse {
@@ -178,10 +196,20 @@ img {
 }
 
 .navbar-brand img {
-  max-height: 50px;
+  max-height: 88px; /* 96px -> 88px: logo yeni bara göre */
   width: auto;
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
   transition: all var(--transition-base);
+}
+
+/* Sticky (masaüstü) durumda daha kompakt yükseklik ve logo boyutu */
+@media (min-width: 992px) {
+  .ud-header.sticky .navbar {
+    min-height: 76px; /* 84px -> 76px */
+  }
+  .ud-header.sticky .navbar-brand img {
+    max-height: 72px; /* 76px -> 72px */
+  }
 }
 
 .navbar-brand:hover img {
@@ -294,11 +322,17 @@ img {
 @media (max-width: 991px) {
   .navbar {
     justify-content: space-between;
+    min-height: 60px;
+    padding-left: 0; /* mobilde ekstra boşluk olmasın */
   }
 
   .navbar-brand {
     position: relative;
     left: auto;
+    top: auto;
+    transform: none;
+    width: auto; /* mobilde genişlik serbest */
+    min-width: 0; /* mobilde sabit genişlik olmasın */
   }
 
   .navbar-collapse {
@@ -341,6 +375,22 @@ img {
   .navbar-nav .nav-item {
     padding: 0.5rem 0;
     width: 100%;
+  }
+
+  /* Ensure mobile logo doesn't overflow header height */
+  .navbar-brand img {
+    max-height: 56px;
+  }
+}
+
+/* Sabit header için anchor offset (başlıkların üstte kalmaması için) */
+:where(section[id]) {
+  scroll-margin-top: 112px; /* 120px -> 112px (navbar 88 + padding 24) */
+}
+
+@media (max-width: 991px) {
+  :where(section[id]) {
+    scroll-margin-top: 84px; /* mobilde header toplam yüksekliği (navbar 60 + padding 24) */
   }
 }
 
@@ -775,7 +825,6 @@ section {
   margin-bottom: 1.5rem;
   flex: 1;
   line-height: 1.7;
-  letter-spacing: 0.01em;
   letter-spacing: 0.01em;
 }
 
@@ -1426,7 +1475,6 @@ section {
   color: var(--color-text-secondary);
   margin: 0;
   line-height: 1.6;
-  letter-spacing: 0.01em;
 }
 
 .ud-info-meta a {
@@ -1608,8 +1656,8 @@ section {
 }
 
 .ud-footer-logo img {
-  max-height: 130px;
-  margin-bottom: 1.5rem;
+  max-height: 180px;
+  margin-bottom: 2rem;
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
   transition: all var(--transition-base);
 }
@@ -1722,7 +1770,6 @@ section {
   transition: all var(--transition-base);
   box-shadow: 0 8px 24px rgba(30, 64, 175, 0.4), 0 4px 12px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  cursor: pointer;
 }
 
 .back-to-top:hover {
