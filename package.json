@@ -1,0 +1,26 @@
+{
+  "name": "solarity-ai-landing",
+  "version": "1.0.0",
+  "description": "Solarity AI - AI-Native Software Company Landing Page",
+  "scripts": {
+    "build": "node build.js",
+    "dev": "live-server"
+  },
+  "devDependencies": {
+    "clean-css": "^5.3.2",
+    "imagemin": "^8.0.1",
+    "imagemin-mozjpeg": "^10.0.0",
+    "imagemin-pngquant": "^9.0.2",
+    "imagemin-webp": "^7.0.0",
+    "live-server": "^1.2.2",
+    "uglify-js": "^3.17.4"
+  },
+  "keywords": [
+    "ai",
+    "software",
+    "development",
+    "enterprise"
+  ],
+  "author": "Solarity AI",
+  "license": "MIT"
+}

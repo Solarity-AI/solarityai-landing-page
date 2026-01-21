@@ -1,4 +1,9 @@
 #!/usr/bin/env python3
+"""
+Cache-Busted Build Generator
+Adds content hashes to asset filenames for cache busting.
+Supports both source directory and optimized build/ folder.
+"""
 import argparse
 import hashlib
 import os
@@ -15,15 +20,16 @@ IGNORE_NAMES = {
     "ansible",
     "scripts",
     "dist",
-    "build",
     "node_modules",
+    "backups",
 }
 IGNORE_SUFFIXES = (".md", ".bak", ".backup", ".tmp")
-IGNORE_FILES = {"TestCommit"}
+IGNORE_FILES = {"TestCommit", "README.md"}
 TEXT_EXTENSIONS = {".html", ".css", ".js"}
 
 
 def hash_file(path: Path) -> str:
+    """Generate SHA256 hash of file content."""
     hasher = hashlib.sha256()
     with path.open("rb") as handle:
         for chunk in iter(lambda: handle.read(8192), b""):
@@ -32,6 +38,7 @@ def hash_file(path: Path) -> str:
 
 
 def copy_source(src_root: Path, out_root: Path) -> None:
+    """Copy source directory to output, excluding certain paths."""
     if out_root.exists():
         shutil.rmtree(out_root)
 
@@ -52,6 +59,7 @@ def copy_source(src_root: Path, out_root: Path) -> None:
 
 
 def build_asset_map(src_root: Path):
+    """Build mapping of original asset paths to cache-busted paths."""
     assets_dir = src_root / "assets"
     if not assets_dir.exists():
         return {}
@@ -62,6 +70,14 @@ def build_asset_map(src_root: Path):
             continue
         if not asset_path.suffix:
             continue
+
+        # Skip bundled minified files (already optimized)
+        if asset_path.name in ("bundle.min.css", "bundle.min.js"):
+            asset_map[asset_path.relative_to(src_root).as_posix()] = (
+                asset_path.relative_to(src_root).as_posix()
+            )
+            continue
+
         digest = hash_file(asset_path)
         hashed_name = f"{asset_path.stem}.{digest}{asset_path.suffix}"
         hashed_path = asset_path.with_name(hashed_name)
@@ -72,6 +88,7 @@ def build_asset_map(src_root: Path):
 
 
 def rename_assets(out_root: Path, asset_map) -> None:
+    """Rename assets with cache-busting hashes."""
     for original_rel, hashed_rel in asset_map.items():
         original_path = out_root / original_rel
         hashed_path = out_root / hashed_rel
@@ -82,6 +99,7 @@ def rename_assets(out_root: Path, asset_map) -> None:
 
 
 def update_text_references(out_root: Path, asset_map) -> None:
+    """Update HTML/CSS/JS files with cache-busted asset paths."""
     for text_path in out_root.rglob("*"):
         if not text_path.is_file():
             continue
@@ -108,24 +126,60 @@ def update_text_references(out_root: Path, asset_map) -> None:
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Build cache-busted static assets.")
-    parser.add_argument("--source", default=".", help="Source directory (default: .)")
-    parser.add_argument("--output", default="dist", help="Output directory (default: dist)")
+    parser = argparse.ArgumentParser(
+        description="Build cache-busted static assets from source or build/ folder."
+    )
+    parser.add_argument(
+        "--source",
+        default="build",
+        help="Source directory: 'build' (optimized) or '.' (source, default: build)",
+    )
+    parser.add_argument(
+        "--output",
+        default="dist",
+        help="Output directory with cache-busted assets (default: dist)",
+    )
+    parser.add_argument(
+        "--from-source",
+        action="store_true",
+        help="Build from source directory instead of build/ folder",
+    )
     args = parser.parse_args()
 
-    src_root = Path(args.source).resolve()
+    # Determine source directory
+    if args.from_source:
+        src_root = Path(".").resolve()
+        print("📦 Building from source directory with cache busting...")
+    else:
+        src_root = Path(args.source).resolve()
+        if not src_root.exists():
+            # Fallback to source if build doesn't exist
+            src_root = Path(".").resolve()
+            print("📦 Build folder not found, building from source directory...")
+        else:
+            print("📦 Building from optimized build/ folder with cache busting...")
+
     out_root = Path(args.output).resolve()
 
     if not src_root.exists():
-        print(f"Source directory not found: {src_root}", file=sys.stderr)
+        print(f"❌ Source directory not found: {src_root}", file=sys.stderr)
         return 1
 
+    # Copy and process assets
     copy_source(src_root, out_root)
     asset_map = build_asset_map(src_root)
     rename_assets(out_root, asset_map)
     update_text_references(out_root, asset_map)
 
-    print(f"OK: Cache-busted build created at {out_root}")
+    # Calculate size and report
+    total_size = sum(f.stat().st_size for f in out_root.rglob("*") if f.is_file())
+    total_size_mb = total_size / (1024 * 1024)
+
+    print(f"\n✅ Cache-busted build complete!")
+    print(f"   Output directory: {out_root}")
+    print(f"   Assets processed: {len(asset_map)}")
+    print(f"   Total size: {total_size_mb:.2f} MB")
+    print(f"\n📝 To deploy: Upload contents of '{out_root}' to your server")
     return 0
 
 

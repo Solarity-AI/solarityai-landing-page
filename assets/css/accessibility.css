@@ -1,0 +1,302 @@
+/* ====================================
+   ADA / WCAG 2.1 Accessibility Styles
+   ==================================== */
+
+/* Skip to main content link */
+.skip-to-main {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: #1e40af;
+  color: white;
+  padding: 8px;
+  text-decoration: none;
+  z-index: 100;
+  border-radius: 0 0 4px 0;
+}
+
+.skip-to-main:focus {
+  top: 0;
+  outline: 3px solid #fbbf24;
+  outline-offset: 2px;
+}
+
+/* Focus indicators for keyboard navigation */
+*:focus {
+  outline: 3px solid #fbbf24;
+  outline-offset: 2px;
+}
+
+button:focus,
+a:focus,
+input:focus,
+textarea:focus,
+select:focus {
+  outline: 3px solid #fbbf24;
+  outline-offset: 2px;
+}
+
+/* Enhanced focus for dark backgrounds */
+.ud-header *:focus,
+.ud-footer *:focus {
+  outline: 3px solid #60a5fa;
+  outline-offset: 2px;
+}
+
+/* Ensure sufficient color contrast */
+body {
+  color: #1f2937;
+  background-color: #ffffff;
+}
+
+/* Enhanced link visibility */
+a {
+  color: #1e40af;
+  text-decoration: underline;
+}
+
+a:hover {
+  color: #1e3a8a;
+}
+
+a:focus {
+  outline: 3px solid #fbbf24;
+  outline-offset: 2px;
+}
+
+/* Button accessibility */
+button,
+input[type="button"],
+input[type="submit"] {
+  cursor: pointer;
+  min-height: 44px;
+  min-width: 44px;
+  font-size: 1rem;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+button:focus {
+  outline: 3px solid #fbbf24;
+  outline-offset: 2px;
+}
+
+/* Form accessibility */
+label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+input,
+textarea,
+select {
+  min-height: 44px;
+  font-size: 1rem;
+  border: 2px solid #d1d5db;
+  border-radius: 4px;
+  padding: 0.5rem;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: #1e40af;
+  outline: 3px solid #fbbf24;
+  outline-offset: 2px;
+}
+
+/* Heading hierarchy */
+h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+h4 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+h5 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+h6 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+/* Image accessibility */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Ensure decorative images have empty alt text */
+img[alt=""] {
+  display: block;
+}
+
+/* Table accessibility */
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th {
+  text-align: left;
+  background-color: #f3f4f6;
+  padding: 0.75rem;
+  border: 1px solid #d1d5db;
+  font-weight: 600;
+}
+
+td {
+  padding: 0.75rem;
+  border: 1px solid #d1d5db;
+}
+
+/* List accessibility */
+ul,
+ol {
+  margin-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+li {
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+}
+
+/* Ensure sufficient line spacing */
+body {
+  line-height: 1.6;
+  letter-spacing: 0.5px;
+}
+
+p {
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+/* Mobile touch targets */
+@media (max-width: 768px) {
+  button,
+  a,
+  input,
+  select,
+  textarea {
+    min-height: 48px;
+    min-width: 48px;
+  }
+
+  .language-switcher {
+    min-height: 48px;
+    min-width: 48px;
+  }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .wow {
+    animation: none !important;
+    opacity: 1 !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: more) {
+  body {
+    color: #000000;
+    background-color: #ffffff;
+  }
+
+  a {
+    text-decoration: underline;
+    font-weight: 600;
+  }
+
+  button {
+    border: 2px solid #000000;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #1f2937;
+    color: #f3f4f6;
+  }
+
+  a {
+    color: #60a5fa;
+  }
+
+  a:visited {
+    color: #a78bfa;
+  }
+}
+
+/* SR (Screen Reader) only content */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Ensure semantic HTML is properly styled */
+main {
+  display: block;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+nav,
+section {
+  display: block;
+}
+
+/* Focus visible for modern browsers */
+:focus-visible {
+  outline: 3px solid #fbbf24;
+  outline-offset: 2px;
+}
