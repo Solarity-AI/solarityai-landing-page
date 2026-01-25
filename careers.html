@@ -1,37 +1,41 @@
 <!DOCTYPE html>
-    <html lang="en">
-  <head>
+<html lang="tr">
+<head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
     <!-- Primary Meta Tags -->
-    <title>Solarity AI Careers - Join Our Team</title>
-    <meta name="title" content="Solarity AI Careers - Join Our Team">
-    <meta name="description" content="Join Solarity AI and help us build the future of AI-powered software solutions. We are looking for talented people passionate about AI, machine learning, and cutting-edge technology.">
-    <meta name="keywords" content="careers, jobs, employment, AI jobs, software engineer jobs, machine learning jobs, tech careers">
+    <title>Solarity AI - Kariyer</title>
+    <meta name="title" content="Solarity AI - Kariyer">
+    <meta name="description" content="Solarity AI ekibine katılın ve yapay zeka destekli yazılım çözümlerinin geleceğini birlikte şekillendirelim. Tutkulu yetenekleri arıyoruz.">
+    <meta name="keywords" content="kariyer, iş ilanları, yapay zeka işleri, yazılım mühendisi, makine öğrenmesi, teknoloji kariyerleri, Solarity AI kariyer">
     <meta name="author" content="Solarity AI">
     <meta name="robots" content="index, follow">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://solarityai.com/careers.html">
-    <meta property="og:title" content="Solarity AI Careers - Join Our Team">
-    <meta property="og:description" content="Join Solarity AI and help us build the future of AI-powered software solutions.">
+    <meta property="og:title" content="Kariyer - Solarity AI">
+    <meta property="og:description" content="Solarity AI ekibine katılın ve geleceği birlikte inşa edin.">
     <meta property="og:image" content="https://solarityai.com/assets/images/logo/Solarity AI - Company Logo.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://solarityai.com/careers.html">
-    <meta property="twitter:title" content="Solarity AI Careers - Join Our Team">
-    <meta property="twitter:description" content="Join Solarity AI and help us build the future of AI-powered software solutions.">
+    <meta property="twitter:title" content="Kariyer - Solarity AI">
+    <meta property="twitter:description" content="Solarity AI ekibine katılın ve geleceği birlikte inşa edin.">
     <meta property="twitter:image" content="https://solarityai.com/assets/images/logo/Solarity AI - Company Logo.png">
 
     <!-- Favicons -->
-    <link rel="icon" type="image/webp" href="assets/images/logo/Solarity AI - Company Logo.png" />
+    <link rel="icon" type="image/png" href="assets/images/logo/Solarity AI - Company Logo.png" />
     <link rel="shortcut icon" href="assets/images/logo/Solarity AI - Company Logo.png" />
     <link rel="apple-touch-icon" href="assets/images/logo/Solarity AI - Company Logo.png" />
-    <meta name="theme-color" content="#1e40af" />
+    <meta name="apple-mobile-web-app-title" content="Solarity AI" />
+    <meta name="theme-color" content="#0a192f" />
 
     <!-- Canonical URL -->
     <link rel="canonical" href="https://solarityai.com/careers.html" />
@@ -45,1197 +49,690 @@
       gtag('config', 'G-KPPM46EHP9');
     </script>
 
+    <!-- Tailwind CSS CDN v3 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              'brand-blue': '#1e40af',
+              'brand-blue-dark': '#1e3a8a',
+              'brand-blue-light': '#3b82f6',
+            },
+            fontFamily: {
+              sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+              display: ['Poppins', 'system-ui', 'sans-serif'],
+            },
+          }
+        }
+      }
+    </script>
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
-    <!-- CSS Files -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+    <!-- LineIcons -->
     <link rel="stylesheet" href="assets/css/lineicons.css" />
-    <link rel="stylesheet" href="assets/css/animate.css" />
-    <link rel="stylesheet" href="assets/css/main.css" />
-    
-    <!-- Custom Careers Page Styles -->
+
+    <!-- Custom Styles - INDEX.HTML İLE UYUMLU -->
     <style>
-      .ud-careers-hero {
-        padding: 8rem 0 4rem;
-        background: var(--color-dark-bg);
-        position: relative;
-        overflow: hidden;
+      html { scroll-behavior: smooth; }
+
+      /* Platin Bilişim Deep Navy Background */
+      body {
+        font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+        background: #0a192f;
+        background-image:
+          radial-gradient(at 0% 0%, rgba(16, 185, 129, 0.08) 0px, transparent 50%),
+          radial-gradient(at 100% 100%, rgba(59, 130, 246, 0.06) 0px, transparent 50%);
+        background-attachment: fixed;
+        color: #e2e8f0;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
       }
 
-      .ud-careers-hero::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 1px;
-        background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.3), transparent);
+      /* Logo Standard - INDEX.HTML İLE AYNI */
+      .logo-standard {
+        height: 5rem; /* h-20 = 80px */
+        width: auto;
+        max-height: 6rem;
+        object-fit: contain;
+        filter: brightness(1.1);
+        transition: filter 0.3s ease, transform 0.3s ease;
       }
 
-      .ud-careers-hero-content {
-        text-align: center;
-        max-width: 800px;
-        margin: 0 auto;
-      }
-
-      .ud-careers-hero h1 {
-        font-size: 3.5rem;
-        margin-bottom: 1.5rem;
-        background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-      }
-
-      .ud-careers-hero p {
-        font-size: 1.25rem;
-        color: var(--color-text-secondary);
-        line-height: 1.8;
-      }
-
-      .ud-open-positions-section {
-        padding: 4rem 0;
-        background: var(--color-dark-secondary);
-        position: relative;
-      }
-
-      .ud-open-positions-section::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 1px;
-        background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.3), transparent);
-      }
-
-      .ud-open-positions-wrapper {
-        max-width: 1200px;
-        margin: 0 auto;
-        text-align: center;
-      }
-
-      .ud-open-positions-wrapper h2 {
-        font-size: 2.75rem;
-        font-weight: 700;
-        color: var(--color-text-primary);
-        margin-bottom: 1rem;
-        text-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-      }
-
-      .ud-open-positions-wrapper > p {
-        font-size: 1.125rem;
-        color: var(--color-text-secondary);
-        margin-bottom: 3rem;
-      }
-
-      .ud-positions-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 1.5rem;
-        margin-top: 2rem;
-      }
-
-      .ud-position-card {
-        background: var(--color-dark-bg);
-        border-radius: 12px;
-        padding: 2rem;
-        text-decoration: none;
-        color: var(--color-text-primary);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        transition: all var(--transition-base);
-        position: relative;
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), 0 4px 12px rgba(0, 0, 0, 0.2);
-      }
-
-      .ud-position-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 4px;
-        background: var(--gradient-blue);
-        transform: scaleX(0);
-        transition: transform var(--transition-base);
-      }
-
-      .ud-position-card:hover::before {
-        transform: scaleX(1);
-      }
-
-      .ud-position-card:hover {
-        transform: translateY(-8px);
-        border-color: var(--color-primary-light);
-        box-shadow: 0 20px 60px rgba(30, 64, 175, 0.3), 0 8px 24px rgba(0, 0, 0, 0.3);
-      }
-
-      .ud-position-icon {
-        width: 70px;
-        height: 70px;
-        border-radius: 12px;
-        background: var(--gradient-blue);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 1.5rem;
-        font-size: 2rem;
-        color: var(--color-white);
-        box-shadow: 0 6px 20px rgba(30, 64, 175, 0.4);
-      }
-
-      .ud-position-card h3 {
-        font-size: 1.25rem;
-        font-weight: 600;
-        margin-bottom: 0.5rem;
-        color: var(--color-text-primary);
-      }
-
-      .ud-position-card > p {
-        font-size: 0.9375rem;
-        color: var(--color-text-tertiary);
-        margin-bottom: 0;
-      }
-
-      .ud-position-card .lni-arrow-right {
-        font-size: 1.25rem;
-        color: var(--color-primary-light);
-        transition: transform var(--transition-base);
-        margin-top: auto;
-        padding-top: 1rem;
-      }
-
-      .ud-position-card:hover .lni-arrow-right {
-        transform: translateX(5px);
-      }
-
-      @media (max-width: 768px) {
-        .ud-positions-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .ud-open-positions-wrapper h2 {
-          font-size: 2rem;
+      @media (min-width: 768px) {
+        .logo-standard {
+          height: 6rem; /* md:h-24 = 96px */
         }
       }
 
-      .ud-application-form-section {
-        padding: 4rem 0 6rem;
-        background: var(--color-dark-secondary);
-        position: relative;
+      .logo-standard:hover {
+        filter: brightness(1.25);
+        transform: scale(1.05);
       }
 
-      .ud-application-form-section::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 1px;
-        background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.3), transparent);
-      }
-
-      .ud-application-form-wrapper {
-        max-width: 900px;
-        margin: 0 auto;
-        background: var(--color-dark-bg);
-        border-radius: 16px;
+      /* Form Styles - Modern & Kurumsal */
+      .form-card {
+        background: rgba(30, 41, 59, 0.5);
+        border: 1px solid rgba(148, 163, 184, 0.12);
+        border-radius: 1.5rem;
         padding: 3rem;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        position: relative;
-        overflow: hidden;
+        backdrop-filter: blur(12px);
       }
 
-      .ud-application-form-wrapper::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
+      .form-input,
+      .form-select,
+      .form-textarea {
         width: 100%;
-        height: 4px;
-        background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
-        z-index: 10;
-      }
-
-      .ud-form-section-title {
-        margin-bottom: 2rem;
-        padding-bottom: 1rem;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      }
-
-      .ud-form-section-title h3 {
-        font-size: 1.5rem;
-        font-weight: 600;
-        color: var(--color-text-primary);
-        margin-bottom: 0.5rem;
-        letter-spacing: -0.01em;
-      }
-
-      .ud-form-section-title p {
-        font-size: 0.9375rem;
-        color: var(--color-text-tertiary);
-        margin: 0;
-      }
-
-      .ud-form-group {
-        margin-bottom: 1.75rem;
-      }
-
-      .ud-form-group label {
-        display: block;
-        font-size: 0.9375rem;
-        font-weight: 500;
-        color: var(--color-text-primary);
-        margin-bottom: 0.75rem;
-        letter-spacing: 0.01em;
-      }
-
-      .ud-form-group label .required {
-        color: #ef4444;
-        margin-left: 0.25rem;
-      }
-
-      .ud-form-group input[type="text"],
-      .ud-form-group input[type="email"],
-      .ud-form-group input[type="tel"],
-      .ud-form-group input[type="url"],
-      .ud-form-group select,
-      .ud-form-group textarea {
-        width: 100%;
-        padding: 0.875rem 1.25rem;
-        background: var(--color-dark-secondary);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 8px;
-        color: var(--color-text-primary);
+        padding: 1rem;
+        background: #1e293b;
+        border: 1px solid #334155;
+        border-radius: 0.75rem;
+        color: white;
         font-size: 1rem;
-        font-family: var(--font-primary);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.2), inset 0 1px 2px rgba(255, 255, 255, 0.05);
-        transition: all var(--transition-base);
-        letter-spacing: 0.01em;
+        transition: all 0.3s ease;
       }
 
-      .ud-form-group input:focus,
-      .ud-form-group select:focus,
-      .ud-form-group textarea:focus {
+      .form-input:focus,
+      .form-select:focus,
+      .form-textarea:focus {
         outline: none;
-        border-color: var(--color-primary-light);
-        box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.2), 0 6px 20px rgba(30, 64, 175, 0.15), 0 2px 8px rgba(0, 0, 0, 0.3);
-        transform: translateY(-1px);
+        border-color: #1e40af;
+        ring: 2px solid rgba(30, 64, 175, 0.5);
+        box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
       }
 
-      .ud-form-group textarea {
-        resize: vertical;
-        min-height: 120px;
-        line-height: 1.7;
-      }
-
-      .ud-form-group select {
-        cursor: pointer;
-        appearance: none;
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23cbd5e1' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
-        background-repeat: no-repeat;
-        background-position: right 1rem center;
-        padding-right: 2.5rem;
-      }
-
-      .ud-file-input {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        width: 100%;
-        padding: 0.75rem;
-        background: var(--color-dark-secondary);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.2), inset 0 1px 2px rgba(255, 255, 255, 0.05);
-        position: relative;
-      }
-
-      .ud-file-input input[type="file"] {
-        position: absolute;
-        left: -9999px;
-        width: 1px;
-        height: 1px;
-        opacity: 0;
-      }
-
-      .ud-file-button {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        padding: 0.5rem 1rem;
-        background: var(--gradient-blue);
-        color: var(--color-white);
-        border-radius: 6px;
-        cursor: pointer;
-        font-weight: 500;
+      .form-label {
+        display: block;
         font-size: 0.875rem;
-        line-height: 1;
-        margin: 0;
-        transition: all var(--transition-base);
-        white-space: nowrap;
-      }
-
-      .ud-file-button:hover {
-        opacity: 0.9;
-        transform: translateY(-1px);
-      }
-
-      .ud-file-name {
-        display: inline-flex;
-        align-items: center;
-        color: var(--color-text-secondary);
-        font-size: 0.9375rem;
-        line-height: 1;
-        flex: 1;
-        min-width: 0;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-
-      .ud-form-row {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 1.5rem;
-      }
-
-      @media (max-width: 768px) {
-        .ud-form-row {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      .ud-form-help-text {
-        font-size: 0.8125rem;
-        color: var(--color-text-tertiary);
-        margin-top: 0.5rem;
-        line-height: 1.5;
-      }
-
-      .ud-submit-button {
-        width: 100%;
-        padding: 1.125rem 2rem;
-        background: var(--gradient-blue);
-        color: var(--color-white);
-        border: none;
-        border-radius: 8px;
-        font-size: 1.0625rem;
         font-weight: 600;
-        cursor: pointer;
-        transition: all var(--transition-base);
+        color: #cbd5e1;
+        margin-bottom: 0.5rem;
+      }
+
+      /* File Upload Area */
+      .file-upload-area {
+        border: 2px dashed #334155;
+        border-radius: 1rem;
+        padding: 2rem;
         text-align: center;
-        box-shadow: 0 6px 20px rgba(30, 64, 175, 0.4), 0 2px 8px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
-        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-        position: relative;
-        overflow: hidden;
-        margin-top: 1rem;
-        letter-spacing: 0.02em;
+        background: rgba(30, 41, 59, 0.3);
+        transition: all 0.3s ease;
+        cursor: pointer;
       }
 
-      .ud-submit-button::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
+      .file-upload-area:hover {
+        border-color: #10b981;
+        background: rgba(16, 185, 129, 0.05);
+      }
+
+      .file-upload-area.dragover {
+        border-color: #10b981;
+        background: rgba(16, 185, 129, 0.1);
+      }
+
+      /* Submit Button */
+      .submit-button {
         width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-        transition: left 0.5s ease;
+        padding: 1.25rem 2rem;
+        background: linear-gradient(135deg, #10b981, #059669);
+        color: white;
+        font-size: 1.125rem;
+        font-weight: 700;
+        border-radius: 0.75rem;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 16px rgba(16, 185, 129, 0.3);
       }
 
-      .ud-submit-button:hover::before {
-        left: 100%;
+      .submit-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(16, 185, 129, 0.4);
       }
 
-      .ud-submit-button:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 12px 32px rgba(30, 64, 175, 0.5), 0 4px 12px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3);
-        opacity: 0.95;
-      }
-
-      .ud-submit-button:active {
-        transform: translateY(-1px);
-        box-shadow: 0 4px 16px rgba(30, 64, 175, 0.4), 0 2px 4px rgba(0, 0, 0, 0.3);
-      }
-
-      .ud-submit-button:disabled {
+      .submit-button:disabled {
         opacity: 0.6;
         cursor: not-allowed;
         transform: none;
       }
 
-      .ud-success-message {
-        display: none;
-        background: rgba(5, 150, 105, 0.1);
-        border: 1px solid rgba(5, 150, 105, 0.3);
-        border-radius: 8px;
-        padding: 1.5rem;
-        margin-bottom: 2rem;
-        text-align: center;
-      }
-
-      .ud-success-message.show {
-        display: block;
-      }
-
-      .ud-success-message i {
-        font-size: 2.5rem;
-        color: #10b981;
-        margin-bottom: 1rem;
-        display: block;
-      }
-
-      .ud-success-message h4 {
-        color: #10b981;
-        margin-bottom: 0.5rem;
-      }
-
-      .ud-success-message p {
-        color: var(--color-text-secondary);
-        margin: 0;
-      }
-
-      .ud-open-positions-link {
-        margin-top: 1rem;
-      }
-
-      .ud-open-positions-link a {
-        color: var(--color-primary-light);
-        font-weight: 600;
-      }
-
-      .ud-open-positions-link a:hover {
-        color: var(--color-primary);
-      }
-
-      .ud-form-error {
-        display: none;
-        color: #ef4444;
-        font-size: 0.875rem;
-        margin-top: 0.5rem;
-      }
-
-      .ud-form-error.show {
-        display: block;
-      }
-
-      @keyframes spin {
-        from {
-          transform: rotate(0deg);
-        }
-        to {
-          transform: rotate(360deg);
-        }
-      }
-
-      .animate-spin {
-        animation: spin 1s linear infinite;
-        display: inline-block;
-      }
-
-      .language-switcher {
-        position: absolute;
-        top: 50%;
-        right: 1rem;
-        transform: translateY(-50%);
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.25rem;
-        padding: 0.5rem 1rem;
-        min-width: 65px;
-        background: rgba(255, 255, 255, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 8px;
-        color: var(--color-text-primary);
-        font-weight: 600;
-        font-size: 0.875rem;
-        cursor: pointer;
+      /* Position Cards */
+      .position-card {
+        background: rgba(30, 41, 59, 0.5);
+        border: 1px solid rgba(148, 163, 184, 0.12);
+        border-radius: 1.5rem;
+        padding: 2rem;
+        backdrop-filter: blur(12px);
         transition: all 0.3s ease;
-        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-        z-index: 1000;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
       }
 
-      .language-switcher:hover {
-        background: rgba(255, 255, 255, 0.2);
-        border-color: var(--color-primary-light);
-        color: var(--color-primary-light);
-        transform: translateY(-50%) translateY(-2px);
-        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
-      }
-      
-      .language-switcher:active {
-        transform: translateY(-50%) translateY(0);
+      .position-card:hover {
+        transform: translateY(-4px);
+        border-color: rgba(16, 185, 129, 0.3);
+        box-shadow: 0 8px 24px rgba(16, 185, 129, 0.15);
       }
 
-      .language-flag {
-        width: 1.25rem;
-        height: 0.875rem;
-        border-radius: 2px;
-        display: inline-block;
-        background-size: cover;
-        background-position: center;
-        box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15);
+      .position-btn {
+        background: linear-gradient(135deg, #1e40af, #1e3a8a);
+        color: white;
+        border: none;
+        cursor: pointer;
       }
 
-      .language-flag.flag-en {
-        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='16' viewBox='0 0 24 16'><rect width='24' height='16' fill='%23fff'/><rect y='0' width='24' height='2' fill='%23b22234'/><rect y='4' width='24' height='2' fill='%23b22234'/><rect y='8' width='24' height='2' fill='%23b22234'/><rect y='12' width='24' height='2' fill='%23b22234'/><rect width='10' height='7' fill='%233c3b6e'/></svg>");
-      }
-
-      .language-flag.flag-tr {
-        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='16' viewBox='0 0 24 16'><rect width='24' height='16' fill='%23e30a17'/><circle cx='10' cy='8' r='4.5' fill='%23fff'/><circle cx='11.5' cy='8' r='3.6' fill='%23e30a17'/><polygon points='14.8,8 16.2,8.5 15.7,7.1 16.9,6.1 15.3,6.1 14.8,4.7 14.3,6.1 12.7,6.1 13.9,7.1 13.4,8.5' fill='%23fff'/></svg>");
-      }
-
-      @media (max-width: 991px) {
-        .language-switcher {
-          position: relative;
-          top: auto;
-          right: auto;
-          transform: none;
-          margin-top: 1rem;
-          width: auto;
-          align-self: center;
-        }
-        
-        .language-switcher:hover {
-          transform: translateY(-2px);
-        }
-        
-        .language-switcher:active {
-          transform: translateY(0);
-        }
-      }
-
-      @media (max-width: 768px) {
-        .ud-careers-hero h1 {
-          font-size: 2.5rem;
-        }
-
-        .ud-careers-hero p {
-          font-size: 1.125rem;
-        }
-
-        .ud-application-form-wrapper {
-          padding: 2rem 1.5rem;
-        }
+      .position-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 16px rgba(30, 64, 175, 0.4);
       }
     </style>
-  </head>
-  <body>
-    <!-- ====== Header Start ====== -->
-    <header class="ud-header">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <nav class="navbar navbar-expand-lg">
-              <a class="navbar-brand" href="index.html">
-                <img src="assets/images/logo/Solarity AI - Company Logo.png" alt="Solarity AI" />
-              </a>
-              <button id="languageSwitcher" class="language-switcher" onclick="toggleLanguage()">
-                <span class="language-flag flag-en" aria-hidden="true"></span>
-                <span class="language-code">EN</span>
-              </button>
-              <button id="mobileMenuToggle" class="navbar-toggler" type="button" data-i18n-aria-label="navToggleMenu" aria-label="Toggle navigation menu">
-                <span class="toggler-icon"></span>
-                <span class="toggler-icon"></span>
-                <span class="toggler-icon"></span>
-              </button>
-              <div class="navbar-collapse" id="careersNav">
-                <ul id="nav" class="navbar-nav mx-auto">
-                  <li class="nav-item"><a href="index.html#about" data-i18n="navAbout">About</a></li>
-                  <li class="nav-item"><a href="index.html#partnerships" data-i18n="navPartnerships">Partnerships</a></li>
-                  <li class="nav-item"><a href="index.html#projects" data-i18n="navProjects">Projects</a></li>
-                  <li class="nav-item"><a href="index.html#team" data-i18n="navTeam">Team</a></li>
-                  <li class="nav-item"><a href="index.html#contact" data-i18n="navContact">Contact</a></li>
-                  <li class="nav-item"><a href="careers.html" data-i18n="navCareers">Careers</a></li>
-                </ul>
-              </div>
+</head>
+
+<body id="top" class="text-slate-200" style="background: #0a192f;">
+
+    <!-- Header/Navbar - INDEX.HTML İLE AYNI -->
+    <header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b" style="background: rgba(10, 25, 47, 0.95); border-color: rgba(16, 185, 129, 0.2);">
+        <div class="container mx-auto px-4 md:px-12">
+            <nav class="flex items-center justify-between py-3.5">
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center">
+                    <img src="assets/images/logo/Solarity AI - Company Logo.png" alt="Solarity AI" class="logo-standard" />
+                </a>
+
+                <!-- Desktop Menu + Buttons -->
+                <div class="hidden md:flex items-center gap-6">
+                    <ul class="flex items-center space-x-6 text-base font-medium">
+                        <li><a href="index.html#hakkimizda" class="hover:text-emerald-400 transition" data-i18n="navAbout">Hakkımızda</a></li>
+                        <li><a href="index.html#ortakliklar" class="hover:text-emerald-400 transition" data-i18n="navPartnerships">Ortaklıklar</a></li>
+                        <li><a href="index.html#projeler" class="hover:text-emerald-400 transition" data-i18n="navProjects">Projeler</a></li>
+                        <li><a href="index.html#ekip" class="hover:text-emerald-400 transition" data-i18n="navTeam">Ekip</a></li>
+                        <li><a href="index.html#iletisim" class="hover:text-emerald-400 transition" data-i18n="navContact">İletişim</a></li>
+                    </ul>
+
+                    <!-- Right Actions -->
+                    <div class="flex items-center gap-3">
+                        <!-- Language Switcher -->
+                        <button id="languageSwitcher" onclick="toggleLanguage()"
+                                class="px-3 py-2 text-sm font-semibold rounded-lg transition"
+                                style="background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.3); color: #10b981;">
+                            <span id="currentLang">🇹🇷 TR</span>
+                        </button>
+
+                        <!-- Career Button (Active) -->
+                        <a href="careers.html"
+                           class="px-6 py-2.5 text-base font-semibold rounded-lg transition"
+                           style="background: linear-gradient(135deg, #10b981, #059669); color: white; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);"
+                           data-i18n="navCareers">Kariyer</a>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Button + Language -->
+                <div class="md:hidden flex items-center gap-3">
+                    <button id="languageSwitcherMobile" onclick="toggleLanguage()"
+                            class="px-3 py-1.5 text-xs font-semibold rounded-lg"
+                            style="background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.3); color: #10b981;">
+                        <span id="currentLangMobile">🇹🇷 TR</span>
+                    </button>
+                    <button id="mobileMenuBtn" class="text-2xl text-emerald-400">☰</button>
+                </div>
             </nav>
-          </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden md:hidden pb-4">
+                <ul class="flex flex-col space-y-3 text-base">
+                    <li><a href="index.html#hakkimizda" class="block hover:text-emerald-400 transition" data-i18n="navAbout">Hakkımızda</a></li>
+                    <li><a href="index.html#ortakliklar" class="block hover:text-emerald-400 transition" data-i18n="navPartnerships">Ortaklıklar</a></li>
+                    <li><a href="index.html#projeler" class="block hover:text-emerald-400 transition" data-i18n="navProjects">Projeler</a></li>
+                    <li><a href="index.html#ekip" class="block hover:text-emerald-400 transition" data-i18n="navTeam">Ekip</a></li>
+                    <li><a href="index.html#iletisim" class="block hover:text-emerald-400 transition" data-i18n="navContact">İletişim</a></li>
+                    <li><a href="careers.html"
+                           class="block px-4 py-2 text-center font-semibold rounded-lg transition"
+                           style="background: linear-gradient(135deg, #10b981, #059669); color: white;"
+                           data-i18n="navCareers">Kariyer</a></li>
+                </ul>
+            </div>
         </div>
-      </div>
     </header>
-    <!-- ====== Header End ====== -->
 
-    <!-- ====== Careers Hero Section Start ====== -->
-    <section class="ud-careers-hero">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="ud-careers-hero-content wow fadeInUp" data-wow-delay=".1s">
-              <h1 data-i18n="careersTitle">Join Our Team</h1>
-              <p data-i18n="careersSubtitle">We're building the future of AI-powered software solutions. Join us in creating innovative products that make a real impact.</p>
-            </div>
-          </div>
+    <!-- Hero Section - Kariyer -->
+    <section class="pt-36 pb-20 px-4 md:px-12">
+        <div class="container mx-auto text-center max-w-4xl">
+            <span class="text-emerald-400 text-sm font-semibold uppercase tracking-wider" data-i18n="careersHeroTag">Kariyer Fırsatları</span>
+            <h1 class="text-4xl md:text-6xl font-bold font-display mt-4 mb-6 text-white">
+                <span class="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent" data-i18n="careersHeroTitle">
+                    Geleceği Birlikte İnşa Edin
+                </span>
+            </h1>
+            <p class="text-lg md:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed" data-i18n="careersHeroSubtitle">
+                Yapay zeka destekli yazılım çözümlerinin geleceğini şekillendiriyoruz. Gerçek etki yaratan yenilikçi projelerde yer almak için aramıza katılın.
+            </p>
         </div>
-      </div>
     </section>
-    <!-- ====== Careers Hero Section End ====== -->
 
-    <!-- ====== Open Positions Section Start ====== -->
-    <section class="ud-open-positions-section">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="ud-open-positions-wrapper wow fadeInUp" data-wow-delay=".15s">
-              <h2 data-i18n="openPositionsTitle">Open Positions</h2>
-              <p data-i18n="openPositionsDesc">View detailed job descriptions for our current openings</p>
-              <p class="ud-open-positions-link">
-                <a href="https://drive.google.com/drive/folders/1iOew815DHxi_TDBWtbpUp_433V-bamws" target="_blank" rel="noopener noreferrer" data-i18n="openPositionsDriveLink">View all job posters (Drive folder)</a>
-              </p>
-              <div class="ud-positions-grid">
-                <a href="https://drive.google.com/drive/folders/1iOew815DHxi_TDBWtbpUp_433V-bamws" target="_blank" rel="noopener noreferrer" class="ud-position-card">
-                  <div class="ud-position-icon">
-                    <i class="lni lni-code-alt"></i>
-                  </div>
-                  <h3 data-i18n="positionFullStack">Full Stack Engineer</h3>
-                  <p data-i18n="viewJobDescription">View Job Description</p>
-                  <i class="lni lni-arrow-right"></i>
+    <!-- Open Positions Section - 4 POZİSYON KARTI -->
+    <section class="py-20 px-4 md:px-12 bg-slate-900/30">
+        <div class="container mx-auto max-w-6xl">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-5xl font-bold font-display mb-6" data-i18n="careersPositionsTitle">Açık Pozisyonlar</h2>
+                <p class="text-slate-400 max-w-2xl mx-auto mb-8" data-i18n="careersPositionsSubtitle">Ekibimize katılmak için aşağıdaki pozisyonlardan birine başvurabilirsiniz.</p>
+
+                <!-- Drive Link Button -->
+                <a href="https://drive.google.com/drive/folders/1iOew815DHxi_TDBWtbpUp_433V-bamws" target="_blank"
+                   class="inline-flex items-center gap-2 px-6 py-3 text-base font-semibold rounded-lg transition hover:shadow-lg"
+                   style="background: rgba(16, 185, 129, 0.15); border: 2px solid rgba(16, 185, 129, 0.4); color: #10b981;">
+                    <i class="lni lni-folder text-xl"></i>
+                    <span data-i18n="careersDriveLink">Tüm İlan Posterleri (Drive Klasörü)</span>
+                    <i class="lni lni-arrow-right text-sm"></i>
                 </a>
-                <a href="https://drive.google.com/drive/folders/1iOew815DHxi_TDBWtbpUp_433V-bamws" target="_blank" rel="noopener noreferrer" class="ud-position-card">
-                  <div class="ud-position-icon">
-                    <i class="lni lni-bullhorn"></i>
-                  </div>
-                  <h3 data-i18n="positionMarketing">Marketing Specialist</h3>
-                  <p data-i18n="viewJobDescription">View Job Description</p>
-                  <i class="lni lni-arrow-right"></i>
-                </a>
-                <a href="https://drive.google.com/drive/folders/1iOew815DHxi_TDBWtbpUp_433V-bamws" target="_blank" rel="noopener noreferrer" class="ud-position-card">
-                  <div class="ud-position-icon">
-                    <i class="lni lni-handshake"></i>
-                  </div>
-                  <h3 data-i18n="positionBusinessDev">Business Development Manager</h3>
-                  <p data-i18n="viewJobDescription">View Job Description</p>
-                  <i class="lni lni-arrow-right"></i>
-                </a>
-                <a href="https://drive.google.com/drive/folders/1iOew815DHxi_TDBWtbpUp_433V-bamws" target="_blank" rel="noopener noreferrer" class="ud-position-card">
-                  <div class="ud-position-icon">
-                    <i class="lni lni-paint-bucket"></i>
-                  </div>
-                  <h3 data-i18n="positionUIUX">UI/UX Designer</h3>
-                  <p data-i18n="viewJobDescription">View Job Description</p>
-                  <i class="lni lni-arrow-right"></i>
-                </a>
-              </div>
             </div>
-          </div>
+
+            <!-- 4 Position Cards - HER POZİSYON HEM TAM HEM YARI ZAMANLI -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Position 1: Full Stack Engineer -->
+                <div class="position-card">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="text-5xl">💻</div>
+                        <div class="flex flex-col gap-2">
+                            <span class="px-3 py-1 text-xs font-semibold rounded-full" style="background: rgba(16, 185, 129, 0.15); color: #10b981;" data-i18n="careersFullTime">Tam Zamanlı</span>
+                            <span class="px-3 py-1 text-xs font-semibold rounded-full" style="background: rgba(59, 130, 246, 0.15); color: #3b82f6;" data-i18n="careersPartTime">Yarı Zamanlı</span>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3" data-i18n="careersPos1Title">Full Stack Mühendisi</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed" data-i18n="careersPos1Desc">Modern web teknolojileri ile ölçeklenebilir uygulamalar geliştirme deneyimi. React, Node.js, ve bulut teknolojileri bilgisi.</p>
+                </div>
+
+                <!-- Position 2: Marketing Specialist -->
+                <div class="position-card">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="text-5xl">📱</div>
+                        <div class="flex flex-col gap-2">
+                            <span class="px-3 py-1 text-xs font-semibold rounded-full" style="background: rgba(16, 185, 129, 0.15); color: #10b981;" data-i18n="careersFullTime">Tam Zamanlı</span>
+                            <span class="px-3 py-1 text-xs font-semibold rounded-full" style="background: rgba(59, 130, 246, 0.15); color: #3b82f6;" data-i18n="careersPartTime">Yarı Zamanlı</span>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3" data-i18n="careersPos2Title">Pazarlama Uzmanı</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed" data-i18n="careersPos2Desc">Dijital pazarlama stratejileri geliştirme ve uygulama. SEO, SEM, sosyal medya yönetimi ve içerik pazarlaması deneyimi.</p>
+                </div>
+
+                <!-- Position 3: Business Development Manager -->
+                <div class="position-card">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="text-5xl">🤝</div>
+                        <div class="flex flex-col gap-2">
+                            <span class="px-3 py-1 text-xs font-semibold rounded-full" style="background: rgba(16, 185, 129, 0.15); color: #10b981;" data-i18n="careersFullTime">Tam Zamanlı</span>
+                            <span class="px-3 py-1 text-xs font-semibold rounded-full" style="background: rgba(59, 130, 246, 0.15); color: #3b82f6;" data-i18n="careersPartTime">Yarı Zamanlı</span>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3" data-i18n="careersPos3Title">İş Geliştirme Müdürü</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed" data-i18n="careersPos3Desc">Yeni iş fırsatları yaratma ve müşteri ilişkileri yönetimi. B2B satış deneyimi ve güçlü iletişim becerileri.</p>
+                </div>
+
+                <!-- Position 4: UI/UX Designer -->
+                <div class="position-card">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="text-5xl">🎨</div>
+                        <div class="flex flex-col gap-2">
+                            <span class="px-3 py-1 text-xs font-semibold rounded-full" style="background: rgba(16, 185, 129, 0.15); color: #10b981;" data-i18n="careersFullTime">Tam Zamanlı</span>
+                            <span class="px-3 py-1 text-xs font-semibold rounded-full" style="background: rgba(59, 130, 246, 0.15); color: #3b82f6;" data-i18n="careersPartTime">Yarı Zamanlı</span>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3" data-i18n="careersPos4Title">Kullanıcı Arayüzü/Tasarım Uzmanı</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed" data-i18n="careersPos4Desc">Kullanıcı deneyimi odaklı modern arayüz tasarımı. Figma, Adobe XD ve prototyping araçları bilgisi.</p>
+                </div>
+            </div>
         </div>
-      </div>
     </section>
-    <!-- ====== Open Positions Section End ====== -->
 
-    <!-- ====== Application Form Section Start ====== -->
-    <section class="ud-application-form-section">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="ud-application-form-wrapper wow fadeInUp" data-wow-delay=".2s">
-              <!-- Success Message -->
-              <div class="ud-success-message" id="successMessage">
-                <i class="lni lni-checkmark-circle"></i>
-                <h4 data-i18n="careersSuccessTitle">Application Submitted Successfully!</h4>
-                <p data-i18n="careersSuccessMessage">Thank you for your interest in joining Solarity AI. We've received your application and will review it shortly. Our team will get back to you soon.</p>
-              </div>
-
-              <form id="applicationForm" action="https://formsubmit.co/info@solarityai.com" method="POST" enctype="multipart/form-data">
-                <!-- Hidden FormSubmit Configuration -->
-                <input type="hidden" name="_subject" id="careersFormSubject" value="New Job Application - Solarity AI">
-                <input type="hidden" name="_template" value="box">
-                <input type="hidden" name="_captcha" value="true">
-                <input type="hidden" name="_next" value="https://solarityai.com/careers.html?success=true">
-                <input type="hidden" name="_autoresponse" id="careersFormAutoresponse" value="Thank you for applying to Solarity AI! We have received your application and will review it carefully. Our team will get back to you soon.">
-
-                <!-- Personal Information Section -->
-                <div class="ud-form-section-title">
-                  <h3 data-i18n="careersPersonalInfo">Personal Information</h3>
-                  <p data-i18n="careersPersonalInfoDesc">Please provide your basic contact details</p>
-                </div>
-
-                <div class="ud-form-row">
-                  <div class="ud-form-group">
-                    <label for="firstName" data-i18n="careersFirstName">First Name <span class="required">*</span></label>
-                    <input type="text" id="firstName" name="First Name" required>
-                  </div>
-                  <div class="ud-form-group">
-                    <label for="lastName" data-i18n="careersLastName">Last Name <span class="required">*</span></label>
-                    <input type="text" id="lastName" name="Last Name" required>
-                  </div>
-                </div>
-
-                <div class="ud-form-row">
-                  <div class="ud-form-group">
-                    <label for="email" data-i18n="careersEmail">Email Address <span class="required">*</span></label>
-                    <input type="email" id="email" name="Email" required>
-                    <div class="ud-form-help-text" data-i18n="careersEmailHelp">We'll use this to contact you about your application</div>
-                    <div class="ud-form-error" id="emailError" data-i18n="careersErrorEmail">Please enter a valid email address.</div>
-                  </div>
-                  <div class="ud-form-group">
-                    <label for="phone" data-i18n="careersPhone">Phone Number <span class="required">*</span></label>
-                    <input type="tel" id="phone" name="Phone" required>
-                  </div>
-                </div>
-
-                <div class="ud-form-group">
-                  <label for="location" data-i18n="careersLocation">Location</label>
-                  <input type="text" id="location" name="Location" data-i18n="careersLocationPlaceholder" placeholder="City, State/Country">
-                  <div class="ud-form-help-text" data-i18n="careersLocationHelp">Your current location (optional)</div>
-                </div>
-
-                <!-- Professional Information Section -->
-                <div class="ud-form-section-title" style="margin-top: 3rem;">
-                  <h3 data-i18n="careersProfessionalInfo">Professional Information</h3>
-                  <p data-i18n="careersProfessionalInfoDesc">Tell us about your professional background</p>
-                </div>
-
-                <div class="ud-form-group">
-                  <label for="position" data-i18n="careersPosition">Position Applying For <span class="required">*</span></label>
-                  <select id="position" name="Position" required>
-                    <option value="" data-i18n="selectPosition">Select a position</option>
-                    <option value="Full Stack Engineer" data-i18n="positionFullStack">Full Stack Engineer</option>
-                    <option value="Marketing Specialist" data-i18n="positionMarketing">Marketing Specialist</option>
-                    <option value="Business Development Manager" data-i18n="positionBusinessDev">Business Development Manager</option>
-                    <option value="UI/UX Designer" data-i18n="positionUIUX">UI/UX Designer</option>
-                    <option value="Other" data-i18n="other">Other</option>
-                  </select>
-                </div>
-
-                <div class="ud-form-group" id="otherPositionGroup" style="display: none;">
-                  <label for="otherPosition" data-i18n="careersOtherPosition">Please specify position</label>
-                  <input type="text" id="otherPosition" name="Other Position">
-                </div>
-
-                <div class="ud-form-group">
-                  <label for="linkedin" data-i18n="careersLinkedIn">LinkedIn Profile</label>
-                  <input type="url" id="linkedin" name="LinkedIn" data-i18n="careersLinkedInPlaceholder" placeholder="https://linkedin.com/in/yourprofile">
-                  <div class="ud-form-help-text" data-i18n="careersLinkedInHelp">Your LinkedIn profile URL (optional but recommended)</div>
-                </div>
-
-                <div class="ud-form-group">
-                  <label for="portfolio" data-i18n="careersPortfolio">Portfolio/Website</label>
-                  <input type="url" id="portfolio" name="Portfolio" data-i18n="careersPortfolioPlaceholder" placeholder="https://yourwebsite.com">
-                  <div class="ud-form-help-text" data-i18n="careersPortfolioHelp">Your personal website or portfolio (optional)</div>
-                </div>
-
-                <div class="ud-form-group">
-                  <label for="experience" data-i18n="careersExperience">Years of Experience <span class="required">*</span></label>
-                  <select id="experience" name="Experience" required>
-                    <option value="" data-i18n="selectExperience">Select experience level</option>
-                    <option value="0-1 years" data-i18n="years0_1">0-1 years</option>
-                    <option value="2-3 years" data-i18n="years2_3">2-3 years</option>
-                    <option value="4-5 years" data-i18n="years4_5">4-5 years</option>
-                    <option value="6-8 years" data-i18n="years6_8">6-8 years</option>
-                    <option value="9+ years" data-i18n="years9Plus">9+ years</option>
-                  </select>
-                </div>
-
-                <!-- Education Information Section -->
-                <div class="ud-form-section-title" style="margin-top: 3rem;">
-                  <h3 data-i18n="careersEducationInfo">Education Information</h3>
-                  <p data-i18n="careersEducationInfoDesc">Tell us about your educational background</p>
-                </div>
-
-                <div class="ud-form-group">
-                  <label for="university" data-i18n="careersUniversity">University/Institution <span class="required">*</span></label>
-                  <input type="text" id="university" name="University" required data-i18n="careersUniversityPlaceholder" placeholder="e.g., University of Texas at Dallas">
-                  <div class="ud-form-help-text" data-i18n="careersUniversityHelp">Name of your university or educational institution</div>
-                </div>
-
-                <div class="ud-form-row">
-                  <div class="ud-form-group">
-                    <label for="degree" data-i18n="careersDegree">Degree Level <span class="required">*</span></label>
-                    <select id="degree" name="Degree" required>
-                      <option value="" data-i18n="selectDegree">Select degree level</option>
-                      <option value="High School" data-i18n="highSchool">High School</option>
-                      <option value="Associate's Degree" data-i18n="associatesDegree">Associate's Degree</option>
-                      <option value="Bachelor's Degree" data-i18n="bachelorsDegree">Bachelor's Degree</option>
-                      <option value="Master's Degree" data-i18n="mastersDegree">Master's Degree</option>
-                      <option value="PhD/Doctorate" data-i18n="phdDoctorate">PhD/Doctorate</option>
-                      <option value="Other" data-i18n="other">Other</option>
-                    </select>
-                  </div>
-                  <div class="ud-form-group">
-                    <label for="graduationYear" data-i18n="careersGraduationYear">Graduation Year <span class="required">*</span></label>
-                    <select id="graduationYear" name="Graduation Year" required>
-                      <option value="" data-i18n="selectYear">Select year</option>
-                      <option value="2024">2024</option>
-                      <option value="2023">2023</option>
-                      <option value="2022">2022</option>
-                      <option value="2021">2021</option>
-                      <option value="2020">2020</option>
-                      <option value="2019">2019</option>
-                      <option value="2018">2018</option>
-                      <option value="2017">2017</option>
-                      <option value="2016">2016</option>
-                      <option value="2015 or earlier" data-i18n="year2015Earlier">2015 or earlier</option>
-                      <option value="Currently enrolled" data-i18n="currentlyEnrolled">Currently enrolled</option>
-                      <option value="Not applicable" data-i18n="notApplicable">Not applicable</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div class="ud-form-group" id="otherDegreeGroup" style="display: none;">
-                  <label for="otherDegree" data-i18n="careersOtherDegree">Please specify degree</label>
-                  <input type="text" id="otherDegree" name="Other Degree">
-                </div>
-
-                <div class="ud-form-group">
-                  <label for="fieldOfStudy" data-i18n="careersFieldOfStudy">Field of Study/Major <span class="required">*</span></label>
-                  <input type="text" id="fieldOfStudy" name="Field of Study" required data-i18n="careersFieldOfStudyPlaceholder" placeholder="e.g., Computer Science, Software Engineering, Data Science">
-                  <div class="ud-form-help-text" data-i18n="careersFieldOfStudyHelp">Your major or field of study</div>
-                </div>
-
-                <div class="ud-form-group">
-                  <label for="gpa" data-i18n="careersGPA">GPA</label>
-                  <input type="text" id="gpa" name="GPA" data-i18n="careersGPAPlaceholder" placeholder="e.g., 3.5/4.0 or 8.5/10.0">
-                  <div class="ud-form-help-text" data-i18n="careersGPAHelp">Your GPA if available (include scale, e.g., 3.5/4.0) - Optional</div>
-                </div>
-
-                <!-- Application Details Section -->
-                <div class="ud-form-section-title" style="margin-top: 3rem;">
-                  <h3 data-i18n="careersApplicationDetails">Application Details</h3>
-                  <p data-i18n="careersApplicationDetailsDesc">Help us understand why you'd be a great fit</p>
-                </div>
-
-                <div class="ud-form-group">
-                  <label for="coverLetter" data-i18n="careersCoverLetter">Cover Letter <span class="required">*</span></label>
-                  <textarea id="coverLetter" name="Cover Letter" rows="6" required data-i18n="careersCoverLetterPlaceholder" placeholder="Tell us about yourself, why you're interested in this position, and what you can bring to our team..."></textarea>
-                  <div class="ud-form-help-text" data-i18n="careersCoverLetterHelp">Minimum 200 characters. Share your motivation and relevant experience.</div>
-                </div>
-
-                <div class="ud-form-group">
-                  <label for="resume" data-i18n="careersResume">Resume/CV <span class="required">*</span></label>
-                  <div class="ud-file-input">
-                    <input type="file" id="resume" name="Resume" accept=".pdf,.doc,.docx" required>
-                    <label class="ud-file-button" for="resume" data-i18n="careersResumeChooseFile">Choose File</label>
-                    <span class="ud-file-name" id="resumeFileName" data-i18n="careersResumeNoFile">No file chosen</span>
-                  </div>
-                  <div class="ud-form-help-text" data-i18n="careersResumeHelp">Accepted formats: PDF, DOC, DOCX (Max size: 5MB)</div>
-                </div>
-
-                <div class="ud-form-group">
-                  <label for="additionalInfo" data-i18n="careersAdditionalInfo">Additional Information</label>
-                  <textarea id="additionalInfo" name="Additional Information" rows="4" data-i18n="careersAdditionalInfoPlaceholder" placeholder="Any additional information you'd like to share (optional)"></textarea>
-                </div>
-
-                <!-- Submit Button -->
-                <button type="submit" class="ud-submit-button" id="submitButton">
-                  <span id="submitButtonText" data-i18n="careersSubmitApplication">Submit Application</span>
-                  <span id="submitButtonLoading" style="display: none;">
-                    <i class="lni lni-spinner animate-spin"></i> <span data-i18n="careersSubmitting">Submitting...</span>
-                  </span>
-                </button>
-              </form>
+    <!-- Application Form Section -->
+    <section class="py-16 px-4 md:px-12">
+        <div class="container mx-auto max-w-3xl">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold font-display mb-4" data-i18n="careersFormTitle">Başvuru Formu</h2>
+                <p class="text-slate-400" data-i18n="careersFormSubtitle">Aşağıdaki formu doldurarak ekibimize katılma başvurunuzu yapabilirsiniz.</p>
             </div>
-          </div>
+
+            <div class="form-card">
+                <form id="careerApplicationForm" enctype="multipart/form-data">
+                    <!-- Full Name -->
+                    <div class="mb-6">
+                        <label for="fullName" class="form-label" data-i18n="careersFormName">Ad Soyad *</label>
+                        <input type="text" id="fullName" name="fullName" required
+                               class="form-input"
+                               placeholder="Adınız ve soyadınız"
+                               data-i18n-placeholder="careersFormNamePlaceholder" />
+                    </div>
+
+                    <!-- Email -->
+                    <div class="mb-6">
+                        <label for="email" class="form-label" data-i18n="careersFormEmail">E-posta *</label>
+                        <input type="email" id="email" name="email" required
+                               class="form-input"
+                               placeholder="ornek@email.com"
+                               data-i18n-placeholder="careersFormEmailPlaceholder" />
+                    </div>
+
+                    <!-- Phone -->
+                    <div class="mb-6">
+                        <label for="phone" class="form-label" data-i18n="careersFormPhone">Telefon *</label>
+                        <input type="tel" id="phone" name="phone" required
+                               class="form-input"
+                               placeholder="+90 555 123 45 67"
+                               data-i18n-placeholder="careersFormPhonePlaceholder" />
+                    </div>
+
+                    <!-- Position Dropdown - SADECE 4 POZİSYON -->
+                    <div class="mb-6">
+                        <label for="position" class="form-label" data-i18n="careersFormPosition">Başvurulan Pozisyon *</label>
+                        <select id="position" name="position" required class="form-select">
+                            <option value="" data-i18n="careersFormPositionSelect">Pozisyon seçiniz</option>
+                            <option value="full-stack-engineer" data-i18n="careersPos1Title">Full Stack Mühendisi</option>
+                            <option value="marketing-specialist" data-i18n="careersPos2Title">Pazarlama Uzmanı</option>
+                            <option value="business-development-manager" data-i18n="careersPos3Title">İş Geliştirme Müdürü</option>
+                            <option value="ui-ux-designer" data-i18n="careersPos4Title">Kullanıcı Arayüzü/Tasarım Uzmanı</option>
+                        </select>
+                    </div>
+
+                    <!-- Work Type Dropdown - YENİ: TAM/YARI ZAMANLI SEÇİMİ -->
+                    <div class="mb-6">
+                        <label for="workType" class="form-label" data-i18n="careersFormWorkType">Çalışma Şekli *</label>
+                        <select id="workType" name="workType" required class="form-select">
+                            <option value="" data-i18n="careersFormWorkTypeSelect">Çalışma şekli seçiniz</option>
+                            <option value="full-time" data-i18n="careersFullTime">Tam Zamanlı</option>
+                            <option value="part-time" data-i18n="careersPartTime">Yarı Zamanlı</option>
+                        </select>
+                    </div>
+
+                    <!-- CV Upload -->
+                    <div class="mb-6">
+                        <label class="form-label" data-i18n="careersFormCV">CV Yükleme (PDF/DOCX) *</label>
+                        <div class="file-upload-area" id="fileUploadArea">
+                            <input type="file" id="cvFile" name="cvFile" accept=".pdf,.doc,.docx" required style="display: none;" />
+                            <div id="uploadText">
+                                <i class="lni lni-cloud-upload text-4xl text-emerald-400 mb-3"></i>
+                                <p class="text-slate-300 font-semibold mb-1" data-i18n="careersFormCVDrag">Dosyanızı sürükleyin veya tıklayarak seçin</p>
+                                <p class="text-sm text-slate-500" data-i18n="careersFormCVFormat">PDF, DOC, DOCX - Maksimum 5MB</p>
+                            </div>
+                            <div id="fileInfo" class="hidden">
+                                <i class="lni lni-checkmark-circle text-3xl text-emerald-400 mb-2"></i>
+                                <p class="text-emerald-400 font-semibold" id="fileName"></p>
+                                <button type="button" onclick="removeFile()" class="text-red-400 text-sm mt-2 hover:text-red-300" data-i18n="careersFormCVRemove">Dosyayı Kaldır</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Message -->
+                    <div class="mb-8">
+                        <label for="message" class="form-label" data-i18n="careersFormMessage">Neden Solarity AI?</label>
+                        <textarea id="message" name="message" rows="5"
+                                  class="form-textarea"
+                                  placeholder="Kendinizden ve neden Solarity AI'de çalışmak istediğinizden bahsedin..."
+                                  data-i18n-placeholder="careersFormMessagePlaceholder"></textarea>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="submit-button" id="submitBtn">
+                        <span data-i18n="careersFormSubmit">Başvuruyu Gönder</span>
+                    </button>
+
+                    <!-- Success/Error Messages -->
+                    <div id="formMessage" class="hidden mt-6 p-4 rounded-lg text-center"></div>
+                </form>
+            </div>
         </div>
-      </div>
     </section>
-    <!-- ====== Application Form Section End ====== -->
 
-    <!-- ====== Footer Start ====== -->
-    <footer class="ud-footer">
-      <div class="ud-footer-widgets">
-        <div class="container">
-          <div class="row">
-            <div class="col-xl-4 col-lg-4 col-md-6">
-              <div class="ud-widget">
-                <a href="index.html" class="ud-footer-logo">
-                  <img src="assets/images/logo/Solarity AI - Company Logo.png" alt="Solarity AI" />
-                </a>
-                <p class="ud-widget-desc" data-i18n="footerDescription"></p>
-              </div>
+    <!-- Why Join Section -->
+    <section class="py-20 px-4 md:px-12 bg-slate-900/30">
+        <div class="container mx-auto max-w-5xl">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold font-display mb-6" data-i18n="careersWhyTitle">Neden Solarity AI?</h2>
+                <p class="text-slate-400 max-w-2xl mx-auto" data-i18n="careersWhySubtitle">Ekibimizin bir parçası olduğunuzda keyifli ve üretken bir ortamda çalışırsınız.</p>
             </div>
-            <div class="col-xl-2 col-lg-2 col-md-6 col-sm-6">
-              <div class="ud-widget">
-                <h5 class="ud-widget-title" data-i18n="footerQuickLinks">Quick Links</h5>
-                <ul class="ud-widget-links">
-                  <li><a href="index.html#about" data-i18n="navAbout">About</a></li>
-                  <li><a href="index.html#partnerships" data-i18n="navPartnerships">Partnerships</a></li>
-                  <li><a href="index.html#projects" data-i18n="navProjects">Projects</a></li>
-                  <li><a href="index.html#team" data-i18n="navTeam">Team</a></li>
-                  <li><a href="index.html#contact" data-i18n="navContact">Contact</a></li>
-                </ul>
-              </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="text-center p-6 rounded-xl" style="background: rgba(30, 41, 59, 0.4); border: 1px solid rgba(148, 163, 184, 0.12);">
+                    <div class="text-5xl mb-4">🚀</div>
+                    <h3 class="text-xl font-semibold mb-3" data-i18n="careersWhy1Title">Yenilikçi Projeler</h3>
+                    <p class="text-slate-400 text-sm" data-i18n="careersWhy1Desc">Yapay zeka ve makine öğrenmesi alanında en son teknolojilerle çalışma fırsatı</p>
+                </div>
+
+                <div class="text-center p-6 rounded-xl" style="background: rgba(30, 41, 59, 0.4); border: 1px solid rgba(148, 163, 184, 0.12);">
+                    <div class="text-5xl mb-4">🌱</div>
+                    <h3 class="text-xl font-semibold mb-3" data-i18n="careersWhy2Title">Kişisel Gelişim</h3>
+                    <p class="text-slate-400 text-sm" data-i18n="careersWhy2Desc">Sürekli öğrenme kültürü, eğitim programları ve mentorluk desteği</p>
+                </div>
+
+                <div class="text-center p-6 rounded-xl" style="background: rgba(30, 41, 59, 0.4); border: 1px solid rgba(148, 163, 184, 0.12);">
+                    <div class="text-5xl mb-4">🤝</div>
+                    <h3 class="text-xl font-semibold mb-3" data-i18n="careersWhy3Title">Güçlü Ekip</h3>
+                    <p class="text-slate-400 text-sm" data-i18n="careersWhy3Desc">Uzman ve tutkulu ekip üyeleriyle birlikte çalışma ortamı</p>
+                </div>
             </div>
-            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
-              <div class="ud-widget">
-                <h5 class="ud-widget-title" data-i18n="footerContact">Contact</h5>
-                <ul class="ud-widget-links">
-                  <li>
-                    <i class="lni lni-envelope" style="margin-right: 0.5rem;"></i>
-                    <a href="mailto:info@solarityai.com">info@solarityai.com</a>
-                  </li>
-                  <li>
-                    <i class="lni lni-map-marker" style="margin-right: 0.5rem;"></i>
-                    <span data-i18n="contactAddressValue">Dallas, Texas, USA</span>
-                  </li>
-                  <li>
-                    <i class="lni lni-briefcase" style="margin-right: 0.5rem;"></i>
-                    <a href="careers.html" data-i18n="navCareers">Careers</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
-              <div class="ud-widget">
-                <h5 class="ud-widget-title" data-i18n="footerFollowUs">Follow Us</h5>
-                <ul class="ud-widget-socials">
-                  <li>
-                    <a href="https://www.linkedin.com/company/solarityai-llc" target="_blank" rel="noopener noreferrer" onclick="if(typeof gtag !== 'undefined') gtag('event', 'click', {'event_category': 'Social', 'event_label': 'LinkedIn Footer'});">
-                      <i class="lni lni-linkedin-original"></i>
+        </div>
+    </section>
+
+    <!-- Footer - INDEX.HTML İLE AYNI -->
+    <footer id="footer" class="bg-slate-950 border-t border-slate-800 py-16 px-4 md:px-12">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-8">
+                <div>
+                    <a href="index.html" class="inline-block cursor-pointer hover:opacity-80 transition" title="Ana Sayfaya Dön">
+                        <img src="assets/images/logo/Solarity AI - Company Logo.png" alt="Solarity AI" class="logo-standard mb-4" />
                     </a>
-                  </li>
-                </ul>
-              </div>
+                    <p class="text-sm text-slate-400" data-i18n="footerDescription">Dünya standartlarında kaliteyle yüksek etkili B2B ve B2C çözümler üreten yapay zeka odaklı yazılım şirketi.</p>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold mb-4" data-i18n="footerQuickLinks">Hızlı Bağlantılar</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="index.html#hakkimizda" class="text-slate-400 hover:text-brand-blue transition" data-i18n="navAbout">Hakkımızda</a></li>
+                        <li><a href="index.html#ortakliklar" class="text-slate-400 hover:text-brand-blue transition" data-i18n="navPartnerships">Ortaklıklar</a></li>
+                        <li><a href="index.html#projeler" class="text-slate-400 hover:text-brand-blue transition" data-i18n="navProjects">Projeler</a></li>
+                        <li><a href="index.html#ekip" class="text-slate-400 hover:text-brand-blue transition" data-i18n="navTeam">Ekip</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold mb-4" data-i18n="footerContact">İletişim</h4>
+                    <ul class="space-y-2 text-sm text-slate-400">
+                        <li>Dallas, Texas, ABD</li>
+                        <li><a href="mailto:info@solarityai.com" class="hover:text-brand-blue transition">info@solarityai.com</a></li>
+                        <li><a href="careers.html" class="hover:text-brand-blue transition" data-i18n="navCareers">Kariyer</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold mb-4" data-i18n="footerFollowUs">Bizi Takip Edin</h4>
+                    <div class="flex space-x-4">
+                        <a href="https://www.linkedin.com/company/solarityai-llc" target="_blank" class="text-2xl text-slate-400 hover:text-brand-blue transition">
+                            <i class="lni lni-linkedin-original"></i>
+                        </a>
+                        <a href="https://www.instagram.com/solarityai_llc/" target="_blank" class="text-2xl text-slate-400 hover:text-brand-blue transition">
+                            <i class="lni lni-instagram-original"></i>
+                        </a>
+                        <a href="https://github.com/Solarity-AI" target="_blank" class="text-2xl text-slate-400 hover:text-brand-blue transition">
+                            <i class="lni lni-github-original"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <div class="ud-footer-bottom">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12 text-center">
-              <p class="ud-footer-bottom-right" data-i18n="footerCopyright">
-                © 2025 Solarity AI LLC. All rights reserved.
-              </p>
+
+            <div class="border-t border-slate-800 pt-8 text-center text-sm text-slate-500">
+                <p data-i18n="footerCopyright">© 2026 Solarity AI LLC. Tüm hakları saklıdır.</p>
             </div>
-          </div>
         </div>
-      </div>
     </footer>
-    <!-- ====== Footer End ====== -->
 
-    <!-- ====== Back To Top Start ====== -->
-    <a href="javascript:void(0)" class="back-to-top">
-      <i class="lni lni-arrow-up"></i>
-    </a>
-    <!-- ====== Back To Top End ====== -->
-
-    <!-- ====== All Scripts ====== -->
+    <!-- Scripts -->
     <script src="assets/js/translations.js"></script>
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/wow.min.js"></script>
-    <script src="assets/js/main.js"></script>
     <script src="assets/js/language.js"></script>
 
-    <!-- Application Form Scripts -->
+
     <script>
-      // Handle "Other" position selection
-      document.getElementById('position').addEventListener('change', function() {
-        const otherGroup = document.getElementById('otherPositionGroup');
-        if (this.value === 'Other') {
-          otherGroup.style.display = 'block';
-          document.getElementById('otherPosition').required = true;
-        } else {
-          otherGroup.style.display = 'none';
-          document.getElementById('otherPosition').required = false;
-        }
-      });
-
-      // Handle "Other" degree selection
-      document.getElementById('degree').addEventListener('change', function() {
-        const otherDegreeGroup = document.getElementById('otherDegreeGroup');
-        if (this.value === 'Other') {
-          otherDegreeGroup.style.display = 'block';
-          document.getElementById('otherDegree').required = true;
-        } else {
-          otherDegreeGroup.style.display = 'none';
-          document.getElementById('otherDegree').required = false;
-        }
-      });
-
-      // Mobile navigation toggle for careers page
-      const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-      const careersNav = document.getElementById('careersNav');
-      if (mobileMenuToggle && careersNav) {
-        mobileMenuToggle.addEventListener('click', function(e) {
-          e.preventDefault();
-          const isOpen = careersNav.classList.contains('show');
-          careersNav.classList.toggle('show');
-          mobileMenuToggle.classList.toggle('active', !isOpen);
-          document.body.style.overflow = isOpen ? '' : 'hidden';
+        // Mobile Menu Toggle
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
         });
 
-        careersNav.querySelectorAll('a').forEach(function(link) {
-          link.addEventListener('click', function() {
-            careersNav.classList.remove('show');
-            mobileMenuToggle.classList.remove('active');
-            document.body.style.overflow = '';
-          });
-        });
+        // Language Switcher - BOTH DESKTOP & MOBILE
+        function toggleLanguage() {
+            const currentLang = localStorage.getItem('solarityai-lang') || 'tr';
+            const newLang = currentLang === 'tr' ? 'en' : 'tr';
+            localStorage.setItem('solarityai-lang', newLang);  // ✅ DÜZELTİLDİ: setItem
 
-        document.addEventListener('click', function(e) {
-          if (careersNav.classList.contains('show')) {
-            if (!careersNav.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
-              careersNav.classList.remove('show');
-              mobileMenuToggle.classList.remove('active');
-              document.body.style.overflow = '';
+            const langText = newLang === 'tr' ? '🇹🇷 TR' : '🇬🇧 EN';
+            const desktopLang = document.getElementById('currentLang');
+            const mobileLang = document.getElementById('currentLangMobile');
+
+            if (desktopLang) desktopLang.textContent = langText;
+            if (mobileLang) mobileLang.textContent = langText;
+
+            if (typeof setLanguage === 'function') {
+                setLanguage(newLang);
+            } else {
+                location.reload();
             }
-          }
+        }
+
+        // Initialize language
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentLang = localStorage.getItem('solarityai-lang') || 'tr';
+            const langText = currentLang === 'tr' ? '🇹🇷 TR' : '🇬🇧 EN';
+
+            const desktopLang = document.getElementById('currentLang');
+            const mobileLang = document.getElementById('currentLangMobile');
+
+            if (desktopLang) desktopLang.textContent = langText;
+            if (mobileLang) mobileLang.textContent = langText;
         });
-      }
 
-      // Email validation message
-      const emailInput = document.getElementById('email');
-      const emailError = document.getElementById('emailError');
+        // File Upload Handling
+        const fileUploadArea = document.getElementById('fileUploadArea');
+        const fileInput = document.getElementById('cvFile');
+        const uploadText = document.getElementById('uploadText');
+        const fileInfo = document.getElementById('fileInfo');
+        const fileName = document.getElementById('fileName');
 
-      function updateEmailError() {
-        if (!emailInput || !emailError) {
-          return;
-        }
+        fileUploadArea.addEventListener('click', () => fileInput.click());
 
-        const currentLang = window.getCurrentLanguage ? window.getCurrentLanguage() : 'en';
-        const errorMsg = translations[currentLang] && translations[currentLang]['careersErrorEmail']
-          ? translations[currentLang]['careersErrorEmail']
-          : (currentLang === 'tr' ? 'Lütfen geçerli bir e-posta adresi giriniz.' : 'Please enter a valid email address.');
+        fileInput.addEventListener('change', handleFileSelect);
 
-        if (emailInput.value && !emailInput.checkValidity()) {
-          emailError.textContent = errorMsg;
-          emailError.classList.add('show');
-          emailInput.setAttribute('aria-invalid', 'true');
-        } else {
-          emailError.classList.remove('show');
-          emailInput.removeAttribute('aria-invalid');
-        }
-      }
-
-      if (emailInput) {
-        emailInput.addEventListener('input', updateEmailError);
-        emailInput.addEventListener('blur', updateEmailError);
-      }
-
-      // Resume file label translation
-      const resumeInput = document.getElementById('resume');
-      const resumeFileName = document.getElementById('resumeFileName');
-
-      function updateResumeFileName() {
-        if (!resumeInput || !resumeFileName) {
-          return;
-        }
-
-        const currentLang = window.getCurrentLanguage ? window.getCurrentLanguage() : 'en';
-        const noFileText = translations[currentLang] && translations[currentLang]['careersResumeNoFile']
-          ? translations[currentLang]['careersResumeNoFile']
-          : (currentLang === 'tr' ? 'Dosya seçilmedi' : 'No file chosen');
-
-        if (resumeInput.files && resumeInput.files.length > 0) {
-          resumeFileName.textContent = resumeInput.files[0].name;
-          resumeFileName.removeAttribute('data-i18n');
-        } else {
-          resumeFileName.setAttribute('data-i18n', 'careersResumeNoFile');
-          resumeFileName.textContent = noFileText;
-        }
-      }
-
-      if (resumeInput) {
-        resumeInput.addEventListener('change', updateResumeFileName);
-        updateResumeFileName();
-      }
-
-      const applicationForm = document.getElementById('applicationForm');
-      const submitButton = document.getElementById('submitButton');
-      const submitButtonText = document.getElementById('submitButtonText');
-      const submitButtonLoading = document.getElementById('submitButtonLoading');
-
-      // Handle form submission
-      if (applicationForm) {
-        applicationForm.addEventListener('submit', function(e) {
-          if (emailInput && !emailInput.checkValidity()) {
+        // Drag and Drop
+        fileUploadArea.addEventListener('dragover', (e) => {
             e.preventDefault();
-            updateEmailError();
-            emailInput.focus();
-            return false;
-          }
-          
-          // Validate cover letter length
-          const coverLetter = document.getElementById('coverLetter').value;
-          if (coverLetter.length < 200) {
-            e.preventDefault();
-            const currentLang = window.getCurrentLanguage ? window.getCurrentLanguage() : 'en';
-            const errorMsg = translations[currentLang] && translations[currentLang]['careersErrorCoverLetter']
-              ? translations[currentLang]['careersErrorCoverLetter']
-              : (currentLang === 'tr' ? 'Lütfen en az 200 karakterlik bir ön yazı sağlayın.' : 'Please provide a cover letter with at least 200 characters.');
-            alert(errorMsg);
-            return false;
-          }
+            fileUploadArea.classList.add('dragover');
+        });
 
-          // Validate file size
-          if (resumeInput && resumeInput.files.length > 0) {
-            const fileSize = resumeInput.files[0].size / 1024 / 1024; // Size in MB
-            if (fileSize > 5) {
-              e.preventDefault();
-              const currentLang = window.getCurrentLanguage ? window.getCurrentLanguage() : 'en';
-              const errorMsg = translations[currentLang] && translations[currentLang]['careersErrorFileSize']
-                ? translations[currentLang]['careersErrorFileSize']
-                : (currentLang === 'tr' ? 'Özgeçmiş dosya boyutu 5MB\'den küçük olmalıdır. Lütfen dosyanızı sıkıştırın ve tekrar deneyin.' : 'Resume file size must be less than 5MB. Please compress your file and try again.');
-              alert(errorMsg);
-              return false;
+        fileUploadArea.addEventListener('dragleave', () => {
+            fileUploadArea.classList.remove('dragover');
+        });
+
+        fileUploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            fileUploadArea.classList.remove('dragover');
+
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                fileInput.files = files;
+                handleFileSelect();
             }
-          }
-
-          // Show loading state
-          submitButton.disabled = true;
-          submitButtonText.style.display = 'none';
-          submitButtonLoading.style.display = 'inline-block';
-
-          // Track form submission
-          if (typeof gtag !== 'undefined') {
-            gtag('event', 'form_submit', {
-              'event_category': 'Career Application',
-              'event_label': 'Application Form Submitted'
-            });
-          }
         });
-      }
 
-      // Check for success parameter in URL
-      window.addEventListener('DOMContentLoaded', function() {
-        const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.get('success') === 'true') {
-          document.getElementById('successMessage').classList.add('show');
-          document.getElementById('applicationForm').style.display = 'none';
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-      });
+        function handleFileSelect() {
+            const file = fileInput.files[0];
+            if (file) {
+                // Check file size (5MB max)
+                if (file.size > 5 * 1024 * 1024) {
+                    alert('Dosya boyutu 5MB\'dan küçük olmalıdır.');
+                    fileInput.value = '';
+                    return;
+                }
 
-      // Character counter for cover letter
-      const coverLetterTextarea = document.getElementById('coverLetter');
-      const helpText = coverLetterTextarea.nextElementSibling;
-      coverLetterTextarea.addEventListener('input', function() {
-        const length = this.value.length;
-        const currentLang = window.getCurrentLanguage ? window.getCurrentLanguage() : 'en';
-        if (length < 200) {
-          if (currentLang === 'tr') {
-            helpText.textContent = `Minimum 200 karakter. Motivasyonunuzu ve ilgili deneyiminizi paylaşın. (${length}/200)`;
-          } else {
-            helpText.textContent = `Minimum 200 characters. Share your motivation and relevant experience. (${length}/200)`;
-          }
-          helpText.style.color = 'var(--color-text-tertiary)';
-        } else {
-          if (currentLang === 'tr') {
-            helpText.textContent = `Harika! Ön yazınız ${length} karakter.`;
-          } else {
-            helpText.textContent = `Great! Your cover letter is ${length} characters.`;
-          }
-          helpText.style.color = '#10b981';
+                // Check file type
+                const allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+                if (!allowedTypes.includes(file.type)) {
+                    alert('Lütfen sadece PDF, DOC veya DOCX dosyası yükleyin.');
+                    fileInput.value = '';
+                    return;
+                }
+
+                fileName.textContent = file.name;
+                uploadText.classList.add('hidden');
+                fileInfo.classList.remove('hidden');
+            }
         }
-      });
-      
-      // Update character counter on language change
-      if (coverLetterTextarea.value.length > 0) {
-        coverLetterTextarea.dispatchEvent(new Event('input'));
-      }
+
+        function removeFile() {
+            fileInput.value = '';
+            uploadText.classList.remove('hidden');
+            fileInfo.classList.add('hidden');
+        }
+
+        // Position Selection - Karttan forma pozisyon aktar
+        function selectPosition(positionValue) {
+            const positionSelect = document.getElementById('position');
+            positionSelect.value = positionValue;
+
+            // Forma scroll
+            const formSection = document.getElementById('careerApplicationForm');
+            formSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+            // Dropdown'u highlight et
+            positionSelect.style.border = '2px solid #10b981';
+            setTimeout(() => {
+                positionSelect.style.border = '';
+            }, 2000);
+        }
+
+        // Form Submission
+        document.getElementById('careerApplicationForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const submitBtn = document.getElementById('submitBtn');
+            const formMessage = document.getElementById('formMessage');
+
+            // Disable button
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span data-i18n="careersFormSubmitting">Gönderiliyor...</span>';
+
+            // Get form data
+            const formData = new FormData(this);
+
+            try {
+                // Here you would normally send to your backend
+                // For now, simulate success
+                await new Promise(resolve => setTimeout(resolve, 2000));
+
+                // Success
+                formMessage.className = 'mt-6 p-4 rounded-lg text-center bg-emerald-500/20 border border-emerald-500 text-emerald-400';
+                formMessage.innerHTML = '<strong data-i18n="careersFormSuccess">Başvurunuz başarıyla alındı!</strong><br><span data-i18n="careersFormSuccessMsg">En kısa sürede size dönüş yapacağız.</span>';
+                formMessage.classList.remove('hidden');
+
+                // Reset form
+                this.reset();
+                removeFile();
+
+                // Re-enable button after 3 seconds
+                setTimeout(() => {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '<span data-i18n="careersFormSubmit">Başvuruyu Gönder</span>';
+                }, 3000);
+
+            } catch (error) {
+                // Error
+                formMessage.className = 'mt-6 p-4 rounded-lg text-center bg-red-500/20 border border-red-500 text-red-400';
+                formMessage.innerHTML = '<strong data-i18n="careersFormError">Bir hata oluştu!</strong><br><span data-i18n="careersFormErrorMsg">Lütfen daha sonra tekrar deneyin.</span>';
+                formMessage.classList.remove('hidden');
+
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<span data-i18n="careersFormSubmit">Başvuruyu Gönder</span>';
+            }
+        });
     </script>
-  </body>
+</body>
 </html>
