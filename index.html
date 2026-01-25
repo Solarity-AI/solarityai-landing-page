@@ -1,32 +1,35 @@
 <!DOCTYPE html>
-    <html lang="en">
-  <head>
+<html lang="tr">
+<head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
     <!-- Primary Meta Tags -->
-    <title>Solarity AI - AI-Native Software Company | Enterprise Solutions</title>
-    <meta name="title" content="Solarity AI - AI-Native Software Company | Enterprise Solutions">
-    <meta name="description" content="Solarity AI is an AI-native software company delivering high-impact B2B and B2C solutions with world-class quality. We specialize in AI/ML, mobile apps, web applications, enterprise software, and cloud-native solutions.">
-    <meta name="keywords" content="AI software development, artificial intelligence, enterprise AI solutions, B2B software, B2C applications, machine learning, mobile app development, web application development, cloud-native applications">
+    <title>Solarity AI - Ana Sayfa</title>
+    <meta name="title" content="Solarity AI - Ana Sayfa">
+    <meta name="description" content="Solarity AI, dünya standartlarında kaliteyle yüksek etkili B2B ve B2C çözümler üreten yapay zeka odaklı yazılım şirketidir. AI/ML, mobil uygulama, web uygulamaları, kurumsal yazılım ve bulut tabanlı çözümlerde uzmanız.">
+    <meta name="keywords" content="yapay zeka yazılım, AI yazılım geliştirme, kurumsal yapay zeka çözümleri, B2B yazılım, B2C uygulamalar, makine öğrenmesi, mobil uygulama geliştirme, web uygulama geliştirme, bulut tabanlı uygulamalar">
     <meta name="author" content="Solarity AI">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-    <meta name="language" content="English">
+    <meta name="language" content="Turkish">
     <meta name="revisit-after" content="7 days">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://solarityai.com/">
-    <meta property="og:title" content="Solarity AI - AI-Native Software Company">
-    <meta property="og:description" content="AI-native software company delivering high-impact B2B and B2C solutions with world-class quality.">
+    <meta property="og:title" content="Solarity AI - Yapay Zeka Odaklı Yazılım Şirketi">
+    <meta property="og:description" content="Dünya standartlarında kaliteyle yüksek etkili B2B ve B2C çözümler üreten yapay zeka odaklı yazılım şirketi.">
     <meta property="og:image" content="https://solarityai.com/assets/images/logo/Solarity AI - Company Logo.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://solarityai.com/">
-    <meta property="twitter:title" content="Solarity AI - AI-Native Software Company">
-    <meta property="twitter:description" content="AI-native software company delivering high-impact B2B and B2C solutions with world-class quality.">
+    <meta property="twitter:title" content="Solarity AI - Yapay Zeka Odaklı Yazılım Şirketi">
+    <meta property="twitter:description" content="Dünya standartlarında kaliteyle yüksek etkili B2B ve B2C çözümler üreten yapay zeka odaklı yazılım şirketi.">
     <meta property="twitter:image" content="https://solarityai.com/assets/images/logo/Solarity AI - Company Logo.png">
 
     <!-- Favicons -->
@@ -38,7 +41,7 @@
 
     <!-- Canonical URL -->
     <link rel="canonical" href="https://solarityai.com/" />
-    
+
     <!-- Sitemap -->
     <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
 
@@ -48,7 +51,6 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-KPPM46EHP9');
     </script>
 
@@ -59,7 +61,7 @@
       "@type": "WebSite",
       "name": "Solarity AI",
       "url": "https://solarityai.com",
-      "description": "AI-native software company delivering high-impact B2B and B2C solutions with world-class quality.",
+      "description": "Dünya standartlarında kaliteyle yüksek etkili B2B ve B2C çözümler üreten yapay zeka odaklı yazılım şirketi.",
       "potentialAction": {
         "@type": "SearchAction",
         "target": "https://solarityai.com/search?q={search_term_string}",
@@ -75,7 +77,7 @@
       "legalName": "Solarity AI LLC",
       "url": "https://solarityai.com",
       "logo": "https://solarityai.com/assets/images/logo/Solarity AI - Company Logo.png",
-      "description": "AI-native software company delivering high-impact B2B and B2C solutions with world-class quality.",
+      "description": "Dünya standartlarında kaliteyle yüksek etkili B2B ve B2C çözümler üreten yapay zeka odaklı yazılım şirketi.",
       "foundingDate": "2024",
       "contactPoint": {
         "@type": "ContactPoint",
@@ -95,1024 +97,958 @@
     }
     </script>
 
+    <!-- Tailwind CSS CDN v3 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              'brand-blue': '#1e40af',
+              'brand-blue-dark': '#1e3a8a',
+              'brand-blue-light': '#3b82f6',
+            },
+            fontFamily: {
+              sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+              display: ['Poppins', 'system-ui', 'sans-serif'],
+            },
+            animation: {
+              'fade-in': 'fadeIn 0.5s ease-in-out',
+              'slide-up': 'slideUp 0.5s ease-out',
+            },
+            keyframes: {
+              fadeIn: {
+                '0%': { opacity: '0' },
+                '100%': { opacity: '1' },
+              },
+              slideUp: {
+                '0%': { transform: 'translateY(20px)', opacity: '0' },
+                '100%': { transform: 'translateY(0)', opacity: '1' },
+              },
+            },
+          }
+        }
+      }
+    </script>
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
-    <!-- CSS Files -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="assets/css/animate.css" />
+    <!-- LineIcons -->
     <link rel="stylesheet" href="assets/css/lineicons.css" />
-    <link rel="stylesheet" href="assets/css/main.css" />
-    
-    <!-- Language Switcher Styles -->
+
+    <!-- Custom Styles -->
     <style>
-      .language-switcher {
+      /* Smooth Scrolling */
+      html { scroll-behavior: smooth; }
+
+      /* Enterprise Background - Platin Bilişim Deep Navy */
+      body {
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        background: #0a192f; /* Platin Bilişim derin lacivert */
+        background-image:
+          radial-gradient(at 0% 0%, rgba(16, 185, 129, 0.08) 0px, transparent 50%),
+          radial-gradient(at 100% 100%, rgba(59, 130, 246, 0.06) 0px, transparent 50%);
+        background-attachment: fixed;
+        color: #e2e8f0;
+      }
+
+      /* ===== LOGO STANDARD - h-20 md:h-24 (DAHA BÜYÜK & ÇOK NET) ===== */
+      .logo-standard {
+        height: 5rem; /* h-20 = 80px - DAHA BÜYÜK */
+        width: auto;
+        max-height: 6rem; /* max-h-24 = 96px */
+        object-fit: contain;
+        filter: brightness(1.1);
+        transition: filter 0.3s ease, transform 0.3s ease;
+      }
+
+      @media (min-width: 768px) {
+        .logo-standard {
+          height: 6rem; /* md:h-24 = 96px - Desktop çok büyük ve net */
+        }
+      }
+
+      .logo-standard:hover {
+        filter: brightness(1.25);
+        transform: scale(1.05);
+      }
+
+      /* Bento Grid - OLD (Projects için koru) */
+      .bento-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .bento-card {
+        background: rgba(15, 23, 42, 0.5);
+        border: 1px solid rgba(148, 163, 184, 0.1);
+        border-radius: 1rem;
+        padding: 2rem;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .bento-card:hover {
+        transform: translateY(-4px);
+        border-color: #1e40af;
+        box-shadow: 0 20px 60px rgba(30, 64, 175, 0.15);
+      }
+
+      /* Services - Modern Bento Grid Cards */
+      .service-card,
+      .service-card-featured {
+        background: rgba(15, 23, 42, 0.5);
+        border: 1px solid rgba(148, 163, 184, 0.1);
+        border-radius: 1.5rem;
+        padding: 2rem;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .service-card::before,
+      .service-card-featured::before {
+        content: '';
         position: absolute;
-        top: 50%;
-        right: 1rem;
-        transform: translateY(-50%);
-        display: inline-flex;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, rgba(30, 64, 175, 0.05), rgba(16, 185, 129, 0.05));
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        pointer-events: none;
+      }
+
+      .service-card:hover,
+      .service-card-featured:hover {
+        transform: translateY(-6px);
+        border-color: rgba(30, 64, 175, 0.4);
+        box-shadow: 0 24px 48px rgba(30, 64, 175, 0.2);
+      }
+
+      .service-card:hover::before,
+      .service-card-featured:hover::before {
+        opacity: 1;
+      }
+
+      /* Service Icons */
+      .service-icon,
+      .service-icon-large {
+        width: 56px;
+        height: 56px;
+        background: rgba(30, 64, 175, 0.1);
+        border: 1px solid rgba(30, 64, 175, 0.2);
+        border-radius: 1rem;
+        display: flex;
         align-items: center;
         justify-content: center;
-        gap: 0.25rem;
-        padding: 0.5rem 1rem;
-        min-width: 65px;
-        background: rgba(255, 255, 255, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 8px;
-        color: var(--color-text-primary);
-        font-weight: 600;
-        font-size: 0.875rem;
-        cursor: pointer;
+        margin-bottom: 1.5rem;
+        color: #3b82f6;
         transition: all 0.3s ease;
-        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-        z-index: 1000;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
       }
 
-      .language-switcher:hover {
-        background: rgba(255, 255, 255, 0.2);
-        border-color: var(--color-primary-light);
-        color: var(--color-primary-light);
-        transform: translateY(-50%) translateY(-2px);
-        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
-      }
-      
-      .language-switcher:active {
-        transform: translateY(-50%) translateY(0);
+      .service-icon-large {
+        width: 72px;
+        height: 72px;
+        border-radius: 1.25rem;
+        flex-shrink: 0;
       }
 
-      .language-flag {
-        width: 1.25rem;
-        height: 0.875rem;
-        border-radius: 2px;
+      .service-card:hover .service-icon,
+      .service-card-featured:hover .service-icon-large {
+        background: rgba(30, 64, 175, 0.2);
+        border-color: rgba(30, 64, 175, 0.4);
+        transform: scale(1.05);
+      }
+
+      /* Service Tags */
+      .service-tag {
         display: inline-block;
-        background-size: cover;
-        background-position: center;
-        box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15);
+        padding: 0.5rem 1rem;
+        background: rgba(30, 64, 175, 0.15);
+        border: 1px solid rgba(30, 64, 175, 0.3);
+        border-radius: 0.5rem;
+        color: #60a5fa;
+        font-size: 0.75rem;
+        font-weight: 600;
+        transition: all 0.3s ease;
       }
 
-      .language-flag.flag-en {
-        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='16' viewBox='0 0 24 16'><rect width='24' height='16' fill='%23fff'/><rect y='0' width='24' height='2' fill='%23b22234'/><rect y='4' width='24' height='2' fill='%23b22234'/><rect y='8' width='24' height='2' fill='%23b22234'/><rect y='12' width='24' height='2' fill='%23b22234'/><rect width='10' height='7' fill='%233c3b6e'/></svg>");
+      .service-card-featured:hover .service-tag {
+        background: rgba(30, 64, 175, 0.25);
+        border-color: rgba(30, 64, 175, 0.5);
+        transform: translateY(-2px);
       }
 
-      .language-flag.flag-tr {
-        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='16' viewBox='0 0 24 16'><rect width='24' height='16' fill='%23e30a17'/><circle cx='10' cy='8' r='4.5' fill='%23fff'/><circle cx='11.5' cy='8' r='3.6' fill='%23e30a17'/><polygon points='14.8,8 16.2,8.5 15.7,7.1 16.9,6.1 15.3,6.1 14.8,4.7 14.3,6.1 12.7,6.1 13.9,7.1 13.4,8.5' fill='%23fff'/></svg>");
+      /* Stats Bar */
+      .stats-bar {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+        background: rgba(30, 41, 59, 0.3);
+        border: 1px solid rgba(148, 163, 184, 0.1);
+        border-radius: 1rem;
+        padding: 3rem 2rem;
       }
 
-      .ud-main-btn:disabled {
-        opacity: 0.6;
-        cursor: not-allowed;
-        transform: none;
+      .stat-item {
+        text-align: center;
       }
 
-      .ud-form-error {
-        display: none;
-        color: #ef4444;
+      .stat-number {
+        font-size: 2.5rem;
+        font-weight: 700;
+        background: linear-gradient(135deg, #3b82f6, #1e40af);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .stat-label {
+        color: #94a3b8;
         font-size: 0.875rem;
         margin-top: 0.5rem;
       }
 
-      .ud-form-error.show {
+      /* ===== PARTNER GRID - 9 COLUMNS (PLATIN BILIŞIM STYLE) ===== */
+      .partner-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+        align-items: center;
+      }
+
+      @media (min-width: 768px) {
+        .partner-grid {
+          grid-template-columns: repeat(9, 1fr);
+        }
+      }
+
+      .partner-logo-card {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 0.75rem;
+        padding: 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        min-height: 100px;
+      }
+
+      .partner-logo-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 32px rgba(30, 64, 175, 0.15);
+      }
+
+      .partner-logo-card img {
+        max-width: 100%;
+        max-height: 60px;
+        object-fit: contain;
+      }
+
+      /* Team Hierarchy - BDM Focus */
+      .team-grid-managers {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      .team-grid-interns {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .team-card-manager {
+        transform: scale(1.05);
+        box-shadow: 0 20px 60px rgba(16, 185, 129, 0.2);
+        border: 2px solid #10b981;
+      }
+
+      .team-card-manager .team-role {
+        color: #10b981;
+        font-weight: 600;
+      }
+
+      .team-card-intern {
+        transform: scale(0.95);
+      }
+
+      .team-card {
+        background: rgba(30, 41, 59, 0.5);
+        border: 1px solid rgba(148, 163, 184, 0.1);
+        border-radius: 1rem;
+        padding: 1.5rem;
+        text-align: center;
+        transition: all 0.3s ease;
+      }
+
+      .team-card:hover {
+        transform: translateY(-4px) scale(1.02);
+        border-color: #1e40af;
+      }
+
+      /* ===== TEAM AVATARS - DAHA BÜYÜK KARTLAR ===== */
+      .team-avatar-container {
+        width: 12rem; /* w-48 = 192px - DAHA GENİŞ */
+        height: 15rem; /* h-60 = 240px - DAHA UZUN */
+        margin: 0 auto 1.5rem;
+        overflow: hidden; /* TAŞMAYI ENGELLE */
+        border-radius: 1rem; /* rounded-2xl */
+        border: 3px solid #10b981;
+        background: #1e293b;
+      }
+
+      @media (min-width: 768px) {
+        .team-avatar-container {
+          width: 14rem; /* md:w-56 = 224px - Desktop daha büyük */
+          height: 18rem; /* md:h-72 = 288px - Desktop çok uzun */
+        }
+      }
+
+      .team-avatar {
+        width: 100%; /* w-full - Çerçeveyi TAM doldur */
+        height: 100%; /* h-full - Çerçeveyi TAM doldur */
+        object-fit: cover; /* Çerçeveyi patlatma */
+        object-position: center top; /* Üstten hizala - KAFALAR GÖZÜKSÜN */
         display: block;
       }
-      
-      @media (max-width: 991px) {
-        .language-switcher {
-          position: relative;
-          top: auto;
-          right: auto;
-          transform: none;
-          margin-top: 1rem;
-          width: auto;
-          align-self: center;
+
+      /* Team kartları da büyüsün */
+      .team-card {
+        background: rgba(30, 41, 59, 0.5);
+        border: 1px solid rgba(148, 163, 184, 0.12);
+        border-radius: 1rem;
+        padding: 2rem; /* Daha fazla padding */
+        text-align: center;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      /* ===== RESPONSIVE ADJUSTMENTS ===== */
+      @media (max-width: 768px) {
+        .partner-grid {
+          grid-template-columns: repeat(2, 1fr);
         }
-        
-        .language-switcher:hover {
-          transform: translateY(-2px);
-        }
-        
-        .language-switcher:active {
-          transform: translateY(0);
+
+        .team-grid-managers {
+          grid-template-columns: 1fr;
         }
       }
     </style>
-  </head>
+</head>
 
-  <body>
-    <!-- ====== Header Start ====== -->
-    <header class="ud-header">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <nav class="navbar navbar-expand-lg">
-              <a class="navbar-brand" href="index.html">
-                <img src="assets/images/logo/Solarity AI - Company Logo.png" alt="Solarity AI" />
-              </a>
-              <button id="languageSwitcher" class="language-switcher" onclick="toggleLanguage()">
-                <span class="language-flag flag-tr" aria-hidden="true"></span>
-                <span class="language-code">TR</span>
-              </button>
-              <button class="navbar-toggler" type="button" aria-label="" id="mobileMenuToggle" data-i18n-aria-label="navToggleMenu">
-                <span class="toggler-icon"></span>
-                <span class="toggler-icon"></span>
-                <span class="toggler-icon"></span>
-              </button>
+<body id="top" class="text-slate-200" style="background: #0a192f;">
 
-              <div class="navbar-collapse">
-                <ul id="nav" class="navbar-nav mx-auto">
-                  <li class="nav-item"><a class="ud-menu-scroll" href="#about" data-i18n="navAbout">About</a></li>
-                  <li class="nav-item"><a class="ud-menu-scroll" href="#partnerships" data-i18n="navPartnerships">Partnerships</a></li>
-                  <li class="nav-item"><a class="ud-menu-scroll" href="#projects" data-i18n="navProjects">Projects</a></li>
-                  <li class="nav-item"><a class="ud-menu-scroll" href="#team" data-i18n="navTeam">Team</a></li>
-                  <li class="nav-item"><a class="ud-menu-scroll" href="#contact" data-i18n="navContact">Contact</a></li>
-                  <li class="nav-item"><a href="careers.html" data-i18n="navCareers">Careers</a></li>
-                </ul>
-              </div>
-            </nav>
-          </div>
-        </div>
-      </div>
-    </header>
-    <!-- ====== Header End ====== -->
-
-    <!-- ====== About Section Start ====== -->
-    <section id="about" class="ud-about">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="ud-section-title mx-auto text-center wow fadeInUp" data-wow-delay=".1s">
-              <span data-i18n="aboutUs">About Us</span>
-              <h2 data-i18n="aboutTitle">AI-Native Software Company</h2>
-              <p class="lead" data-i18n="aboutSubtitle">Creating High-Impact B2B and B2C Solutions with World-Class Quality</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="row mt-4">
-          <div class="col-lg-12">
-            <div class="ud-about-content wow fadeInUp" data-wow-delay=".2s">
-              <div class="ud-capabilities-grid">
-                <div class="ud-capability-card" data-color="blue">
-                  <div class="ud-capability-icon">
-                    <i class="lni lni-stats-up"></i>
-                  </div>
-                  <h4 data-i18n="capabilityAI">Artificial Intelligence & Machine Learning</h4>
-                  <p data-i18n="capabilityAIDesc">Advanced AI/ML solutions powered by cutting-edge algorithms and neural networks</p>
-                </div>
-                <div class="ud-capability-card" data-color="orange">
-                  <div class="ud-capability-icon">
-                    <i class="lni lni-database"></i>
-                  </div>
-                  <h4 data-i18n="capabilityEnterprise">Enterprise Software Solutions</h4>
-                  <p data-i18n="capabilityEnterpriseDesc">Custom enterprise software tailored to your business needs</p>
-                </div>
-                <div class="ud-capability-card" data-color="teal">
-                  <div class="ud-capability-icon">
-                    <i class="lni lni-network"></i>
-                  </div>
-                  <h4 data-i18n="capabilityCloud">Cloud-Native Applications</h4>
-                  <p data-i18n="capabilityCloudDesc">Scalable cloud solutions built for modern infrastructure</p>
-                </div>
-                <div class="ud-capability-card" data-color="purple">
-                  <div class="ud-capability-icon">
-                    <i class="lni lni-code-alt"></i>
-                  </div>
-                  <h4 data-i18n="capabilityWeb">Web Application Development</h4>
-                  <p data-i18n="capabilityWebDesc">Scalable, responsive web applications with modern frameworks</p>
-                </div>
-                <div class="ud-capability-card" data-color="green">
-                  <div class="ud-capability-icon">
-                    <i class="lni lni-mobile"></i>
-                  </div>
-                  <h4 data-i18n="capabilityMobile">Mobile Application Development</h4>
-                  <p data-i18n="capabilityMobileDesc">Native and cross-platform mobile apps for iOS and Android</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- ====== About Section End ====== -->
-
-    <!-- ====== Partnerships Section Start ====== -->
-    <section id="partnerships" class="ud-partnerships">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="ud-section-title mx-auto text-center wow fadeInUp" data-wow-delay=".1s">
-              <span data-i18n="partnerships">Our Partnerships</span>
-              <h2 data-i18n="partnershipsSubtitle">Trusted by Industry Leaders</h2>
-              <p data-i18n="partnershipsSubtitleDesc">We collaborate with innovative companies and organizations to deliver cutting-edge solutions</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="ud-partners-grid wow fadeInUp" data-wow-delay=".2s">
-              <div class="ud-partner-logo">
-                <a href="https://www.ticaret.gov.tr/" target="_blank" rel="noopener noreferrer">
-                  <img src="assets/images/brands/Ticaret_Bakanligi_logo.svg" alt="Ticaret Bakanlığı" />
+    <!-- Header/Navbar - LOGO DAHA BÜYÜK -->
+    <header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b" style="background: rgba(10, 25, 47, 0.95); border-color: rgba(16, 185, 129, 0.2);">
+        <div class="container mx-auto px-4 md:px-12">
+            <nav class="flex items-center justify-between py-3.5">
+                <!-- Logo -->
+                <a href="#top" class="flex items-center">
+                    <img src="assets/images/logo/Solarity AI - Company Logo.png" alt="Solarity AI" class="logo-standard" />
                 </a>
-              </div>
-              <div class="ud-partner-logo">
-                <a href="https://www.isisdanismanlik.com/" target="_blank" rel="noopener noreferrer">
-                  <img src="assets/images/brands/isis.png" alt="ISIS" />
-                </a>
-              </div>
-              <div class="ud-partner-logo">
-                <a href="https://www.novartis.com/" target="_blank" rel="noopener noreferrer">
-                  <img src="assets/images/brands/Novartis-Logo.svg" alt="Novartis" style="width: 100%; height: auto; max-height: 90px; object-fit: contain;" />
-                </a>
-              </div>
-              <div class="ud-partner-logo">
-                <a href="https://www.kpmlabs.com.tr/" target="_blank" rel="noopener noreferrer">
-                  <img src="assets/images/brands/kpm-labs.png" alt="KPM Labs" />
-                </a>
-              </div>
-              <div class="ud-partner-logo">
-                <a href="https://everva.com.tr/" target="_blank" rel="noopener noreferrer">
-                  <img src="assets/images/brands/everva.png" alt="Everva.com.tr" />
-                </a>
-              </div>
-              <div class="ud-partner-logo">
-                <a href="https://www.siemens.com/" target="_blank" rel="noopener noreferrer">
-                  <img src="assets/images/brands/Siemens_AG_logo.svg" alt="Siemens" />
-                </a>
-              </div>
-              <div class="ud-partner-logo">
-                <a href="https://www.techsign.com.tr/" target="_blank" rel="noopener noreferrer">
-                  <img src="assets/images/brands/techsign.png" alt="Techsign" />
-                </a>
-              </div>
-              <div class="ud-partner-logo">
-                <a href="https://www.tubitak.gov.tr/" target="_blank" rel="noopener noreferrer">
-                  <img src="assets/images/brands/TUBITAK_logo.svg" alt="TÜBİTAK" />
-                </a>
-              </div>
-              <div class="ud-partner-logo">
-                <a href="https://akuakare.com/" target="_blank" rel="noopener noreferrer">
-                  <img src="assets/images/brands/akuakare.png" alt="Akuakare" />
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- ====== Partnerships Section End ====== -->
 
-    <!-- ====== Projects Section Start ====== -->
-    <section id="projects" class="ud-projects">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="ud-section-title mx-auto text-center wow fadeInUp" data-wow-delay=".1s">
-              <span data-i18n="projects">Our Projects</span>
-              <h2 data-i18n="projectsSubtitle">Selected Case Studies</h2>
-              <p data-i18n="projectsSubtitleDesc">Showcasing our expertise through impactful solutions</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="row justify-content-center">
-          <div class="col-lg-3 col-md-6">
-            <div class="ud-project-card wow fadeInUp" data-wow-delay=".1s">
-              <div class="ud-project-content">
-                <h3>
-                  <div class="project-company" data-i18n="projectMinistryTrade">Ministry of Trade</div>
-                  <div class="project-name" data-i18n="projectEAuction">E-Auction</div>
-                </h3>
-                <p data-i18n="projectEAuctionDesc">Built a robust electronic auction platform used for government procurement and customs-related sales.<br><br>Key achievements include automated high-volume auction operations, transparent bidding process, secure and compliant workflows, and improved processing efficiency.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6">
-            <div class="ud-project-card wow fadeInUp" data-wow-delay=".2s">
-              <div class="ud-project-content">
-                <h3>
-                  <div class="project-company" data-i18n="projectMinistryTrade">Ministry of Trade</div>
-                  <div class="project-name" data-i18n="projectCustomsDeclaration">Customs Declaration System</div>
-                </h3>
-                <p data-i18n="projectCustomsDeclarationDesc">Developed the digital customs declaration system enabling secure submission, validation, and management of declarations.<br><br>Highlights include end-to-end digital declaration workflow, integration with government data standards, secure high-volume transaction handling, and enhanced transparency and operational performance.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6">
-            <div class="ud-project-card wow fadeInUp" data-wow-delay=".3s">
-              <div class="ud-project-content">
-                <h3>
-                  <div class="project-company" data-i18n="projectISIS">ISIS</div>
-                  <div class="project-name" data-i18n="projectISISMicroservices">Microservices Framework Development</div>
-                </h3>
-                <p data-i18n="projectISISDesc">Developed a scalable and modular microservices framework to support distributed enterprise applications.<br><br>Key features include fault-tolerant architecture, centralized observability, high performance and maintainability, and accelerated service development cycles.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6">
-            <div class="ud-project-card wow fadeInUp" data-wow-delay=".4s">
-              <div class="ud-project-content">
-                <h3>
-                  <div class="project-company" data-i18n="projectNovartis">Novartis</div>
-                  <div class="project-name" data-i18n="projectNovartisScreensaver">Corporate Screen Saver Platform</div>
-                </h3>
-                <p data-i18n="projectNovartisDesc">Created a secure, enterprise-grade screen saver management system for global Novartis offices.<br><br>Highlights include remote configuration and deployment, corporate branding support, device compatibility and secure operation.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- ====== Projects Section End ====== -->
-
-    <!-- ====== Team Section Start ====== -->
-    <section id="team" class="ud-team ud-team-org">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="ud-section-title mx-auto text-center wow fadeInUp" data-wow-delay=".1s">
-              <span data-i18n="team">Our Team</span>
-              <h2 data-i18n="teamSubtitle">Meet Our Expert Team</h2>
-              <p data-i18n="teamSubtitleDesc">Dedicated professionals driving innovation in AI and software development</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="ud-team-org-chart">
-          <div class="team-tier team-tier--executives">
-            <div class="team-tier-title" data-i18n="teamExecutives">Executives</div>
-            <div class="team-tier-grid team-tier-grid--executives">
-              <div class="ud-single-team team-card wow fadeInUp" data-wow-delay=".15s">
-                <div class="ud-team-image-wrapper">
-                  <div class="ud-team-image">
-                    <a href="https://www.linkedin.com/in/umurinan/" target="_blank" rel="noopener noreferrer">
-                      <img src="assets/images/team/UmurInan.webp" alt="Umur Inan" />
-                    </a>
-                  </div>
-                </div>
-                <div class="ud-team-info">
-                  <h5>Umur Inan</h5>
-                  <h6 data-i18n="teamCTO">CTO</h6>
-                </div>
-                <ul class="ud-team-socials">
-                  <li>
-                    <a href="https://www.linkedin.com/in/umurinan/" target="_blank" rel="noopener noreferrer">
-                      <i class="lni lni-linkedin-original"></i>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-
-              <div class="ud-single-team team-card team-card--featured wow fadeInUp" data-wow-delay=".1s">
-                <div class="ud-team-image-wrapper">
-                  <div class="ud-team-image">
-                    <a href="https://www.linkedin.com/in/ataturhan/" target="_blank" rel="noopener noreferrer">
-                      <img src="assets/images/team/AtaTurhan.webp" alt="Ata Turhan" />
-                    </a>
-                  </div>
-                </div>
-                <div class="ud-team-info">
-                  <h5>Ata Turhan</h5>
-                  <h6 data-i18n="teamCEO">CEO</h6>
-                </div>
-                <ul class="ud-team-socials">
-                  <li>
-                    <a href="https://www.linkedin.com/in/ataturhan21/" target="_blank" rel="noopener noreferrer">
-                      <i class="lni lni-linkedin-original"></i>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-
-              <div class="ud-single-team team-card wow fadeInUp" data-wow-delay=".2s">
-                <div class="ud-team-image-wrapper">
-                  <div class="ud-team-image">
-                    <a href="https://www.linkedin.com/in/burak-hamuryen-07b8b340/" target="_blank" rel="noopener noreferrer">
-                      <img src="assets/images/team/BurakHamuryen.webp" alt="Burak Hamuryen" />
-                    </a>
-                  </div>
-                </div>
-                <div class="ud-team-info">
-                  <h5>Burak Hamuryen</h5>
-                  <h6 data-i18n="teamCIO">CIO</h6>
-                </div>
-                <ul class="ud-team-socials">
-                  <li>
-                    <a href="https://www.linkedin.com/in/hamuryen/" target="_blank" rel="noopener noreferrer">
-                      <i class="lni lni-linkedin-original"></i>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div class="team-tier-connector" aria-hidden="true"></div>
-          </div>
-
-          <div class="team-tier team-tier--managers">
-            <div class="team-tier-title" data-i18n="teamManagers">Managers</div>
-            <div class="team-tier-grid team-tier-grid--executives">
-              <div class="ud-single-team team-card wow fadeInUp" data-wow-delay=".25s">
-                <div class="ud-team-image-wrapper">
-                  <div class="ud-team-image mirror">
-                    <a href="https://www.linkedin.com/in/gokberk-serin/" target="_blank" rel="noopener noreferrer">
-                      <img src="assets/images/team/GokberkSerin.webp" alt="Gokberk Serin" />
-                    </a>
-                  </div>
-                </div>
-                <div class="ud-team-info">
-                  <h5>Gokberk Serin</h5>
-                  <h6 data-i18n="teamBDM">BDM</h6>
-                </div>
-                <ul class="ud-team-socials">
-                  <li>
-                    <a href="https://www.linkedin.com/in/gokberk-serin/" target="_blank" rel="noopener noreferrer">
-                      <i class="lni lni-linkedin-original"></i>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-
-              <div class="ud-single-team team-card wow fadeInUp" data-wow-delay=".3s">
-                <div class="ud-team-image-wrapper">
-                  <div class="ud-team-image">
-                    <a href="https://www.linkedin.com/in/ramazancinar-/" target="_blank" rel="noopener noreferrer">
-                      <img src="assets/images/team/RamazanCinar.jpeg" alt="Ramazan Cinar" />
-                    </a>
-                  </div>
-                </div>
-                <div class="ud-team-info">
-                  <h5>Ramazan Cinar</h5>
-                  <h6 data-i18n="teamBDM">BDM</h6>
-                </div>
-                <ul class="ud-team-socials">
-                  <li>
-                    <a href="https://www.linkedin.com/in/ramazan-%C3%A7%C4%B1nar-66024236?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" rel="noopener noreferrer">
-                      <i class="lni lni-linkedin-original"></i>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-
-              <div class="ud-single-team team-card wow fadeInUp" data-wow-delay=".3s">
-                <div class="ud-team-image-wrapper">
-                  <div class="ud-team-image">
-                    <a href="https://www.linkedin.com/in/ali-yilmaz2/" target="_blank" rel="noopener noreferrer">
-                      <img src="assets/images/team/AliYilmaz.webp" alt="Ali Yilmaz" />
-                    </a>
-                  </div>
-                </div>
-                <div class="ud-team-info">
-                  <h5>Ali Yilmaz</h5>
-                  <h6 data-i18n="teamBDM">BDM</h6>
-                </div>
-                <ul class="ud-team-socials">
-                  <li>
-                    <a href="https://www.linkedin.com/in/ali-yilmaz2/" target="_blank" rel="noopener noreferrer">
-                      <i class="lni lni-linkedin-original"></i>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            <div class="team-tier-grid team-tier-grid--managers team-tier-grid--subrow">
-              <div class="ud-single-team team-card wow fadeInUp" data-wow-delay=".35s">
-                <div class="ud-team-image-wrapper">
-                  <div class="ud-team-image">
-                    <a href="https://www.linkedin.com/in/remzi-mert-tehneldere-601505286/" target="_blank" rel="noopener noreferrer">
-                      <img src="assets/images/team/RemziMertTehneldere.webp" alt="Remzi Mert Tehneldere" />
-                    </a>
-                  </div>
-                </div>
-                <div class="ud-team-info">
-                  <h5>Remzi Mert Tehneldere</h5>
-                  <h6 data-i18n="teamBDMIntern" lang="en">BDM Intern</h6>
-                </div>
-                <ul class="ud-team-socials">
-                  <li>
-                    <a href="https://www.linkedin.com/in/remzi-mert-tehneldere-601505286/" target="_blank" rel="noopener noreferrer">
-                      <i class="lni lni-linkedin-original"></i>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-
-              <div class="ud-single-team team-card wow fadeInUp" data-wow-delay=".4s">
-                <div class="ud-team-image-wrapper">
-                  <div class="ud-team-image">
-                    <a href="https://www.linkedin.com/in/batuhankestek/" target="_blank" rel="noopener noreferrer">
-                      <img src="assets/images/team/BatuhanKestek.webp" alt="Batuhan Kestek" />
-                    </a>
-                  </div>
-                </div>
-                <div class="ud-team-info">
-                  <h5>Batuhan Kestek</h5>
-                  <h6 data-i18n="teamBDMIntern" lang="en">BDM Intern</h6>
-                </div>
-                <ul class="ud-team-socials">
-                  <li>
-                    <a href="https://www.linkedin.com/in/batuhankestek/" target="_blank" rel="noopener noreferrer">
-                      <i class="lni lni-linkedin-original"></i>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div class="team-tier-connector" aria-hidden="true"></div>
-          </div>
-
-          <div class="team-tier team-tier--engineers">
-            <div class="team-tier-title" data-i18n="teamEngineers">Engineers</div>
-            <div class="team-tier-grid team-tier-grid--engineers">
-
-              <div class="ud-single-team team-card wow fadeInUp" data-wow-delay=".35s">
-                <div class="ud-team-image-wrapper">
-                  <div class="ud-team-image">
-                    <a href="https://www.linkedin.com/in/hasan-erdem-ak" target="_blank" rel="noopener noreferrer">
-                      <img src="assets/images/team/HasanErdemAk.webp" alt="Hasan Erdem Ak" />
-                    </a>
-                  </div>
-                </div>
-                <div class="ud-team-info">
-                  <h5>Hasan Erdem Ak</h5>
-                  <h6 data-i18n="team Lead Full-Stack Engineer" lang="en">Lead Full-Stack Engineer</h6>
-                </div>
-                <ul class="ud-team-socials">
-                  <li>
-                    <a href="https://www.linkedin.com/in/hasan-erdem-ak" target="_blank" rel="noopener noreferrer">
-                      <i class="lni lni-linkedin-original"></i>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-
-              <div class="ud-single-team team-card wow fadeInUp" data-wow-delay=".45s">
-                <div class="ud-team-image-wrapper">
-                  <div class="ud-team-image">
-                    <a href="https://www.linkedin.com/in/mehmet-begun" target="_blank" rel="noopener noreferrer">
-                      <img src="assets/images/team/MehmetBegun.webp" alt="Mehmet Begun" />
-                    </a>
-                  </div>
-                </div>
-                <div class="ud-team-info">
-                  <h5>Mehmet Begun</h5>
-                  <h6 data-i18n="team Full-Stack Engineer Intern" lang="en">Full-Stack Engineer Intern</h6>
-                </div>
-                <ul class="ud-team-socials">
-                  <li>
-                    <a href="https://www.linkedin.com/in/mehmetBegun" target="_blank" rel="noopener noreferrer">
-                      <i class="lni lni-linkedin-original"></i>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-
-              <div class="ud-single-team team-card wow fadeInUp" data-wow-delay=".5s">
-                <div class="ud-team-image-wrapper">
-                  <div class="ud-team-image">
-                    <a href="https://www.linkedin.com/in/eren-can-donertas/" target="_blank" rel="noopener noreferrer">
-                      <img src="assets/images/team/ErenCanDonertas.webp" alt="Eren Can Donertas" />
-                    </a>
-                  </div>
-                </div>
-                <div class="ud-team-info">
-                  <h5>Eren Can Donertas</h5>
-                  <h6 data-i18n="team Full-Stack Engineer Intern" lang="en">Full-Stack Engineer Intern</h6>
-                </div>
-                <ul class="ud-team-socials">
-                  <li>
-                    <a href="https://www.linkedin.com/in/eren-can-donertas/" target="_blank" rel="noopener noreferrer">
-                      <i class="lni lni-linkedin-original"></i>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div class="team-tier-connector" aria-hidden="true"></div>
-          </div>
-
-          <div class="team-tier team-tier--designers team-tier--last">
-            <div class="team-tier-title" data-i18n="teamDesigners">Designers & Marketers</div>
-            <div class="team-tier-grid team-tier-grid--designers">
-              <div class="ud-single-team team-card wow fadeInUp" data-wow-delay=".65s">
-                <div class="ud-team-image-wrapper">
-                  <div class="ud-team-image">
-                    <a href="https://www.linkedin.com/in/lara-%C5%9Fen-409b61353" target="_blank" rel="noopener noreferrer">
-                      <img src="assets/images/team/LaraSen.webp" alt="Lara Sen" />
-                    </a>
-                  </div>
-                </div>
-                <div class="ud-team-info">
-                  <h5>Lara Sen</h5>
-                  <h6 data-i18n="teamDesigner">Designer & Marketer</h6>
-                </div>
-                <ul class="ud-team-socials">
-                  <li>
-                    <a href="https://www.linkedin.com/in/lara-%C5%9Fen-409b61353" target="_blank" rel="noopener noreferrer">
-                      <i class="lni lni-linkedin-original"></i>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div class="ud-single-team team-card wow fadeInUp" data-wow-delay=".7s">
-                <div class="ud-team-image-wrapper">
-                  <div class="ud-team-image">
-                    <a href="https://www.linkedin.com/in/beril-damaci/" target="_blank" rel="noopener noreferrer">
-                      <img src="assets/images/team/BerilDamaci.webp" alt="Beril Damaci" />
-                    </a>
-                  </div>
-                </div>
-                <div class="ud-team-info">
-                  <h5>Beril Damaci</h5>
-                  <h6 data-i18n="teamDesigner">Designer & Marketer</h6>
-                </div>
-                <ul class="ud-team-socials">
-                  <li>
-                    <a href="https://www.linkedin.com/in/beril-damaci/" target="_blank" rel="noopener noreferrer">
-                      <i class="lni lni-linkedin-original"></i>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div class="ud-single-team team-card wow fadeInUp" data-wow-delay=".75s">
-                <div class="ud-team-image-wrapper">
-                  <div class="ud-team-image">
-                    <a href="https://www.linkedin.com/in/hilal--genc/" target="_blank" rel="noopener noreferrer">
-                      <img src="assets/images/team/HilalGenc.webp" alt="Hilal Genc" />
-                    </a>
-                  </div>
-                </div>
-                <div class="ud-team-info">
-                  <h5>Hilal Genc</h5>
-                  <h6 data-i18n="teamDesigner">Designer & Marketer</h6>
-                </div>
-                <ul class="ud-team-socials">
-                  <li>
-                    <a href="https://www.linkedin.com/in/hilal--genc/" target="_blank" rel="noopener noreferrer">
-                      <i class="lni lni-linkedin-original"></i>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- ====== Team Section End ====== -->
-
-    <!-- ====== Contact Section Start ====== -->
-    <section id="contact" class="ud-contact">
-      <div class="container">
-        <div class="row align-items-center">
-          <!-- Contact Info (Left Side) -->
-          <div class="col-xl-6 col-lg-6">
-            <div class="ud-contact-content-wrapper wow fadeInUp" data-wow-delay=".1s">
-              <div class="ud-section-title mx-auto text-center">
-                <span data-i18n="contact">Contact Us</span>
-                <h2 data-i18n="contactSubtitle">Let's Build Something Great Together</h2>
-                <p data-i18n="contactSubtitleDesc">Get in touch to explore partnership opportunities or discuss your business needs.</p>
-              </div>
-              <div class="ud-contact-info-wrapper">
-                <!-- Location info -->
-                <div class="ud-single-info">
-                  <div class="ud-info-icon">
-                    <i class="lni lni-map-marker"></i>
-                  </div>
-                  <div class="ud-info-meta">
-                    <h5 data-i18n="contactAddress">Our Address</h5>
-                    <p data-i18n="contactAddressValue">Dallas, Texas, USA</p>
-                  </div>
-                </div>
-
-                <!-- Email info -->
-                <div class="ud-single-info">
-                  <div class="ud-info-icon">
-                    <i class="lni lni-envelope"></i>
-                  </div>
-                  <div class="ud-info-meta">
-                    <h5 data-i18n="contactEmail">Email Us</h5>
-                    <p><a href="mailto:info@solarityai.com">info@solarityai.com</a></p>
-                  </div>
-                </div>
-
-                <!-- Careers info -->
-                <div class="ud-single-info">
-                  <div class="ud-info-icon">
-                    <i class="lni lni-briefcase"></i>
-                  </div>
-                  <div class="ud-info-meta">
-                    <h5 data-i18n="contactCareers">Careers</h5>
-                    <p><a href="careers.html" data-i18n="contactViewPositions">View Open Positions</a></p>
-                  </div>
-                </div>
-
-                <!-- Social Links -->
-                <div class="ud-single-info">
-                  <div class="ud-info-icon">
-                    <i class="lni lni-share"></i>
-                  </div>
-                  <div class="ud-info-meta">
-                    <h5 data-i18n="footerFollowUs">Follow Us</h5>
-                    <ul class="ud-contact-socials">
-                      <li>
-                        <a href="https://www.linkedin.com/company/solarityai-llc" target="_blank" rel="noopener noreferrer" onclick="gtag('event', 'click', {'event_category': 'Social', 'event_label': 'LinkedIn Contact'});">
-                          <i class="lni lni-linkedin-original"></i>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="https://www.instagram.com/solarityai_llc/" target="_blank" rel="noopener noreferrer" onclick="gtag('event', 'click', {'event_category': 'Social', 'event_label': 'Instagram Contact'});">
-                          <i class="lni lni-instagram-original"></i>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="https://github.com/Solarity-AI" target="_blank" rel="noopener noreferrer" onclick="gtag('event', 'click', {'event_category': 'Social', 'event_label': 'GitHub Contact'});">
-                          <i class="lni lni-github-original"></i>
-                        </a>
-                      </li>
+                <!-- Desktop Menu + Buttons (NO OVERLAP!) -->
+                <div class="hidden md:flex items-center gap-6">
+                    <ul class="flex items-center space-x-6 text-base font-medium">
+                        <li><a href="#hakkimizda" data-href-tr="#hakkimizda" data-href-en="#about" class="hover:text-emerald-400 transition nav-link" data-i18n="navAbout">Hakkımızda</a></li>
+                        <li><a href="#ortakliklar" data-href-tr="#ortakliklar" data-href-en="#partnerships" class="hover:text-emerald-400 transition nav-link" data-i18n="navPartnerships">Ortaklıklar</a></li>
+                        <li><a href="#projeler" data-href-tr="#projeler" data-href-en="#projects" class="hover:text-emerald-400 transition nav-link" data-i18n="navProjects">Projeler</a></li>
+                        <li><a href="#ekip" data-href-tr="#ekip" data-href-en="#team" class="hover:text-emerald-400 transition nav-link" data-i18n="navTeam">Ekip</a></li>
+                        <li><a href="#iletisim" data-href-tr="#iletisim" data-href-en="#contact" class="hover:text-emerald-400 transition nav-link" data-i18n="navContact">İletişim</a></li>
                     </ul>
-                  </div>
+
+                    <!-- Right Actions: Language + Career (NO OVERLAP!) -->
+                    <div class="flex items-center gap-3">
+                        <!-- Language Switcher -->
+                        <button id="languageSwitcher" onclick="toggleLanguage()"
+                                class="px-3 py-2 text-sm font-semibold rounded-lg transition"
+                                style="background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.3); color: #10b981;">
+                            <span id="currentLang">🇹🇷 TR</span>
+                        </button>
+
+                        <!-- Career Button -->
+                        <a href="careers.html"
+                           class="inline-flex items-center gap-3 px-6 py-3 text-base font-semibold rounded-lg transition hover:shadow-lg"
+                           style="background: linear-gradient(135deg, #10b981, #059669); color: white;">
+                            <i class="lni lni-briefcase"></i>
+                            <span data-i18n="navCareers">Kariyer</span>
+                        </a>
+                    </div>
                 </div>
-              </div>
+
+                <!-- Mobile Menu Button + Language -->
+                <div class="md:hidden flex items-center gap-3">
+                    <button id="languageSwitcherMobile" onclick="toggleLanguage()"
+                            class="px-3 py-1.5 text-xs font-semibold rounded-lg"
+                            style="background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.3); color: #10b981;">
+                        <span id="currentLangMobile">🇹🇷 TR</span>
+                    </button>
+                    <button id="mobileMenuBtn" class="text-2xl text-emerald-400">☰</button>
+                </div>
+            </nav>
+
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden md:hidden pb-4">
+                <ul class="flex flex-col space-y-3 text-base">
+                    <li><a href="#hakkimizda" data-href-tr="#hakkimizda" data-href-en="#about" class="block hover:text-emerald-400 transition nav-link" data-i18n="navAbout">Hakkımızda</a></li>
+                    <li><a href="#ortakliklar" data-href-tr="#ortakliklar" data-href-en="#partnerships" class="block hover:text-emerald-400 transition nav-link" data-i18n="navPartnerships">Ortaklıklar</a></li>
+                    <li><a href="#projeler" data-href-tr="#projeler" data-href-en="#projects" class="block hover:text-emerald-400 transition nav-link" data-i18n="navProjects">Projeler</a></li>
+                    <li><a href="#ekip" data-href-tr="#ekip" data-href-en="#team" class="block hover:text-emerald-400 transition nav-link" data-i18n="navTeam">Ekip</a></li>
+                    <li><a href="#iletisim" data-href-tr="#iletisim" data-href-en="#contact" class="block hover:text-emerald-400 transition nav-link" data-i18n="navContact">İletişim</a></li>
+                    <li><a href="careers.html" class="block hover:text-emerald-400 transition" data-i18n="navCareers">Kariyer</a></li>
+                </ul>
             </div>
-          </div>
+        </div>
+    </header>
 
-          <!-- Contact Form (Right Side) -->
-          <div class="col-xl-6 col-lg-6">
-            <div class="ud-contact-form-wrapper wow fadeInUp" data-wow-delay=".2s">
-              <h3 class="ud-contact-form-title" data-i18n="contactSendMessage">Send Us a Message</h3>
+    <!-- Hero Section - LOGO İÇİN YETERLİ ALAN -->
+    <section class="pt-36 pb-20 px-4 md:px-12">
+        <div class="container mx-auto text-center">
+            <h1 class="text-4xl md:text-6xl font-bold font-display mb-8 text-white">
+                <span class="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent" data-i18n="aboutTitle">
+                    Yapay Zeka Odaklı Yazılım Şirketi
+                </span>
+            </h1>
+            <p class="text-lg md:text-xl text-slate-300 max-w-3xl mx-auto" data-i18n="aboutSubtitle">
+                Dünya standartlarında kaliteyle, yüksek etkili B2B ve B2C çözümler geliştiriyoruz
+            </p>
+        </div>
+    </section>
 
-              <!-- FormSubmit.co Contact Form -->
-              <form action="https://formsubmit.co/info@solarityai.com" method="POST" class="ud-contact-form" id="contactForm">
-                <!-- Optional Settings -->
+    <!-- Stats Bar - FERAH ALAN -->
+    <section class="py-16 px-4 md:px-12">
+        <div class="container mx-auto">
+            <div class="stats-bar">
+                <div class="stat-item">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label" data-i18n="statsProjects">Tamamlanan Proje</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">%100</div>
+                    <div class="stat-label" data-i18n="statsSatisfaction">Müşteri Memnuniyeti</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label" data-i18n="statsSupport">Destek Hizmeti</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services - Modern Bento Grid (5 Hizmet) - FERAH ALAN -->
+    <section id="hakkimizda" data-section-tr="hakkimizda" data-section-en="about" class="py-24 px-4 md:px-12 bg-slate-900/50">
+        <div class="container mx-auto">
+            <div class="text-center mb-16">
+                <span class="text-brand-blue text-sm font-semibold uppercase tracking-wider" data-i18n="aboutUs">Hakkımızda</span>
+                <h2 class="text-3xl md:text-5xl font-bold font-display mt-4 mb-6" data-i18n="servicesTitle">Hizmetlerimiz</h2>
+            </div>
+
+            <!-- Bento Grid: 5 Services (AI featured, others balanced) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Service 1: AI/ML - FEATURED LARGE CARD (spans 2 columns on lg) -->
+                <div class="service-card-featured lg:col-span-2 lg:row-span-2">
+                    <div class="flex items-start gap-4 mb-6">
+                        <div class="service-icon-large">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h-1.73c.34.6.73 1.26.73 2a2 2 0 0 1-2 2c-.74 0-1.39-.4-1.73-1H14v1.27c.6.34 1 .99 1 1.73a2 2 0 0 1-2 2 2 2 0 0 1-2-2c0-.74.4-1.39 1-1.73V17H9.73A2 2 0 0 1 8 18a2 2 0 0 1-2-2c0-.74.4-1.39 1-1.73H7a7 7 0 0 1 7-7h1V5.73A2 2 0 0 1 14 4a2 2 0 0 1-2-2z"/>
+                                <circle cx="12" cy="12" r="3"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold mb-3 text-white" data-i18n="serviceAI">Yapay Zeka ve Makine Öğrenmesi</h3>
+                            <p class="text-slate-300 leading-relaxed" data-i18n="serviceAIDesc">En güncel algoritmalar ve sinir ağlarıyla desteklenen ileri düzey yapay zeka ve makine öğrenmesi çözümleri. Derin öğrenme modelleri, doğal dil işleme ve bilgisayarlı görü uygulamaları.</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mt-4">
+                        <span class="service-tag" data-i18n="tagDeepLearning">Deep Learning</span>
+                        <span class="service-tag" data-i18n="tagNLP">NLP</span>
+                        <span class="service-tag" data-i18n="tagComputerVision">Computer Vision</span>
+                        <span class="service-tag" data-i18n="tagNeuralNetworks">Neural Networks</span>
+                    </div>
+                </div>
+
+                <!-- Service 2: Enterprise Software -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect width="18" height="18" x="3" y="3" rx="2"/>
+                            <path d="M7 7h.01"/>
+                            <path d="M17 7h.01"/>
+                            <path d="M7 17h.01"/>
+                            <path d="M17 17h.01"/>
+                            <path d="M7 12h10"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-white" data-i18n="serviceEnterprise">Kurumsal Yazılım Çözümleri</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed" data-i18n="serviceEnterpriseDesc">İş ihtiyaçlarınıza özel olarak tasarlanmış kurumsal yazılım çözümleri. ERP, CRM ve özel iş uygulamaları.</p>
+                </div>
+
+                <!-- Service 3: Cloud Applications -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-white" data-i18n="serviceCloud">Bulut Tabanlı Uygulamalar</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed" data-i18n="serviceCloudDesc">Modern mimari prensipleriyle inşa edilen ölçeklenebilir bulut çözümleri. AWS, Azure ve Google Cloud platformları.</p>
+                </div>
+
+                <!-- Service 4: Web Development -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect width="18" height="18" x="3" y="3" rx="2" ry="2"/>
+                            <polyline points="9 3 9 21"/>
+                            <polyline points="15 3 15 21"/>
+                            <line x1="3" x2="21" y1="9" y2="9"/>
+                            <line x1="3" x2="21" y1="15" y2="15"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-white" data-i18n="serviceWeb">Web Uygulama Geliştirme</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed" data-i18n="serviceWebDesc">Modern teknolojilerle geliştirilmiş, ölçeklenebilir ve duyarlı web uygulamaları. React, Vue, Angular ve Next.js.</p>
+                </div>
+
+                <!-- Service 5: Mobile Development -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect width="14" height="20" x="5" y="2" rx="2" ry="2"/>
+                            <path d="M12 18h.01"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-white" data-i18n="serviceMobile">Mobil Uygulama Geliştirme</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed" data-i18n="serviceMobileDesc">iOS ve Android platformları için yerel ve çapraz platform mobil uygulamalar. React Native, Flutter ve Swift.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section - FERAH ALAN -->
+    <section id="projeler" data-section-tr="projeler" data-section-en="projects" class="py-24 px-4 md:px-12">
+        <div class="container mx-auto">
+            <div class="text-center mb-16">
+                <span class="text-brand-blue text-sm font-semibold uppercase tracking-wider" data-i18n="projects">Projelerimiz</span>
+                <h2 class="text-3xl md:text-5xl font-bold font-display mt-4 mb-4" data-i18n="projectsSubtitle">Seçili Projeler ve Başarı Hikayeleri</h2>
+                <p class="text-slate-400" data-i18n="projectsSubtitleDesc">Uzmanlığımızı etkili çözümlerimiz aracılığıyla sergiliyoruz</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Project 1: Ministry of Trade - E-Auction -->
+                <div class="bento-card group">
+                    <div class="mb-4">
+                        <div class="text-2xl mb-2">🏛️</div>
+                        <h3 class="text-lg font-semibold text-slate-200 mb-1" data-i18n="projectMinistryTrade">Ticaret Bakanlığı</h3>
+                        <h4 class="text-base font-medium text-brand-blue-light" data-i18n="projectEAuction">E-İhale</h4>
+                    </div>
+                    <p class="text-sm text-slate-400 leading-relaxed" data-i18n="projectEAuctionDesc">
+                        Kamu alımları ve gümrük ile ilgili satışlar için güvenilir bir elektronik ihale platformu geliştirdik.
+                    </p>
+                </div>
+
+                <!-- Project 2: Ministry of Trade - Customs Declaration -->
+                <div class="bento-card group">
+                    <div class="mb-4">
+                        <div class="text-2xl mb-2">📋</div>
+                        <h3 class="text-lg font-semibold text-slate-200 mb-1" data-i18n="projectMinistryTrade">Ticaret Bakanlığı</h3>
+                        <h4 class="text-base font-medium text-brand-blue-light" data-i18n="projectCustomsDeclaration">Gümrük Beyanname Sistemi</h4>
+                    </div>
+                    <p class="text-sm text-slate-400 leading-relaxed" data-i18n="projectCustomsDeclarationDesc">
+                        Güvenli beyanname gönderimi, doğrulama ve yönetimini sağlayan dijital gümrük beyanname sistemi geliştirdik.
+                    </p>
+                </div>
+
+                <!-- Project 3: ISIS - Microservices -->
+                <div class="bento-card group">
+                    <div class="mb-4">
+                        <div class="text-2xl mb-2">⚙️</div>
+                        <h3 class="text-lg font-semibold text-slate-200 mb-1" data-i18n="projectISIS">ISIS</h3>
+                        <h4 class="text-base font-medium text-brand-blue-light" data-i18n="projectISISMicroservices">Mikroservis Altyapısı Geliştirme</h4>
+                    </div>
+                    <p class="text-sm text-slate-400 leading-relaxed" data-i18n="projectISISDesc">
+                        Dağıtılmış kurumsal uygulamaları desteklemek üzere ölçeklenebilir ve modüler bir mikroservis framework geliştirdik.
+                    </p>
+                </div>
+
+                <!-- Project 4: Novartis - Screensaver -->
+                <div class="bento-card group">
+                    <div class="mb-4">
+                        <div class="text-2xl mb-2">🖥️</div>
+                        <h3 class="text-lg font-semibold text-slate-200 mb-1" data-i18n="projectNovartis">Novartis</h3>
+                        <h4 class="text-base font-medium text-brand-blue-light" data-i18n="projectNovartisScreensaver">Kurumsal Ekran Koruyucu Platformu</h4>
+                    </div>
+                    <p class="text-sm text-slate-400 leading-relaxed" data-i18n="projectNovartisDesc">
+                        Novartis'in küresel ofisleri için güvenli, kurumsal düzeyde bir ekran koruyucu yönetim sistemi geliştirdik.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners - 9 Logos Grid - FERAH ALAN -->
+    <section id="ortakliklar" data-section-tr="ortakliklar" data-section-en="partnerships" class="py-24 px-4 md:px-12">
+        <div class="container mx-auto">
+            <div class="text-center mb-16">
+                <span class="text-brand-blue text-sm font-semibold uppercase tracking-wider" data-i18n="partnerships">Ortaklıklarımız</span>
+                <h2 class="text-3xl md:text-5xl font-bold font-display mt-4 mb-4" data-i18n="partnershipsSubtitle">Sektör Liderleri Tarafından Güvenilen</h2>
+                <p class="text-slate-400" data-i18n="partnershipsSubtitleDesc">Yenilikçi çözümler sunmak için sektörün önde gelen şirketleri ve organizasyonlarıyla stratejik işbirlikleri gerçekleştiriyoruz</p>
+            </div>
+
+            <div class="partner-grid">
+                <a href="https://www.ticaret.gov.tr/" target="_blank" rel="noopener noreferrer" class="partner-logo-card">
+                    <img src="assets/images/brands/Ticaret_Bakanligi_logo.svg" alt="Ticaret Bakanlığı" />
+                </a>
+                <a href="https://www.isisdanismanlik.com/" target="_blank" rel="noopener noreferrer" class="partner-logo-card">
+                    <img src="assets/images/brands/isis.png" alt="ISIS" />
+                </a>
+                <a href="https://www.novartis.com/" target="_blank" rel="noopener noreferrer" class="partner-logo-card">
+                    <img src="assets/images/brands/Novartis-Logo.svg" alt="Novartis" />
+                </a>
+                <a href="https://www.kpmlabs.com.tr/" target="_blank" rel="noopener noreferrer" class="partner-logo-card">
+                    <img src="assets/images/brands/kpm-labs.png" alt="KPM Labs" />
+                </a>
+                <a href="https://everva.com.tr/" target="_blank" rel="noopener noreferrer" class="partner-logo-card">
+                    <img src="assets/images/brands/everva.png" alt="Everva" />
+                </a>
+                <a href="https://www.siemens.com/" target="_blank" rel="noopener noreferrer" class="partner-logo-card">
+                    <img src="assets/images/brands/Siemens_AG_logo.svg" alt="Siemens" />
+                </a>
+                <a href="https://www.techsign.com.tr/" target="_blank" rel="noopener noreferrer" class="partner-logo-card">
+                    <img src="assets/images/brands/techsign.png" alt="Techsign" />
+                </a>
+                <a href="https://www.tubitak.gov.tr/" target="_blank" rel="noopener noreferrer" class="partner-logo-card">
+                    <img src="assets/images/brands/TUBITAK_logo.svg" alt="TÜBİTAK" />
+                </a>
+                <a href="https://akuakare.com/" target="_blank" rel="noopener noreferrer" class="partner-logo-card">
+                    <img src="assets/images/brands/akuakare.png" alt="Akuakare" />
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section with Hierarchy - FERAH ALAN -->
+    <section id="ekip" data-section-tr="ekip" data-section-en="team" class="py-24 px-4 md:px-12 bg-slate-900/50">
+        <div class="container mx-auto">
+            <div class="text-center mb-16">
+                <span class="text-brand-blue text-sm font-semibold uppercase tracking-wider" data-i18n="team">Ekibimiz</span>
+                <h2 class="text-3xl md:text-5xl font-bold font-display mt-4 mb-4" data-i18n="teamSubtitle">Uzman Ekibimizle Tanışın</h2>
+                <p class="text-slate-400" data-i18n="teamSubtitleDesc">Yapay zeka ve yazılım geliştirme alanında yeniliklere öncülük eden, tutkulu profesyoneller</p>
+            </div>
+
+            <!-- Executives -->
+            <div class="mb-20">
+                <h3 class="text-2xl font-bold text-center mb-10 text-brand-blue" data-i18n="teamExecutives">Üst Yönetim</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-5xl mx-auto">
+                    <div class="team-card">
+                        <div class="team-avatar-container">
+                            <img src="assets/images/team/UmurInan.webp" alt="Umur İnan" class="team-avatar" />
+                        </div>
+                        <h4 class="text-xl font-semibold">Umur İnan</h4>
+                        <p class="team-role text-brand-blue" data-i18n="teamCTO">CTO</p>
+                        <a href="https://www.linkedin.com/in/umurinan/" target="_blank" class="inline-block mt-3 text-brand-blue hover:text-brand-blue-light">
+                            <i class="lni lni-linkedin-original text-2xl"></i>
+                        </a>
+                    </div>
+                    <div class="team-card border-2 border-brand-blue">
+                        <div class="team-avatar-container">
+                            <img src="assets/images/team/AtaTurhan.webp" alt="Ata Turhan" class="team-avatar" />
+                        </div>
+                        <h4 class="text-xl font-semibold">Ata Turhan</h4>
+                        <p class="team-role text-brand-blue" data-i18n="teamCEO">CEO</p>
+                        <a href="https://www.linkedin.com/in/ataturhan/" target="_blank" class="inline-block mt-3 text-brand-blue hover:text-brand-blue-light">
+                            <i class="lni lni-linkedin-original text-2xl"></i>
+                        </a>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-avatar-container">
+                            <img src="assets/images/team/BurakHamuryen.webp" alt="Burak Hamuryen" class="team-avatar" />
+                        </div>
+                        <h4 class="text-xl font-semibold">Burak Hamuryen</h4>
+                        <p class="team-role text-brand-blue" data-i18n="teamCIO">CIO</p>
+                        <a href="https://www.linkedin.com/in/burak-hamuryen-07b8b340/" target="_blank" class="inline-block mt-3 text-brand-blue hover:text-brand-blue-light">
+                            <i class="lni lni-linkedin-original text-2xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Business Development Managers - Highlighted -->
+            <div class="mb-20">
+                <h3 class="text-2xl font-bold text-center mb-10 text-emerald-500" data-i18n="teamManagers">İş Geliştirme Yöneticileri</h3>
+                <div class="team-grid-managers max-w-5xl mx-auto">
+                    <div class="team-card team-card-manager">
+                        <div class="team-avatar-container">
+                            <img src="assets/images/team/GokberkSerin.webp" alt="Gökberk Serin" class="team-avatar" />
+                        </div>
+                        <h4 class="text-xl font-semibold">Gökberk Serin</h4>
+                        <p class="team-role" data-i18n="teamBDM">BDM</p>
+                        <a href="https://www.linkedin.com/in/gokberk-serin/" target="_blank" class="inline-block mt-3 text-emerald-500 hover:text-emerald-400">
+                            <i class="lni lni-linkedin-original text-2xl"></i>
+                        </a>
+                    </div>
+                    <div class="team-card team-card-manager">
+                        <div class="team-avatar-container">
+                            <img src="assets/images/team/RamazanCinar.jpeg" alt="Ramazan Çınar" class="team-avatar" />
+                        </div>
+                        <h4 class="text-xl font-semibold">Ramazan Çınar</h4>
+                        <p class="team-role" data-i18n="teamBDM">BDM</p>
+                        <a href="https://www.linkedin.com/in/ramazancinar-/" target="_blank" class="inline-block mt-3 text-emerald-500 hover:text-emerald-400">
+                            <i class="lni lni-linkedin-original text-2xl"></i>
+                        </a>
+                    </div>
+                    <div class="team-card team-card-manager">
+                        <div class="team-avatar-container">
+                            <img src="assets/images/team/AliYilmaz.webp" alt="Ali Yılmaz" class="team-avatar" />
+                        </div>
+                        <h4 class="text-xl font-semibold">Ali Yılmaz</h4>
+                        <p class="team-role" data-i18n="teamBDM">BDM</p>
+                        <a href="https://www.linkedin.com/in/ali-yilmaz2/" target="_blank" class="inline-block mt-3 text-emerald-500 hover:text-emerald-400">
+                            <i class="lni lni-linkedin-original text-2xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BDM Interns - Smaller Scale -->
+            <div class="mb-20">
+                <h3 class="text-xl font-bold text-center mb-10 text-slate-400" data-i18n="teamBDMInterns">BDM Stajyerleri</h3>
+                <div class="team-grid-interns max-w-4xl mx-auto">
+                    <div class="team-card team-card-intern">
+                        <div class="team-avatar-container">
+                            <img src="assets/images/team/RemziMertTehneldere.webp" alt="Remzi Mert Tehneldere" class="team-avatar" />
+                        </div>
+                        <h4 class="text-lg font-semibold">Remzi Mert Tehneldere</h4>
+                        <p class="team-role text-slate-400 text-sm" data-i18n="teamBDMIntern">BDM Stajyer</p>
+                        <a href="https://www.linkedin.com/in/remzi-mert-tehneldere-601505286/" target="_blank" class="inline-block mt-2 text-brand-blue hover:text-brand-blue-light">
+                            <i class="lni lni-linkedin-original text-xl"></i>
+                        </a>
+                    </div>
+                    <div class="team-card team-card-intern">
+                        <div class="team-avatar-container">
+                            <img src="assets/images/team/BatuhanKestek.webp" alt="Batuhan Kestek" class="team-avatar" />
+                        </div>
+                        <h4 class="text-lg font-semibold">Batuhan Kestek</h4>
+                        <p class="team-role text-slate-400 text-sm" data-i18n="teamBDMIntern">BDM Stajyer</p>
+                        <a href="https://www.linkedin.com/in/batuhankestek/" target="_blank" class="inline-block mt-2 text-brand-blue hover:text-brand-blue-light">
+                            <i class="lni lni-linkedin-original text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Engineers -->
+            <div class="mb-20">
+                <h3 class="text-2xl font-bold text-center mb-10" data-i18n="teamEngineers">Mühendislik</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-5xl mx-auto">
+                    <div class="team-card">
+                        <div class="team-avatar-container">
+                            <img src="assets/images/team/HasanErdemAk.webp" alt="Hasan Erdem Ak" class="team-avatar" />
+                        </div>
+                        <h4 class="text-xl font-semibold">Hasan Erdem Ak</h4>
+                        <p class="team-role text-brand-blue text-sm">Lead Full-Stack Engineer</p>
+                        <a href="https://www.linkedin.com/in/hasan-erdem-ak" target="_blank" class="inline-block mt-3 text-brand-blue hover:text-brand-blue-light">
+                            <i class="lni lni-linkedin-original text-2xl"></i>
+                        </a>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-avatar-container">
+                            <img src="assets/images/team/MehmetBegun.webp" alt="Mehmet Begun" class="team-avatar" />
+                        </div>
+                        <h4 class="text-xl font-semibold">Mehmet Begun</h4>
+                        <p class="team-role text-slate-400 text-sm">Full-Stack Engineer Intern</p>
+                        <a href="https://www.linkedin.com/in/mehmet-begun" target="_blank" class="inline-block mt-3 text-brand-blue hover:text-brand-blue-light">
+                            <i class="lni lni-linkedin-original text-2xl"></i>
+                        </a>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-avatar-container">
+                            <img src="assets/images/team/ErenCanDonertas.webp" alt="Eren Can Dönertaş" class="team-avatar" />
+                        </div>
+                        <h4 class="text-xl font-semibold">Eren Can Dönertaş</h4>
+                        <p class="team-role text-slate-400 text-sm">Full-Stack Engineer Intern</p>
+                        <a href="https://www.linkedin.com/in/eren-can-donertas/" target="_blank" class="inline-block mt-3 text-brand-blue hover:text-brand-blue-light">
+                            <i class="lni lni-linkedin-original text-2xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Designers & Marketers -->
+            <div>
+                <h3 class="text-2xl font-bold text-center mb-10" data-i18n="teamDesigners">Tasarım & Pazarlama</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-5xl mx-auto">
+                    <div class="team-card">
+                        <div class="team-avatar-container">
+                            <img src="assets/images/team/LaraSen.webp" alt="Lara Şen" class="team-avatar" />
+                        </div>
+                        <h4 class="text-xl font-semibold">Lara Şen</h4>
+                        <p class="team-role text-brand-blue" data-i18n="teamDesigner">Tasarımcı & Pazarlamacı</p>
+                        <a href="https://www.linkedin.com/in/lara-%C5%9Fen-409b61353" target="_blank" class="inline-block mt-3 text-brand-blue hover:text-brand-blue-light">
+                            <i class="lni lni-linkedin-original text-2xl"></i>
+                        </a>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-avatar-container">
+                            <img src="assets/images/team/BerilDamaci.webp" alt="Beril Damacı" class="team-avatar" />
+                        </div>
+                        <h4 class="text-xl font-semibold">Beril Damacı</h4>
+                        <p class="team-role text-brand-blue" data-i18n="teamDesigner">Tasarımcı & Pazarlamacı</p>
+                        <a href="https://www.linkedin.com/in/beril-damaci/" target="_blank" class="inline-block mt-3 text-brand-blue hover:text-brand-blue-light">
+                            <i class="lni lni-linkedin-original text-2xl"></i>
+                        </a>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-avatar-container">
+                            <img src="assets/images/team/HilalGenc.webp" alt="Hilal Genç" class="team-avatar" />
+                        </div>
+                        <h4 class="text-xl font-semibold">Hilal Genç</h4>
+                        <p class="team-role text-brand-blue" data-i18n="teamDesigner">Tasarımcı & Pazarlamacı</p>
+                        <a href="https://www.linkedin.com/in/hilal--genc/" target="_blank" class="inline-block mt-3 text-brand-blue hover:text-brand-blue-light">
+                            <i class="lni lni-linkedin-original text-2xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section - FERAH ALAN -->
+    <section id="iletisim" data-section-tr="iletisim" data-section-en="contact" class="py-24 px-4 md:px-12">
+        <div class="container mx-auto max-w-4xl">
+            <div class="text-center mb-12">
+                <span class="text-brand-blue text-sm font-semibold uppercase tracking-wider" data-i18n="contact">İletişim</span>
+                <h2 class="text-3xl md:text-5xl font-bold font-display mt-4 mb-4" data-i18n="contactSubtitle">Birlikte Büyük İşler Başaralım</h2>
+                <p class="text-slate-400" data-i18n="contactSubtitleDesc">Ortaklık fırsatları veya iş ihtiyaçlarınız için bizimle iletişime geçin.</p>
+            </div>
+
+            <form action="https://formsubmit.co/info@solarityai.com" method="POST" class="space-y-6 bg-slate-900/50 p-8 rounded-2xl border border-slate-700">
                 <input type="hidden" name="_captcha" value="true">
                 <input type="hidden" name="_next" value="https://solarityai.com/thanks.html">
-                <input type="hidden" name="_error" value="https://solarityai.com/error.html">
-                <input type="hidden" name="_subject" id="contactFormSubject" value="New Contact Form Submission - Solarity AI">
 
-                <!-- Full Name -->
-                <div class="ud-form-group">
-                  <label for="name" data-i18n="contactName">Full Name <span class="required">*</span></label>
-                  <input type="text" name="name" id="name" data-i18n="contactNamePlaceholder" placeholder="Enter your name" required />
+                <div>
+                    <label for="contactName" class="block text-sm font-medium mb-2" data-i18n="contactName">Ad Soyad</label>
+                    <input type="text" id="contactName" name="name" required class="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-lg text-white focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/50 outline-none transition" />
                 </div>
 
-                <!-- Email -->
-                <div class="ud-form-group">
-                  <label for="email" data-i18n="contactEmailField">Email <span class="required">*</span></label>
-                  <input type="email" name="user_email" id="email" data-i18n="contactEmailPlaceholder" placeholder="example@mail.com" required>
+                <div>
+                    <label for="contactEmail" class="block text-sm font-medium mb-2" data-i18n="contactEmailField">E-posta</label>
+                    <input type="email" id="contactEmail" name="email" required class="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-lg text-white focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/50 outline-none transition" />
                 </div>
 
-                <!-- Company (Optional) -->
-                <div class="ud-form-group">
-                  <label for="company" data-i18n="contactCompany">Company</label>
-                  <input type="text" name="company" id="company" data-i18n="contactCompanyPlaceholder" placeholder="Your company name">
+                <div>
+                    <label for="contactMessage" class="block text-sm font-medium mb-2" data-i18n="contactMessage">Mesaj</label>
+                    <textarea id="contactMessage" name="message" rows="5" required class="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-lg text-white focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/50 outline-none transition resize-none"></textarea>
                 </div>
 
-                <!-- Message -->
-                <div class="ud-form-group">
-                  <label for="message" data-i18n="contactMessage">Your Message <span class="required">*</span></label>
-                  <textarea name="message" id="message" rows="5" data-i18n="contactMessagePlaceholder" placeholder="Tell us about your project or inquiry..." required></textarea>
-                </div>
-
-                <!-- Submit Button -->
-                <div class="ud-form-group mb-0">
-                  <button type="submit" class="ud-main-btn" data-i18n="contactSend" id="contactSubmitButton">Send Message</button>
-                </div>
-              </form>
-            </div>
-          </div>
+                <button type="submit" class="w-full px-6 py-3 bg-gradient-to-r from-brand-blue to-brand-blue-dark text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-brand-blue/50 transition" data-i18n="contactSend">
+                    Mesaj Gönder
+                </button>
+            </form>
         </div>
-      </div>
     </section>
-    <!-- ====== Contact Section End ====== -->
 
-    <!-- ====== Footer Start ====== -->
-    <footer class="ud-footer wow fadeInUp" data-wow-delay=".15s">
-      <div class="ud-footer-widgets">
-        <div class="container">
-          <div class="row">
-            <!-- Logo and Description -->
-            <div class="col-xl-4 col-lg-4 col-md-6">
-              <div class="ud-widget">
-                <a href="index.html" class="ud-footer-logo">
-                  <img src="assets/images/logo/Solarity AI - Company Logo.png" alt="Solarity AI" />
-                </a>
-                <p class="ud-widget-desc" data-i18n="footerDescription"></p>
-              </div>
-            </div>
-
-            <!-- Quick Links -->
-            <div class="col-xl-2 col-lg-2 col-md-6 col-sm-6">
-              <div class="ud-widget">
-                <h5 class="ud-widget-title" data-i18n="footerQuickLinks">Quick Links</h5>
-                <ul class="ud-widget-links">
-                  <li><a href="#about" data-i18n="navAbout">About</a></li>
-                  <li><a href="#partnerships" data-i18n="navPartnerships">Partnerships</a></li>
-                  <li><a href="#projects" data-i18n="navProjects">Projects</a></li>
-                  <li><a href="#team" data-i18n="navTeam">Team</a></li>
-                  <li><a href="#contact" data-i18n="navContact">Contact</a></li>
-                </ul>
-              </div>
-            </div>
-
-            <!-- Contact Info -->
-            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
-              <div class="ud-widget">
-                <h5 class="ud-widget-title" data-i18n="footerContact">Contact</h5>
-                <ul class="ud-widget-links">
-                  <li>
-                    <i class="lni lni-envelope" style="margin-right: 0.5rem;"></i>
-                    <a href="mailto:info@solarityai.com">info@solarityai.com</a>
-                  </li>
-                  <li>
-                    <i class="lni lni-map-marker" style="margin-right: 0.5rem;"></i>
-                    <span data-i18n="contactAddressValue">Dallas, Texas, USA</span>
-                  </li>
-                  <li>
-                    <i class="lni lni-briefcase" style="margin-right: 0.5rem;"></i>
-                    <a href="careers.html" data-i18n="navCareers">Careers</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            <!-- Social Media -->
-          <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
-            <div class="ud-widget">
-              <h5 class="ud-widget-title" data-i18n="footerFollowUs">Follow Us</h5>
-                <ul class="ud-widget-socials">
-                  <li>
-                    <a href="https://www.linkedin.com/company/solarityai-llc" target="_blank" rel="noopener noreferrer" onclick="gtag('event', 'click', {'event_category': 'Social', 'event_label': 'LinkedIn Contact'});">
-                      <i class="lni lni-linkedin-original"></i>
+    <!-- Footer - FERAH ALAN -->
+    <footer id="footer" class="bg-slate-950 border-t border-slate-800 py-16 px-4 md:px-12">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-8">
+                <div>
+                    <a href="#top" class="inline-block cursor-pointer hover:opacity-80 transition" title="Sayfa Başına Dön">
+                        <img src="assets/images/logo/Solarity AI - Company Logo.png" alt="Solarity AI" class="logo-standard mb-4" />
                     </a>
-                  </li>
-                  <li>
-                    <a href="https://www.instagram.com/solarityai_llc/" target="_blank" rel="noopener noreferrer" onclick="gtag('event', 'click', {'event_category': 'Social', 'event_label': 'Instagram Contact'});">
-                      <i class="lni lni-instagram-original"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://github.com/Solarity-AI" target="_blank" rel="noopener noreferrer" onclick="gtag('event', 'click', {'event_category': 'Social', 'event_label': 'GitHub Contact'});">
-                      <i class="lni lni-github-original"></i>
-                    </a>
-                  </li>
-                </ul>
-              </div>
+                    <p class="text-sm text-slate-400" data-i18n="footerDescription">Dünya standartlarında kaliteyle yüksek etkili B2B ve B2C çözümler üreten yapay zeka odaklı yazılım şirketi.</p>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold mb-4" data-i18n="footerQuickLinks">Hızlı Bağlantılar</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#hakkimizda" data-href-tr="#hakkimizda" data-href-en="#about" class="text-slate-400 hover:text-brand-blue transition nav-link" data-i18n="navAbout">Hakkımızda</a></li>
+                        <li><a href="#ortakliklar" data-href-tr="#ortakliklar" data-href-en="#partnerships" class="text-slate-400 hover:text-brand-blue transition nav-link" data-i18n="navPartnerships">Ortaklıklar</a></li>
+                        <li><a href="#projeler" data-href-tr="#projeler" data-href-en="#projects" class="text-slate-400 hover:text-brand-blue transition nav-link" data-i18n="navProjects">Projeler</a></li>
+                        <li><a href="#ekip" data-href-tr="#ekip" data-href-en="#team" class="text-slate-400 hover:text-brand-blue transition nav-link" data-i18n="navTeam">Ekip</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold mb-4" data-i18n="footerContact">İletişim</h4>
+                    <ul class="space-y-2 text-sm text-slate-400">
+                        <li>Dallas, Texas, ABD</li>
+                        <li><a href="mailto:info@solarityai.com" class="hover:text-brand-blue transition">info@solarityai.com</a></li>
+                        <li><a href="careers.html" class="hover:text-brand-blue transition" data-i18n="navCareers">Kariyer</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold mb-4" data-i18n="footerFollowUs">Bizi Takip Edin</h4>
+                    <div class="flex space-x-4">
+                        <a href="https://www.linkedin.com/company/solarityai-llc" target="_blank" class="text-2xl text-slate-400 hover:text-brand-blue transition">
+                            <i class="lni lni-linkedin-original"></i>
+                        </a>
+                        <a href="https://www.instagram.com/solarityai_llc/" target="_blank" class="text-2xl text-slate-400 hover:text-brand-blue transition">
+                            <i class="lni lni-instagram-original"></i>
+                        </a>
+                        <a href="https://github.com/Solarity-AI" target="_blank" class="text-2xl text-slate-400 hover:text-brand-blue transition">
+                            <i class="lni lni-github-original"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
-          </div>
+
+            <div class="border-t border-slate-800 pt-8 text-center text-sm text-slate-500">
+                <p data-i18n="footerCopyright">© 2026 Solarity AI LLC. Tüm hakları saklıdır.</p>
+            </div>
         </div>
-      </div>
-
-      <div class="ud-footer-bottom">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12 text-center">
-              <p class="ud-footer-bottom-right" data-i18n="footerCopyright">
-                © 2025 Solarity AI. All rights reserved.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
     </footer>
-    <!-- ====== Footer End ====== -->
 
-    <!-- ====== Back To Top Start ====== -->
-    <a href="javascript:void(0)" class="back-to-top">
-      <i class="lni lni-chevron-up"></i>
-    </a>
-    <!-- ====== Back To Top End ====== -->
-
-    <!-- ====== All Javascript Files ====== -->
+    <!-- Scripts -->
     <script src="assets/js/translations.js"></script>
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/wow.min.js"></script>
     <script src="assets/js/language.js"></script>
-    <script src="assets/js/main.js"></script>
+
     <script>
-      console.log('=== MOBILE MENU SCRIPT LOADING ===');
-      
-      // ULTRA SIMPLE DIRECT APPROACH
-      window.addEventListener('load', function() {
-        console.log('=== PAGE LOADED, INITIALIZING MENU ===');
-        
-        setTimeout(function() {
-          console.log('=== SETTING UP MENU NOW ===');
-          
-          const btn = document.getElementById('mobileMenuToggle');
-          const menu = document.querySelector('.navbar-collapse');
-          
-          console.log('Button found:', !!btn);
-          console.log('Menu found:', !!menu);
-          
-          if (!btn) {
-            console.error('BUTTON NOT FOUND!');
-            return;
-          }
-          
-          if (!menu) {
-            console.error('MENU NOT FOUND!');
-            return;
-          }
+        // Mobile Menu Toggle
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        });
 
-          // Disable Bootstrap
-          btn.removeAttribute('data-bs-toggle');
-          btn.removeAttribute('data-bs-target');
-          
-          if (window.bootstrap) {
-            try {
-              const collapse = bootstrap.Collapse.getInstance(menu);
-              if (collapse) {
-                collapse.dispose();
-                console.log('Bootstrap collapse disposed');
-              }
-            } catch(e) {
-              console.log('Bootstrap error:', e);
-            }
-          }
+        // Language Switcher - BOTH DESKTOP & MOBILE
+        function toggleLanguage() {
+            const currentLang = localStorage.getItem('solarityai-lang') || 'tr';
+            const newLang = currentLang === 'tr' ? 'en' : 'tr';
+            localStorage.setItem('solarityai-lang', newLang);
 
-          // Replace button to remove all listeners
-          const newBtn = btn.cloneNode(true);
-          btn.parentNode.replaceChild(newBtn, btn);
-          console.log('Button replaced');
+            // Update both buttons
+            const langText = newLang === 'tr' ? '🇹🇷 TR' : '🇬🇧 EN';
+            const desktopLang = document.getElementById('currentLang');
+            const mobileLang = document.getElementById('currentLangMobile');
 
-          // Toggle function
-          function toggleMenu() {
-            const isOpen = menu.classList.contains('show');
-            console.log('TOGGLE CALLED - Menu open:', isOpen);
-            
-            if (isOpen) {
-              newBtn.classList.remove('active');
-              menu.classList.remove('show');
-              document.body.style.overflow = '';
-              console.log('✅ MENU CLOSED');
+            if (desktopLang) desktopLang.textContent = langText;
+            if (mobileLang) mobileLang.textContent = langText;
+
+            if (typeof setLanguage === 'function') {
+                setLanguage(newLang);
             } else {
-              newBtn.classList.add('active');
-              menu.classList.add('show');
-              document.body.style.overflow = 'hidden';
-              console.log('✅ MENU OPENED');
+                location.reload();
             }
-          }
+        }
 
-          // Direct onclick
-          newBtn.onclick = function(e) {
-            console.log('ONCLICK FIRED');
-            e.preventDefault();
-            e.stopPropagation();
-            e.stopImmediatePropagation();
-            toggleMenu();
-            return false;
-          };
+        // Initialize - Set current language on both buttons
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentLang = localStorage.getItem('solarityai-lang') || 'tr';
+            const langText = currentLang === 'tr' ? '🇹🇷 TR' : '🇬🇧 EN';
 
-          // addEventListener backup
-          newBtn.addEventListener('click', function(e) {
-            console.log('ADDEVENTLISTENER FIRED');
-            e.preventDefault();
-            e.stopPropagation();
-            toggleMenu();
-          }, true);
+            const desktopLang = document.getElementById('currentLang');
+            const mobileLang = document.getElementById('currentLangMobile');
 
-          // Test click
-          console.log('Adding test click handler...');
-          newBtn.addEventListener('mousedown', function() {
-            console.log('MOUSEDOWN on button!');
-          });
-
-          // Close on links
-          const links = menu.querySelectorAll('a');
-          links.forEach(function(link) {
-            link.addEventListener('click', function() {
-              setTimeout(function() {
-                newBtn.classList.remove('active');
-                menu.classList.remove('show');
-                document.body.style.overflow = '';
-              }, 100);
-            });
-          });
-
-          // Close on outside
-          document.addEventListener('click', function(e) {
-            if (menu.classList.contains('show')) {
-              if (!menu.contains(e.target) && !newBtn.contains(e.target)) {
-                newBtn.classList.remove('active');
-                menu.classList.remove('show');
-                document.body.style.overflow = '';
-              }
-            }
-          });
-
-          console.log('✅ MENU SETUP COMPLETE');
-          console.log('Button element:', newBtn);
-          console.log('Menu element:', menu);
-        }, 1000);
-      });
+            if (desktopLang) desktopLang.textContent = langText;
+            if (mobileLang) mobileLang.textContent = langText;
+        });
     </script>
-  </body>
+</body>
 </html>
