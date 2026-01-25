@@ -2,8 +2,128 @@
 (function() {
   'use strict';
 
-  // Get current language from localStorage or default to 'en'
-  let currentLang = localStorage.getItem('solarityai-lang') || 'en';
+  // Get current language from localStorage or default to 'tr'
+  let currentLang = localStorage.getItem('solarityai-lang') || 'tr';
+
+  // Initialize language on page load
+  function initLanguage() {
+    setupLanguageSwitcher();
+    setLanguage(currentLang);
+    updateLanguageSwitcher();
+  }
+
+  // Update URL based on language - BASIT ÇÖZÜM (SUNUCU OLMADAN)
+  function updateUrlForLanguage(lang) {
+    const currentHash = window.location.hash;
+
+    // Don't update URL during initial page load
+    if (!window.solarityUrlInitialized) {
+      window.solarityUrlInitialized = true;
+      return;
+    }
+
+    // Translate hash anchors
+    let newHash = currentHash;
+    if (currentHash) {
+      newHash = translateHash(currentHash, lang);
+    }
+
+    // Ana sayfa için sadece hash'i güncelle
+    if (newHash !== currentHash && newHash) {
+      console.log('🔗 Updating URL hash:', currentHash, '→', newHash);
+      window.history.replaceState({}, '', newHash);
+    }
+
+    // Update meta tags and lang attribute
+    updateMetaTags(lang, window.location.pathname);
+  }
+
+  // Translate hash/anchor links based on language
+  function translateHash(hash, lang) {
+    const hashMap = {
+      tr: {
+        '#about': '#hakkimizda',
+        '#partnerships': '#ortakliklar',
+        '#projects': '#projeler',
+        '#team': '#ekip',
+        '#contact': '#iletisim'
+      },
+      en: {
+        '#hakkimizda': '#about',
+        '#ortakliklar': '#partnerships',
+        '#projeler': '#projects',
+        '#ekip': '#team',
+        '#iletisim': '#contact'
+      }
+    };
+
+    return hashMap[lang][hash] || hash;
+  }
+
+  // Update all navigation links (navbar, footer) based on language
+  function updateNavigationLinks(lang) {
+    const navLinks = document.querySelectorAll('.nav-link[data-href-tr][data-href-en]');
+    navLinks.forEach(link => {
+      const hrefTr = link.getAttribute('data-href-tr');
+      const hrefEn = link.getAttribute('data-href-en');
+
+      if (lang === 'tr') {
+        link.href = hrefTr;
+      } else if (lang === 'en') {
+        link.href = hrefEn;
+      }
+
+      console.log('🔗 Nav link updated:', link.href);
+    });
+
+
+    // Also update section IDs (only if on same page)
+    updateSectionIds(lang);
+  }
+
+  // Update section IDs based on language
+  function updateSectionIds(lang) {
+    const sections = document.querySelectorAll('section[data-section-tr][data-section-en]');
+    sections.forEach(section => {
+      const idTr = section.getAttribute('data-section-tr');
+      const idEn = section.getAttribute('data-section-en');
+
+      if (lang === 'tr') {
+        section.id = idTr;
+      } else if (lang === 'en') {
+        section.id = idEn;
+      }
+
+      console.log('📍 Section ID updated:', section.id);
+    });
+  }
+
+  // Update meta tags based on language
+  function updateMetaTags(lang, path) {
+    const baseUrl = 'https://solarityai.com';
+    const fullUrl = baseUrl + path;
+
+    // Update canonical
+    const canonical = document.querySelector('link[rel="canonical"]');
+    if (canonical) {
+      canonical.href = fullUrl;
+    }
+
+    // Update og:url
+    const ogUrl = document.querySelector('meta[property="og:url"]');
+    if (ogUrl) {
+      ogUrl.content = fullUrl;
+    }
+
+    // Update twitter:url
+    const twitterUrl = document.querySelector('meta[property="twitter:url"]');
+    if (twitterUrl) {
+      twitterUrl.content = fullUrl;
+    }
+
+    // Update html lang
+    document.documentElement.lang = lang;
+  }
 
   // Initialize language on page load
   function initLanguage() {
@@ -27,6 +147,12 @@
     // Update HTML lang attribute
     document.documentElement.lang = lang;
     
+    // Update URL based on language (EN: /en/, TR: /)
+    updateUrlForLanguage(lang);
+
+    // Update navigation anchor links
+    updateNavigationLinks(lang);
+
     console.log('🌐 Setting language to:', lang);
     console.log('📚 Translations available for this language:', !!translationsObj[lang]);
     if (translationsObj[lang]) {
@@ -115,6 +241,15 @@
       }
     });
 
+    // Update all elements with data-i18n-placeholder attribute (for placeholder text)
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
+      const key = element.getAttribute('data-i18n-placeholder');
+      if (translationsObj[lang] && translationsObj[lang][key]) {
+        element.placeholder = translationsObj[lang][key];
+        console.log('📝 PLACEHOLDER UPDATE:', key, '| New:', translationsObj[lang][key]);
+      }
+    });
+
     // Update all elements with data-i18n-html attribute (for HTML content)
     document.querySelectorAll('[data-i18n-html]').forEach(element => {
       const key = element.getAttribute('data-i18n-html');
@@ -131,11 +266,26 @@
       }
     });
 
-    // Update title and meta tags
-    if (lang === 'tr') {
-      document.title = 'Solarity AI - Yapay Zeka Odaklı Yazılım Şirketi | Kurumsal Çözümler';
+    // Update title - ALWAYS START WITH "Solarity AI"
+    const currentPath = window.location.pathname;
+
+    // Determine page type
+    const isCareerPage = currentPath.includes('career') || currentPath.includes('kariyer') || currentPath.includes('careers');
+
+    if (isCareerPage) {
+      // Kariyer sayfası title'ları
+      if (lang === 'tr') {
+        document.title = 'Solarity AI - Kariyer';
+      } else {
+        document.title = 'Solarity AI - Career';
+      }
     } else {
-      document.title = 'Solarity AI - AI-Native Software Company | Enterprise Solutions';
+      // Ana sayfa title'ları
+      if (lang === 'tr') {
+        document.title = 'Solarity AI - Ana Sayfa';
+      } else {
+        document.title = 'Solarity AI - Home';
+      }
     }
 
     // Update hidden form fields
