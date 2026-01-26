@@ -12,10 +12,10 @@ window.translations = {
     navToggleMenu: "Toggle navigation menu",
     
     // About Section
-    aboutUs: "About Us",
+    about: "About",
     aboutTitle: "AI-Native Software Company",
     aboutSubtitle: "Creating High-Impact B2B and B2C Solutions with World-Class Quality",
-    capabilityAI: "Artificial Intelligence & Machine Learning",
+    capabilityAI: "AI & ML",
     capabilityAIDesc: "Advanced AI/ML solutions powered by cutting-edge algorithms and neural networks",
     capabilityMobile: "Mobile Application Development",
     capabilityMobileDesc: "Native and cross-platform mobile apps for iOS and Android",
@@ -29,12 +29,13 @@ window.translations = {
     // Stats Bar
     statsProjects: "Completed Projects",
     statsSatisfaction: "Client Satisfaction",
-    statsSupport: "Support Service",
+    statsSupport: "24/7 support service",
+    statsSupportNumber: "24/7",
 
     // Services Section - NEW 5 Services
-    aboutUs: "About Us",
+    aboutUs: "About",
     servicesTitle: "Our Services",
-    serviceAI: "Artificial Intelligence & Machine Learning",
+    serviceAI: "AI & ML",
     serviceAIDesc: "Advanced AI and machine learning solutions powered by state-of-the-art algorithms and neural networks. Deep learning models, natural language processing, and computer vision applications.",
     serviceEnterprise: "Enterprise Software Solutions",
     serviceEnterpriseDesc: "Custom-designed enterprise software solutions tailored to your business needs. ERP, CRM, and specialized business applications.",
@@ -43,13 +44,37 @@ window.translations = {
     serviceWeb: "Web Application Development",
     serviceWebDesc: "Scalable and responsive web applications built with modern technologies. React, Vue, Angular, and Next.js.",
     serviceMobile: "Mobile Application Development",
-    serviceMobileDesc: "Native and cross-platform mobile applications for iOS and Android. React Native, Flutter, and Swift.",
+    serviceMobileDesc: "Native and cross-platform mobile applications for iOS and Android. React Native, Flutter, Swift and Kotlin.",
 
     // Service Tags (AI Card)
     tagDeepLearning: "Deep Learning",
     tagNLP: "NLP",
     tagComputerVision: "Computer Vision",
     tagNeuralNetworks: "Neural Networks",
+
+    // Enterprise service tags
+    tagERP: "ERP",
+    tagCRM: "CRM",
+    tagCustomApps: "Custom Business Apps",
+    tagIntegration: "Systems Integration",
+
+    // Cloud service tags
+    tagAWS: "AWS",
+    tagAzure: "Azure",
+    tagGCP: "Google Cloud",
+    tagServerless: "Serverless",
+
+    // Web service tags
+    tagReact: "React",
+    tagVue: "Vue.js",
+    tagNextJS: "Next.js",
+    tagResponsive: "Responsive Design",
+
+    // Mobile service tags
+    tagReactNative: "React Native",
+    tagFlutter: "Flutter",
+    tagiOS: "iOS",
+    tagAndroid: "Android",
 
     // Partnerships Section
     partnerships: "Partnerships",
@@ -81,21 +106,21 @@ window.translations = {
     teamManagers: "Business Development Managers",
     teamBDMInterns: "BDM Interns",
     teamEngineers: "Engineers",
-    teamDesigners: "Designers & Marketers",
+    teamMarketers: "Marketing Specialists",
     teamCEO: "CEO",
     teamCTO: "CTO",
     teamCIO: "CIO",
     teamBDM: "BDM",
     teamBDMIntern: "BDM Intern",
     teamFullStackLead: "Senior Full-Stack Software Engineer",
-    teamDesigner: "Designer & Marketer",
+    teamMarketer: "Marketing Specialist",
     teamBackendEngineerIntern: "Back-End Engineer Intern",
     teamFrontendEngineerIntern: "Front-End Engineer Intern",
 
     
     // Contact Section
     contact: "Contact Us",
-    contactSubtitle: "Let's Build Something Great Together",
+    contactSubtitle: "Let's Build Something Great Together🚀",
     contactSubtitleDesc: "Get in touch to explore partnership opportunities or discuss your business needs.",
     contactAddress: "Our Address",
     contactAddressValue: "Dallas, Texas, USA",
@@ -146,6 +171,8 @@ window.translations = {
     careersFormMessagePlaceholder: "Tell us about yourself and why you want to work at Solarity AI...",
     careersFormSubmit: "Submit Application",
     careersFormSubmitting: "Submitting...",
+    careersFormWait: "Please wait...",
+    careersFormCaptchaInfo: "Your application is being sent and captcha verification will be performed.",
     careersFormSuccess: "Application received successfully!",
     careersFormSuccessMsg: "We'll get back to you as soon as possible.",
     careersFormError: "An error occurred!",
@@ -283,7 +310,7 @@ window.translations = {
     navToggleMenu: "Menüyü aç/kapat",
     
     // About Section
-    aboutUs: "Hakkımızda",
+    about: "Hakkımızda",
     aboutTitle: "Yapay Zeka Odaklı Yazılım Şirketi",
     aboutSubtitle: "Dünya standartlarında kaliteyle, yüksek etkili B2B ve B2C çözümler geliştiriyoruz",
 
@@ -298,13 +325,37 @@ window.translations = {
     serviceWeb: "Web Uygulama Geliştirme",
     serviceWebDesc: "Modern teknolojilerle geliştirilmiş, ölçeklenebilir ve duyarlı web uygulamaları. React, Vue, Angular ve Next.js.",
     serviceMobile: "Mobil Uygulama Geliştirme",
-    serviceMobileDesc: "iOS ve Android platformları için yerel ve çapraz platform mobil uygulamalar. React Native, Flutter ve Swift.",
+    serviceMobileDesc: "iOS ve Android platformları için yerel ve çapraz platform mobil uygulamalar. React Native, Flutter, Swift ve Kotlin.",
 
     // Service Tags (AI Card)
     tagDeepLearning: "Derin Öğrenme",
     tagNLP: "Doğal Dil İşleme",
     tagComputerVision: "Bilgisayarlı Görü",
     tagNeuralNetworks: "Sinir Ağları",
+
+    // Enterprise service tags
+    tagERP: "ERP",
+    tagCRM: "CRM",
+    tagCustomApps: "Özel İş Uygulamaları",
+    tagIntegration: "Sistem Entegrasyonu",
+
+    // Cloud service tags
+    tagAWS: "AWS",
+    tagAzure: "Azure",
+    tagGCP: "Google Cloud",
+    tagServerless: "Sunucusuz",
+
+    // Web service tags
+    tagReact: "React",
+    tagVue: "Vue.js",
+    tagNextJS: "Next.js",
+    tagResponsive: "Duyarlı Tasarım",
+
+    // Mobile service tags
+    tagReactNative: "React Native",
+    tagFlutter: "Flutter",
+    tagiOS: "iOS",
+    tagAndroid: "Android",
 
     // OLD capabilities (keeping for backward compatibility)
     capabilityAI: "Yapay Zeka ve Makine Öğrenmesi",
@@ -319,9 +370,10 @@ window.translations = {
     capabilityCloudDesc: "Modern mimari prensipleriyle inşa edilen ölçeklenebilir bulut çözümleri",
     
     // Stats Bar
-    statsProjects: "Tamamlanan Proje",
+    statsProjects: "Tamamlanan Projeler",
     statsSatisfaction: "Müşteri Memnuniyeti",
-    statsSupport: "Destek Hizmeti",
+    statsSupport: "7/24 destek hizmeti",
+    statsSupportNumber: "7/24",
 
     // Partnerships Section
     partnerships: "Ortaklıklarımız",
@@ -352,21 +404,21 @@ window.translations = {
     teamCLevel: "Liderlik",
     teamManagers: "İş Geliştirme Yöneticileri",
     teamBDMInterns: "BDM Stajyerleri",
-    teamEngineers: "Mühendislik",
-    teamDesigners: "Tasarım & Pazarlama",
+    teamEngineers: "Mühendisler",
+    teamMarketers: "Pazarlama Uzmanları",
     teamCEO: "CEO",
     teamCTO: "CTO",
     teamCIO: "CIO",
     teamBDM: "BDM",
     teamBDMIntern: "BDM Stajyer",
     teamFullStackLead: "Senior Full-Stack Software Engineer",
-    teamDesigner: "Tasarımcı & Pazarlamacı",
+    teamMarketer: "Pazarlama Uzmanı",
     teamBackendEngineerIntern: "Back-End Engineer Intern",
     teamFrontendEngineerIntern: "Front-End Engineer Intern",
     
     // Contact Section
     contact: "İletişim",
-    contactSubtitle: "Birlikte Büyük İşler Başaralım",
+    contactSubtitle: "Birlikte Büyük İşler Başaralım🚀",
     contactSubtitleDesc: "Ortaklık fırsatları veya iş ihtiyaçlarınız için bizimle iletişime geçin.",
     contactAddress: "Adresimiz",
     contactAddressValue: "Dallas, Texas, ABD",
@@ -417,6 +469,8 @@ window.translations = {
     careersFormMessagePlaceholder: "Kendinizden ve neden Solarity AI'de çalışmak istediğinizden bahsedin...",
     careersFormSubmit: "Başvuruyu Gönder",
     careersFormSubmitting: "Gönderiliyor...",
+    careersFormWait: "Lütfen bekleyin...",
+    careersFormCaptchaInfo: "Başvurunuz gönderiliyor ve captcha doğrulaması yapılacaktır.",
     careersFormSuccess: "Başvurunuz başarıyla alındı!",
     careersFormSuccessMsg: "En kısa sürede size dönüş yapacağız.",
     careersFormError: "Bir hata oluştu!",
@@ -545,5 +599,53 @@ window.translations = {
   }
 };
 
+// Ensure default language is English and update support translations
+window.defaultLang = 'en'; // DEFAULT: ENGLISH
+
+if (window.translations) {
+  // Ensure language objects exist
+  window.translations.en = window.translations.en || {};
+  window.translations.tr = window.translations.tr || {};
+
+  // Update support stat translations
+  window.translations.en.statsSupport = "24/7 support service";
+  window.translations.tr.statsSupport = "7/24 destek hizmeti";
+}
+
+// Helper: safe translation getter with sensible fallbacks
+window.t = window.t || function(key, lang) {
+  lang = lang || window.defaultLang || 'en';
+
+  if (window.translations && window.translations[lang] && window.translations[lang][key]) {
+    return window.translations[lang][key];
+  }
+  // fallback to English
+  if (window.translations && window.translations.en && window.translations.en[key]) {
+    return window.translations.en[key];
+  }
+  // fallback to Turkish
+  if (window.translations && window.translations.tr && window.translations.tr[key]) {
+    return window.translations.tr[key];
+  }
+  // final fallback: return the key
+  return key;
+};
+
 // Also expose as const for backward compatibility
 const translations = window.translations;
+
+// Ensure global TRANSLATIONS object exists and add banner strings (non-destructive)
+window.TRANSLATIONS = window.TRANSLATIONS || window.translations || {};
+window.TRANSLATIONS.tr = window.TRANSLATIONS.tr || {};
+window.TRANSLATIONS.en = window.TRANSLATIONS.en || {};
+
+// Banner translations
+window.TRANSLATIONS.tr.bannerSubtitle = 'Kurumsal yapay zeka çözümleriyle rekabet avantajı sağlıyoruz.';
+window.TRANSLATIONS.tr.bannerCTA = 'Daha Fazla Bilgi';
+window.TRANSLATIONS.tr.bannerTagline = 'Yapay Zeka Odaklı Yazılım Şirketi';
+
+window.TRANSLATIONS.en.bannerSubtitle = 'We deliver enterprise AI solutions that create competitive advantage.';
+window.TRANSLATIONS.en.bannerCTA = 'Learn More';
+window.TRANSLATIONS.en.bannerTagline = 'AI-Native Software Company';
+
+// Optionally other scripts can read window.TRANSLATIONS to populate UI
