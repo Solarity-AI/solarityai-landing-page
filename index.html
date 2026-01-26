@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -105,9 +105,17 @@
         theme: {
           extend: {
             colors: {
-              'brand-blue': '#1e40af',
-              'brand-blue-dark': '#1e3a8a',
-              'brand-blue-light': '#3b82f6',
+              // Creative logo-inspired palette - Vibrant & Modern
+              'brand-blue': '#3b82f6',        // Bright blue
+              'brand-blue-dark': '#1e40af',   // Deep blue
+              'brand-blue-light': '#60a5fa',  // Sky blue
+              'brand-cyan': '#06b6d4',        // Vibrant cyan (logo color)
+              'brand-purple': '#8b5cf6',      // Purple accent
+              'brand-teal': '#14b8a6',        // Teal accent
+              'brand-emerald': '#10b981',     // Success green
+              'brand-indigo': '#6366f1',      // Indigo
+              'brand-pink': '#ec4899',        // Pink accent
+              'brand-slate': '#0f172a',       // Dark background
             },
             fontFamily: {
               sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
@@ -116,6 +124,7 @@
             animation: {
               'fade-in': 'fadeIn 0.5s ease-in-out',
               'slide-up': 'slideUp 0.5s ease-out',
+              'gradient': 'gradient 3s ease infinite',
             },
             keyframes: {
               fadeIn: {
@@ -125,6 +134,10 @@
               slideUp: {
                 '0%': { transform: 'translateY(20px)', opacity: '0' },
                 '100%': { transform: 'translateY(0)', opacity: '1' },
+              },
+              gradient: {
+                '0%, 100%': { backgroundPosition: '0% 50%' },
+                '50%': { backgroundPosition: '100% 50%' },
               },
             },
           }
@@ -143,17 +156,65 @@
     <!-- Custom Styles -->
     <style>
       /* Smooth Scrolling */
-      html { scroll-behavior: smooth; }
+      html {
+        scroll-behavior: smooth;
+        overflow-x: hidden !important;
+        max-width: 100vw;
+        width: 100%;
+      }
 
-      /* Enterprise Background - Platin Bilişim Deep Navy */
+      /* Enterprise Background - Vibrant Modern Style */
       body {
         font-family: 'Inter', system-ui, -apple-system, sans-serif;
-        background: #0a192f; /* Platin Bilişim derin lacivert */
-        background-image:
-          radial-gradient(at 0% 0%, rgba(16, 185, 129, 0.08) 0px, transparent 50%),
-          radial-gradient(at 100% 100%, rgba(59, 130, 246, 0.06) 0px, transparent 50%);
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+        background-size: 200% 200%;
+        animation: gradient 15s ease infinite;
         background-attachment: fixed;
         color: #e2e8f0;
+        overflow-x: hidden !important;
+        max-width: 100vw;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        position: relative;
+      }
+
+      body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background:
+          radial-gradient(circle at 20% 30%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+          radial-gradient(circle at 80% 70%, rgba(6, 182, 212, 0.15) 0%, transparent 50%),
+          radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      body > * {
+        position: relative;
+        z-index: 1;
+      }
+
+      /* Tüm section'lar için overflow önleme */
+      section {
+        max-width: 100vw;
+        overflow-x: hidden;
+      }
+
+      /* Container'lar için kesin sınırlar */
+      .container {
+        max-width: 100%;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      /* Tüm elementler için box-sizing */
+      *, *::before, *::after {
+        box-sizing: border-box;
       }
 
       /* ===== LOGO STANDARD - h-20 md:h-24 (DAHA BÜYÜK & ÇOK NET) ===== */
@@ -162,8 +223,12 @@
         width: auto;
         max-height: 6rem; /* max-h-24 = 96px */
         object-fit: contain;
-        filter: brightness(1.1);
+        filter: brightness(1.2) drop-shadow(0 2px 8px rgba(255, 255, 255, 0.1));
         transition: filter 0.3s ease, transform 0.3s ease;
+        /* Şeffaf arka plan için */
+        background: transparent;
+        mix-blend-mode: screen;
+        isolation: isolate;
       }
 
       @media (min-width: 768px) {
@@ -173,7 +238,7 @@
       }
 
       .logo-standard:hover {
-        filter: brightness(1.25);
+        filter: brightness(1.35) drop-shadow(0 4px 12px rgba(255, 255, 255, 0.2));
         transform: scale(1.05);
       }
 
@@ -208,6 +273,44 @@
         transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         position: relative;
         overflow: hidden;
+      }
+
+      /* Ensure featured card does not span grid and all cards have equal height */
+      .service-card-featured {
+        /* Cancel any grid spanning applied via utility classes */
+        grid-column: auto !important;
+        grid-row: auto !important;
+      }
+
+      /* Make all service cards use a column layout so content aligns consistently */
+      .service-card,
+      .service-card-featured {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        /* Use grid auto rows to enforce equal heights and make cards fill their cell */
+        min-height: 320px; /* fallback - ensure uniform visual height */
+        height: 100%;
+      }
+
+      /* Ensure grid rows distribute evenly so each card gets same height */
+      .services-grid {
+        grid-auto-rows: 1fr;
+      }
+
+      /* Keep service tags inline where possible */
+      .service-tag {
+        white-space: nowrap;
+      }
+
+      /* Normalize the large icon to match other icons for visual symmetry */
+      .service-icon-large {
+        width: 56px !important;
+        height: 56px !important;
+        border-radius: 1rem !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
 
       .service-card::before,
@@ -298,10 +401,20 @@
 
       .stat-item {
         text-align: center;
+        cursor: pointer;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        padding: 1rem;
+        border-radius: 0.75rem;
+      }
+
+      .stat-item:hover {
+        transform: translateY(-4px) scale(1.05);
+        background: rgba(30, 64, 175, 0.1);
+        box-shadow: 0 8px 24px rgba(30, 64, 175, 0.15);
       }
 
       .stat-number {
-        font-size: 2.5rem;
+        font-size: 3.5rem; /* Çok daha büyük */
         font-weight: 700;
         background: linear-gradient(135deg, #3b82f6, #1e40af);
         -webkit-background-clip: text;
@@ -311,133 +424,368 @@
 
       .stat-label {
         color: #94a3b8;
-        font-size: 0.875rem;
+        font-size: 1.125rem; /* Daha büyük */
         margin-top: 0.5rem;
+        font-weight: 500;
       }
 
-      /* ===== PARTNER GRID - 9 COLUMNS (PLATIN BILIŞIM STYLE) ===== */
-      .partner-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1.5rem;
-        align-items: center;
+      /* ===== PARTNER SLIDER - Sliding Window (Otomatik Kayan Carousel) ===== */
+      .partner-slider-container {
+        width: 100%;
+        max-width: 100vw;
+        overflow: hidden;
+        position: relative;
+        padding: 2rem 0;
+        margin: 0;
       }
 
-      @media (min-width: 768px) {
-        .partner-grid {
-          grid-template-columns: repeat(9, 1fr);
+      .partner-slider {
+        display: flex;
+        gap: 2rem;
+        animation: slidePartners 30s linear infinite;
+        width: max-content;
+        max-width: none;
+      }
+
+      .partner-slider:hover {
+        animation-play-state: paused;
+      }
+
+      @keyframes slidePartners {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-50%);
         }
       }
 
       .partner-logo-card {
         background: rgba(255, 255, 255, 0.95);
         border-radius: 0.75rem;
-        padding: 1.5rem;
+        padding: 1.5rem 2rem;
         display: flex;
         align-items: center;
         justify-content: center;
         transition: all 0.3s ease;
         min-height: 100px;
+        min-width: 150px;
+        max-width: 200px;
+        flex-shrink: 0;
+        box-sizing: border-box;
       }
 
       .partner-logo-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 12px 32px rgba(30, 64, 175, 0.15);
+        transform: translateY(-4px) scale(1.05);
+        box-shadow: 0 12px 32px rgba(30, 64, 175, 0.2);
       }
 
       .partner-logo-card img {
-        max-width: 100%;
+        max-width: 120px;
         max-height: 60px;
         object-fit: contain;
+        background: transparent;
+        filter: brightness(1.1) contrast(1.05) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.08));
+        transition: all 0.3s ease;
       }
 
-      /* Team Hierarchy - BDM Focus */
+      .partner-logo-card:hover img {
+        filter: brightness(1.15) contrast(1.1) drop-shadow(0 4px 8px rgba(0, 0, 0, 0.12));
+      }
+
+      /* Team Hierarchy - Modern & Equal Sizes */
       .team-grid-managers {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         gap: 2rem;
         margin-bottom: 2rem;
+        max-width: 100%;
+        place-items: center;
       }
 
       .team-grid-interns {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 1.5rem;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+        max-width: 100%;
+        place-items: center;
       }
 
+      /* Modern Team Card Design - Equal Sizes & Beautiful */
+      .team-card {
+        background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.95));
+        backdrop-filter: blur(20px);
+        border: 2px solid transparent;
+        background-clip: padding-box;
+        border-radius: 1.5rem;
+        padding: 1.5rem;
+        text-align: center;
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        max-width: 100%;
+        width: 100%;
+        min-height: 480px;
+        overflow: hidden;
+        box-sizing: border-box;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      /* Gradient border effect */
+      .team-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 1.5rem;
+        padding: 2px;
+        background: linear-gradient(135deg, #3b82f6, #06b6d4, #8b5cf6);
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+      }
+
+      .team-card:hover::before {
+        opacity: 1;
+      }
+
+      .team-card:hover {
+        transform: translateY(-12px) scale(1.02);
+        box-shadow:
+          0 20px 60px rgba(59, 130, 246, 0.4),
+          0 0 80px rgba(6, 182, 212, 0.2);
+      }
+
+      /* Manager cards - Special highlight */
       .team-card-manager {
-        transform: scale(1.05);
-        box-shadow: 0 20px 60px rgba(16, 185, 129, 0.2);
-        border: 2px solid #10b981;
+        border: 2px solid rgba(16, 185, 129, 0.5);
+        box-shadow: 0 10px 40px rgba(16, 185, 129, 0.25);
+      }
+
+      .team-card-manager::before {
+        background: linear-gradient(135deg, #10b981, #14b8a6, #06b6d4);
       }
 
       .team-card-manager .team-role {
         color: #10b981;
-        font-weight: 600;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
       }
 
+      /* CEO card - Ultra special */
+      .team-card-ceo {
+        border: 2px solid rgba(59, 130, 246, 0.6);
+        box-shadow: 0 10px 40px rgba(59, 130, 246, 0.3);
+      }
+
+      .team-card-ceo::before {
+        background: linear-gradient(135deg, #3b82f6, #6366f1, #8b5cf6);
+      }
+
+      /* Intern cards - Subtle style */
       .team-card-intern {
-        transform: scale(0.95);
+        min-height: 440px;
       }
 
-      .team-card {
-        background: rgba(30, 41, 59, 0.5);
-        border: 1px solid rgba(148, 163, 184, 0.1);
-        border-radius: 1rem;
-        padding: 1.5rem;
-        text-align: center;
-        transition: all 0.3s ease;
+      /* CEO kartı mobilde ilk sırada */
+      @media (max-width: 767px) {
+        .team-card-ceo {
+          order: -1;
+        }
       }
 
-      .team-card:hover {
-        transform: translateY(-4px) scale(1.02);
-        border-color: #1e40af;
-      }
-
-      /* ===== TEAM AVATARS - DAHA BÜYÜK KARTLAR ===== */
+      /* ===== TEAM AVATARS - Equal Sizes & Modern Style ===== */
       .team-avatar-container {
-        width: 12rem; /* w-48 = 192px - DAHA GENİŞ */
-        height: 15rem; /* h-60 = 240px - DAHA UZUN */
-        margin: 0 auto 1.5rem;
-        overflow: hidden; /* TAŞMAYI ENGELLE */
-        border-radius: 1rem; /* rounded-2xl */
-        border: 3px solid #10b981;
-        background: #1e293b;
+        width: 9rem;
+        height: 12rem;
+        margin: 0 auto 1rem auto;
+        overflow: hidden !important;
+        border-radius: 1.25rem;
+        border: 3px solid transparent;
+        background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(6, 182, 212, 0.2));
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        transition: all 0.4s ease;
+        flex-shrink: 0;
+        position: relative;
+      }
+
+      .team-card:hover .team-avatar-container {
+        transform: scale(1.05);
+        box-shadow: 0 12px 48px rgba(59, 130, 246, 0.4);
       }
 
       @media (min-width: 768px) {
         .team-avatar-container {
-          width: 14rem; /* md:w-56 = 224px - Desktop daha büyük */
-          height: 18rem; /* md:h-72 = 288px - Desktop çok uzun */
+          width: 10rem;
+          height: 13rem;
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .team-avatar-container {
+          width: 11rem;
+          height: 14rem;
         }
       }
 
       .team-avatar {
-        width: 100%; /* w-full - Çerçeveyi TAM doldur */
-        height: 100%; /* h-full - Çerçeveyi TAM doldur */
-        object-fit: cover; /* Çerçeveyi patlatma */
-        object-position: center top; /* Üstten hizala - KAFALAR GÖZÜKSÜN */
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center top;
+        display: block;
+        transition: transform 0.4s ease;
+      }
+
+      .team-card:hover .team-avatar {
+        transform: scale(1.08);
+      }
+
+      /* Team member name - fixed height for consistency */
+      .team-card h4 {
+        min-height: 3.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 1.4;
+      }
+
+      /* LinkedIn button - prominent and clickable */
+      .team-card > a,
+      .team-card .inline-block {
+        display: inline-flex !important;
+        align-items: center;
+        justify-content: center;
+        width: 48px;
+        height: 48px;
+        background: linear-gradient(135deg, #0077b5, #006399);
+        border-radius: 12px;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(0, 119, 181, 0.3);
+        position: relative;
+        z-index: 10;
+        cursor: pointer;
+      }
+
+      .team-card > a:hover,
+      .team-card .inline-block:hover {
+        transform: translateY(-4px) scale(1.1);
+        box-shadow: 0 8px 24px rgba(0, 119, 181, 0.5);
+        background: linear-gradient(135deg, #0088cc, #0077b5);
+      }
+
+      .team-card > a i,
+      .team-card .inline-block i {
+        font-size: 24px;
+        color: white !important;
+      }
+
+      /* Ramazan Çınar fotoğrafı için özel ayar - sağ alttaki AI işaretini kes */
+      .team-avatar-ramazan {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 10%; /* Fotoğrafı yukarı kaydır */
+        transform: scale(1.15); /* Hafif zoom yaparak kenarları kes */
         display: block;
       }
 
-      /* Team kartları da büyüsün */
-      .team-card {
-        background: rgba(30, 41, 59, 0.5);
-        border: 1px solid rgba(148, 163, 184, 0.12);
-        border-radius: 1rem;
-        padding: 2rem; /* Daha fazla padding */
-        text-align: center;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      }
 
       /* ===== RESPONSIVE ADJUSTMENTS ===== */
       @media (max-width: 768px) {
-        .partner-grid {
-          grid-template-columns: repeat(2, 1fr);
-        }
-
         .team-grid-managers {
           grid-template-columns: 1fr;
+          max-width: 100%;
+          place-items: center;
+          width: 100%;
+        }
+
+        .team-grid-interns {
+          grid-template-columns: 1fr;
+          place-items: center;
+          width: 100%;
+        }
+
+        .team-card {
+          max-width: 100%;
+          width: 100%;
+          margin: 0 auto;
+          padding: 1rem;
+          box-sizing: border-box;
+        }
+
+        .team-avatar-container {
+          width: 10rem;
+          height: 13rem;
+          margin: 0 auto 1rem auto !important;
+        }
+
+        .partner-logo-card {
+          min-width: 120px;
+          max-width: 160px;
+          padding: 1rem 1.5rem;
+        }
+
+        /* Mobilde agresif overflow önleme */
+        body, html {
+          max-width: 100vw !important;
+          overflow-x: hidden !important;
+        }
+
+        .container {
+          max-width: 100vw !important;
+          padding-left: 1rem !important;
+          padding-right: 1rem !important;
+        }
+
+        /* Tüm section padding'lerini daralt */
+        section {
+          padding-left: 1rem !important;
+          padding-right: 1rem !important;
+        }
+
+        /* Banner ve büyük elementleri sınırla */
+        .max-w-5xl, .max-w-4xl, .max-w-3xl {
+          max-width: calc(100vw - 2rem) !important;
+        }
+
+        /* Grid'leri sınırla */
+        .grid {
+          max-width: 100%;
+          width: 100%;
+        }
+      }
+
+      /* Ekstra dar ekranlar için */
+      @media (max-width: 480px) {
+        .partner-logo-card {
+          min-width: 100px;
+          max-width: 140px;
+          padding: 0.75rem 1rem;
+        }
+
+        .partner-slider {
+          gap: 1rem;
+        }
+
+        .team-avatar-container {
+          width: 9rem;
+          height: 12rem;
+          margin: 0 auto 1rem auto !important;
+          display: block;
+        }
+
+        .team-card {
+          padding: 0.75rem;
+          width: 100%;
+          box-sizing: border-box;
         }
       }
     </style>
@@ -448,17 +796,17 @@
     <!-- Header/Navbar - LOGO DAHA BÜYÜK -->
     <header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b" style="background: rgba(10, 25, 47, 0.95); border-color: rgba(16, 185, 129, 0.2);">
         <div class="container mx-auto px-4 md:px-12">
-            <nav class="flex items-center justify-between py-3.5">
-                <!-- Logo -->
-                <a href="#top" class="flex items-center">
-                    <img src="assets/images/logo/Solarity AI - Company Logo.png" alt="Solarity AI" class="logo-standard" />
+            <nav class="flex items-center justify-between py-3.5" style="gap: 2rem;">
+                <!-- Logo - Always stick to left -->
+                <a href="#top" class="flex items-center flex-shrink-0" style="margin-right: auto;">
+                    <img src="assets/images/logo/Solarity AI - Company Logo.svg" alt="Solarity AI" class="logo-standard" />
                 </a>
 
                 <!-- Desktop Menu + Buttons (NO OVERLAP!) -->
                 <div class="hidden md:flex items-center gap-6">
                     <ul class="flex items-center space-x-6 text-base font-medium">
-                        <li><a href="#hakkimizda" data-href-tr="#hakkimizda" data-href-en="#about" class="hover:text-emerald-400 transition nav-link" data-i18n="navAbout">Hakkımızda</a></li>
                         <li><a href="#ortakliklar" data-href-tr="#ortakliklar" data-href-en="#partnerships" class="hover:text-emerald-400 transition nav-link" data-i18n="navPartnerships">Ortaklıklar</a></li>
+                        <li><a href="#hakkimizda" data-href-tr="#hakkimizda" data-href-en="#about" class="hover:text-emerald-400 transition nav-link" data-i18n="navAbout">Hakkımızda</a></li>
                         <li><a href="#projeler" data-href-tr="#projeler" data-href-en="#projects" class="hover:text-emerald-400 transition nav-link" data-i18n="navProjects">Projeler</a></li>
                         <li><a href="#ekip" data-href-tr="#ekip" data-href-en="#team" class="hover:text-emerald-400 transition nav-link" data-i18n="navTeam">Ekip</a></li>
                         <li><a href="#iletisim" data-href-tr="#iletisim" data-href-en="#contact" class="hover:text-emerald-400 transition nav-link" data-i18n="navContact">İletişim</a></li>
@@ -470,7 +818,7 @@
                         <button id="languageSwitcher" onclick="toggleLanguage()"
                                 class="px-3 py-2 text-sm font-semibold rounded-lg transition"
                                 style="background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.3); color: #10b981;">
-                            <span id="currentLang">🇹🇷 TR</span>
+                            <span id="currentLang">🇬🇧 EN</span>
                         </button>
 
                         <!-- Career Button -->
@@ -488,7 +836,7 @@
                     <button id="languageSwitcherMobile" onclick="toggleLanguage()"
                             class="px-3 py-1.5 text-xs font-semibold rounded-lg"
                             style="background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.3); color: #10b981;">
-                        <span id="currentLangMobile">🇹🇷 TR</span>
+                        <span id="currentLangMobile">EN</span>
                     </button>
                     <button id="mobileMenuBtn" class="text-2xl text-emerald-400">☰</button>
                 </div>
@@ -497,8 +845,8 @@
             <!-- Mobile Menu -->
             <div id="mobileMenu" class="hidden md:hidden pb-4">
                 <ul class="flex flex-col space-y-3 text-base">
-                    <li><a href="#hakkimizda" data-href-tr="#hakkimizda" data-href-en="#about" class="block hover:text-emerald-400 transition nav-link" data-i18n="navAbout">Hakkımızda</a></li>
                     <li><a href="#ortakliklar" data-href-tr="#ortakliklar" data-href-en="#partnerships" class="block hover:text-emerald-400 transition nav-link" data-i18n="navPartnerships">Ortaklıklar</a></li>
+                    <li><a href="#hakkimizda" data-href-tr="#hakkimizda" data-href-en="#about" class="block hover:text-emerald-400 transition nav-link" data-i18n="navAbout">Hakkımızda</a></li>
                     <li><a href="#projeler" data-href-tr="#projeler" data-href-en="#projects" class="block hover:text-emerald-400 transition nav-link" data-i18n="navProjects">Projeler</a></li>
                     <li><a href="#ekip" data-href-tr="#ekip" data-href-en="#team" class="block hover:text-emerald-400 transition nav-link" data-i18n="navTeam">Ekip</a></li>
                     <li><a href="#iletisim" data-href-tr="#iletisim" data-href-en="#contact" class="block hover:text-emerald-400 transition nav-link" data-i18n="navContact">İletişim</a></li>
@@ -511,14 +859,36 @@
     <!-- Hero Section - LOGO İÇİN YETERLİ ALAN -->
     <section class="pt-36 pb-20 px-4 md:px-12">
         <div class="container mx-auto text-center">
-            <h1 class="text-4xl md:text-6xl font-bold font-display mb-8 text-white">
-                <span class="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent" data-i18n="aboutTitle">
+            <h1 class="text-4xl md:text-6xl font-bold font-display mb-4 text-white">
+                <span class="bg-gradient-to-r from-brand-cyan via-brand-blue to-brand-purple bg-clip-text text-transparent animate-gradient" style="background-size: 200% 200%;" data-i18n="aboutTitle">
                     Yapay Zeka Odaklı Yazılım Şirketi
                 </span>
             </h1>
-            <p class="text-lg md:text-xl text-slate-300 max-w-3xl mx-auto" data-i18n="aboutSubtitle">
+            <p class="text-lg md:text-xl text-slate-300 max-w-3xl mx-auto mb-6" data-i18n="aboutSubtitle">
                 Dünya standartlarında kaliteyle, yüksek etkili B2B ve B2C çözümler geliştiriyoruz
             </p>
+
+            <!-- Corporate Banner (placed under the hero title) -->
+            <div class="mt-8">
+                <div class="max-w-5xl mx-auto bg-gradient-to-r from-brand-blue via-brand-cyan to-brand-purple text-white rounded-2xl p-6 md:p-10 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6" style="box-shadow: 0 20px 60px rgba(59, 130, 246, 0.4);">
+                    <div class="flex items-start gap-5">
+                        <!-- subtle tech icon -->
+                        <div class="bg-white/10 p-3 rounded-xl flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 md:w-12 md:h-12 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l2 2m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <div class="text-left">
+                            <p class="text-base md:text-lg font-bold uppercase opacity-90 tracking-wide" data-i18n="bannerTagline">Yapay Zeka Odaklı Yazılım Şirketi</p>
+                            <p class="text-lg md:text-xl font-medium opacity-95 mt-2 leading-relaxed" data-i18n="bannerSubtitle">Kurumsal yapay zeka çözümleriyle rekabet avantajı sağlıyoruz.</p>
+                        </div>
+                    </div>
+
+                    <a id="bannerCTA" class="inline-flex items-center gap-2 px-6 py-3 md:px-8 md:py-4 bg-white text-brand-blue rounded-xl font-bold text-base md:text-lg hover:shadow-xl hover:scale-105 transition-all" data-i18n="bannerCTA">
+                        Daha Fazla Bilgi
+                    </a>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -527,16 +897,90 @@
         <div class="container mx-auto">
             <div class="stats-bar">
                 <div class="stat-item">
-                    <div class="stat-number">50+</div>
+                    <div class="stat-number">20+</div>
                     <div class="stat-label" data-i18n="statsProjects">Tamamlanan Proje</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number">%100</div>
+                    <div class="stat-number">%200</div>
                     <div class="stat-label" data-i18n="statsSatisfaction">Müşteri Memnuniyeti</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number">24/7</div>
+                    <div class="stat-number" data-i18n="statsSupportNumber">24/7</div>
                     <div class="stat-label" data-i18n="statsSupport">Destek Hizmeti</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partnership Sliding Window - HERO SECTION ALTINDA -->
+    <section id="ortakliklar" data-section-tr="ortakliklar" data-section-en="partnerships" class="py-16 px-4 md:px-12 bg-slate-900/30">
+        <div class="container mx-auto">
+            <div class="text-center mb-12">
+                <span class="text-brand-blue text-lg md:text-xl font-bold uppercase tracking-wider" data-i18n="partnerships">Ortaklıklarımız</span>
+                <h2 class="text-3xl md:text-5xl font-bold font-display mt-4 mb-4" data-i18n="partnershipsSubtitle">Sektör Liderleri Tarafından Güvenilen</h2>
+                <p class="text-slate-400" data-i18n="partnershipsSubtitleDesc">Yenilikçi çözümler sunmak için sektörün önde gelen şirketleri ve organizasyonlarıyla stratejik işbirlikleri gerçekleştiriyoruz</p>
+            </div>
+
+            <!-- Sliding Partner Carousel -->
+            <div class="partner-slider-container">
+                <div class="partner-slider">
+                    <!-- İlk Set -->
+                    <a href="https://www.ticaret.gov.tr/" target="_blank" rel="noopener noreferrer" class="partner-logo-card">
+                        <img src="assets/images/brands/Ticaret_Bakanligi_logo.svg" alt="Ticaret Bakanlığı" />
+                    </a>
+                    <a href="https://www.isisdanismanlik.com/" target="_blank" rel="noopener noreferrer" class="partner-logo-card">
+                        <img src="assets/images/brands/isis.png" alt="ISIS" />
+                    </a>
+                    <a href="https://www.novartis.com/" target="_blank" rel="noopener noreferrer" class="partner-logo-card">
+                        <img src="assets/images/brands/Novartis-Logo.svg" alt="Novartis" />
+                    </a>
+                    <a href="https://www.kpmlabs.com.tr/" target="_blank" rel="noopener noreferrer" class="partner-logo-card">
+                        <img src="assets/images/brands/kpm-labs.png" alt="KPM Labs" />
+                    </a>
+                    <a href="https://everva.com.tr/" target="_blank" rel="noopener noreferrer" class="partner-logo-card">
+                        <img src="assets/images/brands/everva.png" alt="Everva" />
+                    </a>
+                    <a href="https://www.siemens.com/" target="_blank" rel="noopener noreferrer" class="partner-logo-card">
+                        <img src="assets/images/brands/Siemens_AG_logo.svg" alt="Siemens" />
+                    </a>
+                    <a href="https://www.techsign.com.tr/" target="_blank" rel="noopener noreferrer" class="partner-logo-card">
+                        <img src="assets/images/brands/techsign.png" alt="Techsign" />
+                    </a>
+                    <a href="https://www.tubitak.gov.tr/" target="_blank" rel="noopener noreferrer" class="partner-logo-card">
+                        <img src="assets/images/brands/TUBITAK_logo.svg" alt="TÜBİTAK" />
+                    </a>
+                    <a href="https://akuakare.com/" target="_blank" rel="noopener noreferrer" class="partner-logo-card">
+                        <img src="assets/images/brands/akuakare.png" alt="Akuakare" />
+                    </a>
+
+                    <!-- İkinci Set - Seamless Loop İçin -->
+                    <a href="https://www.ticaret.gov.tr/" target="_blank" rel="noopener noreferrer" class="partner-logo-card">
+                        <img src="assets/images/brands/Ticaret_Bakanligi_logo.svg" alt="Ticaret Bakanlığı" />
+                    </a>
+                    <a href="https://www.isisdanismanlik.com/" target="_blank" rel="noopener noreferrer" class="partner-logo-card">
+                        <img src="assets/images/brands/isis.png" alt="ISIS" />
+                    </a>
+                    <a href="https://www.novartis.com/" target="_blank" rel="noopener noreferrer" class="partner-logo-card">
+                        <img src="assets/images/brands/Novartis-Logo.svg" alt="Novartis" />
+                    </a>
+                    <a href="https://www.kpmlabs.com.tr/" target="_blank" rel="noopener noreferrer" class="partner-logo-card">
+                        <img src="assets/images/brands/kpm-labs.png" alt="KPM Labs" />
+                    </a>
+                    <a href="https://everva.com.tr/" target="_blank" rel="noopener noreferrer" class="partner-logo-card">
+                        <img src="assets/images/brands/everva.png" alt="Everva" />
+                    </a>
+                    <a href="https://www.siemens.com/" target="_blank" rel="noopener noreferrer" class="partner-logo-card">
+                        <img src="assets/images/brands/Siemens_AG_logo.svg" alt="Siemens" />
+                    </a>
+                    <a href="https://www.techsign.com.tr/" target="_blank" rel="noopener noreferrer" class="partner-logo-card">
+                        <img src="assets/images/brands/techsign.png" alt="Techsign" />
+                    </a>
+                    <a href="https://www.tubitak.gov.tr/" target="_blank" rel="noopener noreferrer" class="partner-logo-card">
+                        <img src="assets/images/brands/TUBITAK_logo.svg" alt="TÜBİTAK" />
+                    </a>
+                    <a href="https://akuakare.com/" target="_blank" rel="noopener noreferrer" class="partner-logo-card">
+                        <img src="assets/images/brands/akuakare.png" alt="Akuakare" />
+                    </a>
                 </div>
             </div>
         </div>
@@ -546,25 +990,23 @@
     <section id="hakkimizda" data-section-tr="hakkimizda" data-section-en="about" class="py-24 px-4 md:px-12 bg-slate-900/50">
         <div class="container mx-auto">
             <div class="text-center mb-16">
-                <span class="text-brand-blue text-sm font-semibold uppercase tracking-wider" data-i18n="aboutUs">Hakkımızda</span>
+                <span class="text-brand-blue text-lg md:text-xl font-bold uppercase tracking-wider" data-i18n="about">Hakkımızda</span>
                 <h2 class="text-3xl md:text-5xl font-bold font-display mt-4 mb-6" data-i18n="servicesTitle">Hizmetlerimiz</h2>
             </div>
 
             <!-- Bento Grid: 5 Services (AI featured, others balanced) -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Service 1: AI/ML - FEATURED LARGE CARD (spans 2 columns on lg) -->
-                <div class="service-card-featured lg:col-span-2 lg:row-span-2">
-                    <div class="flex items-start gap-4 mb-6">
-                        <div class="service-icon-large">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h-1.73c.34.6.73 1.26.73 2a2 2 0 0 1-2 2c-.74 0-1.39-.4-1.73-1H14v1.27c.6.34 1 .99 1 1.73a2 2 0 0 1-2 2 2 2 0 0 1-2-2c0-.74.4-1.39 1-1.73V17H9.73A2 2 0 0 1 8 18a2 2 0 0 1-2-2c0-.74.4-1.39 1-1.73H7a7 7 0 0 1 7-7h1V5.73A2 2 0 0 1 14 4a2 2 0 0 1-2-2z"/>
-                                <circle cx="12" cy="12" r="3"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <h3 class="text-2xl font-bold mb-3 text-white" data-i18n="serviceAI">Yapay Zeka ve Makine Öğrenmesi</h3>
-                            <p class="text-slate-300 leading-relaxed" data-i18n="serviceAIDesc">En güncel algoritmalar ve sinir ağlarıyla desteklenen ileri düzey yapay zeka ve makine öğrenmesi çözümleri. Derin öğrenme modelleri, doğal dil işleme ve bilgisayarlı görü uygulamaları.</p>
-                        </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 services-grid">
+                <!-- Service 1: AI/ML - normalize to match other service cards -->
+                <div class="service-card">
+                    <div class="service-icon mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h-1.73c.34.6.73 1.26.73 2a2 2 0 0 1-2 2c-.74 0-1.39-.4-1.73-1H14v1.27c.6.34 1 .99 1 1.73a2 2 0 0 1-2 2 2 2 0 0 1-2-2c0-.74.4-1.39 1-1.73V17H9.73A2 2 0 0 1 8 18a2 2 0 0 1-2-2c0-.74.4-1.39 1-1.73H7a7 7 0 0 1 7-7h1V5.73A2 2 0 0 1 14 4a2 2 0 0 1-2-2z"/>
+                            <circle cx="12" cy="12" r="3"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-3 text-white" data-i18n="serviceAI">Yapay Zeka ve Makine Öğrenmesi</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed" data-i18n="serviceAIDesc">En güncel algoritmalar ve sinir ağlarıyla desteklenen ileri düzey yapay zeka ve makine öğrenmesi çözümleri. Derin öğrenme modelleri, doğal dil işleme ve bilgisayarlı görü uygulamaları.</p>
                     </div>
                     <div class="flex flex-wrap gap-2 mt-4">
                         <span class="service-tag" data-i18n="tagDeepLearning">Deep Learning</span>
@@ -588,6 +1030,12 @@
                     </div>
                     <h3 class="text-xl font-semibold mb-3 text-white" data-i18n="serviceEnterprise">Kurumsal Yazılım Çözümleri</h3>
                     <p class="text-slate-400 text-sm leading-relaxed" data-i18n="serviceEnterpriseDesc">İş ihtiyaçlarınıza özel olarak tasarlanmış kurumsal yazılım çözümleri. ERP, CRM ve özel iş uygulamaları.</p>
+                    <div class="flex flex-wrap gap-2 mt-4">
+                        <span class="service-tag" data-i18n="tagERP">ERP</span>
+                        <span class="service-tag" data-i18n="tagCRM">CRM</span>
+                        <span class="service-tag" data-i18n="tagCustomApps">Custom Business Apps</span>
+                        <span class="service-tag" data-i18n="tagIntegration">Systems Integration</span>
+                    </div>
                 </div>
 
                 <!-- Service 3: Cloud Applications -->
@@ -599,6 +1047,12 @@
                     </div>
                     <h3 class="text-xl font-semibold mb-3 text-white" data-i18n="serviceCloud">Bulut Tabanlı Uygulamalar</h3>
                     <p class="text-slate-400 text-sm leading-relaxed" data-i18n="serviceCloudDesc">Modern mimari prensipleriyle inşa edilen ölçeklenebilir bulut çözümleri. AWS, Azure ve Google Cloud platformları.</p>
+                    <div class="flex flex-wrap gap-2 mt-4">
+                        <span class="service-tag" data-i18n="tagAWS">AWS</span>
+                        <span class="service-tag" data-i18n="tagAzure">Azure</span>
+                        <span class="service-tag" data-i18n="tagGCP">Google Cloud</span>
+                        <span class="service-tag" data-i18n="tagServerless">Serverless</span>
+                    </div>
                 </div>
 
                 <!-- Service 4: Web Development -->
@@ -614,6 +1068,12 @@
                     </div>
                     <h3 class="text-xl font-semibold mb-3 text-white" data-i18n="serviceWeb">Web Uygulama Geliştirme</h3>
                     <p class="text-slate-400 text-sm leading-relaxed" data-i18n="serviceWebDesc">Modern teknolojilerle geliştirilmiş, ölçeklenebilir ve duyarlı web uygulamaları. React, Vue, Angular ve Next.js.</p>
+                    <div class="flex flex-wrap gap-2 mt-4">
+                        <span class="service-tag" data-i18n="tagReact">React</span>
+                        <span class="service-tag" data-i18n="tagVue">Vue.js</span>
+                        <span class="service-tag" data-i18n="tagNextJS">Next.js</span>
+                        <span class="service-tag" data-i18n="tagResponsive">Responsive Design</span>
+                    </div>
                 </div>
 
                 <!-- Service 5: Mobile Development -->
@@ -626,6 +1086,12 @@
                     </div>
                     <h3 class="text-xl font-semibold mb-3 text-white" data-i18n="serviceMobile">Mobil Uygulama Geliştirme</h3>
                     <p class="text-slate-400 text-sm leading-relaxed" data-i18n="serviceMobileDesc">iOS ve Android platformları için yerel ve çapraz platform mobil uygulamalar. React Native, Flutter ve Swift.</p>
+                    <div class="flex flex-wrap gap-2 mt-4">
+                        <span class="service-tag" data-i18n="tagReactNative">React Native</span>
+                        <span class="service-tag" data-i18n="tagFlutter">Flutter</span>
+                        <span class="service-tag" data-i18n="tagiOS">iOS</span>
+                        <span class="service-tag" data-i18n="tagAndroid">Android</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -635,7 +1101,7 @@
     <section id="projeler" data-section-tr="projeler" data-section-en="projects" class="py-24 px-4 md:px-12">
         <div class="container mx-auto">
             <div class="text-center mb-16">
-                <span class="text-brand-blue text-sm font-semibold uppercase tracking-wider" data-i18n="projects">Projelerimiz</span>
+                <span class="text-brand-blue text-lg md:text-xl font-bold uppercase tracking-wider" data-i18n="projects">Projelerimiz</span>
                 <h2 class="text-3xl md:text-5xl font-bold font-display mt-4 mb-4" data-i18n="projectsSubtitle">Seçili Projeler ve Başarı Hikayeleri</h2>
                 <p class="text-slate-400" data-i18n="projectsSubtitleDesc">Uzmanlığımızı etkili çözümlerimiz aracılığıyla sergiliyoruz</p>
             </div>
@@ -692,52 +1158,11 @@
         </div>
     </section>
 
-    <!-- Partners - 9 Logos Grid - FERAH ALAN -->
-    <section id="ortakliklar" data-section-tr="ortakliklar" data-section-en="partnerships" class="py-24 px-4 md:px-12">
-        <div class="container mx-auto">
-            <div class="text-center mb-16">
-                <span class="text-brand-blue text-sm font-semibold uppercase tracking-wider" data-i18n="partnerships">Ortaklıklarımız</span>
-                <h2 class="text-3xl md:text-5xl font-bold font-display mt-4 mb-4" data-i18n="partnershipsSubtitle">Sektör Liderleri Tarafından Güvenilen</h2>
-                <p class="text-slate-400" data-i18n="partnershipsSubtitleDesc">Yenilikçi çözümler sunmak için sektörün önde gelen şirketleri ve organizasyonlarıyla stratejik işbirlikleri gerçekleştiriyoruz</p>
-            </div>
-
-            <div class="partner-grid">
-                <a href="https://www.ticaret.gov.tr/" target="_blank" rel="noopener noreferrer" class="partner-logo-card">
-                    <img src="assets/images/brands/Ticaret_Bakanligi_logo.svg" alt="Ticaret Bakanlığı" />
-                </a>
-                <a href="https://www.isisdanismanlik.com/" target="_blank" rel="noopener noreferrer" class="partner-logo-card">
-                    <img src="assets/images/brands/isis.png" alt="ISIS" />
-                </a>
-                <a href="https://www.novartis.com/" target="_blank" rel="noopener noreferrer" class="partner-logo-card">
-                    <img src="assets/images/brands/Novartis-Logo.svg" alt="Novartis" />
-                </a>
-                <a href="https://www.kpmlabs.com.tr/" target="_blank" rel="noopener noreferrer" class="partner-logo-card">
-                    <img src="assets/images/brands/kpm-labs.png" alt="KPM Labs" />
-                </a>
-                <a href="https://everva.com.tr/" target="_blank" rel="noopener noreferrer" class="partner-logo-card">
-                    <img src="assets/images/brands/everva.png" alt="Everva" />
-                </a>
-                <a href="https://www.siemens.com/" target="_blank" rel="noopener noreferrer" class="partner-logo-card">
-                    <img src="assets/images/brands/Siemens_AG_logo.svg" alt="Siemens" />
-                </a>
-                <a href="https://www.techsign.com.tr/" target="_blank" rel="noopener noreferrer" class="partner-logo-card">
-                    <img src="assets/images/brands/techsign.png" alt="Techsign" />
-                </a>
-                <a href="https://www.tubitak.gov.tr/" target="_blank" rel="noopener noreferrer" class="partner-logo-card">
-                    <img src="assets/images/brands/TUBITAK_logo.svg" alt="TÜBİTAK" />
-                </a>
-                <a href="https://akuakare.com/" target="_blank" rel="noopener noreferrer" class="partner-logo-card">
-                    <img src="assets/images/brands/akuakare.png" alt="Akuakare" />
-                </a>
-            </div>
-        </div>
-    </section>
-
     <!-- Team Section with Hierarchy - FERAH ALAN -->
     <section id="ekip" data-section-tr="ekip" data-section-en="team" class="py-24 px-4 md:px-12 bg-slate-900/50">
         <div class="container mx-auto">
             <div class="text-center mb-16">
-                <span class="text-brand-blue text-sm font-semibold uppercase tracking-wider" data-i18n="team">Ekibimiz</span>
+                <span class="text-brand-blue text-lg md:text-xl font-bold uppercase tracking-wider" data-i18n="team">Ekibimiz</span>
                 <h2 class="text-3xl md:text-5xl font-bold font-display mt-4 mb-4" data-i18n="teamSubtitle">Uzman Ekibimizle Tanışın</h2>
                 <p class="text-slate-400" data-i18n="teamSubtitleDesc">Yapay zeka ve yazılım geliştirme alanında yeniliklere öncülük eden, tutkulu profesyoneller</p>
             </div>
@@ -745,7 +1170,7 @@
             <!-- Executives -->
             <div class="mb-20">
                 <h3 class="text-2xl font-bold text-center mb-10 text-brand-blue" data-i18n="teamExecutives">Üst Yönetim</h3>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-5xl mx-auto">
+                <div class="flex flex-col md:grid md:grid-cols-3 gap-10 max-w-5xl mx-auto">
                     <div class="team-card">
                         <div class="team-avatar-container">
                             <img src="assets/images/team/UmurInan.webp" alt="Umur İnan" class="team-avatar" />
@@ -756,7 +1181,7 @@
                             <i class="lni lni-linkedin-original text-2xl"></i>
                         </a>
                     </div>
-                    <div class="team-card border-2 border-brand-blue">
+                    <div class="team-card team-card-ceo border-2 border-brand-blue">
                         <div class="team-avatar-container">
                             <img src="assets/images/team/AtaTurhan.webp" alt="Ata Turhan" class="team-avatar" />
                         </div>
@@ -795,7 +1220,7 @@
                     </div>
                     <div class="team-card team-card-manager">
                         <div class="team-avatar-container">
-                            <img src="assets/images/team/RamazanCinar.jpeg" alt="Ramazan Çınar" class="team-avatar" />
+                            <img src="assets/images/team/RamazanCinar.jpeg" alt="Ramazan Çınar" class="team-avatar-ramazan" />
                         </div>
                         <h4 class="text-xl font-semibold">Ramazan Çınar</h4>
                         <p class="team-role" data-i18n="teamBDM">BDM</p>
@@ -818,13 +1243,12 @@
 
             <!-- BDM Interns - Smaller Scale -->
             <div class="mb-20">
-                <h3 class="text-xl font-bold text-center mb-10 text-slate-400" data-i18n="teamBDMInterns">BDM Stajyerleri</h3>
                 <div class="team-grid-interns max-w-4xl mx-auto">
                     <div class="team-card team-card-intern">
                         <div class="team-avatar-container">
                             <img src="assets/images/team/RemziMertTehneldere.webp" alt="Remzi Mert Tehneldere" class="team-avatar" />
                         </div>
-                        <h4 class="text-lg font-semibold">Remzi Mert Tehneldere</h4>
+                        <h4 class="text-lg font-semibold">Remzi Mert<br/>Tehneldere</h4>
                         <p class="team-role text-slate-400 text-sm" data-i18n="teamBDMIntern">BDM Stajyer</p>
                         <a href="https://www.linkedin.com/in/remzi-mert-tehneldere-601505286/" target="_blank" class="inline-block mt-2 text-brand-blue hover:text-brand-blue-light">
                             <i class="lni lni-linkedin-original text-xl"></i>
@@ -880,16 +1304,16 @@
                 </div>
             </div>
 
-            <!-- Designers & Marketers -->
+            <!-- Marketers -->
             <div>
-                <h3 class="text-2xl font-bold text-center mb-10" data-i18n="teamDesigners">Tasarım & Pazarlama</h3>
+                <h3 class="text-2xl font-bold text-center mb-10" data-i18n="teamMarketers">Pazarlama</h3>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-5xl mx-auto">
                     <div class="team-card">
                         <div class="team-avatar-container">
                             <img src="assets/images/team/LaraSen.webp" alt="Lara Şen" class="team-avatar" />
                         </div>
                         <h4 class="text-xl font-semibold">Lara Şen</h4>
-                        <p class="team-role text-brand-blue" data-i18n="teamDesigner">Tasarımcı & Pazarlamacı</p>
+                        <p class="team-role text-brand-blue" data-i18n="teamMarketer">Pazarlamacı</p>
                         <a href="https://www.linkedin.com/in/lara-%C5%9Fen-409b61353" target="_blank" class="inline-block mt-3 text-brand-blue hover:text-brand-blue-light">
                             <i class="lni lni-linkedin-original text-2xl"></i>
                         </a>
@@ -899,7 +1323,7 @@
                             <img src="assets/images/team/BerilDamaci.webp" alt="Beril Damacı" class="team-avatar" />
                         </div>
                         <h4 class="text-xl font-semibold">Beril Damacı</h4>
-                        <p class="team-role text-brand-blue" data-i18n="teamDesigner">Tasarımcı & Pazarlamacı</p>
+                        <p class="team-role text-brand-blue" data-i18n="teamMarketer">Pazarlamacı</p>
                         <a href="https://www.linkedin.com/in/beril-damaci/" target="_blank" class="inline-block mt-3 text-brand-blue hover:text-brand-blue-light">
                             <i class="lni lni-linkedin-original text-2xl"></i>
                         </a>
@@ -909,7 +1333,7 @@
                             <img src="assets/images/team/HilalGenc.webp" alt="Hilal Genç" class="team-avatar" />
                         </div>
                         <h4 class="text-xl font-semibold">Hilal Genç</h4>
-                        <p class="team-role text-brand-blue" data-i18n="teamDesigner">Tasarımcı & Pazarlamacı</p>
+                        <p class="team-role text-brand-blue" data-i18n="teamMarketer">Pazarlamacı</p>
                         <a href="https://www.linkedin.com/in/hilal--genc/" target="_blank" class="inline-block mt-3 text-brand-blue hover:text-brand-blue-light">
                             <i class="lni lni-linkedin-original text-2xl"></i>
                         </a>
@@ -923,7 +1347,7 @@
     <section id="iletisim" data-section-tr="iletisim" data-section-en="contact" class="py-24 px-4 md:px-12">
         <div class="container mx-auto max-w-4xl">
             <div class="text-center mb-12">
-                <span class="text-brand-blue text-sm font-semibold uppercase tracking-wider" data-i18n="contact">İletişim</span>
+                <span class="text-brand-blue text-lg md:text-xl font-bold uppercase tracking-wider" data-i18n="contact">İletişim</span>
                 <h2 class="text-3xl md:text-5xl font-bold font-display mt-4 mb-4" data-i18n="contactSubtitle">Birlikte Büyük İşler Başaralım</h2>
                 <p class="text-slate-400" data-i18n="contactSubtitleDesc">Ortaklık fırsatları veya iş ihtiyaçlarınız için bizimle iletişime geçin.</p>
             </div>
@@ -960,7 +1384,7 @@
             <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-8">
                 <div>
                     <a href="#top" class="inline-block cursor-pointer hover:opacity-80 transition" title="Sayfa Başına Dön">
-                        <img src="assets/images/logo/Solarity AI - Company Logo.png" alt="Solarity AI" class="logo-standard mb-4" />
+                        <img src="assets/images/logo/Solarity AI - Company Logo.svg" alt="Solarity AI" class="logo-standard mb-4" />
                     </a>
                     <p class="text-sm text-slate-400" data-i18n="footerDescription">Dünya standartlarında kaliteyle yüksek etkili B2B ve B2C çözümler üreten yapay zeka odaklı yazılım şirketi.</p>
                 </div>
@@ -968,20 +1392,33 @@
                 <div>
                     <h4 class="font-semibold mb-4" data-i18n="footerQuickLinks">Hızlı Bağlantılar</h4>
                     <ul class="space-y-2 text-sm">
-                        <li><a href="#hakkimizda" data-href-tr="#hakkimizda" data-href-en="#about" class="text-slate-400 hover:text-brand-blue transition nav-link" data-i18n="navAbout">Hakkımızda</a></li>
                         <li><a href="#ortakliklar" data-href-tr="#ortakliklar" data-href-en="#partnerships" class="text-slate-400 hover:text-brand-blue transition nav-link" data-i18n="navPartnerships">Ortaklıklar</a></li>
+                        <li><a href="#hakkimizda" data-href-tr="#hakkimizda" data-href-en="#about" class="text-slate-400 hover:text-brand-blue transition nav-link" data-i18n="navAbout">Hakkımızda</a></li>
                         <li><a href="#projeler" data-href-tr="#projeler" data-href-en="#projects" class="text-slate-400 hover:text-brand-blue transition nav-link" data-i18n="navProjects">Projeler</a></li>
                         <li><a href="#ekip" data-href-tr="#ekip" data-href-en="#team" class="text-slate-400 hover:text-brand-blue transition nav-link" data-i18n="navTeam">Ekip</a></li>
+                        <li><a href="careers.html" class="text-slate-400 hover:text-brand-blue transition nav-link" data-i18n="navCareers">Kariyer</a></li>
                     </ul>
                 </div>
 
                 <div>
                     <h4 class="font-semibold mb-4" data-i18n="footerContact">İletişim</h4>
                     <ul class="space-y-2 text-sm text-slate-400">
-                        <li>Dallas, Texas, ABD</li>
-                        <li><a href="mailto:info@solarityai.com" class="hover:text-brand-blue transition">info@solarityai.com</a></li>
-                        <li><a href="careers.html" class="hover:text-brand-blue transition" data-i18n="navCareers">Kariyer</a></li>
+                        <li data-i18n="contactAddress">Adresimiz</li>
+                        <li class="font-medium text-slate-200" data-i18n="contactAddressValue">Dallas, Texas, ABD</li>
+                        <li><a href="ataturhan21@gmail.com" class="hover:text-brand-blue transition">ata.turhan@solarityai.com</a></li>
+
                     </ul>
+
+                    <!-- Map: Dallas, TX -->
+                    <div class="mt-4 rounded-lg overflow-hidden border border-slate-800">
+                        <iframe
+                            title="Solarity AI - Dallas Office"
+                            src="https://www.google.com/maps?q=Dallas,+TX&hl=en&output=embed"
+                            class="w-full h-44 md:h-40"
+                            style="border:0;"
+                            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
                 </div>
 
                 <div>
@@ -1019,36 +1456,88 @@
 
         // Language Switcher - BOTH DESKTOP & MOBILE
         function toggleLanguage() {
-            const currentLang = localStorage.getItem('solarityai-lang') || 'tr';
+            const currentLang = localStorage.getItem('solarityai-lang') || 'en';
             const newLang = currentLang === 'tr' ? 'en' : 'tr';
             localStorage.setItem('solarityai-lang', newLang);
 
             // Update both buttons
             const langText = newLang === 'tr' ? '🇹🇷 TR' : '🇬🇧 EN';
+            const mobileLangText = newLang === 'tr' ? 'TR' : 'EN'; // Mobilde sadece text
             const desktopLang = document.getElementById('currentLang');
             const mobileLang = document.getElementById('currentLangMobile');
 
             if (desktopLang) desktopLang.textContent = langText;
-            if (mobileLang) mobileLang.textContent = langText;
+            if (mobileLang) mobileLang.textContent = mobileLangText;
+
+            // Update banner immediately (critical for CTA href to switch anchor)
+            if (typeof updateBanner === 'function') {
+                updateBanner(newLang);
+            }
 
             if (typeof setLanguage === 'function') {
                 setLanguage(newLang);
-            } else {
-                location.reload();
-            }
+             } else {
+                 location.reload();
+             }
         }
 
         // Initialize - Set current language on both buttons
         document.addEventListener('DOMContentLoaded', function() {
-            const currentLang = localStorage.getItem('solarityai-lang') || 'tr';
+            const currentLang = localStorage.getItem('solarityai-lang') || 'en'; // DEFAULT: ENGLISH
             const langText = currentLang === 'tr' ? '🇹🇷 TR' : '🇬🇧 EN';
+            const mobileLangText = currentLang === 'tr' ? 'TR' : 'EN'; // Mobilde sadece text
 
             const desktopLang = document.getElementById('currentLang');
             const mobileLang = document.getElementById('currentLangMobile');
 
             if (desktopLang) desktopLang.textContent = langText;
-            if (mobileLang) mobileLang.textContent = langText;
+            if (mobileLang) mobileLang.textContent = mobileLangText;
+            // ensure banner set on init
+            if (typeof updateBanner === 'function') updateBanner(currentLang);
         });
+
+        // Inline translations for the hero banner and dynamic CTA behavior
+        (function() {
+          const bannerTranslations = {
+            tr: {
+             bannerTagline: 'Yapay Zeka Odaklı Yazılım Şirketi',
+              bannerSubtitle: 'Kurumsal yapay zeka çözümleriyle rekabet avantajı sağlıyoruz.',
+              bannerCTA: 'Daha Fazla Bilgi',
+              bannerHref: '#hakkimizda'
+            },
+            en: {
+             bannerTagline: 'AI-Native Software Company',
+              bannerSubtitle: 'We deliver enterprise AI solutions that create competitive advantage.',
+              bannerCTA: 'Learn More',
+              bannerHref: '#about'
+            }
+          };
+
+          function updateBanner(lang) {
+            const l = lang === 'tr' ? 'tr' : 'en';
+            const t = bannerTranslations[l];
+
+            const taglineEl = document.querySelector('[data-i18n="bannerTagline"]');
+            const subtitleEl = document.querySelector('[data-i18n="bannerSubtitle"]');
+            const ctaEl = document.getElementById('bannerCTA');
+
+            if (taglineEl) taglineEl.textContent = t.bannerTagline;
+            if (subtitleEl) subtitleEl.textContent = t.bannerSubtitle;
+            if (ctaEl) {
+              ctaEl.textContent = t.bannerCTA;
+              ctaEl.setAttribute('href', t.bannerHref);
+            }
+          }
+
+          // Initialize on load
+          document.addEventListener('DOMContentLoaded', function() {
+            const currentLang = localStorage.getItem('solarityai-lang') || 'en';
+            updateBanner(currentLang);
+          });
+
+          // Expose helper so toggleLanguage can call it if available
+          window.updateBanner = updateBanner;
+        })();
     </script>
 </body>
 </html>
