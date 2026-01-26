@@ -2,8 +2,8 @@
 (function() {
   'use strict';
 
-  // Get current language from localStorage or default to 'tr'
-  let currentLang = localStorage.getItem('solarityai-lang') || 'tr';
+  // Get current language from localStorage or default to 'en' (ENGLISH)
+  let currentLang = localStorage.getItem('solarityai-lang') || 'en';
 
   // Initialize language on page load
   function initLanguage() {
@@ -265,6 +265,18 @@
         element.setAttribute('aria-label', translationsObj[lang][key]);
       }
     });
+
+    // Special-case: ensure big support stat number uses the correct localized format
+    try {
+      const supportNumberKey = 'statsSupportNumber';
+      if (translationsObj[lang] && translationsObj[lang][supportNumberKey]) {
+        document.querySelectorAll('[data-i18n="' + supportNumberKey + '"]').forEach(function(el) {
+          el.textContent = translationsObj[lang][supportNumberKey];
+        });
+      }
+    } catch (e) {
+      console.warn('Unable to apply special-case translation for statsSupportNumber', e);
+    }
 
     // Update title - ALWAYS START WITH "Solarity AI"
     const currentPath = window.location.pathname;
