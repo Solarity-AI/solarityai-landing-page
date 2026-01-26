@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -101,8 +101,12 @@
         width: auto;
         max-height: 6rem;
         object-fit: contain;
-        filter: brightness(1.1);
+        filter: brightness(1.2) drop-shadow(0 2px 8px rgba(255, 255, 255, 0.1));
         transition: filter 0.3s ease, transform 0.3s ease;
+        /* Şeffaf arka plan için */
+        background: transparent;
+        mix-blend-mode: screen;
+        isolation: isolate;
       }
 
       @media (min-width: 768px) {
@@ -112,7 +116,7 @@
       }
 
       .logo-standard:hover {
-        filter: brightness(1.25);
+        filter: brightness(1.35) drop-shadow(0 4px 12px rgba(255, 255, 255, 0.2));
         transform: scale(1.05);
       }
 
@@ -240,14 +244,14 @@
             <nav class="flex items-center justify-between py-3.5">
                 <!-- Logo -->
                 <a href="index.html" class="flex items-center">
-                    <img src="assets/images/logo/Solarity AI - Company Logo.png" alt="Solarity AI" class="logo-standard" />
+                    <img src="assets/images/logo/Solarity AI - Company Logo.svg" alt="Solarity AI" class="logo-standard" />
                 </a>
 
                 <!-- Desktop Menu + Buttons -->
                 <div class="hidden md:flex items-center gap-6">
                     <ul class="flex items-center space-x-6 text-base font-medium">
-                        <li><a href="index.html#hakkimizda" class="hover:text-emerald-400 transition" data-i18n="navAbout">Hakkımızda</a></li>
                         <li><a href="index.html#ortakliklar" class="hover:text-emerald-400 transition" data-i18n="navPartnerships">Ortaklıklar</a></li>
+                        <li><a href="index.html#hakkimizda" class="hover:text-emerald-400 transition" data-i18n="navAbout">Hakkımızda</a></li>
                         <li><a href="index.html#projeler" class="hover:text-emerald-400 transition" data-i18n="navProjects">Projeler</a></li>
                         <li><a href="index.html#ekip" class="hover:text-emerald-400 transition" data-i18n="navTeam">Ekip</a></li>
                         <li><a href="index.html#iletisim" class="hover:text-emerald-400 transition" data-i18n="navContact">İletişim</a></li>
@@ -259,7 +263,7 @@
                         <button id="languageSwitcher" onclick="toggleLanguage()"
                                 class="px-3 py-2 text-sm font-semibold rounded-lg transition"
                                 style="background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.3); color: #10b981;">
-                            <span id="currentLang">🇹🇷 TR</span>
+                            <span id="currentLang">🇬🇧 EN</span>
                         </button>
 
                         <!-- Career Button (Active) -->
@@ -275,7 +279,7 @@
                     <button id="languageSwitcherMobile" onclick="toggleLanguage()"
                             class="px-3 py-1.5 text-xs font-semibold rounded-lg"
                             style="background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.3); color: #10b981;">
-                        <span id="currentLangMobile">🇹🇷 TR</span>
+                        <span id="currentLangMobile">🇬🇧 EN</span>
                     </button>
                     <button id="mobileMenuBtn" class="text-2xl text-emerald-400">☰</button>
                 </div>
@@ -284,8 +288,8 @@
             <!-- Mobile Menu -->
             <div id="mobileMenu" class="hidden md:hidden pb-4">
                 <ul class="flex flex-col space-y-3 text-base">
-                    <li><a href="index.html#hakkimizda" class="block hover:text-emerald-400 transition" data-i18n="navAbout">Hakkımızda</a></li>
                     <li><a href="index.html#ortakliklar" class="block hover:text-emerald-400 transition" data-i18n="navPartnerships">Ortaklıklar</a></li>
+                    <li><a href="index.html#hakkimizda" class="block hover:text-emerald-400 transition" data-i18n="navAbout">Hakkımızda</a></li>
                     <li><a href="index.html#projeler" class="block hover:text-emerald-400 transition" data-i18n="navProjects">Projeler</a></li>
                     <li><a href="index.html#ekip" class="block hover:text-emerald-400 transition" data-i18n="navTeam">Ekip</a></li>
                     <li><a href="index.html#iletisim" class="block hover:text-emerald-400 transition" data-i18n="navContact">İletişim</a></li>
@@ -396,7 +400,13 @@
             </div>
 
             <div class="form-card">
-                <form id="careerApplicationForm" enctype="multipart/form-data">
+                <form id="careerApplicationForm" action="https://formsubmit.co/info@solarityai.com" method="POST" enctype="multipart/form-data">
+                    <!-- FormSubmit.co Configuration -->
+                    <input type="hidden" name="_captcha" value="true">
+                    <input type="hidden" name="_next" value="https://solarityai.com/careers.html?success=true">
+                    <input type="hidden" name="_subject" value="New Job Application - Solarity AI">
+                    <input type="hidden" name="_template" value="box">
+
                     <!-- Full Name -->
                     <div class="mb-6">
                         <label for="fullName" class="form-label" data-i18n="careersFormName">Ad Soyad *</label>
@@ -521,7 +531,7 @@
             <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-8">
                 <div>
                     <a href="index.html" class="inline-block cursor-pointer hover:opacity-80 transition" title="Ana Sayfaya Dön">
-                        <img src="assets/images/logo/Solarity AI - Company Logo.png" alt="Solarity AI" class="logo-standard mb-4" />
+                        <img src="assets/images/logo/Solarity AI - Company Logo.svg" alt="Solarity AI" class="logo-standard mb-4" />
                     </a>
                     <p class="text-sm text-slate-400" data-i18n="footerDescription">Dünya standartlarında kaliteyle yüksek etkili B2B ve B2C çözümler üreten yapay zeka odaklı yazılım şirketi.</p>
                 </div>
@@ -529,20 +539,32 @@
                 <div>
                     <h4 class="font-semibold mb-4" data-i18n="footerQuickLinks">Hızlı Bağlantılar</h4>
                     <ul class="space-y-2 text-sm">
-                        <li><a href="index.html#hakkimizda" class="text-slate-400 hover:text-brand-blue transition" data-i18n="navAbout">Hakkımızda</a></li>
                         <li><a href="index.html#ortakliklar" class="text-slate-400 hover:text-brand-blue transition" data-i18n="navPartnerships">Ortaklıklar</a></li>
+                        <li><a href="index.html#hakkimizda" class="text-slate-400 hover:text-brand-blue transition" data-i18n="navAbout">Hakkımızda</a></li>
                         <li><a href="index.html#projeler" class="text-slate-400 hover:text-brand-blue transition" data-i18n="navProjects">Projeler</a></li>
                         <li><a href="index.html#ekip" class="text-slate-400 hover:text-brand-blue transition" data-i18n="navTeam">Ekip</a></li>
+                        <li><a href="careers.html" class="text-slate-400 hover:text-brand-blue transition nav-link" data-i18n="navCareers">Kariyer</a></li>
                     </ul>
                 </div>
 
                 <div>
                     <h4 class="font-semibold mb-4" data-i18n="footerContact">İletişim</h4>
                     <ul class="space-y-2 text-sm text-slate-400">
-                        <li>Dallas, Texas, ABD</li>
-                        <li><a href="mailto:info@solarityai.com" class="hover:text-brand-blue transition">info@solarityai.com</a></li>
-                        <li><a href="careers.html" class="hover:text-brand-blue transition" data-i18n="navCareers">Kariyer</a></li>
+                        <li data-i18n="contactAddress">Adresimiz</li>
+                        <li class="font-medium text-slate-200" data-i18n="contactAddressValue">Dallas, Texas, ABD</li>
+                        <li><a href="ata.turhan@solarityai.com" class="hover:text-brand-blue transition">ata.turhan@solarityai.com</a></li>
                     </ul>
+
+                    <!-- Map: Dallas, TX (careers footer) -->
+                    <div class="mt-4 rounded-lg overflow-hidden border border-slate-800">
+                        <iframe
+                            title="Solarity AI - Dallas Office"
+                            src="https://www.google.com/maps?q=Dallas,+TX&hl=en&output=embed"
+                            class="w-full h-44 md:h-40"
+                            style="border:0;"
+                            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
                 </div>
 
                 <div>
@@ -581,7 +603,7 @@
 
         // Language Switcher - BOTH DESKTOP & MOBILE
         function toggleLanguage() {
-            const currentLang = localStorage.getItem('solarityai-lang') || 'tr';
+            const currentLang = localStorage.getItem('solarityai-lang') || 'en'; // DEFAULT: ENGLISH
             const newLang = currentLang === 'tr' ? 'en' : 'tr';
             localStorage.setItem('solarityai-lang', newLang);  // ✅ DÜZELTİLDİ: setItem
 
@@ -601,7 +623,7 @@
 
         // Initialize language
         document.addEventListener('DOMContentLoaded', function() {
-            const currentLang = localStorage.getItem('solarityai-lang') || 'tr';
+            const currentLang = localStorage.getItem('solarityai-lang') || 'en'; // DEFAULT: ENGLISH
             const langText = currentLang === 'tr' ? '🇹🇷 TR' : '🇬🇧 EN';
 
             const desktopLang = document.getElementById('currentLang');
@@ -690,47 +712,50 @@
         }
 
         // Form Submission
-        document.getElementById('careerApplicationForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
+        // Show loading state when form is submitted
+        const careerForm = document.getElementById('careerApplicationForm');
+        if (careerForm) {
+            careerForm.addEventListener('submit', function(e) {
+                const submitBtn = document.getElementById('submitBtn');
+                const formMessage = document.getElementById('formMessage');
 
-            const submitBtn = document.getElementById('submitBtn');
-            const formMessage = document.getElementById('formMessage');
+                // Get current language
+                const currentLang = localStorage.getItem('solarityai-lang') || 'en';
+                const translations = window.translations || {};
+                const t = translations[currentLang] || translations.en || {};
 
-            // Disable button
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<span data-i18n="careersFormSubmitting">Gönderiliyor...</span>';
+                // Show loading state
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = `<span>${t.careersFormSubmitting || 'Gönderiliyor...'}</span>`;
+                submitBtn.style.opacity = '0.7';
+                submitBtn.style.cursor = 'not-allowed';
 
-            // Get form data
-            const formData = new FormData(this);
-
-            try {
-                // Here you would normally send to your backend
-                // For now, simulate success
-                await new Promise(resolve => setTimeout(resolve, 2000));
-
-                // Success
-                formMessage.className = 'mt-6 p-4 rounded-lg text-center bg-emerald-500/20 border border-emerald-500 text-emerald-400';
-                formMessage.innerHTML = '<strong data-i18n="careersFormSuccess">Başvurunuz başarıyla alındı!</strong><br><span data-i18n="careersFormSuccessMsg">En kısa sürede size dönüş yapacağız.</span>';
+                // Show info message
+                formMessage.className = 'mt-6 p-4 rounded-lg text-center bg-blue-500/20 border border-blue-500 text-blue-400';
+                formMessage.innerHTML = `<strong>${t.careersFormWait || 'Lütfen bekleyin...'}</strong><br><span>${t.careersFormCaptchaInfo || 'Başvurunuz gönderiliyor ve captcha doğrulaması yapılacaktır.'}</span>`;
                 formMessage.classList.remove('hidden');
 
-                // Reset form
-                this.reset();
-                removeFile();
+                // FormSubmit.co will handle the actual submission
+                // Note: If there's an error, user will see it on FormSubmit's page
+            });
+        }
 
-                // Re-enable button after 3 seconds
-                setTimeout(() => {
-                    submitBtn.disabled = false;
-                    submitBtn.innerHTML = '<span data-i18n="careersFormSubmit">Başvuruyu Gönder</span>';
-                }, 3000);
+        // Show success message if redirected back with success parameter
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('success') === 'true') {
+                const formMessage = document.getElementById('formMessage');
+                if (formMessage) {
+                    formMessage.className = 'mt-6 p-4 rounded-lg text-center bg-emerald-500/20 border border-emerald-500 text-emerald-400';
+                    formMessage.innerHTML = '<strong data-i18n="careersFormSuccess">Başvurunuz başarıyla alındı!</strong><br><span data-i18n="careersFormSuccessMsg">En kısa sürede size dönüş yapacağız.</span>';
+                    formMessage.classList.remove('hidden');
 
-            } catch (error) {
-                // Error
-                formMessage.className = 'mt-6 p-4 rounded-lg text-center bg-red-500/20 border border-red-500 text-red-400';
-                formMessage.innerHTML = '<strong data-i18n="careersFormError">Bir hata oluştu!</strong><br><span data-i18n="careersFormErrorMsg">Lütfen daha sonra tekrar deneyin.</span>';
-                formMessage.classList.remove('hidden');
+                    // Clean URL
+                    window.history.replaceState({}, document.title, window.location.pathname);
 
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = '<span data-i18n="careersFormSubmit">Başvuruyu Gönder</span>';
+                    // Scroll to message
+                    formMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
             }
         });
     </script>
