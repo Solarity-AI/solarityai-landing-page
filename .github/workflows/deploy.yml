@@ -8,14 +8,14 @@ on:
 
 permissions:
   id-token: write # Required for OIDC
-  contents: read # Required for checkout
+  contents: read  # Required for checkout
 
 jobs:
   deploy:
     name: Deploy to S3 and Invalidate CloudFront
     runs-on: ubuntu-latest
     timeout-minutes: 10
-
+    
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -23,17 +23,14 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: '20'
+          cache: 'npm'
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
-      - name: Build optimized assets
+      - name: Build Next.js static site
         run: npm run build
-
-      - name: Build cache-busted distribution
-        run: |
-          python3 scripts/build-cache-busted.py --output dist
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
@@ -63,19 +60,19 @@ jobs:
       - name: Deploy to S3
         run: |
           echo "📤 Uploading files to S3 bucket: ${{ secrets.S3_BUCKET_NAME }}"
-
+          
           # Upload static assets (CSS, JS, images, fonts) with long cache
           echo "📦 Uploading static assets (CSS, JS, images, fonts)..."
-          aws s3 sync dist/ s3://${{ secrets.S3_BUCKET_NAME }}/ \
+          aws s3 sync out/ s3://${{ secrets.S3_BUCKET_NAME }}/ \
             --exclude "*.html" \
             --exclude "robots.txt" \
             --exclude "sitemap.xml" \
             --exclude "humans.txt" \
             --cache-control "public, max-age=31536000, immutable"
-
+          
           # Upload HTML files and metadata files with shorter cache
           echo "📄 Uploading HTML files and metadata..."
-          aws s3 sync dist/ s3://${{ secrets.S3_BUCKET_NAME }}/ \
+          aws s3 sync out/ s3://${{ secrets.S3_BUCKET_NAME }}/ \
             --exclude "*" \
             --include "*.html" \
             --include "robots.txt" \
@@ -83,7 +80,7 @@ jobs:
             --include "humans.txt" \
             --cache-control "no-store, no-cache, must-revalidate, max-age=0" \
             --delete
-
+          
           echo "✅ Files uploaded successfully"
 
       - name: Invalidate CloudFront cache
@@ -94,17 +91,17 @@ jobs:
             --paths "/*" \
             --query 'Invalidation.Id' \
             --output text)
-
+          
           echo "✅ CloudFront cache invalidation created: $INVALIDATION_ID"
           echo "⏳ Waiting for invalidation to complete (this may take a few minutes)..."
-
+          
           # Wait for invalidation to complete (with timeout)
           aws cloudfront wait invalidation-completed \
             --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} \
             --id $INVALIDATION_ID \
             --max-attempts 30 \
             --delay 10 || echo "⚠️  Invalidation is in progress (may take 5-15 minutes to complete)"
-
+          
           echo "✅ CloudFront cache invalidated"
 
       - name: Deployment summary

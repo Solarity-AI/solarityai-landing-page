@@ -23,4 +23,3 @@
     Components: Bootstrap 5, WOW.js, Animate.css
     Software: Visual Studio Code, Git
     Hosting: AWS EC2, Nginx
-
