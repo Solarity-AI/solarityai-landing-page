@@ -1,52 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <style>html.lang-loading body{visibility:hidden;}</style>
+    <script>document.documentElement.classList.add('lang-loading');</script>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
-
-    <!-- Primary Meta Tags -->
-    <title>Solarity AI - Kariyer</title>
-    <meta name="title" content="Solarity AI - Kariyer">
-    <meta name="description" content="Solarity AI ekibine katılın ve yapay zeka destekli yazılım çözümlerinin geleceğini birlikte şekillendirelim. Tutkulu yetenekleri arıyoruz.">
-    <meta name="keywords" content="kariyer, iş ilanları, yapay zeka işleri, yazılım mühendisi, makine öğrenmesi, teknoloji kariyerleri, Solarity AI kariyer">
+    <!-- VERSION: 2026-01-28-FLAGS-UPDATED -->
+    <!-- Primary Meta Tags (default: English for first load, sharing & search) -->
+    <title>Solarity AI - Career</title>
+    <meta name="title" content="Solarity AI - Career">
+    <meta name="description" content="Join Solarity AI and shape the future of AI-powered software solutions. We are looking for passionate talent to build the future with us.">
+    <meta name="keywords" content="careers, job openings, AI jobs, software engineer, machine learning, tech careers, Solarity AI careers">
     <meta name="author" content="Solarity AI">
     <meta name="robots" content="index, follow">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://solarityai.com/careers.html">
-    <meta property="og:title" content="Kariyer - Solarity AI">
-    <meta property="og:description" content="Solarity AI ekibine katılın ve geleceği birlikte inşa edin.">
-    <meta property="og:image" content="https://solarityai.com/assets/images/logo/Solarity AI - Company Logo.png">
-
+    <meta property="og:title" content="Solarity AI - Career">
+    <meta property="og:description" content="Join Solarity AI and build the future with us.">
+    <meta property="og:image" content="https://solarityai.com/assets/images/logo/SolarityAI-CompanyLogo.svg">
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://solarityai.com/careers.html">
-    <meta property="twitter:title" content="Kariyer - Solarity AI">
-    <meta property="twitter:description" content="Solarity AI ekibine katılın ve geleceği birlikte inşa edin.">
-    <meta property="twitter:image" content="https://solarityai.com/assets/images/logo/Solarity AI - Company Logo.png">
+    <meta property="twitter:title" content="Solarity AI - Career">
+    <meta property="twitter:description" content="Join Solarity AI and build the future with us.">
+    <meta property="twitter:image" content="https://solarityai.com/assets/images/logo/SolarityAI-CompanyLogo.svg">
 
     <!-- Favicons -->
-    <link rel="icon" type="image/png" href="assets/images/logo/Solarity AI - Company Logo.png" />
-    <link rel="shortcut icon" href="assets/images/logo/Solarity AI - Company Logo.png" />
-    <link rel="apple-touch-icon" href="assets/images/logo/Solarity AI - Company Logo.png" />
+    <link rel="icon" type="image/svg+xml" href="assets/images/logo/SolarityAI-CompanyLogo.svg" />
+    <link rel="shortcut icon" href="assets/images/logo/SolarityAI-CompanyLogo.svg" />
+    <link rel="apple-touch-icon" href="assets/images/logo/SolarityAI-CompanyLogo.svg" />
     <meta name="apple-mobile-web-app-title" content="Solarity AI" />
     <meta name="theme-color" content="#0a192f" />
 
     <!-- Canonical URL -->
     <link rel="canonical" href="https://solarityai.com/careers.html" />
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KPPM46EHP9"></script>
+    <!-- Google tag (gtag.js) - Consent Mode: script sadece kullanıcı kabul edince yüklenecek -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-KPPM46EHP9');
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied'
+      });
     </script>
 
     <!-- Tailwind CSS CDN v3 -->
@@ -78,22 +82,49 @@
     <!-- LineIcons -->
     <link rel="stylesheet" href="assets/css/lineicons.css" />
 
-    <!-- Custom Styles - INDEX.HTML İLE UYUMLU -->
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <!-- Custom Styles - INDEX.HTML İLE UYUMLU (Ana sayfa teması) -->
     <style>
-      html { scroll-behavior: smooth; }
-
-      /* Platin Bilişim Deep Navy Background */
+      html { scroll-behavior: smooth; overflow-x: hidden !important; max-width: 100vw; width: 100%; }
+      @keyframes gradient {
+        0%, 100% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+      }
+      /* Ana sayfa ile aynı arka plan: animasyonlu gradient + ışık katmanı */
       body {
         font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-        background: #0a192f;
-        background-image:
-          radial-gradient(at 0% 0%, rgba(16, 185, 129, 0.08) 0px, transparent 50%),
-          radial-gradient(at 100% 100%, rgba(59, 130, 246, 0.06) 0px, transparent 50%);
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+        background-size: 200% 200%;
+        animation: gradient 15s ease infinite;
         background-attachment: fixed;
         color: #e2e8f0;
+        overflow-x: hidden !important;
+        max-width: 100vw;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        position: relative;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
       }
+      body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background:
+          radial-gradient(circle at 20% 30%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+          radial-gradient(circle at 80% 70%, rgba(6, 182, 212, 0.15) 0%, transparent 50%),
+          radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+        pointer-events: none;
+        z-index: 0;
+      }
+      body > * { position: relative; z-index: 1; }
+      section { max-width: 100vw; overflow-x: hidden; }
+      .container { max-width: 100%; width: 100%; box-sizing: border-box; }
 
       /* Logo Standard - INDEX.HTML İLE AYNI */
       .logo-standard {
@@ -118,6 +149,37 @@
       .logo-standard:hover {
         filter: brightness(1.35) drop-shadow(0 4px 12px rgba(255, 255, 255, 0.2));
         transform: scale(1.05);
+      }
+
+      /* Kariyer hero başlık: roket emojisi gradient dışında, kendi renginde */
+      .careers-hero-title::after {
+        content: " 🚀";
+        background: none;
+        -webkit-background-clip: unset;
+        background-clip: unset;
+        -webkit-text-fill-color: initial;
+        color: initial;
+      }
+
+      /* Neden Solarity AI? – 3 kart giriş + hover animasyonu */
+      .careers-why-card {
+        opacity: 0;
+        transform: translateY(24px);
+        animation: careersWhyCardIn 0.6s ease forwards;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .careers-why-card:nth-child(1) { animation-delay: 0.1s; }
+      .careers-why-card:nth-child(2) { animation-delay: 0.25s; }
+      .careers-why-card:nth-child(3) { animation-delay: 0.4s; }
+      .careers-why-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 12px 24px rgba(16, 185, 129, 0.15);
+      }
+      @keyframes careersWhyCardIn {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
 
       /* Form Styles - Modern & Kurumsal */
@@ -233,6 +295,77 @@
         transform: translateY(-2px);
         box-shadow: 0 4px 16px rgba(30, 64, 175, 0.4);
       }
+
+      /* Language Flags */
+      .language-flag {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 24px;
+        height: 18px;
+        border-radius: 3px;
+        overflow: hidden;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        margin-right: 6px;
+        flex-shrink: 0;
+        position: relative;
+      }
+
+      .language-flag::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 3px;
+        pointer-events: none;
+      }
+
+      /* Turkish Flag */
+      .flag-tr {
+        background: linear-gradient(to bottom, #E30A17 0%, #E30A17 100%);
+      }
+
+      .flag-tr::after {
+        content: '🇹🇷';
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        line-height: 1;
+      }
+
+      /* UK/English Flag */
+      .flag-en {
+        background: linear-gradient(to bottom, #012169 0%, #012169 100%);
+      }
+
+      .flag-en::after {
+        content: '🇬🇧';
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        line-height: 1;
+      }
+
+      /* Language switcher button styling */
+      #languageSwitcher,
+      #languageSwitcherMobile {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        transition: all 0.3s ease;
+      }
+
+      #languageSwitcher:hover,
+      #languageSwitcherMobile:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+      }
     </style>
 </head>
 
@@ -244,7 +377,7 @@
             <nav class="flex items-center justify-between py-3.5">
                 <!-- Logo -->
                 <a href="index.html" class="flex items-center">
-                    <img src="assets/images/logo/Solarity AI - Company Logo.svg" alt="Solarity AI" class="logo-standard" />
+                    <img src="assets/images/logo/SolarityAI-CompanyLogo.svg" alt="Solarity AI" class="logo-standard" />
                 </a>
 
                 <!-- Desktop Menu + Buttons -->
@@ -255,15 +388,18 @@
                         <li><a href="index.html#projeler" class="hover:text-emerald-400 transition" data-i18n="navProjects">Projeler</a></li>
                         <li><a href="index.html#ekip" class="hover:text-emerald-400 transition" data-i18n="navTeam">Ekip</a></li>
                         <li><a href="index.html#iletisim" class="hover:text-emerald-400 transition" data-i18n="navContact">İletişim</a></li>
+                        <li><a href="legal.html" class="hover:text-emerald-400 transition" data-i18n="navLegal">Yasal</a></li>
+                        <li><a href="blog.html" class="hover:text-emerald-400 transition" data-i18n="navBlog">Blog</a></li>
                     </ul>
 
                     <!-- Right Actions -->
                     <div class="flex items-center gap-3">
                         <!-- Language Switcher -->
                         <button id="languageSwitcher" onclick="toggleLanguage()"
-                                class="px-3 py-2 text-sm font-semibold rounded-lg transition"
+                                class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-lg transition"
                                 style="background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.3); color: #10b981;">
-                            <span id="currentLang">🇬🇧 EN</span>
+                            <img id="flagIcon" src="assets/images/flags/flag-tr.svg?v=1" alt="Türkçe" style="width:28px; height:20px; object-fit:cover; border-radius:3px; box-shadow:0 1px 3px rgba(0,0,0,0.2);" />
+                            <span id="currentLang" style="font-weight: 700; letter-spacing: 0.5px;">EN</span>
                         </button>
 
                         <!-- Career Button (Active) -->
@@ -277,9 +413,10 @@
                 <!-- Mobile Menu Button + Language -->
                 <div class="md:hidden flex items-center gap-3">
                     <button id="languageSwitcherMobile" onclick="toggleLanguage()"
-                            class="px-3 py-1.5 text-xs font-semibold rounded-lg"
+                            class="inline-flex items-center gap-2 px-3 py-2 text-xs font-semibold rounded-lg"
                             style="background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.3); color: #10b981;">
-                        <span id="currentLangMobile">🇬🇧 EN</span>
+                        <img id="flagIconMobile" src="assets/images/flags/flag-us.svg?v=1" alt="English" style="width:24px; height:17px; object-fit:cover; border-radius:2px; box-shadow:0 1px 2px rgba(0,0,0,0.2);" />
+                        <span id="currentLangMobile" style="font-weight: 700; letter-spacing: 0.5px;">EN</span>
                     </button>
                     <button id="mobileMenuBtn" class="text-2xl text-emerald-400">☰</button>
                 </div>
@@ -293,6 +430,8 @@
                     <li><a href="index.html#projeler" class="block hover:text-emerald-400 transition" data-i18n="navProjects">Projeler</a></li>
                     <li><a href="index.html#ekip" class="block hover:text-emerald-400 transition" data-i18n="navTeam">Ekip</a></li>
                     <li><a href="index.html#iletisim" class="block hover:text-emerald-400 transition" data-i18n="navContact">İletişim</a></li>
+                    <li><a href="legal.html" class="block hover:text-emerald-400 transition" data-i18n="navLegal">Yasal</a></li>
+                    <li><a href="blog.html" class="block hover:text-emerald-400 transition" data-i18n="navBlog">Blog</a></li>
                     <li><a href="careers.html"
                            class="block px-4 py-2 text-center font-semibold rounded-lg transition"
                            style="background: linear-gradient(135deg, #10b981, #059669); color: white;"
@@ -302,12 +441,41 @@
         </div>
     </header>
 
+    <!-- Neden Solarity AI? - sayfanın en üstü (header altında, üst boşlukla) -->
+    <section class="pt-28 pb-10 md:pt-36 md:pb-12 px-4 md:px-12 bg-slate-900/30">
+        <div class="container mx-auto max-w-5xl">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold font-display mb-6" data-i18n="careersWhyTitle">Neden Solarity AI?</h2>
+                <p class="text-slate-400 max-w-2xl mx-auto" data-i18n="careersWhySubtitle">Ekibimizin bir parçası olduğunuzda keyifli ve üretken bir ortamda çalışırsınız.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="careers-why-card text-center p-6 rounded-xl" style="background: rgba(30, 41, 59, 0.4); border: 1px solid rgba(148, 163, 184, 0.12);">
+                    <div class="text-5xl mb-4">🚀</div>
+                    <h3 class="text-xl font-semibold mb-3" data-i18n="careersWhy1Title">Yenilikçi Projeler</h3>
+                    <p class="text-slate-400 text-sm" data-i18n="careersWhy1Desc">Yapay zeka ve makine öğrenmesi alanında en son teknolojilerle çalışma fırsatı</p>
+                </div>
+
+                <div class="careers-why-card text-center p-6 rounded-xl" style="background: rgba(30, 41, 59, 0.4); border: 1px solid rgba(148, 163, 184, 0.12);">
+                    <div class="text-5xl mb-4">🌱</div>
+                    <h3 class="text-xl font-semibold mb-3" data-i18n="careersWhy2Title">Kişisel Gelişim</h3>
+                    <p class="text-slate-400 text-sm" data-i18n="careersWhy2Desc">Sürekli öğrenme kültürü, eğitim programları ve mentorluk desteği</p>
+                </div>
+
+                <div class="careers-why-card text-center p-6 rounded-xl" style="background: rgba(30, 41, 59, 0.4); border: 1px solid rgba(148, 163, 184, 0.12);">
+                    <div class="text-5xl mb-4">🤝</div>
+                    <h3 class="text-xl font-semibold mb-3" data-i18n="careersWhy3Title">Güçlü Ekip</h3>
+                    <p class="text-slate-400 text-sm" data-i18n="careersWhy3Desc">Uzman ve tutkulu ekip üyeleriyle birlikte çalışma ortamı</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
     <!-- Hero Section - Kariyer -->
-    <section class="pt-36 pb-20 px-4 md:px-12">
+    <section class="pt-10 pb-12 md:pt-12 md:pb-16 px-4 md:px-12">
         <div class="container mx-auto text-center max-w-4xl">
-            <span class="text-emerald-400 text-sm font-semibold uppercase tracking-wider" data-i18n="careersHeroTag">Kariyer Fırsatları</span>
-            <h1 class="text-4xl md:text-6xl font-bold font-display mt-4 mb-6 text-white">
-                <span class="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent" data-i18n="careersHeroTitle">
+            <h1 class="text-4xl md:text-6xl font-bold font-display mb-6 text-white">
+                <span class="careers-hero-title bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent" data-i18n="careersHeroTitle">
                     Geleceği Birlikte İnşa Edin
                 </span>
             </h1>
@@ -318,14 +486,15 @@
     </section>
 
     <!-- Open Positions Section - 4 POZİSYON KARTI -->
-    <section class="py-20 px-4 md:px-12 bg-slate-900/30">
+    <section class="pt-12 pb-20 md:pt-16 md:pb-20 px-4 md:px-12 bg-slate-900/30">
         <div class="container mx-auto max-w-6xl">
             <div class="text-center mb-12">
                 <h2 class="text-3xl md:text-5xl font-bold font-display mb-6" data-i18n="careersPositionsTitle">Açık Pozisyonlar</h2>
                 <p class="text-slate-400 max-w-2xl mx-auto mb-8" data-i18n="careersPositionsSubtitle">Ekibimize katılmak için aşağıdaki pozisyonlardan birine başvurabilirsiniz.</p>
 
                 <!-- Drive Link Button -->
-                <a href="https://drive.google.com/drive/folders/1iOew815DHxi_TDBWtbpUp_433V-bamws" target="_blank"
+                <a href="https://drive.google.com/drive/folders/1iOew815DHxi_TDBWtbpUp_433V-bamws
+                " target="_blank"
                    class="inline-flex items-center gap-2 px-6 py-3 text-base font-semibold rounded-lg transition hover:shadow-lg"
                    style="background: rgba(16, 185, 129, 0.15); border: 2px solid rgba(16, 185, 129, 0.4); color: #10b981;">
                     <i class="lni lni-folder text-xl"></i>
@@ -334,8 +503,8 @@
                 </a>
             </div>
 
-            <!-- 4 Position Cards - HER POZİSYON HEM TAM HEM YARI ZAMANLI -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- 3 Pozisyon Kartı - Yan yana -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Position 1: Full Stack Engineer -->
                 <div class="position-card">
                     <div class="flex items-start justify-between mb-4">
@@ -346,7 +515,6 @@
                         </div>
                     </div>
                     <h3 class="text-2xl font-bold mb-3" data-i18n="careersPos1Title">Full Stack Mühendisi</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed" data-i18n="careersPos1Desc">Modern web teknolojileri ile ölçeklenebilir uygulamalar geliştirme deneyimi. React, Node.js, ve bulut teknolojileri bilgisi.</p>
                 </div>
 
                 <!-- Position 2: Marketing Specialist -->
@@ -359,7 +527,6 @@
                         </div>
                     </div>
                     <h3 class="text-2xl font-bold mb-3" data-i18n="careersPos2Title">Pazarlama Uzmanı</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed" data-i18n="careersPos2Desc">Dijital pazarlama stratejileri geliştirme ve uygulama. SEO, SEM, sosyal medya yönetimi ve içerik pazarlaması deneyimi.</p>
                 </div>
 
                 <!-- Position 3: Business Development Manager -->
@@ -372,20 +539,6 @@
                         </div>
                     </div>
                     <h3 class="text-2xl font-bold mb-3" data-i18n="careersPos3Title">İş Geliştirme Müdürü</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed" data-i18n="careersPos3Desc">Yeni iş fırsatları yaratma ve müşteri ilişkileri yönetimi. B2B satış deneyimi ve güçlü iletişim becerileri.</p>
-                </div>
-
-                <!-- Position 4: UI/UX Designer -->
-                <div class="position-card">
-                    <div class="flex items-start justify-between mb-4">
-                        <div class="text-5xl">🎨</div>
-                        <div class="flex flex-col gap-2">
-                            <span class="px-3 py-1 text-xs font-semibold rounded-full" style="background: rgba(16, 185, 129, 0.15); color: #10b981;" data-i18n="careersFullTime">Tam Zamanlı</span>
-                            <span class="px-3 py-1 text-xs font-semibold rounded-full" style="background: rgba(59, 130, 246, 0.15); color: #3b82f6;" data-i18n="careersPartTime">Yarı Zamanlı</span>
-                        </div>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-3" data-i18n="careersPos4Title">Kullanıcı Arayüzü/Tasarım Uzmanı</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed" data-i18n="careersPos4Desc">Kullanıcı deneyimi odaklı modern arayüz tasarımı. Figma, Adobe XD ve prototyping araçları bilgisi.</p>
                 </div>
             </div>
         </div>
@@ -406,32 +559,61 @@
                     <input type="hidden" name="_next" value="https://solarityai.com/careers.html?success=true">
                     <input type="hidden" name="_subject" value="New Job Application - Solarity AI">
                     <input type="hidden" name="_template" value="box">
+                    <!-- Honeypot: botlar doldurur, insanlar görmez; dolu gelirse FormSubmit ve biz gönderimi reddederiz (ana sayfa ile aynı mantık) -->
+                    <input type="text" id="careersHoney" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true"
+                           style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none;" />
 
                     <!-- Full Name -->
                     <div class="mb-6">
-                        <label for="fullName" class="form-label" data-i18n="careersFormName">Ad Soyad *</label>
+                        <label for="fullName" class="form-label" data-i18n="careersFormName">Full Name *</label>
                         <input type="text" id="fullName" name="fullName" required
                                class="form-input"
-                               placeholder="Adınız ve soyadınız"
-                               data-i18n-placeholder="careersFormNamePlaceholder" />
+                               placeholder="Your full name"
+                               data-i18n-placeholder="careersFormNamePlaceholder"
+                               title="Enter your full name."
+                               data-i18n-title="careersFormNameTitle" />
                     </div>
 
-                    <!-- Email -->
+                    <!-- Gmail – sadece @gmail.com kabul edilir -->
                     <div class="mb-6">
-                        <label for="email" class="form-label" data-i18n="careersFormEmail">E-posta *</label>
-                        <input type="email" id="email" name="email" required
+                        <label for="gmail" class="form-label" data-i18n="careersFormGmail">Gmail *</label>
+                        <input type="email" id="gmail" name="email" required
                                class="form-input"
-                               placeholder="ornek@email.com"
-                               data-i18n-placeholder="careersFormEmailPlaceholder" />
+                               placeholder="example@gmail.com"
+                               data-i18n-placeholder="careersFormGmailPlaceholder"
+                               pattern="[a-zA-Z0-9._%+-]+@gmail\.com"
+                               title="Please enter a valid Gmail address (@gmail.com only)."
+                               data-i18n-title="careersFormGmailInvalid"
+                               data-msg-gmail="careersFormGmailInvalid" />
+                        <p class="text-sm text-amber-400 mt-1 hidden" id="gmailError" role="alert" data-i18n="careersFormGmailInvalid">Please enter a valid Gmail address (@gmail.com only).</p>
                     </div>
 
-                    <!-- Phone -->
+                    <!-- LinkedIn Profil URL – zorunlu, ana sayfa ile aynı validasyon -->
                     <div class="mb-6">
-                        <label for="phone" class="form-label" data-i18n="careersFormPhone">Telefon *</label>
-                        <input type="tel" id="phone" name="phone" required
+                        <label for="careersLinkedIn" class="form-label" data-i18n="careersLinkedIn">LinkedIn Profil URL *</label>
+                        <input type="url" id="careersLinkedIn" name="linkedin" required
                                class="form-input"
-                               placeholder="+90 555 123 45 67"
-                               data-i18n-placeholder="careersFormPhonePlaceholder" />
+                               placeholder="https://www.linkedin.com/in/kullanici-adi"
+                               data-i18n-placeholder="careersLinkedInPlaceholder"
+                               pattern="^https?:\/\/([a-z0-9-]+\.)?linkedin\.com\/in\/.+"
+                               title="Please enter a valid LinkedIn profile URL (e.g. https://www.linkedin.com/in/...)"
+                               data-i18n-title="careersLinkedInInvalid"
+                               data-msg-linkedin="careersLinkedInInvalid" />
+                        <p class="text-sm text-amber-400 mt-1 hidden" id="linkedInError" role="alert" data-i18n="careersLinkedInInvalid">Geçerli bir LinkedIn profil URL'si girin (örn. https://www.linkedin.com/in/...)</p>
+                    </div>
+
+                    <!-- Portfolio / Web sayfası – zorunlu (GitHub, Linktree veya diğer) -->
+                    <div class="mb-6">
+                        <label for="careersPortfolio" class="form-label" data-i18n="careersPortfolio">Portfolio / Web Sayfası *</label>
+                        <input type="url" id="careersPortfolio" name="portfolio" required
+                               class="form-input"
+                               placeholder="https://github.com/username or https://linktr.ee/..."
+                               data-i18n-placeholder="careersPortfolioPlaceholder"
+                               pattern="^https?:\/\/[^\s/$.?#][^\s]*$"
+                               title="Please enter a valid portfolio URL (e.g. GitHub, Linktree or your website)."
+                               data-i18n-title="careersPortfolioInvalid"
+                               data-msg-portfolio="careersPortfolioInvalid" />
+                        <p class="text-sm text-amber-400 mt-1 hidden" id="portfolioError" role="alert" data-i18n="careersPortfolioInvalid">Please enter a valid portfolio URL (e.g. GitHub, Linktree).</p>
                     </div>
 
                     <!-- Position Dropdown - SADECE 4 POZİSYON -->
@@ -442,7 +624,7 @@
                             <option value="full-stack-engineer" data-i18n="careersPos1Title">Full Stack Mühendisi</option>
                             <option value="marketing-specialist" data-i18n="careersPos2Title">Pazarlama Uzmanı</option>
                             <option value="business-development-manager" data-i18n="careersPos3Title">İş Geliştirme Müdürü</option>
-                            <option value="ui-ux-designer" data-i18n="careersPos4Title">Kullanıcı Arayüzü/Tasarım Uzmanı</option>
+                           
                         </select>
                     </div>
 
@@ -455,34 +637,7 @@
                             <option value="part-time" data-i18n="careersPartTime">Yarı Zamanlı</option>
                         </select>
                     </div>
-
-                    <!-- CV Upload -->
-                    <div class="mb-6">
-                        <label class="form-label" data-i18n="careersFormCV">CV Yükleme (PDF/DOCX) *</label>
-                        <div class="file-upload-area" id="fileUploadArea">
-                            <input type="file" id="cvFile" name="cvFile" accept=".pdf,.doc,.docx" required style="display: none;" />
-                            <div id="uploadText">
-                                <i class="lni lni-cloud-upload text-4xl text-emerald-400 mb-3"></i>
-                                <p class="text-slate-300 font-semibold mb-1" data-i18n="careersFormCVDrag">Dosyanızı sürükleyin veya tıklayarak seçin</p>
-                                <p class="text-sm text-slate-500" data-i18n="careersFormCVFormat">PDF, DOC, DOCX - Maksimum 5MB</p>
-                            </div>
-                            <div id="fileInfo" class="hidden">
-                                <i class="lni lni-checkmark-circle text-3xl text-emerald-400 mb-2"></i>
-                                <p class="text-emerald-400 font-semibold" id="fileName"></p>
-                                <button type="button" onclick="removeFile()" class="text-red-400 text-sm mt-2 hover:text-red-300" data-i18n="careersFormCVRemove">Dosyayı Kaldır</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Message -->
-                    <div class="mb-8">
-                        <label for="message" class="form-label" data-i18n="careersFormMessage">Neden Solarity AI?</label>
-                        <textarea id="message" name="message" rows="5"
-                                  class="form-textarea"
-                                  placeholder="Kendinizden ve neden Solarity AI'de çalışmak istediğinizden bahsedin..."
-                                  data-i18n-placeholder="careersFormMessagePlaceholder"></textarea>
-                    </div>
-
+                    
                     <!-- Submit Button -->
                     <button type="submit" class="submit-button" id="submitBtn">
                         <span data-i18n="careersFormSubmit">Başvuruyu Gönder</span>
@@ -495,35 +650,7 @@
         </div>
     </section>
 
-    <!-- Why Join Section -->
-    <section class="py-20 px-4 md:px-12 bg-slate-900/30">
-        <div class="container mx-auto max-w-5xl">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-5xl font-bold font-display mb-6" data-i18n="careersWhyTitle">Neden Solarity AI?</h2>
-                <p class="text-slate-400 max-w-2xl mx-auto" data-i18n="careersWhySubtitle">Ekibimizin bir parçası olduğunuzda keyifli ve üretken bir ortamda çalışırsınız.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="text-center p-6 rounded-xl" style="background: rgba(30, 41, 59, 0.4); border: 1px solid rgba(148, 163, 184, 0.12);">
-                    <div class="text-5xl mb-4">🚀</div>
-                    <h3 class="text-xl font-semibold mb-3" data-i18n="careersWhy1Title">Yenilikçi Projeler</h3>
-                    <p class="text-slate-400 text-sm" data-i18n="careersWhy1Desc">Yapay zeka ve makine öğrenmesi alanında en son teknolojilerle çalışma fırsatı</p>
-                </div>
-
-                <div class="text-center p-6 rounded-xl" style="background: rgba(30, 41, 59, 0.4); border: 1px solid rgba(148, 163, 184, 0.12);">
-                    <div class="text-5xl mb-4">🌱</div>
-                    <h3 class="text-xl font-semibold mb-3" data-i18n="careersWhy2Title">Kişisel Gelişim</h3>
-                    <p class="text-slate-400 text-sm" data-i18n="careersWhy2Desc">Sürekli öğrenme kültürü, eğitim programları ve mentorluk desteği</p>
-                </div>
-
-                <div class="text-center p-6 rounded-xl" style="background: rgba(30, 41, 59, 0.4); border: 1px solid rgba(148, 163, 184, 0.12);">
-                    <div class="text-5xl mb-4">🤝</div>
-                    <h3 class="text-xl font-semibold mb-3" data-i18n="careersWhy3Title">Güçlü Ekip</h3>
-                    <p class="text-slate-400 text-sm" data-i18n="careersWhy3Desc">Uzman ve tutkulu ekip üyeleriyle birlikte çalışma ortamı</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    
 
     <!-- Footer - INDEX.HTML İLE AYNI -->
     <footer id="footer" class="bg-slate-950 border-t border-slate-800 py-16 px-4 md:px-12">
@@ -531,7 +658,7 @@
             <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-8">
                 <div>
                     <a href="index.html" class="inline-block cursor-pointer hover:opacity-80 transition" title="Ana Sayfaya Dön">
-                        <img src="assets/images/logo/Solarity AI - Company Logo.svg" alt="Solarity AI" class="logo-standard mb-4" />
+                        <img src="assets/images/logo/SolarityAI-CompanyLogo.svg" alt="Solarity AI" class="logo-standard mb-4" />
                     </a>
                     <p class="text-sm text-slate-400" data-i18n="footerDescription">Dünya standartlarında kaliteyle yüksek etkili B2B ve B2C çözümler üreten yapay zeka odaklı yazılım şirketi.</p>
                 </div>
@@ -544,6 +671,8 @@
                         <li><a href="index.html#projeler" class="text-slate-400 hover:text-brand-blue transition" data-i18n="navProjects">Projeler</a></li>
                         <li><a href="index.html#ekip" class="text-slate-400 hover:text-brand-blue transition" data-i18n="navTeam">Ekip</a></li>
                         <li><a href="careers.html" class="text-slate-400 hover:text-brand-blue transition nav-link" data-i18n="navCareers">Kariyer</a></li>
+                        <li><a href="legal.html" class="text-slate-400 hover:text-brand-blue transition" data-i18n="navLegal">Yasal</a></li>
+                        <li><a href="blog.html" class="text-slate-400 hover:text-brand-blue transition" data-i18n="navBlog">Blog</a></li>
                     </ul>
                 </div>
 
@@ -559,7 +688,7 @@
                     <div class="mt-4 rounded-lg overflow-hidden border border-slate-800">
                         <iframe
                             title="Solarity AI - Dallas Office"
-                            src="https://www.google.com/maps?q=Dallas,+TX&hl=en&output=embed"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3350.0115985925604!2d-96.9414755!3d32.8978616!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864c2817e5e6c0e5%3A0xdb87e7baf2caaf2!2sAMLI%20on%20Riverside!5e0!3m2!1str!2str!4v1769627207920!5m2!1str!2str"
                             class="w-full h-44 md:h-40"
                             style="border:0;"
                             allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
@@ -570,13 +699,13 @@
                 <div>
                     <h4 class="font-semibold mb-4" data-i18n="footerFollowUs">Bizi Takip Edin</h4>
                     <div class="flex space-x-4">
-                        <a href="https://www.linkedin.com/company/solarityai-llc" target="_blank" class="text-2xl text-slate-400 hover:text-brand-blue transition">
+                        <a href="https://www.linkedin.com/company/solarityai-llc" target="_blank" rel="noopener noreferrer" aria-label="Solarity AI LinkedIn (opens in new tab)" class="text-2xl text-slate-400 hover:text-brand-blue transition">
                             <i class="lni lni-linkedin-original"></i>
                         </a>
-                        <a href="https://www.instagram.com/solarityai_llc/" target="_blank" class="text-2xl text-slate-400 hover:text-brand-blue transition">
+                        <a href="https://www.instagram.com/solarityai_llc/" target="_blank" rel="noopener noreferrer" aria-label="Solarity AI Instagram (opens in new tab)" class="text-2xl text-slate-400 hover:text-brand-blue transition">
                             <i class="lni lni-instagram-original"></i>
                         </a>
-                        <a href="https://github.com/Solarity-AI" target="_blank" class="text-2xl text-slate-400 hover:text-brand-blue transition">
+                        <a href="https://github.com/Solarity-AI" target="_blank" rel="noopener noreferrer" aria-label="Solarity AI GitHub (opens in new tab)" class="text-2xl text-slate-400 hover:text-brand-blue transition">
                             <i class="lni lni-github-original"></i>
                         </a>
                     </div>
@@ -601,98 +730,72 @@
             menu.classList.toggle('hidden');
         });
 
-        // Language Switcher - BOTH DESKTOP & MOBILE
+        // Language Switcher - BOTH DESKTOP & MOBILE (delegate to global)
         function toggleLanguage() {
-            const currentLang = localStorage.getItem('solarityai-lang') || 'en'; // DEFAULT: ENGLISH
-            const newLang = currentLang === 'tr' ? 'en' : 'tr';
-            localStorage.setItem('solarityai-lang', newLang);  // ✅ DÜZELTİLDİ: setItem
-
-            const langText = newLang === 'tr' ? '🇹🇷 TR' : '🇬🇧 EN';
-            const desktopLang = document.getElementById('currentLang');
-            const mobileLang = document.getElementById('currentLangMobile');
-
-            if (desktopLang) desktopLang.textContent = langText;
-            if (mobileLang) mobileLang.textContent = langText;
-
-            if (typeof setLanguage === 'function') {
-                setLanguage(newLang);
-            } else {
-                location.reload();
+            if (window && typeof window.toggleLanguage === 'function') {
+                return window.toggleLanguage();
             }
+            console.warn('Language system not initialized yet.');
         }
 
         // Initialize language
         document.addEventListener('DOMContentLoaded', function() {
-            const currentLang = localStorage.getItem('solarityai-lang') || 'en'; // DEFAULT: ENGLISH
-            const langText = currentLang === 'tr' ? '🇹🇷 TR' : '🇬🇧 EN';
-
-            const desktopLang = document.getElementById('currentLang');
-            const mobileLang = document.getElementById('currentLangMobile');
-
-            if (desktopLang) desktopLang.textContent = langText;
-            if (mobileLang) mobileLang.textContent = langText;
+            console.log('🚀 CAREERS FLAG INIT - Version: 2026-01-28-FLAGS-UPDATED');
+            // language.js will initialize flags and texts
         });
 
-        // File Upload Handling
+        // File Upload Handling – sadece formda file alanı varsa çalışır (yoksa script devam eder, Gmail/LinkedIn validasyonu çalışır)
         const fileUploadArea = document.getElementById('fileUploadArea');
         const fileInput = document.getElementById('cvFile');
         const uploadText = document.getElementById('uploadText');
         const fileInfo = document.getElementById('fileInfo');
         const fileName = document.getElementById('fileName');
 
-        fileUploadArea.addEventListener('click', () => fileInput.click());
-
-        fileInput.addEventListener('change', handleFileSelect);
-
-        // Drag and Drop
-        fileUploadArea.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            fileUploadArea.classList.add('dragover');
-        });
-
-        fileUploadArea.addEventListener('dragleave', () => {
-            fileUploadArea.classList.remove('dragover');
-        });
-
-        fileUploadArea.addEventListener('drop', (e) => {
-            e.preventDefault();
-            fileUploadArea.classList.remove('dragover');
-
-            const files = e.dataTransfer.files;
-            if (files.length > 0) {
-                fileInput.files = files;
-                handleFileSelect();
-            }
-        });
-
-        function handleFileSelect() {
-            const file = fileInput.files[0];
-            if (file) {
-                // Check file size (5MB max)
-                if (file.size > 5 * 1024 * 1024) {
-                    alert('Dosya boyutu 5MB\'dan küçük olmalıdır.');
-                    fileInput.value = '';
-                    return;
+        if (fileUploadArea && fileInput) {
+            fileUploadArea.addEventListener('click', () => fileInput.click());
+            fileInput.addEventListener('change', handleFileSelect);
+            fileUploadArea.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                fileUploadArea.classList.add('dragover');
+            });
+            fileUploadArea.addEventListener('dragleave', () => {
+                fileUploadArea.classList.remove('dragover');
+            });
+            fileUploadArea.addEventListener('drop', (e) => {
+                e.preventDefault();
+                fileUploadArea.classList.remove('dragover');
+                const files = e.dataTransfer.files;
+                if (files.length > 0) {
+                    fileInput.files = files;
+                    handleFileSelect();
                 }
+            });
 
-                // Check file type
-                const allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
-                if (!allowedTypes.includes(file.type)) {
-                    alert('Lütfen sadece PDF, DOC veya DOCX dosyası yükleyin.');
-                    fileInput.value = '';
-                    return;
+            function handleFileSelect() {
+                const file = fileInput.files[0];
+                if (file) {
+                    if (file.size > 5 * 1024 * 1024) {
+                        alert('Dosya boyutu 5MB\'dan küçük olmalıdır.');
+                        fileInput.value = '';
+                        return;
+                    }
+                    const allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+                    if (!allowedTypes.includes(file.type)) {
+                        alert(window.translations && (window.translations[localStorage.getItem('solarityai-lang') || 'en'] || window.translations.en).careersFormFileTypeError || 'Please upload only PDF, DOC or DOCX files.');
+                        fileInput.value = '';
+                        return;
+                    }
+                    if (fileName) fileName.textContent = file.name;
+                    if (uploadText) uploadText.classList.add('hidden');
+                    if (fileInfo) fileInfo.classList.remove('hidden');
                 }
-
-                fileName.textContent = file.name;
-                uploadText.classList.add('hidden');
-                fileInfo.classList.remove('hidden');
             }
-        }
 
-        function removeFile() {
-            fileInput.value = '';
-            uploadText.classList.remove('hidden');
-            fileInfo.classList.add('hidden');
+            window.removeFile = function() {
+                fileInput.value = '';
+                if (uploadText) uploadText.classList.remove('hidden');
+                if (fileInfo) fileInfo.classList.add('hidden');
+            };
         }
 
         // Position Selection - Karttan forma pozisyon aktar
@@ -711,32 +814,167 @@
             }, 2000);
         }
 
+        // Gmail validation – sadece @gmail.com kabul
+        const gmailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+        const gmailInput = document.getElementById('gmail');
+        const gmailErrorEl = document.getElementById('gmailError');
+        if (gmailInput && gmailErrorEl) {
+            gmailInput.addEventListener('input', function() {
+                gmailInput.setCustomValidity('');
+                gmailErrorEl.classList.add('hidden');
+                gmailInput.classList.remove('border-amber-500', 'ring-1', 'ring-amber-500');
+            });
+        }
+
+        // LinkedIn URL validation – linkedin.com/in/ ile başlamalı (ana sayfa ile aynı)
+        const linkedinRegex = /^https?:\/\/([a-z0-9-]+\.)?linkedin\.com\/in\/.+/i;
+        const linkedInInput = document.getElementById('careersLinkedIn');
+        const linkedInErrorEl = document.getElementById('linkedInError');
+        if (linkedInInput && linkedInErrorEl) {
+            linkedInInput.addEventListener('input', function() {
+                linkedInErrorEl.classList.add('hidden');
+                linkedInInput.classList.remove('border-amber-500', 'ring-1', 'ring-amber-500');
+            });
+            linkedInInput.addEventListener('blur', function() {
+                var val = (linkedInInput.value || '').trim();
+                if (val && !linkedinRegex.test(val)) {
+                    linkedInErrorEl.classList.remove('hidden');
+                    linkedInInput.classList.add('border-amber-500', 'ring-1', 'ring-amber-500');
+                } else {
+                    linkedInErrorEl.classList.add('hidden');
+                    linkedInInput.classList.remove('border-amber-500', 'ring-1', 'ring-amber-500');
+                }
+            });
+        }
+
+        // Portfolio URL validation – geçerli http(s) URL (GitHub, Linktree, vb.)
+        const portfolioRegex = /^https?:\/\/[^\s/$.?#][^\s]*$/i;
+        const portfolioInput = document.getElementById('careersPortfolio');
+        const portfolioErrorEl = document.getElementById('portfolioError');
+        if (portfolioInput && portfolioErrorEl) {
+            portfolioInput.addEventListener('input', function() {
+                portfolioErrorEl.classList.add('hidden');
+                portfolioInput.classList.remove('border-amber-500', 'ring-1', 'ring-amber-500');
+            });
+            portfolioInput.addEventListener('blur', function() {
+                var val = (portfolioInput.value || '').trim();
+                if (val && !portfolioRegex.test(val)) {
+                    portfolioErrorEl.classList.remove('hidden');
+                    portfolioInput.classList.add('border-amber-500', 'ring-1', 'ring-amber-500');
+                } else {
+                    portfolioErrorEl.classList.add('hidden');
+                    portfolioInput.classList.remove('border-amber-500', 'ring-1', 'ring-amber-500');
+                }
+            });
+        }
+
         // Form Submission
-        // Show loading state when form is submitted
         const careerForm = document.getElementById('careerApplicationForm');
         if (careerForm) {
             careerForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+
                 const submitBtn = document.getElementById('submitBtn');
                 const formMessage = document.getElementById('formMessage');
+                const gmailVal = (document.getElementById('gmail') && document.getElementById('gmail').value) || '';
+                const linkedInVal = (document.getElementById('careersLinkedIn') && document.getElementById('careersLinkedIn').value) || '';
+                const portfolioVal = (document.getElementById('careersPortfolio') && document.getElementById('careersPortfolio').value) || '';
 
                 // Get current language
                 const currentLang = localStorage.getItem('solarityai-lang') || 'en';
                 const translations = window.translations || {};
                 const t = translations[currentLang] || translations.en || {};
 
-                // Show loading state
-                submitBtn.disabled = true;
-                submitBtn.innerHTML = `<span>${t.careersFormSubmitting || 'Gönderiliyor...'}</span>`;
-                submitBtn.style.opacity = '0.7';
-                submitBtn.style.cursor = 'not-allowed';
+                // Gmail kontrolü – sadece @gmail.com (yahoo, outlook vb. reddedilir)
+                const gmailTrimmed = gmailVal.trim();
+                const isGmail = /^[a-zA-Z0-9._%+-]+@gmail\.com$/i.test(gmailTrimmed);
+                if (!gmailTrimmed || !isGmail) {
+                    const errMsg = t.careersFormGmailInvalid || 'Gmail girmeniz gerekiyor.';
+                    if (gmailErrorEl) {
+                        gmailErrorEl.textContent = errMsg;
+                        gmailErrorEl.classList.remove('hidden');
+                    }
+                    if (gmailInput) {
+                        gmailInput.setCustomValidity(errMsg);
+                        gmailInput.classList.add('border-amber-500', 'ring-1', 'ring-amber-500');
+                        gmailInput.focus();
+                        gmailInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                    return;
+                }
+                if (gmailInput) gmailInput.setCustomValidity('');
 
-                // Show info message
-                formMessage.className = 'mt-6 p-4 rounded-lg text-center bg-blue-500/20 border border-blue-500 text-blue-400';
-                formMessage.innerHTML = `<strong>${t.careersFormWait || 'Lütfen bekleyin...'}</strong><br><span>${t.careersFormCaptchaInfo || 'Başvurunuz gönderiliyor ve captcha doğrulaması yapılacaktır.'}</span>`;
-                formMessage.classList.remove('hidden');
+                // LinkedIn kontrolü – boş veya geçersiz formatta ise sayfada uyarı göster
+                if (!linkedInVal.trim()) {
+                    e.preventDefault();
+                    const errMsg = t.careersLinkedInInvalid || 'Geçerli bir LinkedIn profil URL\'si girin (örn. https://www.linkedin.com/in/...).';
+                    if (linkedInErrorEl) {
+                        linkedInErrorEl.textContent = errMsg;
+                        linkedInErrorEl.classList.remove('hidden');
+                    }
+                    if (linkedInInput) {
+                        linkedInInput.classList.add('border-amber-500', 'ring-1', 'ring-amber-500');
+                        linkedInInput.focus();
+                        linkedInInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                    return;
+                }
+                if (!linkedinRegex.test(linkedInVal.trim())) {
+                    const errMsg = t.careersLinkedInInvalid || 'Geçerli bir LinkedIn profil URL\'si girin (örn. https://www.linkedin.com/in/...).';
+                    if (linkedInErrorEl) {
+                        linkedInErrorEl.textContent = errMsg;
+                        linkedInErrorEl.classList.remove('hidden');
+                    }
+                    if (linkedInInput) {
+                        linkedInInput.classList.add('border-amber-500', 'ring-1', 'ring-amber-500');
+                        linkedInInput.focus();
+                        linkedInInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                    return;
+                }
 
-                // FormSubmit.co will handle the actual submission
-                // Note: If there's an error, user will see it on FormSubmit's page
+                // Portfolio kontrolü – zorunlu, geçerli URL (GitHub, Linktree, vb.)
+                if (!portfolioVal.trim()) {
+                    const errMsg = t.careersPortfolioInvalid || 'Geçerli bir portfolio/web sayfası URL\'si girin (örn. GitHub, Linktree).';
+                    if (portfolioErrorEl) {
+                        portfolioErrorEl.textContent = errMsg;
+                        portfolioErrorEl.classList.remove('hidden');
+                    }
+                    if (portfolioInput) {
+                        portfolioInput.classList.add('border-amber-500', 'ring-1', 'ring-amber-500');
+                        portfolioInput.focus();
+                        portfolioInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                    return;
+                }
+                if (!portfolioRegex.test(portfolioVal.trim())) {
+                    const errMsg = t.careersPortfolioInvalid || 'Geçerli bir portfolio/web sayfası URL\'si girin (örn. GitHub, Linktree).';
+                    if (portfolioErrorEl) {
+                        portfolioErrorEl.textContent = errMsg;
+                        portfolioErrorEl.classList.remove('hidden');
+                    }
+                    if (portfolioInput) {
+                        portfolioInput.classList.add('border-amber-500', 'ring-1', 'ring-amber-500');
+                        portfolioInput.focus();
+                        portfolioInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                    return;
+                }
+
+                // Bot kontrolü (honeypot): alan doluysa bot kabul edilir, gönderim yapılmaz
+                const honeyEl = document.getElementById('careersHoney');
+                const honeyVal = (honeyEl && honeyEl.value) ? String(honeyEl.value).trim() : '';
+                if (honeyVal) {
+                    const captchaMsg = t.formCaptchaError || 'Lütfen göndermeden önce insan olduğunuzu doğrulayın.';
+                    formMessage.className = 'mt-6 p-4 rounded-lg text-center bg-amber-500/20 border border-amber-500 text-amber-400';
+                    formMessage.innerHTML = '<strong>' + captchaMsg + '</strong>';
+                    formMessage.classList.remove('hidden');
+                    formMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    return;
+                }
+
+                // Ana sayfa ile aynı: form normal gönderilir, kullanıcı FormSubmit.co’ya gider ve orada reCAPTCHA çözer
+                careerForm.submit();
             });
         }
 
@@ -758,6 +996,80 @@
                 }
             }
         });
+    </script>
+
+    <!-- Cookie consent banner & GA load only after consent -->
+    <div id="cookie-consent-banner" role="dialog" aria-label="Cookie consent" aria-live="polite" class="hidden fixed bottom-0 left-0 right-0 z-[100] p-4 bg-slate-800/95 border-t border-slate-600 shadow-lg">
+      <div class="container mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+        <p id="cookie-banner-message" class="text-slate-200 text-sm flex-1" data-i18n="cookieBannerMessage">We use analytics cookies to improve our site. You can accept or decline.</p>
+        <div class="flex gap-2 shrink-0">
+          <button type="button" id="cookie-consent-decline" class="px-4 py-2 rounded-lg bg-slate-600 text-slate-200 hover:bg-slate-500 transition" data-i18n="cookieDecline">Decline</button>
+          <button type="button" id="cookie-consent-accept" class="px-4 py-2 rounded-lg bg-brand-blue text-white hover:bg-brand-blue-dark transition" data-i18n="cookieAccept">Accept</button>
+        </div>
+      </div>
+    </div>
+    <script>
+    (function() {
+      var CONSENT_KEY = 'solarityai-cookie-consent';
+      var GA_ID = 'G-KPPM46EHP9';
+      function loadGtagAndGrant() {
+        if (window.gtagLoaded) return;
+        window.gtagLoaded = true;
+        window.gtag('consent', 'update', {
+          'analytics_storage': 'granted',
+          'ad_storage': 'granted',
+          'ad_user_data': 'granted',
+          'ad_personalization': 'granted'
+        });
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+        s.onload = function() {
+          window.gtag('js', new Date());
+          window.gtag('config', GA_ID, { 'anonymize_ip': true });
+        };
+        document.head.appendChild(s);
+      }
+      function hideBanner() {
+        var el = document.getElementById('cookie-consent-banner');
+        if (el) el.classList.add('hidden');
+      }
+      function showBanner() {
+        var el = document.getElementById('cookie-consent-banner');
+        if (el) el.classList.remove('hidden');
+      }
+      function initConsent() {
+        var choice = localStorage.getItem(CONSENT_KEY);
+        if (choice === 'granted') {
+          loadGtagAndGrant();
+          hideBanner();
+          return;
+        }
+        if (choice === 'denied') {
+          hideBanner();
+          return;
+        }
+        showBanner();
+      }
+      document.addEventListener('DOMContentLoaded', function() {
+        initConsent();
+        var acceptBtn = document.getElementById('cookie-consent-accept');
+        var declineBtn = document.getElementById('cookie-consent-decline');
+        if (acceptBtn) {
+          acceptBtn.addEventListener('click', function() {
+            localStorage.setItem(CONSENT_KEY, 'granted');
+            loadGtagAndGrant();
+            hideBanner();
+          });
+        }
+        if (declineBtn) {
+          declineBtn.addEventListener('click', function() {
+            localStorage.setItem(CONSENT_KEY, 'denied');
+            hideBanner();
+          });
+        }
+      });
+    })();
     </script>
 </body>
 </html>
