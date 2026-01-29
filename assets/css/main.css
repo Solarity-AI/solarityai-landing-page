@@ -76,6 +76,14 @@
 
 html {
   scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* Türkçe sayfada İngilizce ile aynı görünüm – dil bazlı ölçekleme kapalı */
+html[lang="tr"] {
+  font-size: 16px;
 }
 
 body {
@@ -1016,17 +1024,11 @@ section {
 }
 
 .ud-team-info h5::after {
-  content: '';
-  display: block;
-  width: 68px;
-  height: 2px;
-  margin: 0.5rem auto 0.3rem;
-  border-radius: 999px;
-  background: linear-gradient(90deg, rgba(59, 130, 246, 0), rgba(59, 130, 246, 0.9), rgba(59, 130, 246, 0));
+  display: none;
 }
 
 .ud-team-info h6 {
-  font-size: 1.05rem;
+  font-size: 1.2rem;
   color: var(--color-primary-light);
   margin-bottom: 0.35rem;
   font-weight: 600;
@@ -1053,6 +1055,12 @@ section {
   margin: 0 0 0.05rem;
   z-index: 4;
   position: relative;
+}
+html[lang="en"] #team .ud-team-info h6 {
+  margin-bottom: 0.2rem;
+}
+html[lang="en"] #team .ud-team-socials {
+  margin-top: 0;
 }
 
 .ud-team-socials li a {
@@ -1267,28 +1275,177 @@ section {
   display: none;
 }
 
-.team-card::before {
-  content: '';
-  position: absolute;
-  top: -2.5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 2px;
-  height: 2.5rem;
-  background: linear-gradient(180deg, rgba(96, 165, 250, 0.95), rgba(96, 165, 250, 0));
+.team-card::before,
+.team-card::after {
+  display: none;
 }
 
-.team-card::after {
-  content: '';
-  position: absolute;
-  top: calc(-2.5rem - 4px);
-  left: 50%;
-  transform: translateX(-50%);
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #bfdbfe;
-  box-shadow: 0 0 12px rgba(59, 130, 246, 0.7);
+/* Eşit kart boyutu (2’li, 3’lü, 4’lü hepsi aynı boyut) ve LinkedIn yukarı - #ekip */
+#ekip .ud-single-team.team-card {
+  min-height: 480px;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 300px;
+  max-width: 340px;
+  margin-left: auto;
+  margin-right: auto;
+}
+#ekip .ud-team-image-wrapper {
+  flex: 0 0 auto;
+  flex-shrink: 0;
+  min-height: 380px;
+  height: 380px;
+  max-height: 380px;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+}
+#ekip .ud-team-image-wrapper .ud-team-image,
+#ekip .ud-team-image-wrapper .ud-team-image img {
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  object-fit: cover;
+  object-position: center 18%;
+}
+#ekip .ud-team-info {
+  flex-shrink: 0;
+  padding: 0.4rem 0.25rem 0;
+}
+#ekip .ud-team-info h5 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+  font-size: 1.45rem;
+}
+#ekip .ud-team-info h6 {
+  overflow: hidden;
+  max-width: 100%;
+  white-space: normal;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  line-clamp: 2;
+  font-size: 1.2rem;
+  line-height: 1.35;
+  min-height: 2.7em;
+}
+#ekip .ud-team-socials {
+  margin-top: 0.4rem;
+  margin-bottom: 0.5rem;
+}
+#ekip .team-grid-managers,
+#ekip .team-grid-interns,
+#ekip .grid[style*="gap"] {
+  align-items: stretch;
+  justify-content: center;
+}
+#ekip .ud-single-team.team-card {
+  height: 100%;
+}
+
+@media (max-width: 767px) {
+  #ekip .ud-single-team.team-card {
+    max-width: 100%;
+  }
+}
+
+/* Türkçe sayfada ekip kartları – daha küçük kart */
+html[lang="tr"] #ekip .ud-single-team.team-card {
+  min-height: 420px;
+  height: 100%;
+  width: 100%;
+  max-width: 300px;
+  min-width: 260px;
+  margin-left: auto;
+  margin-right: auto;
+}
+html[lang="tr"] #ekip .ud-team-image-wrapper {
+  flex: 0 0 auto !important;
+  flex-shrink: 0 !important;
+  min-height: 288px !important;
+  height: 288px !important;
+  max-height: 288px !important;
+  width: 100% !important;
+  min-width: 100% !important;
+  aspect-ratio: 4 / 5;
+}
+html[lang="tr"] #ekip .ud-team-image-wrapper .ud-team-image,
+html[lang="tr"] #ekip .ud-team-image-wrapper .ud-team-image img {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 100% !important;
+  object-fit: cover !important;
+  object-position: center 18%;
+}
+html[lang="tr"] #ekip .ud-team-info {
+  flex-shrink: 0;
+  padding: 0.25rem 0.25rem 0;
+  gap: 0.1rem;
+  margin-top: 2rem;
+  position: relative;
+  z-index: 2;
+}
+html[lang="tr"] #ekip .ud-team-info h5 {
+  font-size: 1.45rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--color-text-primary);
+  font-family: var(--font-secondary);
+  margin-bottom: 0.15rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+  min-height: 4em;
+  line-height: 1.35;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  text-align: center;
+}
+html[lang="tr"] #ekip .ud-team-info h6 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 1.35;
+  color: var(--color-primary-light);
+  font-family: var(--font-primary);
+  text-transform: uppercase;
+  margin-bottom: 0.15rem;
+  overflow: hidden;
+  max-width: 100%;
+  white-space: normal;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  line-clamp: 2;
+  min-height: 2.7em;
+}
+html[lang="tr"] #ekip .ud-team-socials {
+  margin-top: 0.15rem;
+  margin-bottom: 0.35rem;
+  gap: 0.35rem;
+}
+html[lang="tr"] #ekip .ud-team-socials li a {
+  font-size: 0.68rem;
+  width: 22px;
+  height: 22px;
+}
+
+@media (max-width: 767px) {
+  html[lang="tr"] #ekip .ud-team-image-wrapper {
+    height: auto;
+    min-height: 260px;
+    max-height: 320px;
+    flex-shrink: 0;
+  }
+  html[lang="tr"] #ekip .ud-team-info {
+    margin-top: 2rem;
+  }
 }
 
 .team-card--featured {
@@ -1356,10 +1513,6 @@ section {
   .team-tier-grid .team-card {
     flex: 0 0 calc((100% - 2rem) / 3);
     max-width: calc((100% - 2rem) / 3);
-  }
-
-  .team-card::after {
-    top: calc(-1.5rem - 4px);
   }
 
   .team-card--featured {
@@ -1917,3 +2070,126 @@ html body .ud-capabilities-grid .ud-capability-card p {
   margin-left: 0 !important;
   width: 100% !important;
 }
+
+/* =============================
+   Gradient Animation
+   ============================= */
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient {
+  animation: gradient 8s ease infinite;
+}
+
+/* =============================
+   Language Flags
+   ============================= */
+.language-flag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 18px;
+  border-radius: 3px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  margin-right: 6px;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.language-flag::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+  pointer-events: none;
+}
+
+/* Turkish Flag */
+.flag-tr {
+  background: linear-gradient(to bottom, #E30A17 0%, #E30A17 100%);
+}
+
+.flag-tr::after {
+  content: '🇹🇷';
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  line-height: 1;
+}
+
+/* UK/English Flag */
+.flag-en {
+  background: linear-gradient(to bottom, #012169 0%, #012169 100%);
+}
+
+.flag-en::after {
+  content: '🇬🇧';
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  line-height: 1;
+}
+
+/* US Flag Alternative (if needed) */
+.flag-us {
+  background: linear-gradient(to bottom,
+    #B22234 0%, #B22234 7.69%,
+    white 7.69%, white 15.38%,
+    #B22234 15.38%, #B22234 23.07%,
+    white 23.07%, white 30.76%,
+    #B22234 30.76%, #B22234 38.45%,
+    white 38.45%, white 46.14%,
+    #B22234 46.14%, #B22234 53.83%,
+    white 53.83%, white 61.52%,
+    #B22234 61.52%, #B22234 69.21%,
+    white 69.21%, white 76.9%,
+    #B22234 76.9%, #B22234 84.59%,
+    white 84.59%, white 92.28%,
+    #B22234 92.28%, #B22234 100%
+  );
+}
+
+.flag-us::after {
+  content: '🇺🇸';
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  line-height: 1;
+}
+
+/* Language switcher button styling */
+#languageSwitcher,
+#languageSwitcherMobile {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all var(--transition-base);
+}
+
+#languageSwitcher:hover,
+#languageSwitcherMobile:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
