@@ -5,12 +5,7 @@
   // Get current language from localStorage or default to 'en' (ENGLISH)
   let currentLang = localStorage.getItem('solarityai-lang') || 'en';
 
-  // Initialize language on page load
-  function initLanguage() {
-    setupLanguageSwitcher();
-    setLanguage(currentLang);
-    updateLanguageSwitcher();
-  }
+  // NOTE: initLanguage is defined later once. (Removed duplicate here)
 
   // Update URL based on language - BASIT ÇÖZÜM (SUNUCU OLMADAN)
   function updateUrlForLanguage(lang) {
@@ -98,6 +93,62 @@
     });
   }
 
+  // TR sayfada ekip fotoğrafları küçülmesin – inline stil ile zorla sabit boyut
+  function fixTeamPhotoSize(lang) {
+    var teamSection = document.querySelector('section[data-section-tr="ekip"]');
+    if (!teamSection) return;
+    var cards = teamSection.querySelectorAll('.ud-single-team.team-card');
+    var wrappers = teamSection.querySelectorAll('.ud-team-image-wrapper');
+    var isDesktop = typeof window !== 'undefined' && window.innerWidth > 767;
+    if (lang === 'tr') {
+      cards.forEach(function (card) {
+        if (isDesktop) {
+          card.style.minWidth = '340px';
+          card.style.width = '340px';
+          card.style.maxWidth = '340px';
+        } else {
+          card.style.minWidth = '';
+          card.style.width = '';
+          card.style.maxWidth = '';
+        }
+      });
+      wrappers.forEach(function (el) {
+        el.style.minHeight = '288px';
+        el.style.height = '288px';
+        el.style.maxHeight = '288px';
+        el.style.flexShrink = '0';
+        el.style.flex = '0 0 288px';
+        el.style.width = '100%';
+      });
+      teamSection.querySelectorAll('.ud-team-image-wrapper .ud-team-image, .ud-team-image-wrapper img').forEach(function (el) {
+        el.style.width = '100%';
+        el.style.height = '100%';
+        el.style.minHeight = '100%';
+        el.style.objectFit = 'cover';
+      });
+    } else {
+      cards.forEach(function (card) {
+        card.style.minWidth = '';
+        card.style.width = '';
+        card.style.maxWidth = '';
+      });
+      wrappers.forEach(function (el) {
+        el.style.minHeight = '';
+        el.style.height = '';
+        el.style.maxHeight = '';
+        el.style.flexShrink = '';
+        el.style.flex = '';
+        el.style.width = '';
+      });
+      teamSection.querySelectorAll('.ud-team-image-wrapper .ud-team-image, .ud-team-image-wrapper img').forEach(function (el) {
+        el.style.width = '';
+        el.style.height = '';
+        el.style.minHeight = '';
+        el.style.objectFit = '';
+      });
+    }
+  }
+
   // Update meta tags based on language
   function updateMetaTags(lang, path) {
     const baseUrl = 'https://solarityai.com';
@@ -140,18 +191,33 @@
       setTimeout(function() { setLanguage(lang); }, 100);
       return;
     }
+    // Güvenlik: çeviri hiç yüklenmezse 3 saniye sonra yine de body'yi göster
+    if (window._langLoadingFallback) clearTimeout(window._langLoadingFallback);
+    window._langLoadingFallback = setTimeout(function() {
+      document.documentElement.classList.remove('lang-loading');
+    }, 3000);
     
     currentLang = lang;
     localStorage.setItem('solarityai-lang', lang);
     
     // Update HTML lang attribute
     document.documentElement.lang = lang;
+
+    // Body sınıfı – TR/EN stilleri için (id’den bağımsız)
+    document.body.classList.remove('lang-tr', 'lang-en');
+    document.body.classList.add(lang === 'tr' ? 'lang-tr' : 'lang-en');
     
     // Update URL based on language (EN: /en/, TR: /)
     updateUrlForLanguage(lang);
 
     // Update navigation anchor links
     updateNavigationLinks(lang);
+
+    // TR sayfada ekip fotoğrafları küçülmesin – inline stil ile zorla sabit boyut
+    fixTeamPhotoSize(lang);
+    if (lang === 'tr') {
+      setTimeout(function () { fixTeamPhotoSize('tr'); }, 150);
+    }
 
     console.log('🌐 Setting language to:', lang);
     console.log('📚 Translations available for this language:', !!translationsObj[lang]);
@@ -266,6 +332,14 @@
       }
     });
 
+    // Update all elements with data-i18n-title attribute (tooltip on hover)
+    document.querySelectorAll('[data-i18n-title]').forEach(element => {
+      const key = element.getAttribute('data-i18n-title');
+      if (translationsObj[lang] && translationsObj[lang][key]) {
+        element.setAttribute('title', translationsObj[lang][key]);
+      }
+    });
+
     // Special-case: ensure big support stat number uses the correct localized format
     try {
       const supportNumberKey = 'statsSupportNumber';
@@ -315,7 +389,10 @@
     if (careersFormAutoresponse && translationsObj[lang] && translationsObj[lang]['careersFormAutoresponse']) {
       careersFormAutoresponse.value = translationsObj[lang]['careersFormAutoresponse'];
     }
-    
+
+    // İlk çizimde Türkçe yanıp sönmesini önle: dil uygulandıktan sonra body'yi göster
+    document.documentElement.classList.remove('lang-loading');
+
     console.log('✅ Translation complete! Updated', elements.length, 'elements');
   }
 
@@ -337,10 +414,10 @@
         // This works even if the button is replaced or recreated
         document.body.addEventListener('click', function languageButtonHandler(e) {
           const target = e.target;
-          if (target && (target.id === 'languageSwitcher' || target.closest('#languageSwitcher'))) {
+          if (target && (target.id === 'languageSwitcher' || target.closest('#languageSwitcher') || target.id === 'languageSwitcherMobile' || target.closest('#languageSwitcherMobile'))) {
             e.preventDefault();
             e.stopPropagation();
-            console.log('🔘 Language button clicked via delegation!');
+            console.log('🔘 Language button clicked via delegation! (desktop or mobile)');
             toggleLanguage();
             return false;
           }
@@ -364,6 +441,16 @@
       switcher.removeEventListener('click', directHandler);
       switcher.addEventListener('click', directHandler);
       
+      // Also attach direct listener to mobile switcher if present
+      const mobileSwitcher = document.getElementById('languageSwitcherMobile');
+      if (mobileSwitcher) {
+        try {
+          mobileSwitcher.removeEventListener('click', directHandler);
+        } catch (e) {}
+        mobileSwitcher.addEventListener('click', directHandler);
+        console.log('✅ Language switcher mobile direct listener attached');
+      }
+
       console.log('✅ Language switcher button direct listener attached');
       return switcher;
     } else {
@@ -375,26 +462,54 @@
   // Update language switcher button
   function updateLanguageSwitcher() {
     const switcher = document.getElementById('languageSwitcher');
+    const switcherMobile = document.getElementById('languageSwitcherMobile');
+
+    // Compute the target language (the one the button should switch TO)
+    const targetLang = currentLang === 'tr' ? 'en' : 'tr';
+    const langCodeForButton = targetLang === 'tr' ? 'TR' : 'EN';
+    const flagSrcForButton = targetLang === 'tr' ? 'assets/images/flags/flag-tr.svg?v=1' : 'assets/images/flags/flag-us.svg?v=1';
+
     if (switcher) {
-      // Show flag and language code for the language that will be switched TO
-      const nextLang = currentLang === 'tr' ? 'en' : 'tr';
-      const langCode = nextLang === 'tr' ? 'TR' : 'EN';
-      const flagClass = nextLang === 'tr' ? 'flag-tr' : 'flag-en';
-      const flagEl = switcher.querySelector('.language-flag');
-      const codeEl = switcher.querySelector('.language-code');
+      const flagEl = document.getElementById('flagIcon');
+      const codeEl = document.getElementById('currentLang');
 
-      if (flagEl) {
-        flagEl.classList.remove('flag-tr', 'flag-en');
-        flagEl.classList.add(flagClass);
-      }
-
-      if (codeEl) {
-        codeEl.textContent = langCode;
+      if (flagEl && flagEl.tagName === 'IMG') {
+        // show the flag of the language we will switch TO
+        flagEl.src = flagSrcForButton;
+        flagEl.alt = targetLang === 'tr' ? 'Türkçe' : 'English';
+        flagEl.title = targetLang === 'tr' ? 'Türkçe' : 'English';
+        console.log('✅ Language.js set desktop <img> src to (target):', flagSrcForButton);
+      } else if (flagEl) {
+        // fallback if not an img element
+        flagEl.style.background = targetLang === 'tr' ? '#E30A17' : 'linear-gradient(to bottom, #012169 0%, #012169 33%, white 33%, white 67%, #C8102E 67%, #C8102E 100%)';
+        console.warn('⚠️ flagIcon is not an <img>, applied background fallback for target flag');
       } else {
-        switcher.textContent = langCode;
+        console.warn('⚠️ flagIcon element not found (desktop)');
       }
-      switcher.setAttribute('data-lang', currentLang);
-      switcher.setAttribute('title', currentLang === 'tr' ? 'İngilizce\'ye Geç' : 'Switch to Turkish');
+
+      if (codeEl) codeEl.textContent = langCodeForButton;
+      // keep data attribute with current language for other logic, but expose target too
+      switcher.setAttribute('data-lang-current', currentLang);
+      switcher.setAttribute('data-lang-target', targetLang);
+    }
+
+    if (switcherMobile) {
+      const flagElMobile = document.getElementById('flagIconMobile');
+      const codeElMobile = document.getElementById('currentLangMobile');
+
+      if (flagElMobile && flagElMobile.tagName === 'IMG') {
+        flagElMobile.src = flagSrcForButton;
+        flagElMobile.alt = targetLang === 'tr' ? 'Türkçe' : 'English';
+        flagElMobile.title = targetLang === 'tr' ? 'Türkçe' : 'English';
+        console.log('✅ Language.js set mobile <img> src to (target):', flagSrcForButton);
+      } else if (flagElMobile) {
+        flagElMobile.style.background = targetLang === 'tr' ? '#E30A17' : 'linear-gradient(to bottom, #012169 0%, #012169 33%, white 33%, white 67%, #C8102E 67%, #C8102E 100%)';
+        console.warn('⚠️ flagIconMobile is not an <img>, applied background fallback for target flag');
+      }
+
+      if (codeElMobile) codeElMobile.textContent = langCodeForButton;
+      switcherMobile.setAttribute('data-lang-current', currentLang);
+      switcherMobile.setAttribute('data-lang-target', targetLang);
     }
   }
 
