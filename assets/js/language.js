@@ -37,14 +37,19 @@
   function translateHash(hash, lang) {
     const hashMap = {
       tr: {
-        '#about': '#hakkimizda',
+        '#services': '#services',
+        '#about': '#services',
+        '#hakkimizda': '#services',
         '#partnerships': '#ortakliklar',
         '#projects': '#projeler',
         '#team': '#ekip',
         '#contact': '#iletisim'
       },
       en: {
-        '#hakkimizda': '#about',
+        '#services': '#services',
+        '#about': '#services',
+        '#hakkimizda': '#services',
+        '#hizmetler': '#services',
         '#ortakliklar': '#partnerships',
         '#projeler': '#projects',
         '#ekip': '#team',
@@ -90,6 +95,20 @@
       }
 
       console.log('📍 Section ID updated:', section.id);
+    });
+  }
+
+  // Ekip üyesi isimleri: EN'de Türkçe karakter yok, TR'de orijinal
+  function updateTeamMemberNames(lang) {
+    document.querySelectorAll('.team-member-name[data-name-en][data-name-tr]').forEach(function (el) {
+      var en = el.getAttribute('data-name-en');
+      var tr = el.getAttribute('data-name-tr');
+      el.textContent = lang === 'en' ? (en || el.textContent) : (tr || el.textContent);
+    });
+    document.querySelectorAll('img[data-alt-en][data-alt-tr]').forEach(function (img) {
+      var en = img.getAttribute('data-alt-en');
+      var tr = img.getAttribute('data-alt-tr');
+      img.alt = lang === 'en' ? (en || img.alt) : (tr || img.alt);
     });
   }
 
@@ -218,6 +237,8 @@
     if (lang === 'tr') {
       setTimeout(function () { fixTeamPhotoSize('tr'); }, 150);
     }
+    // Ekip isimleri: EN'de Türkçe karakter yok
+    updateTeamMemberNames(lang);
 
     console.log('🌐 Setting language to:', lang);
     console.log('📚 Translations available for this language:', !!translationsObj[lang]);
