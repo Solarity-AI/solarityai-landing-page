@@ -1904,6 +1904,11 @@ html[lang="tr"] #ekip .ud-team-socials li a {
   margin: 0;
 }
 
+/* Footer social icons – aralık override'ı önlemek için */
+#footer .footer-socials {
+  gap: 0.5rem !important;
+}
+
 /* =============================
    Back to Top
    ============================= */
