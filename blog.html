@@ -152,7 +152,7 @@
                 <div class="hidden md:flex items-center gap-6">
                     <ul class="flex items-center space-x-6 text-base font-medium">
                         <li><a href="index.html#ortakliklar" class="hover:text-emerald-400 transition" data-i18n="navPartnerships">Ortaklıklar</a></li>
-                        <li><a href="index.html#hakkimizda" class="hover:text-emerald-400 transition" data-i18n="navAbout">Hakkımızda</a></li>
+                        <li><a href="index.html#services" class="hover:text-emerald-400 transition" data-i18n="navAbout">Hakkımızda</a></li>
                         <li><a href="index.html#projeler" class="hover:text-emerald-400 transition" data-i18n="navProjects">Projeler</a></li>
                         <li><a href="index.html#ekip" class="hover:text-emerald-400 transition" data-i18n="navTeam">Ekip</a></li>
                         <li><a href="index.html#iletisim" class="hover:text-emerald-400 transition" data-i18n="navContact">İletişim</a></li>
@@ -178,7 +178,7 @@
             <div id="mobileMenu" class="hidden md:hidden pb-4">
                 <ul class="flex flex-col space-y-3 text-base">
                     <li><a href="index.html#ortakliklar" class="block hover:text-emerald-400 transition" data-i18n="navPartnerships">Ortaklıklar</a></li>
-                    <li><a href="index.html#hakkimizda" class="block hover:text-emerald-400 transition" data-i18n="navAbout">Hakkımızda</a></li>
+                    <li><a href="index.html#services" class="block hover:text-emerald-400 transition" data-i18n="navAbout">Hakkımızda</a></li>
                     <li><a href="index.html#projeler" class="block hover:text-emerald-400 transition" data-i18n="navProjects">Projeler</a></li>
                     <li><a href="index.html#ekip" class="block hover:text-emerald-400 transition" data-i18n="navTeam">Ekip</a></li>
                     <li><a href="index.html#iletisim" class="block hover:text-emerald-400 transition" data-i18n="navContact">İletişim</a></li>
@@ -233,44 +233,63 @@
         </div>
     </section>
 
-    <footer id="footer" class="bg-slate-950 border-t border-slate-800 py-16 px-4 md:px-12">
-        <div class="container mx-auto">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-8">
-                <div>
-                    <a href="index.html" class="inline-block cursor-pointer hover:opacity-80 transition"><img src="assets/images/logo/SolarityAI-CompanyLogo.svg" alt="Solarity AI" class="logo-standard mb-4" /></a>
-                    <p class="text-sm text-slate-400" data-i18n="footerDescription">Dünya standartlarında kaliteyle yüksek etkili B2B ve B2C çözümler üreten yapay zeka odaklı yazılım şirketi.</p>
+    <!-- Footer - index.html ile aynı -->
+    <footer id="footer" class="bg-slate-950 border-t border-slate-800 py-10 md:py-12 px-4 md:px-12">
+        <div class="container mx-auto max-w-4xl">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-6 mb-6 md:place-items-center md:justify-items-center md:content-center">
+                <div class="md:text-center max-w-xs">
+                    <a href="index.html" class="inline-block cursor-pointer hover:opacity-80 transition" title="Back to top">
+                        <img src="assets/images/logo/SolarityAI-CompanyLogo.svg" alt="Solarity AI" class="logo-standard mb-3 mx-auto md:mx-auto" width="240" height="60" loading="lazy" />
+                    </a>
+                    <p class="text-sm text-slate-300" data-i18n="footerDescription">AI-Native Software Company Creating High-Impact B2B and B2C Solutions with World-Class Quality.</p>
                 </div>
-                <div>
-                    <h4 class="font-semibold mb-4" data-i18n="footerQuickLinks">Hızlı Bağlantılar</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="index.html#ortakliklar" class="text-slate-400 hover:text-brand-blue transition" data-i18n="navPartnerships">Ortaklıklar</a></li>
-                        <li><a href="index.html#hakkimizda" class="text-slate-400 hover:text-brand-blue transition" data-i18n="navAbout">Hakkımızda</a></li>
-                        <li><a href="index.html#projeler" class="text-slate-400 hover:text-brand-blue transition" data-i18n="navProjects">Projeler</a></li>
-                        <li><a href="index.html#ekip" class="text-slate-400 hover:text-brand-blue transition" data-i18n="navTeam">Ekip</a></li>
-                        <li><a href="careers.html" class="text-slate-400 hover:text-brand-blue transition" data-i18n="navCareers">Kariyer</a></li>
-                        <li><a href="legal.html" class="text-slate-400 hover:text-brand-blue transition" data-i18n="navLegal">Yasal</a></li>
-                        <li><a href="blog.html" class="text-slate-400 hover:text-brand-blue transition text-emerald-400" data-i18n="navBlog">Blog</a></li>
+
+                <div class="md:text-center">
+                    <h3 class="font-semibold mb-3" data-i18n="footerQuickLinks">Quick Links</h3>
+                    <ul class="space-y-1.5 text-sm">
+                        <li><a href="index.html#partnerships" data-href-tr="index.html#ortakliklar" data-href-en="index.html#partnerships" class="text-slate-300 hover:text-brand-blue transition nav-link" data-i18n="navPartnerships">Partnerships</a></li>
+                        <li><a href="index.html#services" data-href-tr="index.html#services" data-href-en="index.html#services" class="text-slate-300 hover:text-brand-blue transition nav-link" data-i18n="navAbout">Services</a></li>
+                        <li><a href="index.html#projects" data-href-tr="index.html#projeler" data-href-en="index.html#projects" class="text-slate-300 hover:text-brand-blue transition nav-link" data-i18n="navProjects">Projects</a></li>
+                        <li><a href="index.html#team" data-href-tr="index.html#ekip" data-href-en="index.html#team" class="text-slate-300 hover:text-brand-blue transition nav-link" data-i18n="navTeam">Team</a></li>
+                        <li><a href="careers.html" class="text-slate-300 hover:text-brand-blue transition nav-link" data-i18n="navCareers">Careers</a></li>
+                        <li><a href="legal.html" class="text-slate-300 hover:text-brand-blue transition" data-i18n="navLegal">Legal</a></li>
+                        <li><a href="blog.html" class="text-slate-300 hover:text-brand-blue transition" data-i18n="navBlog">Blog</a></li>
                     </ul>
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-4" data-i18n="footerContact">İletişim</h4>
-                    <ul class="space-y-2 text-sm text-slate-400">
-                        <li data-i18n="contactAddress">Adresimiz</li>
-                        <li class="font-medium text-slate-200" data-i18n="contactAddressValue">Dallas, Texas, ABD</li>
-                        <li><a href="mailto:ata.turhan@solarityai.com" class="hover:text-brand-blue transition">ata.turhan@solarityai.com</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-4" data-i18n="footerFollowUs">Bizi Takip Edin</h4>
-                    <div class="flex space-x-4">
-                        <a href="https://www.linkedin.com/company/solarityai-llc" target="_blank" rel="noopener noreferrer" aria-label="Solarity AI LinkedIn (opens in new tab)" class="text-2xl text-slate-400 hover:text-brand-blue transition"><i class="lni lni-linkedin-original"></i></a>
-                        <a href="https://www.instagram.com/solarityai_llc/" target="_blank" rel="noopener noreferrer" aria-label="Solarity AI Instagram (opens in new tab)" class="text-2xl text-slate-400 hover:text-brand-blue transition"><i class="lni lni-instagram-original"></i></a>
-                        <a href="https://github.com/Solarity-AI" target="_blank" rel="noopener noreferrer" aria-label="Solarity AI GitHub (opens in new tab)" class="text-2xl text-slate-400 hover:text-brand-blue transition"><i class="lni lni-github-original"></i></a>
-                    </div>
                 </div>
             </div>
-            <div class="border-t border-slate-800 pt-8 text-center text-sm text-slate-500">
-                <p data-i18n="footerCopyright">© 2026 Solarity AI LLC. Tüm hakları saklıdır.</p>
+
+            <div class="border-t border-slate-700 pt-6 pb-4 text-center">
+                <p class="text-sm text-slate-400 mb-3" data-i18n="footerCopyright">© 2026 Solarity AI LLC. All rights reserved.</p>
+                <div class="flex flex-wrap justify-center gap-x-6 gap-y-1 text-sm text-slate-400 mb-4">
+                    <a href="legal.html#privacy" class="hover:text-brand-blue transition" data-i18n="footerPrivacy">Privacy</a>
+                    <a href="legal.html#terms" class="hover:text-brand-blue transition" data-i18n="footerTerms">Terms</a>
+                </div>
+                <div class="footer-socials flex justify-center items-center">
+                    <a href="https://linktr.ee/solarity_ai_company" target="_blank" rel="noopener noreferrer" aria-label="Linktree – tüm linkler (opens in new tab)" class="inline-flex items-center justify-center w-10 h-10 text-slate-400 hover:text-brand-blue transition">
+                        <i class="lni lni-link text-2xl" aria-hidden="true"></i>
+                    </a>
+                    <a href="https://www.instagram.com/solarity_ai_company" target="_blank" rel="noopener noreferrer" aria-label="Instagram (opens in new tab)" class="inline-flex items-center justify-center w-10 h-10 text-slate-400 hover:text-brand-blue transition">
+                        <i class="lni lni-instagram-original text-2xl" aria-hidden="true"></i>
+                    </a>
+                    <a href="https://www.facebook.com/solarity_ai_company" target="_blank" rel="noopener noreferrer" aria-label="Facebook (opens in new tab)" class="inline-flex items-center justify-center w-10 h-10 text-slate-400 hover:text-brand-blue transition">
+                        <i class="lni lni-facebook-original text-2xl" aria-hidden="true"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@solarity_ai_company" target="_blank" rel="noopener noreferrer" aria-label="TikTok (opens in new tab)" class="inline-flex items-center justify-center w-10 h-10 text-slate-400 hover:text-brand-blue transition">
+                        <i class="lni lni-tiktok text-2xl" aria-hidden="true"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@solarity_ai_company" target="_blank" rel="noopener noreferrer" aria-label="YouTube (opens in new tab)" class="inline-flex items-center justify-center w-10 h-10 text-slate-400 hover:text-brand-blue transition">
+                        <i class="lni lni-youtube text-2xl" aria-hidden="true"></i>
+                    </a>
+                    <a href="https://x.com/solarity_ai_com" target="_blank" rel="noopener noreferrer" aria-label="X (opens in new tab)" class="inline-flex items-center justify-center w-10 h-10 text-slate-400 hover:text-brand-blue transition">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="shrink-0"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    </a>
+                    <a href="https://www.linkedin.com/company/solarityai-llc" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in new tab)" class="inline-flex items-center justify-center w-10 h-10 text-slate-400 hover:text-brand-blue transition">
+                        <i class="lni lni-linkedin-original text-2xl" aria-hidden="true"></i>
+                    </a>
+                    <a href="https://github.com/Solarity-AI" target="_blank" rel="noopener noreferrer" aria-label="GitHub (opens in new tab)" class="inline-flex items-center justify-center w-10 h-10 text-slate-400 hover:text-brand-blue transition">
+                        <i class="lni lni-github-original text-2xl" aria-hidden="true"></i>
+                    </a>
+                </div>
             </div>
         </div>
     </footer>
