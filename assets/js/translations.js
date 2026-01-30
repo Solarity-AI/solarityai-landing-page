@@ -3,7 +3,7 @@
 window.translations = {
   en: {
     // Navigation
-    navAbout: "About",
+    navAbout: "Services",
     navPartnerships: "Partnerships",
     navProjects: "Projects",
     navTeam: "Team",
@@ -13,10 +13,10 @@ window.translations = {
     navBlog: "Blog",
     navToggleMenu: "Toggle navigation menu",
     
-    // About Section
-    about: "About",
+    // About Section (hero label; section is now "Services")
+    about: "Services",
     aboutTitle: "AI-Native Software Company",
-    aboutSubtitle: "Creating High-Impact B2B and B2C Solutions with World-Class Quality",
+    aboutSubtitle: "🔥Creating the world’s best B2B and B2C solutions for YOU 🔥",
     capabilityAI: "AI & ML",
     capabilityAIDesc: "Advanced AI/ML solutions powered by cutting-edge algorithms and neural networks",
     capabilityMobile: "Mobile Application Development",
@@ -31,8 +31,10 @@ window.translations = {
     // Stats Bar
     statsProjects: "Completed Projects",
     statsSatisfaction: "Client Satisfaction",
-    statsSupport: "24/7 support service",
+    statsSupport: "24/7 Support Service",
     statsSupportNumber: "24/7",
+    statsRevenue: "Client Revenue Impact",
+    statsGlobalPartners: "Global Partners",
 
     // Services Section - NEW 5 Services
     aboutUs: "About",
@@ -48,35 +50,40 @@ window.translations = {
     serviceMobile: "Mobile Application Development",
     serviceMobileDesc: "Native and cross-platform mobile applications for iOS and Android. React Native, Flutter, Swift and Kotlin.",
 
-    // Service Tags (AI Card)
-    tagDeepLearning: "Deep Learning",
-    tagNLP: "NLP",
+    // Service Tags (AI Card) - 5 SEO keywords
+    tagGenAI: "Gen AI",
+    tagLLM: "LLM",
+    tagRAG: "RAG",
     tagComputerVision: "Computer Vision",
-    tagNeuralNetworks: "Neural Networks",
+    tagMultimodalAI: "Multimodal AI",
 
-    // Enterprise service tags
+    // Enterprise service tags - 5
     tagERP: "ERP",
     tagCRM: "CRM",
     tagCustomApps: "Custom Business Apps",
     tagIntegration: "Systems Integration",
+    tagWorkflow: "Workflow Automation",
 
-    // Cloud service tags
+    // Cloud service tags - 5
     tagAWS: "AWS",
     tagAzure: "Azure",
     tagGCP: "Google Cloud",
     tagServerless: "Serverless",
+    tagKubernetes: "Kubernetes",
 
-    // Web service tags
+    // Web service tags - 5
     tagReact: "React",
     tagVue: "Vue.js",
     tagNextJS: "Next.js",
+    tagTypeScript: "TypeScript",
     tagResponsive: "Responsive Design",
 
-    // Mobile service tags
+    // Mobile service tags - 5
     tagReactNative: "React Native",
     tagFlutter: "Flutter",
     tagiOS: "iOS",
     tagAndroid: "Android",
+    tagKotlin: "Kotlin",
 
     // Partnerships Section
     partnerships: "Partnerships",
@@ -123,9 +130,11 @@ window.translations = {
     // Contact Section
     contact: "Contact Us",
     contactSubtitle: "Let's Build Something Great Together🚀",
-    contactSubtitleDesc: "Get in touch to explore partnership opportunities or discuss your business needs.",
+    contactSubtitleDesc: "Get in touch to learn how we can help you be the best at what you do.",
     contactAddress: "Our Address",
     contactAddressValue: "310 Gran Via, Irving, TX 75039, USA",
+    contactResponseTime: "Response time",
+    contactResponseTimeValue: "Within 24 hours",
     contactEmail: "Email Us",
     contactCareers: "Careers",
     contactViewPositions: "View Open Positions",
@@ -151,6 +160,8 @@ window.translations = {
     footerContact: "Contact",
     footerFollowUs: "Follow Us",
     footerCopyright: "© 2026 Solarity AI LLC. All rights reserved.",
+    footerPrivacy: "Privacy",
+    footerTerms: "Terms",
     footerDescription: "AI-Native Software Company Creating High-Impact B2B and B2C Solutions with World-Class Quality.",
     legalPageTitle: "Legal Information",
     legalHeroTag: "Legal",
@@ -344,7 +355,7 @@ window.translations = {
   },
   tr: {
     // Navigation
-    navAbout: "Hakkımızda",
+    navAbout: "Hizmetler",
     navPartnerships: "Ortaklıklar",
     navProjects: "Projeler",
     navTeam: "Ekip",
@@ -354,10 +365,10 @@ window.translations = {
     navBlog: "Blog",
     navToggleMenu: "Menüyü aç/kapat",
     
-    // About Section
-    about: "Hakkımızda",
+    // About Section (section is now "Services")
+    about: "Hizmetler",
     aboutTitle: "Yapay Zeka Odaklı Yazılım Şirketi",
-    aboutSubtitle: "Dünya standartlarında kaliteyle, yüksek etkili B2B ve B2C çözümler geliştiriyoruz",
+    aboutSubtitle: "🔥Sizin için dünyanın en iyi B2B ve B2C çözümlerini yaratıyoruz 🔥",
 
     // Services Section - NEW 5 Services (updated from capabilities)
     servicesTitle: "Hizmetlerimiz",
@@ -372,35 +383,40 @@ window.translations = {
     serviceMobile: "Mobil Uygulama Geliştirme",
     serviceMobileDesc: "iOS ve Android platformları için yerel ve çapraz platform mobil uygulamalar. React Native, Flutter, Swift ve Kotlin.",
 
-    // Service Tags (AI Card)
-    tagDeepLearning: "Derin Öğrenme",
-    tagNLP: "Doğal Dil İşleme",
+    // Service Tags (AI Card) - 5 SEO keywords
+    tagGenAI: "Gen AI",
+    tagLLM: "LLM",
+    tagRAG: "RAG",
     tagComputerVision: "Bilgisayarlı Görü",
-    tagNeuralNetworks: "Sinir Ağları",
+    tagMultimodalAI: "Çok Modlu AI",
 
-    // Enterprise service tags
+    // Enterprise service tags - 5
     tagERP: "ERP",
     tagCRM: "CRM",
     tagCustomApps: "Özel İş Uygulamaları",
     tagIntegration: "Sistem Entegrasyonu",
+    tagWorkflow: "İş Akışı Otomasyonu",
 
-    // Cloud service tags
+    // Cloud service tags - 5
     tagAWS: "AWS",
     tagAzure: "Azure",
     tagGCP: "Google Cloud",
     tagServerless: "Sunucusuz",
+    tagKubernetes: "Kubernetes",
 
-    // Web service tags
+    // Web service tags - 5
     tagReact: "React",
     tagVue: "Vue.js",
     tagNextJS: "Next.js",
+    tagTypeScript: "TypeScript",
     tagResponsive: "Duyarlı Tasarım",
 
-    // Mobile service tags
+    // Mobile service tags - 5
     tagReactNative: "React Native",
     tagFlutter: "Flutter",
     tagiOS: "iOS",
     tagAndroid: "Android",
+    tagKotlin: "Kotlin",
 
     // OLD capabilities (keeping for backward compatibility)
     capabilityAI: "Yapay Zeka ve Makine Öğrenmesi",
@@ -417,8 +433,10 @@ window.translations = {
     // Stats Bar
     statsProjects: "Tamamlanan Projeler",
     statsSatisfaction: "Müşteri Memnuniyeti",
-    statsSupport: "7/24 destek hizmeti",
+    statsSupport: "7/24 Destek Hizmeti",
     statsSupportNumber: "7/24",
+    statsRevenue: "Müşteri Gelir Etkisi",
+    statsGlobalPartners: "Küresel Ortaklar",
 
     // Partnerships Section
     partnerships: "Ortaklıklarımız",
@@ -464,9 +482,11 @@ window.translations = {
     // Contact Section
     contact: "İletişim",
     contactSubtitle: "Birlikte Büyük İşler Başaralım🚀",
-    contactSubtitleDesc: "Ortaklık fırsatları veya iş ihtiyaçlarınız için bizimle iletişime geçin.",
+    contactSubtitleDesc: "Yaptığınız işte en iyisi olmanıza nasıl yardımcı olabileceğimizi öğrenmek için bizimle iletişime geçin.",
     contactAddress: "Adresimiz",
     contactAddressValue: "310 Gran Via, Irving, TX 75039, ABD",
+    contactResponseTime: "Yanıt süresi",
+    contactResponseTimeValue: "24 saat içinde",
     contactEmail: "E-posta",
     contactCareers: "Kariyer",
     contactViewPositions: "Açık Pozisyonları Görüntüle",
@@ -493,6 +513,8 @@ window.translations = {
     footerContact: "İletişim",
     footerFollowUs: "Bizi Takip Edin",
     footerCopyright: "© 2026 Solarity AI LLC. Tüm hakları saklıdır.",
+    footerPrivacy: "Gizlilik",
+    footerTerms: "Koşullar",
     footerDescription: "Dünya standartlarında kaliteyle yüksek etkili B2B ve B2C çözümler üreten yapay zeka odaklı yazılım şirketi.",
     legalPageTitle: "Yasal Bilgiler",
     legalHeroTag: "Yasal",
@@ -697,8 +719,8 @@ if (window.translations) {
   window.translations.tr = window.translations.tr || {};
 
   // Update support stat translations
-  window.translations.en.statsSupport = "24/7 support service";
-  window.translations.tr.statsSupport = "7/24 destek hizmeti";
+  window.translations.en.statsSupport = "24/7 Support Service";
+  window.translations.tr.statsSupport = "7/24 Destek Hizmeti";
 }
 
 // Helper: safe translation getter with sensible fallbacks

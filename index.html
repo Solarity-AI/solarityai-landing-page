@@ -27,7 +27,7 @@
     <meta property="og:image" content="https://solarityai.com/assets/images/logo/SolarityAI-CompanyLogo.svg">
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://solarityai.com/">
+    <meta property="twitter:url" content="https://x.com/solarity_ai_com">
     <meta property="twitter:title" content="Solarity AI - AI-Focused Software Company">
     <meta property="twitter:description" content="Delivering high-impact B2B and B2C solutions at world-class quality. AI/ML, mobile, web, enterprise and cloud solutions.">
     <meta property="twitter:image" content="https://solarityai.com/assets/images/logo/SolarityAI-CompanyLogo.svg">
@@ -422,15 +422,23 @@
         transform: translateY(-2px);
       }
 
-      /* Stats Bar */
+      /* Stats Bar - desktop'ta tam görünsün, yarısı altta kalmasın */
       .stats-bar {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
         gap: 2rem;
         background: rgba(30, 41, 59, 0.3);
         border: 1px solid rgba(148, 163, 184, 0.1);
         border-radius: 1rem;
         padding: 3rem 2rem;
+        align-items: start;
+      }
+      @media (min-width: 768px) {
+        .stats-bar {
+          grid-template-columns: repeat(5, 1fr);
+          padding: 3.5rem 2.5rem;
+          min-height: 140px;
+        }
       }
 
       .stat-item {
@@ -463,35 +471,46 @@
         font-weight: 500;
       }
 
-      /* ===== PARTNER SLIDER - Sliding Window (Otomatik Kayan Carousel) ===== */
+      /* ===== PARTNER SLIDER - Otomatik döngü + gerektiğinde kaydırma ===== */
       .partner-slider-container {
         width: 100%;
         max-width: 100vw;
-        overflow: hidden;
+        overflow-x: auto;
+        overflow-y: hidden;
         position: relative;
         padding: 2rem 0;
         margin: 0;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(59, 130, 246, 0.5) transparent;
+      }
+      .partner-slider-container::-webkit-scrollbar {
+        height: 8px;
+      }
+      .partner-slider-container::-webkit-scrollbar-track {
+        background: rgba(15, 23, 42, 0.5);
+        border-radius: 4px;
+      }
+      .partner-slider-container::-webkit-scrollbar-thumb {
+        background: rgba(59, 130, 246, 0.5);
+        border-radius: 4px;
+      }
+      .partner-slider-container::-webkit-scrollbar-thumb:hover {
+        background: rgba(59, 130, 246, 0.7);
       }
 
       .partner-slider {
         display: flex;
-        gap: 2rem;
-        animation: slidePartners 30s linear infinite;
+        gap: 1.5rem;
         width: max-content;
         max-width: none;
+        padding: 0 0.5rem;
       }
 
-      .partner-slider:hover {
-        animation-play-state: paused;
-      }
-
-      @keyframes slidePartners {
-        0% {
-          transform: translateX(0);
-        }
-        100% {
-          transform: translateX(-50%);
-        }
+      .partner-slider-set {
+        display: flex;
+        gap: 1.5rem;
+        flex-shrink: 0;
       }
 
       .partner-logo-card {
@@ -579,7 +598,12 @@
       }
       @media (min-width: 768px) {
         .team-grid-engineers {
-          grid-template-columns: repeat(4, 340px);
+          grid-template-columns: repeat(3, 340px);
+          justify-content: center;
+        }
+        /* Eren en altta, tek başına */
+        .team-grid-engineers .team-card-engineer:last-child {
+          grid-column: 2;
         }
       }
 
@@ -671,6 +695,26 @@
       .team-card-engineer {
         border: 2px solid rgba(59, 130, 246, 0.7);
         box-shadow: 0 10px 40px rgba(59, 130, 246, 0.4), 0 0 60px rgba(59, 130, 246, 0.2);
+      }
+      /* Mühendis unvanları uzun – 2 satıra sığsın, font küçük (#ekip / #team ile öncelik) */
+      #team .team-card-engineer .team-role,
+      #ekip .team-card-engineer .team-role {
+        font-size: 0.95rem;
+        white-space: normal !important;
+        text-overflow: unset;
+        text-align: center;
+        line-height: 1.3;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        min-height: 2.6em;
+      }
+      @media (min-width: 768px) {
+        #team .team-card-engineer .team-role,
+        #ekip .team-card-engineer .team-role {
+          font-size: 1rem;
+        }
       }
 
       /* Marketing cards - Pink border and glow */
@@ -1064,22 +1108,30 @@
         justify-content: center !important;
         text-align: center !important;
       }
-      /* TR: grid 300px – kartlar İngilizce sayfadaki gibi bitişik */
+      /* TR: grid 300px – kartlar ortada */
       body.lang-tr section[data-section-tr="ekip"] div[style*="grid-template-columns"] {
         grid-template-columns: repeat(3, 300px) !important;
+        justify-content: center !important;
       }
       body.lang-tr section[data-section-tr="ekip"] .team-grid-managers {
         grid-template-columns: repeat(3, 300px) !important;
+        justify-content: center !important;
       }
       body.lang-tr section[data-section-tr="ekip"] .team-grid-interns {
         grid-template-columns: repeat(2, 300px) !important;
+        justify-content: center !important;
       }
       @media (min-width: 768px) {
         body.lang-tr section[data-section-tr="ekip"] .team-grid-engineers {
-          grid-template-columns: repeat(4, 300px) !important;
+          grid-template-columns: repeat(3, 300px) !important;
+          justify-content: center !important;
+        }
+        body.lang-tr section[data-section-tr="ekip"] .team-grid-engineers .team-card-engineer:last-child {
+          grid-column: 2 !important;
         }
         body.lang-tr section[data-section-tr="ekip"] .team-grid-marketers {
           grid-template-columns: repeat(3, 300px) !important;
+          justify-content: center !important;
         }
       }
       @media (max-width: 767px) {
@@ -1114,7 +1166,7 @@
     </style>
 </head>
 
-<body id="top" class="text-slate-200" style="background: #0a192f;">
+<body id="top" class="text-slate-200 lang-en" style="background: #0a192f;">
     <a href="#main-content" class="skip-link" id="skip-link">Skip to main content</a>
 
     <!-- Header/Navbar - LOGO DAHA BÜYÜK -->
@@ -1129,12 +1181,12 @@
                 <!-- Desktop Menu + Buttons (NO OVERLAP!) -->
                 <div class="hidden md:flex items-center gap-6">
                     <ul class="flex items-center space-x-6 text-base font-medium">
-                        <li><a href="#ortakliklar" data-href-tr="#ortakliklar" data-href-en="#partnerships" class="hover:text-emerald-400 transition nav-link" data-i18n="navPartnerships">Ortaklıklar</a></li>
-                        <li><a href="#hakkimizda" data-href-tr="#hakkimizda" data-href-en="#about" class="hover:text-emerald-400 transition nav-link" data-i18n="navAbout">Hakkımızda</a></li>
-                        <li><a href="#projeler" data-href-tr="#projeler" data-href-en="#projects" class="hover:text-emerald-400 transition nav-link" data-i18n="navProjects">Projeler</a></li>
-                        <li><a href="#ekip" data-href-tr="#ekip" data-href-en="#team" class="hover:text-emerald-400 transition nav-link" data-i18n="navTeam">Ekip</a></li>
-                        <li><a href="#iletisim" data-href-tr="#iletisim" data-href-en="#contact" class="hover:text-emerald-400 transition nav-link" data-i18n="navContact">İletişim</a></li>
-                        <li><a href="legal.html" class="hover:text-emerald-400 transition" data-i18n="navLegal">Yasal</a></li>
+                        <li><a href="#partnerships" data-href-tr="#ortakliklar" data-href-en="#partnerships" class="hover:text-emerald-400 transition nav-link" data-i18n="navPartnerships">Partnerships</a></li>
+                        <li><a href="#services" data-href-tr="#services" data-href-en="#services" class="hover:text-emerald-400 transition nav-link" data-i18n="navAbout">Services</a></li>
+                        <li><a href="#projects" data-href-tr="#projeler" data-href-en="#projects" class="hover:text-emerald-400 transition nav-link" data-i18n="navProjects">Projects</a></li>
+                        <li><a href="#team" data-href-tr="#ekip" data-href-en="#team" class="hover:text-emerald-400 transition nav-link" data-i18n="navTeam">Team</a></li>
+                        <li><a href="#contact" data-href-tr="#iletisim" data-href-en="#contact" class="hover:text-emerald-400 transition nav-link" data-i18n="navContact">Contact</a></li>
+                        <li><a href="legal.html" class="hover:text-emerald-400 transition" data-i18n="navLegal">Legal</a></li>
                         <li><a href="blog.html" class="hover:text-emerald-400 transition" data-i18n="navBlog">Blog</a></li>
                     </ul>
 
@@ -1153,7 +1205,7 @@
                            class="inline-flex items-center gap-3 px-6 py-3 text-base font-semibold rounded-lg transition hover:shadow-lg"
                            style="background: linear-gradient(135deg, #10b981, #059669); color: white;">
                             <i class="lni lni-briefcase"></i>
-                            <span data-i18n="navCareers">Kariyer</span>
+                            <span data-i18n="navCareers">Careers</span>
                         </a>
                     </div>
                 </div>
@@ -1173,14 +1225,14 @@
             <!-- Mobile Menu -->
             <div id="mobileMenu" class="hidden md:hidden pb-4" aria-hidden="true">
                 <ul class="flex flex-col space-y-3 text-base">
-                    <li><a href="#ortakliklar" data-href-tr="#ortakliklar" data-href-en="#partnerships" class="block hover:text-emerald-400 transition nav-link" data-i18n="navPartnerships">Ortaklıklar</a></li>
-                    <li><a href="#hakkimizda" data-href-tr="#hakkimizda" data-href-en="#about" class="block hover:text-emerald-400 transition nav-link" data-i18n="navAbout">Hakkımızda</a></li>
-                    <li><a href="#projeler" data-href-tr="#projeler" data-href-en="#projects" class="block hover:text-emerald-400 transition nav-link" data-i18n="navProjects">Projeler</a></li>
-                    <li><a href="#ekip" data-href-tr="#ekip" data-href-en="#team" class="block hover:text-emerald-400 transition nav-link" data-i18n="navTeam">Ekip</a></li>
-                    <li><a href="#iletisim" data-href-tr="#iletisim" data-href-en="#contact" class="block hover:text-emerald-400 transition nav-link" data-i18n="navContact">İletişim</a></li>
-                    <li><a href="legal.html" class="block hover:text-emerald-400 transition" data-i18n="navLegal">Yasal</a></li>
+                    <li><a href="#partnerships" data-href-tr="#ortakliklar" data-href-en="#partnerships" class="block hover:text-emerald-400 transition nav-link" data-i18n="navPartnerships">Partnerships</a></li>
+                    <li><a href="#services" data-href-tr="#services" data-href-en="#services" class="block hover:text-emerald-400 transition nav-link" data-i18n="navAbout">Services</a></li>
+                    <li><a href="#projects" data-href-tr="#projeler" data-href-en="#projects" class="block hover:text-emerald-400 transition nav-link" data-i18n="navProjects">Projects</a></li>
+                    <li><a href="#team" data-href-tr="#ekip" data-href-en="#team" class="block hover:text-emerald-400 transition nav-link" data-i18n="navTeam">Team</a></li>
+                    <li><a href="#contact" data-href-tr="#iletisim" data-href-en="#contact" class="block hover:text-emerald-400 transition nav-link" data-i18n="navContact">Contact</a></li>
+                    <li><a href="legal.html" class="block hover:text-emerald-400 transition" data-i18n="navLegal">Legal</a></li>
                     <li><a href="blog.html" class="block hover:text-emerald-400 transition" data-i18n="navBlog">Blog</a></li>
-                    <li><a href="careers.html" class="block hover:text-emerald-400 transition" data-i18n="navCareers">Kariyer</a></li>
+                    <li><a href="careers.html" class="block hover:text-emerald-400 transition" data-i18n="navCareers">Careers</a></li>
                 </ul>
             </div>
         </div>
@@ -1188,146 +1240,131 @@
 
     <main id="main-content">
     <!-- Hero Section - LOGO İÇİN YETERLİ ALAN -->
-    <section class="pt-36 pb-20 px-4 md:px-12" aria-label="Hero">
+    <section class="pt-48 pb-0 md:pb-2 px-4 md:px-12" aria-label="Hero">
         <div class="container mx-auto text-center">
             <h1 class="text-4xl md:text-6xl font-bold font-display mb-4 text-white">
                 <span class="emoji-lightning">⚡</span><span class="bg-clip-text text-transparent animate-gradient" style="background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 50%, #1e40af 100%); background-size: 200% 200%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;" data-i18n="aboutTitle">
-                    Yapay Zeka Odaklı Yazılım Şirketi
-                </span><span class="emoji-lightning">⚡</span>
+                                    AI-Native Software Company
+                                </span><span class="emoji-lightning">⚡</span>
             </h1>
             <p class="text-lg md:text-xl text-slate-300 max-w-3xl mx-auto mb-6" data-i18n="aboutSubtitle">
-                Dünya standartlarında kaliteyle, yüksek etkili B2B ve B2C çözümler geliştiriyoruz
+              🔥Creating the world’s best B2B and B2C solutions for YOU 🔥
             </p>
 
-            <!-- Corporate Banner - alev emojisi + CTA butonu (iletişime yönlendirir, dilde #iletisim / #contact) -->
+            <!-- CEO'muzla görüşme ayarlayın - sadece CTA butonu -->
             <div class="mt-8 flex justify-center">
-                <div class="max-w-5xl w-full mx-auto text-white rounded-2xl p-6 md:p-10 flex flex-col sm:flex-row items-center justify-center gap-4 text-center" style="background: linear-gradient(135deg, rgba(30, 64, 175, 0.95) 0%, rgba(30, 58, 138, 0.95) 50%, rgba(17, 24, 39, 0.95) 100%); backdrop-filter: blur(20px); border: 1px solid rgba(59, 130, 246, 0.2); box-shadow: 0 20px 60px rgba(30, 64, 175, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.05);">
-                    <span class="text-6xl md:text-7xl flex-shrink-0" aria-hidden="true">🔥</span>
-                    <a id="bannerCTA" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2qgXk0ZfBd6QJf7ef-306in7AI0Kzc-pL3NJFK1fU74vAUGiftVJPF3-DoXp9_RZoyqW_sjSpI" class="inline-flex items-center justify-center gap-2 px-6 py-3 md:px-8 md:py-4 rounded-xl font-bold text-sm md:text-base lg:text-lg text-center transition-all nav-link w-full sm:flex-1 sm:min-w-0" style="background: rgba(255, 255, 255, 0.95); color: #1e40af; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);" onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 8px 24px rgba(0, 0, 0, 0.3)';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 16px rgba(0, 0, 0, 0.2)';" data-i18n="bannerCTA">"🚀 Book a call with our CEO 🚀"</a>
-                </div>
+                <a id="bannerCTA" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2qgXk0ZfBd6QJf7ef-306in7AI0Kzc-pL3NJFK1fU74vAUGiftVJPF3-DoXp9_RZoyqW_sjSpI" class="inline-flex items-center justify-center gap-2 px-6 py-3 md:px-8 md:py-4 rounded-xl font-bold text-sm md:text-base lg:text-lg text-center transition-all nav-link" style="background: rgba(255, 255, 255, 0.95); color: #1e40af; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);" onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 8px 24px rgba(0, 0, 0, 0.3)';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 16px rgba(0, 0, 0, 0.2)';" data-i18n="bannerCTA">"🚀 Book a call with our CEO 🚀"</a>
             </div>
         </div>
     </section>
 
-    <!-- Stats Bar - FERAH ALAN -->
-    <section class="py-16 px-4 md:px-12">
+    <!-- Stats Bar - yukarıda net görünsün, altta kalmasın -->
+    <section class="pt-4 md:pt-6 pb-16 md:pb-20 px-4 md:px-12">
         <div class="container mx-auto">
             <div class="stats-bar">
                 <div class="stat-item">
                     <div class="stat-number">20+</div>
-                    <div class="stat-label" data-i18n="statsProjects">Tamamlanan Proje</div>
+                    <div class="stat-label" data-i18n="statsProjects">Completed Projects</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-number">%200</div>
-                    <div class="stat-label" data-i18n="statsSatisfaction">Müşteri Memnuniyeti</div>
+                    <div class="stat-label" data-i18n="statsSatisfaction">Client Satisfaction</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-number" data-i18n="statsSupportNumber">24/7</div>
-                    <div class="stat-label" data-i18n="statsSupport">Destek Hizmeti</div>
+                    <div class="stat-label" data-i18n="statsSupport">24/7 support service</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100M+</div>
+                    <div class="stat-label" data-i18n="statsRevenue">Client Revenue Impact</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">10+</div>
+                    <div class="stat-label" data-i18n="statsGlobalPartners">Global Partners</div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Partnership Sliding Window - HERO SECTION ALTINDA -->
-    <section id="ortakliklar" data-section-tr="ortakliklar" data-section-en="partnerships" class="py-16 px-4 md:px-12 bg-slate-900/30">
+    <section id="partnerships" data-section-tr="ortakliklar" data-section-en="partnerships" class="py-16 px-4 md:px-12 bg-slate-900/30">
         <div class="container mx-auto">
             <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-5xl font-bold font-display mb-4" data-i18n="partnershipsSubtitle">Sektör Liderleri Tarafından Güvenilen</h2>
-                <p class="text-slate-300" data-i18n="partnershipsSubtitleDesc">Yenilikçi çözümler sunmak için sektörün önde gelen şirketleri ve organizasyonlarıyla stratejik işbirlikleri gerçekleştiriyoruz</p>
+                <h2 class="text-3xl md:text-5xl font-bold font-display mb-4" data-i18n="partnershipsSubtitle">Strategic Collaborations and Trusted Partners</h2>
+                <p class="text-slate-300" data-i18n="partnershipsSubtitleDesc">We collaborate with innovative companies and organizations to deliver cutting-edge solutions</p>
             </div>
 
-            <!-- Sliding Partner Carousel -->
+            <!-- Partner logos - sadece scroll -->
             <div class="partner-slider-container">
                 <div class="partner-slider">
-                    <!-- İlk Set -->
-                    <a href="https://www.ticaret.gov.tr/" target="_blank" rel="noopener noreferrer" aria-label="Ministry of Trade (opens in new tab)" class="partner-logo-card">
-                        <img src="assets/images/brands/Ticaret_Bakanligi_logo.svg" alt="Ticaret Bakanlığı" width="120" height="60" loading="lazy" />
-                    </a>
-                    <a href="https://www.isisdanismanlik.com/" target="_blank" rel="noopener noreferrer" aria-label="ISIS Consulting (opens in new tab)" class="partner-logo-card">
-                        <img src="assets/images/brands/isis.png" alt="ISIS" width="120" height="60" loading="lazy" />
-                    </a>
-                    <a href="https://www.novartis.com/" target="_blank" rel="noopener noreferrer" class="partner-logo-card">
-                        <img src="assets/images/brands/Novartis-Logo.svg" alt="Novartis" width="120" height="60" loading="lazy" />
-                    </a>
-                    <a href="https://www.kpmlabs.com.tr/" target="_blank" rel="noopener noreferrer" aria-label="KPM Labs (opens in new tab)" class="partner-logo-card">
-                        <img src="assets/images/brands/kpm-labs.png" alt="KPM Labs" width="120" height="60" loading="lazy" />
-                    </a>
-                    <a href="https://everva.com.tr/" target="_blank" rel="noopener noreferrer" class="partner-logo-card">
-                        <img src="assets/images/brands/everva.png" alt="Everva" />
-                    </a>
-                    <a href="https://www.siemens.com/" target="_blank" rel="noopener noreferrer" aria-label="Siemens (opens in new tab)" class="partner-logo-card">
-                        <img src="assets/images/brands/Siemens_AG_logo.svg" alt="Siemens" width="120" height="60" loading="lazy" />
-                    </a>
-                    <a href="https://www.techsign.com.tr/" target="_blank" rel="noopener noreferrer" aria-label="TechSign (opens in new tab)" class="partner-logo-card">
-                        <img src="assets/images/brands/techsign.png" alt="Techsign" width="120" height="60" loading="lazy" />
-                    </a>
-                    <a href="https://www.tubitak.gov.tr/" target="_blank" rel="noopener noreferrer" aria-label="TÜBİTAK (opens in new tab)" class="partner-logo-card">
-                        <img src="assets/images/brands/TUBITAK_logo.svg" alt="TÜBİTAK" width="120" height="60" loading="lazy" />
-                    </a>
-                    <a href="https://akuakare.com/" target="_blank" rel="noopener noreferrer" aria-label="Akuakare (opens in new tab)" class="partner-logo-card">
-                        <img src="assets/images/brands/akuakare.png" alt="Akuakare" width="120" height="60" loading="lazy" />
-                    </a>
-
-                    <!-- İkinci Set - Seamless Loop İçin -->
-                    <a href="https://www.ticaret.gov.tr/" target="_blank" rel="noopener noreferrer" aria-label="Ministry of Trade (opens in new tab)" class="partner-logo-card">
-                        <img src="assets/images/brands/Ticaret_Bakanligi_logo.svg" alt="Ticaret Bakanlığı" width="120" height="60" loading="lazy" />
-                    </a>
-                    <a href="https://www.isisdanismanlik.com/" target="_blank" rel="noopener noreferrer" aria-label="ISIS Consulting (opens in new tab)" class="partner-logo-card">
-                        <img src="assets/images/brands/isis.png" alt="ISIS" width="120" height="60" loading="lazy" />
-                    </a>
-                    <a href="https://www.novartis.com/" target="_blank" rel="noopener noreferrer" class="partner-logo-card">
-                        <img src="assets/images/brands/Novartis-Logo.svg" alt="Novartis" width="120" height="60" loading="lazy" />
-                    </a>
-                    <a href="https://www.kpmlabs.com.tr/" target="_blank" rel="noopener noreferrer" aria-label="KPM Labs (opens in new tab)" class="partner-logo-card">
-                        <img src="assets/images/brands/kpm-labs.png" alt="KPM Labs" width="120" height="60" loading="lazy" />
-                    </a>
-                    <a href="https://everva.com.tr/" target="_blank" rel="noopener noreferrer" class="partner-logo-card">
-                        <img src="assets/images/brands/everva.png" alt="Everva" />
-                    </a>
-                    <a href="https://www.siemens.com/" target="_blank" rel="noopener noreferrer" aria-label="Siemens (opens in new tab)" class="partner-logo-card">
-                        <img src="assets/images/brands/Siemens_AG_logo.svg" alt="Siemens" width="120" height="60" loading="lazy" />
-                    </a>
-                    <a href="https://www.techsign.com.tr/" target="_blank" rel="noopener noreferrer" aria-label="TechSign (opens in new tab)" class="partner-logo-card">
-                        <img src="assets/images/brands/techsign.png" alt="Techsign" width="120" height="60" loading="lazy" />
-                    </a>
-                    <a href="https://www.tubitak.gov.tr/" target="_blank" rel="noopener noreferrer" aria-label="TÜBİTAK (opens in new tab)" class="partner-logo-card">
-                        <img src="assets/images/brands/TUBITAK_logo.svg" alt="TÜBİTAK" width="120" height="60" loading="lazy" />
-                    </a>
-                    <a href="https://akuakare.com/" target="_blank" rel="noopener noreferrer" aria-label="Akuakare (opens in new tab)" class="partner-logo-card">
-                        <img src="assets/images/brands/akuakare.png" alt="Akuakare" width="120" height="60" loading="lazy" />
-                    </a>
+                    <div class="partner-slider-set">
+                        <a href="https://www.ticaret.gov.tr/" target="_blank" rel="noopener noreferrer" aria-label="Ministry of Trade (opens in new tab)" class="partner-logo-card">
+                            <img src="assets/images/brands/Ticaret_Bakanligi_logo.svg" alt="Ticaret Bakanlığı" width="120" height="60" loading="lazy" />
+                        </a>
+                        <a href="https://www.isisdanismanlik.com/" target="_blank" rel="noopener noreferrer" aria-label="ISIS Consulting (opens in new tab)" class="partner-logo-card">
+                            <img src="assets/images/brands/isis.png" alt="ISIS" width="120" height="60" loading="lazy" />
+                        </a>
+                        <a href="https://www.novartis.com/" target="_blank" rel="noopener noreferrer" class="partner-logo-card">
+                            <img src="assets/images/brands/Novartis-Logo.svg" alt="Novartis" width="120" height="60" loading="lazy" />
+                        </a>
+                        <a href="https://www.kpmlabs.com.tr/" target="_blank" rel="noopener noreferrer" aria-label="KPM Labs (opens in new tab)" class="partner-logo-card">
+                            <img src="assets/images/brands/kpm-labs.png" alt="KPM Labs" width="120" height="60" loading="lazy" />
+                        </a>
+                        <a href="https://everva.com.tr/" target="_blank" rel="noopener noreferrer" class="partner-logo-card">
+                            <img src="assets/images/brands/everva.png" alt="Everva" />
+                        </a>
+                        <a href="https://www.siemens.com/" target="_blank" rel="noopener noreferrer" aria-label="Siemens (opens in new tab)" class="partner-logo-card">
+                            <img src="assets/images/brands/Siemens_AG_logo.svg" alt="Siemens" width="120" height="60" loading="lazy" />
+                        </a>
+                        <a href="https://www.techsign.com.tr/" target="_blank" rel="noopener noreferrer" aria-label="TechSign (opens in new tab)" class="partner-logo-card">
+                            <img src="assets/images/brands/techsign.png" alt="Techsign" width="120" height="60" loading="lazy" />
+                        </a>
+                        <a href="https://www.tubitak.gov.tr/" target="_blank" rel="noopener noreferrer" aria-label="TÜBİTAK (opens in new tab)" class="partner-logo-card">
+                            <img src="assets/images/brands/TUBITAK_logo.svg" alt="TÜBİTAK" width="120" height="60" loading="lazy" />
+                        </a>
+                        <a href="https://akuakare.com/" target="_blank" rel="noopener noreferrer" aria-label="Akuakare (opens in new tab)" class="partner-logo-card">
+                            <img src="assets/images/brands/akuakare.png" alt="Akuakare" width="120" height="60" loading="lazy" />
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Services - Modern Bento Grid (5 Hizmet) - FERAH ALAN -->
-    <section id="hakkimizda" data-section-tr="hakkimizda" data-section-en="about" class="py-24 px-4 md:px-12 bg-slate-900/50">
+    <section id="services" data-section-tr="services" data-section-en="services" class="py-24 px-4 md:px-12 bg-slate-900/50">
         <div class="container mx-auto">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-5xl font-bold font-display mb-6" data-i18n="servicesTitle">Hizmetlerimiz</h2>
+                <h2 class="text-3xl md:text-5xl font-bold font-display mb-6" data-i18n="servicesTitle">Our Services</h2>
             </div>
 
             <!-- Bento Grid: 5 Services (AI featured, others balanced) -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 services-grid">
-                <!-- Service 1: AI/ML - normalize to match other service cards -->
+                <!-- Service 1: AI/ML - robot icon, 5 SEO tags -->
                 <div class="service-card">
                     <div class="service-icon mb-6">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h-1.73c.34.6.73 1.26.73 2a2 2 0 0 1-2 2c-.74 0-1.39-.4-1.73-1H14v1.27c.6.34 1 .99 1 1.73a2 2 0 0 1-2 2 2 2 0 0 1-2-2c0-.74.4-1.39 1-1.73V17H9.73A2 2 0 0 1 8 18a2 2 0 0 1-2-2c0-.74.4-1.39 1-1.73H7a7 7 0 0 1 7-7h1V5.73A2 2 0 0 1 14 4a2 2 0 0 1-2-2z"/>
-                            <circle cx="12" cy="12" r="3"/>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <rect x="4" y="8" width="16" height="12" rx="2"/>
+                            <path d="M12 2v4"/>
+                            <path d="M12 2a1.5 1.5 0 0 1 1.5 1.5v0"/>
+                            <path d="M12 2a1.5 1.5 0 0 0-1.5 1.5v0"/>
+                            <circle cx="8" cy="13" r="1.5" fill="currentColor"/>
+                            <circle cx="16" cy="13" r="1.5" fill="currentColor"/>
+                            <path d="M8 18h8"/>
+                            <path d="M7 10h2"/>
+                            <path d="M15 10h2"/>
                         </svg>
                     </div>
                     <div>
-                        <h3 class="text-xl font-semibold mb-3 text-white" data-i18n="serviceAI">Yapay Zeka ve Makine Öğrenmesi</h3>
-                        <p class="text-slate-300 text-sm leading-relaxed" data-i18n="serviceAIDesc">En güncel algoritmalar ve sinir ağlarıyla desteklenen ileri düzey yapay zeka ve makine öğrenmesi çözümleri. Derin öğrenme modelleri, doğal dil işleme ve bilgisayarlı görü uygulamaları.</p>
+                        <h3 class="text-xl font-semibold mb-3 text-white" data-i18n="serviceAI">AI & ML</h3>
+                        <p class="text-slate-300 text-sm leading-relaxed" data-i18n="serviceAIDesc">Advanced AI and machine learning solutions powered by state-of-the-art algorithms and neural networks. Deep learning models, natural language processing, and computer vision applications.</p>
                     </div>
                     <div class="flex flex-wrap gap-2 mt-4">
-                        <span class="service-tag" data-i18n="tagDeepLearning">Deep Learning</span>
-                        <span class="service-tag" data-i18n="tagNLP">NLP</span>
+                        <span class="service-tag" data-i18n="tagGenAI">Gen AI</span>
+                        <span class="service-tag" data-i18n="tagLLM">LLM</span>
+                        <span class="service-tag" data-i18n="tagRAG">RAG</span>
                         <span class="service-tag" data-i18n="tagComputerVision">Computer Vision</span>
-                        <span class="service-tag" data-i18n="tagNeuralNetworks">Neural Networks</span>
+                        <span class="service-tag" data-i18n="tagMultimodalAI">Multimodal AI</span>
                     </div>
                 </div>
 
@@ -1343,13 +1380,14 @@
                             <path d="M7 12h10"/>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-semibold mb-3 text-white" data-i18n="serviceEnterprise">Kurumsal Yazılım Çözümleri</h3>
-                    <p class="text-slate-300 text-sm leading-relaxed" data-i18n="serviceEnterpriseDesc">İş ihtiyaçlarınıza özel olarak tasarlanmış kurumsal yazılım çözümleri. ERP, CRM ve özel iş uygulamaları.</p>
+                    <h3 class="text-xl font-semibold mb-3 text-white" data-i18n="serviceEnterprise">Enterprise Software Solutions</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed" data-i18n="serviceEnterpriseDesc">Custom-designed enterprise software solutions tailored to your business needs. ERP, CRM, and specialized business applications.</p>
                     <div class="flex flex-wrap gap-2 mt-4">
                         <span class="service-tag" data-i18n="tagERP">ERP</span>
                         <span class="service-tag" data-i18n="tagCRM">CRM</span>
                         <span class="service-tag" data-i18n="tagCustomApps">Custom Business Apps</span>
                         <span class="service-tag" data-i18n="tagIntegration">Systems Integration</span>
+                        <span class="service-tag" data-i18n="tagWorkflow">Workflow Automation</span>
                     </div>
                 </div>
 
@@ -1360,13 +1398,14 @@
                             <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-semibold mb-3 text-white" data-i18n="serviceCloud">Bulut Tabanlı Uygulamalar</h3>
-                    <p class="text-slate-300 text-sm leading-relaxed" data-i18n="serviceCloudDesc">Modern mimari prensipleriyle inşa edilen ölçeklenebilir bulut çözümleri. AWS, Azure ve Google Cloud platformları.</p>
+                    <h3 class="text-xl font-semibold mb-3 text-white" data-i18n="serviceCloud">Cloud-Based Applications</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed" data-i18n="serviceCloudDesc">Scalable cloud solutions built with modern architectural principles. AWS, Azure and Google Cloud platforms.</p>
                     <div class="flex flex-wrap gap-2 mt-4">
                         <span class="service-tag" data-i18n="tagAWS">AWS</span>
                         <span class="service-tag" data-i18n="tagAzure">Azure</span>
                         <span class="service-tag" data-i18n="tagGCP">Google Cloud</span>
                         <span class="service-tag" data-i18n="tagServerless">Serverless</span>
+                        <span class="service-tag" data-i18n="tagKubernetes">Kubernetes</span>
                     </div>
                 </div>
 
@@ -1381,12 +1420,13 @@
                             <line x1="3" x2="21" y1="15" y2="15"/>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-semibold mb-3 text-white" data-i18n="serviceWeb">Web Uygulama Geliştirme</h3>
-                    <p class="text-slate-300 text-sm leading-relaxed" data-i18n="serviceWebDesc">Modern teknolojilerle geliştirilmiş, ölçeklenebilir ve duyarlı web uygulamaları. React, Vue, Angular ve Next.js.</p>
+                    <h3 class="text-xl font-semibold mb-3 text-white" data-i18n="serviceWeb">Web Application Development</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed" data-i18n="serviceWebDesc">Scalable and responsive web applications built with modern technologies. React, Vue, Angular and Next.js.</p>
                     <div class="flex flex-wrap gap-2 mt-4">
                         <span class="service-tag" data-i18n="tagReact">React</span>
                         <span class="service-tag" data-i18n="tagVue">Vue.js</span>
                         <span class="service-tag" data-i18n="tagNextJS">Next.js</span>
+                        <span class="service-tag" data-i18n="tagTypeScript">TypeScript</span>
                         <span class="service-tag" data-i18n="tagResponsive">Responsive Design</span>
                     </div>
                 </div>
@@ -1399,13 +1439,14 @@
                             <path d="M12 18h.01"/>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-semibold mb-3 text-white" data-i18n="serviceMobile">Mobil Uygulama Geliştirme</h3>
-                    <p class="text-slate-300 text-sm leading-relaxed" data-i18n="serviceMobileDesc">iOS ve Android platformları için yerel ve çapraz platform mobil uygulamalar. React Native, Flutter ve Swift.</p>
+                    <h3 class="text-xl font-semibold mb-3 text-white" data-i18n="serviceMobile">Mobile Application Development</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed" data-i18n="serviceMobileDesc">Native and cross-platform mobile applications for iOS and Android. React Native, Flutter and Swift.</p>
                     <div class="flex flex-wrap gap-2 mt-4">
                         <span class="service-tag" data-i18n="tagReactNative">React Native</span>
                         <span class="service-tag" data-i18n="tagFlutter">Flutter</span>
                         <span class="service-tag" data-i18n="tagiOS">iOS</span>
                         <span class="service-tag" data-i18n="tagAndroid">Android</span>
+                        <span class="service-tag" data-i18n="tagKotlin">Kotlin</span>
                     </div>
                 </div>
             </div>
@@ -1413,11 +1454,11 @@
     </section>
 
     <!-- Projects Section - FERAH ALAN -->
-    <section id="projeler" data-section-tr="projeler" data-section-en="projects" class="py-24 px-4 md:px-12">
+    <section id="projects" data-section-tr="projeler" data-section-en="projects" class="py-24 px-4 md:px-12">
         <div class="container mx-auto">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-5xl font-bold font-display mb-4" data-i18n="projectsSubtitle">Seçili Projeler ve Başarı Hikayeleri</h2>
-                <p class="text-slate-300" data-i18n="projectsSubtitleDesc">Uzmanlığımızı etkili çözümlerimiz aracılığıyla sergiliyoruz</p>
+                <h2 class="text-3xl md:text-5xl font-bold font-display mb-4" data-i18n="projectsSubtitle">Selected Case Studies and Success Stories</h2>
+                <p class="text-slate-300" data-i18n="projectsSubtitleDesc">Showcasing our expertise through impactful solutions</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -1425,11 +1466,11 @@
                 <div class="bento-card group">
                     <div class="mb-4">
                         <div class="text-2xl mb-2">🏛️</div>
-                        <h3 class="text-lg font-semibold text-slate-200 mb-1" data-i18n="projectMinistryTrade">Ticaret Bakanlığı</h3>
-                        <h4 class="text-base font-medium text-brand-blue-light" data-i18n="projectEAuction">E-İhale</h4>
+                        <h3 class="text-lg font-semibold text-slate-200 mb-1" data-i18n="projectMinistryTrade">Ministry of Trade</h3>
+                        <h4 class="text-base font-medium text-brand-blue-light" data-i18n="projectEAuction">E-Auction</h4>
                     </div>
                     <p class="text-sm text-slate-300 leading-relaxed" data-i18n="projectEAuctionDesc">
-                        Kamu alımları ve gümrük ile ilgili satışlar için güvenilir bir elektronik ihale platformu geliştirdik.
+                        Built a robust electronic auction platform used for government procurement and customs-related sales. Key achievements include automated high-volume auction operations, transparent bidding process, secure and compliant workflows, and improved processing efficiency.
                     </p>
                 </div>
 
@@ -1437,11 +1478,11 @@
                 <div class="bento-card group">
                     <div class="mb-4">
                         <div class="text-2xl mb-2">📋</div>
-                        <h3 class="text-lg font-semibold text-slate-200 mb-1" data-i18n="projectMinistryTrade">Ticaret Bakanlığı</h3>
-                        <h4 class="text-base font-medium text-brand-blue-light" data-i18n="projectCustomsDeclaration">Gümrük Beyanname Sistemi</h4>
+                        <h3 class="text-lg font-semibold text-slate-200 mb-1" data-i18n="projectMinistryTrade">Ministry of Trade</h3>
+                        <h4 class="text-base font-medium text-brand-blue-light" data-i18n="projectCustomsDeclaration">Customs Declaration System</h4>
                     </div>
                     <p class="text-sm text-slate-300 leading-relaxed" data-i18n="projectCustomsDeclarationDesc">
-                        Güvenli beyanname gönderimi, doğrulama ve yönetimini sağlayan dijital gümrük beyanname sistemi geliştirdik.
+                        Developed the digital customs declaration system enabling secure submission, validation, and management of declarations. Highlights include end-to-end digital declaration workflow, integration with government data standards, secure high-volume transaction handling, and enhanced transparency and operational performance.
                     </p>
                 </div>
 
@@ -1450,10 +1491,10 @@
                     <div class="mb-4">
                         <div class="text-2xl mb-2">⚙️</div>
                         <h3 class="text-lg font-semibold text-slate-200 mb-1" data-i18n="projectISIS">ISIS</h3>
-                        <h4 class="text-base font-medium text-brand-blue-light" data-i18n="projectISISMicroservices">Mikroservis Altyapısı Geliştirme</h4>
+                        <h4 class="text-base font-medium text-brand-blue-light" data-i18n="projectISISMicroservices">Microservices Framework Development</h4>
                     </div>
                     <p class="text-sm text-slate-300 leading-relaxed" data-i18n="projectISISDesc">
-                        Dağıtılmış kurumsal uygulamaları desteklemek üzere ölçeklenebilir ve modüler bir mikroservis framework geliştirdik.
+                        Developed a scalable and modular microservices framework to support distributed enterprise applications. Key features include fault-tolerant architecture, centralized observability, high performance and maintainability, and accelerated service development cycles.
                     </p>
                 </div>
 
@@ -1462,10 +1503,10 @@
                     <div class="mb-4">
                         <div class="text-2xl mb-2">🖥️</div>
                         <h3 class="text-lg font-semibold text-slate-200 mb-1" data-i18n="projectNovartis">Novartis</h3>
-                        <h4 class="text-base font-medium text-brand-blue-light" data-i18n="projectNovartisScreensaver">Kurumsal Ekran Koruyucu Platformu</h4>
+                        <h4 class="text-base font-medium text-brand-blue-light" data-i18n="projectNovartisScreensaver">Corporate Screen Saver Platform</h4>
                     </div>
                     <p class="text-sm text-slate-300 leading-relaxed" data-i18n="projectNovartisDesc">
-                        Novartis'in küresel ofisleri için güvenli, kurumsal düzeyde bir ekran koruyucu yönetim sistemi geliştirdik.
+                        Created a secure, enterprise-grade screen saver management system for global Novartis offices. Highlights include remote configuration and deployment, corporate branding support, device compatibility and secure operation.
                     </p>
                 </div>
             </div>
@@ -1473,27 +1514,27 @@
     </section>
 
     <!-- Team Section with Hierarchy - FERAH ALAN -->
-    <section id="ekip" data-section-tr="ekip" data-section-en="team" class="py-24 px-4 md:px-12 bg-slate-900/50">
+    <section id="team" data-section-tr="ekip" data-section-en="team" class="py-24 px-4 md:px-12 bg-slate-900/50">
         <div class="container mx-auto">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-5xl font-bold font-display mb-4" data-i18n="teamSubtitle">Uzman Ekibimizle Tanışın</h2>
-                <p class="text-slate-300" data-i18n="teamSubtitleDesc">Yapay zeka ve yazılım geliştirme alanında yeniliklere öncülük eden, tutkulu profesyoneller</p>
+                <h2 class="text-3xl md:text-5xl font-bold font-display mb-4" data-i18n="teamSubtitle">Meet Our Expert Team</h2>
+                <p class="text-slate-300" data-i18n="teamSubtitleDesc">Dedicated professionals driving innovation in AI and software development</p>
             </div>
 
             <!-- Executives -->
             <div class="mb-20">
-                <h3 class="text-3xl md:text-4xl font-bold text-center mb-10 text-yellow-400" data-i18n="teamExecutives">Üst Yönetim</h3>
+                <h3 class="text-3xl md:text-4xl font-bold text-center mb-10 text-yellow-400" data-i18n="teamExecutives">Executives</h3>
                 <div class="flex flex-col md:grid mx-auto" style="gap: var(--team-gap); grid-template-columns: repeat(3, 340px); justify-content: center;">
                     <div class="ud-single-team team-card team-card-cto">
                         <div class="ud-team-image-wrapper">
                             <div class="ud-team-image">
                                 <a href="https://www.linkedin.com/in/umurinan/" target="_blank" rel="noopener noreferrer" aria-label="Umur Inan LinkedIn (opens in new tab)">
-                                    <img src="assets/images/team/UmurInan.png" alt="Umur İnan" class="team-avatar" width="176" height="224" loading="lazy" />
+                                    <img src="assets/images/team/UmurInan.png" alt="Umur Inan" class="team-avatar" data-alt-en="Umur Inan" data-alt-tr="Umur İnan" width="176" height="224" loading="lazy" />
                                 </a>
                             </div>
                         </div>
                         <div class="ud-team-info">
-                            <h4 class="text-xl font-semibold">Umur İnan</h4>
+                            <h4 class="text-xl font-semibold team-member-name" data-name-en="Umur Inan" data-name-tr="Umur İnan">Umur Inan</h4>
                             <h5 class="team-role text-brand-blue" data-i18n="teamCTO">CTO</h5>
                         </div>
                         <ul class="ud-team-socials">
@@ -1508,12 +1549,12 @@
                         <div class="ud-team-image-wrapper">
                             <div class="ud-team-image">
                                 <a href="https://www.linkedin.com/in/ataturhan/" target="_blank" rel="noopener noreferrer">
-                                    <img src="assets/images/team/AtaTurhan.webp" alt="Ata Turhan" class="team-avatar" width="176" height="224" loading="lazy" />
+                                    <img src="assets/images/team/AtaTurhan.webp" alt="Ata Turhan" class="team-avatar" data-alt-en="Ata Turhan" data-alt-tr="Ata Turhan" width="176" height="224" loading="lazy" />
                                 </a>
                             </div>
                         </div>
                         <div class="ud-team-info">
-                            <h4 class="text-xl font-semibold">Ata Turhan</h4>
+                            <h4 class="text-xl font-semibold team-member-name" data-name-en="Ata Turhan" data-name-tr="Ata Turhan">Ata Turhan</h4>
                             <h5 class="team-role text-brand-blue" data-i18n="teamCEO">CEO</h5>
                         </div>
                         <ul class="ud-team-socials">
@@ -1528,12 +1569,12 @@
                         <div class="ud-team-image-wrapper">
                             <div class="ud-team-image">
                                 <a href="https://www.linkedin.com/in/burak-hamuryen-07b8b340/" target="_blank" rel="noopener noreferrer" aria-label="Burak Hamuryen LinkedIn (opens in new tab)">
-                                    <img src="assets/images/team/BurakHamuryen.webp" alt="Burak Hamuryen" class="team-avatar" width="176" height="224" loading="lazy" />
+                                    <img src="assets/images/team/BurakHamuryen.webp" alt="Burak Hamuryen" class="team-avatar" data-alt-en="Burak Hamuryen" data-alt-tr="Burak Hamuryen" width="176" height="224" loading="lazy" />
                                 </a>
                             </div>
                         </div>
                         <div class="ud-team-info">
-                            <h4 class="text-xl font-semibold">Burak Hamuryen</h4>
+                            <h4 class="text-xl font-semibold team-member-name" data-name-en="Burak Hamuryen" data-name-tr="Burak Hamuryen">Burak Hamuryen</h4>
                             <h5 class="team-role text-brand-blue" data-i18n="teamCIO">CIO</h5>
                         </div>
                         <ul class="ud-team-socials">
@@ -1549,18 +1590,18 @@
 
             <!-- Business Development Managers - Highlighted -->
             <div class="mb-20">
-                <h3 class="text-3xl md:text-4xl font-bold text-center mb-10 text-emerald-500" data-i18n="teamManagers">İş Geliştirme Yöneticileri</h3>
+                <h3 class="text-3xl md:text-4xl font-bold text-center mb-10 text-emerald-500" data-i18n="teamManagers">Business Development Managers</h3>
                 <div class="team-grid-managers max-w-5xl mx-auto">
                     <div class="ud-single-team team-card team-card-manager">
                         <div class="ud-team-image-wrapper">
                             <div class="ud-team-image">
                                 <a href="https://www.linkedin.com/in/gokberk-serin/" target="_blank" rel="noopener noreferrer" aria-label="Gökberk Serin LinkedIn (opens in new tab)">
-                                    <img src="assets/images/team/GokberkSerin.webp" alt="Gökberk Serin" class="team-avatar" width="176" height="224" loading="lazy" />
+                                    <img src="assets/images/team/GokberkSerin.webp" alt="Gokberk Serin" class="team-avatar" data-alt-en="Gokberk Serin" data-alt-tr="Gökberk Serin" width="176" height="224" loading="lazy" />
                                 </a>
                             </div>
                         </div>
                         <div class="ud-team-info">
-                            <h4 class="text-xl font-semibold">Gökberk Serin</h4>
+                            <h4 class="text-xl font-semibold team-member-name" data-name-en="Gokberk Serin" data-name-tr="Gökberk Serin">Gokberk Serin</h4>
                             <h5 class="team-role text-brand-blue" data-i18n="teamBDM">BDM</h5>
                         </div>
                         <ul class="ud-team-socials">
@@ -1575,12 +1616,12 @@
                         <div class="ud-team-image-wrapper">
                             <div class="ud-team-image">
                                 <a href="https://www.linkedin.com/in/ramazancinar-/" target="_blank" rel="noopener noreferrer" aria-label="Ramazan Çinar LinkedIn (opens in new tab)">
-                                    <img src="assets/images/team/RamazanCinar.jpeg" alt="Ramazan Çınar" class="team-avatar-ramazan" width="176" height="224" loading="lazy" />
+                                    <img src="assets/images/team/RamazanCinar.jpeg" alt="Ramazan Cinar" class="team-avatar-ramazan" data-alt-en="Ramazan Cinar" data-alt-tr="Ramazan Çınar" width="176" height="224" loading="lazy" />
                                 </a>
                             </div>
                         </div>
                         <div class="ud-team-info">
-                            <h4 class="text-xl font-semibold">Ramazan Çınar</h4>
+                            <h4 class="text-xl font-semibold team-member-name" data-name-en="Ramazan Cinar" data-name-tr="Ramazan Çınar">Ramazan Cinar</h4>
                             <h5 class="team-role text-brand-blue" data-i18n="teamBDM">BDM</h5>
                         </div>
                         <ul class="ud-team-socials">
@@ -1595,12 +1636,12 @@
                         <div class="ud-team-image-wrapper">
                             <div class="ud-team-image">
                                 <a href="https://www.linkedin.com/in/ali-yilmaz2/" target="_blank" rel="noopener noreferrer">
-                                    <img src="assets/images/team/AliYilmaz.webp" alt="Ali Yılmaz" class="team-avatar" width="176" height="224" loading="lazy" />
+                                    <img src="assets/images/team/AliYilmaz.webp" alt="Ali Yilmaz" class="team-avatar" data-alt-en="Ali Yilmaz" data-alt-tr="Ali Yılmaz" width="176" height="224" loading="lazy" />
                                 </a>
                             </div>
                         </div>
                         <div class="ud-team-info">
-                            <h4 class="text-xl font-semibold">Ali Yılmaz</h4>
+                            <h4 class="text-xl font-semibold team-member-name" data-name-en="Ali Yilmaz" data-name-tr="Ali Yılmaz">Ali Yilmaz</h4>
                             <h5 class="team-role text-brand-blue" data-i18n="teamBDM">BDM</h5>
                         </div>
                         <ul class="ud-team-socials">
@@ -1621,13 +1662,13 @@
                         <div class="ud-team-image-wrapper">
                             <div class="ud-team-image">
                                 <a href="https://www.linkedin.com/in/remzi-mert-tehneldere-601505286/" target="_blank" rel="noopener noreferrer">
-                                    <img src="assets/images/team/RemziMertTehneldere.webp" alt="Remzi Mert Tehneldere" class="team-avatar" width="176" height="224" loading="lazy" />
+                                    <img src="assets/images/team/RemziMertTehneldere.webp" alt="Remzi Mert Tehneldere" class="team-avatar" data-alt-en="Remzi Mert Tehneldere" data-alt-tr="Remzi Mert Tehneldere" width="176" height="224" loading="lazy" />
                                 </a>
                             </div>
                         </div>
                         <div class="ud-team-info">
-                            <h4 class="text-lg font-semibold">Remzi Mert<br/>Tehneldere</h4>
-                            <h5 class="team-role text-brand-blue" data-i18n="teamBDMIntern">BDM Stajyer</h5>
+                            <h4 class="text-lg font-semibold team-member-name" data-name-en="Remzi Mert Tehneldere" data-name-tr="Remzi Mert Tehneldere">Remzi Mert<br/>Tehneldere</h4>
+                            <h5 class="team-role text-brand-blue" data-i18n="teamBDMIntern">Intern BDM</h5>
                         </div>
                         <ul class="ud-team-socials">
                             <li>
@@ -1641,13 +1682,13 @@
                         <div class="ud-team-image-wrapper">
                             <div class="ud-team-image">
                                 <a href="https://www.linkedin.com/in/batuhankestek/" target="_blank" rel="noopener noreferrer">
-                                    <img src="assets/images/team/BatuhanKestek.webp" alt="Batuhan Kestek" class="team-avatar" width="176" height="224" loading="lazy" />
+                                    <img src="assets/images/team/BatuhanKestek.webp" alt="Batuhan Kestek" class="team-avatar" data-alt-en="Batuhan Kestek" data-alt-tr="Batuhan Kestek" width="176" height="224" loading="lazy" />
                                 </a>
                             </div>
                         </div>
                         <div class="ud-team-info">
-                            <h4 class="text-lg font-semibold">Batuhan Kestek</h4>
-                            <h5 class="team-role text-brand-blue" data-i18n="teamBDMIntern">BDM Stajyer</h5>
+                            <h4 class="text-lg font-semibold team-member-name" data-name-en="Batuhan Kestek" data-name-tr="Batuhan Kestek">Batuhan Kestek</h4>
+                            <h5 class="team-role text-brand-blue" data-i18n="teamBDMIntern">Intern BDM</h5>
                         </div>
                         <ul class="ud-team-socials">
                             <li>
@@ -1662,18 +1703,18 @@
 
             <!-- Engineers -->
             <div class="mb-20">
-                <h3 class="text-3xl md:text-4xl font-bold text-center mb-10 text-brand-blue" data-i18n="teamEngineers">Mühendislik</h3>
+                <h3 class="text-3xl md:text-4xl font-bold text-center mb-10 text-brand-blue" data-i18n="teamEngineers">Engineers</h3>
                 <div class="grid max-w-6xl mx-auto team-grid-engineers" style="gap: var(--team-gap);">
                     <div class="ud-single-team team-card team-card-engineer">
                         <div class="ud-team-image-wrapper">
                             <div class="ud-team-image">
                                 <a href="https://www.linkedin.com/in/hasan-erdem-ak" target="_blank" rel="noopener noreferrer">
-                                    <img src="assets/images/team/HasanErdemAk.webp" alt="Hasan Erdem Ak" class="team-avatar" width="176" height="224" loading="lazy" />
+                                    <img src="assets/images/team/HasanErdemAk.webp" alt="Hasan Erdem Ak" class="team-avatar" data-alt-en="Hasan Erdem Ak" data-alt-tr="Hasan Erdem Ak" width="176" height="224" loading="lazy" />
                                 </a>
                             </div>
                         </div>
                         <div class="ud-team-info">
-                            <h4 class="text-xl font-semibold">Hasan Erdem Ak</h4>
+                            <h4 class="text-xl font-semibold team-member-name" data-name-en="Hasan Erdem Ak" data-name-tr="Hasan Erdem Ak">Hasan Erdem Ak</h4>
                             <h5 class="team-role text-brand-blue" data-i18n="teamLeadFullStack">Lead Full-Stack Engineer</h5>
                         </div>
                         <ul class="ud-team-socials">
@@ -1688,12 +1729,12 @@
                         <div class="ud-team-image-wrapper">
                             <div class="ud-team-image">
                                 <a href="https://www.linkedin.com/in/emrecan-ozkan" target="_blank" rel="noopener noreferrer">
-                                    <img src="assets/images/team/Emrecan.png" alt="Emrecan" class="team-avatar" width="176" height="224" loading="lazy" />
+                                    <img src="assets/images/team/Emrecan.png" alt="Emrecan Ozkan" class="team-avatar" data-alt-en="Emrecan Ozkan" data-alt-tr="Emrecan Özkan" width="176" height="224" loading="lazy" />
                                 </a>
                             </div>
                         </div>
                         <div class="ud-team-info">
-                            <h4 class="text-xl font-semibold">Emrecan Özkan</h4>
+                            <h4 class="text-xl font-semibold team-member-name" data-name-en="Emrecan Ozkan" data-name-tr="Emrecan Özkan">Emrecan Ozkan</h4>
                             <h5 class="team-role text-brand-blue" data-i18n="teamSeniorFullStack">Senior Full-Stack Engineer</h5>
                         </div>
                         <ul class="ud-team-socials">
@@ -1708,12 +1749,12 @@
                         <div class="ud-team-image-wrapper">
                             <div class="ud-team-image">
                                 <a href="https://www.linkedin.com/in/mehmetbegun/" target="_blank" rel="noopener noreferrer">
-                                    <img src="assets/images/team/MehmetBegun.webp" alt="Mehmet Begun" class="team-avatar" width="176" height="224" loading="lazy" />
+                                    <img src="assets/images/team/MehmetBegun.webp" alt="Mehmet Begun" class="team-avatar" data-alt-en="Mehmet Begun" data-alt-tr="Mehmet Begun" width="176" height="224" loading="lazy" />
                                 </a>
                             </div>
                         </div>
                         <div class="ud-team-info">
-                            <h4 class="text-xl font-semibold">Mehmet Begun</h4>
+                            <h4 class="text-xl font-semibold team-member-name" data-name-en="Mehmet Begun" data-name-tr="Mehmet Begun">Mehmet Begun</h4>
                             <h5 class="team-role text-brand-blue" data-i18n="teamEngineerIntern">Full-Stack Engineer Intern</h5>
                         </div>
                         <ul class="ud-team-socials">
@@ -1728,12 +1769,12 @@
                         <div class="ud-team-image-wrapper">
                             <div class="ud-team-image">
                                 <a href="https://www.linkedin.com/in/eren-can-donertas/" target="_blank" rel="noopener noreferrer">
-                                    <img src="assets/images/team/ErenCanDonertas.webp" alt="Eren Can Dönertaş" class="team-avatar" width="176" height="224" loading="lazy" />
+                                    <img src="assets/images/team/ErenCanDonertas.webp" alt="Eren Can Donertas" class="team-avatar" data-alt-en="Eren Can Donertas" data-alt-tr="Eren Can Dönertaş" width="176" height="224" loading="lazy" />
                                 </a>
                             </div>
                         </div>
                         <div class="ud-team-info">
-                            <h4 class="text-xl font-semibold">Eren Can Dönertaş</h4>
+                            <h4 class="text-xl font-semibold team-member-name" data-name-en="Eren Can Donertas" data-name-tr="Eren Can Dönertaş">Eren Can Donertas</h4>
                             <h5 class="team-role text-brand-blue" data-i18n="teamEngineerIntern">Full-Stack Engineer Intern</h5>
                         </div>
                         <ul class="ud-team-socials">
@@ -1749,19 +1790,19 @@
 
             <!-- Marketers -->
             <div>
-                <h3 class="text-3xl md:text-4xl font-bold text-center mb-10 text-pink-400" data-i18n="teamMarketers">Pazarlama</h3>
+                <h3 class="text-3xl md:text-4xl font-bold text-center mb-10 text-pink-400" data-i18n="teamMarketers">Marketing Specialists</h3>
                 <div class="grid max-w-5xl mx-auto team-grid-marketers" style="gap: var(--team-gap);">
                     <div class="ud-single-team team-card team-card-marketing">
                         <div class="ud-team-image-wrapper">
                             <div class="ud-team-image">
                                 <a href="https://www.linkedin.com/in/lara-%C5%9Fen-409b61353" target="_blank" rel="noopener noreferrer">
-                                    <img src="assets/images/team/LaraSen.webp" alt="Lara Şen" class="team-avatar" width="176" height="224" loading="lazy" />
+                                    <img src="assets/images/team/LaraSen.webp" alt="Lara Sen" class="team-avatar" data-alt-en="Lara Sen" data-alt-tr="Lara Şen" width="176" height="224" loading="lazy" />
                                 </a>
                             </div>
                         </div>
                         <div class="ud-team-info">
-                            <h4 class="text-xl font-semibold">Lara Şen</h4>
-                            <h5 class="team-role text-brand-blue" data-i18n="teamMarketer">Pazarlamacı</h5>
+                            <h4 class="text-xl font-semibold team-member-name" data-name-en="Lara Sen" data-name-tr="Lara Şen">Lara Sen</h4>
+                            <h5 class="team-role text-brand-blue" data-i18n="teamMarketer">Marketing Specialist</h5>
                         </div>
                         <ul class="ud-team-socials">
                             <li>
@@ -1775,13 +1816,13 @@
                         <div class="ud-team-image-wrapper">
                             <div class="ud-team-image">
                                 <a href="https://www.linkedin.com/in/beril-damaci/" target="_blank" rel="noopener noreferrer">
-                                    <img src="assets/images/team/BerilDamaci.webp" alt="Beril Damacı" class="team-avatar" width="176" height="224" loading="lazy" />
+                                    <img src="assets/images/team/BerilDamaci.webp" alt="Beril Damaci" class="team-avatar" data-alt-en="Beril Damaci" data-alt-tr="Beril Damacı" width="176" height="224" loading="lazy" />
                                 </a>
                             </div>
                         </div>
                         <div class="ud-team-info">
-                            <h4 class="text-xl font-semibold">Beril Damacı</h4>
-                            <h5 class="team-role text-brand-blue" data-i18n="teamMarketer">Pazarlamacı</h5>
+                            <h4 class="text-xl font-semibold team-member-name" data-name-en="Beril Damaci" data-name-tr="Beril Damacı">Beril Damaci</h4>
+                            <h5 class="team-role text-brand-blue" data-i18n="teamMarketer">Marketing Specialist</h5>
                         </div>
                         <ul class="ud-team-socials">
                             <li>
@@ -1795,13 +1836,13 @@
                         <div class="ud-team-image-wrapper">
                             <div class="ud-team-image">
                                 <a href="https://www.linkedin.com/in/hilal--genc/" target="_blank" rel="noopener noreferrer">
-                                    <img src="assets/images/team/HilalGenc.webp" alt="Hilal Genç" class="team-avatar" width="176" height="224" loading="lazy" />
+                                    <img src="assets/images/team/HilalGenc.webp" alt="Hilal Genc" class="team-avatar" data-alt-en="Hilal Genc" data-alt-tr="Hilal Genç" width="176" height="224" loading="lazy" />
                                 </a>
                             </div>
                         </div>
                         <div class="ud-team-info">
-                            <h4 class="text-xl font-semibold">Hilal Genç</h4>
-                            <h5 class="team-role text-brand-blue" data-i18n="teamMarketer">Pazarlamacı</h5>
+                            <h4 class="text-xl font-semibold team-member-name" data-name-en="Hilal Genc" data-name-tr="Hilal Genç">Hilal Genc</h4>
+                            <h5 class="team-role text-brand-blue" data-i18n="teamMarketer">Marketing Specialist</h5>
                         </div>
                         <ul class="ud-team-socials">
                             <li>
@@ -1817,22 +1858,46 @@
     </section>
 
     <!-- Contact Section - FERAH ALAN -->
-    <section id="iletisim" data-section-tr="iletisim" data-section-en="contact" class="pt-24 pb-12 md:pb-16 px-4 md:px-12">
+    <section id="contact" data-section-tr="iletisim" data-section-en="contact" class="pt-24 pb-12 md:pb-16 px-4 md:px-12">
         <div class="container mx-auto max-w-5xl">
             <div class="text-center mb-10">
-                <h2 class="text-3xl md:text-5xl font-bold font-display mb-4" data-i18n="contactSubtitle">Birlikte Büyük İşler Başaralım</h2>
-                <p class="text-slate-300" data-i18n="contactSubtitleDesc">Ortaklık fırsatları veya iş ihtiyaçlarınız için bizimle iletişime geçin.</p>
+                <h2 class="text-3xl md:text-5xl font-bold font-display mb-4" data-i18n="contactSubtitle">Let's Build Something Great Together🚀</h2>
+                <p class="text-slate-300" data-i18n="contactSubtitleDesc">Get in touch to explore partnership opportunities or discuss your business needs.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-[1.25fr_1fr] gap-8 md:gap-10 items-stretch">
-                <!-- Sol: Adres, e-posta, harita (footer'dan taşındı) - daha geniş -->
+                <!-- Sol: Kutucuklar (E-posta, Adres, Yanıt süresi) + harita -->
                 <div class="order-2 md:order-1 flex flex-col min-h-0">
-                    <h3 class="font-semibold mb-4 text-lg" data-i18n="footerContact">İletişim</h3>
-                    <ul class="space-y-2 text-sm text-slate-300 mb-4">
-                        <li data-i18n="contactAddress">Adresimiz</li>
-                        <li class="font-medium text-slate-200" data-i18n="contactAddressValue">310 Gran Via, Irving, TX 75039, Amerika Birleşik Devletleri</li>
-                        <li><a href="mailto:ata.turhan@solarityai.com" class="hover:text-brand-blue transition">ata.turhan@solarityai.com</a></li>
-                    </ul>
+                    <h3 class="font-semibold mb-4 text-lg" data-i18n="footerContact">Contact</h3>
+                    <div class="space-y-3 mb-4">
+                        <div class="flex items-center gap-3 p-4 rounded-xl bg-slate-800/60 border border-slate-700">
+                            <span class="flex-shrink-0 w-10 h-10 rounded-lg bg-amber-500/20 flex items-center justify-center text-amber-400" aria-hidden="true">
+                                <i class="lni lni-envelope text-xl"></i>
+                            </span>
+                            <div>
+                                <p class="text-sm text-slate-400" data-i18n="contactEmail">Email us</p>
+                                <a href="mailto:ata.turhan@solarityai.com" class="font-semibold text-slate-100 hover:text-brand-blue transition">ata.turhan@solarityai.com</a>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3 p-4 rounded-xl bg-slate-800/60 border border-slate-700">
+                            <span class="flex-shrink-0 w-10 h-10 rounded-lg bg-amber-500/20 flex items-center justify-center text-amber-400" aria-hidden="true">
+                                <i class="lni lni-map-marker text-xl"></i>
+                            </span>
+                            <div>
+                                <p class="text-sm text-slate-400" data-i18n="contactAddress">Headquarters</p>
+                                <p class="font-semibold text-slate-100" data-i18n="contactAddressValue">310 Gran Via, Irving, TX 75039, USA</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3 p-4 rounded-xl bg-slate-800/60 border border-slate-700">
+                            <span class="flex-shrink-0 w-10 h-10 rounded-lg bg-amber-500/20 flex items-center justify-center text-amber-400" aria-hidden="true">
+                                <i class="lni lni-timer text-xl"></i>
+                            </span>
+                            <div>
+                                <p class="text-sm text-slate-400" data-i18n="contactResponseTime">Response time</p>
+                                <p class="font-semibold text-slate-100" data-i18n="contactResponseTimeValue">Within 24 hours</p>
+                            </div>
+                        </div>
+                    </div>
                     <div class="rounded-lg overflow-hidden border border-slate-700 flex-1 min-h-[280px]">
                         <iframe
                             title="Solarity AI - Dallas Office"
@@ -1895,7 +1960,7 @@
                 </div>
 
                 <button type="submit" class="w-full px-6 py-3 bg-gradient-to-r from-brand-blue to-brand-blue-dark text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-brand-blue/50 transition" data-i18n="contactSend">
-                    Mesaj Gönder
+                    Send Message
                 </button>
             </form>
                 </div>
@@ -1908,45 +1973,60 @@
     <!-- Footer - FERAH ALAN -->
     <footer id="footer" class="bg-slate-950 border-t border-slate-800 py-10 md:py-12 px-4 md:px-12">
         <div class="container mx-auto max-w-4xl">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-6 mb-6 md:place-items-center md:justify-items-center md:content-center">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-6 mb-6 md:place-items-center md:justify-items-center md:content-center">
                 <div class="md:text-center max-w-xs">
-                    <a href="#top" class="inline-block cursor-pointer hover:opacity-80 transition" title="Sayfa Başına Dön">
+                    <a href="#top" class="inline-block cursor-pointer hover:opacity-80 transition" title="Back to top">
                         <img src="assets/images/logo/SolarityAI-CompanyLogo.svg" alt="Solarity AI" class="logo-standard mb-3 mx-auto md:mx-auto" width="240" height="60" loading="lazy" />
                     </a>
-                    <p class="text-sm text-slate-300" data-i18n="footerDescription">Dünya standartlarında kaliteyle yüksek etkili B2B ve B2C çözümler üreten yapay zeka odaklı yazılım şirketi.</p>
+                    <p class="text-sm text-slate-300" data-i18n="footerDescription">AI-Native Software Company Creating High-Impact B2B and B2C Solutions with World-Class Quality.</p>
                 </div>
 
                 <div class="md:text-center">
-                    <h3 class="font-semibold mb-3" data-i18n="footerQuickLinks">Hızlı Bağlantılar</h3>
+                    <h3 class="font-semibold mb-3" data-i18n="footerQuickLinks">Quick Links</h3>
                     <ul class="space-y-1.5 text-sm">
-                        <li><a href="#ortakliklar" data-href-tr="#ortakliklar" data-href-en="#partnerships" class="text-slate-300 hover:text-brand-blue transition nav-link" data-i18n="navPartnerships">Ortaklıklar</a></li>
-                        <li><a href="#hakkimizda" data-href-tr="#hakkimizda" data-href-en="#about" class="text-slate-300 hover:text-brand-blue transition nav-link" data-i18n="navAbout">Hakkımızda</a></li>
-                        <li><a href="#projeler" data-href-tr="#projeler" data-href-en="#projects" class="text-slate-300 hover:text-brand-blue transition nav-link" data-i18n="navProjects">Projeler</a></li>
-                        <li><a href="#ekip" data-href-tr="#ekip" data-href-en="#team" class="text-slate-300 hover:text-brand-blue transition nav-link" data-i18n="navTeam">Ekip</a></li>
-                        <li><a href="careers.html" class="text-slate-300 hover:text-brand-blue transition nav-link" data-i18n="navCareers">Kariyer</a></li>
-                        <li><a href="legal.html" class="text-slate-300 hover:text-brand-blue transition" data-i18n="navLegal">Yasal</a></li>
+                        <li><a href="#partnerships" data-href-tr="#ortakliklar" data-href-en="#partnerships" class="text-slate-300 hover:text-brand-blue transition nav-link" data-i18n="navPartnerships">Partnerships</a></li>
+                        <li><a href="#services" data-href-tr="#services" data-href-en="#services" class="text-slate-300 hover:text-brand-blue transition nav-link" data-i18n="navAbout">Services</a></li>
+                        <li><a href="#projects" data-href-tr="#projeler" data-href-en="#projects" class="text-slate-300 hover:text-brand-blue transition nav-link" data-i18n="navProjects">Projects</a></li>
+                        <li><a href="#team" data-href-tr="#ekip" data-href-en="#team" class="text-slate-300 hover:text-brand-blue transition nav-link" data-i18n="navTeam">Team</a></li>
+                        <li><a href="careers.html" class="text-slate-300 hover:text-brand-blue transition nav-link" data-i18n="navCareers">Careers</a></li>
+                        <li><a href="legal.html" class="text-slate-300 hover:text-brand-blue transition" data-i18n="navLegal">Legal</a></li>
                         <li><a href="blog.html" class="text-slate-300 hover:text-brand-blue transition" data-i18n="navBlog">Blog</a></li>
                     </ul>
                 </div>
-
-                <div class="md:text-center">
-                    <h3 class="font-semibold mb-3" data-i18n="footerFollowUs">Bizi Takip Edin</h3>
-                    <div class="flex space-x-4 justify-center md:justify-center">
-                        <a href="https://www.linkedin.com/company/solarityai-llc" target="_blank" rel="noopener noreferrer" aria-label="Solarity AI LinkedIn (opens in new tab)" class="text-2xl text-slate-300 hover:text-brand-blue transition">
-                            <i class="lni lni-linkedin-original" aria-hidden="true"></i>
-                        </a>
-                        <a href="https://www.instagram.com/solarityai_llc/" target="_blank" rel="noopener noreferrer" aria-label="Solarity AI Instagram (opens in new tab)" class="text-2xl text-slate-300 hover:text-brand-blue transition">
-                            <i class="lni lni-instagram-original" aria-hidden="true"></i>
-                        </a>
-                        <a href="https://github.com/Solarity-AI" target="_blank" rel="noopener noreferrer" aria-label="Solarity AI GitHub (opens in new tab)" class="text-2xl text-slate-300 hover:text-brand-blue transition">
-                            <i class="lni lni-github-original" aria-hidden="true"></i>
-                        </a>
-                    </div>
-                </div>
             </div>
 
-            <div class="border-t border-slate-800 pt-6 text-center text-sm text-slate-500">
-                <p data-i18n="footerCopyright">© 2026 Solarity AI LLC. Tüm hakları saklıdır.</p>
+            <div class="border-t border-slate-700 pt-6 pb-4 text-center">
+                <p class="text-sm text-slate-400 mb-3" data-i18n="footerCopyright">© 2026 Solarity AI LLC. All rights reserved.</p>
+                <div class="flex flex-wrap justify-center gap-x-6 gap-y-1 text-sm text-slate-400 mb-4">
+                    <a href="legal.html#privacy" class="hover:text-brand-blue transition" data-i18n="footerPrivacy">Privacy</a>
+                    <a href="legal.html#terms" class="hover:text-brand-blue transition" data-i18n="footerTerms">Terms</a>
+                </div>
+                <div class="footer-socials flex justify-center items-center">
+                    <a href="https://linktr.ee/solarity_ai_company" target="_blank" rel="noopener noreferrer" aria-label="Linktree – tüm linkler (opens in new tab)" class="inline-flex items-center justify-center w-10 h-10 text-slate-400 hover:text-brand-blue transition">
+                        <i class="lni lni-link text-2xl" aria-hidden="true"></i>
+                    </a>
+                    <a href="https://www.instagram.com/solarity_ai_company" target="_blank" rel="noopener noreferrer" aria-label="Instagram (opens in new tab)" class="inline-flex items-center justify-center w-10 h-10 text-slate-400 hover:text-brand-blue transition">
+                        <i class="lni lni-instagram-original text-2xl" aria-hidden="true"></i>
+                    </a>
+                    <a href="https://www.facebook.com/solarity_ai_company" target="_blank" rel="noopener noreferrer" aria-label="Facebook (opens in new tab)" class="inline-flex items-center justify-center w-10 h-10 text-slate-400 hover:text-brand-blue transition">
+                        <i class="lni lni-facebook-original text-2xl" aria-hidden="true"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@solarity_ai_company" target="_blank" rel="noopener noreferrer" aria-label="TikTok (opens in new tab)" class="inline-flex items-center justify-center w-10 h-10 text-slate-400 hover:text-brand-blue transition">
+                        <i class="lni lni-tiktok text-2xl" aria-hidden="true"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@solarity_ai_company" target="_blank" rel="noopener noreferrer" aria-label="YouTube (opens in new tab)" class="inline-flex items-center justify-center w-10 h-10 text-slate-400 hover:text-brand-blue transition">
+                        <i class="lni lni-youtube text-2xl" aria-hidden="true"></i>
+                    </a>
+                    <a href="https://x.com/solarity_ai_com" target="_blank" rel="noopener noreferrer" aria-label="X (opens in new tab)" class="inline-flex items-center justify-center w-10 h-10 text-slate-400 hover:text-brand-blue transition">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="shrink-0"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    </a>
+                    <a href="https://www.linkedin.com/company/solarityai-llc" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in new tab)" class="inline-flex items-center justify-center w-10 h-10 text-slate-400 hover:text-brand-blue transition">
+                        <i class="lni lni-linkedin-original text-2xl" aria-hidden="true"></i>
+                    </a>
+                    <a href="https://github.com/Solarity-AI" target="_blank" rel="noopener noreferrer" aria-label="GitHub (opens in new tab)" class="inline-flex items-center justify-center w-10 h-10 text-slate-400 hover:text-brand-blue transition">
+                        <i class="lni lni-github-original text-2xl" aria-hidden="true"></i>
+                    </a>
+                </div>
             </div>
         </div>
     </footer>
