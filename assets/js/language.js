@@ -5,6 +5,15 @@
   // Get current language from localStorage or default to 'en' (ENGLISH)
   let currentLang = localStorage.getItem('solarityai-lang') || 'en';
 
+  // Yenilemede dil yanıp sönmesini önle: script yüklenir yüklenmez lang ve body sınıfını uygula
+  try {
+    document.documentElement.lang = currentLang;
+    if (document.body) {
+      document.body.classList.remove('lang-tr', 'lang-en');
+      document.body.classList.add(currentLang === 'tr' ? 'lang-tr' : 'lang-en');
+    }
+  } catch (e) {}
+
   // NOTE: initLanguage is defined later once. (Removed duplicate here)
 
   // Update URL based on language - BASIT ÇÖZÜM (SUNUCU OLMADAN)
@@ -112,60 +121,31 @@
     });
   }
 
-  // TR sayfada ekip fotoğrafları küçülmesin – inline stil ile zorla sabit boyut
+  // TR ve EN birebir aynı kart/fotoğraf boyutu – CSS’te #team/#ekip ortak; inline stil kaldırıldı
   function fixTeamPhotoSize(lang) {
     var teamSection = document.querySelector('section[data-section-tr="ekip"]');
     if (!teamSection) return;
     var cards = teamSection.querySelectorAll('.ud-single-team.team-card');
     var wrappers = teamSection.querySelectorAll('.ud-team-image-wrapper');
-    var isDesktop = typeof window !== 'undefined' && window.innerWidth > 767;
-    if (lang === 'tr') {
-      cards.forEach(function (card) {
-        if (isDesktop) {
-          card.style.minWidth = '340px';
-          card.style.width = '340px';
-          card.style.maxWidth = '340px';
-        } else {
-          card.style.minWidth = '';
-          card.style.width = '';
-          card.style.maxWidth = '';
-        }
-      });
-      wrappers.forEach(function (el) {
-        el.style.minHeight = '288px';
-        el.style.height = '288px';
-        el.style.maxHeight = '288px';
-        el.style.flexShrink = '0';
-        el.style.flex = '0 0 288px';
-        el.style.width = '100%';
-      });
-      teamSection.querySelectorAll('.ud-team-image-wrapper .ud-team-image, .ud-team-image-wrapper img').forEach(function (el) {
-        el.style.width = '100%';
-        el.style.height = '100%';
-        el.style.minHeight = '100%';
-        el.style.objectFit = 'cover';
-      });
-    } else {
-      cards.forEach(function (card) {
-        card.style.minWidth = '';
-        card.style.width = '';
-        card.style.maxWidth = '';
-      });
-      wrappers.forEach(function (el) {
-        el.style.minHeight = '';
-        el.style.height = '';
-        el.style.maxHeight = '';
-        el.style.flexShrink = '';
-        el.style.flex = '';
-        el.style.width = '';
-      });
-      teamSection.querySelectorAll('.ud-team-image-wrapper .ud-team-image, .ud-team-image-wrapper img').forEach(function (el) {
-        el.style.width = '';
-        el.style.height = '';
-        el.style.minHeight = '';
-        el.style.objectFit = '';
-      });
-    }
+    cards.forEach(function (card) {
+      card.style.minWidth = '';
+      card.style.width = '';
+      card.style.maxWidth = '';
+    });
+    wrappers.forEach(function (el) {
+      el.style.minHeight = '';
+      el.style.height = '';
+      el.style.maxHeight = '';
+      el.style.flexShrink = '';
+      el.style.flex = '';
+      el.style.width = '';
+    });
+    teamSection.querySelectorAll('.ud-team-image-wrapper .ud-team-image, .ud-team-image-wrapper img').forEach(function (el) {
+      el.style.width = '';
+      el.style.height = '';
+      el.style.minHeight = '';
+      el.style.objectFit = '';
+    });
   }
 
   // Update meta tags based on language
@@ -546,6 +526,9 @@
 
   // Expose toggle function globally IMMEDIATELY so inline onclick handlers work
   window.toggleLanguage = toggleLanguage;
+  window.invokeToggleLanguage = function() {
+    if (typeof window.toggleLanguage === 'function') return window.toggleLanguage();
+  };
 
   // Initialize on DOM ready
   function initialize() {
