@@ -980,14 +980,17 @@
           'ad_user_data': 'granted',
           'ad_personalization': 'granted'
         });
-        var s = document.createElement('script');
-        s.async = true;
-        s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
-        s.onload = function() {
-          window.gtag('js', new Date());
-          window.gtag('config', GA_ID, { 'anonymize_ip': true });
-        };
-        document.head.appendChild(s);
+        function injectGtag() {
+          var s = document.createElement('script');
+          s.async = true;
+          s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+          s.onload = function() {
+            window.gtag('js', new Date());
+            window.gtag('config', GA_ID, { 'anonymize_ip': true });
+          };
+          document.head.appendChild(s);
+        }
+        if (typeof requestIdleCallback !== 'undefined') { requestIdleCallback(injectGtag, { timeout: 4000 }); } else { setTimeout(injectGtag, 200); }
       }
       function hideBanner() {
         var el = document.getElementById('cookie-consent-banner');
