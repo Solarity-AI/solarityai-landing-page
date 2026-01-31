@@ -1,7 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <style>html.lang-loading body{visibility:hidden;}</style>
+    <meta charset="UTF-8" />
+    <style>html.lang-loading body{visibility:hidden;}.stats-section{min-height:260px}@media(min-width:768px){.stats-section{min-height:320px}}main{display:flex;flex-direction:column}#about,#hakkimizda{order:1}#stats-section{order:2}main>section:not(#about):not(#hakkimizda):not(#stats-section){order:3}</style>
+    <script>
+      (function(){
+        try {
+          if (history.scrollRestoration !== undefined) history.scrollRestoration = 'manual';
+          var isReload = (typeof performance !== 'undefined' && performance.navigation && performance.navigation.type === 1);
+          if (!isReload && performance.getEntriesByType) { var n = performance.getEntriesByType('navigation')[0]; if (n && n.type === 'reload') isReload = true; }
+          if (isReload && window.location.hash) { try { history.replaceState(null, '', location.pathname + location.search); } catch(e) {} }
+        } catch (e) {}
+      })();
+    </script>
     <script>
       (function(){
         try {
@@ -12,12 +23,10 @@
         document.documentElement.classList.add('lang-loading');
       })();
     </script>
-    <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-    <meta http-equiv="Pragma" content="no-cache" />
-    <meta http-equiv="Expires" content="0" />
+    <!-- no-store kaldırıldı: geri-ileri önbelleği (bfcache) çalışabilsin -->
+    <meta http-equiv="Cache-Control" content="no-cache, must-revalidate" />
     <!-- VERSION: 2026-01-28-FLAGS-UPDATED -->
     <!-- Primary Meta Tags (default: English for first load, sharing & search) -->
     <title>Solarity AI - Home</title>
@@ -117,21 +126,18 @@
     <link rel="preload" href="assets/css/tailwind.css" as="style" />
     <link rel="stylesheet" href="assets/css/tailwind.css" />
 
-    <!-- Google Fonts: loaded after window.load to keep off critical path and reduce CLS (font-display: optional) -->
-    <noscript><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" /></noscript>
+    <!-- Fonts: Inter & Poppins self-hosted in main.css – no Google Fonts to avoid critical chain -->
 
     <!-- LineIcons (non-render-blocking to improve FCP/LCP) -->
     <link rel="preload" href="assets/css/lineicons.css" as="style" />
     <link rel="stylesheet" href="assets/css/lineicons.css" media="print" onload="this.media='all'" />
     <noscript><link rel="stylesheet" href="assets/css/lineicons.css" /></noscript>
     <!-- Team card structure (ud-single-team) -->
-    <link rel="preload" href="assets/css/main.css" as="style" />
-    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="preload" href="assets/css/main.min.css" as="style" fetchpriority="high" />
+    <link rel="stylesheet" href="assets/css/main.min.css" />
 
     <!-- Custom Styles -->
-    <style>
-      /* Skip link - accessibility */
-      .skip-link {
+    <style>.skip-link{
         position: absolute;
         width: 1px;
         height: 1px;
@@ -157,10 +163,7 @@
         border-radius: 0.5rem;
         top: 0.5rem;
         left: 0.5rem;
-      }
-
-      /* Nav: Legal, Blog, Careers – farklı sayfalara giden butonlar (şirket teması) */
-      .nav-page-btn-legal {
+}.nav-page-btn-legal{
         border: 1px solid rgba(148, 163, 184, 0.4);
         color: #94a3b8;
         background: rgba(30, 41, 59, 0.5);
@@ -189,18 +192,12 @@
       .nav-page-btn-careers:hover {
         background: linear-gradient(135deg, #34d399, #10b981);
         box-shadow: 0 6px 16px rgba(16, 185, 129, 0.45);
-      }
-
-      /* Smooth Scrolling */
-      html {
+}html{
         scroll-behavior: smooth;
         overflow-x: hidden !important;
         max-width: 100vw;
         width: 100%;
-      }
-
-      /* Enterprise Background - Vibrant Modern Style */
-      body {
+}body{
         font-family: 'Inter', system-ui, -apple-system, sans-serif;
         background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
         background-size: 200% 200%;
@@ -233,43 +230,28 @@
       body > * {
         position: relative;
         z-index: 1;
-      }
-
-      /* Tüm section'lar için overflow önleme */
-      section {
+      }section {
         max-width: 100vw;
         overflow-x: hidden;
-      }
-
-      /* Container'lar için kesin sınırlar */
-      .container {
+      }.container {
         max-width: 100%;
         width: 100%;
         box-sizing: border-box;
-      }
-
-      /* Tüm elementler için box-sizing */
-      *, *::before, *::after {
+      }*,*::before,*::after{
         box-sizing: border-box;
-      }
-
-      /* ===== LOGO STANDARD - 1.5x boyut ===== */
-      .logo-standard {
-        height: 7.5rem; /* 1.5x: 80px → 120px */
-        width: auto;
-        max-height: 9rem; /* 1.5x: 96px → 144px */
+      }.logo-standard{
+        height:7.5rem;width:auto;max-height:9rem;
         object-fit: contain;
         filter: brightness(1.2) drop-shadow(0 2px 8px rgba(255, 255, 255, 0.1));
         transition: filter 0.3s ease, transform 0.3s ease;
-        /* Şeffaf arka plan için */
-        background: transparent;
+        background:transparent;
         mix-blend-mode: screen;
         isolation: isolate;
       }
 
       @media (min-width: 768px) {
         .logo-standard {
-          height: 9rem; /* 1.5x: 96px → 144px */
+          height:9rem;
         }
       }
 
@@ -480,8 +462,7 @@
         transform: translateY(-2px);
       }
 
-      /* Stats Bar - desktop'ta tam görünsün, yarısı altta kalmasın; min-height for CLS */
-      .stats-bar {
+      .stats-bar{
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
         gap: 2rem;
@@ -515,9 +496,9 @@
       }
 
       .stat-number {
-        font-size: 3.5rem; /* Çok daha büyük */
+        font-size:3.5rem;
         font-weight: 700;
-        min-height: 1.15em; /* CLS: reserve space before custom font loads */
+        min-height:1.15em;
         background: linear-gradient(135deg, #3b82f6, #1e40af);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
@@ -526,7 +507,7 @@
 
       .stat-label {
         color: #94a3b8;
-        font-size: 1.125rem; /* Daha büyük */
+        font-size:1.125rem;
         margin-top: 0.5rem;
         font-weight: 500;
       }
@@ -1115,30 +1096,22 @@
 
       /* Ekip kartları TR/EN aynı – 340px genişlik, 380px fotoğraf – sayfa stilleri main.css’ten sonra yüklendiği için öncelik alır */
     </style>
-    <!-- Yenilemede scroll konumunu koru; anchor (#) ile kaydırma -->
+    <!-- F5’te her zaman en üste git; hash’e kaydırma -->
     <script>
       (function() {
-        var KEY = 'solarity_scrollPos';
-        var KEY_URL = 'solarity_scrollPosUrl';
-        function saveScroll() {
-          try {
-            sessionStorage.setItem(KEY, String(window.scrollY || 0));
-            sessionStorage.setItem(KEY_URL, window.location.pathname || '');
-          } catch (e) {}
-        }
-        window.addEventListener('pagehide', saveScroll);
-        window.addEventListener('beforeunload', saveScroll);
         document.addEventListener('DOMContentLoaded', function() {
           try {
-            var nav = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
-            var isReload = nav && (nav.type === 'reload' || (nav.type === 'navigate' && performance.navigation && performance.navigation.type === 1));
-            var saved = sessionStorage.getItem(KEY);
-            var savedUrl = sessionStorage.getItem(KEY_URL);
-            if (isReload && saved != null && savedUrl === (window.location.pathname || '')) {
-              var y = parseInt(saved, 10);
-              if (!isNaN(y)) window.scrollTo(0, y);
-              sessionStorage.removeItem(KEY);
-              sessionStorage.removeItem(KEY_URL);
+            var isReload = (performance.navigation && performance.navigation.type === 1);
+            if (!isReload && performance.getEntriesByType) {
+              var nav = performance.getEntriesByType('navigation')[0];
+              if (nav && nav.type === 'reload') isReload = true;
+            }
+            if (isReload) {
+              try { window.__solarityReload = true; } catch (e) {}
+              if (window.location.hash) {
+                try { window.history.replaceState(null, '', window.location.pathname + window.location.search); } catch (e) {}
+              }
+              window.scrollTo(0, 0);
             }
           } catch (e) {}
         });
@@ -1213,27 +1186,8 @@
     </header>
 
     <main id="main-content">
-    <!-- Hero Section - About Us hedefi -->
-    <section id="about" data-section-tr="hakkimizda" data-section-en="about" class="pt-48 pb-0 md:pb-2 px-4 md:px-12" aria-label="Hero">
-        <div class="container mx-auto text-center">
-            <h1 class="text-4xl md:text-6xl font-bold font-display mb-4 text-white">
-                <span class="emoji-lightning">⚡</span><span class="bg-clip-text text-transparent animate-gradient" style="background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 50%, #1e40af 100%); background-size: 200% 200%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;" data-i18n="aboutTitle">
-                                    AI-Native Software Company
-                                </span><span class="emoji-lightning">⚡</span>
-            </h1>
-            <p class="text-lg md:text-xl text-slate-300 max-w-3xl mx-auto mb-6" data-i18n="aboutSubtitle">
-              🔥Creating the world’s best B2B and B2C solutions for YOU 🔥
-            </p>
-
-            <!-- CEO'muzla görüşme ayarlayın - sadece CTA butonu -->
-            <div class="mt-8 flex justify-center">
-                <a id="bannerCTA" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2qgXk0ZfBd6QJf7ef-306in7AI0Kzc-pL3NJFK1fU74vAUGiftVJPF3-DoXp9_RZoyqW_sjSpI" class="inline-flex items-center justify-center gap-2 px-6 py-3 md:px-8 md:py-4 rounded-xl font-bold text-sm md:text-base lg:text-lg text-center transition-all nav-link" style="background: rgba(255, 255, 255, 0.95); color: #1e40af; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);" onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 8px 24px rgba(0, 0, 0, 0.3)';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 16px rgba(0, 0, 0, 0.2)';" data-i18n="bannerCTA">"🚀 Book a call with our CEO 🚀"</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Stats Bar - yukarıda net görünsün, altta kalmasın -->
-    <section class="pt-4 md:pt-6 pb-16 md:pb-20 px-4 md:px-12">
+    <!-- Stats Bar - LCP için DOM'da en üstte, görsel sıra CSS order ile -->
+    <section id="stats-section" class="stats-section section-lcp pt-4 md:pt-6 pb-16 md:pb-20 px-4 md:px-12">
         <div class="container mx-auto">
             <div class="stats-bar">
                 <div class="stat-item">
@@ -1256,6 +1210,24 @@
                     <div class="stat-number">10+</div>
                     <div class="stat-label" data-i18n="statsGlobalPartners">Global Partners</div>
                 </div>
+            </div>
+        </div>
+    </section>
+    <!-- Hero Section - About Us hedefi -->
+    <section id="about" data-section-tr="hakkimizda" data-section-en="about" class="pt-48 pb-0 md:pb-2 px-4 md:px-12" aria-label="Hero">
+        <div class="container mx-auto text-center">
+            <h1 class="text-4xl md:text-6xl font-bold font-display mb-4 text-white">
+                <span class="emoji-lightning">⚡</span><span class="bg-clip-text text-transparent animate-gradient" style="background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 50%, #1e40af 100%); background-size: 200% 200%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;" data-i18n="aboutTitle">
+                                    AI-Native Software Company
+                                </span><span class="emoji-lightning">⚡</span>
+            </h1>
+            <p class="text-lg md:text-xl text-slate-300 max-w-3xl mx-auto mb-6" data-i18n="aboutSubtitle">
+              🔥 Creating the world’s best B2B and B2C solutions for YOU 🔥
+            </p>
+
+            <!-- CEO'muzla görüşme ayarlayın - sadece CTA butonu -->
+            <div class="mt-8 flex justify-center">
+                <a id="bannerCTA" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2qgXk0ZfBd6QJf7ef-306in7AI0Kzc-pL3NJFK1fU74vAUGiftVJPF3-DoXp9_RZoyqW_sjSpI" class="inline-flex items-center justify-center gap-2 px-6 py-3 md:px-8 md:py-4 rounded-xl font-bold text-sm md:text-base lg:text-lg text-center transition-all nav-link" style="background: rgba(255, 255, 255, 0.95); color: #1e40af; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);" onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 8px 24px rgba(0, 0, 0, 0.3)';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 16px rgba(0, 0, 0, 0.2)';" data-i18n="bannerCTA">"🚀 Book a call with our CEO 🚀"</a>
             </div>
         </div>
     </section>
@@ -1956,8 +1928,8 @@
     </footer>
 
     <!-- Scripts (defer for non-blocking load) -->
-    <script src="assets/js/translations.js" defer></script>
-    <script src="assets/js/language.js" defer></script>
+    <script src="assets/js/translations.min.js" defer></script>
+    <script src="assets/js/language.min.js" defer></script>
 
     <script>
         // Language switcher: must be available immediately (language.js sets toggleLanguage)
@@ -2180,7 +2152,9 @@
           requestAnimationFrame(function(){ updateHeaderOffset(); });
           window.addEventListener('resize', updateHeaderOffset);
           window.addEventListener('orientationchange', updateHeaderOffset);
-          if (window.location.hash) {
+          var nav = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
+          var isReload = nav && nav.type === 'reload';
+          if (window.location.hash && !isReload) {
             const targetEl = document.querySelector(window.location.hash);
             if (targetEl) setTimeout(function(){ scrollToWithOffset(targetEl); }, 60);
           }
@@ -2222,22 +2196,33 @@
       var CONSENT_KEY = 'solarityai-cookie-consent';
       var GA_ID = 'G-KPPM46EHP9';
       function loadGtagAndGrant() {
-        if (window.gtagLoaded) return;
-        window.gtagLoaded = true;
+        if (window.gtagConsentGranted) return;
+        window.gtagConsentGranted = true;
         window.gtag('consent', 'update', {
           'analytics_storage': 'granted',
           'ad_storage': 'granted',
           'ad_user_data': 'granted',
           'ad_personalization': 'granted'
         });
-        var s = document.createElement('script');
-        s.async = true;
-        s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
-        s.onload = function() {
-          window.gtag('js', new Date());
-          window.gtag('config', GA_ID, { 'anonymize_ip': true });
-        };
-        document.head.appendChild(s);
+        function injectGtag() {
+          if (window.gtagScriptInjected) return;
+          window.gtagScriptInjected = true;
+          if (window._gtagLateTimeout) clearTimeout(window._gtagLateTimeout);
+          document.removeEventListener('click', injectGtag, true);
+          document.removeEventListener('scroll', injectGtag, true);
+          var s = document.createElement('script');
+          s.async = true;
+          s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+          s.onload = function() {
+            window.gtagLoaded = true;
+            window.gtag('js', new Date());
+            window.gtag('config', GA_ID, { 'anonymize_ip': true });
+          };
+          document.head.appendChild(s);
+        }
+        document.addEventListener('click', injectGtag, { capture: true, once: true });
+        document.addEventListener('scroll', injectGtag, { capture: true, once: true });
+        window._gtagLateTimeout = setTimeout(injectGtag, 8000);
       }
       function hideBanner() {
         var el = document.getElementById('cookie-consent-banner');
@@ -2278,22 +2263,6 @@
           });
         }
       });
-    })();
-    </script>
-    <!-- Load Google Fonts after load + idle: off critical path (requestIdleCallback) -->
-    <script>
-    (function(){
-      function loadFonts() {
-        var p1 = document.createElement('link'); p1.rel = 'preconnect'; p1.href = 'https://fonts.googleapis.com'; document.head.appendChild(p1);
-        var p2 = document.createElement('link'); p2.rel = 'preconnect'; p2.href = 'https://fonts.gstatic.com'; p2.crossOrigin = 'anonymous'; document.head.appendChild(p2);
-        var l = document.createElement('link'); l.rel = 'stylesheet'; l.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800&display=optional'; document.head.appendChild(l);
-      }
-      function scheduleFonts() {
-        if (typeof requestIdleCallback !== 'undefined') requestIdleCallback(loadFonts, { timeout: 2000 });
-        else setTimeout(loadFonts, 500);
-      }
-      if (document.readyState === 'complete') scheduleFonts();
-      else window.addEventListener('load', scheduleFonts);
     })();
     </script>
 </body>
