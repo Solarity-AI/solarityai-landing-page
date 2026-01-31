@@ -306,6 +306,38 @@ img {
   box-shadow: none;
 }
 
+/* Nav: Legal, Blog, Careers – sayfalar arası butonlar (tüm sayfalarda aynı) */
+.nav-page-btn-legal {
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  color: #94a3b8;
+  background: rgba(30, 41, 59, 0.5);
+}
+.nav-page-btn-legal:hover {
+  border-color: rgba(59, 130, 246, 0.5);
+  color: #93c5fd;
+  background: rgba(30, 64, 175, 0.1);
+}
+.nav-page-btn-blog {
+  border: 1px solid rgba(59, 130, 246, 0.5);
+  color: #93c5fd;
+  background: rgba(30, 64, 175, 0.08);
+}
+.nav-page-btn-blog:hover {
+  border-color: rgba(59, 130, 246, 0.7);
+  color: #bfdbfe;
+  background: rgba(30, 64, 175, 0.15);
+}
+.nav-page-btn-careers {
+  border: none;
+  color: #fff;
+  background: linear-gradient(135deg, #10b981, #059669);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35);
+}
+.nav-page-btn-careers:hover {
+  background: linear-gradient(135deg, #34d399, #10b981);
+  box-shadow: 0 6px 16px rgba(16, 185, 129, 0.45);
+}
+
 .navbar-toggler .toggler-icon {
   width: 25px;
   height: 2px;
@@ -385,20 +417,43 @@ img {
     width: 100%;
   }
 
-  /* Ensure mobile logo doesn't overflow header height */
+  /* Ensure mobile logo doesn't overflow header height (1.5x logo) */
   .navbar-brand img {
-    max-height: 56px;
+    max-height: 84px;
   }
 }
 
-/* Sabit header için anchor offset (başlıkların üstte kalmaması için) */
+/* Logo boyutu tüm sitede aynı (header + footer) */
+.logo-standard {
+  height: 7rem !important;
+  max-height: 7.5rem !important;
+}
+@media (min-width: 768px) {
+  .logo-standard {
+    height: 8rem !important;
+    max-height: 9rem !important;
+  }
+}
+
+/* Sabit header için anchor offset (büyük logo: header ~172px desktop, ~112px mobil) */
 :where(section[id]) {
-  scroll-margin-top: 112px; /* 120px -> 112px (navbar 88 + padding 24) */
+  scroll-margin-top: 180px;
 }
 
 @media (max-width: 991px) {
   :where(section[id]) {
-    scroll-margin-top: 84px; /* mobilde header toplam yüksekliği (navbar 60 + padding 24) */
+    scroll-margin-top: 120px;
+  }
+}
+
+/* Legal sayfası: Privacy / Terms / Contact quick link hedefleri (büyük header için) */
+#privacy, #terms, #contact {
+  scroll-margin-top: 200px;
+}
+
+@media (max-width: 991px) {
+  #privacy, #terms, #contact {
+    scroll-margin-top: 140px;
   }
 }
 
@@ -916,6 +971,7 @@ section {
   border-radius: 2px;
 }
 
+/* Ekip kartı: border 2px (ceo/engineer vb.) ile uyumlu köşe yarıçapı */
 .ud-single-team {
   text-align: center;
   background: linear-gradient(180deg, rgba(12, 20, 38, 0.98), rgba(9, 14, 26, 0.98));
@@ -946,14 +1002,15 @@ section {
   box-shadow: 0 18px 52px rgba(0, 0, 0, 0.55), 0 8px 22px rgba(0, 0, 0, 0.28), 0 0 0 1px rgba(255, 255, 255, 0.08);
 }
 
+/* Kart ve resim aynı köşe yarıçapı – boşluk olmasın (kart border 2px → iç yarıçap 16px) */
 .ud-team-image-wrapper {
   position: relative;
   margin: 0;
   flex: 1 1 auto;
   width: 100%;
   aspect-ratio: 4 / 5;
-  border-top-left-radius: 18px;
-  border-top-right-radius: 18px;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
   overflow: hidden;
 }
 
@@ -961,7 +1018,8 @@ section {
   width: 100%;
   height: 100%;
   margin: 0;
-  border-radius: 0;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
   overflow: hidden;
   border: 0;
   transition: all var(--transition-base);
@@ -974,6 +1032,9 @@ section {
   display: block;
   width: 100%;
   height: 100%;
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
+  overflow: hidden;
 }
 
 .ud-team-image img {
@@ -983,6 +1044,8 @@ section {
   object-position: center 18%;
   display: block;
   transition: transform 0.5s ease;
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
 }
 
 .ud-single-team:hover .ud-team-image img,
@@ -1006,21 +1069,42 @@ section {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0.35rem;
-  margin-top: -2.6rem;
+  justify-content: flex-start;
+  text-align: center;
+  padding: 0.5rem 0.35rem 0.35rem;
+  margin-top: 0;
   position: relative;
   z-index: 2;
-  gap: 0.3rem;
+  gap: 0.25rem;
+}
+
+/* İsim ve unvan – tüm kartlarda aynı (TR font stili) */
+.ud-team-info h4 {
+  font-family: var(--font-secondary);
+  font-size: 1.45rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--color-text-primary);
+  text-align: center;
+  width: 100%;
+  margin-bottom: 0.2rem;
+  line-height: 1.35;
 }
 
 .ud-team-info h5 {
-  font-size: 1.45rem;
-  margin-bottom: 0.35rem;
-  color: var(--color-text-primary);
-  font-weight: 700;
-  transition: color var(--transition-base);
-  letter-spacing: -0.01em;
   font-family: var(--font-secondary);
+  font-size: 1.45rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--color-text-primary);
+  text-align: center;
+  margin-bottom: 0.2rem;
+  line-height: 1.35;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+  transition: color var(--transition-base);
 }
 
 .ud-team-info h5::after {
@@ -1028,13 +1112,22 @@ section {
 }
 
 .ud-team-info h6 {
+  font-family: var(--font-primary);
   font-size: 1.2rem;
-  color: var(--color-primary-light);
-  margin-bottom: 0.35rem;
   font-weight: 600;
   letter-spacing: 0.08em;
-  font-family: var(--font-primary);
+  line-height: 1.35;
+  color: var(--color-primary-light);
+  text-align: center;
+  margin-bottom: 0.2rem;
   text-transform: uppercase;
+  overflow: hidden;
+  max-width: 100%;
+  white-space: normal;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  line-clamp: 2;
 }
 
 .ud-team-bio {
@@ -1056,16 +1149,11 @@ section {
   z-index: 4;
   position: relative;
 }
-html[lang="en"] #team .ud-team-info h6 {
-  margin-bottom: 0.2rem;
-}
-html[lang="en"] #team .ud-team-socials {
-  margin-top: 0;
-}
+/* EN/TR ayrımı yok – tüm ekip kartları özdeş */
 
 .ud-team-socials li a {
-  width: 22px;
-  height: 22px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   background: rgba(13, 19, 35, 0.85);
   display: flex;
@@ -1075,7 +1163,7 @@ html[lang="en"] #team .ud-team-socials {
   transition: all var(--transition-base);
   border: 1px solid rgba(59, 130, 246, 0.45);
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
-  font-size: 0.68rem;
+  font-size: 1.5rem;
 }
 
 .ud-team-socials li a:hover {
@@ -1281,9 +1369,10 @@ html[lang="en"] #team .ud-team-socials {
 }
 
 /* Eşit kart boyutu (2’li, 3’lü, 4’lü hepsi aynı boyut) ve LinkedIn yukarı - #ekip */
+#team .ud-single-team.team-card,
 #ekip .ud-single-team.team-card {
   min-height: 480px;
-  height: 100%;
+  height: auto;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -1293,15 +1382,20 @@ html[lang="en"] #team .ud-team-socials {
   margin-left: auto;
   margin-right: auto;
 }
+#team .ud-team-image-wrapper,
 #ekip .ud-team-image-wrapper {
   flex: 0 0 auto;
   flex-shrink: 0;
-  min-height: 380px;
-  height: 380px;
-  max-height: 380px;
+  min-height: 320px;
+  height: 320px;
+  max-height: 320px;
   width: 100%;
   aspect-ratio: 4 / 5;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
 }
+#team .ud-team-image-wrapper .ud-team-image,
+#team .ud-team-image-wrapper .ud-team-image img,
 #ekip .ud-team-image-wrapper .ud-team-image,
 #ekip .ud-team-image-wrapper .ud-team-image img {
   width: 100%;
@@ -1310,141 +1404,61 @@ html[lang="en"] #team .ud-team-socials {
   object-fit: cover;
   object-position: center 18%;
 }
+#team .ud-team-info,
 #ekip .ud-team-info {
-  flex-shrink: 0;
-  padding: 0.4rem 0.25rem 0;
+  flex: 1 1 auto;
+  min-height: 0;
+  margin-top: 0;
+  padding: 0.35rem 0.25rem 0.35rem;
+  gap: 0.15rem;
+  align-items: center;
+  text-align: center;
 }
+#team .ud-team-info h4,
+#team .ud-team-info h5,
+#ekip .ud-team-info h4,
 #ekip .ud-team-info h5 {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  max-width: 100%;
-  font-size: 1.45rem;
+  font-size: 1.15rem;
+  margin-bottom: 0.1rem;
 }
+#team .ud-team-info h6,
 #ekip .ud-team-info h6 {
-  overflow: hidden;
-  max-width: 100%;
-  white-space: normal;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  line-clamp: 2;
-  font-size: 1.2rem;
-  line-height: 1.35;
-  min-height: 2.7em;
+  font-size: 0.95rem;
+  margin-bottom: 0.1rem;
 }
+#team .ud-team-socials,
 #ekip .ud-team-socials {
-  margin-top: 0.4rem;
-  margin-bottom: 0.5rem;
+  margin-top: 0.2rem;
+  margin-bottom: 0.35rem;
+  flex-shrink: 0;
+  justify-content: center;
 }
+#team .team-grid-managers,
+#team .team-grid-interns,
+#team .grid[style*="gap"],
 #ekip .team-grid-managers,
 #ekip .team-grid-interns,
 #ekip .grid[style*="gap"] {
   align-items: stretch;
   justify-content: center;
 }
-#ekip .ud-single-team.team-card {
-  height: 100%;
-}
 
 @media (max-width: 767px) {
+  #team .ud-single-team.team-card,
   #ekip .ud-single-team.team-card {
     max-width: 100%;
   }
 }
 
-/* Türkçe sayfada ekip kartları – daha küçük kart */
-html[lang="tr"] #ekip .ud-single-team.team-card {
-  min-height: 420px;
-  height: 100%;
-  width: 100%;
-  max-width: 300px;
-  min-width: 260px;
-  margin-left: auto;
-  margin-right: auto;
-}
-html[lang="tr"] #ekip .ud-team-image-wrapper {
-  flex: 0 0 auto !important;
-  flex-shrink: 0 !important;
-  min-height: 288px !important;
-  height: 288px !important;
-  max-height: 288px !important;
-  width: 100% !important;
-  min-width: 100% !important;
-  aspect-ratio: 4 / 5;
-}
-html[lang="tr"] #ekip .ud-team-image-wrapper .ud-team-image,
-html[lang="tr"] #ekip .ud-team-image-wrapper .ud-team-image img {
-  width: 100% !important;
-  height: 100% !important;
-  min-height: 100% !important;
-  object-fit: cover !important;
-  object-position: center 18%;
-}
-html[lang="tr"] #ekip .ud-team-info {
-  flex-shrink: 0;
-  padding: 0.25rem 0.25rem 0;
-  gap: 0.1rem;
-  margin-top: 2rem;
-  position: relative;
-  z-index: 2;
-}
-html[lang="tr"] #ekip .ud-team-info h5 {
-  font-size: 1.45rem;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  color: var(--color-text-primary);
-  font-family: var(--font-secondary);
-  margin-bottom: 0.15rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  max-width: 100%;
-  min-height: 4em;
-  line-height: 1.35;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  text-align: center;
-}
-html[lang="tr"] #ekip .ud-team-info h6 {
-  font-size: 1.2rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  line-height: 1.35;
-  color: var(--color-primary-light);
-  font-family: var(--font-primary);
-  text-transform: uppercase;
-  margin-bottom: 0.15rem;
-  overflow: hidden;
-  max-width: 100%;
-  white-space: normal;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  line-clamp: 2;
-  min-height: 2.7em;
-}
-html[lang="tr"] #ekip .ud-team-socials {
-  margin-top: 0.15rem;
-  margin-bottom: 0.35rem;
-  gap: 0.35rem;
-}
-html[lang="tr"] #ekip .ud-team-socials li a {
-  font-size: 0.68rem;
-  width: 22px;
-  height: 22px;
-}
+/* Tüm ekip kartları özdeş – dil ayrımı yok */
 
 @media (max-width: 767px) {
-  html[lang="tr"] #ekip .ud-team-image-wrapper {
+  #team .ud-team-image-wrapper,
+  #ekip .ud-team-image-wrapper {
     height: auto;
-    min-height: 260px;
-    max-height: 320px;
+    min-height: 240px;
+    max-height: 280px;
     flex-shrink: 0;
-  }
-  html[lang="tr"] #ekip .ud-team-info {
-    margin-top: 2rem;
   }
 }
 
@@ -2196,5 +2210,140 @@ html body .ud-capabilities-grid .ud-capability-card p {
 #languageSwitcherMobile:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+/* =============================
+   Professional UI/UX – güvenilir ve tutarlı görünüm
+   ============================= */
+
+/* Erişilebilirlik: klavye odak halkaları – profesyonel ve net */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--color-primary-light);
+  outline-offset: 2px;
+}
+
+/* Skip link: odakta görünür */
+.skip-link:focus {
+  clip: auto;
+  clip-path: none;
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 9999;
+  padding: 0.75rem 1.25rem;
+  background: var(--color-primary);
+  color: var(--color-white);
+  font-weight: 600;
+  border-radius: 0.5rem;
+  box-shadow: var(--shadow-lg);
+}
+
+/* Nav link hover/focus – net geri bildirim */
+header a.nav-link:hover,
+header a.nav-link:focus-visible,
+#footer a:hover,
+#footer a:focus-visible {
+  color: var(--color-primary-light);
+}
+
+/* Bölüm başlıkları – tutarlı hiyerarşi ve güven hissi */
+section[id] > .container > .text-center > h2,
+section[id] h2.text-3xl,
+section[id] h2.font-display {
+  letter-spacing: -0.02em;
+  font-weight: 700;
+  text-rendering: optimizeLegibility;
+}
+
+/* Kartlar – hafif gölge ve kenar, daha kurumsal */
+.service-card,
+.bento-card,
+.ud-single-team.team-card {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.service-card:hover,
+.ud-single-team.team-card:hover {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2), 0 4px 12px rgba(30, 64, 175, 0.12);
+}
+
+/* Footer – daha net ayrım ve okunaklılık */
+#footer {
+  background: linear-gradient(180deg, #0f172a 0%, #0c1222 100%);
+  border-top: 1px solid rgba(148, 163, 184, 0.12);
+  box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.15);
+}
+
+#footer .footer-socials a {
+  width: 72px !important;
+  height: 72px !important;
+  min-width: 72px;
+  min-height: 72px;
+  border-radius: 50%;
+  transition: transform var(--transition-base), color var(--transition-base);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem !important;
+}
+#footer .footer-socials a svg {
+  width: 42px !important;
+  height: 42px !important;
+}
+
+#footer .footer-socials a:hover,
+#footer .footer-socials a:focus-visible {
+  transform: translateY(-2px);
+}
+/* Her platformun marka rengi – hover */
+#footer .footer-socials a:nth-child(1):hover,
+#footer .footer-socials a:nth-child(1):focus-visible { color: #43e97b !important; } /* Linktree */
+#footer .footer-socials a:nth-child(2):hover,
+#footer .footer-socials a:nth-child(2):focus-visible { color: #e4405f !important; } /* Instagram */
+#footer .footer-socials a:nth-child(3):hover,
+#footer .footer-socials a:nth-child(3):focus-visible { color: #1877f2 !important; } /* Facebook */
+#footer .footer-socials a:nth-child(4):hover,
+#footer .footer-socials a:nth-child(4):focus-visible { color: #00f2ea !important; } /* TikTok */
+#footer .footer-socials a:nth-child(5):hover,
+#footer .footer-socials a:nth-child(5):focus-visible { color: #ff0000 !important; } /* YouTube */
+#footer .footer-socials a:nth-child(6):hover,
+#footer .footer-socials a:nth-child(6):focus-visible { color: #fff !important; } /* X (Twitter) */
+#footer .footer-socials a:nth-child(7):hover,
+#footer .footer-socials a:nth-child(7):focus-visible { color: #0a66c2 !important; } /* LinkedIn */
+#footer .footer-socials a:nth-child(8):hover,
+#footer .footer-socials a:nth-child(8):focus-visible { color: #fff !important; } /* GitHub */
+#footer .footer-socials a:nth-child(6):hover svg,
+#footer .footer-socials a:nth-child(6):focus-visible svg,
+#footer .footer-socials a:nth-child(8):hover svg,
+#footer .footer-socials a:nth-child(8):focus-visible svg { fill: currentColor; }
+
+/* Butonlar – tutarlı hover ve focus */
+button[type="submit"],
+a[href].inline-flex[class*="rounded"] {
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+button[type="submit"]:hover,
+a[href].inline-flex[class*="rounded"]:hover {
+  transform: translateY(-1px);
+}
+
+button[type="submit"]:focus-visible,
+a[href].inline-flex[class*="rounded"]:focus-visible {
+  outline: 2px solid var(--color-primary-light);
+  outline-offset: 2px;
+}
+
+/* Form alanları – net border ve focus */
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+textarea:focus {
+  border-color: var(--color-primary-light);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
 }
 
