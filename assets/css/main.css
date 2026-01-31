@@ -86,6 +86,16 @@ html[lang="tr"] {
   font-size: 16px;
 }
 
+/* TBT: Style & Layout azalt – below-fold bölümlerde layout/paint ertele */
+#partnerships,
+#services,
+#projects,
+#team,
+#contact {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 360px;
+}
+
 body {
   font-family: var(--font-primary);
   font-weight: 400;
@@ -2345,5 +2355,14 @@ input[type="url"]:focus,
 textarea:focus {
   border-color: var(--color-primary-light);
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+/* Cookie consent Accept – WCAG AA kontrast (beyaz metin en az 4.5:1) */
+#cookie-consent-accept {
+  background-color: #1e40af;
+  color: #fff;
+}
+#cookie-consent-accept:hover {
+  background-color: #1e3a8a;
 }
 
