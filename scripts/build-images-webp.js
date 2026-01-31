@@ -10,7 +10,7 @@ const path = require('path');
 const ROOT = path.join(__dirname, '..');
 const BRANDS_DIR = path.join(ROOT, 'assets', 'images', 'brands');
 const MAX_WIDTH = 120;
-const WEBP_QUALITY = 80;
+const WEBP_QUALITY = 55;
 
 let sharp;
 try {
