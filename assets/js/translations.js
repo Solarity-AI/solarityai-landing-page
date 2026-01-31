@@ -17,7 +17,7 @@ window.translations = {
     // About Section (hero label; section is now "Services")
     about: "Services",
     aboutTitle: "AI-Native Software Company",
-    aboutSubtitle: "🔥Creating the world’s best B2B and B2C solutions for YOU 🔥",
+    aboutSubtitle: "🔥 Creating the world’s best B2B and B2C solutions for YOU 🔥",
     capabilityAI: "AI & ML",
     capabilityAIDesc: "Advanced AI/ML solutions powered by cutting-edge algorithms and neural networks",
     capabilityMobile: "Mobile Application Development",
@@ -372,7 +372,7 @@ window.translations = {
     // About Section (section is now "Services")
     about: "Hizmetler",
     aboutTitle: "Yapay Zeka Odaklı Yazılım Şirketi",
-    aboutSubtitle: "🔥Sizin için dünyanın en iyi B2B ve B2C çözümlerini yaratıyoruz 🔥",
+    aboutSubtitle: "🔥 Sizin için dünyanın en iyi B2B ve B2C çözümlerini yaratıyoruz 🔥",
 
     // Services Section - NEW 5 Services (updated from capabilities)
     servicesTitle: "Hizmetlerimiz",
