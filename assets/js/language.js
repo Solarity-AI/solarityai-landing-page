@@ -1,6 +1,10 @@
 // Language Switcher for Solarity AI Website
 (function() {
   'use strict';
+  var noop = function() {};
+  var log = (typeof window !== 'undefined' && window.DEBUG_LANG) ? function() { log.apply(console, arguments); } : noop;
+  var warn = (typeof window !== 'undefined' && window.DEBUG_LANG) ? function() { warn.apply(console, arguments); } : noop;
+  var err = (typeof window !== 'undefined' && window.DEBUG_LANG) ? function() { err.apply(console, arguments); } : noop;
 
   // Get current language from localStorage or default to 'en' (ENGLISH)
   let currentLang = localStorage.getItem('solarityai-lang') || 'en';
@@ -34,7 +38,7 @@
 
     // Ana sayfa için sadece hash'i güncelle
     if (newHash !== currentHash && newHash) {
-      console.log('🔗 Updating URL hash:', currentHash, '→', newHash);
+      log('🔗 Updating URL hash:', currentHash, '→', newHash);
       window.history.replaceState({}, '', newHash);
     }
 
@@ -82,7 +86,7 @@
         link.href = hrefEn;
       }
 
-      console.log('🔗 Nav link updated:', link.href);
+      log('🔗 Nav link updated:', link.href);
     });
 
 
@@ -103,7 +107,7 @@
         section.id = idEn;
       }
 
-      console.log('📍 Section ID updated:', section.id);
+      log('📍 Section ID updated:', section.id);
     });
   }
 
@@ -186,7 +190,7 @@
   function setLanguage(lang) {
     const translationsObj = window.translations || (typeof translations !== 'undefined' ? translations : null);
     if (!translationsObj) {
-      console.error('❌ Translations object not loaded yet!');
+      err('❌ Translations object not loaded yet!');
       setTimeout(function() { setLanguage(lang); }, 100);
       return;
     }
@@ -209,192 +213,172 @@
     // Update URL based on language (EN: /en/, TR: /)
     updateUrlForLanguage(lang);
 
-    // Update navigation anchor links
-    updateNavigationLinks(lang);
+    setTimeout(function() {
+      updateNavigationLinks(lang);
+      fixTeamPhotoSize(lang);
+      if (lang === 'tr') setTimeout(function() { fixTeamPhotoSize('tr'); }, 80);
+      updateTeamMemberNames(lang);
+    }, 0);
 
-    // TR sayfada ekip fotoğrafları küçülmesin – inline stil ile zorla sabit boyut
-    fixTeamPhotoSize(lang);
-    if (lang === 'tr') {
-      setTimeout(function () { fixTeamPhotoSize('tr'); }, 150);
-    }
-    // Ekip isimleri: EN'de Türkçe karakter yok
-    updateTeamMemberNames(lang);
-
-    console.log('🌐 Setting language to:', lang);
-    console.log('📚 Translations available for this language:', !!translationsObj[lang]);
-    if (translationsObj[lang]) {
-      console.log('📝 Sample translation (navAbout):', translationsObj[lang]['navAbout']);
-    }
-    
-    // Update all elements with data-i18n attribute
-    const elements = document.querySelectorAll('[data-i18n]');
-    console.log('=== TRANSLATION START ===');
-    console.log('Language:', lang);
-    console.log('Found', elements.length, 'elements with data-i18n attribute');
-    
-    // Specifically check footer links
-    const footerLinks = document.querySelectorAll('footer [data-i18n]');
-    console.log('Footer elements with data-i18n:', footerLinks.length);
-    footerLinks.forEach(function(link) {
-      console.log('Footer element:', link.tagName, link.getAttribute('data-i18n'), 'current text:', link.textContent);
-    });
-    
+    setTimeout(function doHeavyI18n() {
+    log('🌐 Setting language to:', lang);
     if (!translationsObj || !translationsObj[lang]) {
-      console.error('❌ Cannot translate - translations object or language not available!');
+      err('❌ Cannot translate - translations object or language not available!');
       return;
     }
-    
-    elements.forEach(element => {
-      const key = element.getAttribute('data-i18n');
+    // Uzun ana iş parçacığı görevini kır: querySelectorAll ayrı tick'te
+    var elements = document.querySelectorAll('[data-i18n]');
+    log('Found', elements.length, 'elements with data-i18n attribute');
+    if (!elements.length) {
+      setTimeout(doRestI18n, 0);
+      return;
+    }
+
+    var applyOne = function(element) {
+      var key = element.getAttribute('data-i18n');
       if (translationsObj[lang] && translationsObj[lang][key]) {
-        const translation = translationsObj[lang][key];
-        const tagName = element.tagName;
-        
-        // Handle different element types
+        var translation = translationsObj[lang][key];
+        var tagName = element.tagName;
         if (tagName === 'LABEL' && element.querySelector('.required')) {
-          // Labels with required span
-          const requiredSpan = element.querySelector('.required');
+          var requiredSpan = element.querySelector('.required');
           element.innerHTML = translation.replace('*', '') + ' ' + requiredSpan.outerHTML;
         } else if (tagName === 'INPUT') {
-          if (element.type === 'submit' || element.type === 'button') {
-            element.value = translation;
-          } else if (element.hasAttribute('placeholder')) {
-            element.placeholder = translation;
-          } else {
-            element.value = translation;
-          }
+          if (element.type === 'submit' || element.type === 'button') element.value = translation;
+          else if (element.hasAttribute('placeholder')) element.placeholder = translation;
+          else element.value = translation;
         } else if (tagName === 'TEXTAREA') {
-          if (element.hasAttribute('placeholder')) {
-            element.placeholder = translation;
-          } else {
-            element.textContent = translation;
-          }
-        } else if (tagName === 'BUTTON') {
-          element.textContent = translation;
-        } else if (tagName === 'OPTION') {
+          if (element.hasAttribute('placeholder')) element.placeholder = translation;
+          else element.textContent = translation;
+        } else if (tagName === 'BUTTON' || tagName === 'OPTION') {
           element.textContent = translation;
         } else if (tagName === 'A') {
-          // Anchor tags - CRITICAL: Must update textContent and innerText
-          const oldText = element.textContent || element.innerText || element.innerHTML;
-          // Force update by replacing innerHTML
           element.innerHTML = translation;
           element.textContent = translation;
           element.innerText = translation;
-          console.log('🔗 ANCHOR UPDATE:', key, '| Old:', oldText.trim(), '| New:', translation, '| Actual:', element.textContent.trim());
         } else if (tagName === 'LABEL') {
-          // Labels without required span
-          const requiredSpan = element.querySelector('.required');
-          if (requiredSpan) {
-            element.innerHTML = translation.replace('*', '').trim() + ' ' + requiredSpan.outerHTML;
-          } else {
-            element.textContent = translation;
-          }
+          var rs = element.querySelector('.required');
+          if (rs) element.innerHTML = translation.replace('*', '').trim() + ' ' + rs.outerHTML;
+          else element.textContent = translation;
         } else if (tagName === 'P' && (element.classList.contains('ud-team-bio') || (element.parentElement && element.parentElement.classList.contains('ud-project-content')))) {
-          // Team bios and project descriptions with HTML
           element.innerHTML = translation;
         } else if (element.classList && (element.classList.contains('project-company') || element.classList.contains('project-name'))) {
-          // Project company and name divs
           element.textContent = translation;
         } else {
-          // Default: all other elements (H1-H6, SPAN, P, DIV, etc.)
-          const oldText = element.textContent || element.innerText;
           element.textContent = translation;
-          if (tagName === 'H5' && (key === 'footerQuickLinks' || key.startsWith('footer'))) {
-            console.log('📋 H5 UPDATE:', key, '| Old:', oldText.trim(), '| New:', translation, '| Actual:', element.textContent.trim());
-          }
         }
       } else {
-        console.warn('Translation not found for key:', key, 'in language:', lang);
+        warn('Translation not found for key:', key, 'in language:', lang);
       }
-    });
+    };
 
-    // Update all elements with data-i18n-placeholder attribute (for placeholder text)
-    document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
-      const key = element.getAttribute('data-i18n-placeholder');
-      if (translationsObj[lang] && translationsObj[lang][key]) {
-        element.placeholder = translationsObj[lang][key];
-        console.log('📝 PLACEHOLDER UPDATE:', key, '| New:', translationsObj[lang][key]);
-      }
-    });
-
-    // Update all elements with data-i18n-html attribute (for HTML content)
-    document.querySelectorAll('[data-i18n-html]').forEach(element => {
-      const key = element.getAttribute('data-i18n-html');
-      if (translationsObj[lang] && translationsObj[lang][key]) {
-        element.innerHTML = translationsObj[lang][key];
-      }
-    });
-
-    // Update all elements with data-i18n-aria-label attribute (for aria-label)
-    document.querySelectorAll('[data-i18n-aria-label]').forEach(element => {
-      const key = element.getAttribute('data-i18n-aria-label');
-      if (translationsObj[lang] && translationsObj[lang][key]) {
-        element.setAttribute('aria-label', translationsObj[lang][key]);
-      }
-    });
-
-    // Update all elements with data-i18n-title attribute (tooltip on hover)
-    document.querySelectorAll('[data-i18n-title]').forEach(element => {
-      const key = element.getAttribute('data-i18n-title');
-      if (translationsObj[lang] && translationsObj[lang][key]) {
-        element.setAttribute('title', translationsObj[lang][key]);
-      }
-    });
-
-    // Special-case: ensure big support stat number uses the correct localized format
-    try {
-      const supportNumberKey = 'statsSupportNumber';
-      if (translationsObj[lang] && translationsObj[lang][supportNumberKey]) {
-        document.querySelectorAll('[data-i18n="' + supportNumberKey + '"]').forEach(function(el) {
-          el.textContent = translationsObj[lang][supportNumberKey];
-        });
-      }
-    } catch (e) {
-      console.warn('Unable to apply special-case translation for statsSupportNumber', e);
-    }
-
-    // Update title - ALWAYS START WITH "Solarity AI"
-    const currentPath = window.location.pathname;
-
-    // Determine page type
-    const isCareerPage = currentPath.includes('career') || currentPath.includes('kariyer') || currentPath.includes('careers');
-
-    if (isCareerPage) {
-      // Kariyer sayfası title'ları
-      if (lang === 'tr') {
-        document.title = 'Solarity AI - Kariyer';
+    var idx = 0;
+    var CHUNK = 1;
+    function runChunk() {
+      var end = Math.min(idx + CHUNK, elements.length);
+      for (; idx < end; idx++) applyOne(elements[idx]);
+      if (idx < elements.length) {
+        if (typeof requestAnimationFrame !== 'undefined') requestAnimationFrame(runChunk);
+        else setTimeout(runChunk, 0);
       } else {
-        document.title = 'Solarity AI - Career';
-      }
-    } else {
-      // Ana sayfa title'ları
-      if (lang === 'tr') {
-        document.title = 'Solarity AI - Ana Sayfa';
-      } else {
-        document.title = 'Solarity AI - Home';
+        doRestI18n();
       }
     }
+    // Uzun görevleri kır: runChunk'ı bir sonraki tick'te başlat
+    setTimeout(runChunk, 0);
 
-    // Update hidden form fields
-    const contactFormSubject = document.getElementById('contactFormSubject');
-    if (contactFormSubject && translationsObj[lang] && translationsObj[lang]['contactFormSubject']) {
-      contactFormSubject.value = translationsObj[lang]['contactFormSubject'];
+    function doRestI18n() {
+      var placeholders = document.querySelectorAll('[data-i18n-placeholder]');
+      var chunkSize = 4;
+      var pHIdx = 0;
+      function runPlaceholderChunk() {
+        var end = Math.min(pHIdx + chunkSize, placeholders.length);
+        for (; pHIdx < end; pHIdx++) {
+          var el = placeholders[pHIdx];
+          var k = el.getAttribute('data-i18n-placeholder');
+          if (translationsObj[lang] && translationsObj[lang][k]) el.placeholder = translationsObj[lang][k];
+        }
+        if (pHIdx < placeholders.length) {
+          setTimeout(runPlaceholderChunk, 0);
+        } else {
+          setTimeout(step2, 0);
+        }
+      }
+      runPlaceholderChunk();
     }
-
-    const careersFormSubject = document.getElementById('careersFormSubject');
-    if (careersFormSubject && translationsObj[lang] && translationsObj[lang]['careersFormSubject']) {
-      careersFormSubject.value = translationsObj[lang]['careersFormSubject'];
+    function step2() {
+      var htmlEls = document.querySelectorAll('[data-i18n-html]');
+      var chunkSize = 4;
+      var idx = 0;
+      function runChunk() {
+        var end = Math.min(idx + chunkSize, htmlEls.length);
+        for (; idx < end; idx++) {
+          var el = htmlEls[idx];
+          var k = el.getAttribute('data-i18n-html');
+          if (translationsObj[lang] && translationsObj[lang][k]) el.innerHTML = translationsObj[lang][k];
+        }
+        if (idx < htmlEls.length) setTimeout(runChunk, 0);
+        else setTimeout(step3, 0);
+      }
+      runChunk();
     }
-
-    const careersFormAutoresponse = document.getElementById('careersFormAutoresponse');
-    if (careersFormAutoresponse && translationsObj[lang] && translationsObj[lang]['careersFormAutoresponse']) {
-      careersFormAutoresponse.value = translationsObj[lang]['careersFormAutoresponse'];
+    function step3() {
+      var ariaEls = document.querySelectorAll('[data-i18n-aria-label]');
+      var chunkSize = 4;
+      var idx = 0;
+      function runChunk() {
+        var end = Math.min(idx + chunkSize, ariaEls.length);
+        for (; idx < end; idx++) {
+          var el = ariaEls[idx];
+          var k = el.getAttribute('data-i18n-aria-label');
+          if (translationsObj[lang] && translationsObj[lang][k]) el.setAttribute('aria-label', translationsObj[lang][k]);
+        }
+        if (idx < ariaEls.length) setTimeout(runChunk, 0);
+        else setTimeout(step4, 0);
+      }
+      runChunk();
     }
-
-    // İlk çizimde Türkçe yanıp sönmesini önle: dil uygulandıktan sonra body'yi göster
-    document.documentElement.classList.remove('lang-loading');
-
-    console.log('✅ Translation complete! Updated', elements.length, 'elements');
+    function step4() {
+      var titleEls = document.querySelectorAll('[data-i18n-title]');
+      var chunkSize = 4;
+      var idx = 0;
+      function runChunk() {
+        var end = Math.min(idx + chunkSize, titleEls.length);
+        for (; idx < end; idx++) {
+          var el = titleEls[idx];
+          var k = el.getAttribute('data-i18n-title');
+          if (translationsObj[lang] && translationsObj[lang][k]) el.setAttribute('title', translationsObj[lang][k]);
+        }
+        if (idx < titleEls.length) setTimeout(runChunk, 0);
+        else setTimeout(step5, 0);
+      }
+      runChunk();
+    }
+    function step5() {
+      try {
+        var sk = 'statsSupportNumber';
+        if (translationsObj[lang] && translationsObj[lang][sk]) {
+          document.querySelectorAll('[data-i18n="' + sk + '"]').forEach(function(el) { el.textContent = translationsObj[lang][sk]; });
+        }
+      } catch (e) {}
+      var path = window.location.pathname;
+      var isCareer = path.indexOf("career") !== -1 || path.indexOf("kariyer") !== -1 || path.indexOf("careers") !== -1;
+      var titleText = isCareer
+        ? (lang === "tr" ? "Solarity AI - Kariyer" : "Solarity AI - Career")
+        : (lang === "tr" ? "Solarity AI - Ana Sayfa" : "Solarity AI - Home");
+      document.title = titleText;
+      var cfs = document.getElementById("contactFormSubject");
+      if (cfs && translationsObj[lang] && translationsObj[lang]["contactFormSubject"]) cfs.value = translationsObj[lang]["contactFormSubject"];
+      var cfsub = document.getElementById("careersFormSubject");
+      if (cfsub && translationsObj[lang] && translationsObj[lang]["careersFormSubject"]) cfsub.value = translationsObj[lang]["careersFormSubject"];
+      var cfar = document.getElementById("careersFormAutoresponse");
+      if (cfar && translationsObj[lang] && translationsObj[lang]["careersFormAutoresponse"]) cfar.value = translationsObj[lang]["careersFormAutoresponse"];
+      setTimeout(function finishI18n() {
+        if (window._langLoadingFallback) { clearTimeout(window._langLoadingFallback); window._langLoadingFallback = null; }
+        document.documentElement.classList.remove("lang-loading");
+        log("Translation complete! Updated", elements.length, "elements");
+      }, 0);
+    }
+    }, 0);
   }
 
   // Track if button listener is set up
@@ -404,7 +388,7 @@
   function setupLanguageSwitcher() {
     const switcher = document.getElementById('languageSwitcher');
     if (switcher) {
-      console.log('🔘 Setting up language switcher button');
+      log('🔘 Setting up language switcher button');
       
       // Keep inline onclick as backup, but also add event listeners
       // Don't remove onclick - it works as a fallback
@@ -418,14 +402,14 @@
           if (target && (target.id === 'languageSwitcher' || target.closest('#languageSwitcher') || target.id === 'languageSwitcherMobile' || target.closest('#languageSwitcherMobile'))) {
             e.preventDefault();
             e.stopPropagation();
-            console.log('🔘 Language button clicked via delegation! (desktop or mobile)');
+            log('🔘 Language button clicked via delegation! (desktop or mobile)');
             toggleLanguage();
             return false;
           }
         }, true); // Use capture phase for better reliability
         
         buttonListenerSetup = true;
-        console.log('✅ Language switcher button event delegation attached');
+        log('✅ Language switcher button event delegation attached');
       }
       
       // Also ensure direct listener is attached to the current button
@@ -433,7 +417,7 @@
       const directHandler = function(e) {
         e.preventDefault();
         e.stopPropagation();
-        console.log('🔘 Language button clicked via direct listener!');
+        log('🔘 Language button clicked via direct listener!');
         toggleLanguage();
         return false;
       };
@@ -449,13 +433,13 @@
           mobileSwitcher.removeEventListener('click', directHandler);
         } catch (e) {}
         mobileSwitcher.addEventListener('click', directHandler);
-        console.log('✅ Language switcher mobile direct listener attached');
+        log('✅ Language switcher mobile direct listener attached');
       }
 
-      console.log('✅ Language switcher button direct listener attached');
+      log('✅ Language switcher button direct listener attached');
       return switcher;
     } else {
-      console.warn('⚠️ Language switcher button not found! Will retry...');
+      warn('⚠️ Language switcher button not found! Will retry...');
     }
     return null;
   }
@@ -479,13 +463,13 @@
         flagEl.src = flagSrcForButton;
         flagEl.alt = targetLang === 'tr' ? 'Türkçe' : 'English';
         flagEl.title = targetLang === 'tr' ? 'Türkçe' : 'English';
-        console.log('✅ Language.js set desktop <img> src to (target):', flagSrcForButton);
+        log('✅ Language.js set desktop <img> src to (target):', flagSrcForButton);
       } else if (flagEl) {
         // fallback if not an img element
         flagEl.style.background = targetLang === 'tr' ? '#E30A17' : 'linear-gradient(to bottom, #012169 0%, #012169 33%, white 33%, white 67%, #C8102E 67%, #C8102E 100%)';
-        console.warn('⚠️ flagIcon is not an <img>, applied background fallback for target flag');
+        warn('⚠️ flagIcon is not an <img>, applied background fallback for target flag');
       } else {
-        console.warn('⚠️ flagIcon element not found (desktop)');
+        warn('⚠️ flagIcon element not found (desktop)');
       }
 
       if (codeEl) codeEl.textContent = langCodeForButton;
@@ -502,10 +486,10 @@
         flagElMobile.src = flagSrcForButton;
         flagElMobile.alt = targetLang === 'tr' ? 'Türkçe' : 'English';
         flagElMobile.title = targetLang === 'tr' ? 'Türkçe' : 'English';
-        console.log('✅ Language.js set mobile <img> src to (target):', flagSrcForButton);
+        log('✅ Language.js set mobile <img> src to (target):', flagSrcForButton);
       } else if (flagElMobile) {
         flagElMobile.style.background = targetLang === 'tr' ? '#E30A17' : 'linear-gradient(to bottom, #012169 0%, #012169 33%, white 33%, white 67%, #C8102E 67%, #C8102E 100%)';
-        console.warn('⚠️ flagIconMobile is not an <img>, applied background fallback for target flag');
+        warn('⚠️ flagIconMobile is not an <img>, applied background fallback for target flag');
       }
 
       if (codeElMobile) codeElMobile.textContent = langCodeForButton;
@@ -516,12 +500,12 @@
 
   // Toggle language
   function toggleLanguage() {
-    console.log('🔄 Toggling language from', currentLang);
+    log('🔄 Toggling language from', currentLang);
     const newLang = currentLang === 'tr' ? 'en' : 'tr';
-    console.log('🔄 Switching to', newLang);
+    log('🔄 Switching to', newLang);
     setLanguage(newLang);
     updateLanguageSwitcher();
-    console.log('✅ Language toggled successfully');
+    log('✅ Language toggled successfully');
   }
 
   // Expose toggle function globally IMMEDIATELY so inline onclick handlers work
@@ -532,54 +516,66 @@
 
   // Initialize on DOM ready
   function initialize() {
-    console.log('=== LANGUAGE SYSTEM INITIALIZING ===');
-    console.log('Current language:', currentLang);
-    console.log('Translations object exists:', typeof translations !== 'undefined');
+    log('=== LANGUAGE SYSTEM INITIALIZING ===');
+    log('Current language:', currentLang);
+    log('Translations object exists:', typeof translations !== 'undefined');
     
     // Wait for translations to be loaded (check both window.translations and translations)
     const translationsObj = window.translations || (typeof translations !== 'undefined' ? translations : null);
     if (!translationsObj) {
-      console.log('⏳ Waiting for translations to load...');
+      log('⏳ Waiting for translations to load...');
       setTimeout(initialize, 50);
       return;
     }
     
-    console.log('✅ Translations loaded! Available languages:', Object.keys(translationsObj));
-    console.log('✅ Turkish translations available:', !!translationsObj['tr']);
-    console.log('✅ Sample Turkish navAbout:', translationsObj['tr'] ? translationsObj['tr']['navAbout'] : 'NOT FOUND');
+    log('✅ Translations loaded! Available languages:', Object.keys(translationsObj));
+    log('✅ Turkish translations available:', !!translationsObj['tr']);
+    log('✅ Sample Turkish navAbout:', translationsObj['tr'] ? translationsObj['tr']['navAbout'] : 'NOT FOUND');
     
-    // Small delay to ensure all elements are rendered
     setTimeout(function() {
-      console.log('=== RUNNING INITIAL TRANSLATION ===');
-      console.log('Language:', currentLang);
-      // Try to setup button multiple times to ensure it works
+      log('=== RUNNING INITIAL TRANSLATION ===');
+      log('Language:', currentLang);
       setupLanguageSwitcher();
-      setTimeout(setupLanguageSwitcher, 200);
-      setTimeout(setupLanguageSwitcher, 500);
       initLanguage();
-    }, 100);
+    }, 0);
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initialize);
-  } else {
-    initialize();
+  function runInitialize() {
+    if (typeof requestIdleCallback !== 'undefined') {
+      requestIdleCallback(initialize, { timeout: 500 });
+    } else {
+      setTimeout(initialize, 150);
+    }
   }
-  
-  // Also run on window load as backup
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', runInitialize);
+  } else {
+    runInitialize();
+  }
+
   window.addEventListener('load', function() {
-    setTimeout(function() {
-      const translationsObj = window.translations || (typeof translations !== 'undefined' ? translations : null);
-      if (translationsObj) {
-        console.log('=== WINDOW LOAD - RUNNING TRANSLATION ===');
-        // Re-setup button in case it wasn't ready before
-        setupLanguageSwitcher();
-        setLanguage(currentLang);
-        updateLanguageSwitcher();
-      } else {
-        console.error('❌ Translations still not loaded on window load!');
-      }
-    }, 500);
+    if (typeof requestIdleCallback !== 'undefined') {
+      requestIdleCallback(function() {
+        const translationsObj = window.translations || (typeof translations !== 'undefined' ? translations : null);
+        if (translationsObj) {
+          log('=== WINDOW LOAD - RUNNING TRANSLATION ===');
+          setupLanguageSwitcher();
+          setLanguage(currentLang);
+          updateLanguageSwitcher();
+        } else {
+          err('❌ Translations still not loaded on window load!');
+        }
+      }, { timeout: 700 });
+    } else {
+      setTimeout(function() {
+        const translationsObj = window.translations || (typeof translations !== 'undefined' ? translations : null);
+        if (translationsObj) {
+          setupLanguageSwitcher();
+          setLanguage(currentLang);
+          updateLanguageSwitcher();
+        }
+      }, 500);
+    }
   });
   
   // Watch for dynamically added elements (like footer with animations)
@@ -607,14 +603,14 @@
       
       // If button was added, set it up
       if (buttonAdded) {
-        console.log('🔘 Language button detected in DOM, setting up...');
+        log('🔘 Language button detected in DOM, setting up...');
         setupLanguageSwitcher();
       }
       
       const translationsObj = window.translations || (typeof translations !== 'undefined' ? translations : null);
       if (shouldRetranslate && translationsObj) {
         setTimeout(function() {
-          console.log('🔄 Retranslating due to DOM changes');
+          log('🔄 Retranslating due to DOM changes');
           setLanguage(currentLang);
         }, 100);
       }
@@ -633,10 +629,10 @@
   setTimeout(function() {
     const translationsObj = window.translations || (typeof translations !== 'undefined' ? translations : null);
     if (translationsObj) {
-      console.log('=== FINAL TRANSLATION CHECK AFTER ANIMATIONS ===');
+      log('=== FINAL TRANSLATION CHECK AFTER ANIMATIONS ===');
       setLanguage(currentLang);
     } else {
-      console.error('❌ Translations not available for final check!');
+      err('❌ Translations not available for final check!');
     }
   }, 2000);
 
