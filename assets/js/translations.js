@@ -3,6 +3,7 @@
 window.translations = {
   en: {
     // Navigation
+    navAboutUs: "About Us",
     navAbout: "Services",
     navPartnerships: "Partnerships",
     navProjects: "Projects",
@@ -153,6 +154,8 @@ window.translations = {
     contactMessagePlaceholder: "Tell us about your project or inquiry...",
     contactMessageTitle: "Briefly describe your project or question.",
     contactSend: "Send Message",
+    contactFormSuccess: "Message sent successfully 🚀",
+    contactFormSuccessMsg: "We'll get back to you as soon as possible.",
     contactFormSubject: "New Contact Form Submission - Solarity AI",
     
     // Footer
@@ -225,7 +228,7 @@ window.translations = {
     careersFormFileTypeError: "Please upload only PDF, DOC or DOCX files.",
     careersFormWait: "Please wait...",
     careersFormCaptchaInfo: "Your application is being sent and captcha verification will be performed.",
-    careersFormSuccess: "Application received successfully!",
+    careersFormSuccess: "Application received successfully 🚀",
     careersFormSuccessMsg: "We'll get back to you as soon as possible.",
     careersFormError: "An error occurred!",
     careersFormErrorMsg: "Please try again later.",
@@ -280,9 +283,9 @@ window.translations = {
     careersLinkedInHelp: "Your LinkedIn profile URL (required)",
     careersLinkedInPlaceholder: "https://www.linkedin.com/in/yourprofile",
     careersLinkedInInvalid: "Please enter a valid LinkedIn profile URL (e.g. https://www.linkedin.com/in/...)",
-    careersPortfolio: "Portfolio / Website *",
+    careersPortfolio: "Portfolio *",
     careersPortfolioHelp: "GitHub, Linktree or portfolio URL (required)",
-    careersPortfolioPlaceholder: "https://github.com/username or https://linktr.ee/...",
+    careersPortfolioPlaceholder: "https://github.com/username or something else",
     careersPortfolioInvalid: "Please enter a valid portfolio URL (e.g. GitHub, Linktree or your website).",
     careersExperience: "Years of Experience",
     careersSelectExperience: "Select experience level",
@@ -355,6 +358,7 @@ window.translations = {
   },
   tr: {
     // Navigation
+    navAboutUs: "Hakkımızda",
     navAbout: "Hizmetler",
     navPartnerships: "Ortaklıklar",
     navProjects: "Projeler",
@@ -506,6 +510,8 @@ window.translations = {
     contactMessagePlaceholder: "Projeniz veya sorunuz hakkında detayları paylaşın",
     contactMessageTitle: "Projenizi veya sorunuzu kısaca açıklayın.",
     contactSend: "Mesaj Gönder",
+    contactFormSuccess: "Mesajınız başarıyla gönderildi 🚀",
+    contactFormSuccessMsg: "En kısa sürede size dönüş yapacağız.",
     contactFormSubject: "Yeni İletişim Formu Gönderimi - Solarity AI",
     
     // Footer
@@ -580,7 +586,7 @@ window.translations = {
     careersFormFileTypeError: "Lütfen sadece PDF, DOC veya DOCX dosyası yükleyin.",
     careersFormWait: "Lütfen bekleyin...",
     careersFormCaptchaInfo: "Başvurunuz gönderiliyor ve captcha doğrulaması yapılacaktır.",
-    careersFormSuccess: "Başvurunuz başarıyla alındı!",
+    careersFormSuccess: "Başvurunuz başarıyla alındı 🚀",
     careersFormSuccessMsg: "En kısa sürede size dönüş yapacağız.",
     careersFormError: "Bir hata oluştu!",
     careersFormErrorMsg: "Lütfen daha sonra tekrar deneyin.",
@@ -635,9 +641,9 @@ window.translations = {
     careersLinkedInHelp: "LinkedIn profil bağlantınız (zorunlu)",
     careersLinkedInPlaceholder: "https://www.linkedin.com/in/profiliniz",
     careersLinkedInInvalid: "Geçerli bir LinkedIn profil URL'si girin (örn. https://www.linkedin.com/in/...)",
-    careersPortfolio: "Portfolio / Web Sayfası *",
+    careersPortfolio: "Portfolio *",
     careersPortfolioHelp: "GitHub, Linktree veya portfolio URL (zorunlu)",
-    careersPortfolioPlaceholder: "https://github.com/kullanici-adi veya https://linktr.ee/...",
+    careersPortfolioPlaceholder: "https://github.com/kullanıcı-adı veya başka bir link",
     careersPortfolioInvalid: "Geçerli bir portfolio/web sayfası URL'si girin (örn. GitHub, Linktree).",
     careersExperience: "Deneyim Süresi",
     careersSelectExperience: "Deneyim seviyesi seçiniz",
