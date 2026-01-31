@@ -54,7 +54,7 @@
   AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json application/xml
 </IfModule>
 
-# Browser Caching
+# Browser Caching (Apache only; 127.0.0.1 dev servers ignore this)
 <IfModule mod_expires.c>
   ExpiresActive On
   
@@ -66,10 +66,10 @@
   ExpiresByType image/svg+xml "access plus 1 year"
   ExpiresByType image/x-icon "access plus 1 year"
   
-  # CSS and JavaScript
-  ExpiresByType text/css "access plus 1 month"
-  ExpiresByType application/javascript "access plus 1 month"
-  ExpiresByType text/javascript "access plus 1 month"
+  # CSS and JavaScript (static assets, cache 1 year; use versioned URLs when updating)
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType text/javascript "access plus 1 year"
   
   # Fonts
   ExpiresByType font/woff "access plus 1 year"
@@ -77,12 +77,23 @@
   ExpiresByType font/ttf "access plus 1 year"
   ExpiresByType font/otf "access plus 1 year"
   ExpiresByType application/font-woff "access plus 1 year"
+  ExpiresByType application/vnd.ms-fontobject "access plus 1 year"
   
-  # HTML
+  # HTML (short cache so content updates are seen quickly)
   ExpiresByType text/html "access plus 0 seconds"
   
   # Default
   ExpiresDefault "access plus 1 month"
+</IfModule>
+
+# Cache-Control for static assets (reinforces Expires; works when mod_expires is available)
+<IfModule mod_headers.c>
+  <FilesMatch "\.(ico|png|jpe?g|gif|webp|svg|woff2?|ttf|otf|eot|css|js)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.(html|htm)$">
+    Header set Cache-Control "public, max-age=0, must-revalidate"
+  </FilesMatch>
 </IfModule>
 
 # Prevent directory listing
