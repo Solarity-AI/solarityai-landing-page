@@ -111,6 +111,29 @@
     });
   }
 
+  // Google Maps embed: her zaman İngilizce harita (EN embed)
+  function updateMapEmbedLang(lang) {
+    var iframe = document.getElementById('contactMapEmbed');
+    if (!iframe) return;
+    var baseSrc = iframe.getAttribute('data-src-en');
+    if (!baseSrc) return;
+    var parent = iframe.parentNode;
+    var newIframe = document.createElement('iframe');
+    newIframe.id = 'contactMapEmbed';
+    newIframe.title = iframe.title || 'Solarity AI - Dallas Office';
+    newIframe.setAttribute('data-src-tr', iframe.getAttribute('data-src-tr') || '');
+    newIframe.setAttribute('data-src-en', iframe.getAttribute('data-src-en') || '');
+    newIframe.className = iframe.className || 'w-full h-full min-h-[260px] md:min-h-[320px]';
+    newIframe.style.border = '0';
+    newIframe.setAttribute('allowfullscreen', '');
+    newIframe.setAttribute('referrerpolicy', iframe.getAttribute('referrerpolicy') || 'no-referrer-when-downgrade');
+    newIframe.setAttribute('loading', 'eager');
+    parent.replaceChild(newIframe, iframe);
+    var sep = baseSrc.indexOf('?') >= 0 ? '&' : '?';
+    newIframe.src = baseSrc + sep + '_=' + Date.now();
+    log('🗺️ Map embed set to English');
+  }
+
   // Ekip üyesi isimleri: EN'de Türkçe karakter yok, TR'de orijinal
   function updateTeamMemberNames(lang) {
     document.querySelectorAll('.team-member-name[data-name-en][data-name-tr]').forEach(function (el) {
@@ -194,10 +217,49 @@
       setTimeout(function() { setLanguage(lang); }, 100);
       return;
     }
+    // Dil degisince sayfa ayni yerde kalsin: scroll (mutlak + oran) ve hash kaydet
+    var savedScrollY = window.scrollY !== undefined ? window.scrollY : (window.pageYOffset || document.documentElement.scrollTop || 0);
+    var doc = document.documentElement;
+    var maxScroll = Math.max(0, (doc.scrollHeight - (window.innerHeight || doc.clientHeight)));
+    var savedScrollRatio = maxScroll > 0 ? savedScrollY / maxScroll : 0;
+    if (savedScrollRatio > 1) savedScrollRatio = 1;
+    if (savedScrollRatio < 0) savedScrollRatio = 0;
+    var hadHash = window.location.hash || "";
+    if (hadHash) {
+      try { window.history.replaceState(null, "", window.location.pathname + window.location.search); } catch (e) {}
+    }
+    // Bolum id'lerini guncelle (hash yok artik, scroll tetiklenmez)
+    updateSectionIds(lang);
     // Güvenlik: çeviri hiç yüklenmezse 3 saniye sonra yine de body'yi göster
     if (window._langLoadingFallback) clearTimeout(window._langLoadingFallback);
+    function restoreScroll() {
+      var d = document.documentElement;
+      var max = Math.max(0, d.scrollHeight - (window.innerHeight || d.clientHeight));
+      var targetY = savedScrollRatio * max;
+      if (targetY > max) targetY = max;
+      window.scrollTo(0, targetY);
+    }
+    var scrollPinEnd = Date.now() + 1600;
+    function scrollPinLoop() {
+      if (Date.now() >= scrollPinEnd) return;
+      var d = document.documentElement;
+      var max = Math.max(0, d.scrollHeight - (window.innerHeight || d.clientHeight));
+      var targetY = savedScrollRatio * max;
+      if (targetY > max) targetY = max;
+      var nowY = window.scrollY || document.documentElement.scrollTop;
+      if (Math.abs(nowY - targetY) > 1) window.scrollTo(0, targetY);
+      if (typeof requestAnimationFrame !== 'undefined') requestAnimationFrame(scrollPinLoop);
+      else setTimeout(scrollPinLoop, 16);
+    }
+    if (typeof requestAnimationFrame !== 'undefined') requestAnimationFrame(scrollPinLoop);
+    else setTimeout(scrollPinLoop, 0);
+    function restoreScrollAbsolute() {
+      window.scrollTo(0, savedScrollY);
+    }
     window._langLoadingFallback = setTimeout(function() {
       document.documentElement.classList.remove('lang-loading');
+      restoreScroll();
+      requestAnimationFrame(restoreScroll);
     }, 3000);
     
     currentLang = lang;
@@ -210,11 +272,11 @@
     document.body.classList.remove('lang-tr', 'lang-en');
     document.body.classList.add(lang === 'tr' ? 'lang-tr' : 'lang-en');
     
-    // Update URL based on language (EN: /en/, TR: /)
-    updateUrlForLanguage(lang);
+    // Hash guncellemesi finishI18n'de yapilacak (scroll restore'dan sonra)
 
     setTimeout(function() {
       updateNavigationLinks(lang);
+      updateMapEmbedLang(lang);
       fixTeamPhotoSize(lang);
       if (lang === 'tr') setTimeout(function() { fixTeamPhotoSize('tr'); }, 80);
       updateTeamMemberNames(lang);
@@ -373,9 +435,45 @@
       var cfar = document.getElementById("careersFormAutoresponse");
       if (cfar && translationsObj[lang] && translationsObj[lang]["careersFormAutoresponse"]) cfar.value = translationsObj[lang]["careersFormAutoresponse"];
       setTimeout(function finishI18n() {
+        scrollPinEnd = 0;
         if (window._langLoadingFallback) { clearTimeout(window._langLoadingFallback); window._langLoadingFallback = null; }
         document.documentElement.classList.remove("lang-loading");
         log("Translation complete! Updated", elements.length, "elements");
+        updateMetaTags(lang, window.location.pathname);
+        updateMapEmbedLang(lang);
+        if (typeof restoreScroll === "function") {
+          restoreScroll();
+          requestAnimationFrame(restoreScroll);
+          setTimeout(restoreScroll, 0);
+          setTimeout(restoreScroll, 50);
+          var lockEnd = Date.now() + 250;
+          function scrollLock() {
+            if (Date.now() >= lockEnd) {
+              window.removeEventListener("scroll", scrollLock, true);
+              return;
+            }
+            var d = document.documentElement;
+            var max = Math.max(0, d.scrollHeight - (window.innerHeight || d.clientHeight));
+            var targetY = savedScrollRatio * max;
+            var nowY = window.scrollY || document.documentElement.scrollTop;
+            if (Math.abs(nowY - targetY) > 10) restoreScroll();
+          }
+          window.addEventListener("scroll", scrollLock, true);
+          setTimeout(function() { window.removeEventListener("scroll", scrollLock, true); }, 300);
+          if (hadHash) {
+            var newHash = translateHash(hadHash, lang);
+            if (newHash) {
+              setTimeout(function() {
+                try { window.history.replaceState(null, "", newHash); } catch (e) {}
+                restoreScroll();
+                requestAnimationFrame(restoreScroll);
+              }, 100);
+            }
+          }
+        } else if (hadHash) {
+          var newHash = translateHash(hadHash, lang);
+          if (newHash) try { window.history.replaceState(null, "", newHash); } catch (e) {}
+        }
       }, 0);
     }
     }, 0);
@@ -504,6 +602,7 @@
     const newLang = currentLang === 'tr' ? 'en' : 'tr';
     log('🔄 Switching to', newLang);
     setLanguage(newLang);
+    updateMapEmbedLang(newLang);
     updateLanguageSwitcher();
     log('✅ Language toggled successfully');
   }
