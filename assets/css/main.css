@@ -113,6 +113,11 @@ body {
   font-feature-settings: "kern" 1, "liga" 1;
 }
 
+/* Küçük metin (text-sm) site genelinde büyütüldü – tüm sayfalarda geçerli */
+.text-sm {
+  font-size: 1rem !important; /* 16px */
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-secondary);
   font-weight: 600;
@@ -348,6 +353,163 @@ img {
   box-shadow: 0 6px 16px rgba(16, 185, 129, 0.45);
 }
 
+/* Navbar: 600px breakpoint – CSS ile kontrol (Tailwind md’ye bağlı değil); daraltınca butonlar kaybolmasın */
+header .container {
+  overflow: visible;
+}
+header nav {
+  overflow: visible;
+  min-width: 0;
+}
+/* Spacer’lar: sadece 600px+ görünsün */
+.nav-spacer {
+  display: none;
+}
+@media (min-width: 992px) {
+  .nav-spacer {
+    display: block !important;
+  }
+}
+/* Sağ blok: min 240px – scroll alanı dil butonunu gösterecek kadar geniş */
+.nav-right-wrap {
+  min-width: 240px;
+  max-width: 100%;
+  flex-shrink: 1;
+  min-height: 0;
+}
+/* Scroll kutusu: içerik genişliği sabit, yatay scroll – sağda gereksiz boşluk olmasın */
+.nav-desktop-scroll {
+  display: none;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  min-width: 0;
+  width: 100%;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(148, 163, 184, 0.5) transparent;
+  scroll-padding-inline-end: 0.5rem;
+}
+@media (min-width: 992px) {
+  .nav-desktop-scroll {
+    display: block !important;
+  }
+}
+/* İçerik: genişlik içeriğe göre, ezilmesin – sağda fazla padding yok */
+.nav-desktop-inner {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: max-content;
+  width: max-content;
+  padding-inline-end: 0.5rem;
+  padding-inline-start: 0.25rem;
+}
+@media (min-width: 768px) {
+  .nav-desktop-inner {
+    gap: 1rem;
+  }
+}
+.nav-desktop-scroll::-webkit-scrollbar {
+  height: 6px;
+}
+.nav-desktop-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.nav-desktop-scroll::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.5);
+  border-radius: 4px;
+}
+/* Dil butonu scroll dışında – masaüstünde her zaman sağda görünsün */
+.nav-lang-btn {
+  display: none;
+  margin-left: 0.5rem;
+  flex-shrink: 0;
+}
+@media (min-width: 992px) {
+  .nav-lang-btn {
+    display: inline-flex !important;
+  }
+}
+/* Mobil: dil + hamburger 992px altında; dar ekranda butonlar hamburger ile erişilir */
+.nav-mobile-wrap {
+  display: flex;
+}
+@media (min-width: 992px) {
+  .nav-mobile-wrap {
+    display: none !important;
+  }
+}
+/* Dar ekranda sadece mobil dil butonu; masaüstü dil butonu gizle */
+@media (max-width: 991px) {
+  #languageSwitcher,
+  button#languageSwitcher {
+    display: none !important;
+  }
+}
+@media (min-width: 992px) {
+  #languageSwitcherMobile,
+  button#languageSwitcherMobile {
+    display: none !important;
+  }
+}
+/* Açılır mobil menü: masaüstünde (992px+) hiç görünmesin */
+@media (min-width: 992px) {
+  #mobileMenu {
+    display: none !important;
+  }
+}
+/* Mobil menü: logoyla çakışmasın, biraz aşağıda başlasın */
+@media (max-width: 991px) {
+  #mobileMenu {
+    margin-top: 1.25rem;
+    padding-top: 0.5rem;
+  }
+}
+/* Mobilde header sağda menü ikonu kesilmesin */
+@media (max-width: 991px) {
+  header .container {
+    padding-right: 1rem;
+  }
+}
+/* Hamburger görünümünde menü ikonu ve dil butonu orijinalin 1.5 katı */
+@media (max-width: 991px) {
+  .nav-mobile-wrap #mobileMenuBtn {
+    font-size: 2.25rem;
+    line-height: 1;
+    padding: 0.4rem;
+    min-width: 2em;
+    min-height: 2em;
+    margin-right: 0.75rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .nav-mobile-wrap #languageSwitcherMobile {
+    padding: 0.5rem 0.95rem;
+    font-size: 1.125rem;
+    gap: 0.4rem;
+  }
+  .nav-mobile-wrap #languageSwitcherMobile img,
+  .nav-mobile-wrap #flagIconMobile {
+    width: 36px;
+    height: 26px;
+  }
+  .nav-mobile-wrap #languageSwitcherMobile span,
+  .nav-mobile-wrap #currentLangMobile {
+    font-size: 1.125rem;
+  }
+}
+/* Ortadaki CTA (Book a call): sadece geniş ekranda header'da; dar ekranda mobil menüde */
+.nav-cta-desktop {
+  display: none;
+}
+@media (min-width: 992px) {
+  .nav-cta-desktop {
+    display: inline-flex !important;
+  }
+}
+
 .navbar-toggler .toggler-icon {
   width: 25px;
   height: 2px;
@@ -473,6 +635,20 @@ img {
 section {
   padding: 6rem 0;
   position: relative;
+}
+
+/* İstatistikler bölümü: kısa container, istatistik–container arası mesafe az */
+#stats-section {
+  padding-top: 0.5rem;
+  padding-bottom: 1.5rem;
+  min-height: 140px;
+}
+@media (min-width: 768px) {
+  #stats-section {
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+    min-height: 180px;
+  }
 }
 
 .ud-section-title {
@@ -1456,19 +1632,24 @@ section {
 @media (max-width: 767px) {
   #team .ud-single-team.team-card,
   #ekip .ud-single-team.team-card {
-    max-width: 100%;
+    max-width: 320px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    min-width: 0;
   }
 }
 
-/* Tüm ekip kartları özdeş – dil ayrımı yok */
-
+/* Mobil: ekip kartı görseli desktop ile aynı oran (4/5), sığacak yükseklik */
 @media (max-width: 767px) {
   #team .ud-team-image-wrapper,
   #ekip .ud-team-image-wrapper {
     height: auto;
-    min-height: 240px;
-    max-height: 280px;
+    min-height: 0;
+    max-height: none;
     flex-shrink: 0;
+    aspect-ratio: 4 / 5;
+    width: 100%;
   }
 }
 
