@@ -98,7 +98,24 @@ html[lang="tr"] {
   contain-intrinsic-size: auto 360px;
 }
 
+@media (max-width: 767px) {
+  #team,
+  #ekip {
+    content-visibility: visible;
+    contain-intrinsic-size: none;
+  }
+}
+
 /* İletişim: Maps üstündeki 3 kutu – mobilde taşma yok, metin kırılır */
+/* İletişim bölümü – 3 kutu (E-posta, Adres, Yanıt süresi) yazıları ortada */
+#contact .contact-info-box {
+  text-align: center;
+}
+#contact .contact-info-box > *:nth-child(2),
+#contact .contact-info-box > *:nth-child(3) {
+  text-align: center;
+}
+
 @media (max-width: 767px) {
   #contact .contact-info-boxes {
     min-width: 0;
@@ -959,8 +976,8 @@ header.overflow-menu #mobileMenu ul li a:hover {
   }
   .nav-mobile-wrap #languageSwitcherMobile img,
   .nav-mobile-wrap #flagIconMobile {
-    width: 22px !important;
-    height: 16px !important;
+    width: 34px !important;
+    height: 24px !important;
   }
   .nav-mobile-wrap #mobileMenuBtn {
     margin-right: 0 !important;
@@ -991,8 +1008,8 @@ header.overflow-menu #mobileMenu ul li a:hover {
   }
   .nav-mobile-wrap #languageSwitcherMobile img,
   .nav-mobile-wrap #flagIconMobile {
-    width: 36px;
-    height: 26px;
+    width: 56px;
+    height: 40px;
   }
   .nav-mobile-wrap #languageSwitcherMobile span,
   .nav-mobile-wrap #currentLangMobile {
@@ -2097,30 +2114,31 @@ html[lang="tr"] .stat-satisfaction-tr {
 /* Eşit kart boyutu (2’li, 3’lü, 4’lü hepsi aynı boyut) ve LinkedIn yukarı - #ekip */
 #team .ud-single-team.team-card,
 #ekip .ud-single-team.team-card {
-  min-height: 480px;
+  min-height: 420px;
   height: auto;
   overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  width: 300px !important;
-  min-width: 300px !important;
-  max-width: 300px !important;
+  display: grid;
+  grid-template-rows: 290px 7rem auto;
+  grid-template-columns: 1fr;
+  align-items: start;
+  width: 320px !important;
+  min-width: 320px !important;
+  max-width: 320px !important;
   margin-left: auto;
   margin-right: auto;
-  padding-bottom: 1.25rem;
+  padding-bottom: 1rem;
   box-sizing: border-box;
 }
 #team .ud-team-image-wrapper,
 #ekip .ud-team-image-wrapper {
-  flex: 0 0 auto;
-  flex-shrink: 0;
-  min-height: 320px;
-  height: 320px;
-  max-height: 320px;
+  grid-row: 1;
   width: 100%;
-  aspect-ratio: 4 / 5;
+  height: 290px;
+  min-height: 290px;
+  max-height: 290px;
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
+  overflow: hidden;
 }
 #team .ud-team-image-wrapper .ud-team-image,
 #team .ud-team-image-wrapper .ud-team-image img,
@@ -2134,28 +2152,49 @@ html[lang="tr"] .stat-satisfaction-tr {
 }
 #team .ud-team-info,
 #ekip .ud-team-info {
+  grid-row: 2;
+  align-self: stretch;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-end;
   text-align: center;
-  flex: 0 1 auto;
-  min-height: 0;
-  margin-top: 2.25rem;
-  padding: 0.5rem 0.35rem 0.75rem;
-  gap: 0.5rem;
+  min-height: 7.5rem;
+  height: auto;
+  width: 100%;
+  margin: 0;
+  padding: 0.35rem 0.5rem 0;
+  gap: 0.15rem;
   overflow: visible;
+  box-sizing: border-box;
 }
 #team .ud-team-info h4,
 #team .ud-team-info h5,
 #ekip .ud-team-info h4,
 #ekip .ud-team-info h5 {
-  font-size: 1.15rem;
+  font-size: 1.3rem;
   margin: 0;
-  line-height: 1.35;
+  line-height: 1.28;
+  text-align: center;
+  width: 100%;
 }
 #team .ud-team-info h4,
 #ekip .ud-team-info h4 {
-  margin-bottom: 0.25rem;
+  font-size: 1.75rem;
+}
+#team .ud-team-info h5,
+#ekip .ud-team-info h5 {
+  font-size: 1.25rem;
+  line-height: 1.3;
+  white-space: normal;
+  overflow: visible;
+  text-overflow: unset;
+}
+/* İki satırlı isimde de unvan aynı hizada – isim alanı sabit yükseklik */
+#team .ud-team-info h4,
+#ekip .ud-team-info h4 {
+  margin-bottom: 0.1rem;
+  min-height: 2rem;
 }
 #team .ud-team-info h5,
 #ekip .ud-team-info h5 {
@@ -2168,28 +2207,96 @@ html[lang="tr"] .stat-satisfaction-tr {
 }
 #team .ud-team-socials,
 #ekip .ud-team-socials {
-  margin-top: 0.5rem;
+  grid-row: 3;
+  width: 100%;
+  margin-top: 0.1rem;
   margin-bottom: 0;
+  padding: 0;
   flex-shrink: 0;
+  display: flex;
   justify-content: center;
+  align-items: center;
+  min-height: 40px;
 }
+#team .team-grid-executives,
 #team .team-grid-managers,
 #team .team-grid-bdm,
+#team .team-grid-engineers,
+#team .team-grid-marketers,
 #team .grid[style*="gap"],
+#ekip .team-grid-executives,
 #ekip .team-grid-managers,
 #ekip .team-grid-bdm,
+#ekip .team-grid-engineers,
+#ekip .team-grid-marketers,
 #ekip .grid[style*="gap"] {
   align-items: stretch;
   justify-content: center;
   justify-items: center;
 }
+#team .team-grid-executives,
+#ekip .team-grid-executives {
+  grid-template-columns: repeat(3, 320px) !important;
+}
+#team .team-grid-managers,
+#ekip .team-grid-managers {
+  grid-template-columns: repeat(3, 320px) !important;
+}
+#team .team-grid-marketers,
+#ekip .team-grid-marketers {
+  display: grid !important;
+  grid-template-columns: repeat(3, 320px) !important;
+  gap: var(--team-gap, 1.5rem);
+}
+#team .team-grid-bdm,
+#ekip .team-grid-bdm {
+  grid-template-columns: repeat(2, 320px) !important;
+}
+#team .team-grid-engineers,
+#ekip .team-grid-engineers {
+  grid-template-columns: repeat(3, 320px) !important;
+}
+@media (min-width: 768px) {
+  #team .team-grid-engineers,
+  #ekip .team-grid-engineers {
+    grid-template-columns: repeat(3, 320px) !important;
+  }
+}
+
+/* Üst yönetim (3 kart): LinkedIn ve unvan yatay hizalı – sabit yükseklik yok, title görünsün */
+#team .team-grid-executives .ud-team-socials,
+#ekip .team-grid-executives .ud-team-socials {
+  align-items: center;
+  justify-content: center;
+}
+#team .team-grid-executives .ud-team-info,
+#ekip .team-grid-executives .ud-team-info {
+  justify-content: flex-start;
+  align-items: center;
+}
 
 @media (max-width: 767px) {
+  /* Mobilde ekip grid'leri tek sütun – kartlar alt alta görünsün */
+  #team .team-grid-executives,
+  #team .team-grid-managers,
+  #team .team-grid-bdm,
+  #team .team-grid-engineers,
+  #team .team-grid-marketers,
+  #ekip .team-grid-executives,
+  #ekip .team-grid-managers,
+  #ekip .team-grid-bdm,
+  #ekip .team-grid-engineers,
+  #ekip .team-grid-marketers {
+    grid-template-columns: 1fr !important;
+    display: grid !important;
+    justify-content: center !important;
+    gap: 1.5rem !important;
+  }
   #team .ud-single-team.team-card,
   #ekip .ud-single-team.team-card {
-    width: 300px !important;
-    min-width: 300px !important;
-    max-width: 300px !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 320px !important;
     margin-left: auto;
     margin-right: auto;
   }
@@ -2203,53 +2310,62 @@ html[lang="tr"] .stat-satisfaction-tr {
     min-height: auto !important;
     height: auto !important;
     aspect-ratio: unset !important;
-    padding-bottom: 1.25rem !important;
-    display: flex !important;
-    flex-direction: column !important;
-    align-self: flex-start !important;
+    padding-bottom: 1rem !important;
+    display: grid !important;
+    grid-template-rows: 255px 7rem auto !important;
+    grid-template-columns: 1fr !important;
+    align-items: start !important;
+    align-self: stretch !important;
   }
-  /* Foto: ekranın ~%48’i (max), altta isim+unvan+LinkedIn için yer kalsın */
+  /* Foto: biraz büyük */
   #team .ud-team-image-wrapper,
   #ekip .ud-team-image-wrapper {
-    height: auto !important;
-    min-height: 0 !important;
-    max-height: 48vh !important;
-    max-height: min(320px, 48vh) !important;
-    flex: 0 0 auto !important;
-    flex-shrink: 0 !important;
-    aspect-ratio: 4 / 5 !important;
+    grid-row: 1 !important;
+    height: 255px !important;
+    min-height: 255px !important;
+    max-height: 255px !important;
     width: 100% !important;
   }
-  /* İsim, unvan, LinkedIn: her zaman görünsün – flex-shrink 0, min-height ile alan garantisi */
+  /* İsim, unvan LinkedIn'e yakın */
   #team .ud-team-info,
   #ekip .ud-team-info {
+    grid-row: 2 !important;
+    align-self: stretch !important;
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
-    flex: 0 0 auto !important;
-    flex-shrink: 0 !important;
-    margin-top: 1rem !important;
-    padding: 0.5rem 0.35rem 0.75rem !important;
-    gap: 0.35rem !important;
-    min-height: 4.5rem !important;
+    justify-content: flex-start !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0.3rem 0.35rem 0.35rem !important;
+    gap: 0.15rem !important;
+    min-height: 7rem !important;
+    height: auto !important;
     overflow: visible !important;
+    box-sizing: border-box !important;
     visibility: visible !important;
     opacity: 1 !important;
+    text-align: center !important;
   }
   #team .ud-team-info h4,
   #ekip .ud-team-info h4 {
-    font-size: 1.1rem !important;
+    font-size: 1.4rem !important;
     margin: 0 !important;
-    line-height: 1.3 !important;
+    line-height: 1.25 !important;
+    text-align: center !important;
+    width: 100% !important;
+    min-height: 2rem !important;
     visibility: visible !important;
     opacity: 1 !important;
     color: var(--color-text-primary) !important;
   }
   #team .ud-team-info h5,
   #ekip .ud-team-info h5 {
-    font-size: 1rem !important;
+    font-size: 1.2rem !important;
     margin: 0 !important;
-    line-height: 1.3 !important;
+    line-height: 1.25 !important;
+    text-align: center !important;
+    width: 100% !important;
     white-space: normal !important;
     overflow: visible !important;
     text-overflow: unset !important;
@@ -2261,9 +2377,13 @@ html[lang="tr"] .stat-satisfaction-tr {
   }
   #team .ud-team-socials,
   #ekip .ud-team-socials {
+    grid-row: 3 !important;
+    width: 100% !important;
     display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
     flex-shrink: 0 !important;
-    margin-top: 0.35rem !important;
+    margin-top: 0.15rem !important;
     margin-bottom: 0 !important;
     min-height: 3rem !important;
     visibility: visible !important;
@@ -2740,12 +2860,27 @@ html[lang="tr"] .stat-satisfaction-tr {
   margin: 0;
 }
 
-/* Footer social icons – aralık override'ı önlemek için */
-/* Masaüstü (768px+): sosyal ikonlar arası boşluk – HTML gap-3 kaldırıldı, sadece CSS */
-@media (min-width: 768px) {
-  #footer .footer-socials {
-    gap: 0.25rem !important;
+/* Footer sosyal ikonlar arası boşluk – CSS değişkeni + kural */
+#footer {
+  --footer-socials-gap: 0.15rem;
+}
+@media (min-width: 1025px) {
+  #footer {
+    --footer-socials-gap: 0.08rem;
   }
+}
+@media (max-width: 767px) {
+  #footer {
+    --footer-socials-gap: 0.85rem;
+  }
+}
+@media (max-width: 480px) {
+  #footer {
+    --footer-socials-gap: 0.75rem;
+  }
+}
+#footer .footer-socials {
+  gap: var(--footer-socials-gap) !important;
 }
 /* Footer logo biraz aşağı */
 #footer .container > div:first-child {
@@ -3168,6 +3303,55 @@ section[id] h2.font-display {
 #footer .footer-socials a:nth-child(8):hover svg,
 #footer .footer-socials a:nth-child(8):focus-visible svg { fill: currentColor; }
 
+/* Tablet (768px–1024px): footer iki sütunda 72px ikonlar sığmıyor – stacked + küçük ikon */
+@media (min-width: 768px) and (max-width: 1024px) {
+  #footer .container {
+    display: block !important;
+    grid-template-columns: none !important;
+    max-width: 100% !important;
+    overflow-x: hidden;
+    min-width: 0;
+  }
+  #footer .footer-copyright-row {
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    text-align: center;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    gap: 0.5rem !important;
+  }
+  #footer .footer-copyright-row > span:first-child {
+    min-width: 0 !important;
+    max-width: 100% !important;
+    text-align: center;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    white-space: normal;
+  }
+  #footer .footer-page-links {
+    justify-content: center !important;
+  }
+  #footer .footer-socials {
+    justify-content: center !important;
+    margin-top: 1rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    flex-wrap: nowrap !important;
+    gap: 1.1rem !important;
+  }
+  #footer .footer-socials a {
+    width: 2.25rem !important;
+    height: 2.25rem !important;
+    min-width: 2.25rem !important;
+    min-height: 2.25rem !important;
+    font-size: 1.25rem !important;
+  }
+  #footer .footer-socials a svg {
+    width: 1.2rem !important;
+    height: 1.2rem !important;
+  }
+}
+
 /* Footer mobil: sosyal ikonlar tek satırda sığsın, copyright + 4 buton ortada */
 @media (max-width: 767px) {
   #footer .footer-socials a {
@@ -3185,7 +3369,7 @@ section[id] h2.font-display {
   #footer .footer-socials {
     flex-wrap: nowrap !important;
     justify-content: center !important;
-    gap: 0.9rem !important;
+    gap: 0.85rem !important;
     max-width: 100%;
     min-width: 0;
     margin-top: 1.25rem !important;
@@ -3197,8 +3381,21 @@ section[id] h2.font-display {
   }
   /* Copyright satırı ve 4’lü butonlar ortada */
   #footer .footer-copyright-row {
+    flex-wrap: wrap !important;
     justify-content: center !important;
     text-align: center;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    gap: 0.5rem !important;
+  }
+  #footer .footer-copyright-row > span:first-child {
+    min-width: 0 !important;
+    max-width: 100% !important;
+    font-size: 0.9375rem !important;
+    line-height: 1.4 !important;
+    overflow-wrap: break-word !important;
+    word-break: break-word !important;
+    white-space: normal !important;
   }
   #footer .footer-page-links {
     justify-content: center !important;
@@ -3229,9 +3426,18 @@ section[id] h2.font-display {
     flex-wrap: wrap !important;
     justify-content: center !important;
     text-align: center;
-    min-width: 0;
-    max-width: 100%;
+    min-width: 0 !important;
+    max-width: 100% !important;
     gap: 0.5rem !important;
+  }
+  #footer .footer-copyright-row > span:first-child {
+    min-width: 0 !important;
+    max-width: 100% !important;
+    font-size: 0.8125rem !important;
+    line-height: 1.4 !important;
+    overflow-wrap: break-word !important;
+    word-break: break-word !important;
+    white-space: normal !important;
   }
   #footer .footer-page-links {
     flex-wrap: wrap;
@@ -3241,6 +3447,56 @@ section[id] h2.font-display {
   #footer .footer-socials {
     width: 100%;
     max-width: 100%;
+  }
+}
+
+/* 320px ve dar ekran: footer tam sığsın – padding, ikon aralığı ve boyut azalt */
+@media (max-width: 360px) {
+  #footer {
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+    overflow-x: hidden;
+    min-width: 0;
+  }
+  #footer .container {
+    padding-left: 0.25rem !important;
+    padding-right: 0.25rem !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    min-width: 0 !important;
+  }
+  #footer .footer-socials a {
+    width: 1.3rem !important;
+    height: 1.3rem !important;
+    min-width: 1.3rem !important;
+    min-height: 1.3rem !important;
+  }
+  #footer .footer-socials a svg {
+    width: 0.75rem !important;
+    height: 0.75rem !important;
+  }
+  #footer .footer-socials {
+    gap: 0.8rem !important;
+    flex-wrap: nowrap !important;
+    justify-content: center !important;
+    max-width: 100% !important;
+  }
+  #footer .footer-copyright-row > span:first-child {
+    font-size: 0.75rem !important;
+  }
+  #footer .footer-page-link {
+    padding: 0.35rem 0.75rem !important;
+    font-size: 0.75rem !important;
+  }
+  #footer .footer-page-links {
+    gap: 0.25rem !important;
+  }
+  #footer .logo-standard {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+  #footer .max-w-md p {
+    font-size: 0.9375rem !important;
   }
 }
 
@@ -3288,5 +3544,38 @@ textarea:focus {
 }
 #cookie-consent-accept:hover {
   background-color: #1e3a8a;
+}
+
+/* Footer sosyal ikonlar arası boşluk – dosya sonu, en yüksek öncelik */
+#footer div.footer-socials.flex {
+  gap: 0.15rem !important;
+}
+@media (min-width: 1025px) {
+  #footer div.footer-socials.flex {
+    gap: 0.08rem !important;
+  }
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+  #footer div.footer-socials.flex {
+    gap: 1.1rem !important;
+  }
+}
+@media (max-width: 767px) {
+  #footer div.footer-socials.flex {
+    gap: 0.85rem !important;
+  }
+}
+@media (max-width: 480px) {
+  #footer div.footer-socials.flex {
+    gap: 0.75rem !important;
+  }
+}
+@media (max-width: 360px) {
+  #footer {
+    --footer-socials-gap: 0.8rem;
+  }
+  #footer div.footer-socials.flex {
+    gap: 0.8rem !important;
+  }
 }
 
