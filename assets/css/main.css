@@ -79,6 +79,8 @@ html {
   font-size: 16px;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
+  overflow-x: hidden;
+  max-width: 100vw;
 }
 
 /* Türkçe sayfada İngilizce ile aynı görünüm – dil bazlı ölçekleme kapalı */
@@ -108,6 +110,7 @@ body {
   line-height: 1.7;
   letter-spacing: 0.01em;
   overflow-x: hidden;
+  max-width: 100vw;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-feature-settings: "kern" 1, "liga" 1;
@@ -126,6 +129,9 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 1rem;
   letter-spacing: -0.02em;
   font-feature-settings: "kern" 1, "liga" 1;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  max-width: 100%;
 }
 
 h1 { font-size: 3.5rem; }
@@ -353,30 +359,61 @@ img {
   box-shadow: 0 6px 16px rgba(16, 185, 129, 0.45);
 }
 
-/* Footer: sayfa linkleri (Privacy, Terms, Legal, Blog) – kutu/buton gibi, ayrı sayfaya gittiği anlaşılsın */
+/* Footer: 4’lü sayfa linkleri (Privacy, Terms, Legal, Blog) – premium pill chip grubu */
+#footer .footer-copyright-row {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.75rem;
+}
+#footer .footer-page-links {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
 #footer .footer-page-link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.5rem 1rem;
-  font-size: 0.9375rem;
+  padding: 0.5rem 1.375rem;
+  font-size: 0.875rem;
   font-weight: 600;
-  border-radius: 0.5rem;
-  border: 1px solid rgba(148, 163, 184, 0.4);
-  color: #94a3b8;
-  background: rgba(30, 41, 59, 0.5);
-  transition: border-color 0.2s, color 0.2s, background 0.2s, box-shadow 0.2s;
+  letter-spacing: 0.025em;
+  border-radius: 9999px;
+  color: #e2e8f0;
+  background: linear-gradient(180deg, rgba(51, 65, 85, 0.85) 0%, rgba(30, 41, 59, 0.9) 100%);
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
 #footer .footer-page-link:hover {
-  border-color: rgba(59, 130, 246, 0.5);
-  color: #93c5fd;
-  background: rgba(30, 64, 175, 0.1);
+  color: #ffffff;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.28) 0%, rgba(30, 64, 175, 0.22) 100%);
+  border-color: rgba(59, 130, 246, 0.45);
+  box-shadow: 0 4px 14px rgba(59, 130, 246, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transform: translateY(-2px);
 }
-#footer .footer-page-links {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.5rem;
+#footer .footer-page-link:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+#footer .footer-page-link:focus-visible {
+  outline: 2px solid rgba(59, 130, 246, 0.8);
+  outline-offset: 2px;
+}
+@media (max-width: 639px) {
+  #footer .footer-page-links {
+    gap: 0.375rem;
+  }
+  #footer .footer-page-link {
+    padding: 0.45rem 1.125rem;
+    font-size: 0.8125rem;
+  }
 }
 
 /* Navbar: bar yüksekliği; logo aynı boyutta, barın altına taşar */
@@ -439,7 +476,7 @@ header nav > a:first-child .logo-standard {
 .nav-spacer {
   display: none;
 }
-@media (min-width: 992px) {
+@media (min-width: 1025px) {
   .nav-spacer {
     display: block !important;
   }
@@ -452,18 +489,15 @@ header nav > a:first-child .logo-standard {
   min-height: 0;
 }
 /* Scroll kutusu: içerik genişliği sabit, yatay scroll – sağda gereksiz boşluk olmasın */
+/* Quick linkler scroll ile gösterilmesin: ya tam görünsün ya hamburger */
 .nav-desktop-scroll {
   display: none;
-  overflow-x: auto;
+  overflow-x: hidden;
   overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
   min-width: 0;
   width: 100%;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(148, 163, 184, 0.5) transparent;
-  scroll-padding-inline-end: 0.5rem;
 }
-@media (min-width: 992px) {
+@media (min-width: 1025px) {
   .nav-desktop-scroll {
     display: block !important;
   }
@@ -477,22 +511,12 @@ header nav > a:first-child .logo-standard {
   min-width: max-content;
   width: max-content;
   padding-inline-end: 0.5rem;
-  padding-inline-start: 0.25rem;
+  padding-inline-start: 1.25rem; /* logo–CTA ile CTA–linkler arası boşluk eşit */
 }
 @media (min-width: 768px) {
   .nav-desktop-inner {
     gap: 1rem;
   }
-}
-.nav-desktop-scroll::-webkit-scrollbar {
-  height: 6px;
-}
-.nav-desktop-scroll::-webkit-scrollbar-track {
-  background: transparent;
-}
-.nav-desktop-scroll::-webkit-scrollbar-thumb {
-  background: rgba(148, 163, 184, 0.5);
-  border-radius: 4px;
 }
 /* Dil butonu scroll dışında – masaüstünde her zaman sağda görünsün */
 .nav-lang-btn {
@@ -500,54 +524,280 @@ header nav > a:first-child .logo-standard {
   margin-left: 0.5rem;
   flex-shrink: 0;
 }
-@media (min-width: 992px) {
+@media (min-width: 1025px) {
   .nav-lang-btn {
     display: inline-flex !important;
   }
 }
-/* Mobil: dil + hamburger 992px altında; dar ekranda butonlar hamburger ile erişilir */
+/* Mobil: dil + hamburger 1024px altında; dar ekranda butonlar hamburger ile erişilir */
 .nav-mobile-wrap {
   display: flex;
 }
-@media (min-width: 992px) {
+@media (min-width: 1025px) {
   .nav-mobile-wrap {
     display: none !important;
   }
 }
 /* Dar ekranda sadece mobil dil butonu; masaüstü dil butonu gizle */
-@media (max-width: 991px) {
+@media (max-width: 1024px) {
   #languageSwitcher,
   button#languageSwitcher {
     display: none !important;
   }
 }
-@media (min-width: 992px) {
+@media (min-width: 1025px) {
   #languageSwitcherMobile,
   button#languageSwitcherMobile {
     display: none !important;
   }
 }
-/* Açılır mobil menü: masaüstünde (992px+) hiç görünmesin */
-@media (min-width: 992px) {
+/* Açılır mobil menü: masaüstünde (1025px+) hiç görünmesin – taşma yoksa */
+@media (min-width: 1025px) {
   #mobileMenu {
     display: none !important;
   }
 }
-/* Mobil menü: logoyla çakışmasın, biraz aşağıda başlasın */
-@media (max-width: 991px) {
+
+/* Header taşınca hamburger: her şey sığmıyorsa (JS header.overflow-menu ekler) */
+header.overflow-menu .nav-spacer { display: none !important; }
+header.overflow-menu .nav-desktop-scroll { display: none !important; }
+header.overflow-menu .nav-lang-btn { display: none !important; }
+header.overflow-menu .nav-mobile-wrap { display: flex !important; }
+header.overflow-menu #languageSwitcher,
+header.overflow-menu button#languageSwitcher { display: none !important; }
+header.overflow-menu #languageSwitcherMobile,
+header.overflow-menu button#languageSwitcherMobile { display: inline-flex !important; }
+header.overflow-menu .nav-cta-desktop { display: none !important; }
+header.overflow-menu .container { flex-direction: column !important; align-items: stretch !important; padding-right: 1rem !important; }
+header.overflow-menu #mobileMenu {
+  display: flex !important;
+  order: 10;
+  width: 100%;
+  margin-top: 0;
+  padding: 1rem 0 1.25rem;
+  border-top: 1px solid rgba(16, 185, 129, 0.25);
+  background: rgba(10, 25, 47, 0.6);
+  flex-direction: column;
+  gap: 0.75rem;
+}
+header.overflow-menu #mobileMenu.hidden { display: none !important; }
+header.overflow-menu #mobileMenu > a:first-child {
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.9375rem;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+header.overflow-menu #mobileMenu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+header.overflow-menu #mobileMenu ul li { margin: 0; padding: 0; }
+header.overflow-menu #mobileMenu ul li a {
+  display: block;
+  padding: 0.625rem 0;
+  padding-left: 0.25rem;
+  font-size: 1rem;
+  color: #e2e8f0;
+  text-decoration: none;
+  border-radius: 0.375rem;
+  transition: color 0.2s, background 0.2s;
+}
+header.overflow-menu #mobileMenu ul li a:hover {
+  color: #34d399;
+  background: rgba(16, 185, 129, 0.08);
+}
+
+/* Hamburger menü açıldığında: tüm cihazlar (1024px altı) – düzenli görünüm */
+@media (max-width: 1024px) {
+  header .container {
+    flex-direction: column;
+    align-items: stretch;
+  }
   #mobileMenu {
-    margin-top: 1.25rem;
-    padding-top: 0.5rem;
+    order: 10;
+    width: 100%;
+    margin-top: 0;
+    padding: 1rem 0 1.25rem;
+    padding-left: inherit;
+    padding-right: inherit;
+    border-top: 1px solid rgba(16, 185, 129, 0.25);
+    background: rgba(10, 25, 47, 0.6);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  #mobileMenu.hidden {
+    display: none !important;
+  }
+  #mobileMenu > a:first-child {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 0.9375rem;
+    text-decoration: none;
+    box-sizing: border-box;
+  }
+  #mobileMenu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  #mobileMenu ul li {
+    margin: 0;
+    padding: 0;
+  }
+  #mobileMenu ul li a {
+    display: block;
+    padding: 0.625rem 0;
+    padding-left: 0.25rem;
+    font-size: 1rem;
+    color: #e2e8f0;
+    text-decoration: none;
+    border-radius: 0.375rem;
+    transition: color 0.2s, background 0.2s;
+  }
+  #mobileMenu ul li a:hover {
+    color: #34d399;
+    background: rgba(16, 185, 129, 0.08);
+  }
+}
+
+/* Çok dar ekran (360px): hamburger menü içeriği taşmasın */
+@media (max-width: 360px) {
+  #mobileMenu {
+    padding: 0.75rem 0 1rem;
+    gap: 0.5rem;
+  }
+  #mobileMenu > a.mobile-menu-cta {
+    padding: 0.625rem 0.75rem;
+    font-size: 0.875rem;
+  }
+  #mobileMenu ul li a {
+    padding: 0.5rem 0;
+    font-size: 0.9375rem;
   }
 }
 /* Mobilde header sağda menü ikonu kesilmesin */
-@media (max-width: 991px) {
+@media (max-width: 1024px) {
   header .container {
     padding-right: 1rem;
   }
 }
+
+/* Tablet (768px–1024px): header içerikleri dikey ve yatay hizalı; CTA header’da, menüde değil */
+@media (min-width: 768px) and (max-width: 1024px) {
+  header .container {
+    display: flex;
+    align-items: center;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  header nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 0.75rem;
+  }
+  header nav > a:first-child {
+    flex-shrink: 0;
+    align-self: center;
+  }
+  header .nav-cta-desktop {
+    flex-shrink: 0;
+    align-self: center;
+  }
+  header.overflow-menu .nav-cta-desktop {
+    display: inline-flex !important;
+  }
+  header .nav-right-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-shrink: 0;
+    min-width: 0;
+  }
+  header .nav-mobile-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  #mobileMenu > a:first-child,
+  #mobileMenu > a.mobile-menu-cta {
+    display: none !important;
+  }
+}
+
+/* 320px ve dar ekranlarda hamburger tam görünsün – logo küçült, sağda menü butonu için yer bırak */
+@media (max-width: 360px) {
+  header {
+    overflow: visible !important;
+  }
+  header .container {
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+    max-width: 100vw !important;
+    overflow: visible !important;
+  }
+  header nav {
+    gap: 0.5rem !important;
+    min-width: 0 !important;
+    overflow: visible !important;
+  }
+  header nav > a:first-child {
+    min-width: 0 !important;
+    flex-shrink: 1 !important;
+  }
+  header nav .logo-standard,
+  header .logo-standard {
+    max-width: 100px !important;
+    width: auto !important;
+    height: auto !important;
+    max-height: 2.25rem !important;
+    object-fit: contain !important;
+  }
+  header .nav-right-wrap {
+    flex-shrink: 0 !important;
+    padding-right: 0 !important;
+  }
+  .nav-mobile-wrap {
+    gap: 0.35rem !important;
+    flex-shrink: 0 !important;
+    padding-right: 0.25rem !important;
+  }
+  .nav-mobile-wrap #languageSwitcherMobile {
+    padding: 0.35rem 0.5rem !important;
+    font-size: 0.75rem !important;
+  }
+  .nav-mobile-wrap #languageSwitcherMobile img,
+  .nav-mobile-wrap #flagIconMobile {
+    width: 22px !important;
+    height: 16px !important;
+  }
+  .nav-mobile-wrap #mobileMenuBtn {
+    margin-right: 0 !important;
+    padding: 0.4rem !important;
+    min-width: 2.25rem !important;
+    min-height: 2.25rem !important;
+    font-size: 1.5rem !important;
+    flex-shrink: 0 !important;
+  }
+}
 /* Hamburger görünümünde menü ikonu ve dil butonu orijinalin 1.5 katı */
-@media (max-width: 991px) {
+@media (max-width: 1024px) {
   .nav-mobile-wrap #mobileMenuBtn {
     font-size: 2.25rem;
     line-height: 1;
@@ -578,7 +828,8 @@ header nav > a:first-child .logo-standard {
 .nav-cta-desktop {
   display: none;
 }
-@media (min-width: 992px) {
+/* Tablet (768px) ve üzeri: header’da CTA butonu görünsün */
+@media (min-width: 768px) {
   .nav-cta-desktop {
     display: inline-flex !important;
   }
@@ -605,7 +856,7 @@ header nav > a:first-child .logo-standard {
   transform: rotate(-45deg) translate(7px, -6px);
 }
 
-@media (max-width: 991px) {
+@media (max-width: 1024px) {
   .navbar {
     justify-content: space-between;
     min-height: 60px;
@@ -673,6 +924,8 @@ header nav > a:first-child .logo-standard {
 .logo-standard {
   height: 11rem !important;
   max-height: 12rem !important;
+  max-width: 100%;
+  object-fit: contain;
 }
 @media (min-width: 768px) {
   .logo-standard {
@@ -682,35 +935,31 @@ header nav > a:first-child .logo-standard {
 }
 /* Header’da logo: footer’daki ile aynı boyut (11rem / 13rem) */
 header .logo-standard {
-  height: 11rem !important;
-  max-height: 12rem !important;
+  height: auto !important;
+  max-height: 100% !important;
+  max-width: 100%;
   margin: 0 !important;
   vertical-align: middle;
-}
-@media (min-width: 768px) {
-  header .logo-standard {
-    height: 13rem !important;
-    max-height: 15rem !important;
-  }
+  object-fit: contain;
 }
 /* Başlık navbar’a mümkün olduğunca yakın */
 main#main-content {
-  padding-top: 4rem;
+  padding-top: 6rem; /* header 6rem – mobilde hero başlığı görünsün */
 }
 @media (min-width: 768px) {
   main#main-content {
-    padding-top: 5rem;
+    padding-top: 7rem; /* header 7rem */
   }
 }
 
 /* Sabit header için anchor offset */
 :where(section[id]) {
-  scroll-margin-top: 4.5rem;
+  scroll-margin-top: 5.5rem;
 }
 
 @media (min-width: 768px) {
   :where(section[id]) {
-    scroll-margin-top: 5.5rem;
+    scroll-margin-top: 6.5rem;
   }
 }
 
@@ -731,6 +980,8 @@ main#main-content {
 section {
   padding: 6rem 0;
   position: relative;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 /* İstatistikler bölümü: kısa container, istatistik–container arası mesafe az */
@@ -745,6 +996,18 @@ section {
     padding-bottom: 2rem;
     min-height: 180px;
   }
+}
+
+/* Client Satisfaction: EN 200%, TR 100% */
+.stat-satisfaction-en,
+.stat-satisfaction-tr {
+  display: none;
+}
+html[lang="en"] .stat-satisfaction-en {
+  display: block;
+}
+html[lang="tr"] .stat-satisfaction-tr {
+  display: block;
 }
 
 .ud-section-title {
@@ -1658,11 +1921,13 @@ section {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  width: 100%;
-  min-width: 300px;
-  max-width: 340px;
+  width: 300px !important;
+  min-width: 300px !important;
+  max-width: 300px !important;
   margin-left: auto;
   margin-right: auto;
+  padding-bottom: 1.25rem;
+  box-sizing: border-box;
 }
 #team .ud-team-image-wrapper,
 #ekip .ud-team-image-wrapper {
@@ -1688,20 +1953,32 @@ section {
 }
 #team .ud-team-info,
 #ekip .ud-team-info {
-  flex: 1 1 auto;
-  min-height: 0;
-  margin-top: 0;
-  padding: 0.35rem 0.25rem 0.35rem;
-  gap: 0.15rem;
+  display: flex;
+  flex-direction: column;
   align-items: center;
   text-align: center;
+  flex: 0 1 auto;
+  min-height: 0;
+  margin-top: 2.25rem;
+  padding: 0.5rem 0.35rem 0.75rem;
+  gap: 0.5rem;
+  overflow: visible;
 }
 #team .ud-team-info h4,
 #team .ud-team-info h5,
 #ekip .ud-team-info h4,
 #ekip .ud-team-info h5 {
   font-size: 1.15rem;
-  margin-bottom: 0.1rem;
+  margin: 0;
+  line-height: 1.35;
+}
+#team .ud-team-info h4,
+#ekip .ud-team-info h4 {
+  margin-bottom: 0.25rem;
+}
+#team .ud-team-info h5,
+#ekip .ud-team-info h5 {
+  margin-top: 0;
 }
 #team .ud-team-info h6,
 #ekip .ud-team-info h6 {
@@ -1710,42 +1987,111 @@ section {
 }
 #team .ud-team-socials,
 #ekip .ud-team-socials {
-  margin-top: 0.2rem;
-  margin-bottom: 0.35rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0;
   flex-shrink: 0;
   justify-content: center;
 }
 #team .team-grid-managers,
-#team .team-grid-interns,
+#team .team-grid-bdm,
 #team .grid[style*="gap"],
 #ekip .team-grid-managers,
-#ekip .team-grid-interns,
+#ekip .team-grid-bdm,
 #ekip .grid[style*="gap"] {
   align-items: stretch;
   justify-content: center;
+  justify-items: center;
 }
 
 @media (max-width: 767px) {
   #team .ud-single-team.team-card,
   #ekip .ud-single-team.team-card {
-    max-width: 320px;
-    width: 100%;
+    width: 300px !important;
+    min-width: 300px !important;
+    max-width: 300px !important;
     margin-left: auto;
     margin-right: auto;
-    min-width: 0;
   }
 }
 
-/* Mobil: ekip kartı görseli desktop ile aynı oran (4/5), sığacak yükseklik */
+/* Mobil: foto max büyük, isim/unvan/LinkedIn kartın içinde ve görünsün */
 @media (max-width: 767px) {
+  #team .ud-single-team.team-card,
+  #ekip .ud-single-team.team-card {
+    overflow: hidden !important;
+    min-height: auto !important;
+    height: auto !important;
+    aspect-ratio: unset !important;
+    padding-bottom: 1.25rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-self: flex-start !important;
+  }
+  /* Foto: ekranın ~%48’i (max), altta isim+unvan+LinkedIn için yer kalsın */
   #team .ud-team-image-wrapper,
   #ekip .ud-team-image-wrapper {
-    height: auto;
-    min-height: 0;
-    max-height: none;
-    flex-shrink: 0;
-    aspect-ratio: 4 / 5;
-    width: 100%;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: 48vh !important;
+    max-height: min(320px, 48vh) !important;
+    flex: 0 0 auto !important;
+    flex-shrink: 0 !important;
+    aspect-ratio: 4 / 5 !important;
+    width: 100% !important;
+  }
+  /* İsim, unvan, LinkedIn: her zaman görünsün – flex-shrink 0, min-height ile alan garantisi */
+  #team .ud-team-info,
+  #ekip .ud-team-info {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    flex: 0 0 auto !important;
+    flex-shrink: 0 !important;
+    margin-top: 1rem !important;
+    padding: 0.5rem 0.35rem 0.75rem !important;
+    gap: 0.35rem !important;
+    min-height: 4.5rem !important;
+    overflow: visible !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  #team .ud-team-info h4,
+  #ekip .ud-team-info h4 {
+    font-size: 1.1rem !important;
+    margin: 0 !important;
+    line-height: 1.3 !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    color: var(--color-text-primary) !important;
+  }
+  #team .ud-team-info h5,
+  #ekip .ud-team-info h5 {
+    font-size: 1rem !important;
+    margin: 0 !important;
+    line-height: 1.3 !important;
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: unset !important;
+    -webkit-line-clamp: unset !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    color: var(--color-primary-light) !important;
+  }
+  #team .ud-team-socials,
+  #ekip .ud-team-socials {
+    display: flex !important;
+    flex-shrink: 0 !important;
+    margin-top: 0.35rem !important;
+    margin-bottom: 0 !important;
+    min-height: 3rem !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  #team .ud-team-socials li a,
+  #ekip .ud-team-socials li a {
+    opacity: 1 !important;
+    visibility: visible !important;
   }
 }
 
@@ -1857,6 +2203,14 @@ section {
     min-height: 450px;
     aspect-ratio: 2 / 3;
     margin-bottom: 1rem;
+  }
+
+  /* #team / #ekip kartları: unvan ve LinkedIn görünsün, aspect-ratio kaldır */
+  #team .ud-single-team.team-card,
+  #ekip .ud-single-team.team-card {
+    min-height: auto !important;
+    aspect-ratio: unset !important;
+    height: auto !important;
   }
 }
 
@@ -2355,6 +2709,24 @@ section {
   }
 }
 
+/* Çok dar ekran (telefon): başlıklar taşmasın */
+@media (max-width: 480px) {
+  h1 { font-size: 1.75rem; }
+  h2 { font-size: 1.5rem; }
+  h3 { font-size: 1.25rem; }
+  
+  .ud-section-title h2,
+  section[id] h2.text-3xl,
+  section[id] h2.text-4xl,
+  section[id] h1.text-4xl {
+    font-size: 1.5rem !important;
+  }
+  
+  section[id] h1.text-4xl {
+    font-size: 1.75rem !important;
+  }
+}
+
 /* Force left alignment for capability cards - highest specificity override */
 html body .ud-capabilities-grid .ud-capability-card {
   text-align: left !important;
@@ -2632,6 +3004,17 @@ input[type="url"]:focus,
 textarea:focus {
   border-color: var(--color-primary-light);
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+/* Cookie consent bar – tüm cihazlarda metin ortada, rahat okunur */
+#cookie-consent-banner.cookie-banner-centered,
+#cookie-consent-banner .container {
+  text-align: center;
+}
+#cookie-consent-banner #cookie-banner-message {
+  text-align: center;
+  line-height: 1.5;
+  margin: 0 auto;
 }
 
 /* Cookie consent Accept – WCAG AA kontrast (beyaz metin en az 4.5:1) */

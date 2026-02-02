@@ -21,6 +21,7 @@
           else if (L === 'en' || !L) document.documentElement.setAttribute('lang','en');
         } catch(e){}
         document.documentElement.classList.add('lang-loading');
+        setTimeout(function(){ document.documentElement.classList.remove('lang-loading'); }, 400);
       })();
     </script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -133,8 +134,8 @@
     <link rel="stylesheet" href="assets/css/lineicons.css" media="print" onload="this.media='all'" />
     <noscript><link rel="stylesheet" href="assets/css/lineicons.css" /></noscript>
     <!-- Team card structure (ud-single-team) -->
-    <link rel="preload" href="assets/css/main.min.css" as="style" fetchpriority="high" />
-    <link rel="stylesheet" href="assets/css/main.min.css" />
+    <link rel="preload" href="assets/css/main.css?v=20260202-mobile" as="style" fetchpriority="high" />
+    <link rel="stylesheet" href="assets/css/main.css?v=20260202-mobile" />
     <!-- Header: logo footer ile aynı boyut (11rem / 13rem), navbar’da dikey ortada -->
     <style>
       header { display: flex; align-items: center; min-height: 6rem; }
@@ -142,9 +143,8 @@
       header .container { display: flex; align-items: center; min-height: inherit; }
       header nav { display: flex; align-items: center; padding: 0 !important; height: 6rem; min-height: 6rem; }
       @media (min-width: 768px) { header nav { height: 7rem; min-height: 7rem; } }
-      header nav > a:first-child { display: flex !important; align-items: center !important; align-self: stretch !important; height: 100%; }
-      header nav > a:first-child img.logo-standard { display: block; height: 11rem !important; max-height: 12rem !important; width: auto !important; margin: 0 !important; }
-      @media (min-width: 768px) { header nav > a:first-child img.logo-standard { height: 13rem !important; max-height: 15rem !important; } }
+      header nav > a:first-child { display: flex !important; align-items: center !important; align-self: stretch !important; height: 100%; min-width: 0; max-width: 100%; overflow: hidden; }
+      header nav > a:first-child img.logo-standard { display: block; height: auto !important; max-height: 100% !important; max-width: 100% !important; width: auto !important; margin: 0 !important; object-fit: contain; }
     </style>
     <!-- İstatistikler: kısa container, az boşluk – main.css section padding’ini geçersiz kılar -->
     <style id="stats-section-override">
@@ -266,7 +266,7 @@
       }*,*::before,*::after{
         box-sizing: border-box;
       }.logo-standard{
-        height:7.5rem;width:auto;max-height:9rem;
+        height:7.5rem;width:auto;max-height:9rem;max-width:100%;
         object-fit: contain;
         filter: brightness(1.2) drop-shadow(0 2px 8px rgba(255, 255, 255, 0.1));
         transition: filter 0.3s ease, transform 0.3s ease;
@@ -645,17 +645,58 @@
       }
 
       /* Team Hierarchy - Modern & Equal Sizes */
+      /* Üst yönetim (Executives): inline-grid ile ortala – grid içeriğe göre daralır, parent text-align ile ortalanır */
+      .executives-wrap {
+        width: 100%;
+        text-align: center;
+      }
+      .team-grid-executives {
+        display: inline-grid;
+        grid-template-columns: repeat(3, 300px);
+        gap: var(--team-gap, 0.5rem);
+        justify-items: center;
+        text-align: left;
+      }
+
+      /* 320px ve dar ekranlarda üst yönetim kesin ortada – flex + minimal padding */
+      @media (max-width: 360px) {
+        #team,
+        #ekip {
+          padding-left: 0.25rem !important;
+          padding-right: 0.25rem !important;
+        }
+        #team .container,
+        #ekip .container {
+          padding-left: 0.25rem !important;
+          padding-right: 0.25rem !important;
+        }
+        .executives-wrap {
+          display: flex !important;
+          flex-direction: column !important;
+          align-items: center !important;
+          width: 100% !important;
+          box-sizing: border-box !important;
+        }
+        .team-grid-executives {
+          width: 100% !important;
+          max-width: 300px !important;
+          margin-left: auto !important;
+          margin-right: auto !important;
+          box-sizing: border-box !important;
+        }
+      }
+
       .team-grid-managers {
         display: grid;
         grid-template-columns: repeat(3, 300px);
         gap: var(--team-gap, 0.5rem);
-        margin-bottom: 1.25rem;
+        margin-bottom: 0;
         max-width: 100%;
         align-items: stretch;
         justify-content: center;
       }
 
-      .team-grid-interns {
+      .team-grid-bdm {
         display: grid;
         grid-template-columns: repeat(2, 300px);
         gap: var(--team-gap, 0.5rem);
@@ -664,14 +705,14 @@
         justify-content: center;
       }
 
-      /* BDM departmanı: yöneticiler ile stajyerler arası = BDM kartları arası mesafe (--team-gap) */
+      /* BDM bölümü arası boşluk = BDM kartları arası boşluk (--team-gap) */
       #ekip .mb-20:has(.team-grid-managers),
       #team .mb-20:has(.team-grid-managers) {
-        margin-bottom: var(--team-gap, 0.5rem);
+        margin-bottom: var(--team-gap, 0.5rem) !important;
       }
-      #ekip .mb-20:has(.team-grid-interns),
-      #team .mb-20:has(.team-grid-interns) {
-        margin-top: 0;
+      #ekip .mb-20:has(.team-grid-bdm),
+      #team .mb-20:has(.team-grid-bdm) {
+        margin-top: 0 !important;
       }
 
       .team-grid-engineers {
@@ -796,15 +837,15 @@
         box-shadow: 0 10px 40px rgba(236, 72, 153, 0.4), 0 0 60px rgba(236, 72, 153, 0.2);
       }
 
-      /* Intern cards - Subtle gray border */
-      .team-card-intern {
+      /* Team cards - Subtle gray border */
+      .team-card-bdm {
         min-height: 440px;
         border: 2px solid rgba(100, 116, 139, 0.4);
         box-shadow: 0 10px 40px rgba(100, 116, 139, 0.25);
       }
 
-      /* BDM Interns - Override with green border (more specific selector) */
-      .team-card-intern.team-card-manager {
+      /* BDM kartları - Override with green border (more specific selector) */
+      .team-card-bdm.team-card-manager {
         border: 2px solid rgba(16, 185, 129, 0.6);
         box-shadow: 0 10px 40px rgba(16, 185, 129, 0.35);
       }
@@ -928,17 +969,26 @@
           justify-items: center;
         }
 
-        .team-grid-interns {
+        .team-grid-bdm {
           grid-template-columns: 1fr !important;
           width: 100%;
           justify-items: center;
         }
 
-        /* Mobilde üst yönetim satırı tek sütun, kartlar ortada desktop gibi */
+        /* Mobilde üst yönetim (Executives) tek sütun, kartlar ortada */
+        .team-grid-executives {
+          grid-template-columns: 1fr !important;
+          justify-items: center !important;
+          width: 100% !important;
+          max-width: 100% !important;
+        }
         section[data-section-tr="ekip"] div[style*="grid-template-columns"],
         section[data-section-en="team"] div[style*="grid-template-columns"] {
           grid-template-columns: 1fr !important;
-          justify-items: center;
+          justify-items: center !important;
+          justify-content: center !important;
+          width: 100% !important;
+          max-width: 100% !important;
         }
 
         .team-grid-engineers {
@@ -951,11 +1001,12 @@
           justify-items: center;
         }
 
-        /* Ekip kartları desktop ile aynı yapı, mobilde sığacak boyut (max 320px, ortada) */
+        /* Ekip kartları: tüm kartlar aynı genişlik (300px), ortada */
         #team .ud-single-team.team-card,
         #ekip .ud-single-team.team-card {
-          max-width: 320px;
-          width: 100%;
+          width: 300px !important;
+          min-width: 300px !important;
+          max-width: 300px !important;
           margin-left: auto;
           margin-right: auto;
           padding: 0;
@@ -1025,7 +1076,9 @@
 
         #team .ud-single-team.team-card,
         #ekip .ud-single-team.team-card {
-          max-width: min(320px, 92vw);
+          width: 300px !important;
+          min-width: 300px !important;
+          max-width: 300px !important;
         }
       }
 
@@ -1141,7 +1194,7 @@
 
       /* Also ensure our explicit team-grid classes respect the same spacing */
       #ekip .team-grid-managers,
-      #ekip .team-grid-interns,
+      #ekip .team-grid-bdm,
       #ekip .grid {
         gap: var(--team-gap) !important;
       }
@@ -1156,6 +1209,57 @@
       #team,
       #ekip {
         scroll-margin-top: 5.5rem;
+      }
+
+      /* Ekip kartları: isim ve unvan üst üste binmesin, LinkedIn unvanın altında */
+      #team .ud-single-team.team-card,
+      #ekip .ud-single-team.team-card {
+        display: flex !important;
+        flex-direction: column !important;
+        padding-bottom: 1.25rem !important;
+        box-sizing: border-box !important;
+      }
+      #team .ud-team-info,
+      #ekip .ud-team-info {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 0.5rem !important;
+        flex: 0 1 auto !important;
+        margin-top: 2.25rem !important;
+        padding: 0.5rem 0.35rem 0.75rem !important;
+        min-height: 0 !important;
+        overflow: visible !important;
+      }
+      #team .ud-team-info h4,
+      #ekip .ud-team-info h4 {
+        margin: 0 !important;
+        line-height: 1.35 !important;
+      }
+      #team .ud-team-info h5,
+      #ekip .ud-team-info h5 {
+        margin: 0 !important;
+        line-height: 1.35 !important;
+      }
+      #team .ud-team-socials,
+      #ekip .ud-team-socials {
+        flex-shrink: 0 !important;
+        margin-top: 0.5rem !important;
+        margin-bottom: 0 !important;
+      }
+      @media (max-width: 767px) {
+        #team .ud-team-image-wrapper,
+        #ekip .ud-team-image-wrapper {
+          max-height: 320px !important;
+        }
+        #team .ud-team-info,
+        #ekip .ud-team-info {
+          margin-top: 2rem !important;
+        }
+        #team .ud-single-team.team-card,
+        #ekip .ud-single-team.team-card {
+          padding-bottom: 1.25rem !important;
+        }
       }
 
       /* Ekip kartları TR/EN aynı – 340px genişlik, 380px fotoğraf – sayfa stilleri main.css’ten sonra yüklendiği için öncelik alır */
@@ -1210,7 +1314,7 @@
     <!-- Header/Navbar - LOGO DAHA BÜYÜK -->
     <header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b" style="background: rgba(10, 25, 47, 0.95); border-color: rgba(16, 185, 129, 0.2);">
         <div class="container mx-auto px-4 md:px-12">
-            <nav class="flex items-center justify-between py-0.5 w-full" style="gap: 0.5rem;" aria-label="Main navigation">
+            <nav class="flex items-center justify-between py-0.5 w-full" style="gap: 1.25rem;" aria-label="Main navigation">
                 <!-- Logo (solda) -->
                 <a href="#top" class="flex items-center flex-shrink-0">
                     <img src="assets/images/logo/CompanyLogo.png" alt="Solarity AI" class="logo-standard" width="360" height="90" fetchpriority="high" />
@@ -1256,16 +1360,16 @@
             </nav>
 
             <!-- Mobile Menu: dar ekranda tüm linkler + CTA -->
-            <div id="mobileMenu" class="hidden pb-4" aria-hidden="true">
-                <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2qgXk0ZfBd6QJf7ef-306in7AI0Kzc-pL3NJFK1fU74vAUGiftVJPF3-DoXp9_RZoyqW_sjSpI" target="_blank" rel="noopener noreferrer" class="block w-full text-center py-3 px-4 rounded-lg font-bold text-sm mb-3" style="background: rgba(255, 255, 255, 0.95); color: #1e40af;" data-i18n="bannerCTA">🚀 Book a call with our CEO 🚀</a>
-                <ul class="flex flex-col space-y-3 text-base">
-                    <li><a href="#about" data-href-tr="#hakkimizda" data-href-en="#about" class="block hover:text-emerald-400 transition nav-link" data-i18n="navAboutUs">About Us</a></li>
-                    <li><a href="#partnerships" data-href-tr="#ortakliklar" data-href-en="#partnerships" class="block hover:text-emerald-400 transition nav-link" data-i18n="navPartnerships">Partnerships</a></li>
-                    <li><a href="#services" data-href-tr="#services" data-href-en="#services" class="block hover:text-emerald-400 transition nav-link" data-i18n="navAbout">Services</a></li>
-                    <li><a href="#projects" data-href-tr="#projeler" data-href-en="#projects" class="block hover:text-emerald-400 transition nav-link" data-i18n="navProjects">Projects</a></li>
-                    <li><a href="#team" data-href-tr="#ekip" data-href-en="#team" class="block hover:text-emerald-400 transition nav-link" data-i18n="navTeam">Team</a></li>
-                    <li><a href="#contact" data-href-tr="#iletisim" data-href-en="#contact" class="block hover:text-emerald-400 transition nav-link" data-i18n="navContact">Contact</a></li>
-                    <li><a href="careers.html" class="block hover:text-emerald-400 transition" data-i18n="navCareers">Careers</a></li>
+            <div id="mobileMenu" class="mobile-menu-dropdown hidden" aria-hidden="true">
+                <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2qgXk0ZfBd6QJf7ef-306in7AI0Kzc-pL3NJFK1fU74vAUGiftVJPF3-DoXp9_RZoyqW_sjSpI" target="_blank" rel="noopener noreferrer" class="mobile-menu-cta" style="background: rgba(255, 255, 255, 0.95); color: #1e40af;" data-i18n="bannerCTA">🚀 Book a call with our CEO 🚀</a>
+                <ul class="mobile-menu-list">
+                    <li><a href="#about" data-href-tr="#hakkimizda" data-href-en="#about" data-i18n="navAboutUs">About Us</a></li>
+                    <li><a href="#partnerships" data-href-tr="#ortakliklar" data-href-en="#partnerships" data-i18n="navPartnerships">Partnerships</a></li>
+                    <li><a href="#services" data-href-tr="#services" data-href-en="#services" data-i18n="navAbout">Services</a></li>
+                    <li><a href="#projects" data-href-tr="#projeler" data-href-en="#projects" data-i18n="navProjects">Projects</a></li>
+                    <li><a href="#team" data-href-tr="#ekip" data-href-en="#team" data-i18n="navTeam">Team</a></li>
+                    <li><a href="#contact" data-href-tr="#iletisim" data-href-en="#contact" data-i18n="navContact">Contact</a></li>
+                    <li><a href="careers.html" data-i18n="navCareers">Careers</a></li>
                 </ul>
             </div>
         </div>
@@ -1281,7 +1385,10 @@
                     <div class="stat-label" data-i18n="statsProjects">Completed Projects</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number">%200</div>
+                    <div class="stat-number stat-number-satisfaction">
+                        <span class="stat-satisfaction-en">200%</span>
+                        <span class="stat-satisfaction-tr">%200</span>
+                    </div>
                     <div class="stat-label" data-i18n="statsSatisfaction">Client Satisfaction</div>
                 </div>
                 <div class="stat-item">
@@ -1323,7 +1430,7 @@
         <div class="container mx-auto">
             <div class="text-center mb-12">
                 <h2 class="text-3xl md:text-5xl font-bold font-display mb-4" data-i18n="partnershipsSubtitle">Strategic Collaborations and Trusted Partners</h2>
-                <p class="text-slate-300" data-i18n="partnershipsSubtitleDesc">We collaborate with innovative companies and organizations to deliver cutting-edge solutions</p>
+               
             </div>
 
             <!-- Partner logos: otomatik kayar; istersen sağa/sola elle de kaydırabilirsin -->
@@ -1467,10 +1574,9 @@
 
     <!-- Projects Section - FERAH ALAN -->
     <section id="projects" data-section-tr="projeler" data-section-en="projects" class="py-24 px-4 md:px-12">
-        <div class="container mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-5xl font-bold font-display mb-4" data-i18n="projectsSubtitle">Selected Case Studies and Success Stories</h2>
-                <p class="text-slate-300" data-i18n="projectsSubtitleDesc">Showcasing our expertise through impactful solutions</p>
+        <div class="container mx-auto text-center">
+            <div class="mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold font-display mb-4" data-i18n="projectsSubtitle">Selected Success Stories</h2>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -1529,34 +1635,13 @@
     <section id="team" data-section-tr="ekip" data-section-en="team" class="pt-8 pb-24 px-4 md:px-12 bg-slate-900/50">
         <div class="container mx-auto">
             <div class="text-center mb-12 -mt-4">
-                <h2 class="text-3xl md:text-5xl font-bold font-display mb-4" data-i18n="teamSubtitle">Meet Our Expert Team</h2>
-                <p class="text-slate-300" data-i18n="teamSubtitleDesc">Dedicated professionals driving innovation in AI and software development</p>
+                <h2 class="text-3xl md:text-5xl font-bold font-display mb-4" data-i18n="teamSubtitle">Meet Our World Class Team</h2>
             </div>
 
             <!-- Executives -->
-            <div class="mb-20">
+            <div class="mb-20 executives-wrap">
                 <h3 class="text-3xl md:text-4xl font-bold text-center mb-10 text-yellow-400" data-i18n="teamExecutives">Executives</h3>
-                <div class="flex flex-col md:grid mx-auto" style="gap: var(--team-gap); grid-template-columns: repeat(3, 300px); justify-content: center;">
-                    <div class="ud-single-team team-card team-card-cto">
-                        <div class="ud-team-image-wrapper">
-                            <div class="ud-team-image">
-                                <a href="https://www.linkedin.com/in/umurinan/" target="_blank" rel="noopener noreferrer" aria-label="Umur Inan LinkedIn (opens in new tab)">
-                                    <img src="assets/images/team/UmurInan.png" alt="Umur Inan" class="team-avatar" data-alt-en="Umur Inan" data-alt-tr="Umur İnan" width="176" height="224" loading="lazy" decoding="async" />
-                                </a>
-                            </div>
-                        </div>
-                        <div class="ud-team-info">
-                            <h4 class="text-xl font-semibold team-member-name" data-name-en="Umur Inan" data-name-tr="Umur İnan">Umur Inan</h4>
-                            <h5 class="team-role text-brand-blue" data-i18n="teamCTO">CTO</h5>
-                        </div>
-                        <ul class="ud-team-socials">
-                            <li>
-                                <a href="https://www.linkedin.com/in/umurinan/" target="_blank" rel="noopener noreferrer" aria-label="Umur Inan LinkedIn (opens in new tab)" class="text-brand-blue hover:text-brand-blue-light">
-                                    <i class="lni lni-linkedin-original text-4xl" aria-hidden="true"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+                <div class="team-grid-executives" style="gap: var(--team-gap);">
                     <div class="ud-single-team team-card team-card-ceo">
                         <div class="ud-team-image-wrapper">
                             <div class="ud-team-image">
@@ -1572,6 +1657,26 @@
                         <ul class="ud-team-socials">
                             <li>
                                 <a href="https://www.linkedin.com/in/ataturhan/" target="_blank" rel="noopener noreferrer" aria-label="Ata Turhan LinkedIn (opens in new tab)" class="text-brand-blue hover:text-brand-blue-light">
+                                    <i class="lni lni-linkedin-original text-4xl" aria-hidden="true"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="ud-single-team team-card team-card-cto">
+                        <div class="ud-team-image-wrapper">
+                            <div class="ud-team-image">
+                                <a href="https://www.linkedin.com/in/umurinan/" target="_blank" rel="noopener noreferrer" aria-label="Umur Inan LinkedIn (opens in new tab)">
+                                    <img src="assets/images/team/UmurInan.webp" alt="Umur Inan" class="team-avatar" data-alt-en="Umur Inan" data-alt-tr="Umur İnan" width="176" height="224" loading="lazy" decoding="async" />
+                                </a>
+                            </div>
+                        </div>
+                        <div class="ud-team-info">
+                            <h4 class="text-xl font-semibold team-member-name" data-name-en="Umur Inan" data-name-tr="Umur İnan">Umur Inan</h4>
+                            <h5 class="team-role text-brand-blue" data-i18n="teamCTO">CTO</h5>
+                        </div>
+                        <ul class="ud-team-socials">
+                            <li>
+                                <a href="https://www.linkedin.com/in/umurinan/" target="_blank" rel="noopener noreferrer" aria-label="Umur Inan LinkedIn (opens in new tab)" class="text-brand-blue hover:text-brand-blue-light">
                                     <i class="lni lni-linkedin-original text-4xl" aria-hidden="true"></i>
                                 </a>
                             </li>
@@ -1628,7 +1733,7 @@
                         <div class="ud-team-image-wrapper">
                             <div class="ud-team-image">
                                 <a href="https://www.linkedin.com/in/ramazancinar-/" target="_blank" rel="noopener noreferrer" aria-label="Ramazan Çinar LinkedIn (opens in new tab)">
-                                    <img src="assets/images/team/RamazanCinar.jpeg" alt="Ramazan Cinar" class="team-avatar-ramazan" data-alt-en="Ramazan Cinar" data-alt-tr="Ramazan Çınar" width="176" height="224" loading="lazy" decoding="async" />
+                                    <img src="assets/images/team/RamazanCinar.webp" alt="Ramazan Cinar" class="team-avatar-ramazan" data-alt-en="Ramazan Cinar" data-alt-tr="Ramazan Çınar" width="176" height="224" loading="lazy" decoding="async" />
                                 </a>
                             </div>
                         </div>
@@ -1667,10 +1772,10 @@
                 </div>
             </div>
 
-            <!-- BDM Interns - Smaller Scale -->
+            <!-- BDM - Smaller Scale -->
             <div class="mb-20">
-                <div class="team-grid-interns max-w-4xl mx-auto">
-                    <div class="ud-single-team team-card team-card-intern team-card-manager">
+                <div class="team-grid-bdm max-w-4xl mx-auto">
+                    <div class="ud-single-team team-card team-card-bdm team-card-manager">
                         <div class="ud-team-image-wrapper">
                             <div class="ud-team-image">
                                 <a href="https://www.linkedin.com/in/remzi-mert-tehneldere-601505286/" target="_blank" rel="noopener noreferrer">
@@ -1680,7 +1785,7 @@
                         </div>
                         <div class="ud-team-info">
                             <h4 class="text-lg font-semibold team-member-name" data-name-en="Remzi Mert Tehneldere" data-name-tr="Remzi Mert Tehneldere">Remzi Mert<br/>Tehneldere</h4>
-                            <h5 class="team-role text-brand-blue" data-i18n="teamBDMIntern">Intern BDM</h5>
+                            <h5 class="team-role text-brand-blue" data-i18n="teamBDM">BDM</h5>
                         </div>
                         <ul class="ud-team-socials">
                             <li>
@@ -1690,7 +1795,7 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="ud-single-team team-card team-card-intern team-card-manager">
+                    <div class="ud-single-team team-card team-card-bdm team-card-manager">
                         <div class="ud-team-image-wrapper">
                             <div class="ud-team-image">
                                 <a href="https://www.linkedin.com/in/batuhankestek/" target="_blank" rel="noopener noreferrer">
@@ -1700,7 +1805,7 @@
                         </div>
                         <div class="ud-team-info">
                             <h4 class="text-lg font-semibold team-member-name" data-name-en="Batuhan Kestek" data-name-tr="Batuhan Kestek">Batuhan Kestek</h4>
-                            <h5 class="team-role text-brand-blue" data-i18n="teamBDMIntern">Intern BDM</h5>
+                            <h5 class="team-role text-brand-blue" data-i18n="teamBDM">BDM</h5>
                         </div>
                         <ul class="ud-team-socials">
                             <li>
@@ -1741,7 +1846,7 @@
                         <div class="ud-team-image-wrapper">
                             <div class="ud-team-image">
                                 <a href="https://www.linkedin.com/in/emrecan-ozkan" target="_blank" rel="noopener noreferrer">
-                                    <img src="assets/images/team/Emrecan.png" alt="Emrecan Ozkan" class="team-avatar" data-alt-en="Emrecan Ozkan" data-alt-tr="Emrecan Özkan" width="176" height="224" loading="lazy" decoding="async" />
+                                    <img src="assets/images/team/Emrecan.webp" alt="Emrecan Ozkan" class="team-avatar" data-alt-en="Emrecan Ozkan" data-alt-tr="Emrecan Özkan" width="176" height="224" loading="lazy" decoding="async" />
                                 </a>
                             </div>
                         </div>
@@ -1767,7 +1872,7 @@
                         </div>
                         <div class="ud-team-info">
                             <h4 class="text-xl font-semibold team-member-name" data-name-en="Mehmet Begun" data-name-tr="Mehmet Begun">Mehmet Begun</h4>
-                            <h5 class="team-role text-brand-blue" data-i18n="teamEngineerIntern">Full-Stack Engineer Intern</h5>
+                            <h5 class="team-role text-brand-blue" data-i18n="teamEngineer">Full-Stack Engineer</h5>
                         </div>
                         <ul class="ud-team-socials">
                             <li>
@@ -1787,7 +1892,7 @@
                         </div>
                         <div class="ud-team-info">
                             <h4 class="text-xl font-semibold team-member-name" data-name-en="Eren Can Donertas" data-name-tr="Eren Can Dönertaş">Eren Can Donertas</h4>
-                            <h5 class="team-role text-brand-blue" data-i18n="teamEngineerIntern">Full-Stack Engineer Intern</h5>
+                            <h5 class="team-role text-brand-blue" data-i18n="teamEngineer">Full-Stack Engineer</h5>
                         </div>
                         <ul class="ud-team-socials">
                             <li>
@@ -1986,9 +2091,9 @@
             </div>
             <div style="grid-column:2;"></div>
             <div class="border-b border-slate-700 mt-4 pb-3" style="grid-column:1/-1;"></div>
-            <div class="flex flex-wrap items-center justify-center md:justify-start gap-y-1 text-slate-400 pt-3 text-center md:text-left" style="grid-column:1;grid-row:4;font-size:1.125rem;gap:0 1.25rem;align-self:center;">
-                <span data-i18n="footerCopyright">© 2026 Solarity AI LLC. All rights reserved.</span>
-                <div class="footer-page-links" style="margin-left:0.25rem;">
+            <div class="footer-copyright-row flex items-center text-slate-400 pt-3 text-left" style="grid-column:1;grid-row:4;font-size:1.125rem;gap:0 0.75rem;align-self:center;flex-wrap:nowrap;">
+                <span class="shrink-0" data-i18n="footerCopyright">© 2026 Solarity AI LLC. All rights reserved.</span>
+                <div class="footer-page-links shrink-0">
                     <a href="legal.html#privacy" class="footer-page-link" data-i18n="footerPrivacy">Privacy</a>
                     <a href="legal.html#terms" class="footer-page-link" data-i18n="footerTerms">Terms</a>
                     <a href="legal.html" class="footer-page-link" data-i18n="navLegal">Legal</a>
@@ -2037,6 +2142,29 @@
             });
         }
         initMobileMenu();
+
+        (function headerOverflowHamburger() {
+            var header = document.querySelector('header');
+            var BREAK = 1024;
+            function check() {
+                if (!header) return;
+                var w = window.innerWidth;
+                if (w <= BREAK) {
+                    header.classList.add('overflow-menu');
+                    return;
+                }
+                header.classList.remove('overflow-menu');
+                requestAnimationFrame(function() {
+                    requestAnimationFrame(function() {
+                        var scrollEl = header.querySelector('.nav-desktop-scroll');
+                        if (scrollEl && scrollEl.scrollWidth > scrollEl.clientWidth) header.classList.add('overflow-menu');
+                    });
+                });
+            }
+            window.addEventListener('resize', function() { check(); });
+            if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', check);
+            else check();
+        })();
 
         // Contact form - LinkedIn URL validation (prefix: linkedin.com/in/)
         (function() {
@@ -2294,18 +2422,24 @@
             restartTimeout = setTimeout(function() {
               restartTimeout = null;
               runAutoScroll();
-            }, 2800);
+            }, 0);
           }
 
           function runAutoScroll() {
             if (rafId) return;
             halfWidth = container.scrollWidth / 2;
-            if (container.scrollLeft >= halfWidth) {
-              container.scrollLeft = container.scrollLeft - halfWidth;
-            }
+            var maxScroll = container.scrollWidth - container.clientWidth;
+            var lastScrollLeft = container.scrollLeft;
             function tick() {
+              if (!rafId) return;
+              lastScrollLeft = container.scrollLeft;
               container.scrollLeft += step;
-              if (container.scrollLeft >= halfWidth) container.scrollLeft = 0;
+              if (container.scrollLeft >= halfWidth && lastScrollLeft < halfWidth) {
+                container.scrollLeft = container.scrollLeft - halfWidth;
+              }
+              if (container.scrollLeft >= maxScroll && maxScroll > 0) {
+                container.scrollLeft = 0;
+              }
               rafId = requestAnimationFrame(tick);
             }
             rafId = requestAnimationFrame(tick);
@@ -2342,10 +2476,10 @@
     </script>
 
     <!-- Cookie consent banner & GA load only after consent -->
-    <div id="cookie-consent-banner" role="dialog" aria-label="Cookie consent" aria-live="polite" class="hidden fixed bottom-0 left-0 right-0 z-[100] p-4 bg-slate-800/95 border-t border-slate-600 shadow-lg">
-      <div class="container mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
-        <p id="cookie-banner-message" class="text-slate-200 text-sm flex-1" data-i18n="cookieBannerMessage">We use analytics cookies to improve our site. You can accept or decline.</p>
-        <div class="flex gap-2 shrink-0">
+    <div id="cookie-consent-banner" role="dialog" aria-label="Cookie consent" aria-live="polite" class="hidden fixed bottom-0 left-0 right-0 z-[100] p-4 bg-slate-800/95 border-t border-slate-600 shadow-lg cookie-banner-centered">
+      <div class="container mx-auto flex flex-col sm:flex-row items-center justify-center sm:justify-between gap-3 text-center">
+        <p id="cookie-banner-message" class="text-slate-200 text-sm flex-1 max-w-xl" data-i18n="cookieBannerMessage">We use analytics cookies to improve our site. You can accept or decline.</p>
+        <div class="flex gap-2 shrink-0 justify-center sm:justify-end">
           <button type="button" id="cookie-consent-decline" class="px-4 py-2 rounded-lg bg-slate-600 text-slate-200 hover:bg-slate-500 transition" data-i18n="cookieDecline">Decline</button>
           <button type="button" id="cookie-consent-accept" class="px-4 py-2 rounded-lg bg-brand-blue text-white hover:bg-brand-blue-dark transition" data-i18n="cookieAccept">Accept</button>
         </div>
@@ -2425,5 +2559,20 @@
       });
     })();
     </script>
+    <!-- Ekip kartları mobil: unvan ve LinkedIn görünsün, kart yüksekliği içeriğe göre -->
+    <style id="team-cards-override">
+      #team .ud-single-team.team-card, #ekip .ud-single-team.team-card { width: 300px !important; min-width: 300px !important; max-width: 300px !important; display: flex !important; flex-direction: column !important; padding-bottom: 1.25rem !important; box-sizing: border-box !important; }
+      #team .ud-team-info, #ekip .ud-team-info { display: flex !important; flex-direction: column !important; align-items: center !important; gap: 0.5rem !important; flex: 0 1 auto !important; margin-top: 2.25rem !important; padding: 0.5rem 0.35rem 0.75rem !important; min-height: 0 !important; overflow: visible !important; visibility: visible !important; }
+      #team .ud-team-info h4, #ekip .ud-team-info h4 { margin: 0 0 0.25rem 0 !important; line-height: 1.35 !important; visibility: visible !important; }
+      #team .ud-team-info h5, #ekip .ud-team-info h5 { margin: 0 !important; line-height: 1.35 !important; visibility: visible !important; display: block !important; }
+      #team .ud-team-socials, #ekip .ud-team-socials { flex-shrink: 0 !important; margin-top: 0.5rem !important; margin-bottom: 0 !important; visibility: visible !important; display: flex !important; opacity: 1 !important; }
+      @media (max-width: 767px) {
+        #team .ud-single-team.team-card, #ekip .ud-single-team.team-card { width: 300px !important; min-width: 300px !important; max-width: 300px !important; overflow: hidden !important; min-height: auto !important; height: auto !important; aspect-ratio: unset !important; align-self: flex-start !important; }
+        #team .ud-team-image-wrapper, #ekip .ud-team-image-wrapper { max-height: min(320px, 48vh) !important; flex: 0 0 auto !important; flex-shrink: 0 !important; }
+        #team .ud-team-info, #ekip .ud-team-info { flex: 0 0 auto !important; flex-shrink: 0 !important; min-height: 4rem !important; visibility: visible !important; display: flex !important; opacity: 1 !important; }
+        #team .ud-team-info h5, #ekip .ud-team-info h5 { visibility: visible !important; display: block !important; opacity: 1 !important; }
+        #team .ud-team-socials, #ekip .ud-team-socials { min-height: 3rem !important; visibility: visible !important; opacity: 1 !important; }
+      }
+    </style>
 </body>
 </html>
