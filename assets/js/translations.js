@@ -88,8 +88,7 @@ window.translations = {
 
     // Partnerships Section
     partnerships: "Partnerships",
-    partnershipsSubtitle: "Strategic Collaborations and Trusted Partners",
-    partnershipsSubtitleDesc: "We collaborate with innovative companies and organizations to deliver cutting-edge solutions",
+    partnershipsSubtitle: "Selected Partners",
     
     // Projects Section
     projects: "Projects",
@@ -114,20 +113,16 @@ window.translations = {
     teamExecutives: "Executives",
     teamCLevel: "Leadership",
     teamManagers: "Business Development Managers",
-    teamBDMInterns: "BDM Interns",
     teamEngineers: "Engineers",
+    teamEngineer: "Full-Stack Engineer",
     teamMarketers: "Marketing Specialists",
     teamCEO: "CEO",
     teamCTO: "CTO",
     teamCIO: "CIO",
     teamBDM: "BDM",
-    teamBDMIntern: "Intern BDM",
     teamLeadFullStack: "Lead Full-Stack Engineer",
     teamSeniorFullStack: "Senior Full-Stack Engineer",
     teamMarketer: "Marketing Specialist",
-    teamEngineerIntern: "Intern Full-Stack Engineer",
-
-    
     // Contact Section
     contact: "Contact Us",
     contactSubtitle: "Let's Build Something Great Together 🚀",
@@ -165,7 +160,7 @@ window.translations = {
     footerCopyright: "© 2026 Solarity AI LLC. All rights reserved.",
     footerPrivacy: "Privacy",
     footerTerms: "Terms",
-    footerDescription: "AI-Native Software Company Creating High-Impact B2B and B2C Solutions with World-Class Quality.",
+    footerDescription: "🔥 Creating the world’s best B2B and B2C solutions for YOU 🔥",
     legalPageTitle: "Legal Information",
     legalHeroTag: "Legal",
     legalHeroSubtitle: "Transparency and trust. Our legal documents and policies in one place.",
@@ -364,7 +359,6 @@ window.translations = {
     // Partnerships Section
     partnerships: "Ortaklıklarımız",
     partnershipsSubtitle: "Sektör Liderleri Tarafından Güvenilen",
-    partnershipsSubtitleDesc: "Yenilikçi çözümler sunmak için sektörün önde gelen şirketleri ve organizasyonlarıyla stratejik işbirlikleri gerçekleştiriyoruz",
     
     // Projects Section
     projects: "Projelerimiz",
@@ -389,19 +383,16 @@ window.translations = {
     teamExecutives: "Üst Yönetim",
     teamCLevel: "Liderlik",
     teamManagers: "İş Geliştirme Yöneticileri",
-    teamBDMInterns: "BDM Stajyerleri",
     teamEngineers: "Mühendisler",
+    teamEngineer: "Full-Stack Mühendisi",
     teamMarketers: "Pazarlama Uzmanları",
     teamCEO: "CEO",
     teamCTO: "CTO",
     teamCIO: "CIO",
     teamBDM: "BDM",
-    teamBDMIntern: "Stajyer BDM",
     teamLeadFullStack: "Lead Full-Stack Mühendisi",
     teamSeniorFullStack: "Kıdemli Full-Stack Mühendisi",
     teamMarketer: "Pazarlama Uzmanı",
-    teamEngineerIntern: "Stajyer Full-Stack Mühendisi",
-
     // Contact Section
     contact: "İletişim",
     contactSubtitle: "Birlikte Büyük İşler Başaralım 🚀",
@@ -440,7 +431,7 @@ window.translations = {
     footerCopyright: "© 2026 Solarity AI LLC. Tüm hakları saklıdır.",
     footerPrivacy: "Gizlilik",
     footerTerms: "Koşullar",
-    footerDescription: "Dünya standartlarında kaliteyle yüksek etkili B2B ve B2C çözümler üreten yapay zeka odaklı yazılım şirketi.",
+    footerDescription: "🔥 Sizin için dünyanın en iyi B2B ve B2C çözümlerini geliştiriyoruz 🔥",
     legalPageTitle: "Yasal Bilgiler",
     legalHeroTag: "Yasal",
     legalHeroSubtitle: "Şeffaflık ve güven. Yasal belgelerimiz ve politikalarımız tek yerde.",
