@@ -50,6 +50,8 @@ window.translations = {
     serviceWebDesc: "Scalable and responsive web applications built with modern technologies. React, Vue, Angular, and Next.js.",
     serviceMobile: "Mobile Application Development",
     serviceMobileDesc: "Native and cross-platform mobile applications for iOS and Android. React Native, Flutter, Swift and Kotlin.",
+    serviceDevOps: "DevOps & Infrastructure",
+    serviceDevOpsDesc: "CI/CD pipelines, containerization, and infrastructure as code. Accelerate delivery and ensure reliability.",
 
     // Service Tags (AI Card) - 5 SEO keywords
     tagGenAI: "Gen AI",
@@ -85,6 +87,13 @@ window.translations = {
     tagiOS: "iOS",
     tagAndroid: "Android",
     tagKotlin: "Kotlin",
+
+    // DevOps service tags - 5
+    tagCICD: "CI/CD",
+    tagDocker: "Docker",
+    tagMonitoring: "Monitoring",
+    tagTerraform: "Terraform",
+    tagLinux: "Linux",
 
     // Partnerships Section
     partnerships: "Partnerships",
@@ -300,7 +309,7 @@ window.translations = {
     aboutTitle: "Yapay Zeka Odaklı Yazılım Şirketi",
     aboutSubtitle: "🔥 Sizin için dünyanın en iyi B2B ve B2C çözümlerini yaratıyoruz 🔥",
 
-    // Services Section - NEW 5 Services (updated from capabilities)
+    // Services Section - 6 Services (updated from capabilities)
     servicesTitle: "Hizmetlerimiz",
     serviceAI: "Yapay Zeka ve Makine Öğrenmesi",
     serviceAIDesc: "En güncel algoritmalar ve sinir ağlarıyla desteklenen ileri düzey yapay zeka ve makine öğrenmesi çözümleri. Derin öğrenme modelleri, doğal dil işleme ve bilgisayarlı görü uygulamaları.",
@@ -312,6 +321,8 @@ window.translations = {
     serviceWebDesc: "Modern teknolojilerle geliştirilmiş, ölçeklenebilir ve duyarlı web uygulamaları. React, Vue, Angular ve Next.js.",
     serviceMobile: "Mobil Uygulama Geliştirme",
     serviceMobileDesc: "iOS ve Android platformları için yerel ve çapraz platform mobil uygulamalar. React Native, Flutter, Swift ve Kotlin.",
+    serviceDevOps: "DevOps ve Altyapı",
+    serviceDevOpsDesc: "CI/CD pipeline'ları, konteynerleştirme ve altyapı kodu. Teslimatı hızlandırın ve güvenilirliği sağlayın.",
 
     // Service Tags (AI Card) - 5 SEO keywords
     tagGenAI: "Gen AI",
@@ -347,6 +358,13 @@ window.translations = {
     tagiOS: "iOS",
     tagAndroid: "Android",
     tagKotlin: "Kotlin",
+
+    // DevOps service tags - 5
+    tagCICD: "CI/CD",
+    tagDocker: "Docker",
+    tagMonitoring: "İzleme",
+    tagTerraform: "Terraform",
+    tagLinux: "Linux",
 
     // Stats Bar
     statsProjects: "Tamamlanan Projeler",
