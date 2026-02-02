@@ -10,6 +10,7 @@
           else if (L === 'en' || !L) document.documentElement.setAttribute('lang','en');
         } catch(e){}
         document.documentElement.classList.add('lang-loading');
+        setTimeout(function(){ document.documentElement.classList.remove('lang-loading'); }, 400);
       })();
     </script>
     <meta charset="UTF-8" />
@@ -87,9 +88,8 @@
       header .container { display: flex; align-items: center; min-height: inherit; }
       header nav { display: flex; align-items: center; padding: 0 !important; height: 6rem; min-height: 6rem; width: 100%; }
       @media (min-width: 768px) { header nav { height: 7rem; min-height: 7rem; } }
-      header nav > a:first-child { display: flex !important; align-items: center !important; align-self: stretch !important; height: 100%; }
-      header nav > a:first-child img.logo-standard { display: block; height: 11rem !important; max-height: 12rem !important; width: auto !important; margin: 0 !important; }
-      @media (min-width: 768px) { header nav > a:first-child img.logo-standard { height: 13rem !important; max-height: 15rem !important; } }
+      header nav > a:first-child { display: flex !important; align-items: center !important; align-self: stretch !important; height: 100%; min-width: 0; max-width: 100%; overflow: hidden; }
+      header nav > a:first-child img.logo-standard { display: block; height: auto !important; max-height: 100% !important; max-width: 100% !important; width: auto !important; margin: 0 !important; object-fit: contain; }
     </style>
     <!-- Custom Styles - INDEX.HTML İLE UYUMLU (Ana sayfa teması) -->
     <style>
@@ -138,6 +138,7 @@
         height: 11rem !important;
         width: auto;
         max-height: 12rem !important;
+        max-width: 100%;
         object-fit: contain;
         filter: brightness(1.2) drop-shadow(0 2px 8px rgba(255, 255, 255, 0.1));
         transition: filter 0.3s ease, transform 0.3s ease;
@@ -387,7 +388,7 @@
 
     <header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b" style="background: rgba(10, 25, 47, 0.95); border-color: rgba(16, 185, 129, 0.2);">
         <div class="container mx-auto px-4 md:px-12">
-            <nav class="flex items-center justify-between py-0.5 w-full" style="gap: 0.5rem;" aria-label="Main navigation">
+            <nav class="flex items-center justify-between py-0.5 w-full" style="gap: 1.25rem;" aria-label="Main navigation">
                 <a href="index.html" class="flex items-center flex-shrink-0">
                     <img src="assets/images/logo/CompanyLogo.png" alt="Solarity AI" class="logo-standard" width="360" height="90" fetchpriority="high" />
                 </a>
