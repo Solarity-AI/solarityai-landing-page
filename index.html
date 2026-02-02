@@ -134,8 +134,8 @@
     <link rel="stylesheet" href="assets/css/lineicons.css" media="print" onload="this.media='all'" />
     <noscript><link rel="stylesheet" href="assets/css/lineicons.css" /></noscript>
     <!-- Team card structure (ud-single-team) -->
-    <link rel="preload" href="assets/css/main.css?v=20260202-mobile" as="style" fetchpriority="high" />
-    <link rel="stylesheet" href="assets/css/main.css?v=20260202-mobile" />
+    <link rel="preload" href="assets/css/main.css?v=20260202-footer-gap" as="style" fetchpriority="high" />
+    <link rel="stylesheet" href="assets/css/main.css?v=20260202-footer-gap" />
     <!-- Header: logo footer ile aynı boyut (11rem / 13rem), navbar’da dikey ortada -->
     <style>
       header { display: flex; align-items: center; min-height: 6rem; }
@@ -1371,18 +1371,16 @@
                     </div>
                     <!-- Dil butonu scroll dışında – her zaman görünür -->
                     <button id="languageSwitcher" type="button" onclick="window.invokeToggleLanguage()" aria-label="Switch language"
-                            class="nav-lang-btn inline-flex flex-shrink-0 items-center gap-2 px-4 py-2 text-sm font-semibold rounded-lg transition hover:scale-105"
+                            class="nav-lang-btn inline-flex flex-shrink-0 items-center justify-center px-3 py-2 rounded-lg transition hover:scale-105"
                             style="background: rgba(16, 185, 129, 0.15); border: 2px solid rgba(16, 185, 129, 0.4); color: #10b981;">
-                        <img id="flagIcon" src="assets/images/flags/flag-us.svg?v=1" alt="" width="28" height="20" style="object-fit:cover; border-radius:3px; box-shadow:0 1px 3px rgba(0,0,0,0.2);" />
-                        <span id="currentLang" style="font-weight: 800; letter-spacing: 0.5px; font-size: 15px;">EN</span>
+                        <img id="flagIcon" src="assets/images/flags/flag-us.svg?v=1" alt="" width="44" height="32" style="object-fit:cover; border-radius:5px; box-shadow:0 1px 3px rgba(0,0,0,0.2);" />
                     </button>
                     <!-- Mobil: dil + hamburger (600px altında, CSS ile) -->
                     <div class="nav-mobile-wrap items-center gap-3 flex-shrink-0">
                     <button id="languageSwitcherMobile" type="button" onclick="window.invokeToggleLanguage()" aria-label="Switch language"
-                            class="inline-flex items-center gap-2 px-3 py-2 text-xs font-semibold rounded-lg"
+                            class="inline-flex items-center justify-center p-2 rounded-lg"
                             style="background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.3); color: #10b981;">
-                        <img id="flagIconMobile" src="assets/images/flags/flag-us.svg?v=1" alt="" width="24" height="17" style="object-fit:cover; border-radius:2px; box-shadow:0 1px 2px rgba(0,0,0,0.2);" />
-                        <span id="currentLangMobile" style="font-weight: 700; letter-spacing: 0.5px;">EN</span>
+                        <img id="flagIconMobile" src="assets/images/flags/flag-us.svg?v=1" alt="" width="48" height="34" style="object-fit:cover; border-radius:4px; box-shadow:0 1px 2px rgba(0,0,0,0.2);" />
                     </button>
                     <button id="mobileMenuBtn" type="button" class="text-2xl text-emerald-400" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">☰</button>
                     </div>
@@ -1458,8 +1456,8 @@
     <!-- Partnership Sliding Window - HERO SECTION ALTINDA -->
     <section id="partnerships" data-section-tr="ortakliklar" data-section-en="partnerships" class="py-16 px-4 md:px-12 bg-slate-900/30">
         <div class="container mx-auto">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-5xl font-bold font-display mb-4" data-i18n="partnershipsSubtitle">Strategic Collaborations and Trusted Partners</h2>
+            <div class="text-center mb-6">
+                <h2 class="text-3xl md:text-5xl font-bold font-display mb-2" data-i18n="partnershipsSubtitle">Strategic Collaborations and Trusted Partners</h2>
                
             </div>
 
@@ -1503,8 +1501,8 @@
     <!-- Services - Modern Bento Grid (6 Hizmet) - FERAH ALAN -->
     <section id="services" data-section-tr="services" data-section-en="services" class="py-24 px-4 md:px-12 bg-slate-900/50">
         <div class="container mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-5xl font-bold font-display mb-6" data-i18n="servicesTitle">Our Services</h2>
+            <div class="text-center mb-6">
+                <h2 class="text-3xl md:text-5xl font-bold font-display mb-2" data-i18n="servicesTitle">Our Services</h2>
             </div>
 
             <!-- Bento Grid: 6 Services (AI featured, others balanced) -->
@@ -1623,8 +1621,8 @@
     <!-- Projects Section - FERAH ALAN -->
     <section id="projects" data-section-tr="projeler" data-section-en="projects" class="py-24 px-4 md:px-12">
         <div class="container mx-auto text-center">
-            <div class="mb-16">
-                <h2 class="text-3xl md:text-5xl font-bold font-display mb-4" data-i18n="projectsSubtitle">Selected Success Stories</h2>
+            <div class="mb-6">
+                <h2 class="text-3xl md:text-5xl font-bold font-display mb-2" data-i18n="projectsSubtitle">Selected Success Stories</h2>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -1682,13 +1680,13 @@
     <!-- Team Section with Hierarchy - FERAH ALAN -->
     <section id="team" data-section-tr="ekip" data-section-en="team" class="pt-8 pb-24 px-4 md:px-12 bg-slate-900/50">
         <div class="container mx-auto">
-            <div class="text-center mb-12 -mt-4">
-                <h2 class="text-3xl md:text-5xl font-bold font-display mb-4" data-i18n="teamSubtitle">Meet Our World Class Team</h2>
+            <div class="text-center mb-6 -mt-4">
+                <h2 class="text-3xl md:text-5xl font-bold font-display mb-2" data-i18n="teamSubtitle">Meet Our World Class Team</h2>
             </div>
 
             <!-- Executives -->
             <div class="mb-20 executives-wrap">
-                <h3 class="text-3xl md:text-4xl font-bold text-center mb-10 text-yellow-400" data-i18n="teamExecutives">Executives</h3>
+                <h3 class="text-3xl md:text-4xl font-bold text-center mb-6 text-yellow-400" data-i18n="teamExecutives">Executives</h3>
                 <div class="team-grid-executives" style="gap: var(--team-gap);">
                     <div class="ud-single-team team-card team-card-cto">
                         <div class="ud-team-image-wrapper">
@@ -1755,7 +1753,7 @@
 
             <!-- Business Development Managers - Highlighted -->
             <div class="mb-20">
-                <h3 class="text-3xl md:text-4xl font-bold text-center mb-10 text-emerald-500" data-i18n="teamManagers">Business Development Managers</h3>
+                <h3 class="text-3xl md:text-4xl font-bold text-center mb-6 text-emerald-500" data-i18n="teamManagers">Business Development Managers</h3>
                 <div class="team-grid-managers max-w-5xl mx-auto">
                     <div class="ud-single-team team-card team-card-manager">
                         <div class="ud-team-image-wrapper">
@@ -1868,7 +1866,7 @@
 
             <!-- Engineers -->
             <div class="mb-20">
-                <h3 class="text-3xl md:text-4xl font-bold text-center mb-10 text-brand-blue" data-i18n="teamEngineers">Engineers</h3>
+                <h3 class="text-3xl md:text-4xl font-bold text-center mb-6 text-brand-blue" data-i18n="teamEngineers">Engineers</h3>
                 <div class="grid max-w-6xl mx-auto team-grid-engineers" style="gap: var(--team-gap);">
                     <div class="ud-single-team team-card team-card-engineer">
                         <div class="ud-team-image-wrapper">
@@ -1880,7 +1878,7 @@
                         </div>
                         <div class="ud-team-info">
                             <h4 class="text-xl font-semibold team-member-name" data-name-en="Hasan Erdem Ak" data-name-tr="Hasan Erdem Ak">Hasan Erdem Ak</h4>
-                            <h5 class="team-role text-brand-blue" data-i18n="teamLeadFullStack">Lead Full-Stack Engineer</h5>
+                            <h5 class="team-role text-brand-blue" data-i18n="teamLeadFullStack">Engineering Manager & Lead Full-Stack Engineer</h5>
                         </div>
                         <ul class="ud-team-socials">
                             <li>
@@ -1955,7 +1953,7 @@
 
             <!-- Marketers -->
             <div>
-                <h3 class="text-3xl md:text-4xl font-bold text-center mb-10 text-pink-400" data-i18n="teamMarketers">Marketing Specialists</h3>
+                <h3 class="text-3xl md:text-4xl font-bold text-center mb-6 text-pink-400" data-i18n="teamMarketers">Marketing Specialists</h3>
                 <div class="grid max-w-5xl mx-auto team-grid-marketers" style="gap: var(--team-gap);">
                     <div class="ud-single-team team-card team-card-marketing">
                         <div class="ud-team-image-wrapper">
@@ -2025,8 +2023,8 @@
     <!-- Contact Section - FERAH ALAN -->
     <section id="contact" data-section-tr="iletisim" data-section-en="contact" class="pt-24 pb-12 md:pb-16 px-4 md:px-12">
         <div class="container mx-auto">
-            <div class="text-center mb-10">
-                <h2 class="text-3xl md:text-5xl font-bold font-display mb-4" data-i18n="contactSubtitle">Let's Build Something Great Together 🚀</h2>
+            <div class="text-center mb-6">
+                <h2 class="text-3xl md:text-5xl font-bold font-display mb-2" data-i18n="contactSubtitle">Let's Build Something Great Together 🚀</h2>
                 <p class="text-slate-300" data-i18n="contactSubtitleDesc">Get in touch to explore partnership opportunities or discuss your business needs.</p>
             </div>
 
@@ -2148,7 +2146,7 @@
                     <a href="blog.html" class="footer-page-link" data-i18n="navBlog">Blog</a>
                 </div>
             </div>
-            <div class="footer-socials flex justify-center md:justify-end items-center flex-wrap pt-2" style="grid-column:2;grid-row:4;align-self:center;">
+            <div class="footer-socials flex justify-center md:justify-end items-center flex-wrap pt-2" style="grid-column:2;grid-row:4;align-self:center;gap:0.15rem;">
                     <a href="https://linktr.ee/solarity_ai_company" target="_blank" rel="noopener noreferrer" aria-label="Linktree – tüm linkler (opens in new tab)" class="inline-flex items-center justify-center w-24 h-24 text-slate-400 hover:text-brand-blue transition"><i class="lni lni-link text-6xl" aria-hidden="true"></i></a>
                     <a href="https://www.instagram.com/solarity_ai_company" target="_blank" rel="noopener noreferrer" aria-label="Instagram (opens in new tab)" class="inline-flex items-center justify-center w-24 h-24 text-slate-400 hover:text-brand-blue transition"><i class="lni lni-instagram-original text-6xl" aria-hidden="true"></i></a>
                     <a href="https://www.facebook.com/solarity_ai_company" target="_blank" rel="noopener noreferrer" aria-label="Facebook (opens in new tab)" class="inline-flex items-center justify-center w-24 h-24 text-slate-400 hover:text-brand-blue transition"><i class="lni lni-facebook-original text-6xl" aria-hidden="true"></i></a>
@@ -2607,24 +2605,21 @@
       });
     })();
     </script>
-    <!-- Ekip kartları mobil: unvan ve LinkedIn görünsün, kart yüksekliği içeriğe göre -->
+    <!-- Ekip kartları: main.css grid düzeni kullanılsın (başlık + LinkedIn hizalı). Sadece font/visibility ince ayarları. -->
     <style id="team-cards-override">
-      #team .ud-single-team.team-card, #ekip .ud-single-team.team-card { width: 300px !important; min-width: 300px !important; max-width: 300px !important; display: flex !important; flex-direction: column !important; padding-bottom: 1.25rem !important; box-sizing: border-box !important; }
-      #team .ud-team-info, #ekip .ud-team-info { display: flex !important; flex-direction: column !important; align-items: center !important; gap: 0.5rem !important; flex: 0 1 auto !important; margin-top: 2.25rem !important; padding: 0.5rem 0.35rem 0.75rem !important; min-height: 0 !important; overflow: visible !important; visibility: visible !important; }
-      #team .ud-team-info h4, #ekip .ud-team-info h4 { margin: 0 0 0.25rem 0 !important; line-height: 1.35 !important; visibility: visible !important; font-size: 2rem !important; min-width: 0 !important; overflow-wrap: break-word !important; word-break: break-word !important; }
-      #team .ud-team-info h5, #ekip .ud-team-info h5 { margin: 0 !important; line-height: 1.35 !important; visibility: visible !important; display: block !important; font-size: 1.6rem !important; min-width: 0 !important; overflow-wrap: break-word !important; word-break: break-word !important; white-space: normal !important; text-overflow: unset !important; }
-      @media (min-width: 768px) {
-        #team .ud-team-info h4, #ekip .ud-team-info h4 { font-size: 2.5rem !important; }
-        #team .ud-team-info h5, #ekip .ud-team-info h5 { font-size: 1.85rem !important; }
-      }
-      #team .ud-team-socials, #ekip .ud-team-socials { flex-shrink: 0 !important; margin-top: 0.5rem !important; margin-bottom: 0 !important; visibility: visible !important; display: flex !important; opacity: 1 !important; }
+      #team .ud-team-info h4, #ekip .ud-team-info h4 { margin: 0 0 0.25rem 0 !important; line-height: 1.35 !important; min-width: 0 !important; overflow-wrap: break-word !important; word-break: break-word !important; }
+      #team .ud-team-info h5, #ekip .ud-team-info h5 { margin: 0 !important; line-height: 1.35 !important; display: block !important; min-width: 0 !important; overflow-wrap: break-word !important; word-break: break-word !important; white-space: normal !important; text-overflow: unset !important; }
+      #team .ud-team-socials, #ekip .ud-team-socials { visibility: visible !important; opacity: 1 !important; }
       @media (max-width: 767px) {
-        #team .ud-single-team.team-card, #ekip .ud-single-team.team-card { width: 300px !important; min-width: 300px !important; max-width: 300px !important; overflow: hidden !important; min-height: auto !important; height: auto !important; aspect-ratio: unset !important; align-self: flex-start !important; }
-        #team .ud-team-image-wrapper, #ekip .ud-team-image-wrapper { max-height: min(320px, 48vh) !important; flex: 0 0 auto !important; flex-shrink: 0 !important; }
-        #team .ud-team-info, #ekip .ud-team-info { flex: 0 0 auto !important; flex-shrink: 0 !important; min-height: 4rem !important; visibility: visible !important; display: flex !important; opacity: 1 !important; }
-        #team .ud-team-info h5, #ekip .ud-team-info h5 { visibility: visible !important; display: block !important; opacity: 1 !important; }
-        #team .ud-team-socials, #ekip .ud-team-socials { min-height: 3rem !important; visibility: visible !important; opacity: 1 !important; }
+        #team .ud-team-info h5, #ekip .ud-team-info h5 { visibility: visible !important; opacity: 1 !important; }
+        #team .ud-team-socials, #ekip .ud-team-socials { visibility: visible !important; opacity: 1 !important; }
       }
+    </style>
+    <!-- Footer sosyal ikonlar arası boşluk – sayfa içi stil, kesin uygulansın -->
+    <style id="footer-socials-gap">
+      #footer .footer-socials { gap: 0.15rem !important; }
+      @media (max-width: 767px) { #footer .footer-socials { gap: 0.5rem !important; } }
+      @media (max-width: 480px) { #footer .footer-socials { gap: 0.45rem !important; } }
     </style>
 </body>
 </html>

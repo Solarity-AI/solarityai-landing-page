@@ -154,6 +154,7 @@
 </head>
 <body id="top" class="text-slate-200">
 
+    <!-- Header/Navbar - index.html ile aynı -->
     <header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b" style="background: rgba(10, 25, 47, 0.95); border-color: rgba(16, 185, 129, 0.2);">
         <div class="container mx-auto px-4 md:px-12">
             <nav class="flex items-center justify-between py-0.5 w-full" style="gap: 1.25rem;" aria-label="Main navigation">
@@ -178,32 +179,30 @@
                     </div>
                     </div>
                     <button id="languageSwitcher" type="button" onclick="window.invokeToggleLanguage()" aria-label="Switch language"
-                            class="nav-lang-btn inline-flex flex-shrink-0 items-center gap-2 px-4 py-2 text-sm font-semibold rounded-lg transition hover:scale-105"
+                            class="nav-lang-btn inline-flex flex-shrink-0 items-center justify-center px-3 py-2 rounded-lg transition hover:scale-105"
                             style="background: rgba(16, 185, 129, 0.15); border: 2px solid rgba(16, 185, 129, 0.4); color: #10b981;">
-                        <img id="flagIcon" src="assets/images/flags/flag-us.svg?v=1" alt="" width="28" height="20" style="object-fit:cover; border-radius:3px; box-shadow:0 1px 3px rgba(0,0,0,0.2);" />
-                        <span id="currentLang" style="font-weight: 800; letter-spacing: 0.5px; font-size: 15px;">EN</span>
+                        <img id="flagIcon" src="assets/images/flags/flag-us.svg?v=1" alt="" width="36" height="26" style="object-fit:cover; border-radius:4px; box-shadow:0 1px 3px rgba(0,0,0,0.2);" />
                     </button>
                     <div class="nav-mobile-wrap items-center gap-3 flex-shrink-0">
                     <button id="languageSwitcherMobile" type="button" onclick="window.invokeToggleLanguage()" aria-label="Switch language"
-                            class="inline-flex items-center gap-2 px-3 py-2 text-xs font-semibold rounded-lg"
+                            class="inline-flex items-center justify-center p-2 rounded-lg"
                             style="background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.3); color: #10b981;">
-                        <img id="flagIconMobile" src="assets/images/flags/flag-us.svg?v=1" alt="" width="24" height="17" style="object-fit:cover; border-radius:2px; box-shadow:0 1px 2px rgba(0,0,0,0.2);" />
-                        <span id="currentLangMobile" style="font-weight: 700; letter-spacing: 0.5px;">EN</span>
+                        <img id="flagIconMobile" src="assets/images/flags/flag-us.svg?v=1" alt="" width="48" height="34" style="object-fit:cover; border-radius:4px; box-shadow:0 1px 2px rgba(0,0,0,0.2);" />
                     </button>
                     <button id="mobileMenuBtn" type="button" class="text-2xl text-emerald-400" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">☰</button>
                     </div>
                 </div>
             </nav>
-            <div id="mobileMenu" class="hidden pb-4" aria-hidden="true">
-                <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2qgXk0ZfBd6QJf7ef-306in7AI0Kzc-pL3NJFK1fU74vAUGiftVJPF3-DoXp9_RZoyqW_sjSpI" target="_blank" rel="noopener noreferrer" class="block w-full text-center py-3 px-4 rounded-lg font-bold text-sm mb-3" style="background: rgba(255, 255, 255, 0.95); color: #1e40af;" data-i18n="bannerCTA">🚀 Book a call with our CEO 🚀</a>
-                <ul class="flex flex-col space-y-3 text-base">
-                    <li><a href="index.html#about" data-href-tr="index.html#hakkimizda" data-href-en="index.html#about" class="block hover:text-emerald-400 transition nav-link" data-i18n="navAboutUs">About Us</a></li>
-                    <li><a href="index.html#partnerships" data-href-tr="index.html#ortakliklar" data-href-en="index.html#partnerships" class="block hover:text-emerald-400 transition nav-link" data-i18n="navPartnerships">Partnerships</a></li>
-                    <li><a href="index.html#services" data-href-tr="index.html#services" data-href-en="index.html#services" class="block hover:text-emerald-400 transition nav-link" data-i18n="navAbout">Services</a></li>
-                    <li><a href="index.html#projects" data-href-tr="index.html#projeler" data-href-en="index.html#projects" class="block hover:text-emerald-400 transition nav-link" data-i18n="navProjects">Projects</a></li>
-                    <li><a href="index.html#team" data-href-tr="index.html#ekip" data-href-en="index.html#team" class="block hover:text-emerald-400 transition nav-link" data-i18n="navTeam">Team</a></li>
-                    <li><a href="index.html#contact" data-href-tr="index.html#iletisim" data-href-en="index.html#contact" class="block hover:text-emerald-400 transition nav-link" data-i18n="navContact">Contact</a></li>
-                    <li><a href="careers.html" class="block hover:text-emerald-400 transition" data-i18n="navCareers">Careers</a></li>
+            <div id="mobileMenu" class="mobile-menu-dropdown hidden" aria-hidden="true">
+                <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2qgXk0ZfBd6QJf7ef-306in7AI0Kzc-pL3NJFK1fU74vAUGiftVJPF3-DoXp9_RZoyqW_sjSpI" target="_blank" rel="noopener noreferrer" class="mobile-menu-cta" style="background: rgba(255, 255, 255, 0.95); color: #1e40af;" data-i18n="bannerCTA">🚀 Book a call with our CEO 🚀</a>
+                <ul class="mobile-menu-list">
+                    <li><a href="index.html#about" data-href-tr="index.html#hakkimizda" data-href-en="index.html#about" data-i18n="navAboutUs">About Us</a></li>
+                    <li><a href="index.html#partnerships" data-href-tr="index.html#ortakliklar" data-href-en="index.html#partnerships" data-i18n="navPartnerships">Partnerships</a></li>
+                    <li><a href="index.html#services" data-href-tr="index.html#services" data-href-en="index.html#services" data-i18n="navAbout">Services</a></li>
+                    <li><a href="index.html#projects" data-href-tr="index.html#projeler" data-href-en="index.html#projects" data-i18n="navProjects">Projects</a></li>
+                    <li><a href="index.html#team" data-href-tr="index.html#ekip" data-href-en="index.html#team" data-i18n="navTeam">Team</a></li>
+                    <li><a href="index.html#contact" data-href-tr="index.html#iletisim" data-href-en="index.html#contact" data-i18n="navContact">Contact</a></li>
+                    <li><a href="careers.html" data-i18n="navCareers">Careers</a></li>
                 </ul>
             </div>
         </div>
@@ -261,35 +260,35 @@
 
     </main>
 
-    <!-- Footer: logo + açıklama ortada; alt satırda © + linkler ve sosyal medya -->
+    <!-- Footer: index.html ile aynı -->
     <footer id="footer" class="bg-slate-950 border-t border-slate-800 py-4 md:py-6 px-4 md:px-12">
         <div class="container mx-auto max-w-5xl" style="display:grid;grid-template-columns:1fr 1fr;gap:0 2rem;align-items:start;">
             <div class="max-w-md text-center mx-auto w-full" style="grid-column:1/-1;">
                 <a href="index.html" class="inline-block cursor-pointer hover:opacity-80 transition" title="Back to top">
-                    <img src="assets/images/logo/CompanyLogo.png" alt="Solarity AI" class="logo-standard mb-2 h-auto mx-auto" width="360" height="90" loading="lazy" decoding="async" style="display:block;" />
+                    <img src="assets/images/logo/CompanyLogo.png" alt="Solarity AI" class="logo-standard mb-1 h-auto mx-auto" width="360" height="90" loading="lazy" decoding="async" style="display:block;" />
                 </a>
                 <p class="text-lg md:text-xl text-slate-300 leading-relaxed" data-i18n="footerDescription">AI-Native Software Company Creating High-Impact B2B and B2C Solutions with World-Class Quality.</p>
             </div>
             <div style="grid-column:2;"></div>
-            <div class="border-b border-slate-700 mt-3 pb-2" style="grid-column:1/-1;"></div>
-            <div class="flex flex-wrap items-center justify-center md:justify-start gap-y-1 text-slate-400 pt-2 text-center md:text-left" style="grid-column:1;grid-row:4;font-size:1.125rem;gap:0 1.25rem;align-self:center;">
-                <span data-i18n="footerCopyright">© 2026 Solarity AI LLC. All rights reserved.</span>
-                <div class="footer-page-links" style="margin-left:0.25rem;">
+            <div class="border-b border-slate-700 mt-4 pb-3" style="grid-column:1/-1;"></div>
+            <div class="footer-copyright-row flex items-center text-slate-400 pt-3 text-left" style="grid-column:1;grid-row:4;font-size:1.125rem;gap:0 0.75rem;align-self:center;flex-wrap:nowrap;">
+                <span class="shrink-0" data-i18n="footerCopyright">© 2026 Solarity AI LLC. All rights reserved.</span>
+                <div class="footer-page-links shrink-0">
                     <a href="legal.html#privacy" class="footer-page-link" data-i18n="footerPrivacy">Privacy</a>
                     <a href="legal.html#terms" class="footer-page-link" data-i18n="footerTerms">Terms</a>
                     <a href="legal.html" class="footer-page-link" data-i18n="navLegal">Legal</a>
                     <a href="blog.html" class="footer-page-link" data-i18n="navBlog">Blog</a>
                 </div>
             </div>
-            <div class="footer-socials flex justify-center md:justify-end items-center flex-wrap gap-3 pt-2" style="grid-column:2;grid-row:4;align-self:center;">
-                <a href="https://linktr.ee/solarity_ai_company" target="_blank" rel="noopener noreferrer" aria-label="Linktree – tüm linkler (opens in new tab)" class="inline-flex items-center justify-center w-24 h-24 text-slate-400 hover:text-brand-blue transition"><i class="lni lni-link text-6xl" aria-hidden="true"></i></a>
-                <a href="https://www.instagram.com/solarity_ai_company" target="_blank" rel="noopener noreferrer" aria-label="Instagram (opens in new tab)" class="inline-flex items-center justify-center w-24 h-24 text-slate-400 hover:text-brand-blue transition"><i class="lni lni-instagram-original text-6xl" aria-hidden="true"></i></a>
-                <a href="https://www.facebook.com/solarity_ai_company" target="_blank" rel="noopener noreferrer" aria-label="Facebook (opens in new tab)" class="inline-flex items-center justify-center w-24 h-24 text-slate-400 hover:text-brand-blue transition"><i class="lni lni-facebook-original text-6xl" aria-hidden="true"></i></a>
-                <a href="https://www.tiktok.com/@solarity_ai_company" target="_blank" rel="noopener noreferrer" aria-label="TikTok (opens in new tab)" class="inline-flex items-center justify-center w-24 h-24 text-slate-400 hover:text-brand-blue transition"><i class="lni lni-tiktok text-6xl" aria-hidden="true"></i></a>
-                <a href="https://www.youtube.com/@solarity_ai_company" target="_blank" rel="noopener noreferrer" aria-label="YouTube (opens in new tab)" class="inline-flex items-center justify-center w-24 h-24 text-slate-400 hover:text-brand-blue transition"><i class="lni lni-youtube text-6xl" aria-hidden="true"></i></a>
-                <a href="https://x.com/solarity_ai_com" target="_blank" rel="noopener noreferrer" aria-label="X (opens in new tab)" class="inline-flex items-center justify-center w-24 h-24 text-slate-400 hover:text-brand-blue transition"><svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="shrink-0"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
-                <a href="https://www.linkedin.com/company/solarityai-llc" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in new tab)" class="inline-flex items-center justify-center w-24 h-24 text-slate-400 hover:text-brand-blue transition"><i class="lni lni-linkedin-original text-6xl" aria-hidden="true"></i></a>
-                <a href="https://github.com/Solarity-AI" target="_blank" rel="noopener noreferrer" aria-label="GitHub (opens in new tab)" class="inline-flex items-center justify-center w-24 h-24 text-slate-400 hover:text-brand-blue transition"><i class="lni lni-github-original text-6xl" aria-hidden="true"></i></a>
+            <div class="footer-socials flex justify-center md:justify-end items-center flex-wrap pt-2" style="grid-column:2;grid-row:4;align-self:center;gap:0.15rem;">
+                    <a href="https://linktr.ee/solarity_ai_company" target="_blank" rel="noopener noreferrer" aria-label="Linktree – tüm linkler (opens in new tab)" class="inline-flex items-center justify-center w-24 h-24 text-slate-400 hover:text-brand-blue transition"><i class="lni lni-link text-6xl" aria-hidden="true"></i></a>
+                    <a href="https://www.instagram.com/solarity_ai_company" target="_blank" rel="noopener noreferrer" aria-label="Instagram (opens in new tab)" class="inline-flex items-center justify-center w-24 h-24 text-slate-400 hover:text-brand-blue transition"><i class="lni lni-instagram-original text-6xl" aria-hidden="true"></i></a>
+                    <a href="https://www.facebook.com/solarity_ai_company" target="_blank" rel="noopener noreferrer" aria-label="Facebook (opens in new tab)" class="inline-flex items-center justify-center w-24 h-24 text-slate-400 hover:text-brand-blue transition"><i class="lni lni-facebook-original text-6xl" aria-hidden="true"></i></a>
+                    <a href="https://www.tiktok.com/@solarity_ai_company" target="_blank" rel="noopener noreferrer" aria-label="TikTok (opens in new tab)" class="inline-flex items-center justify-center w-24 h-24 text-slate-400 hover:text-brand-blue transition"><i class="lni lni-tiktok text-6xl" aria-hidden="true"></i></a>
+                    <a href="https://www.youtube.com/@solarity_ai_company" target="_blank" rel="noopener noreferrer" aria-label="YouTube (opens in new tab)" class="inline-flex items-center justify-center w-24 h-24 text-slate-400 hover:text-brand-blue transition"><i class="lni lni-youtube text-6xl" aria-hidden="true"></i></a>
+                    <a href="https://x.com/solarity_ai_com" target="_blank" rel="noopener noreferrer" aria-label="X (opens in new tab)" class="inline-flex items-center justify-center w-24 h-24 text-slate-400 hover:text-brand-blue transition"><svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="shrink-0"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                    <a href="https://www.linkedin.com/company/solarityai-llc" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in new tab)" class="inline-flex items-center justify-center w-24 h-24 text-slate-400 hover:text-brand-blue transition"><i class="lni lni-linkedin-original text-6xl" aria-hidden="true"></i></a>
+                    <a href="https://github.com/Solarity-AI" target="_blank" rel="noopener noreferrer" aria-label="GitHub (opens in new tab)" class="inline-flex items-center justify-center w-24 h-24 text-slate-400 hover:text-brand-blue transition"><i class="lni lni-github-original text-6xl" aria-hidden="true"></i></a>
             </div>
         </div>
     </footer>
