@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <style>html.lang-loading body{visibility:hidden;}.stats-section{min-height:140px}@media(min-width:768px){.stats-section{min-height:180px}}main{display:flex;flex-direction:column}#about,#hakkimizda{order:1}#stats-section{order:2}main>section:not(#about):not(#hakkimizda):not(#stats-section){order:3}</style>
+    <style>html.lang-loading body{visibility:hidden;}.stats-section{min-height:110px}@media(min-width:768px){.stats-section{min-height:140px}}main{display:flex;flex-direction:column}#about,#hakkimizda{order:1}#stats-section{order:2}main>section:not(#about):not(#hakkimizda):not(#stats-section){order:3}</style>
     <script>
       (function(){
         try {
@@ -148,16 +148,18 @@
     </style>
     <!-- İstatistikler: kısa container, az boşluk – main.css section padding’ini geçersiz kılar -->
     <style id="stats-section-override">
+      #stats-section .container { max-width: 52rem !important; }
       #stats-section {
         padding-top: 0.5rem !important;
-        padding-bottom: 1.5rem !important;
-        min-height: 140px !important;
+        padding-bottom: 1.25rem !important;
+        min-height: 110px !important;
       }
       @media (min-width: 768px) {
+        #stats-section .container { max-width: 58rem !important; }
         #stats-section {
-          padding-top: 1rem !important;
-          padding-bottom: 2rem !important;
-          min-height: 180px !important;
+          padding-top: 0.75rem !important;
+          padding-bottom: 1.5rem !important;
+          min-height: 140px !important;
         }
       }
     </style>
@@ -365,11 +367,24 @@
         text-align: center;
         flex: 1 1 auto;
         min-height: 0;
-        overflow: hidden;
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 4;
         line-height: 1.5;
+      }
+      /* Mobilde açıklama tam görünsün, üç nokta olmasın */
+      @media (max-width: 767px) {
+        .service-card .service-card-body p {
+          overflow: visible;
+          display: block;
+          -webkit-line-clamp: unset;
+          -webkit-box-orient: unset;
+        }
+      }
+      @media (min-width: 768px) {
+        .service-card .service-card-body p {
+          overflow: hidden;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 4;
+        }
       }
       .service-card .service-card-tags {
         flex: 0 0 auto;
@@ -783,17 +798,21 @@
         box-shadow: 0 10px 40px rgba(16, 185, 129, 0.35);
       }
 
-      /* General team role styling - larger font for all roles */
+      /* General team role styling - büyük font, taşma yok */
       .team-role {
-        font-size: 1.25rem;
+        font-size: 1.5rem;
         font-weight: 600;
         margin-top: 0.4rem;
         color: #93C5FD;
+        min-width: 0;
+        overflow-wrap: break-word;
+        word-break: break-word;
+        text-align: center;
       }
 
       @media (min-width: 768px) {
         .team-role {
-          font-size: 1.45rem;
+          font-size: 1.75rem;
         }
       }
 
@@ -904,19 +923,23 @@
         transform: scale(1.08);
       }
 
-      /* Team member name - fixed height for consistency */
+      /* Team member name - büyük font, taşma yok */
       .team-card h4 {
         min-height: 3.5rem;
         display: flex;
         align-items: center;
         justify-content: center;
-        line-height: 1.4;
-        font-size: 1.625rem; /* 26px - even larger for better visibility */
+        line-height: 1.35;
+        font-size: 1.95rem;
+        min-width: 0;
+        overflow-wrap: break-word;
+        word-break: break-word;
+        text-align: center;
       }
 
       @media (min-width: 768px) {
         .team-card h4 {
-          font-size: 1.75rem; /* 28px on desktop */
+          font-size: 2.25rem;
         }
       }
 
@@ -1260,6 +1283,13 @@
         #ekip .ud-single-team.team-card {
           padding-bottom: 1.25rem !important;
         }
+        /* Mobilde ekip üyesi unvanları (CEO, CTO, BDM, Full-Stack Engineer vb.) beyaz */
+        #team .team-role,
+        #ekip .team-role,
+        #team .ud-team-info h5,
+        #ekip .ud-team-info h5 {
+          color: #ffffff !important;
+        }
       }
 
       /* Ekip kartları TR/EN aynı – 340px genişlik, 380px fotoğraf – sayfa stilleri main.css’ten sonra yüklendiği için öncelik alır */
@@ -1470,14 +1500,14 @@
         </div>
     </section>
 
-    <!-- Services - Modern Bento Grid (5 Hizmet) - FERAH ALAN -->
+    <!-- Services - Modern Bento Grid (6 Hizmet) - FERAH ALAN -->
     <section id="services" data-section-tr="services" data-section-en="services" class="py-24 px-4 md:px-12 bg-slate-900/50">
         <div class="container mx-auto">
             <div class="text-center mb-16">
                 <h2 class="text-3xl md:text-5xl font-bold font-display mb-6" data-i18n="servicesTitle">Our Services</h2>
             </div>
 
-            <!-- Bento Grid: 5 Services (AI featured, others balanced) -->
+            <!-- Bento Grid: 6 Services (AI featured, others balanced) -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 services-grid">
                 <!-- Service 1: AI/ML - robot icon, 5 SEO tags -->
                 <div class="service-card">
@@ -1568,6 +1598,24 @@
                         <span class="service-tag" data-i18n="tagKotlin">Kotlin</span>
                     </div>
                 </div>
+
+                <!-- Service 6: DevOps & Infrastructure -->
+                <div class="service-card">
+                    <div class="service-card-logo">
+                        <div class="service-icon service-icon-emoji" aria-hidden="true">⚙️</div>
+                    </div>
+                    <div class="service-card-body">
+                        <h3 class="text-xl font-semibold mb-3 text-white" data-i18n="serviceDevOps">DevOps & Infrastructure</h3>
+                        <p class="text-slate-300 text-sm leading-relaxed" data-i18n="serviceDevOpsDesc">CI/CD pipelines, containerization, and infrastructure as code. Accelerate delivery and ensure reliability.</p>
+                    </div>
+                    <div class="service-card-tags">
+                        <span class="service-tag" data-i18n="tagCICD">CI/CD</span>
+                        <span class="service-tag" data-i18n="tagDocker">Docker</span>
+                        <span class="service-tag" data-i18n="tagMonitoring">Monitoring</span>
+                        <span class="service-tag" data-i18n="tagTerraform">Terraform</span>
+                        <span class="service-tag" data-i18n="tagLinux">Linux</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -1581,7 +1629,7 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <!-- Project 1: Ministry of Trade - E-Auction -->
-                <a href="https://www.ticaret.gov.tr/" target="_blank" rel="noopener noreferrer" class="bento-card group block" aria-label="Ministry of Trade - E-Auction (opens in new tab)">
+                <a href="https://eihale.gov.tr/" target="_blank" rel="noopener noreferrer" class="bento-card group block" aria-label="Ministry of Trade - E-Auction (opens in new tab)">
                     <div class="mb-4">
                         <div class="text-2xl mb-2">🏛️</div>
                         <h3 class="text-lg font-semibold text-slate-200 mb-1" data-i18n="projectMinistryTrade">Ministry of Trade</h3>
@@ -1642,26 +1690,6 @@
             <div class="mb-20 executives-wrap">
                 <h3 class="text-3xl md:text-4xl font-bold text-center mb-10 text-yellow-400" data-i18n="teamExecutives">Executives</h3>
                 <div class="team-grid-executives" style="gap: var(--team-gap);">
-                    <div class="ud-single-team team-card team-card-ceo">
-                        <div class="ud-team-image-wrapper">
-                            <div class="ud-team-image">
-                                <a href="https://www.linkedin.com/in/ataturhan/" target="_blank" rel="noopener noreferrer">
-                                    <img src="assets/images/team/AtaTurhan.webp" alt="Ata Turhan" class="team-avatar" data-alt-en="Ata Turhan" data-alt-tr="Ata Turhan" width="176" height="224" loading="lazy" decoding="async" />
-                                </a>
-                            </div>
-                        </div>
-                        <div class="ud-team-info">
-                            <h4 class="text-xl font-semibold team-member-name" data-name-en="Ata Turhan" data-name-tr="Ata Turhan">Ata Turhan</h4>
-                            <h5 class="team-role text-brand-blue" data-i18n="teamCEO">CEO</h5>
-                        </div>
-                        <ul class="ud-team-socials">
-                            <li>
-                                <a href="https://www.linkedin.com/in/ataturhan/" target="_blank" rel="noopener noreferrer" aria-label="Ata Turhan LinkedIn (opens in new tab)" class="text-brand-blue hover:text-brand-blue-light">
-                                    <i class="lni lni-linkedin-original text-4xl" aria-hidden="true"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
                     <div class="ud-single-team team-card team-card-cto">
                         <div class="ud-team-image-wrapper">
                             <div class="ud-team-image">
@@ -1677,6 +1705,26 @@
                         <ul class="ud-team-socials">
                             <li>
                                 <a href="https://www.linkedin.com/in/umurinan/" target="_blank" rel="noopener noreferrer" aria-label="Umur Inan LinkedIn (opens in new tab)" class="text-brand-blue hover:text-brand-blue-light">
+                                    <i class="lni lni-linkedin-original text-4xl" aria-hidden="true"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="ud-single-team team-card team-card-ceo">
+                        <div class="ud-team-image-wrapper">
+                            <div class="ud-team-image">
+                                <a href="https://www.linkedin.com/in/ataturhan/" target="_blank" rel="noopener noreferrer">
+                                    <img src="assets/images/team/AtaTurhan.webp" alt="Ata Turhan" class="team-avatar" data-alt-en="Ata Turhan" data-alt-tr="Ata Turhan" width="176" height="224" loading="lazy" decoding="async" />
+                                </a>
+                            </div>
+                        </div>
+                        <div class="ud-team-info">
+                            <h4 class="text-xl font-semibold team-member-name" data-name-en="Ata Turhan" data-name-tr="Ata Turhan">Ata Turhan</h4>
+                            <h5 class="team-role text-brand-blue" data-i18n="teamCEO">CEO</h5>
+                        </div>
+                        <ul class="ud-team-socials">
+                            <li>
+                                <a href="https://www.linkedin.com/in/ataturhan/" target="_blank" rel="noopener noreferrer" aria-label="Ata Turhan LinkedIn (opens in new tab)" class="text-brand-blue hover:text-brand-blue-light">
                                     <i class="lni lni-linkedin-original text-4xl" aria-hidden="true"></i>
                                 </a>
                             </li>
@@ -1985,18 +2033,18 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 items-stretch">
                 <!-- Sol: Kutucuklar (E-posta, Adres, Yanıt süresi) + harita -->
                 <div class="order-2 md:order-1 flex flex-col min-h-0">
-                    <div class="space-y-6 mb-4 flex-shrink-0">
-                        <div class="p-4 rounded-xl bg-slate-800/80 border border-slate-600 border-l-4 border-l-blue-500 shadow-sm hover:border-blue-500/40 transition-colors" style="display:grid;grid-template-columns:4rem 1fr;grid-template-rows:auto auto;gap:0.125rem 1rem;align-items:start;">
+                    <div class="space-y-6 mb-4 flex-shrink-0 contact-info-boxes">
+                        <div class="contact-info-box p-4 rounded-xl bg-slate-800/80 border border-slate-600 border-l-4 border-l-blue-500 shadow-sm hover:border-blue-500/40 transition-colors" style="display:grid;grid-template-columns:4rem 1fr;grid-template-rows:auto auto;gap:0.125rem 1rem;align-items:start;">
                             <span style="grid-column:1;grid-row:1/span 2;width:4rem;min-height:4rem;height:100%;border-radius:0.75rem;background:rgba(59,130,246,0.1);color:#60a5fa;display:flex;align-items:center;justify-content:center;" aria-hidden="true"><i class="lni lni-envelope" style="font-size:1.75rem;"></i></span>
                             <p class="text-slate-500 leading-tight" style="grid-column:2;grid-row:1;margin:0;font-size:1rem;" data-i18n="contactEmail">Email us</p>
-                            <a href="mailto:ata.turhan@solarityai.com" class="text-lg font-semibold text-slate-100 hover:text-blue-400 transition-colors break-all leading-snug" style="grid-column:2;grid-row:2;margin:0;margin-top:0.125rem;">ata.turhan@solarityai.com</a>
+                            <a href="mailto:ata.turhan@solarityai.com" class="contact-email text-lg font-semibold text-slate-100 hover:text-blue-400 transition-colors leading-snug" style="grid-column:2;grid-row:2;margin:0;margin-top:0.125rem;min-width:0;max-width:100%;">ata.turhan@solarityai.com</a>
                         </div>
-                        <div class="p-4 rounded-xl bg-slate-800/80 border border-slate-600 border-l-4 border-l-emerald-500 shadow-sm hover:border-emerald-500/40 transition-colors" style="display:grid;grid-template-columns:4rem 1fr;grid-template-rows:auto auto;gap:0.125rem 1rem;align-items:start;">
+                        <div class="contact-info-box p-4 rounded-xl bg-slate-800/80 border border-slate-600 border-l-4 border-l-emerald-500 shadow-sm hover:border-emerald-500/40 transition-colors" style="display:grid;grid-template-columns:4rem 1fr;grid-template-rows:auto auto;gap:0.125rem 1rem;align-items:start;">
                             <span style="grid-column:1;grid-row:1/span 2;width:4rem;min-height:4rem;height:100%;border-radius:0.75rem;background:rgba(16,185,129,0.1);color:#34d399;display:flex;align-items:center;justify-content:center;" aria-hidden="true"><i class="lni lni-map-marker" style="font-size:1.75rem;"></i></span>
                             <p class="text-slate-500 leading-tight" style="grid-column:2;grid-row:1;margin:0;font-size:1rem;" data-i18n="contactAddress">Headquarters</p>
-                            <p class="text-lg font-semibold text-slate-100 leading-snug" style="grid-column:2;grid-row:2;margin:0;margin-top:0.125rem;" data-i18n="contactAddressValue">310 Gran Via, Irving, TX 75039, USA</p>
+                            <p class="contact-address text-lg font-semibold text-slate-100 leading-snug" style="grid-column:2;grid-row:2;margin:0;margin-top:0.125rem;min-width:0;max-width:100%;" data-i18n="contactAddressValue">310 Gran Via, Irving, TX 75039, USA</p>
                         </div>
-                        <div class="p-4 rounded-xl bg-slate-800/80 border border-slate-600 border-l-4 border-l-amber-500 shadow-sm hover:border-amber-500/40 transition-colors" style="display:grid;grid-template-columns:4rem 1fr;grid-template-rows:auto auto;gap:0.125rem 1rem;align-items:start;">
+                        <div class="contact-info-box p-4 rounded-xl bg-slate-800/80 border border-slate-600 border-l-4 border-l-amber-500 shadow-sm hover:border-amber-500/40 transition-colors" style="display:grid;grid-template-columns:4rem 1fr;grid-template-rows:auto auto;gap:0.125rem 1rem;align-items:start;">
                             <span style="grid-column:1;grid-row:1/span 2;width:4rem;min-height:4rem;height:100%;border-radius:0.75rem;background:rgba(245,158,11,0.1);color:#fbbf24;display:flex;align-items:center;justify-content:center;" aria-hidden="true"><i class="lni lni-timer" style="font-size:1.75rem;"></i></span>
                             <p class="text-slate-500 leading-tight" style="grid-column:2;grid-row:1;margin:0;font-size:1rem;" data-i18n="contactResponseTime">Response time</p>
                             <p class="text-lg font-semibold text-slate-100 leading-snug" style="grid-column:2;grid-row:2;margin:0;margin-top:0.125rem;" data-i18n="contactResponseTimeValue">Within 24 hours</p>
@@ -2100,7 +2148,7 @@
                     <a href="blog.html" class="footer-page-link" data-i18n="navBlog">Blog</a>
                 </div>
             </div>
-            <div class="footer-socials flex justify-center md:justify-end items-center flex-wrap gap-3 pt-2" style="grid-column:2;grid-row:4;align-self:center;">
+            <div class="footer-socials flex justify-center md:justify-end items-center flex-wrap pt-2" style="grid-column:2;grid-row:4;align-self:center;">
                     <a href="https://linktr.ee/solarity_ai_company" target="_blank" rel="noopener noreferrer" aria-label="Linktree – tüm linkler (opens in new tab)" class="inline-flex items-center justify-center w-24 h-24 text-slate-400 hover:text-brand-blue transition"><i class="lni lni-link text-6xl" aria-hidden="true"></i></a>
                     <a href="https://www.instagram.com/solarity_ai_company" target="_blank" rel="noopener noreferrer" aria-label="Instagram (opens in new tab)" class="inline-flex items-center justify-center w-24 h-24 text-slate-400 hover:text-brand-blue transition"><i class="lni lni-instagram-original text-6xl" aria-hidden="true"></i></a>
                     <a href="https://www.facebook.com/solarity_ai_company" target="_blank" rel="noopener noreferrer" aria-label="Facebook (opens in new tab)" class="inline-flex items-center justify-center w-24 h-24 text-slate-400 hover:text-brand-blue transition"><i class="lni lni-facebook-original text-6xl" aria-hidden="true"></i></a>
@@ -2563,8 +2611,12 @@
     <style id="team-cards-override">
       #team .ud-single-team.team-card, #ekip .ud-single-team.team-card { width: 300px !important; min-width: 300px !important; max-width: 300px !important; display: flex !important; flex-direction: column !important; padding-bottom: 1.25rem !important; box-sizing: border-box !important; }
       #team .ud-team-info, #ekip .ud-team-info { display: flex !important; flex-direction: column !important; align-items: center !important; gap: 0.5rem !important; flex: 0 1 auto !important; margin-top: 2.25rem !important; padding: 0.5rem 0.35rem 0.75rem !important; min-height: 0 !important; overflow: visible !important; visibility: visible !important; }
-      #team .ud-team-info h4, #ekip .ud-team-info h4 { margin: 0 0 0.25rem 0 !important; line-height: 1.35 !important; visibility: visible !important; }
-      #team .ud-team-info h5, #ekip .ud-team-info h5 { margin: 0 !important; line-height: 1.35 !important; visibility: visible !important; display: block !important; }
+      #team .ud-team-info h4, #ekip .ud-team-info h4 { margin: 0 0 0.25rem 0 !important; line-height: 1.35 !important; visibility: visible !important; font-size: 2rem !important; min-width: 0 !important; overflow-wrap: break-word !important; word-break: break-word !important; }
+      #team .ud-team-info h5, #ekip .ud-team-info h5 { margin: 0 !important; line-height: 1.35 !important; visibility: visible !important; display: block !important; font-size: 1.6rem !important; min-width: 0 !important; overflow-wrap: break-word !important; word-break: break-word !important; white-space: normal !important; text-overflow: unset !important; }
+      @media (min-width: 768px) {
+        #team .ud-team-info h4, #ekip .ud-team-info h4 { font-size: 2.5rem !important; }
+        #team .ud-team-info h5, #ekip .ud-team-info h5 { font-size: 1.85rem !important; }
+      }
       #team .ud-team-socials, #ekip .ud-team-socials { flex-shrink: 0 !important; margin-top: 0.5rem !important; margin-bottom: 0 !important; visibility: visible !important; display: flex !important; opacity: 1 !important; }
       @media (max-width: 767px) {
         #team .ud-single-team.team-card, #ekip .ud-single-team.team-card { width: 300px !important; min-width: 300px !important; max-width: 300px !important; overflow: hidden !important; min-height: auto !important; height: auto !important; aspect-ratio: unset !important; align-self: flex-start !important; }
