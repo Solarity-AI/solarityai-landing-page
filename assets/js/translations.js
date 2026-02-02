@@ -129,7 +129,7 @@ window.translations = {
     teamCTO: "CTO",
     teamCIO: "CIO",
     teamBDM: "BDM",
-    teamLeadFullStack: "Lead Full-Stack Engineer",
+    teamLeadFullStack: "Engineering Manager & Lead Full-Stack Engineer",
     teamSeniorFullStack: "Senior Full-Stack Engineer",
     teamMarketer: "Marketing Specialist",
     // Contact Section
@@ -408,7 +408,7 @@ window.translations = {
     teamCTO: "CTO",
     teamCIO: "CIO",
     teamBDM: "BDM",
-    teamLeadFullStack: "Lead Full-Stack Mühendisi",
+    teamLeadFullStack: "Mühendislik Müdürü & Kıdemli Full-Stack Mühendisi",
     teamSeniorFullStack: "Kıdemli Full-Stack Mühendisi",
     teamMarketer: "Pazarlama Uzmanı",
     // Contact Section
