@@ -218,16 +218,51 @@
       return;
     }
     // Dil degisince sayfa ayni yerde kalsin: scroll (mutlak + oran) ve hash kaydet
-    var savedScrollY = window.scrollY !== undefined ? window.scrollY : (window.pageYOffset || document.documentElement.scrollTop || 0);
-    var doc = document.documentElement;
-    var maxScroll = Math.max(0, (doc.scrollHeight - (window.innerHeight || doc.clientHeight)));
-    var savedScrollRatio = maxScroll > 0 ? savedScrollY / maxScroll : 0;
+    // Tıklamadan önce (mousedown/touchstart) kaydedilen pozisyon varsa onu kullan – focus scroll’u bozmasın
+    var prior = window._langScrollBeforeSwitch;
+    var savedScrollY, savedScrollRatio;
+    if (prior && typeof prior.y === 'number') {
+      savedScrollY = prior.y;
+      savedScrollRatio = prior.ratio;
+      window._langScrollBeforeSwitch = null;
+    } else {
+      savedScrollY = window.scrollY !== undefined ? window.scrollY : (window.pageYOffset || document.documentElement.scrollTop || 0);
+      var doc = document.documentElement;
+      var maxScroll = Math.max(0, (doc.scrollHeight - (window.innerHeight || doc.clientHeight)));
+      savedScrollRatio = maxScroll > 0 ? savedScrollY / maxScroll : 0;
+    }
     if (savedScrollRatio > 1) savedScrollRatio = 1;
     if (savedScrollRatio < 0) savedScrollRatio = 0;
     var hadHash = window.location.hash || "";
     if (hadHash) {
       try { window.history.replaceState(null, "", window.location.pathname + window.location.search); } catch (e) {}
     }
+    // Hemen mevcut scroll’u hedefe çek – focus vb. scroll’u bozmuşsa düzelt
+    var scrollbarW = window.innerWidth - document.documentElement.clientWidth;
+    document.documentElement.style.scrollBehavior = 'auto';
+    document.body.style.setProperty('overflow', 'hidden', 'important');
+    document.body.style.setProperty('position', 'fixed', 'important');
+    document.body.style.setProperty('top', '-' + savedScrollY + 'px', 'important');
+    document.body.style.setProperty('left', '0', 'important');
+    document.body.style.setProperty('right', '0', 'important');
+    document.body.style.setProperty('width', '100%', 'important');
+    if (scrollbarW > 0) document.body.style.setProperty('padding-right', scrollbarW + 'px', 'important');
+
+    function unlockScrollAndRestore() {
+      document.body.style.removeProperty('overflow');
+      document.body.style.removeProperty('position');
+      document.body.style.removeProperty('top');
+      document.body.style.removeProperty('left');
+      document.body.style.removeProperty('right');
+      document.body.style.removeProperty('width');
+      document.body.style.removeProperty('padding-right');
+      var d = document.documentElement;
+      var max = Math.max(0, d.scrollHeight - (window.innerHeight || d.clientHeight));
+      var targetY = savedScrollRatio * max;
+      if (targetY > max) targetY = max;
+      window.scrollTo(0, targetY);
+    }
+
     // Bolum id'lerini guncelle (hash yok artik, scroll tetiklenmez)
     updateSectionIds(lang);
     // Güvenlik: çeviri hiç yüklenmezse 3 saniye sonra yine de body'yi göster
@@ -239,7 +274,7 @@
       if (targetY > max) targetY = max;
       window.scrollTo(0, targetY);
     }
-    var scrollPinEnd = Date.now() + 1600;
+    var scrollPinEnd = Date.now() + 2500;
     function scrollPinLoop() {
       if (Date.now() >= scrollPinEnd) return;
       var d = document.documentElement;
@@ -258,8 +293,8 @@
     }
     window._langLoadingFallback = setTimeout(function() {
       document.documentElement.classList.remove('lang-loading');
-      restoreScroll();
-      requestAnimationFrame(restoreScroll);
+      if (typeof unlockScrollAndRestore === 'function') unlockScrollAndRestore();
+      else restoreScroll();
     }, 3000);
     
     currentLang = lang;
@@ -441,12 +476,11 @@
         log("Translation complete! Updated", elements.length, "elements");
         updateMetaTags(lang, window.location.pathname);
         updateMapEmbedLang(lang);
-        if (typeof restoreScroll === "function") {
-          restoreScroll();
-          requestAnimationFrame(restoreScroll);
-          setTimeout(restoreScroll, 0);
-          setTimeout(restoreScroll, 50);
-          var lockEnd = Date.now() + 250;
+        if (typeof unlockScrollAndRestore === "function") {
+          unlockScrollAndRestore();
+          requestAnimationFrame(function() { if (typeof restoreScroll === "function") restoreScroll(); });
+          setTimeout(function() { if (typeof restoreScroll === "function") restoreScroll(); }, 50);
+          var lockEnd = Date.now() + 400;
           function scrollLock() {
             if (Date.now() >= lockEnd) {
               window.removeEventListener("scroll", scrollLock, true);
@@ -456,17 +490,16 @@
             var max = Math.max(0, d.scrollHeight - (window.innerHeight || d.clientHeight));
             var targetY = savedScrollRatio * max;
             var nowY = window.scrollY || document.documentElement.scrollTop;
-            if (Math.abs(nowY - targetY) > 10) restoreScroll();
+            if (Math.abs(nowY - targetY) > 10 && typeof restoreScroll === "function") restoreScroll();
           }
           window.addEventListener("scroll", scrollLock, true);
-          setTimeout(function() { window.removeEventListener("scroll", scrollLock, true); }, 300);
+          setTimeout(function() { window.removeEventListener("scroll", scrollLock, true); }, 450);
           if (hadHash) {
             var newHash = translateHash(hadHash, lang);
             if (newHash) {
               setTimeout(function() {
                 try { window.history.replaceState(null, "", newHash); } catch (e) {}
-                restoreScroll();
-                requestAnimationFrame(restoreScroll);
+                if (typeof restoreScroll === "function") restoreScroll();
               }, 100);
             }
           }
@@ -493,19 +526,36 @@
       
       // Only set up listener once to avoid duplicates
       if (!buttonListenerSetup) {
+        // mousedown/touchstart: tıklamadan önce scroll pozisyonunu kaydet – focus scroll’u bozmasın
+        function saveScrollBeforeSwitch(e) {
+          const target = e.target;
+          if (target && (target.id === 'languageSwitcher' || target.closest('#languageSwitcher') || target.id === 'languageSwitcherMobile' || target.closest('#languageSwitcherMobile'))) {
+            var y = window.scrollY !== undefined ? window.scrollY : (window.pageYOffset || document.documentElement.scrollTop || 0);
+            var doc = document.documentElement;
+            var maxScroll = Math.max(0, (doc.scrollHeight - (window.innerHeight || doc.clientHeight)));
+            var ratio = maxScroll > 0 ? y / maxScroll : 0;
+            if (ratio > 1) ratio = 1;
+            if (ratio < 0) ratio = 0;
+            window._langScrollBeforeSwitch = { y: y, ratio: ratio };
+          }
+        }
+        document.body.addEventListener('mousedown', saveScrollBeforeSwitch, true);
+        document.body.addEventListener('touchstart', saveScrollBeforeSwitch, true);
+
         // Use event delegation on document body for maximum reliability
-        // This works even if the button is replaced or recreated
         document.body.addEventListener('click', function languageButtonHandler(e) {
           const target = e.target;
           if (target && (target.id === 'languageSwitcher' || target.closest('#languageSwitcher') || target.id === 'languageSwitcherMobile' || target.closest('#languageSwitcherMobile'))) {
             e.preventDefault();
             e.stopPropagation();
+            if (target.blur) target.blur();
+            if (document.activeElement && document.activeElement.blur) document.activeElement.blur();
             log('🔘 Language button clicked via delegation! (desktop or mobile)');
             toggleLanguage();
             return false;
           }
         }, true); // Use capture phase for better reliability
-        
+
         buttonListenerSetup = true;
         log('✅ Language switcher button event delegation attached');
       }
@@ -515,6 +565,8 @@
       const directHandler = function(e) {
         e.preventDefault();
         e.stopPropagation();
+        if (e.target && e.target.blur) e.target.blur();
+        if (document.activeElement && document.activeElement.blur) document.activeElement.blur();
         log('🔘 Language button clicked via direct listener!');
         toggleLanguage();
         return false;
