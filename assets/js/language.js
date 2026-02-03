@@ -111,27 +111,28 @@
     });
   }
 
-  // Google Maps embed: her zaman İngilizce harita (EN embed)
+  // Google Maps embed: diline göre TR veya EN harita (lazy-load sonrası veya dil değişince replace)
   function updateMapEmbedLang(lang) {
     var iframe = document.getElementById('contactMapEmbed');
     if (!iframe) return;
-    var baseSrc = iframe.getAttribute('data-src-en');
-    if (!baseSrc) return;
+    var srcTr = iframe.getAttribute('data-src-tr');
+    var srcEn = iframe.getAttribute('data-src-en');
+    var url = (lang === 'tr' ? srcTr : srcEn) || srcEn;
+    if (!url) return;
     var parent = iframe.parentNode;
     var newIframe = document.createElement('iframe');
     newIframe.id = 'contactMapEmbed';
     newIframe.title = iframe.title || 'Solarity AI - Dallas Office';
-    newIframe.setAttribute('data-src-tr', iframe.getAttribute('data-src-tr') || '');
-    newIframe.setAttribute('data-src-en', iframe.getAttribute('data-src-en') || '');
+    newIframe.setAttribute('data-src-tr', srcTr || '');
+    newIframe.setAttribute('data-src-en', srcEn || '');
     newIframe.className = iframe.className || 'w-full h-full min-h-[260px] md:min-h-[320px]';
     newIframe.style.border = '0';
     newIframe.setAttribute('allowfullscreen', '');
     newIframe.setAttribute('referrerpolicy', iframe.getAttribute('referrerpolicy') || 'no-referrer-when-downgrade');
-    newIframe.setAttribute('loading', 'eager');
     parent.replaceChild(newIframe, iframe);
-    var sep = baseSrc.indexOf('?') >= 0 ? '&' : '?';
-    newIframe.src = baseSrc + sep + '_=' + Date.now();
-    log('🗺️ Map embed set to English');
+    var sep = url.indexOf('?') >= 0 ? '&' : '?';
+    newIframe.src = url + sep + '_=' + Date.now();
+    log('🗺️ Map embed set to', lang === 'tr' ? 'Turkish' : 'English');
   }
 
   // Ekip üyesi isimleri: EN'de Türkçe karakter yok, TR'de orijinal
@@ -477,8 +478,13 @@
         updateMetaTags(lang, window.location.pathname);
         updateMapEmbedLang(lang);
         if (typeof unlockScrollAndRestore === "function") {
-          unlockScrollAndRestore();
-          requestAnimationFrame(function() { if (typeof restoreScroll === "function") restoreScroll(); });
+          // Zorunlu reflow’u azalt: layout okuyan unlockScrollAndRestore/restoreScroll’u bir sonraki frame’e ertele
+          var doUnlock = function() {
+            unlockScrollAndRestore();
+            if (typeof restoreScroll === "function") restoreScroll();
+          };
+          if (typeof requestAnimationFrame !== "undefined") requestAnimationFrame(doUnlock);
+          else setTimeout(doUnlock, 0);
           setTimeout(function() { if (typeof restoreScroll === "function") restoreScroll(); }, 50);
           var lockEnd = Date.now() + 400;
           function scrollLock() {
@@ -559,34 +565,29 @@
         buttonListenerSetup = true;
         log('✅ Language switcher button event delegation attached');
       }
-      
-      // Also ensure direct listener is attached to the current button
-      // Remove any existing listeners by cloning (but keep the element reference)
-      const directHandler = function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        if (e.target && e.target.blur) e.target.blur();
-        if (document.activeElement && document.activeElement.blur) document.activeElement.blur();
-        log('🔘 Language button clicked via direct listener!');
-        toggleLanguage();
-        return false;
-      };
-      
-      // Remove old listener if exists and add new one
-      switcher.removeEventListener('click', directHandler);
-      switcher.addEventListener('click', directHandler);
-      
-      // Also attach direct listener to mobile switcher if present
-      const mobileSwitcher = document.getElementById('languageSwitcherMobile');
-      if (mobileSwitcher) {
-        try {
-          mobileSwitcher.removeEventListener('click', directHandler);
-        } catch (e) {}
-        mobileSwitcher.addEventListener('click', directHandler);
-        log('✅ Language switcher mobile direct listener attached');
+      // Direct listener’ları ayrı tick’te ekle (uzun görev kırma)
+      function attachDirectListeners() {
+        var directHandler = function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          if (e.target && e.target.blur) e.target.blur();
+          if (document.activeElement && document.activeElement.blur) document.activeElement.blur();
+          log('🔘 Language button clicked via direct listener!');
+          toggleLanguage();
+          return false;
+        };
+        switcher.removeEventListener('click', directHandler);
+        switcher.addEventListener('click', directHandler);
+        var mobileSwitcher = document.getElementById('languageSwitcherMobile');
+        if (mobileSwitcher) {
+          try { mobileSwitcher.removeEventListener('click', directHandler); } catch (e) {}
+          mobileSwitcher.addEventListener('click', directHandler);
+          log('✅ Language switcher mobile direct listener attached');
+        }
+        log('✅ Language switcher button direct listener attached');
       }
-
-      log('✅ Language switcher button direct listener attached');
+      if (typeof requestAnimationFrame !== 'undefined') requestAnimationFrame(attachDirectListeners);
+      else setTimeout(attachDirectListeners, 0);
       return switcher;
     } else {
       warn('⚠️ Language switcher button not found! Will retry...');
@@ -665,13 +666,12 @@
     if (typeof window.toggleLanguage === 'function') return window.toggleLanguage();
   };
 
-  // Initialize on DOM ready
+  // Initialize on DOM ready – iki tick’e bölünür: TBT / uzun ana iş parçacığı görevinden kaçın
   function initialize() {
     log('=== LANGUAGE SYSTEM INITIALIZING ===');
     log('Current language:', currentLang);
     log('Translations object exists:', typeof translations !== 'undefined');
     
-    // Wait for translations to be loaded (check both window.translations and translations)
     const translationsObj = window.translations || (typeof translations !== 'undefined' ? translations : null);
     if (!translationsObj) {
       log('⏳ Waiting for translations to load...');
@@ -683,12 +683,19 @@
     log('✅ Turkish translations available:', !!translationsObj['tr']);
     log('✅ Sample Turkish navAbout:', translationsObj['tr'] ? translationsObj['tr']['navAbout'] : 'NOT FOUND');
     
-    setTimeout(function() {
+    // 1. tick: sadece buton dinleyicisi (setupLanguageSwitcher + attachDirectListeners ertelenir)
+    setupLanguageSwitcher();
+    // 2.–3. tick: setLanguage + updateLanguageSwitcher (initLanguage bir frame sonra, uzun görevi böler)
+    function runInitLanguage() {
       log('=== RUNNING INITIAL TRANSLATION ===');
       log('Language:', currentLang);
-      setupLanguageSwitcher();
       initLanguage();
-    }, 0);
+    }
+    if (typeof requestAnimationFrame !== 'undefined') {
+      requestAnimationFrame(function() { requestAnimationFrame(runInitLanguage); });
+    } else {
+      setTimeout(runInitLanguage, 0);
+    }
   }
 
   function runInitialize() {
@@ -698,10 +705,13 @@
       setTimeout(initialize, 150);
     }
   }
+  // Script yüklendiğinde hemen yield: uzun görev ilk tick’te bitmesin
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', runInitialize);
+    document.addEventListener('DOMContentLoaded', function() {
+      setTimeout(runInitialize, 0);
+    });
   } else {
-    runInitialize();
+    setTimeout(runInitialize, 0);
   }
 
   window.addEventListener('load', function() {
