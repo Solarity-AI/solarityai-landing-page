@@ -3,13 +3,16 @@
   "private": true,
   "scripts": {
     "build:css": "tailwindcss -i assets/css/tailwind-src.css -o assets/css/tailwind.css --minify",
+    "build:purge:css": "purgecss --css assets/css/main.css --content index.html blog.html careers.html legal.html \"assets/js/*.js\" --output assets/css/ --safelist lang-tr lang-en hidden active sticky stat-satisfaction-en stat-satisfaction-tr",
     "build:minify:css": "cleancss -O2 -o assets/css/main.min.css assets/css/main.css",
     "build:minify:js": "terser assets/js/language.js -o assets/js/language.min.js -c -m && terser assets/js/translations.js -o assets/js/translations.min.js -c -m",
     "build:images": "node scripts/build-images-webp.js",
+    "build:logo": "node scripts/build-logo-small.js",
     "serve": "node server.js"
   },
   "devDependencies": {
     "clean-css-cli": "^5.6.0",
+    "purgecss": "^8.0.0",
     "sharp": "^0.33.5",
     "tailwindcss": "^3.4.17",
     "terser": "^5.36.0"

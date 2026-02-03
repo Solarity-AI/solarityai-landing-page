@@ -229,7 +229,7 @@
     linkedinLinks.forEach((link, index) => {
         link.addEventListener('click', function(e) {
             const linkedinUrl = this.getAttribute('href');
-            const teamMemberName = this.closest('.ud-single-team')?.querySelector('.ud-team-info h5')?.textContent?.trim() || 'Unknown';
+            const teamMemberName = this.closest('.ud-single-team')?.querySelector('.ud-team-info .team-role')?.textContent?.trim() || 'Unknown';
             const clickType = this.closest('.ud-team-image') ? 'image' : 'icon';
             
             // Log to console for debugging
