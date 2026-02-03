@@ -161,6 +161,7 @@ window.translations = {
     contactFormSuccess: "Message sent successfully 🚀",
     contactFormSuccessMsg: "We'll get back to you as soon as possible.",
     contactFormSubject: "New Contact Form Submission - Solarity AI",
+    showMap: "Show Map",
     
     // Footer
     footerQuickLinks: "Quick Links",
@@ -441,6 +442,7 @@ window.translations = {
     contactFormSuccess: "Mesajınız başarıyla gönderildi 🚀",
     contactFormSuccessMsg: "En kısa sürede size dönüş yapacağız.",
     contactFormSubject: "Yeni İletişim Formu Gönderimi - Solarity AI",
+    showMap: "Haritayı Göster",
     
     // Footer
     footerQuickLinks: "Hızlı Bağlantılar",
