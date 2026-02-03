@@ -45,7 +45,9 @@
     <link rel="canonical" href="https://solarityai.com/blog.html" />
 
     <!-- Performance: preload LCP image (logo) -->
-    <link rel="preload" as="image" href="assets/images/logo/CompanyLogo.png" />
+    <link rel="preload" as="image" href="assets/images/logo/CompanyLogo-360w.webp" type="image/webp" />
+    <!-- Font: LineIcons preload (critical’de @font-face yok) -->
+    <link rel="preload" href="assets/fonts/LineIcons.woff2" as="font" type="font/woff2" crossorigin />
 
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -64,12 +66,15 @@
 
     <!-- Google Fonts: loaded after window.load (off critical path, font-display: optional) -->
     <noscript><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" /></noscript>
-    <!-- LineIcons (non-render-blocking to improve FCP/LCP) -->
+    <!-- Critical CSS: above-the-fold inline -->
+    <style id="critical-css">:root{--font-primary:'Inter',-apple-system,sans-serif;--font-secondary:'Poppins',sans-serif;--color-dark-bg:#0f172a;--color-text-primary:#f8fafc;--color-text-secondary:#cbd5e1;--brand-space:clamp(200px,20vw,340px)}*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth;overflow-x:hidden;max-width:100vw}body{font-family:var(--font-primary);color:var(--color-text-secondary);background-color:var(--color-dark-bg);overflow-x:hidden;max-width:100vw}.hidden{display:none!important}main#main-content{padding-top:6rem}.ud-header{position:fixed;top:0;left:0;width:100%;z-index:1000;background:rgba(15,23,42,.85);backdrop-filter:blur(20px)}.navbar{padding:0;display:flex;align-items:center;justify-content:center;width:100%;min-height:88px}.nav-spacer{display:none}@media(min-width:1025px){.nav-spacer{display:block!important}}.nav-right-wrap{min-width:240px;max-width:100%}.nav-desktop-scroll{display:none}@media(min-width:1025px){.nav-desktop-scroll{display:block!important}}.nav-mobile-wrap{display:flex}@media(min-width:1025px){.nav-mobile-wrap{display:none!important};#mobileMenu{display:none!important}}.logo-standard{height:11rem!important;max-width:100%;object-fit:contain}header .logo-standard{height:auto!important;max-height:100%!important;max-width:100%}.container{max-width:100%;width:100%;box-sizing:border-box}</style>
+    <!-- LineIcons (async) -->
     <link rel="preload" href="assets/css/lineicons.css" as="style" />
     <link rel="stylesheet" href="assets/css/lineicons.css" media="print" onload="this.media='all'" />
     <noscript><link rel="stylesheet" href="assets/css/lineicons.css" /></noscript>
-    <link rel="preload" href="assets/css/main.min.css" as="style" fetchpriority="high" />
-    <link rel="stylesheet" href="assets/css/main.min.css" />
+    <!-- main.min.css: async -->
+    <link rel="preload" href="assets/css/main.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="assets/css/main.min.css" /></noscript>
     <!-- Navbar: ana sayfa ile aynı (yükseklik, logo, CTA ortada) -->
     <style>
       header { display: flex; align-items: center; min-height: 6rem; }
@@ -87,6 +92,8 @@
         0%, 100% { background-position: 0% 50%; }
         50% { background-position: 100% 50%; }
       }
+      body { animation: none !important; }
+      body.animations-ready { animation: gradient 15s ease infinite !important; }
       body {
         font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
         background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
@@ -153,13 +160,14 @@
     </style>
 </head>
 <body id="top" class="text-slate-200">
+    <script>(function(){function go(){document.body.classList.add('animations-ready');}if(typeof requestIdleCallback!=='undefined')requestIdleCallback(go,{timeout:600});else setTimeout(go,500);})();</script>
 
     <!-- Header/Navbar - index.html ile aynı -->
     <header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b" style="background: rgba(10, 25, 47, 0.95); border-color: rgba(16, 185, 129, 0.2);">
         <div class="container mx-auto px-4 md:px-12">
             <nav class="flex items-center justify-between py-0.5 w-full" style="gap: 1.25rem;" aria-label="Main navigation">
                 <a href="index.html" class="flex items-center flex-shrink-0">
-                    <img src="assets/images/logo/CompanyLogo.png" alt="Solarity AI" class="logo-standard" width="360" height="90" fetchpriority="high" />
+                    <img src="assets/images/logo/CompanyLogo-360w.webp" srcset="assets/images/logo/CompanyLogo-180w.webp 180w, assets/images/logo/CompanyLogo-360w.webp 360w" sizes="(max-width: 768px) 180px, 360px" width="360" height="90" fetchpriority="high" loading="eager" alt="Solarity AI" class="logo-standard" />
                 </a>
                 <div class="nav-spacer flex-1 min-w-0" aria-hidden="true"></div>
                 <a id="bannerCTA" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2qgXk0ZfBd6QJf7ef-306in7AI0Kzc-pL3NJFK1fU74vAUGiftVJPF3-DoXp9_RZoyqW_sjSpI" target="_blank" rel="noopener noreferrer" class="nav-cta-desktop flex-shrink-0 inline-flex items-center justify-center gap-1.5 md:gap-2 px-3 py-2 md:px-5 md:py-3 rounded-lg md:rounded-xl font-bold text-xs md:text-base text-center transition-all max-w-[140px] md:max-w-none" style="background: rgba(255, 255, 255, 0.95); color: #1e40af; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);" onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 8px 24px rgba(0, 0, 0, 0.3)';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 16px rgba(0, 0, 0, 0.2)';" data-i18n="bannerCTA">🚀 Book a call with our CEO 🚀</a>
@@ -260,7 +268,7 @@
         <div class="container mx-auto max-w-5xl" style="display:grid;grid-template-columns:1fr 1fr;gap:0 2rem;align-items:start;">
             <div class="max-w-md text-center mx-auto w-full" style="grid-column:1/-1;">
                 <a href="index.html" class="inline-block cursor-pointer hover:opacity-80 transition" title="Back to top">
-                    <img src="assets/images/logo/CompanyLogo.png" alt="Solarity AI" class="logo-standard mb-1 h-auto mx-auto" width="360" height="90" loading="lazy" decoding="async" style="display:block;" />
+                    <picture><source type="image/webp" srcset="assets/images/logo/CompanyLogo-360w.webp" /><img src="assets/images/logo/CompanyLogo-360w.png" alt="Solarity AI" class="logo-standard mb-1 h-auto mx-auto" width="360" height="90" loading="lazy" decoding="async" style="display:block;" /></picture>
                 </a>
                 <p class="text-lg md:text-xl text-slate-300 leading-relaxed" data-i18n="footerDescription">AI-Native Software Company Creating High-Impact B2B and B2C Solutions with World-Class Quality.</p>
             </div>

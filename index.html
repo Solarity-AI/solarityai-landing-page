@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8" />
     <style>html.lang-loading body{visibility:hidden;}.stats-section{min-height:110px}@media(min-width:768px){.stats-section{min-height:140px}}main{display:flex;flex-direction:column}#about,#hakkimizda{order:1}#stats-section{order:2}main>section:not(#about):not(#hakkimizda):not(#stats-section){order:3}</style>
+    <!-- İlk boyamada animasyon yok; idle sonra aynı animasyonlar başlar (Lighthouse) -->
+    <style>body{animation:none !important}.animate-gradient{animation:none !important}body.animations-ready{animation:gradient 15s ease infinite !important}.animations-ready .animate-gradient{animation:gradient 8s ease infinite !important}</style>
+    <!-- LCP: stats-bar ilk paint'te tamamen statik; lang-loading sırasında da görünsün -->
+    <style>.stats-bar{opacity:1 !important;transform:none !important;animation:none !important;}html.lang-loading #stats-section,html.lang-loading #stats-section *{visibility:visible !important;}</style>
     <script>
       (function(){
         try {
@@ -65,8 +69,12 @@
     <!-- Sitemap -->
     <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
 
-    <!-- Performance: preload LCP image (logo) -->
-    <link rel="preload" as="image" href="assets/images/logo/CompanyLogo.png" />
+    <!-- Performance: preconnect/dns-prefetch for key origins (≤4 hints). gtag loads on consent; prefetch reduces latency when user accepts. -->
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+    <!-- Performance: preload LCP image (logo WebP, SI için doğru boyut) -->
+    <link rel="preload" as="image" href="assets/images/logo/CompanyLogo-360w.webp" type="image/webp" />
+    <!-- Font: LineIcons (critical’de @font-face yok; lineicons.css async → preload ile erken yükle) -->
+    <link rel="preload" href="assets/fonts/LineIcons.woff2" as="font" type="font/woff2" crossorigin />
 
     <!-- Google tag (gtag.js) - Consent Mode: script sadece kullanıcı kabul edince yüklenecek -->
     <script>
@@ -123,19 +131,20 @@
     }
     </script>
 
-    <!-- Tailwind CSS (built, no render-blocking script) -->
+    <!-- Tailwind CSS (blocking – above-the-fold utilities: flex, container, text-*, etc.) -->
     <link rel="preload" href="assets/css/tailwind.css" as="style" />
     <link rel="stylesheet" href="assets/css/tailwind.css" />
 
-    <!-- Fonts: Inter & Poppins self-hosted in main.css – no Google Fonts to avoid critical chain -->
+    <!-- Critical CSS: above-the-fold (header, hero, stats) – inline for LCP, no render block -->
+    <style id="critical-css">:root{--font-primary:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;--font-secondary:'Poppins',sans-serif;--color-dark-bg:#0f172a;--color-text-primary:#f8fafc;--color-text-secondary:#cbd5e1;--color-primary:#1e40af;--transition-base:.3s ease;--brand-space:clamp(200px,20vw,340px)}*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth;font-size:16px;-webkit-text-size-adjust:100%;overflow-x:hidden;max-width:100vw}html[lang="tr"]{font-size:16px}body{font-family:var(--font-primary);color:var(--color-text-secondary);background-color:var(--color-dark-bg);overflow-x:hidden;max-width:100vw;line-height:1.7;-webkit-font-smoothing:antialiased}.hidden{display:none!important}main#main-content{padding-top:6rem}@media(min-width:768px){main#main-content{padding-top:7rem}}:where(section[id]){scroll-margin-top:5.5rem}@media(min-width:768px){:where(section[id]){scroll-margin-top:6.5rem}}section{padding:6rem 0;position:relative;max-width:100%;overflow-x:hidden}#stats-section .container{max-width:52rem}#stats-section{padding-top:.5rem;padding-bottom:1.25rem;min-height:110px}@media(min-width:768px){#stats-section .container{max-width:58rem};#stats-section{padding-top:.75rem;padding-bottom:1.5rem;min-height:140px}}.stat-satisfaction-en,.stat-satisfaction-tr{display:none}html[lang="en"] .stat-satisfaction-en{display:block}html[lang="tr"] .stat-satisfaction-tr{display:block}.ud-header{position:fixed;top:0;left:0;width:100%;z-index:1000;background:rgba(15,23,42,.85);backdrop-filter:blur(20px);padding:.75rem 0;border-bottom:1px solid rgba(255,255,255,.05)}.navbar{padding:0;display:flex;align-items:center;justify-content:center;width:100%;min-height:88px;padding-left:var(--brand-space)}.navbar-brand{position:absolute;left:0;top:50%;transform:translateY(-50%);display:flex;align-items:center;width:var(--brand-space);min-width:var(--brand-space)}.navbar-brand img{max-height:88px;width:auto}.nav-spacer{display:none}@media(min-width:1025px){.nav-spacer{display:block!important}}.nav-right-wrap{min-width:240px;max-width:100%;flex-shrink:1}.nav-desktop-scroll{display:none;overflow-x:hidden;width:100%}@media(min-width:1025px){.nav-desktop-scroll{display:block!important}}.nav-desktop-inner{display:flex;flex-wrap:nowrap;align-items:center;gap:.75rem;min-width:max-content;width:max-content;padding-inline:1.25rem .5rem}.navbar-nav .nav-item>a,.navbar-nav .nav-item>.nav-link{color:var(--color-text-primary);font-weight:500;font-size:1rem;padding:.5rem 1.25rem;display:block;white-space:nowrap}.nav-lang-btn{display:none}@media(min-width:1025px){.nav-lang-btn{display:inline-flex!important}}.nav-mobile-wrap{display:flex}@media(min-width:1025px){.nav-mobile-wrap{display:none!important};#mobileMenu{display:none!important}}@media(max-width:1024px){#languageSwitcher,#languageSwitcher button{display:none!important}}@media(min-width:1025px){#languageSwitcherMobile,#languageSwitcherMobile button{display:none!important}}.logo-standard{height:11rem!important;max-height:12rem!important;max-width:100%;object-fit:contain}@media(min-width:768px){.logo-standard{height:13rem!important;max-height:15rem!important}}header .logo-standard{height:auto!important;max-height:100%!important;max-width:100%;object-fit:contain}@media(max-width:1024px){#mobileMenu{order:10;width:100%;padding:1rem 0 1.25rem;display:flex;flex-direction:column;gap:.75rem;border-top:1px solid rgba(16,185,129,.25);background:rgba(10,25,47,.6)}#mobileMenu.hidden{display:none!important}#mobileMenu ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.25rem}#mobileMenu ul li a{display:block;padding:.625rem;font-size:1rem;color:#e2e8f0;text-decoration:none}}.nav-cta-desktop{flex-shrink:0}.nav-page-btn-careers{border:none;color:#fff;background:linear-gradient(135deg,#10b981,#059669);font-weight:600}h1,h2,h3,h4,h5,h6{font-family:var(--font-secondary);font-weight:600;color:var(--color-text-primary);line-height:1.3}a{text-decoration:none;color:inherit;transition:all var(--transition-base)}img{max-width:100%;height:auto;display:block}.container{max-width:100%;width:100%;box-sizing:border-box}</style>
 
-    <!-- LineIcons (non-render-blocking to improve FCP/LCP) -->
+    <!-- LineIcons (async) -->
     <link rel="preload" href="assets/css/lineicons.css" as="style" />
     <link rel="stylesheet" href="assets/css/lineicons.css" media="print" onload="this.media='all'" />
     <noscript><link rel="stylesheet" href="assets/css/lineicons.css" /></noscript>
-    <!-- Team card structure (ud-single-team) -->
-    <link rel="preload" href="assets/css/main.css?v=20260202-footer-gap" as="style" fetchpriority="high" />
-    <link rel="stylesheet" href="assets/css/main.css?v=20260202-footer-gap" />
+    <!-- main.min.css: async, minified (~3–4 KiB smaller than main.css) -->
+    <link rel="preload" href="assets/css/main.min.css?v=20260202-footer-gap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="assets/css/main.min.css?v=20260202-footer-gap" /></noscript>
     <!-- Header: logo footer ile aynı boyut (11rem / 13rem), navbar’da dikey ortada -->
     <style>
       header { display: flex; align-items: center; min-height: 6rem; }
@@ -165,1134 +174,7 @@
     </style>
 
     <!-- Custom Styles -->
-    <style>.skip-link{
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        padding: 0;
-        margin: -1px;
-        overflow: hidden;
-        clip: rect(0, 0, 0, 0);
-        white-space: nowrap;
-        border: 0;
-      }
-      .skip-link:focus {
-        position: fixed;
-        width: auto;
-        height: auto;
-        padding: 0.75rem 1.25rem;
-        margin: 0;
-        overflow: visible;
-        clip: auto;
-        z-index: 9999;
-        background: #10b981;
-        color: #fff;
-        font-weight: 600;
-        border-radius: 0.5rem;
-        top: 0.5rem;
-        left: 0.5rem;
-}.nav-page-btn-legal{
-        border: 1px solid rgba(148, 163, 184, 0.4);
-        color: #94a3b8;
-        background: rgba(30, 41, 59, 0.5);
-      }
-      .nav-page-btn-legal:hover {
-        border-color: rgba(59, 130, 246, 0.5);
-        color: #93c5fd;
-        background: rgba(30, 64, 175, 0.1);
-      }
-      .nav-page-btn-blog {
-        border: 1px solid rgba(59, 130, 246, 0.5);
-        color: #93c5fd;
-        background: rgba(30, 64, 175, 0.08);
-      }
-      .nav-page-btn-blog:hover {
-        border-color: rgba(59, 130, 246, 0.7);
-        color: #bfdbfe;
-        background: rgba(30, 64, 175, 0.15);
-      }
-      .nav-page-btn-careers {
-        border: none;
-        color: #fff;
-        background: linear-gradient(135deg, #10b981, #059669);
-        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35);
-      }
-      .nav-page-btn-careers:hover {
-        background: linear-gradient(135deg, #34d399, #10b981);
-        box-shadow: 0 6px 16px rgba(16, 185, 129, 0.45);
-}html{
-        scroll-behavior: smooth;
-        overflow-x: hidden !important;
-        max-width: 100vw;
-        width: 100%;
-}body{
-        font-family: 'Inter', system-ui, -apple-system, sans-serif;
-        background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
-        background-size: 200% 200%;
-        animation: gradient 15s ease infinite;
-        background-attachment: fixed;
-        color: #e2e8f0;
-        overflow-x: hidden !important;
-        max-width: 100vw;
-        width: 100%;
-        margin: 0;
-        padding: 0;
-        position: relative;
-      }
-
-      body::before {
-        content: '';
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background:
-          radial-gradient(circle at 20% 30%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
-          radial-gradient(circle at 80% 70%, rgba(6, 182, 212, 0.15) 0%, transparent 50%),
-          radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
-        pointer-events: none;
-        z-index: 0;
-      }
-
-      body > * {
-        position: relative;
-        z-index: 1;
-      }section {
-        max-width: 100vw;
-        overflow-x: hidden;
-      }.container {
-        max-width: 100%;
-        width: 100%;
-        box-sizing: border-box;
-      }*,*::before,*::after{
-        box-sizing: border-box;
-      }.logo-standard{
-        height:7.5rem;width:auto;max-height:9rem;max-width:100%;
-        object-fit: contain;
-        filter: brightness(1.2) drop-shadow(0 2px 8px rgba(255, 255, 255, 0.1));
-        transition: filter 0.3s ease, transform 0.3s ease;
-        background:transparent;
-        mix-blend-mode: screen;
-        isolation: isolate;
-      }
-
-      @media (min-width: 768px) {
-        .logo-standard { height: 9rem; }
-      }
-
-      .logo-standard:hover {
-        filter: brightness(1.35) drop-shadow(0 4px 12px rgba(255, 255, 255, 0.2));
-        transform: scale(1.05);
-      }
-
-      /* Bento Grid - OLD (Projects için koru) */
-      .bento-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 1.5rem;
-      }
-
-      .bento-card {
-        background: rgba(15, 23, 42, 0.5);
-        border: 1px solid rgba(148, 163, 184, 0.1);
-        border-radius: 1rem;
-        padding: 2rem;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      }
-
-      .bento-card:hover {
-        transform: translateY(-4px);
-        border-color: #1e40af;
-        box-shadow: 0 20px 60px rgba(30, 64, 175, 0.15);
-      }
-
-      /* Services - Modern Bento Grid Cards */
-      .service-card,
-      .service-card-featured {
-        background: rgba(15, 23, 42, 0.5);
-        border: 1px solid rgba(148, 163, 184, 0.1);
-        border-radius: 1.5rem;
-        padding: 2rem;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        position: relative;
-        overflow: hidden;
-      }
-
-      /* Ensure featured card does not span grid and all cards have equal height */
-      .service-card-featured {
-        /* Cancel any grid spanning applied via utility classes */
-        grid-column: auto !important;
-        grid-row: auto !important;
-      }
-
-      /* Kartlar 3 eşit parça: logo, içerik, etiketler – hepsi yatayda ortada */
-      .service-card,
-      .service-card-featured {
-        display: flex;
-        flex-direction: column;
-        min-height: 320px;
-        height: 100%;
-        text-align: center;
-      }
-      .service-card .service-card-logo {
-        flex: 0 0 auto;
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
-        padding-top: 0.5rem;
-        min-height: 5rem;
-      }
-      .service-card .service-card-body {
-        flex: 1 1 auto;
-        min-height: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
-        padding: 0.5rem 0;
-        overflow: hidden;
-      }
-      .service-card .service-card-body h3 {
-        width: 100%;
-        text-align: center;
-        margin-bottom: 0.5rem;
-        flex-shrink: 0;
-        line-height: 1.3;
-        font-size: 1.5rem;
-      }
-      .service-card .service-card-body p {
-        width: 100%;
-        max-width: 100%;
-        text-align: center;
-        flex: 1 1 auto;
-        min-height: 0;
-        line-height: 1.5;
-      }
-      /* Mobilde açıklama tam görünsün, üç nokta olmasın */
-      @media (max-width: 767px) {
-        .service-card .service-card-body p {
-          overflow: visible;
-          display: block;
-          -webkit-line-clamp: unset;
-          -webkit-box-orient: unset;
-        }
-      }
-      @media (min-width: 768px) {
-        .service-card .service-card-body p {
-          overflow: hidden;
-          display: -webkit-box;
-          -webkit-box-orient: vertical;
-          -webkit-line-clamp: 4;
-        }
-      }
-      .service-card .service-card-tags {
-        flex: 0 0 auto;
-        min-height: 4.5rem;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-        align-content: center;
-        justify-content: center;
-        padding: 0.5rem 0;
-      }
-      /* Ensure grid rows distribute evenly so each card gets same height */
-      .services-grid {
-        grid-auto-rows: 1fr;
-      }
-
-      /* Keep service tags inline where possible */
-      .service-tag {
-        white-space: nowrap;
-      }
-
-      /* Normalize the large icon to match other icons for visual symmetry */
-      .service-icon-large {
-        width: 56px !important;
-        height: 56px !important;
-        border-radius: 1rem !important;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .service-card::before,
-      .service-card-featured::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: linear-gradient(135deg, rgba(30, 64, 175, 0.05), rgba(16, 185, 129, 0.05));
-        opacity: 0;
-        transition: opacity 0.4s ease;
-        pointer-events: none;
-      }
-
-      .service-card:hover,
-      .service-card-featured:hover {
-        transform: translateY(-6px);
-        border-color: rgba(30, 64, 175, 0.4);
-        box-shadow: 0 24px 48px rgba(30, 64, 175, 0.2);
-      }
-
-      .service-card:hover::before,
-      .service-card-featured:hover::before {
-        opacity: 1;
-      }
-
-      /* Service Icons – büyük logo */
-      .service-icon,
-      .service-icon-large {
-        width: 72px;
-        height: 72px;
-        background: rgba(30, 64, 175, 0.1);
-        border: 1px solid rgba(30, 64, 175, 0.2);
-        border-radius: 1.25rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #3b82f6;
-        transition: all 0.3s ease;
-        flex-shrink: 0;
-      }
-      .service-card .service-card-logo .service-icon {
-        margin-bottom: 0;
-      }
-      .service-card .service-card-logo .service-icon.service-icon-emoji {
-        font-size: 2.5rem;
-        line-height: 1;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .service-icon-large {
-        width: 80px;
-        height: 80px;
-        border-radius: 1.25rem;
-        flex-shrink: 0;
-      }
-
-      .service-card:hover .service-icon,
-      .service-card-featured:hover .service-icon-large {
-        background: rgba(30, 64, 175, 0.2);
-        border-color: rgba(30, 64, 175, 0.4);
-        transform: scale(1.05);
-      }
-
-      /* Service Tags */
-      .service-tag {
-        display: inline-block;
-        padding: 0.5rem 1rem;
-        background: rgba(30, 64, 175, 0.15);
-        border: 1px solid rgba(30, 64, 175, 0.3);
-        border-radius: 0.5rem;
-        color: #60a5fa;
-        font-size: 0.75rem;
-        font-weight: 600;
-        transition: all 0.3s ease;
-      }
-
-      .service-card-featured:hover .service-tag {
-        background: rgba(30, 64, 175, 0.25);
-        border-color: rgba(30, 64, 175, 0.5);
-        transform: translateY(-2px);
-      }
-
-      .stats-bar{
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-        gap: 1.25rem;
-        background: rgba(30, 41, 59, 0.3);
-        border: 1px solid rgba(148, 163, 184, 0.1);
-        border-radius: 1rem;
-        padding: 1.5rem 1.5rem;
-        align-items: start;
-        min-height: 80px;
-      }
-      @media (min-width: 768px) {
-        .stats-bar {
-          grid-template-columns: repeat(5, 1fr);
-          padding: 2rem 2rem;
-          min-height: 100px;
-        }
-      }
-
-      .stat-item {
-        text-align: center;
-        cursor: pointer;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        padding: 0.5rem;
-        border-radius: 0.75rem;
-      }
-
-      .stat-item:hover {
-        transform: translateY(-4px) scale(1.05);
-        background: rgba(30, 64, 175, 0.1);
-        box-shadow: 0 8px 24px rgba(30, 64, 175, 0.15);
-      }
-
-      .stat-number {
-        font-size:2.5rem;
-        font-weight: 700;
-        min-height:1.1em;
-        background: linear-gradient(135deg, #3b82f6, #1e40af);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-      }
-
-      .stat-label {
-        color: #94a3b8;
-        font-size:0.9375rem;
-        margin-top: 0.25rem;
-        font-weight: 500;
-      }
-
-      /* ===== PARTNER SLIDER - Otomatik döngü + gerektiğinde kaydırma ===== */
-      .partner-slider-container {
-        width: 100%;
-        max-width: 100vw;
-        overflow-x: auto;
-        overflow-y: hidden;
-        position: relative;
-        padding: 2rem 0;
-        margin: 0;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: thin;
-        scrollbar-color: rgba(59, 130, 246, 0.5) transparent;
-      }
-      .partner-slider-container::-webkit-scrollbar {
-        height: 8px;
-      }
-      .partner-slider-container::-webkit-scrollbar-track {
-        background: rgba(15, 23, 42, 0.5);
-        border-radius: 4px;
-      }
-      .partner-slider-container::-webkit-scrollbar-thumb {
-        background: rgba(59, 130, 246, 0.5);
-        border-radius: 4px;
-      }
-      .partner-slider-container::-webkit-scrollbar-thumb:hover {
-        background: rgba(59, 130, 246, 0.7);
-      }
-
-      .partner-slider {
-        display: flex;
-        gap: 1.5rem;
-        width: max-content;
-        max-width: none;
-        padding: 0 0.5rem;
-      }
-
-      .partner-slider-set {
-        display: flex;
-        gap: 1.5rem;
-        flex-shrink: 0;
-      }
-
-      .partner-logo-card {
-        background: rgba(255, 255, 255, 0.95);
-        border-radius: 0.75rem;
-        padding: 1.5rem 2rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.3s ease;
-        min-height: 100px;
-        min-width: 150px;
-        max-width: 200px;
-        flex-shrink: 0;
-        box-sizing: border-box;
-      }
-
-      .partner-logo-card:hover {
-        transform: translateY(-4px) scale(1.05);
-        box-shadow: 0 12px 32px rgba(30, 64, 175, 0.2);
-      }
-
-      .partner-logo-card img {
-        max-width: 120px;
-        max-height: 60px;
-        object-fit: contain;
-        background: transparent;
-        filter: brightness(1.1) contrast(1.05) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.08));
-        transition: all 0.3s ease;
-      }
-
-      .partner-logo-card:hover img {
-        filter: brightness(1.15) contrast(1.1) drop-shadow(0 4px 8px rgba(0, 0, 0, 0.12));
-      }
-
-      /* CTA: sayfa fontu (Inter) + satır kırılmasız */
-      #bannerCTA,
-      .bannerCTA-hero {
-        font-family: var(--font-primary, 'Inter'), -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-        white-space: nowrap;
-      }
-      #bannerCTA {
-        font-size: 0.75rem;
-      }
-      @media (min-width: 768px) {
-        #bannerCTA {
-          font-size: 1rem;
-        }
-      }
-      @media (min-width: 1024px) {
-        #bannerCTA {
-          font-size: 1.125rem;
-        }
-      }
-      .bannerCTA-hero {
-        font-size: 1rem;
-      }
-      @media (min-width: 768px) {
-        .bannerCTA-hero {
-          font-size: 1.125rem;
-        }
-      }
-      @media (min-width: 1024px) {
-        .bannerCTA-hero {
-          font-size: 1.25rem;
-        }
-      }
-
-      /* Team Hierarchy - Modern & Equal Sizes */
-      /* Üst yönetim (Executives): inline-grid ile ortala – grid içeriğe göre daralır, parent text-align ile ortalanır */
-      .executives-wrap {
-        width: 100%;
-        text-align: center;
-      }
-      .team-grid-executives {
-        display: inline-grid;
-        grid-template-columns: repeat(3, 300px);
-        gap: var(--team-gap, 0.5rem);
-        justify-items: center;
-        text-align: left;
-      }
-
-      /* 320px ve dar ekranlarda üst yönetim kesin ortada – flex + minimal padding */
-      @media (max-width: 360px) {
-        #team,
-        #ekip {
-          padding-left: 0.25rem !important;
-          padding-right: 0.25rem !important;
-        }
-        #team .container,
-        #ekip .container {
-          padding-left: 0.25rem !important;
-          padding-right: 0.25rem !important;
-        }
-        .executives-wrap {
-          display: flex !important;
-          flex-direction: column !important;
-          align-items: center !important;
-          width: 100% !important;
-          box-sizing: border-box !important;
-        }
-        .team-grid-executives {
-          width: 100% !important;
-          max-width: 300px !important;
-          margin-left: auto !important;
-          margin-right: auto !important;
-          box-sizing: border-box !important;
-        }
-      }
-
-      .team-grid-managers {
-        display: grid;
-        grid-template-columns: repeat(3, 300px);
-        gap: var(--team-gap, 0.5rem);
-        margin-bottom: 0;
-        max-width: 100%;
-        align-items: stretch;
-        justify-content: center;
-      }
-
-      .team-grid-bdm {
-        display: grid;
-        grid-template-columns: repeat(2, 300px);
-        gap: var(--team-gap, 0.5rem);
-        max-width: 100%;
-        align-items: stretch;
-        justify-content: center;
-      }
-
-      /* BDM bölümü arası boşluk = BDM kartları arası boşluk (--team-gap) */
-      #ekip .mb-20:has(.team-grid-managers),
-      #team .mb-20:has(.team-grid-managers) {
-        margin-bottom: var(--team-gap, 0.5rem) !important;
-      }
-      #ekip .mb-20:has(.team-grid-bdm),
-      #team .mb-20:has(.team-grid-bdm) {
-        margin-top: 0 !important;
-      }
-
-      .team-grid-engineers {
-        display: grid;
-        grid-template-columns: 1fr;
-        justify-content: center;
-      }
-      @media (min-width: 768px) {
-        .team-grid-engineers {
-          grid-template-columns: repeat(3, 300px);
-          justify-content: center;
-        }
-        /* Eren en altta, tek başına */
-        .team-grid-engineers .team-card-engineer:last-child {
-          grid-column: 2;
-        }
-      }
-
-      .team-grid-marketers {
-        display: grid;
-        grid-template-columns: 1fr;
-        justify-content: center;
-      }
-      @media (min-width: 768px) {
-        .team-grid-marketers {
-          grid-template-columns: repeat(3, 300px);
-        }
-      }
-
-      /* Modern Team Card Design - sadece ud-single-team OLMAYAN kartlara (ud kartları main.css'ten alır) */
-      .team-card:not(.ud-single-team) {
-        background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.95));
-        backdrop-filter: blur(20px);
-        border: 2px solid transparent;
-        background-clip: padding-box;
-        border-radius: 1rem;
-        padding: 1rem;
-        text-align: center;
-        transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-        max-width: 100%;
-        width: 100%;
-        min-height: 420px;
-        overflow: hidden;
-        box-sizing: border-box;
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      /* Uniform spacing for all team grids inside #ekip */
-      #ekip .grid {
-        gap: var(--team-gap) !important;
-      }
-
-      /* Team card hover - ud-single-team için main.css hover'ı kullanılır, diğerleri için bu */
-      .team-card:not(.ud-single-team):hover {
-        transform: translateY(-12px) scale(1.02);
-        box-shadow:
-          0 20px 60px rgba(59, 130, 246, 0.4),
-          0 0 80px rgba(6, 182, 212, 0.2);
-      }
-
-      /* Manager cards - Green border and glow */
-      .team-card-manager {
-        border: 2px solid rgba(16, 185, 129, 0.6);
-        box-shadow: 0 10px 40px rgba(16, 185, 129, 0.35);
-      }
-
-      /* General team role styling - büyük font, taşma yok */
-      .team-role {
-        font-size: 1.5rem;
-        font-weight: 600;
-        margin-top: 0.4rem;
-        color: #93C5FD;
-        min-width: 0;
-        overflow-wrap: break-word;
-        word-break: break-word;
-        text-align: center;
-      }
-
-      @media (min-width: 768px) {
-        .team-role {
-          font-size: 1.75rem;
-        }
-      }
-
-      /* CEO card - Yellow/Gold border and glow */
-      .team-card-ceo {
-        border: 2px solid rgba(251, 191, 36, 0.7);
-        box-shadow: 0 10px 40px rgba(251, 191, 36, 0.4), 0 0 60px rgba(251, 191, 36, 0.2);
-      }
-
-      /* CTO card - Yellow/Gold border and glow (same as CEO) */
-      .team-card-cto {
-        border: 2px solid rgba(251, 191, 36, 0.7);
-        box-shadow: 0 10px 40px rgba(251, 191, 36, 0.4), 0 0 60px rgba(251, 191, 36, 0.2);
-      }
-
-      /* CIO card - Yellow/Gold border and glow (same as CEO) */
-      .team-card-cion {
-        border: 2px solid rgba(251, 191, 36, 0.7);
-        box-shadow: 0 10px 40px rgba(251, 191, 36, 0.4), 0 0 60px rgba(251, 191, 36, 0.2);
-      }
-
-      /* Engineer cards - Blue border and glow */
-      .team-card-engineer {
-        border: 2px solid rgba(59, 130, 246, 0.7);
-        box-shadow: 0 10px 40px rgba(59, 130, 246, 0.4), 0 0 60px rgba(59, 130, 246, 0.2);
-      }
-      /* Mühendis unvanları diğer kartlarla aynı font; uzun unvan 2 satıra sığsın */
-      #team .team-card-engineer .team-role,
-      #ekip .team-card-engineer .team-role {
-        white-space: normal !important;
-        text-overflow: unset;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-      }
-
-      /* Marketing cards - Pink border and glow */
-      .team-card-marketing {
-        border: 2px solid rgba(236, 72, 153, 0.7);
-        box-shadow: 0 10px 40px rgba(236, 72, 153, 0.4), 0 0 60px rgba(236, 72, 153, 0.2);
-      }
-
-      /* Team cards - Subtle gray border */
-      .team-card-bdm {
-        min-height: 440px;
-        border: 2px solid rgba(100, 116, 139, 0.4);
-        box-shadow: 0 10px 40px rgba(100, 116, 139, 0.25);
-      }
-
-      /* BDM kartları - Override with green border (more specific selector) */
-      .team-card-bdm.team-card-manager {
-        border: 2px solid rgba(16, 185, 129, 0.6);
-        box-shadow: 0 10px 40px rgba(16, 185, 129, 0.35);
-      }
-
-      /* CEO kartı mobilde ilk sırada */
-      @media (max-width: 767px) {
-        .team-card-ceo {
-          order: -1;
-        }
-      }
-
-      /* ===== TEAM AVATARS - Equal Sizes & Modern Style ===== */
-      .team-avatar-container {
-        width: 9rem;
-        height: 12rem;
-        margin: 0 auto 1rem auto;
-        overflow: hidden !important;
-        border-radius: 1.25rem;
-        border: 3px solid transparent;
-        background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(6, 182, 212, 0.2));
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-        transition: all 0.4s ease;
-        flex-shrink: 0;
-        position: relative;
-      }
-
-      .team-card:hover .team-avatar-container {
-        transform: scale(1.05);
-        box-shadow: 0 12px 48px rgba(59, 130, 246, 0.4);
-      }
-
-      @media (min-width: 768px) {
-        .team-avatar-container {
-          width: 10rem;
-          height: 13rem;
-        }
-      }
-
-      @media (min-width: 1024px) {
-        .team-avatar-container {
-          width: 11rem;
-          height: 14rem;
-        }
-      }
-
-      .team-avatar {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center top;
-        display: block;
-        transition: transform 0.4s ease;
-      }
-
-      .team-card:hover .team-avatar {
-        transform: scale(1.08);
-      }
-
-      /* Team member name - büyük font, taşma yok */
-      .team-card h4 {
-        min-height: 3.5rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        line-height: 1.35;
-        font-size: 1.95rem;
-        min-width: 0;
-        overflow-wrap: break-word;
-        word-break: break-word;
-        text-align: center;
-      }
-
-      @media (min-width: 768px) {
-        .team-card h4 {
-          font-size: 2.25rem;
-        }
-      }
-
-      /* LinkedIn button - prominent and clickable */
-      .team-card > a,
-      .team-card .inline-block {
-        display: inline-flex !important;
-        align-items: center;
-        justify-content: center;
-        width: 48px;
-        height: 48px;
-        background: linear-gradient(135deg, #0077b5, #006399);
-        border-radius: 12px;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 12px rgba(0, 119, 181, 0.3);
-        position: relative;
-        z-index: 10;
-        cursor: pointer;
-      }
-
-      .team-card > a:hover,
-      .team-card .inline-block:hover {
-        transform: translateY(-4px) scale(1.1);
-        box-shadow: 0 8px 24px rgba(0, 119, 181, 0.5);
-        background: linear-gradient(135deg, #0088cc, #0077b5);
-      }
-
-      .team-card > a i,
-      .team-card .inline-block i {
-        font-size: 1.75rem;
-        color: white !important;
-      }
-
-      /* Ramazan Çınar fotoğrafı için özel ayar - sağ alttaki AI işaretini kes */
-      .team-avatar-ramazan {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center 10%; /* Fotoğrafı yukarı kaydır */
-        transform: scale(1.15); /* Hafif zoom yaparak kenarları kes */
-        display: block;
-      }
-
-      /* ===== RESPONSIVE ADJUSTMENTS - Mobil desktop ile aynı düzen, sığacak şekilde ===== */
-      @media (max-width: 768px) {
-        .team-grid-managers {
-          grid-template-columns: 1fr !important;
-          max-width: 100%;
-          width: 100%;
-          justify-items: center;
-        }
-
-        .team-grid-bdm {
-          grid-template-columns: 1fr !important;
-          width: 100%;
-          justify-items: center;
-        }
-
-        /* Mobilde üst yönetim (Executives) tek sütun, kartlar ortada */
-        .team-grid-executives {
-          grid-template-columns: 1fr !important;
-          justify-items: center !important;
-          width: 100% !important;
-          max-width: 100% !important;
-        }
-        section[data-section-tr="ekip"] div[style*="grid-template-columns"],
-        section[data-section-en="team"] div[style*="grid-template-columns"] {
-          grid-template-columns: 1fr !important;
-          justify-items: center !important;
-          justify-content: center !important;
-          width: 100% !important;
-          max-width: 100% !important;
-        }
-
-        .team-grid-engineers {
-          grid-template-columns: 1fr !important;
-          justify-items: center;
-        }
-
-        .team-grid-marketers {
-          grid-template-columns: 1fr !important;
-          justify-items: center;
-        }
-
-        /* Ekip kartları: tüm kartlar aynı genişlik (300px), ortada */
-        #team .ud-single-team.team-card,
-        #ekip .ud-single-team.team-card {
-          width: 300px !important;
-          min-width: 300px !important;
-          max-width: 300px !important;
-          margin-left: auto;
-          margin-right: auto;
-          padding: 0;
-          box-sizing: border-box;
-        }
-
-        .team-avatar-container {
-          width: 10rem;
-          height: 13rem;
-          margin: 0 auto 1rem auto !important;
-        }
-
-        .partner-logo-card {
-          min-width: 120px;
-          max-width: 160px;
-          padding: 1rem 1.5rem;
-        }
-
-        /* Overflow önleme – 100% kullan, 100vw kaydırma yapabilir */
-        body, html {
-          max-width: 100% !important;
-          overflow-x: hidden !important;
-        }
-
-        .container {
-          max-width: 100% !important;
-          padding-left: 1rem !important;
-          padding-right: 1rem !important;
-          box-sizing: border-box;
-        }
-
-        section {
-          padding-left: 1rem !important;
-          padding-right: 1rem !important;
-          box-sizing: border-box;
-        }
-
-        .max-w-5xl, .max-w-4xl, .max-w-3xl {
-          max-width: calc(100% - 2rem) !important;
-        }
-
-        .grid {
-          max-width: 100%;
-          width: 100%;
-          box-sizing: border-box;
-        }
-      }
-
-      /* Ekstra dar ekranlar – ekip kartları yine desktop gibi, sığacak boyut */
-      @media (max-width: 480px) {
-        .partner-logo-card {
-          min-width: 100px;
-          max-width: 140px;
-          padding: 0.75rem 1rem;
-        }
-
-        .partner-slider {
-          gap: 1rem;
-        }
-
-        .team-avatar-container {
-          width: 9rem;
-          height: 12rem;
-          margin: 0 auto 1rem auto !important;
-          display: block;
-        }
-
-        #team .ud-single-team.team-card,
-        #ekip .ud-single-team.team-card {
-          width: 300px !important;
-          min-width: 300px !important;
-          max-width: 300px !important;
-        }
-      }
-
-      /* Language Flags */
-      .language-flag {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 24px;
-        height: 18px;
-        border-radius: 3px;
-        overflow: hidden;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        margin-right: 6px;
-        flex-shrink: 0;
-        position: relative;
-      }
-
-      .language-flag::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        border: 1px solid rgba(0, 0, 0, 0.1);
-        border-radius: 3px;
-        pointer-events: none;
-      }
-
-      /* Turkish Flag */
-      .flag-tr {
-        background: linear-gradient(to bottom, #E30A17 0%, #E30A17 100%);
-      }
-
-      .flag-tr::after {
-        content: '🇹🇷';
-        position: absolute;
-        inset: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 16px;
-        line-height: 1;
-      }
-
-      /* UK/English Flag */
-      .flag-en {
-        background: linear-gradient(to bottom, #012169 0%, #012169 100%);
-      }
-
-      .flag-en::after {
-        content: '🇬🇧';
-        position: absolute;
-        inset: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 16px;
-        line-height: 1;
-      }
-
-      /* Desktop: CTA logo ile Hakkımızda tam ortasında (iki eşit flex-1 spacer) */
-
-      /* Nav linkler tek satırda (About Us kırılmasın) – desktop yatay menü */
-      header nav ul.space-x-6 a.nav-link {
-        white-space: nowrap;
-      }
-
-      /* Language switcher: taşma olmasın, EN/TR buton içinde kalsın */
-      #languageSwitcher,
-      #languageSwitcherMobile {
-        transition: all 0.3s ease;
-        flex-shrink: 0;
-        min-width: fit-content;
-        box-sizing: border-box;
-      }
-      #languageSwitcher span,
-      #languageSwitcherMobile span {
-        white-space: nowrap;
-        display: inline-block;
-      }
-
-      #languageSwitcher:hover,
-      #languageSwitcherMobile:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
-      }
-
-      /* Lightning emoji - keep natural color, don't apply gradient */
-      .emoji-lightning {
-        background: none !important;
-        -webkit-background-clip: unset !important;
-        -webkit-text-fill-color: unset !important;
-        background-clip: unset !important;
-        color: inherit !important;
-        display: inline;
-      }
-
-      /* ===== DYNAMIC SCROLL OFFSET FOR ANCHORS ===== */
-      /* CSS variable will be computed by JS based on header height + 60px gap */
-      :root {
-        --header-offset: 4.5rem; /* fallback */
-        --team-gap: 0.5rem; /* uniform, small gap for all team cards */
-      }
-
-      /* Force uniform gap between all team cards inside the team section */
-      #ekip {
-        --team-gap: 0.5rem;
-      }
-
-      /* Apply the team gap to any element inside #ekip that uses Tailwind gap-* utilities */
-      #ekip [class*="gap-"] {
-        gap: var(--team-gap) !important;
-      }
-
-      /* Also ensure our explicit team-grid classes respect the same spacing */
-      #ekip .team-grid-managers,
-      #ekip .team-grid-bdm,
-      #ekip .grid {
-        gap: var(--team-gap) !important;
-      }
-
-      /* All sections and elements with IDs use scroll-margin-top for consistent anchor alignment */
-      section[id],
-      [id] {
-        scroll-margin-top: var(--header-offset);
-      }
-
-      /* Team section: scroll so section title (heading) is visible at top, not cut off */
-      #team,
-      #ekip {
-        scroll-margin-top: 5.5rem;
-      }
-
-      /* Ekip kartları: isim ve unvan üst üste binmesin, LinkedIn unvanın altında */
-      #team .ud-single-team.team-card,
-      #ekip .ud-single-team.team-card {
-        display: flex !important;
-        flex-direction: column !important;
-        padding-bottom: 1.25rem !important;
-        box-sizing: border-box !important;
-      }
-      #team .ud-team-info,
-      #ekip .ud-team-info {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        gap: 0.5rem !important;
-        flex: 0 1 auto !important;
-        margin-top: 2.25rem !important;
-        padding: 0.5rem 0.35rem 0.75rem !important;
-        min-height: 0 !important;
-        overflow: visible !important;
-      }
-      #team .ud-team-info h4,
-      #ekip .ud-team-info h4 {
-        margin: 0 !important;
-        line-height: 1.35 !important;
-      }
-      #team .ud-team-info h5,
-      #ekip .ud-team-info h5 {
-        margin: 0 !important;
-        line-height: 1.35 !important;
-      }
-      #team .ud-team-socials,
-      #ekip .ud-team-socials {
-        flex-shrink: 0 !important;
-        margin-top: 0.5rem !important;
-        margin-bottom: 0 !important;
-      }
-      @media (max-width: 767px) {
-        #team .ud-team-image-wrapper,
-        #ekip .ud-team-image-wrapper {
-          max-height: 320px !important;
-        }
-        #team .ud-team-info,
-        #ekip .ud-team-info {
-          margin-top: 2rem !important;
-        }
-        #team .ud-single-team.team-card,
-        #ekip .ud-single-team.team-card {
-          padding-bottom: 1.25rem !important;
-        }
-        /* Mobilde ekip üyesi unvanları (CEO, CTO, BDM, Full-Stack Engineer vb.) beyaz */
-        #team .team-role,
-        #ekip .team-role,
-        #team .ud-team-info h5,
-        #ekip .ud-team-info h5 {
-          color: #ffffff !important;
-        }
-      }
-
-      /* Ekip kartları TR/EN aynı – 340px genişlik, 380px fotoğraf – sayfa stilleri main.css’ten sonra yüklendiği için öncelik alır */
+    <style>.skip-link{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.skip-link:focus{position:fixed;width:auto;height:auto;padding:.75rem 1.25rem;margin:0;overflow:visible;clip:auto;z-index:9999;background:#10b981;color:#fff;font-weight:600;border-radius:.5rem;top:.5rem;left:.5rem}.nav-page-btn-legal{border:1px solid rgba(148,163,184,0.4);color:#94a3b8;background:rgba(30,41,59,0.5);}.nav-page-btn-legal:hover{border-color:rgba(59,130,246,0.5);color:#93c5fd;background:rgba(30,64,175,0.1);}.nav-page-btn-blog{border:1px solid rgba(59,130,246,0.5);color:#93c5fd;background:rgba(30,64,175,0.08);}.nav-page-btn-blog:hover{border-color:rgba(59,130,246,0.7);color:#bfdbfe;background:rgba(30,64,175,0.15);}.nav-page-btn-careers{border:none;color:#fff;background:linear-gradient(135deg,#10b981,#059669);box-shadow:0 4px 12px rgba(16,185,129,0.35);}.nav-page-btn-careers:hover{background:linear-gradient(135deg,#34d399,#10b981);box-shadow:0 6px 16px rgba(16,185,129,0.45);}html{scroll-behavior:smooth;overflow-x:hidden !important;max-width:100vw;width:100%;}body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:linear-gradient(135deg,#0f172a 0%,#1e293b 50%,#0f172a 100%);background-size:200% 200%;animation:gradient 15s ease infinite;background-attachment:fixed;color:#e2e8f0;overflow-x:hidden !important;max-width:100vw;width:100%;margin:0;padding:0;position:relative;}body::before{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background:radial-gradient(circle at 20% 30%,rgba(59,130,246,0.15) 0%,transparent 50%),radial-gradient(circle at 80% 70%,rgba(6,182,212,0.15) 0%,transparent 50%),radial-gradient(circle at 50% 50%,rgba(139,92,246,0.1) 0%,transparent 50%);pointer-events:none;z-index:0;}body > *{position:relative;z-index:1;}section{max-width:100vw;overflow-x:hidden;}.container{max-width:100%;width:100%;box-sizing:border-box;}*,*::before,*::after{box-sizing:border-box;}.logo-standard{height:7.5rem;width:auto;max-height:9rem;max-width:100%;object-fit:contain;filter:brightness(1.2) drop-shadow(0 2px 8px rgba(255,255,255,0.1));transition:filter 0.3s ease,transform 0.3s ease;background:transparent;mix-blend-mode:screen;isolation:isolate;}@media (min-width:768px){.logo-standard{height:9rem;}}.logo-standard:hover{filter:brightness(1.35) drop-shadow(0 4px 12px rgba(255,255,255,0.2));transform:scale(1.05);}.bento-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;}.bento-card{background:rgba(15,23,42,0.5);border:1px solid rgba(148,163,184,0.1);border-radius:1rem;padding:2rem;transition:all 0.3s cubic-bezier(0.4,0,0.2,1);}.bento-card:hover{transform:translateY(-4px);border-color:#1e40af;box-shadow:0 20px 60px rgba(30,64,175,0.15);}.service-card,.service-card-featured{background:rgba(15,23,42,0.5);border:1px solid rgba(148,163,184,0.1);border-radius:1.5rem;padding:2rem;transition:all 0.4s cubic-bezier(0.4,0,0.2,1);position:relative;overflow:hidden;}.service-card-featured{grid-column:auto !important;grid-row:auto !important;}.service-card,.service-card-featured{display:flex;flex-direction:column;min-height:320px;height:100%;text-align:center;}.service-card .service-card-logo{flex:0 0 auto;display:flex;justify-content:center;align-items:flex-start;padding-top:0.5rem;min-height:5rem;}.service-card .service-card-body{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:0.5rem 0;overflow:hidden;}.service-card .service-card-body h3{width:100%;text-align:center;margin-bottom:0.5rem;flex-shrink:0;line-height:1.3;font-size:1.5rem;}.service-card .service-card-body p{width:100%;max-width:100%;text-align:center;flex:1 1 auto;min-height:0;line-height:1.5;}@media (max-width:767px){.service-card .service-card-body p{overflow:visible;display:block;-webkit-line-clamp:unset;-webkit-box-orient:unset;}}@media (min-width:768px){.service-card .service-card-body p{overflow:hidden;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:4;}}.service-card .service-card-tags{flex:0 0 auto;min-height:4.5rem;display:flex;flex-wrap:wrap;gap:0.5rem;align-content:center;justify-content:center;padding:0.5rem 0;}.services-grid{grid-auto-rows:1fr;}.service-tag{white-space:nowrap;}.service-icon-large{width:56px !important;height:56px !important;border-radius:1rem !important;display:flex;align-items:center;justify-content:center;}.service-card::before,.service-card-featured::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(135deg,rgba(30,64,175,0.05),rgba(16,185,129,0.05));opacity:0;transition:opacity 0.4s ease;pointer-events:none;}.service-card:hover,.service-card-featured:hover{transform:translateY(-6px);border-color:rgba(30,64,175,0.4);box-shadow:0 24px 48px rgba(30,64,175,0.2);}.service-card:hover::before,.service-card-featured:hover::before{opacity:1;}.service-icon,.service-icon-large{width:72px;height:72px;background:rgba(30,64,175,0.1);border:1px solid rgba(30,64,175,0.2);border-radius:1.25rem;display:flex;align-items:center;justify-content:center;color:#3b82f6;transition:all 0.3s ease;flex-shrink:0;}.service-card .service-card-logo .service-icon{margin-bottom:0;}.service-card .service-card-logo .service-icon.service-icon-emoji{font-size:2.5rem;line-height:1;display:flex;align-items:center;justify-content:center;}.service-icon-large{width:80px;height:80px;border-radius:1.25rem;flex-shrink:0;}.service-card:hover .service-icon,.service-card-featured:hover .service-icon-large{background:rgba(30,64,175,0.2);border-color:rgba(30,64,175,0.4);transform:scale(1.05);}.service-tag{display:inline-block;padding:0.5rem 1rem;background:rgba(30,64,175,0.15);border:1px solid rgba(30,64,175,0.3);border-radius:0.5rem;color:#60a5fa;font-size:0.75rem;font-weight:600;transition:all 0.3s ease;}.service-card-featured:hover .service-tag{background:rgba(30,64,175,0.25);border-color:rgba(30,64,175,0.5);transform:translateY(-2px);}.stats-bar{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1.25rem;background:rgba(30,41,59,0.3);border:1px solid rgba(148,163,184,0.1);border-radius:1rem;padding:1.5rem 1.5rem;align-items:start;min-height:80px;}@media (min-width:768px){.stats-bar{grid-template-columns:repeat(5,1fr);padding:2rem 2rem;min-height:100px;}}.stat-item{text-align:center;cursor:pointer;transition:transform 0.3s ease,box-shadow 0.3s ease;padding:0.5rem;border-radius:0.75rem;}.stat-item:hover{transform:translateY(-4px) scale(1.05);background:rgba(30,64,175,0.1);box-shadow:0 8px 24px rgba(30,64,175,0.15);}.stat-number{font-size:2.5rem;font-weight:700;min-height:1.1em;background:linear-gradient(135deg,#3b82f6,#1e40af);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}.stat-label{color:#94a3b8;font-size:0.9375rem;margin-top:0.25rem;font-weight:500;}.partner-slider-container{width:100%;max-width:100vw;overflow-x:auto;overflow-y:hidden;position:relative;padding:2rem 0;margin:0;-webkit-overflow-scrolling:touch;scrollbar-width:thin;scrollbar-color:rgba(59,130,246,0.5) transparent;}.partner-slider-container::-webkit-scrollbar{height:8px;}.partner-slider-container::-webkit-scrollbar-track{background:rgba(15,23,42,0.5);border-radius:4px;}.partner-slider-container::-webkit-scrollbar-thumb{background:rgba(59,130,246,0.5);border-radius:4px;}.partner-slider-container::-webkit-scrollbar-thumb:hover{background:rgba(59,130,246,0.7);}.partner-slider{display:flex;gap:1.5rem;width:max-content;max-width:none;padding:0 0.5rem;}.partner-slider-set{display:flex;gap:1.5rem;flex-shrink:0;}.partner-logo-card{background:rgba(255,255,255,0.95);border-radius:0.75rem;padding:1.5rem 2rem;display:flex;align-items:center;justify-content:center;transition:all 0.3s ease;min-height:100px;min-width:150px;max-width:200px;flex-shrink:0;box-sizing:border-box;}.partner-logo-card:hover{transform:translateY(-4px) scale(1.05);box-shadow:0 12px 32px rgba(30,64,175,0.2);}.partner-logo-card img{max-width:120px;max-height:60px;object-fit:contain;background:transparent;filter:brightness(1.1) contrast(1.05) drop-shadow(0 2px 4px rgba(0,0,0,0.08));transition:all 0.3s ease;}.partner-logo-card:hover img{filter:brightness(1.15) contrast(1.1) drop-shadow(0 4px 8px rgba(0,0,0,0.12));}#bannerCTA,.bannerCTA-hero{font-family:var(--font-primary,'Inter'),-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;white-space:nowrap;}#bannerCTA{font-size:0.75rem;}@media (min-width:768px){#bannerCTA{font-size:1rem;}}@media (min-width:1024px){#bannerCTA{font-size:1.125rem;}}.bannerCTA-hero{font-size:1rem;}@media (min-width:768px){.bannerCTA-hero{font-size:1.125rem;}}@media (min-width:1024px){.bannerCTA-hero{font-size:1.25rem;}}.executives-wrap{width:100%;text-align:center;}.team-grid-executives{display:inline-grid;grid-template-columns:repeat(3,300px);gap:var(--team-gap,0.5rem);justify-items:center;text-align:left;}@media (max-width:360px){#team,#ekip{padding-left:0.25rem !important;padding-right:0.25rem !important;}#team .container,#ekip .container{padding-left:0.25rem !important;padding-right:0.25rem !important;}.executives-wrap{display:flex !important;flex-direction:column !important;align-items:center !important;width:100% !important;box-sizing:border-box !important;}.team-grid-executives{width:100% !important;max-width:300px !important;margin-left:auto !important;margin-right:auto !important;box-sizing:border-box !important;}}.team-grid-managers{display:grid;grid-template-columns:repeat(3,300px);gap:var(--team-gap,0.5rem);margin-bottom:0;max-width:100%;align-items:stretch;justify-content:center;}.team-grid-bdm{display:grid;grid-template-columns:repeat(2,300px);gap:var(--team-gap,0.5rem);max-width:100%;align-items:stretch;justify-content:center;}#ekip .mb-20:has(.team-grid-managers),#team .mb-20:has(.team-grid-managers){margin-bottom:var(--team-gap,0.5rem) !important;}#ekip .mb-20:has(.team-grid-bdm),#team .mb-20:has(.team-grid-bdm){margin-top:0 !important;}.team-grid-engineers{display:grid;grid-template-columns:1fr;justify-content:center;}@media (min-width:768px){.team-grid-engineers{grid-template-columns:repeat(3,300px);justify-content:center;}.team-grid-engineers .team-card-engineer:last-child{grid-column:2;}}.team-grid-marketers{display:grid;grid-template-columns:1fr;justify-content:center;}@media (min-width:768px){.team-grid-marketers{grid-template-columns:repeat(3,300px);}}.team-card:not(.ud-single-team){background:linear-gradient(135deg,rgba(30,41,59,0.9),rgba(15,23,42,0.95));backdrop-filter:blur(20px);border:2px solid transparent;background-clip:padding-box;border-radius:1rem;padding:1rem;text-align:center;transition:all 0.35s cubic-bezier(0.4,0,0.2,1);max-width:100%;width:100%;min-height:420px;overflow:hidden;box-sizing:border-box;position:relative;display:flex;flex-direction:column;justify-content:space-between;align-items:center;}#ekip .grid{gap:var(--team-gap) !important;}.team-card:not(.ud-single-team):hover{transform:translateY(-12px) scale(1.02);box-shadow:0 20px 60px rgba(59,130,246,0.4),0 0 80px rgba(6,182,212,0.2);}.team-card-manager{border:2px solid rgba(16,185,129,0.6);box-shadow:0 10px 40px rgba(16,185,129,0.35);}.team-role{font-size:1.5rem;font-weight:600;margin-top:0.4rem;color:#93C5FD;min-width:0;overflow-wrap:break-word;word-break:break-word;text-align:center;}@media (min-width:768px){.team-role{font-size:1.75rem;}}.team-card-ceo{border:2px solid rgba(251,191,36,0.7);box-shadow:0 10px 40px rgba(251,191,36,0.4),0 0 60px rgba(251,191,36,0.2);}.team-card-cto{border:2px solid rgba(251,191,36,0.7);box-shadow:0 10px 40px rgba(251,191,36,0.4),0 0 60px rgba(251,191,36,0.2);}.team-card-cion{border:2px solid rgba(251,191,36,0.7);box-shadow:0 10px 40px rgba(251,191,36,0.4),0 0 60px rgba(251,191,36,0.2);}.team-card-engineer{border:2px solid rgba(59,130,246,0.7);box-shadow:0 10px 40px rgba(59,130,246,0.4),0 0 60px rgba(59,130,246,0.2);}#team .team-card-engineer .team-role,#ekip .team-card-engineer .team-role{white-space:normal !important;text-overflow:unset;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}.team-card-marketing{border:2px solid rgba(236,72,153,0.7);box-shadow:0 10px 40px rgba(236,72,153,0.4),0 0 60px rgba(236,72,153,0.2);}.team-card-bdm{min-height:440px;border:2px solid rgba(100,116,139,0.4);box-shadow:0 10px 40px rgba(100,116,139,0.25);}.team-card-bdm.team-card-manager{border:2px solid rgba(16,185,129,0.6);box-shadow:0 10px 40px rgba(16,185,129,0.35);}@media (max-width:767px){.team-card-ceo{order:-1;}}.team-avatar-container{width:9rem;height:12rem;margin:0 auto 1rem auto;overflow:hidden !important;border-radius:1.25rem;border:3px solid transparent;background:linear-gradient(135deg,rgba(59,130,246,0.2),rgba(6,182,212,0.2));box-shadow:0 8px 32px rgba(0,0,0,0.3);transition:all 0.4s ease;flex-shrink:0;position:relative;}.team-card:hover .team-avatar-container{transform:scale(1.05);box-shadow:0 12px 48px rgba(59,130,246,0.4);}@media (min-width:768px){.team-avatar-container{width:10rem;height:13rem;}}@media (min-width:1024px){.team-avatar-container{width:11rem;height:14rem;}}.team-avatar{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;transition:transform 0.4s ease;}.team-card:hover .team-avatar{transform:scale(1.08);}.team-card h4{min-height:3.5rem;display:flex;align-items:center;justify-content:center;line-height:1.35;font-size:1.95rem;min-width:0;overflow-wrap:break-word;word-break:break-word;text-align:center;}@media (min-width:768px){.team-card h4{font-size:2.25rem;}}.team-card > a,.team-card .inline-block{display:inline-flex !important;align-items:center;justify-content:center;width:48px;height:48px;background:linear-gradient(135deg,#0077b5,#006399);border-radius:12px;transition:all 0.3s ease;box-shadow:0 4px 12px rgba(0,119,181,0.3);position:relative;z-index:10;cursor:pointer;}.team-card > a:hover,.team-card .inline-block:hover{transform:translateY(-4px) scale(1.1);box-shadow:0 8px 24px rgba(0,119,181,0.5);background:linear-gradient(135deg,#0088cc,#0077b5);}.team-card > a i,.team-card .inline-block i{font-size:1.75rem;color:white !important;}.team-avatar-ramazan{width:100%;height:100%;object-fit:cover;object-position:center 10%;transform:scale(1.15);display:block;}@media (max-width:768px){.team-grid-managers{grid-template-columns:1fr !important;max-width:100%;width:100%;justify-items:center;}.team-grid-bdm{grid-template-columns:1fr !important;width:100%;justify-items:center;}.team-grid-executives{grid-template-columns:1fr !important;justify-items:center !important;width:100% !important;max-width:100% !important;}section[data-section-tr="ekip"] div[style*="grid-template-columns"],section[data-section-en="team"] div[style*="grid-template-columns"]{grid-template-columns:1fr !important;justify-items:center !important;justify-content:center !important;width:100% !important;max-width:100% !important;}.team-grid-engineers{grid-template-columns:1fr !important;justify-items:center;}.team-grid-marketers{grid-template-columns:1fr !important;justify-items:center;}#team .ud-single-team.team-card,#ekip .ud-single-team.team-card{width:300px !important;min-width:300px !important;max-width:300px !important;margin-left:auto;margin-right:auto;padding:0;box-sizing:border-box;}.team-avatar-container{width:10rem;height:13rem;margin:0 auto 1rem auto !important;}.partner-logo-card{min-width:120px;max-width:160px;padding:1rem 1.5rem;}body,html{max-width:100% !important;overflow-x:hidden !important;}.container{max-width:100% !important;padding-left:1rem !important;padding-right:1rem !important;box-sizing:border-box;}section{padding-left:1rem !important;padding-right:1rem !important;box-sizing:border-box;}.max-w-5xl,.max-w-4xl,.max-w-3xl{max-width:calc(100% - 2rem) !important;}.grid{max-width:100%;width:100%;box-sizing:border-box;}}@media (max-width:480px){.partner-logo-card{min-width:100px;max-width:140px;padding:0.75rem 1rem;}.partner-slider{gap:1rem;}.team-avatar-container{width:9rem;height:12rem;margin:0 auto 1rem auto !important;display:block;}#team .ud-single-team.team-card,#ekip .ud-single-team.team-card{width:300px !important;min-width:300px !important;max-width:300px !important;}}.language-flag{display:inline-flex;align-items:center;justify-content:center;width:24px;height:18px;border-radius:3px;overflow:hidden;box-shadow:0 2px 4px rgba(0,0,0,0.2);margin-right:6px;flex-shrink:0;position:relative;}.language-flag::before{content:'';position:absolute;inset:0;border:1px solid rgba(0,0,0,0.1);border-radius:3px;pointer-events:none;}.flag-tr{background:linear-gradient(to bottom,#E30A17 0%,#E30A17 100%);}.flag-tr::after{content:'🇹🇷';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:16px;line-height:1;}.flag-en{background:linear-gradient(to bottom,#012169 0%,#012169 100%);}.flag-en::after{content:'🇬🇧';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:16px;line-height:1;}header nav ul.space-x-6 a.nav-link{white-space:nowrap;}#languageSwitcher,#languageSwitcherMobile{transition:all 0.3s ease;flex-shrink:0;min-width:fit-content;box-sizing:border-box;}#languageSwitcher span,#languageSwitcherMobile span{white-space:nowrap;display:inline-block;}#languageSwitcher:hover,#languageSwitcherMobile:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(16,185,129,0.3);}.emoji-lightning{background:none !important;-webkit-background-clip:unset !important;-webkit-text-fill-color:unset !important;background-clip:unset !important;color:inherit !important;display:inline;}:root{--header-offset:4.5rem;--team-gap:0.5rem;}#ekip{--team-gap:0.5rem;}#ekip [class*="gap-"]{gap:var(--team-gap) !important;}#ekip .team-grid-managers,#ekip .team-grid-bdm,#ekip .grid{gap:var(--team-gap) !important;}section[id],[id]{scroll-margin-top:var(--header-offset);}#team,#ekip{scroll-margin-top:5.5rem;}#team .ud-single-team.team-card,#ekip .ud-single-team.team-card{display:flex !important;flex-direction:column !important;padding-bottom:1.25rem !important;box-sizing:border-box !important;}#team .ud-team-info,#ekip .ud-team-info{display:flex !important;flex-direction:column !important;align-items:center !important;gap:0.5rem !important;flex:0 1 auto !important;margin-top:2.25rem !important;padding:0.5rem 0.35rem 0.75rem !important;min-height:0 !important;overflow:visible !important;}#team .ud-team-info h4,#ekip .ud-team-info h4{margin:0 !important;line-height:1.35 !important;}#team .ud-team-info .team-role,#ekip .ud-team-info .team-role{margin:0 !important;line-height:1.35 !important;}#team .ud-team-socials,#ekip .ud-team-socials{flex-shrink:0 !important;margin-top:0.5rem !important;margin-bottom:0 !important;}@media (max-width:767px){#team .ud-team-image-wrapper,#ekip .ud-team-image-wrapper{max-height:320px !important;}#team .ud-team-info,#ekip .ud-team-info{margin-top:2rem !important;}#team .ud-single-team.team-card,#ekip .ud-single-team.team-card{padding-bottom:1.25rem !important;}#team .team-role,#ekip .team-role,#team .ud-team-info .team-role,#ekip .ud-team-info .team-role{color:#ffffff !important;}}
     </style>
     <!-- F5’te her zaman en üste git; hash’e kaydırma -->
     <script>
@@ -1347,7 +229,7 @@
             <nav class="flex items-center justify-between py-0.5 w-full" style="gap: 1.25rem;" aria-label="Main navigation">
                 <!-- Logo (solda) -->
                 <a href="#top" class="flex items-center flex-shrink-0">
-                    <img src="assets/images/logo/CompanyLogo.png" alt="Solarity AI" class="logo-standard" width="360" height="90" fetchpriority="high" />
+                    <img src="assets/images/logo/CompanyLogo-360w.webp" srcset="assets/images/logo/CompanyLogo-180w.webp 180w, assets/images/logo/CompanyLogo-360w.webp 360w" sizes="(max-width: 768px) 180px, 360px" width="360" height="90" fetchpriority="high" loading="eager" alt="Solarity AI" class="logo-standard" />
                 </a>
                 <div class="nav-spacer flex-1 min-w-0" aria-hidden="true"></div>
                 <!-- CTA logo ile Hakkımızda tam ortasında (CTA’nın solundaki boşluk) -->
@@ -1698,7 +580,7 @@
                         </div>
                         <div class="ud-team-info">
                             <h4 class="text-xl font-semibold team-member-name" data-name-en="Umur Inan" data-name-tr="Umur İnan">Umur Inan</h4>
-                            <h5 class="team-role text-brand-blue" data-i18n="teamCTO">CTO</h5>
+                            <p class="team-role text-brand-blue" data-i18n="teamCTO">CTO</p>
                         </div>
                         <ul class="ud-team-socials">
                             <li>
@@ -1718,7 +600,7 @@
                         </div>
                         <div class="ud-team-info">
                             <h4 class="text-xl font-semibold team-member-name" data-name-en="Ata Turhan" data-name-tr="Ata Turhan">Ata Turhan</h4>
-                            <h5 class="team-role text-brand-blue" data-i18n="teamCEO">CEO</h5>
+                            <p class="team-role text-brand-blue" data-i18n="teamCEO">CEO</p>
                         </div>
                         <ul class="ud-team-socials">
                             <li>
@@ -1738,7 +620,7 @@
                         </div>
                         <div class="ud-team-info">
                             <h4 class="text-xl font-semibold team-member-name" data-name-en="Burak Hamuryen" data-name-tr="Burak Hamuryen">Burak Hamuryen</h4>
-                            <h5 class="team-role text-brand-blue" data-i18n="teamCIO">CIO</h5>
+                            <p class="team-role text-brand-blue" data-i18n="teamCIO">CIO</p>
                         </div>
                         <ul class="ud-team-socials">
                             <li>
@@ -1765,7 +647,7 @@
                         </div>
                         <div class="ud-team-info">
                             <h4 class="text-xl font-semibold team-member-name" data-name-en="Gokberk Serin" data-name-tr="Gökberk Serin">Gokberk Serin</h4>
-                            <h5 class="team-role text-brand-blue" data-i18n="teamBDM">BDM</h5>
+                            <p class="team-role text-brand-blue" data-i18n="teamBDM">BDM</p>
                         </div>
                         <ul class="ud-team-socials">
                             <li>
@@ -1785,7 +667,7 @@
                         </div>
                         <div class="ud-team-info">
                             <h4 class="text-xl font-semibold team-member-name" data-name-en="Ramazan Cinar" data-name-tr="Ramazan Çınar">Ramazan Cinar</h4>
-                            <h5 class="team-role text-brand-blue" data-i18n="teamBDM">BDM</h5>
+                            <p class="team-role text-brand-blue" data-i18n="teamBDM">BDM</p>
                         </div>
                         <ul class="ud-team-socials">
                             <li>
@@ -1805,7 +687,7 @@
                         </div>
                         <div class="ud-team-info">
                             <h4 class="text-xl font-semibold team-member-name" data-name-en="Ali Yilmaz" data-name-tr="Ali Yılmaz">Ali Yilmaz</h4>
-                            <h5 class="team-role text-brand-blue" data-i18n="teamBDM">BDM</h5>
+                            <p class="team-role text-brand-blue" data-i18n="teamBDM">BDM</p>
                         </div>
                         <ul class="ud-team-socials">
                             <li>
@@ -1831,7 +713,7 @@
                         </div>
                         <div class="ud-team-info">
                             <h4 class="text-lg font-semibold team-member-name" data-name-en="Remzi Mert Tehneldere" data-name-tr="Remzi Mert Tehneldere">Remzi Mert<br/>Tehneldere</h4>
-                            <h5 class="team-role text-brand-blue" data-i18n="teamBDM">BDM</h5>
+                            <p class="team-role text-brand-blue" data-i18n="teamBDM">BDM</p>
                         </div>
                         <ul class="ud-team-socials">
                             <li>
@@ -1851,7 +733,7 @@
                         </div>
                         <div class="ud-team-info">
                             <h4 class="text-lg font-semibold team-member-name" data-name-en="Batuhan Kestek" data-name-tr="Batuhan Kestek">Batuhan Kestek</h4>
-                            <h5 class="team-role text-brand-blue" data-i18n="teamBDM">BDM</h5>
+                            <p class="team-role text-brand-blue" data-i18n="teamBDM">BDM</p>
                         </div>
                         <ul class="ud-team-socials">
                             <li>
@@ -1878,7 +760,7 @@
                         </div>
                         <div class="ud-team-info">
                             <h4 class="text-xl font-semibold team-member-name" data-name-en="Hasan Erdem Ak" data-name-tr="Hasan Erdem Ak">Hasan Erdem Ak</h4>
-                            <h5 class="team-role text-brand-blue" data-i18n="teamLeadFullStack">Engineering Manager & Lead Full-Stack Engineer</h5>
+                            <p class="team-role text-brand-blue" data-i18n="teamLeadFullStack">Engineering Manager & Lead Full-Stack Engineer</p>
                         </div>
                         <ul class="ud-team-socials">
                             <li>
@@ -1898,7 +780,7 @@
                         </div>
                         <div class="ud-team-info">
                             <h4 class="text-xl font-semibold team-member-name" data-name-en="Emrecan Ozkan" data-name-tr="Emrecan Özkan">Emrecan Ozkan</h4>
-                            <h5 class="team-role text-brand-blue" data-i18n="teamSeniorFullStack">Senior Full-Stack Engineer</h5>
+                            <p class="team-role text-brand-blue" data-i18n="teamSeniorFullStack">Senior Full-Stack Engineer</p>
                         </div>
                         <ul class="ud-team-socials">
                             <li>
@@ -1918,7 +800,7 @@
                         </div>
                         <div class="ud-team-info">
                             <h4 class="text-xl font-semibold team-member-name" data-name-en="Mehmet Begun" data-name-tr="Mehmet Begun">Mehmet Begun</h4>
-                            <h5 class="team-role text-brand-blue" data-i18n="teamEngineer">Full-Stack Engineer</h5>
+                            <p class="team-role text-brand-blue" data-i18n="teamEngineer">Full-Stack Engineer</p>
                         </div>
                         <ul class="ud-team-socials">
                             <li>
@@ -1938,7 +820,7 @@
                         </div>
                         <div class="ud-team-info">
                             <h4 class="text-xl font-semibold team-member-name" data-name-en="Eren Can Donertas" data-name-tr="Eren Can Dönertaş">Eren Can Donertas</h4>
-                            <h5 class="team-role text-brand-blue" data-i18n="teamEngineer">Full-Stack Engineer</h5>
+                            <p class="team-role text-brand-blue" data-i18n="teamEngineer">Full-Stack Engineer</p>
                         </div>
                         <ul class="ud-team-socials">
                             <li>
@@ -1965,7 +847,7 @@
                         </div>
                         <div class="ud-team-info">
                             <h4 class="text-xl font-semibold team-member-name" data-name-en="Lara Sen" data-name-tr="Lara Şen">Lara Sen</h4>
-                            <h5 class="team-role text-brand-blue" data-i18n="teamMarketer">Marketing Specialist</h5>
+                            <p class="team-role text-brand-blue" data-i18n="teamMarketer">Marketing Specialist</p>
                         </div>
                         <ul class="ud-team-socials">
                             <li>
@@ -1985,7 +867,7 @@
                         </div>
                         <div class="ud-team-info">
                             <h4 class="text-xl font-semibold team-member-name" data-name-en="Beril Damaci" data-name-tr="Beril Damacı">Beril Damaci</h4>
-                            <h5 class="team-role text-brand-blue" data-i18n="teamMarketer">Marketing Specialist</h5>
+                            <p class="team-role text-brand-blue" data-i18n="teamMarketer">Marketing Specialist</p>
                         </div>
                         <ul class="ud-team-socials">
                             <li>
@@ -2005,7 +887,7 @@
                         </div>
                         <div class="ud-team-info">
                             <h4 class="text-xl font-semibold team-member-name" data-name-en="Hilal Genc" data-name-tr="Hilal Genç">Hilal Genc</h4>
-                            <h5 class="team-role text-brand-blue" data-i18n="teamMarketer">Marketing Specialist</h5>
+                            <p class="team-role text-brand-blue" data-i18n="teamMarketer">Marketing Specialist</p>
                         </div>
                         <ul class="ud-team-socials">
                             <li>
@@ -2048,20 +930,40 @@
                             <p class="text-lg font-semibold text-slate-100 leading-snug" style="grid-column:2;grid-row:2;margin:0;margin-top:0.125rem;" data-i18n="contactResponseTimeValue">Within 24 hours</p>
                         </div>
                     </div>
-                    <div class="rounded-lg overflow-hidden border border-slate-700 flex-1 min-h-[200px] flex flex-col">
-                        <iframe id="contactMapEmbed"
-                            title="Solarity AI - Dallas Office"
-                            data-src-tr="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3350.0115985925604!2d-96.9414755!3d32.8978616!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864c2817e5e6c0e5%3A0xdb87e7baf2caaf2!2sAMLI%20on%20Riverside!5e0!3m2!1str!2str!4v1769627207920!5m2!1str!2str"
-                            data-src-en="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3350.0115985925604!2d-96.9414755!3d32.8978616!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864c2817e5e6c0e5%3A0xdb87e7baf2caaf2!2sAMLI%20on%20Riverside!5e0!3m2!1sen!2sus!4v1769627207920!5m2!1sen!2sus"
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3350.0115985925604!2d-96.9414755!3d32.8978616!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864c2817e5e6c0e5%3A0xdb87e7baf2caaf2!2sAMLI%20on%20Riverside!5e0!3m2!1sen!2sus!4v1769627207920!5m2!1sen!2sus"
-                            class="w-full flex-1 min-h-[200px]"
-                            style="border:0;"
-                            allowfullscreen="" loading="lazy" decoding="async" referrerpolicy="no-referrer-when-downgrade">
-                        </iframe>
+                    <!-- Google Maps: ilk yüklemede hiç gelmez; kullanıcı tıklayınca yüklenir (PageSpeed 460 KB kaldırılır) -->
+                    <div id="contactMapContainer"
+                         class="map-container rounded-lg overflow-hidden border border-slate-700 flex-1 flex flex-col"
+                         data-src-tr="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3350.0115985925604!2d-96.9414755!3d32.8978616!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864c2817e5e6c0e5%3A0xdb87e7baf2caaf2!2sAMLI%20on%20Riverside!5e0!3m2!1str!2str!4v1769627207920!5m2!1str!2str"
+                         data-src-en="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3350.0115985925604!2d-96.9414755!3d32.8978616!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864c2817e5e6c0e5%3A0xdb87e7baf2caaf2!2sAMLI%20on%20Riverside!5e0!3m2!1sen!2sus!4v1769627207920!5m2!1sen!2sus">
+                        <button type="button" id="loadMapBtn" class="map-overlay-btn" data-i18n="showMap" aria-label="Show map">Show Map</button>
                     </div>
                 </div>
+                <style>.map-container{position:relative;width:100%;min-height:260px;height:420px;background:#1e293b}.map-overlay-btn{position:absolute;inset:0;width:100%;height:100%;background:rgba(0,0,0,.08);border:0;font-size:1.1rem;font-weight:500;color:#e2e8f0;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s}.map-overlay-btn:hover{background:rgba(0,0,0,.15)}</style>
                 <script>
-                  (function(){ document.addEventListener('DOMContentLoaded', function(){ var iframe = document.getElementById('contactMapEmbed'); if(iframe){ var s = iframe.getAttribute('data-src-en'); if(s) iframe.src = s; }}); })();
+                (function(){
+                  document.getElementById('loadMapBtn')?.addEventListener('click', function(){
+                    var container = document.getElementById('contactMapContainer');
+                    if(!container) return;
+                    var lang = (typeof localStorage !== 'undefined' && localStorage.getItem('solarityai-lang')) || document.documentElement.getAttribute('lang') || 'en';
+                    var src = lang === 'tr' ? container.getAttribute('data-src-tr') : container.getAttribute('data-src-en');
+                    if(!src) return;
+                    var iframe = document.createElement('iframe');
+                    iframe.id = 'contactMapEmbed';
+                    iframe.title = 'Solarity AI - Dallas Office';
+                    iframe.src = src;
+                    iframe.setAttribute('loading','lazy');
+                    iframe.setAttribute('referrerpolicy','no-referrer-when-downgrade');
+                    iframe.width = '100%';
+                    iframe.height = '100%';
+                    iframe.style.border = '0';
+                    iframe.allowFullscreen = true;
+                    iframe.setAttribute('data-src-tr', container.getAttribute('data-src-tr') || '');
+                    iframe.setAttribute('data-src-en', container.getAttribute('data-src-en') || '');
+                    iframe.className = 'w-full h-full min-h-[260px] md:min-h-[320px]';
+                    container.innerHTML = '';
+                    container.appendChild(iframe);
+                  });
+                })();
                 </script>
 
                 <!-- Sağ: Form -->
@@ -2131,7 +1033,7 @@
         <div class="container mx-auto max-w-5xl" style="display:grid;grid-template-columns:1fr 1fr;gap:0 2rem;align-items:start;">
             <div class="max-w-md text-center mx-auto w-full" style="grid-column:1/-1;">
                 <a href="#top" class="inline-block cursor-pointer hover:opacity-80 transition" title="Back to top">
-                    <img src="assets/images/logo/CompanyLogo.png" alt="Solarity AI" class="logo-standard mb-1 h-auto mx-auto" width="360" height="90" loading="lazy" decoding="async" style="display:block;" />
+                    <picture><source type="image/webp" srcset="assets/images/logo/CompanyLogo-360w.webp" /><img src="assets/images/logo/CompanyLogo-360w.png" alt="Solarity AI" class="logo-standard mb-1 h-auto mx-auto" width="360" height="90" loading="lazy" decoding="async" style="display:block;" /></picture>
                 </a>
                 <p class="text-lg md:text-xl text-slate-300 leading-relaxed" data-i18n="footerDescription">AI-Native Software Company Creating High-Impact B2B and B2C Solutions with World-Class Quality.</p>
             </div>
@@ -2159,24 +1061,52 @@
         </div>
     </footer>
 
-    <!-- Scripts (defer for non-blocking load) -->
-    <script src="assets/js/translations.min.js" defer></script>
-    <script src="assets/js/language.min.js" defer></script>
-
+    <!-- Scripts: load language after idle to avoid long main-thread tasks (TBT) -->
     <script>
         // Dil değiştirme – harita güncellemesi language.js updateMapEmbedLang() ile yapılıyor
         window.invokeToggleLanguage = function() {
             if (window && typeof window.toggleLanguage === 'function') window.toggleLanguage();
             else console.warn('Language system not initialized yet.');
         };
-        // Defer non-critical JS to idle to reduce main thread work (TBT)
+        (function loadLangWhenIdle() {
+            function loadScript(src, done) {
+                var s = document.createElement('script');
+                s.src = src;
+                s.onload = done;
+                s.onerror = done;
+                document.head.appendChild(s);
+            }
+            function go() {
+                loadScript('assets/js/translations.min.js', function() {
+                    loadScript('assets/js/language.min.js', function() {});
+                });
+            }
+            function schedule() {
+                if (typeof requestIdleCallback !== 'undefined') requestIdleCallback(go, { timeout: 400 });
+                else setTimeout(go, 50);
+            }
+            if (document.readyState === 'complete') schedule();
+            else window.addEventListener('load', schedule, { once: true });
+        })();
+    </script>
+
+    <script>
+        // Run chunks with yield between each to keep main-thread tasks short (&lt;50ms)
         function runWhenIdle(fn) {
             if (typeof requestIdleCallback !== 'undefined') requestIdleCallback(fn, { timeout: 350 });
             else setTimeout(fn, 100);
         }
-        function initDeferred() {
-        // Mobile Menu Toggle + aria-expanded for accessibility
-        function initMobileMenu() {
+        function runChunks(fns) {
+            var i = 0;
+            function next() {
+                if (i < fns.length) {
+                    fns[i++]();
+                    setTimeout(next, 0);
+                }
+            }
+            next();
+        }
+        function initDeferredChunk1() {
             var btn = document.getElementById('mobileMenuBtn');
             var menu = document.getElementById('mobileMenu');
             if (!btn || !menu) return;
@@ -2187,18 +1117,13 @@
                 menu.setAttribute('aria-hidden', isHidden);
             });
         }
-        initMobileMenu();
-
-        (function headerOverflowHamburger() {
+        function initDeferredChunk2() {
             var header = document.querySelector('header');
             var BREAK = 1024;
             function check() {
                 if (!header) return;
                 var w = window.innerWidth;
-                if (w <= BREAK) {
-                    header.classList.add('overflow-menu');
-                    return;
-                }
+                if (w <= BREAK) { header.classList.add('overflow-menu'); return; }
                 header.classList.remove('overflow-menu');
                 requestAnimationFrame(function() {
                     requestAnimationFrame(function() {
@@ -2207,13 +1132,11 @@
                     });
                 });
             }
-            window.addEventListener('resize', function() { check(); });
+            window.addEventListener('resize', check);
             if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', check);
             else check();
-        })();
-
-        // Contact form - LinkedIn URL validation (prefix: linkedin.com/in/)
-        (function() {
+        }
+        function initDeferredChunk3() {
             var input = document.getElementById('contactLinkedIn');
             var errorEl = document.getElementById('contactLinkedInError');
             if (!input || !errorEl) return;
@@ -2224,109 +1147,59 @@
                 var msgRequired = (t.contactLinkedInRequired || 'LinkedIn URL is required.');
                 var msgInvalid = (t.careersLinkedInInvalid || 'Please enter a valid LinkedIn profile URL (e.g. https://www.linkedin.com/in/...).');
                 var val = (input.value || '').trim();
-                if (!val) {
-                    errorEl.classList.add('hidden');
-                    input.setCustomValidity(msgRequired);
-                    input.classList.remove('border-amber-500', 'ring-1', 'ring-amber-500');
-                    return;
-                }
-                if (!linkedinRegex.test(val)) {
-                    errorEl.classList.remove('hidden');
-                    errorEl.textContent = msgInvalid;
-                    input.setCustomValidity(msgInvalid);
-                    input.classList.add('border-amber-500', 'ring-1', 'ring-amber-500');
-                    return false;
-                }
-                errorEl.classList.add('hidden');
-                input.setCustomValidity('');
-                input.classList.remove('border-amber-500', 'ring-1', 'ring-amber-500');
-                return true;
+                if (!val) { errorEl.classList.add('hidden'); input.setCustomValidity(msgRequired); input.classList.remove('border-amber-500', 'ring-1', 'ring-amber-500'); return; }
+                if (!linkedinRegex.test(val)) { errorEl.classList.remove('hidden'); errorEl.textContent = msgInvalid; input.setCustomValidity(msgInvalid); input.classList.add('border-amber-500', 'ring-1', 'ring-amber-500'); return false; }
+                errorEl.classList.add('hidden'); input.setCustomValidity(''); input.classList.remove('border-amber-500', 'ring-1', 'ring-amber-500'); return true;
             }
-            input.addEventListener('input', function() {
-                input.setCustomValidity('');
-                errorEl.classList.add('hidden');
-                input.classList.remove('border-amber-500', 'ring-1', 'ring-amber-500');
-            });
+            input.addEventListener('input', function() { input.setCustomValidity(''); errorEl.classList.add('hidden'); input.classList.remove('border-amber-500', 'ring-1', 'ring-amber-500'); });
             input.addEventListener('blur', validateLinkedIn);
-            input.addEventListener('blur', validateLinkedIn);
-            input.addEventListener('invalid', function(e) {
-                validateLinkedIn();
-            });
-            document.querySelector('form[action*="formsubmit.co"]') && document.querySelector('form[action*="formsubmit.co"]').addEventListener('submit', function(e) {
-                if (!validateLinkedIn()) e.preventDefault();
-            });
-        })();
-
-        // Contact form – Gmail only (same as careers page)
-        (function() {
+            input.addEventListener('invalid', function(e) { validateLinkedIn(); });
+            document.querySelector('form[action*="formsubmit.co"]') && document.querySelector('form[action*="formsubmit.co"]').addEventListener('submit', function(e) { if (!validateLinkedIn()) e.preventDefault(); });
+        }
+        function initDeferredChunk4() {
             var gmailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
             var gmailInput = document.getElementById('contactEmail');
             var gmailErrorEl = document.getElementById('contactGmailError');
             if (!gmailInput || !gmailErrorEl) return;
             function validateGmail() {
                 var val = (gmailInput.value || '').trim();
-                if (!val) {
-                    gmailErrorEl.classList.add('hidden');
-                    gmailInput.setCustomValidity('');
-                    gmailInput.classList.remove('border-amber-500', 'ring-1', 'ring-amber-500');
-                    return true;
-                }
+                if (!val) { gmailErrorEl.classList.add('hidden'); gmailInput.setCustomValidity(''); gmailInput.classList.remove('border-amber-500', 'ring-1', 'ring-amber-500'); return true; }
                 if (!gmailRegex.test(val)) {
                     var lang = localStorage.getItem('solarityai-lang') || 'en';
                     var t = (window.translations && (window.translations[lang] || window.translations.en)) || {};
                     var msg = (t.careersFormGmailInvalid || 'Please enter a valid Gmail address (@gmail.com only).');
-                    gmailErrorEl.textContent = msg;
-                    gmailErrorEl.classList.remove('hidden');
-                    gmailInput.setCustomValidity(msg);
-                    gmailInput.classList.add('border-amber-500', 'ring-1', 'ring-amber-500');
-                    return false;
+                    gmailErrorEl.textContent = msg; gmailErrorEl.classList.remove('hidden'); gmailInput.setCustomValidity(msg); gmailInput.classList.add('border-amber-500', 'ring-1', 'ring-amber-500'); return false;
                 }
-                gmailErrorEl.classList.add('hidden');
-                gmailInput.setCustomValidity('');
-                gmailInput.classList.remove('border-amber-500', 'ring-1', 'ring-amber-500');
-                return true;
+                gmailErrorEl.classList.add('hidden'); gmailInput.setCustomValidity(''); gmailInput.classList.remove('border-amber-500', 'ring-1', 'ring-amber-500'); return true;
             }
-            gmailInput.addEventListener('input', function() {
-                gmailInput.setCustomValidity('');
-                gmailErrorEl.classList.add('hidden');
-                gmailInput.classList.remove('border-amber-500', 'ring-1', 'ring-amber-500');
-            });
+            gmailInput.addEventListener('input', function() { gmailInput.setCustomValidity(''); gmailErrorEl.classList.add('hidden'); gmailInput.classList.remove('border-amber-500', 'ring-1', 'ring-amber-500'); });
             gmailInput.addEventListener('blur', validateGmail);
-            document.querySelector('form[action*="formsubmit.co"]') && document.querySelector('form[action*="formsubmit.co"]').addEventListener('submit', function(e) {
-                if (!validateGmail()) e.preventDefault();
-            });
-        })();
-
-        // Contact form success message – TR/EN (runs inside initDeferred, DOM already ready)
-        var urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.get('success') === 'true') {
+            document.querySelector('form[action*="formsubmit.co"]') && document.querySelector('form[action*="formsubmit.co"]').addEventListener('submit', function(e) { if (!validateGmail()) e.preventDefault(); });
+        }
+        function initDeferredChunk5() {
+            var urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('success') !== 'true') return;
             var msgEl = document.getElementById('contactFormMessage');
-            if (msgEl) {
-                function showContactSuccess() {
-                    var lang = (document.documentElement.getAttribute('lang') || (typeof localStorage !== 'undefined' && localStorage.getItem('solarityai-lang')) || 'en').toLowerCase();
-                    lang = (lang.indexOf('tr') === 0) ? 'tr' : 'en';
-                    var t = (window.translations && (window.translations[lang] || window.translations.en)) || {};
-                    var title = t.contactFormSuccess || 'Message sent successfully!';
-                    var sub = t.contactFormSuccessMsg || "We'll get back to you as soon as possible.";
-                    msgEl.className = 'mt-6 p-4 rounded-lg text-center bg-emerald-500/20 border border-emerald-500 text-emerald-400';
-                    msgEl.innerHTML = '<strong>' + title + '</strong><br><span>' + sub + '</span>';
-                    msgEl.classList.remove('hidden');
-                    msgEl.setAttribute('role', 'alert');
-                    if (window.history && window.history.replaceState) {
-                        window.history.replaceState({}, document.title, window.location.pathname + window.location.hash);
-                    }
-                    msgEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }
-                setTimeout(showContactSuccess, 150);
+            if (!msgEl) return;
+            function showContactSuccess() {
+                var lang = (document.documentElement.getAttribute('lang') || (typeof localStorage !== 'undefined' && localStorage.getItem('solarityai-lang')) || 'en').toLowerCase();
+                lang = (lang.indexOf('tr') === 0) ? 'tr' : 'en';
+                var t = (window.translations && (window.translations[lang] || window.translations.en)) || {};
+                var title = t.contactFormSuccess || 'Message sent successfully!';
+                var sub = t.contactFormSuccessMsg || "We'll get back to you as soon as possible.";
+                msgEl.className = 'mt-6 p-4 rounded-lg text-center bg-emerald-500/20 border border-emerald-500 text-emerald-400';
+                msgEl.innerHTML = '<strong>' + title + '</strong><br><span>' + sub + '</span>';
+                msgEl.classList.remove('hidden');
+                msgEl.setAttribute('role', 'alert');
+                if (window.history && window.history.replaceState) window.history.replaceState({}, document.title, window.location.pathname + window.location.hash);
+                msgEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
+            setTimeout(showContactSuccess, 150);
         }
-
-        } // end initDeferred
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', function() { runWhenIdle(initDeferred); });
-        } else {
-            runWhenIdle(initDeferred);
+        function startDeferred() {
+            runChunks([initDeferredChunk1, initDeferredChunk2, initDeferredChunk3, initDeferredChunk4, initDeferredChunk5]);
         }
+        window._startDeferred = startDeferred;
     </script>
 
     <!-- Smooth anchor scrolling with header offset -->
@@ -2351,23 +1224,19 @@
 
         function scrollToWithOffset(targetEl){
           if(!targetEl) return;
-
-          // Bölüm başlığını (h2/h1) navbar altında göstermek için hedef olarak başlığı kullan
           var scrollTarget = targetEl.querySelector('h2, h1');
           if (!scrollTarget) scrollTarget = targetEl;
-
           const header = document.querySelector('header');
-          const headerHeight = header ? Math.ceil(header.getBoundingClientRect().height) : 0;
-          const elementTop = scrollTarget.getBoundingClientRect().top + window.scrollY;
-          var gap = 24;
-          document.documentElement.style.setProperty('--header-offset', (headerHeight + gap) + 'px');
-
-          var scrollTo = elementTop - headerHeight - gap;
-
-          window.scrollTo({
-            top: Math.max(0, scrollTo),
-            behavior: 'smooth'
-          });
+          function readAndScroll(){
+            const headerHeight = header ? Math.ceil(header.getBoundingClientRect().height) : 0;
+            const elementTop = scrollTarget.getBoundingClientRect().top + window.scrollY;
+            var gap = 24;
+            document.documentElement.style.setProperty('--header-offset', (headerHeight + gap) + 'px');
+            var to = elementTop - headerHeight - gap;
+            window.scrollTo({ top: Math.max(0, to), behavior: 'smooth' });
+          }
+          if (typeof requestAnimationFrame !== 'undefined') requestAnimationFrame(readAndScroll);
+          else readAndScroll();
         }
 
         function navClickHandler(e){
@@ -2445,6 +1314,7 @@
 
           var clone = setEl.cloneNode(true);
           clone.setAttribute('aria-hidden', 'true');
+          clone.querySelectorAll('a[href]').forEach(function(a) { a.setAttribute('tabindex', '-1'); });
           slider.appendChild(clone);
 
           var rafId = null;
@@ -2473,22 +1343,27 @@
 
           function runAutoScroll() {
             if (rafId) return;
-            halfWidth = container.scrollWidth / 2;
-            var maxScroll = container.scrollWidth - container.clientWidth;
-            var lastScrollLeft = container.scrollLeft;
-            function tick() {
-              if (!rafId) return;
-              lastScrollLeft = container.scrollLeft;
-              container.scrollLeft += step;
-              if (container.scrollLeft >= halfWidth && lastScrollLeft < halfWidth) {
-                container.scrollLeft = container.scrollLeft - halfWidth;
-              }
-              if (container.scrollLeft >= maxScroll && maxScroll > 0) {
-                container.scrollLeft = 0;
+            function start() {
+              if (rafId) return;
+              halfWidth = container.scrollWidth / 2;
+              var maxScroll = container.scrollWidth - container.clientWidth;
+              var lastScrollLeft = container.scrollLeft;
+              function tick() {
+                if (!rafId) return;
+                lastScrollLeft = container.scrollLeft;
+                container.scrollLeft += step;
+                if (container.scrollLeft >= halfWidth && lastScrollLeft < halfWidth) {
+                  container.scrollLeft = container.scrollLeft - halfWidth;
+                }
+                if (container.scrollLeft >= maxScroll && maxScroll > 0) {
+                  container.scrollLeft = 0;
+                }
+                rafId = requestAnimationFrame(tick);
               }
               rafId = requestAnimationFrame(tick);
             }
-            rafId = requestAnimationFrame(tick);
+            if (typeof requestAnimationFrame !== 'undefined') requestAnimationFrame(start);
+            else start();
           }
 
           var userInteracting = false;
@@ -2513,10 +1388,19 @@
             scheduleRestart();
           }, { passive: true });
         }
-        if (document.readyState === 'loading') {
-          document.addEventListener('DOMContentLoaded', initPartnerSlider);
-        } else {
+        function runDeferredInits() {
+          document.body.classList.add('animations-ready');
+          if (window._startDeferred) window._startDeferred();
           initPartnerSlider();
+        }
+        function runWhenIdle(fn) {
+          if (typeof requestIdleCallback !== 'undefined') requestIdleCallback(fn, { timeout: 500 });
+          else setTimeout(fn, 500);
+        }
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', function() { runWhenIdle(runDeferredInits); });
+        } else {
+          runWhenIdle(runDeferredInits);
         }
       })();
     </script>
@@ -2544,25 +1428,17 @@
           'ad_user_data': 'granted',
           'ad_personalization': 'granted'
         });
-        function injectGtag() {
-          if (window.gtagScriptInjected) return;
-          window.gtagScriptInjected = true;
-          if (window._gtagLateTimeout) clearTimeout(window._gtagLateTimeout);
-          document.removeEventListener('click', injectGtag, true);
-          document.removeEventListener('scroll', injectGtag, true);
-          var s = document.createElement('script');
-          s.async = true;
-          s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
-          s.onload = function() {
-            window.gtagLoaded = true;
-            window.gtag('js', new Date());
-            window.gtag('config', GA_ID, { 'anonymize_ip': true });
-          };
-          document.head.appendChild(s);
-        }
-        document.addEventListener('click', injectGtag, { capture: true, once: true });
-        document.addEventListener('scroll', injectGtag, { capture: true, once: true });
-        window._gtagLateTimeout = setTimeout(injectGtag, 8000);
+        if (window.gtagScriptInjected) return;
+        window.gtagScriptInjected = true;
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+        s.onload = function() {
+          window.gtagLoaded = true;
+          window.gtag('js', new Date());
+          window.gtag('config', GA_ID, { 'anonymize_ip': true });
+        };
+        document.head.appendChild(s);
       }
       function hideBanner() {
         var el = document.getElementById('cookie-consent-banner');
@@ -2586,32 +1462,39 @@
         showBanner();
       }
       document.addEventListener('DOMContentLoaded', function() {
-        initConsent();
-        var acceptBtn = document.getElementById('cookie-consent-accept');
-        var declineBtn = document.getElementById('cookie-consent-decline');
-        if (acceptBtn) {
-          acceptBtn.addEventListener('click', function() {
-            localStorage.setItem(CONSENT_KEY, 'granted');
-            loadGtagAndGrant();
-            hideBanner();
-          });
+        function runConsentWhenIdle() {
+          if (typeof requestIdleCallback !== 'undefined') requestIdleCallback(function() { doConsent(); }, { timeout: 350 });
+          else setTimeout(doConsent, 50);
         }
-        if (declineBtn) {
-          declineBtn.addEventListener('click', function() {
-            localStorage.setItem(CONSENT_KEY, 'denied');
-            hideBanner();
-          });
+        function doConsent() {
+          initConsent();
+          var acceptBtn = document.getElementById('cookie-consent-accept');
+          var declineBtn = document.getElementById('cookie-consent-decline');
+          if (acceptBtn) {
+            acceptBtn.addEventListener('click', function() {
+              localStorage.setItem(CONSENT_KEY, 'granted');
+              loadGtagAndGrant();
+              hideBanner();
+            });
+          }
+          if (declineBtn) {
+            declineBtn.addEventListener('click', function() {
+              localStorage.setItem(CONSENT_KEY, 'denied');
+              hideBanner();
+            });
+          }
         }
+        runConsentWhenIdle();
       });
     })();
     </script>
     <!-- Ekip kartları: main.css grid düzeni kullanılsın (başlık + LinkedIn hizalı). Sadece font/visibility ince ayarları. -->
     <style id="team-cards-override">
       #team .ud-team-info h4, #ekip .ud-team-info h4 { margin: 0 0 0.25rem 0 !important; line-height: 1.35 !important; min-width: 0 !important; overflow-wrap: break-word !important; word-break: break-word !important; }
-      #team .ud-team-info h5, #ekip .ud-team-info h5 { margin: 0 !important; line-height: 1.35 !important; display: block !important; min-width: 0 !important; overflow-wrap: break-word !important; word-break: break-word !important; white-space: normal !important; text-overflow: unset !important; }
+      #team .ud-team-info .team-role, #ekip .ud-team-info .team-role { margin: 0 !important; line-height: 1.35 !important; display: block !important; min-width: 0 !important; overflow-wrap: break-word !important; word-break: break-word !important; white-space: normal !important; text-overflow: unset !important; }
       #team .ud-team-socials, #ekip .ud-team-socials { visibility: visible !important; opacity: 1 !important; }
       @media (max-width: 767px) {
-        #team .ud-team-info h5, #ekip .ud-team-info h5 { visibility: visible !important; opacity: 1 !important; }
+        #team .ud-team-info .team-role, #ekip .ud-team-info .team-role { visibility: visible !important; opacity: 1 !important; }
         #team .ud-team-socials, #ekip .ud-team-socials { visibility: visible !important; opacity: 1 !important; }
       }
     </style>
