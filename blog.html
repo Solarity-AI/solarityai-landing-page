@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <style>html.lang-loading body{visibility:hidden;}</style>
+    <style>html.lang-loading body{opacity:0;pointer-events:none;}</style>
     <script>
       (function(){
         try {
@@ -44,8 +44,10 @@
     <meta name="theme-color" content="#0a192f" />
     <link rel="canonical" href="https://solarityai.com/blog.html" />
 
-    <!-- Performance: preload LCP image (logo) -->
-    <link rel="preload" as="image" href="assets/images/logo/CompanyLogo-360w.webp" type="image/webp" />
+    <!-- Cloudflare: Disable email obfuscation (prevents email-decode.min.js) -->
+    <meta name="cfemail" content="off" />
+    <!-- Performance: preload LCP logo (mobile first – 120w) -->
+    <link rel="preload" as="image" href="assets/images/logo/CompanyLogo-120w.webp" type="image/webp" imagesrcset="assets/images/logo/CompanyLogo-120w.webp 120w, assets/images/logo/CompanyLogo-180w.webp 180w" imagesizes="(max-width: 1024px) 120px, 180px" />
     <!-- Font: LineIcons preload (critical’de @font-face yok) -->
     <link rel="preload" href="assets/fonts/LineIcons.woff2" as="font" type="font/woff2" crossorigin />
 
@@ -167,7 +169,7 @@
         <div class="container mx-auto px-4 md:px-12">
             <nav class="flex items-center justify-between py-0.5 w-full" style="gap: 1.25rem;" aria-label="Main navigation">
                 <a href="index.html" class="flex items-center flex-shrink-0">
-                    <img src="assets/images/logo/CompanyLogo-360w.webp" srcset="assets/images/logo/CompanyLogo-180w.webp 180w, assets/images/logo/CompanyLogo-360w.webp 360w" sizes="(max-width: 768px) 180px, 360px" width="360" height="90" fetchpriority="high" loading="eager" alt="Solarity AI" class="logo-standard" />
+                    <img src="assets/images/logo/CompanyLogo-120w.webp" srcset="assets/images/logo/CompanyLogo-120w.webp 120w, assets/images/logo/CompanyLogo-180w.webp 180w" sizes="(max-width: 1024px) 120px, 180px" width="180" height="45" fetchpriority="high" loading="eager" alt="Solarity AI" class="logo-standard" style="width: 180px !important; height: auto !important;" />
                 </a>
                 <div class="nav-spacer flex-1 min-w-0" aria-hidden="true"></div>
                 <a id="bannerCTA" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2qgXk0ZfBd6QJf7ef-306in7AI0Kzc-pL3NJFK1fU74vAUGiftVJPF3-DoXp9_RZoyqW_sjSpI" target="_blank" rel="noopener noreferrer" class="nav-cta-desktop flex-shrink-0 inline-flex items-center justify-center gap-1.5 md:gap-2 px-3 py-2 md:px-5 md:py-3 rounded-lg md:rounded-xl font-bold text-xs md:text-base text-center transition-all max-w-[140px] md:max-w-none" style="background: rgba(255, 255, 255, 0.95); color: #1e40af; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);" onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 8px 24px rgba(0, 0, 0, 0.3)';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 16px rgba(0, 0, 0, 0.2)';" data-i18n="bannerCTA">🚀 Book a call with our CEO 🚀</a>
@@ -268,7 +270,7 @@
         <div class="container mx-auto max-w-5xl" style="display:grid;grid-template-columns:1fr 1fr;gap:0 2rem;align-items:start;">
             <div class="max-w-md text-center mx-auto w-full" style="grid-column:1/-1;">
                 <a href="index.html" class="inline-block cursor-pointer hover:opacity-80 transition" title="Back to top">
-                    <picture><source type="image/webp" srcset="assets/images/logo/CompanyLogo-360w.webp" /><img src="assets/images/logo/CompanyLogo-360w.png" alt="Solarity AI" class="logo-standard mb-1 h-auto mx-auto" width="360" height="90" loading="lazy" decoding="async" style="display:block;" /></picture>
+                    <picture><source type="image/webp" srcset="assets/images/logo/CompanyLogo-120w.webp 120w, assets/images/logo/CompanyLogo-180w.webp 180w" sizes="(max-width: 768px) 120px, 180px" /><img src="assets/images/logo/CompanyLogo-180w.png" srcset="assets/images/logo/CompanyLogo-120w.png 120w, assets/images/logo/CompanyLogo-180w.png 180w" sizes="(max-width: 768px) 120px, 180px" alt="Solarity AI" class="logo-standard mb-1 h-auto mx-auto" width="180" height="45" loading="lazy" decoding="async" style="display:block; width: 180px !important; height: auto !important;" /></picture>
                 </a>
                 <p class="text-lg md:text-xl text-slate-300 leading-relaxed" data-i18n="footerDescription">AI-Native Software Company Creating High-Impact B2B and B2C Solutions with World-Class Quality.</p>
             </div>
@@ -296,8 +298,8 @@
         </div>
     </footer>
 
-    <script src="assets/js/translations.js"></script>
-    <script src="assets/js/language.js"></script>
+    <script src="assets/js/translations.min.js" defer></script>
+    <script src="assets/js/language.min.js" defer></script>
     <script>
         document.getElementById('mobileMenuBtn').addEventListener('click', function() { document.getElementById('mobileMenu').classList.toggle('hidden'); });
         function toggleLanguage() { if (window && typeof window.toggleLanguage === 'function') return window.toggleLanguage(); }

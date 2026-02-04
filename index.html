@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <style>html.lang-loading body{visibility:hidden;}.stats-section{min-height:110px}@media(min-width:768px){.stats-section{min-height:140px}}main{display:flex;flex-direction:column}#about,#hakkimizda{order:1}#stats-section{order:2}main>section:not(#about):not(#hakkimizda):not(#stats-section){order:3}</style>
+    <style>html.lang-loading body{opacity:0;pointer-events:none;}main{display:flex;flex-direction:column}#about,#hakkimizda{order:1}#stats-section{order:2}main>section:not(#about):not(#hakkimizda):not(#stats-section){order:3}</style>
     <!-- İlk boyamada animasyon yok; idle sonra aynı animasyonlar başlar (Lighthouse) -->
-    <style>body{animation:none !important}.animate-gradient{animation:none !important}body.animations-ready{animation:gradient 15s ease infinite !important}.animations-ready .animate-gradient{animation:gradient 8s ease infinite !important}</style>
+    <style>body{animation:none !important;transform:translateZ(0);backface-visibility:hidden}.animate-gradient{animation:none !important;transform:translateZ(0);backface-visibility:hidden}body.animations-ready{animation:gradient 15s ease infinite !important;will-change:background-position;contain:paint;isolation:isolate}.animations-ready .animate-gradient{animation:gradient 8s ease infinite !important;will-change:background-position;contain:paint;isolation:isolate}</style>
     <!-- LCP: stats-bar ilk paint'te tamamen statik; lang-loading sırasında da görünsün -->
-    <style>.stats-bar{opacity:1 !important;transform:none !important;animation:none !important;}html.lang-loading #stats-section,html.lang-loading #stats-section *{visibility:visible !important;}</style>
+    <style>#stats-section{padding:0.5rem 1rem 1.5rem;min-height:110px}@media(min-width:768px){#stats-section{padding:1rem 3rem 2rem;min-height:140px}}.stats-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:2rem;max-width:52rem;margin:0 auto;opacity:1 !important;transform:none !important;animation:none !important;}@media(min-width:768px){.stats-bar{gap:3rem;max-width:58rem}}.stat-item{display:flex;flex-direction:column;align-items:center;text-align:center;min-width:8rem}.stat-number{font-size:2rem;font-weight:700;color:#10b981;line-height:1.2;margin-bottom:0.25rem}@media(min-width:768px){.stat-number{font-size:2.5rem}}.stat-label{font-size:0.875rem;color:#cbd5e1;font-weight:500}@media(min-width:768px){.stat-label{font-size:1rem}}html.lang-loading #stats-section,html.lang-loading #stats-section *{opacity:1 !important;pointer-events:auto !important;}</style>
     <script>
       (function(){
         try {
@@ -69,10 +69,14 @@
     <!-- Sitemap -->
     <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
 
+    <!-- Cloudflare: Disable email obfuscation (prevents email-decode.min.js) -->
+    <meta name="cfemail" content="off" />
+    <meta http-equiv="Cache-Control" content="public, max-age=31536000, immutable" />
     <!-- Performance: preconnect/dns-prefetch for key origins (≤4 hints). gtag loads on consent; prefetch reduces latency when user accepts. -->
+    <link rel="preconnect" href="https://calendar.google.com" crossorigin />
     <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-    <!-- Performance: preload LCP image (logo WebP, SI için doğru boyut) -->
-    <link rel="preload" as="image" href="assets/images/logo/CompanyLogo-360w.webp" type="image/webp" />
+    <!-- Performance: preload LCP logo (mobile first – 120w) -->
+    <link rel="preload" as="image" href="assets/images/logo/CompanyLogo-120w.webp" type="image/webp" imagesrcset="assets/images/logo/CompanyLogo-120w.webp 120w, assets/images/logo/CompanyLogo-180w.webp 180w" imagesizes="(max-width: 1024px) 120px, 180px" />
     <!-- Font: LineIcons (critical’de @font-face yok; lineicons.css async → preload ile erken yükle) -->
     <link rel="preload" href="assets/fonts/LineIcons.woff2" as="font" type="font/woff2" crossorigin />
 
@@ -136,7 +140,7 @@
     <link rel="stylesheet" href="assets/css/tailwind.css" />
 
     <!-- Critical CSS: above-the-fold (header, hero, stats) – inline for LCP, no render block -->
-    <style id="critical-css">:root{--font-primary:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;--font-secondary:'Poppins',sans-serif;--color-dark-bg:#0f172a;--color-text-primary:#f8fafc;--color-text-secondary:#cbd5e1;--color-primary:#1e40af;--transition-base:.3s ease;--brand-space:clamp(200px,20vw,340px)}*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth;font-size:16px;-webkit-text-size-adjust:100%;overflow-x:hidden;max-width:100vw}html[lang="tr"]{font-size:16px}body{font-family:var(--font-primary);color:var(--color-text-secondary);background-color:var(--color-dark-bg);overflow-x:hidden;max-width:100vw;line-height:1.7;-webkit-font-smoothing:antialiased}.hidden{display:none!important}main#main-content{padding-top:6rem}@media(min-width:768px){main#main-content{padding-top:7rem}}:where(section[id]){scroll-margin-top:5.5rem}@media(min-width:768px){:where(section[id]){scroll-margin-top:6.5rem}}section{padding:6rem 0;position:relative;max-width:100%;overflow-x:hidden}#stats-section .container{max-width:52rem}#stats-section{padding-top:.5rem;padding-bottom:1.25rem;min-height:110px}@media(min-width:768px){#stats-section .container{max-width:58rem};#stats-section{padding-top:.75rem;padding-bottom:1.5rem;min-height:140px}}.stat-satisfaction-en,.stat-satisfaction-tr{display:none}html[lang="en"] .stat-satisfaction-en{display:block}html[lang="tr"] .stat-satisfaction-tr{display:block}.ud-header{position:fixed;top:0;left:0;width:100%;z-index:1000;background:rgba(15,23,42,.85);backdrop-filter:blur(20px);padding:.75rem 0;border-bottom:1px solid rgba(255,255,255,.05)}.navbar{padding:0;display:flex;align-items:center;justify-content:center;width:100%;min-height:88px;padding-left:var(--brand-space)}.navbar-brand{position:absolute;left:0;top:50%;transform:translateY(-50%);display:flex;align-items:center;width:var(--brand-space);min-width:var(--brand-space)}.navbar-brand img{max-height:88px;width:auto}.nav-spacer{display:none}@media(min-width:1025px){.nav-spacer{display:block!important}}.nav-right-wrap{min-width:240px;max-width:100%;flex-shrink:1}.nav-desktop-scroll{display:none;overflow-x:hidden;width:100%}@media(min-width:1025px){.nav-desktop-scroll{display:block!important}}.nav-desktop-inner{display:flex;flex-wrap:nowrap;align-items:center;gap:.75rem;min-width:max-content;width:max-content;padding-inline:1.25rem .5rem}.navbar-nav .nav-item>a,.navbar-nav .nav-item>.nav-link{color:var(--color-text-primary);font-weight:500;font-size:1rem;padding:.5rem 1.25rem;display:block;white-space:nowrap}.nav-lang-btn{display:none}@media(min-width:1025px){.nav-lang-btn{display:inline-flex!important}}.nav-mobile-wrap{display:flex}@media(min-width:1025px){.nav-mobile-wrap{display:none!important};#mobileMenu{display:none!important}}@media(max-width:1024px){#languageSwitcher,#languageSwitcher button{display:none!important}}@media(min-width:1025px){#languageSwitcherMobile,#languageSwitcherMobile button{display:none!important}}.logo-standard{height:11rem!important;max-height:12rem!important;max-width:100%;object-fit:contain}@media(min-width:768px){.logo-standard{height:13rem!important;max-height:15rem!important}}header .logo-standard{height:auto!important;max-height:100%!important;max-width:100%;object-fit:contain}@media(max-width:1024px){#mobileMenu{order:10;width:100%;padding:1rem 0 1.25rem;display:flex;flex-direction:column;gap:.75rem;border-top:1px solid rgba(16,185,129,.25);background:rgba(10,25,47,.6)}#mobileMenu.hidden{display:none!important}#mobileMenu ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.25rem}#mobileMenu ul li a{display:block;padding:.625rem;font-size:1rem;color:#e2e8f0;text-decoration:none}}.nav-cta-desktop{flex-shrink:0}.nav-page-btn-careers{border:none;color:#fff;background:linear-gradient(135deg,#10b981,#059669);font-weight:600}h1,h2,h3,h4,h5,h6{font-family:var(--font-secondary);font-weight:600;color:var(--color-text-primary);line-height:1.3}a{text-decoration:none;color:inherit;transition:all var(--transition-base)}img{max-width:100%;height:auto;display:block}.container{max-width:100%;width:100%;box-sizing:border-box}</style>
+    <style id="critical-css">:root{--font-primary:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;--font-secondary:'Poppins',sans-serif;--color-dark-bg:#0f172a;--color-text-primary:#f8fafc;--color-text-secondary:#cbd5e1;--transition-base:.3s ease}*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth;font-size:16px;-webkit-text-size-adjust:100%;overflow-x:hidden;max-width:100vw}body{font-family:var(--font-primary);color:var(--color-text-secondary);background-color:var(--color-dark-bg);overflow-x:hidden;max-width:100vw;line-height:1.7;-webkit-font-smoothing:antialiased}.hidden{display:none!important}main#main-content{padding-top:6rem}@media(min-width:768px){main#main-content{padding-top:7rem}}section{padding:6rem 0;position:relative;max-width:100%;overflow-x:hidden}.stat-satisfaction-en,.stat-satisfaction-tr{display:none}html[lang="en"] .stat-satisfaction-en{display:block}html[lang="tr"] .stat-satisfaction-tr{display:block}.nav-spacer{display:none}@media(min-width:1025px){.nav-spacer{display:block!important}}.nav-desktop-scroll{display:none}@media(min-width:1025px){.nav-desktop-scroll{display:block!important}}.nav-mobile-wrap{display:flex}@media(min-width:1025px){.nav-mobile-wrap{display:none!important}}.logo-standard{height:11rem!important;max-height:12rem!important;max-width:100%;object-fit:contain}@media(min-width:768px){.logo-standard{height:13rem!important;max-height:15rem!important}}header .logo-standard{height:auto!important;width:180px!important;max-width:180px!important;object-fit:contain}@media(max-width:1024px){header .logo-standard{max-width:120px!important;width:120px!important}}#mobileMenu{display:none}@media(max-width:1024px){#mobileMenu{width:100%;padding:1rem 0 1.25rem;display:flex;flex-direction:column;gap:.75rem;border-top:1px solid rgba(16,185,129,.25);background:rgba(10,25,47,.6)}#mobileMenu.hidden{display:none!important}}h1,h2,h3,h4,h5,h6{font-family:var(--font-secondary);font-weight:600;color:var(--color-text-primary);line-height:1.3}a{text-decoration:none;color:inherit;transition:all var(--transition-base)}img{max-width:100%;height:auto;display:block}.container{max-width:100%;width:100%;box-sizing:border-box}</style>
 
     <!-- LineIcons (async) -->
     <link rel="preload" href="assets/css/lineicons.css" as="style" />
@@ -223,20 +227,17 @@
 <body id="top" class="text-slate-200 lang-en" style="background: #0a192f;">
     <a href="#main-content" class="skip-link" id="skip-link">Skip to main content</a>
 
-    <!-- Header/Navbar - LOGO DAHA BÜYÜK -->
     <header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b" style="background: rgba(10, 25, 47, 0.95); border-color: rgba(16, 185, 129, 0.2);">
         <div class="container mx-auto px-4 md:px-12">
             <nav class="flex items-center justify-between py-0.5 w-full" style="gap: 1.25rem;" aria-label="Main navigation">
-                <!-- Logo (solda) -->
                 <a href="#top" class="flex items-center flex-shrink-0">
-                    <img src="assets/images/logo/CompanyLogo-360w.webp" srcset="assets/images/logo/CompanyLogo-180w.webp 180w, assets/images/logo/CompanyLogo-360w.webp 360w" sizes="(max-width: 768px) 180px, 360px" width="360" height="90" fetchpriority="high" loading="eager" alt="Solarity AI" class="logo-standard" />
+                    <img src="assets/images/logo/CompanyLogo-120w.webp" srcset="assets/images/logo/CompanyLogo-120w.webp 120w, assets/images/logo/CompanyLogo-180w.webp 180w" sizes="(max-width: 1024px) 120px, 180px" width="180" height="45" fetchpriority="high" loading="eager" alt="Solarity AI" class="logo-standard" style="width: 180px !important; height: auto !important;" />
                 </a>
                 <div class="nav-spacer flex-1 min-w-0" aria-hidden="true"></div>
                 <!-- CTA logo ile Hakkımızda tam ortasında (CTA’nın solundaki boşluk) -->
                 <!-- CTA: ortada, logoya ve Hakkımızda’ya uzaklıkları eşit -->
-                <a id="bannerCTA" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2qgXk0ZfBd6QJf7ef-306in7AI0Kzc-pL3NJFK1fU74vAUGiftVJPF3-DoXp9_RZoyqW_sjSpI" target="_blank" rel="noopener noreferrer" class="nav-cta-desktop flex-shrink-0 inline-flex items-center justify-center gap-1.5 md:gap-2 px-3 py-2 md:px-5 md:py-3 rounded-lg md:rounded-xl font-bold text-xs md:text-base text-center transition-all max-w-[140px] md:max-w-none" style="background: rgba(255, 255, 255, 0.95); color: #1e40af; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);" onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 8px 24px rgba(0, 0, 0, 0.3)';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 16px rgba(0, 0, 0, 0.2)';" data-i18n="bannerCTA">🚀 Book a call with our CEO 🚀</a>
+                <a id="bannerCTA" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2qgXk0ZfBd6QJf7ef-306in7AI0Kzc-pL3NJFK1fU74vAUGiftVJPF3-DoXp9_RZoyqW_sjSpI" target="_blank" rel="noopener noreferrer" class="nav-cta-desktop flex-shrink-0 inline-flex items-center justify-center gap-1.5 md:gap-2 px-3 py-2 md:px-5 md:py-3 rounded-lg md:rounded-xl font-bold text-xs md:text-base text-center transition-all max-w-[140px] md:max-w-none" data-i18n="bannerCTA">🚀 Book a call with our CEO 🚀</a>
                 <div class="nav-spacer flex-1 min-w-0" aria-hidden="true"></div>
-                <!-- Sağ: scroll alanı (linkler) + dil butonu her zaman sağda sabit -->
                 <div class="nav-right-wrap flex items-center justify-end">
                     <div class="nav-desktop-scroll">
                     <div class="nav-desktop-inner flex items-center gap-3 md:gap-4 flex-nowrap">
@@ -257,7 +258,6 @@
                             style="background: rgba(16, 185, 129, 0.15); border: 2px solid rgba(16, 185, 129, 0.4); color: #10b981;">
                         <img id="flagIcon" src="assets/images/flags/flag-us.svg?v=1" alt="" width="44" height="32" style="object-fit:cover; border-radius:5px; box-shadow:0 1px 3px rgba(0,0,0,0.2);" />
                     </button>
-                    <!-- Mobil: dil + hamburger (600px altında, CSS ile) -->
                     <div class="nav-mobile-wrap items-center gap-3 flex-shrink-0">
                     <button id="languageSwitcherMobile" type="button" onclick="window.invokeToggleLanguage()" aria-label="Switch language"
                             class="inline-flex items-center justify-center p-2 rounded-lg"
@@ -268,8 +268,6 @@
                     </div>
                 </div>
             </nav>
-
-            <!-- Mobile Menu: dar ekranda tüm linkler + CTA -->
             <div id="mobileMenu" class="mobile-menu-dropdown hidden" aria-hidden="true">
                 <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2qgXk0ZfBd6QJf7ef-306in7AI0Kzc-pL3NJFK1fU74vAUGiftVJPF3-DoXp9_RZoyqW_sjSpI" target="_blank" rel="noopener noreferrer" class="mobile-menu-cta" style="background: rgba(255, 255, 255, 0.95); color: #1e40af;" data-i18n="bannerCTA">🚀 Book a call with our CEO 🚀</a>
                 <ul class="mobile-menu-list">
@@ -286,16 +284,14 @@
     </header>
 
     <main id="main-content">
-    <!-- Stats Bar - LCP için DOM'da en üstte, görsel sıra CSS order ile -->
-    <section id="stats-section" class="stats-section section-lcp pt-2 md:pt-4 pb-6 md:pb-8 px-4 md:px-12">
-        <div class="container mx-auto">
+    <section id="stats-section" class="stats-section">
             <div class="stats-bar">
                 <div class="stat-item">
                     <div class="stat-number">20+</div>
                     <div class="stat-label" data-i18n="statsProjects">Completed Projects</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number stat-number-satisfaction">
+                    <div class="stat-number">
                         <span class="stat-satisfaction-en">200%</span>
                         <span class="stat-satisfaction-tr">%200</span>
                     </div>
@@ -314,9 +310,7 @@
                     <div class="stat-label" data-i18n="statsGlobalPartners">Global Partners</div>
                 </div>
             </div>
-        </div>
     </section>
-    <!-- Hero Section - başlık en üste hizalı, arada boşluk yok -->
     <section id="about" data-section-tr="hakkimizda" data-section-en="about" class="pt-0 pb-0 md:pb-2 px-4 md:px-12" aria-label="Hero">
         <div class="container mx-auto text-center">
             <h1 class="text-4xl md:text-6xl font-bold font-display mb-4 text-white">
@@ -330,12 +324,10 @@
 
             <!-- CTA eski yeri: hero içinde, alt başlığın altında -->
             <div class="mt-8 flex justify-center">
-                <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2qgXk0ZfBd6QJf7ef-306in7AI0Kzc-pL3NJFK1fU74vAUGiftVJPF3-DoXp9_RZoyqW_sjSpI" target="_blank" rel="noopener noreferrer" class="bannerCTA-hero inline-flex items-center justify-center gap-2 px-6 py-3 md:px-8 md:py-4 rounded-xl font-bold text-sm md:text-base lg:text-lg text-center transition-all" style="background: rgba(255, 255, 255, 0.95); color: #1e40af; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);" onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 8px 24px rgba(0, 0, 0, 0.3)';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 16px rgba(0, 0, 0, 0.2)';" data-i18n="bannerCTA">🚀 Book a call with our CEO 🚀</a>
+                <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2qgXk0ZfBd6QJf7ef-306in7AI0Kzc-pL3NJFK1fU74vAUGiftVJPF3-DoXp9_RZoyqW_sjSpI" target="_blank" rel="noopener noreferrer" class="bannerCTA-hero inline-flex items-center justify-center gap-2 px-6 py-3 md:px-8 md:py-4 rounded-xl font-bold text-sm md:text-base lg:text-lg text-center transition-all" data-i18n="bannerCTA">🚀 Book a call with our CEO 🚀</a>
             </div>
         </div>
     </section>
-
-    <!-- Partnership Sliding Window - HERO SECTION ALTINDA -->
     <section id="partnerships" data-section-tr="ortakliklar" data-section-en="partnerships" class="py-16 px-4 md:px-12 bg-slate-900/30">
         <div class="container mx-auto">
             <div class="text-center mb-6">
@@ -1031,7 +1023,7 @@
     <footer id="footer" class="footer-stacked bg-slate-950 border-t border-slate-800 py-6 md:py-8 px-4 md:px-12">
         <div class="container mx-auto max-w-5xl flex flex-col items-center justify-center text-center gap-5 md:gap-6">
             <a href="#top" class="inline-block cursor-pointer hover:opacity-80 transition" title="Back to top">
-                <picture><source type="image/webp" srcset="assets/images/logo/CompanyLogo-360w.webp" /><img src="assets/images/logo/CompanyLogo-360w.png" alt="Solarity AI" class="logo-standard mb-1 h-auto mx-auto" width="360" height="90" loading="lazy" decoding="async" style="display:block;" /></picture>
+                <picture><source type="image/webp" srcset="assets/images/logo/CompanyLogo-120w.webp 120w, assets/images/logo/CompanyLogo-180w.webp 180w" sizes="(max-width: 768px) 120px, 180px" /><img src="assets/images/logo/CompanyLogo-180w.png" srcset="assets/images/logo/CompanyLogo-120w.png 120w, assets/images/logo/CompanyLogo-180w.png 180w" sizes="(max-width: 768px) 120px, 180px" alt="Solarity AI" class="logo-standard mb-1 h-auto mx-auto" width="180" height="45" loading="lazy" decoding="async" style="display:block; width: 180px !important; height: auto !important;" /></picture>
             </a>
             <p class="text-xl md:text-2xl text-slate-300 leading-relaxed max-w-md" data-i18n="footerDescription">AI-Native Software Company Creating High-Impact B2B and B2C Solutions with World-Class Quality.</p>
             <div class="border-b border-slate-700 w-full max-w-xs mx-auto"></div>
@@ -1055,34 +1047,15 @@
         </div>
     </footer>
 
-    <!-- Scripts: load language after idle to avoid long main-thread tasks (TBT) -->
+    <!-- Scripts: language.min.js tek kez yüklenir, dil init tek kez çalışır (TBT) -->
     <script>
-        // Dil değiştirme – harita güncellemesi language.js updateMapEmbedLang() ile yapılıyor
         window.invokeToggleLanguage = function() {
             if (window && typeof window.toggleLanguage === 'function') window.toggleLanguage();
             else console.warn('Language system not initialized yet.');
         };
-        (function loadLangWhenIdle() {
-            function loadScript(src, done) {
-                var s = document.createElement('script');
-                s.src = src;
-                s.onload = done;
-                s.onerror = done;
-                document.head.appendChild(s);
-            }
-            function go() {
-                loadScript('assets/js/translations.min.js', function() {
-                    loadScript('assets/js/language.min.js', function() {});
-                });
-            }
-            function schedule() {
-                if (typeof requestIdleCallback !== 'undefined') requestIdleCallback(go, { timeout: 400 });
-                else setTimeout(go, 50);
-            }
-            if (document.readyState === 'complete') schedule();
-            else window.addEventListener('load', schedule, { once: true });
-        })();
     </script>
+    <script src="assets/js/translations.min.js" defer></script>
+    <script src="assets/js/language.min.js" defer></script>
 
     <script>
         // Run chunks with yield between each to keep main-thread tasks short (&lt;50ms)
