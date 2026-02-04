@@ -18,12 +18,12 @@ async function main() {
     console.warn('Source not found:', SRC);
     return;
   }
-  for (const w of [180, 360, 720]) {
+  for (const w of [120, 180, 360]) {
     const base = path.join(LOGO_DIR, 'CompanyLogo-' + w + 'w');
     const pipeline = sharp(SRC).resize(w, null, { withoutEnlargement: true });
     await pipeline.clone().png({ compressionLevel: 6 }).toFile(base + '.png');
     console.log('Created:', path.relative(ROOT, base + '.png'));
-    await pipeline.clone().webp({ quality: 85, alphaQuality: 100 }).toFile(base + '.webp');
+    await pipeline.clone().webp({ quality: 60, alphaQuality: 70 }).toFile(base + '.webp');
     console.log('Created:', path.relative(ROOT, base + '.webp'));
   }
 }
