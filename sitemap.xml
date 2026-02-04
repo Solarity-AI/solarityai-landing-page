@@ -3,22 +3,37 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-  
+
   <!-- Homepage -->
   <url>
     <loc>https://solarityai.com/</loc>
-    <lastmod>2024-12-20</lastmod>
+    <lastmod>2025-02-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
-  
-  <!-- Careers Page -->
+
+  <!-- Blog -->
+  <url>
+    <loc>https://solarityai.com/blog.html</loc>
+    <lastmod>2025-02-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Legal (Privacy, Terms, Cookie Policy) -->
+  <url>
+    <loc>https://solarityai.com/legal.html</loc>
+    <lastmod>2025-02-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- Careers -->
   <url>
     <loc>https://solarityai.com/careers.html</loc>
-    <lastmod>2024-12-20</lastmod>
+    <lastmod>2025-02-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  
-</urlset>
 
+</urlset>
