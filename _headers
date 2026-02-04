@@ -1,0 +1,38 @@
+# Cloudflare Pages Headers
+# https://developers.cloudflare.com/pages/platform/headers/
+
+# Disable email obfuscation globally
+/*
+  cf-email-decoding: off
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  X-XSS-Protection: 1; mode=block
+  Referrer-Policy: strict-origin-when-cross-origin
+
+# HTML files - short cache
+/*.html
+  Cache-Control: public, max-age=3600, must-revalidate
+
+# Static assets - long cache
+/assets/images/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/css/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/js/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+
+# Root files
+/favicon.ico
+  Cache-Control: public, max-age=604800
+
+/robots.txt
+  Cache-Control: public, max-age=86400
+
+/sitemap.xml
+  Cache-Control: public, max-age=86400
