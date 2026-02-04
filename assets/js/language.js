@@ -203,8 +203,11 @@
     document.documentElement.lang = lang;
   }
 
-  // Initialize language on page load
+  // Initialize language on page load (tek sefer çalışsın – long task azaltma)
+  var _languageInitialized = false;
   function initLanguage() {
+    if (_languageInitialized) return;
+    _languageInitialized = true;
     setupLanguageSwitcher();
     setLanguage(currentLang);
     updateLanguageSwitcher();
@@ -257,11 +260,13 @@
       document.body.style.removeProperty('right');
       document.body.style.removeProperty('width');
       document.body.style.removeProperty('padding-right');
-      var d = document.documentElement;
-      var max = Math.max(0, d.scrollHeight - (window.innerHeight || d.clientHeight));
-      var targetY = savedScrollRatio * max;
-      if (targetY > max) targetY = max;
-      window.scrollTo(0, targetY);
+      requestAnimationFrame(function() {
+        var d = document.documentElement;
+        var max = Math.max(0, d.scrollHeight - (window.innerHeight || d.clientHeight));
+        var targetY = savedScrollRatio * max;
+        if (targetY > max) targetY = max;
+        window.scrollTo(0, targetY);
+      });
     }
 
     // Bolum id'lerini guncelle (hash yok artik, scroll tetiklenmez)
@@ -269,11 +274,13 @@
     // Güvenlik: çeviri hiç yüklenmezse 3 saniye sonra yine de body'yi göster
     if (window._langLoadingFallback) clearTimeout(window._langLoadingFallback);
     function restoreScroll() {
-      var d = document.documentElement;
-      var max = Math.max(0, d.scrollHeight - (window.innerHeight || d.clientHeight));
-      var targetY = savedScrollRatio * max;
-      if (targetY > max) targetY = max;
-      window.scrollTo(0, targetY);
+      requestAnimationFrame(function() {
+        var d = document.documentElement;
+        var max = Math.max(0, d.scrollHeight - (window.innerHeight || d.clientHeight));
+        var targetY = savedScrollRatio * max;
+        if (targetY > max) targetY = max;
+        window.scrollTo(0, targetY);
+      });
     }
     var scrollPinEnd = Date.now() + 2500;
     function scrollPinLoop() {
@@ -715,26 +722,17 @@
   }
 
   window.addEventListener('load', function() {
+    if (_languageInitialized) return;
     if (typeof requestIdleCallback !== 'undefined') {
       requestIdleCallback(function() {
         const translationsObj = window.translations || (typeof translations !== 'undefined' ? translations : null);
-        if (translationsObj) {
-          log('=== WINDOW LOAD - RUNNING TRANSLATION ===');
-          setupLanguageSwitcher();
-          setLanguage(currentLang);
-          updateLanguageSwitcher();
-        } else {
-          err('❌ Translations still not loaded on window load!');
-        }
+        if (translationsObj) initLanguage();
+        else err('❌ Translations still not loaded on window load!');
       }, { timeout: 700 });
     } else {
       setTimeout(function() {
         const translationsObj = window.translations || (typeof translations !== 'undefined' ? translations : null);
-        if (translationsObj) {
-          setupLanguageSwitcher();
-          setLanguage(currentLang);
-          updateLanguageSwitcher();
-        }
+        if (translationsObj) initLanguage();
       }, 500);
     }
   });
