@@ -9,4 +9,8 @@ Disallow: /admin/
 Disallow: /private/
 Disallow: /api/
 
+# Cloudflare: Disable email obfuscation
+User-agent: Cloudflare
+Disallow: /cdn-cgi/
+
 Sitemap: https://solarityai.com/sitemap.xml
