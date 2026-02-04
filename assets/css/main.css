@@ -107,13 +107,74 @@ html[lang="tr"] {
 }
 
 /* İletişim: Maps üstündeki 3 kutu – mobilde taşma yok, metin kırılır */
-/* İletişim bölümü – 3 kutu (E-posta, Adres, Yanıt süresi) yazıları ortada */
+/* İletişim bölümü – 3 kutu çerçevesi: üst/sağ/alt belirgin, sol şerit aynen kalır; hafif gölge */
+/* İkonlar başlık ve içerikle hizalı; tüm cihazlarda başlık–içerik arası boşluk eşit */
 #contact .contact-info-box {
-  text-align: center;
+  text-align: left;
+  align-items: start;
+  grid-template-columns: 3.5rem 1fr !important;
+  row-gap: 0.2rem !important;
+  column-gap: 1rem !important;
+  border-top: 1px solid rgba(148, 163, 184, 0.4);
+  border-right: 1px solid rgba(148, 163, 184, 0.4);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.4);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 #contact .contact-info-box > *:nth-child(2),
 #contact .contact-info-box > *:nth-child(3) {
-  text-align: center;
+  text-align: left;
+  margin: 0 !important;
+}
+#contact .contact-info-box > *:nth-child(3) {
+  font-weight: 700;
+}
+#contact .contact-address {
+  white-space: nowrap;
+}
+/* İletişim kutusu ikon: genişletilmiş, başlık ve içerik yüksekliğini kapsasın */
+#contact .contact-info-box > span:first-child {
+  width: 3.5rem !important;
+  min-width: 3.5rem !important;
+  height: 100% !important;
+  min-height: 3rem !important;
+  max-height: none !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+#contact .contact-info-box > span:first-child i {
+  font-size: 1.5rem !important;
+}
+
+/* İletişim grid: mobil tam genişlik + gap; masaüstü sol 340px + form yan yana, arada küçük boşluk */
+#contact .contact-grid {
+  gap: 1.5rem;
+}
+@media (min-width: 768px) {
+  #contact .contact-grid {
+    grid-template-columns: 460px 1fr;
+    gap: 1.25rem;
+  }
+  #contact .contact-left-col {
+    min-width: 0;
+    max-width: 100%;
+  }
+  #contact .contact-left-col .map-container {
+    max-width: 100%;
+  }
+  #contact .contact-address {
+    white-space: nowrap;
+  }
+}
+#contact .contact-info-boxes {
+  max-width: 100%;
+}
+/* Konteynırlar arası boşluk azaltıldı */
+#contact .contact-info-boxes .contact-info-box {
+  margin-top: 0.75rem;
+}
+#contact .contact-info-boxes .contact-info-box:first-child {
+  margin-top: 0;
 }
 
 @media (max-width: 767px) {
@@ -127,7 +188,9 @@ html[lang="tr"] {
     max-width: 100%;
     width: 100%;
     box-sizing: border-box;
-    grid-template-columns: 4rem minmax(0, 1fr) !important;
+    grid-template-columns: 3.5rem minmax(0, 1fr) !important;
+    row-gap: 0.2rem !important;
+    column-gap: 1rem !important;
   }
   #contact .contact-info-box > *:nth-child(2),
   #contact .contact-info-box > *:nth-child(3) {
@@ -182,12 +245,13 @@ html[lang="tr"] {
     width: 100%;
     box-sizing: border-box;
   }
-  /* Tek sütun: ikon üstte, altında etiket ve değer – sütun minmax(0,1fr) ile taşma önlenir */
+  /* Tüm cihazlarda masaüstü gibi: ikon solda, içerik sağda; sadece boyutlar küçültülür */
   #contact .contact-info-box {
     padding: 0.5rem !important;
-    grid-template-columns: minmax(0, 1fr) !important;
-    grid-template-rows: auto auto auto !important;
-    gap: 0.25rem 0 !important;
+    grid-template-columns: 3.25rem minmax(0, 1fr) !important;
+    grid-template-rows: auto auto !important;
+    row-gap: 0.2rem !important;
+    column-gap: 0.75rem !important;
     min-width: 0 !important;
     max-width: 100% !important;
     width: 100% !important;
@@ -196,42 +260,45 @@ html[lang="tr"] {
   }
   #contact .contact-info-box > span:first-child {
     grid-column: 1 !important;
-    grid-row: 1 !important;
-    width: 3rem !important;
-    min-width: 3rem !important;
-    height: 3rem !important;
+    grid-row: 1 / span 2 !important;
+    width: 3.25rem !important;
+    min-width: 3.25rem !important;
+    height: 100% !important;
     min-height: 3rem !important;
-    margin: 0 auto;
+    max-height: none !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  #contact .contact-info-box > span:first-child i {
+    font-size: 1.4rem !important;
   }
   #contact .contact-info-box > *:nth-child(2) {
-    grid-column: 1 !important;
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+    font-size: 0.8125rem !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+  #contact .contact-info-box > *:nth-child(3) {
+    grid-column: 2 !important;
     grid-row: 2 !important;
     font-size: 0.8125rem !important;
     min-width: 0 !important;
     max-width: 100% !important;
     overflow-wrap: anywhere;
-    word-break: break-all;
-  }
-  #contact .contact-info-box > *:nth-child(3) {
-    grid-column: 1 !important;
-    grid-row: 3 !important;
-    font-size: 0.8125rem !important;
-    min-width: 0 !important;
-    max-width: 100% !important;
-    overflow-wrap: anywhere;
-    word-break: break-all;
+    word-break: break-word;
   }
   #contact .contact-email,
   #contact .contact-address {
     font-size: 0.8125rem !important;
     max-width: 100% !important;
     min-width: 0 !important;
-    width: 100% !important;
-    display: block !important;
     overflow-wrap: anywhere !important;
-    word-break: break-all !important;
+    word-break: break-word !important;
     box-sizing: border-box;
-    overflow: hidden;
   }
 }
 
@@ -278,6 +345,49 @@ html[lang="tr"] {
   #contact textarea {
     max-width: 100%;
     box-sizing: border-box;
+  }
+}
+
+/* 320px ve altı: ikon daralt (adrese yer aç), adres tek satırda sığsın; 3 kutuda başlık–içerik boşluğu eşit */
+@media (max-width: 360px) {
+  #contact .contact-info-box {
+    padding: 0.35rem !important;
+    grid-template-columns: 2.5rem minmax(0, 1fr) !important;
+    grid-template-rows: minmax(1.35em, auto) minmax(1.35em, auto) !important;
+    row-gap: 0.2rem !important;
+    column-gap: 0.5rem !important;
+  }
+  #contact .contact-info-box > *:nth-child(2),
+  #contact .contact-info-box > *:nth-child(3) {
+    line-height: 1.2 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  #contact .contact-info-box > span:first-child {
+    width: 2.5rem !important;
+    min-width: 2.5rem !important;
+    height: 100% !important;
+    min-height: 2.25rem !important;
+    max-height: none !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  #contact .contact-info-box > span:first-child i {
+    font-size: 1.1rem !important;
+  }
+  #contact .contact-info-box > *:nth-child(2) {
+    font-size: 0.875rem !important;
+  }
+  #contact .contact-info-box > *:nth-child(3) {
+    font-size: 0.75rem !important;
+  }
+  #contact .contact-address {
+    white-space: nowrap !important;
+    font-size: 0.75rem !important;
+  }
+  #contact .contact-email {
+    font-size: 0.75rem !important;
   }
 }
 
@@ -527,8 +637,8 @@ img {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.5rem 1.375rem;
-  font-size: 0.875rem;
+  padding: 0.6rem 1.625rem;
+  font-size: 1rem;
   font-weight: 600;
   letter-spacing: 0.025em;
   border-radius: 9999px;
@@ -560,7 +670,19 @@ img {
     gap: 0.375rem;
   }
   #footer .footer-page-link {
-    padding: 0.45rem 1.125rem;
+    padding: 0.55rem 1.25rem;
+    font-size: 0.9375rem;
+  }
+}
+/* 375px–400px: 4 buton tek satırda kalsın */
+@media (max-width: 400px) {
+  #footer .footer-page-links {
+    gap: 0.2rem;
+    flex-wrap: nowrap;
+    justify-content: center;
+  }
+  #footer .footer-page-link {
+    padding: 0.4rem 0.6rem;
     font-size: 0.8125rem;
   }
 }
@@ -1839,23 +1961,28 @@ html[lang="tr"] .stat-satisfaction-tr {
    Footer
    ============================= */
 
-/* Footer sosyal ikonlar arası boşluk – CSS değişkeni + kural */
+/* Footer sosyal ikonlar: desktop sıkı, mobil iç içe geçmesin */
 #footer {
   --footer-socials-gap: 0.15rem;
 }
 @media (min-width: 1025px) {
   #footer {
-    --footer-socials-gap: 0.08rem;
+    --footer-socials-gap: 0.06rem;
+  }
+}
+@media (min-width: 1440px) {
+  #footer {
+    --footer-socials-gap: 0;
   }
 }
 @media (max-width: 767px) {
   #footer {
-    --footer-socials-gap: 0.85rem;
+    --footer-socials-gap: 1rem;
   }
 }
 @media (max-width: 480px) {
   #footer {
-    --footer-socials-gap: 0.75rem;
+    --footer-socials-gap: 0.9rem;
   }
 }
 #footer .footer-socials {
@@ -2407,6 +2534,17 @@ section[id] h2.font-display {
   }
 }
 
+/* 320px: copyright satırı tek satırda */
+@media (max-width: 320px) {
+  #footer .footer-copyright-text {
+    font-size: 0.625rem !important;
+    white-space: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    max-width: 100%;
+  }
+}
+
 /* Butonlar – tutarlı hover ve focus */
 button[type="submit"],
 a[href].inline-flex[class*="rounded"] {
@@ -2453,28 +2591,42 @@ textarea:focus {
   background-color: #1e3a8a;
 }
 
-/* Footer sosyal ikonlar arası boşluk – dosya sonu, en yüksek öncelik */
+/* Footer sosyal ikonlar: desktop sıkı, mobil ayrık (dosya sonu) */
 #footer div.footer-socials.flex {
   gap: 0.15rem !important;
 }
 @media (min-width: 1025px) {
   #footer div.footer-socials.flex {
-    gap: 0.08rem !important;
+    gap: 0.06rem !important;
+  }
+}
+@media (min-width: 1440px) {
+  #footer div.footer-socials.flex,
+  #footer .footer-socials {
+    gap: 0 !important;
+    width: max-content !important;
+    max-width: 100% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  #footer .footer-socials a {
+    margin-left: -6px !important;
+    margin-right: -6px !important;
   }
 }
 @media (min-width: 768px) and (max-width: 1024px) {
   #footer div.footer-socials.flex {
-    gap: 1.1rem !important;
+    gap: 0.25rem !important;
   }
 }
 @media (max-width: 767px) {
   #footer div.footer-socials.flex {
-    gap: 0.85rem !important;
+    gap: 1rem !important;
   }
 }
 @media (max-width: 480px) {
   #footer div.footer-socials.flex {
-    gap: 0.75rem !important;
+    gap: 0.9rem !important;
   }
 }
 @media (max-width: 360px) {
