@@ -1043,10 +1043,9 @@ header.overflow-menu #mobileMenu ul li a:hover {
   }
   header nav .logo-standard,
   header .logo-standard {
-    max-width: 100px !important;
-    width: auto !important;
+    max-width: 120px !important;
+    width: 120px !important;
     height: auto !important;
-    max-height: 2.25rem !important;
     object-fit: contain !important;
   }
   header .nav-right-wrap {
@@ -1105,8 +1104,20 @@ header.overflow-menu #mobileMenu ul li a:hover {
   }
 }
 /* Ortadaki CTA (Book a call): sadece geniş ekranda header'da; dar ekranda mobil menüde */
-.nav-cta-desktop {
+.nav-cta-desktop,
+.bannerCTA-hero {
   display: none;
+  background: rgba(255, 255, 255, 0.95);
+  color: #1e40af;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+.nav-cta-desktop:hover,
+.bannerCTA-hero:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+.bannerCTA-hero {
+  display: inline-flex;
 }
 /* Tablet (768px) ve üzeri: header’da CTA butonu görünsün */
 @media (min-width: 768px) {
@@ -1164,8 +1175,8 @@ header.overflow-menu #mobileMenu ul li a:hover {
 /* Header’da logo: footer’daki ile aynı boyut (11rem / 13rem) */
 header .logo-standard {
   height: auto !important;
-  max-height: 100% !important;
-  max-width: 100%;
+  width: 180px !important;
+  max-width: 180px !important;
   margin: 0 !important;
   vertical-align: middle;
   object-fit: contain;
@@ -1173,6 +1184,12 @@ header .logo-standard {
 /* Başlık navbar’a mümkün olduğunca yakın */
 main#main-content {
   padding-top: 6rem; /* header 6rem – mobilde hero başlığı görünsün */
+}
+@media (max-width: 768px) {
+  .logo-standard {
+    width: 120px !important;
+    height: auto !important;
+  }
 }
 @media (min-width: 768px) {
   main#main-content {
@@ -1883,7 +1900,6 @@ html[lang="tr"] .stat-satisfaction-tr {
     height: auto !important;
     overflow: visible !important;
     box-sizing: border-box !important;
-    visibility: visible !important;
     opacity: 1 !important;
     text-align: center !important;
   }
@@ -1895,7 +1911,6 @@ html[lang="tr"] .stat-satisfaction-tr {
     text-align: center !important;
     width: 100% !important;
     min-height: 2rem !important;
-    visibility: visible !important;
     opacity: 1 !important;
     color: var(--color-text-primary) !important;
   }
@@ -1911,7 +1926,6 @@ html[lang="tr"] .stat-satisfaction-tr {
     text-overflow: unset !important;
     -webkit-line-clamp: unset !important;
     display: block !important;
-    visibility: visible !important;
     opacity: 1 !important;
     color: var(--color-primary-light) !important;
   }
@@ -1926,13 +1940,11 @@ html[lang="tr"] .stat-satisfaction-tr {
     margin-top: 0.15rem !important;
     margin-bottom: 0 !important;
     min-height: 3rem !important;
-    visibility: visible !important;
     opacity: 1 !important;
   }
   #team .ud-team-socials li a,
   #ekip .ud-team-socials li a {
     opacity: 1 !important;
-    visibility: visible !important;
   }
 }
 
@@ -2109,12 +2121,31 @@ html[lang="tr"] .stat-satisfaction-tr {
   }
 }
 
+@supports (background-attachment: fixed) {
+  @keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+}
+
 /* İlk boyamada animasyon yok; .animations-ready body’de açılır (Lighthouse) */
 .animate-gradient {
   animation: none;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 .animations-ready .animate-gradient {
   animation: gradient 8s ease infinite;
+  will-change: background-position;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  contain: paint;
+  isolation: isolate;
+}
+.animations-ready body {
+  contain: paint;
+  isolation: isolate;
 }
 
 /* =============================
