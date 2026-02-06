@@ -75,7 +75,6 @@
 }
 
 html {
-  scroll-behavior: smooth;
   font-size: 16px;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
@@ -148,24 +147,40 @@ html[lang="tr"] {
 
 /* İletişim grid: mobil tam genişlik + gap; masaüstü sol 340px + form yan yana, arada küçük boşluk */
 #contact .contact-grid {
-  gap: 1.5rem;
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 1.5rem !important;
 }
 @media (min-width: 768px) {
   #contact .contact-grid {
-    grid-template-columns: 460px 1fr;
-    gap: 1.25rem;
+    grid-template-columns: 460px 1fr !important;
+    gap: 1.25rem !important;
+    align-items: stretch !important;
   }
   #contact .contact-left-col {
     min-width: 0;
     max-width: 100%;
+    display: flex !important;
+    flex-direction: column !important;
   }
   #contact .contact-left-col .map-container {
     max-width: 100%;
+    flex: 1 !important;
   }
   #contact .contact-address {
     white-space: nowrap;
   }
+  #contact .contact-grid > div {
+    height: 100% !important;
+  }
 }
+
+/* İletişim form arka plan rengi */
+#contact form {
+  background: rgba(15, 23, 42, 0.6) !important;
+  border: 1px solid rgba(71, 85, 105, 0.5) !important;
+}
+
 #contact .contact-info-boxes {
   max-width: 100%;
 }
@@ -698,6 +713,12 @@ img {
 
 /* Navbar: bar yüksekliği; logo aynı boyutta, barın altına taşar */
 header {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  z-index: 9999 !important;
   display: flex;
   align-items: center;
   min-height: 6rem;
@@ -1197,36 +1218,91 @@ main#main-content {
   }
 }
 
-/* Sabit header için anchor offset */
-:where(section[id]) {
-  scroll-margin-top: 5.5rem;
+/* Sabit header için anchor offset - section ve başlıklar */
+:where(section[id]),
+:where(h2[id]),
+:where(h3[id]),
+:where([data-section-tr]),
+:where([data-section-en]) {
+  scroll-margin-top: 4rem;
 }
 
 @media (min-width: 768px) {
-  :where(section[id]) {
-    scroll-margin-top: 6.5rem;
-  }
+:where(section[id]),
+:where(h2[id]),
+:where(h3[id]),
+:where([data-section-tr]),
+:where([data-section-en]) {
+  scroll-margin-top: 4rem;
+}
 }
 
 /* Legal sayfası: Privacy / Terms / Contact quick link hedefleri */
 #privacy, #terms, #contact {
-  scroll-margin-top: 5rem;
+  scroll-margin-top: 4rem;
 }
 
 @media (min-width: 768px) {
   #privacy, #terms, #contact {
-    scroll-margin-top: 6rem;
+    scroll-margin-top: 5rem;
   }
 }
 
 /* =============================
    Section Styles
    ============================= */
+/* Container padding - içerikleri kenardan uzaklaştır */
+.container {
+  padding-left: 2rem !important;
+  padding-right: 2rem !important;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding-left: 3rem !important;
+    padding-right: 3rem !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding-left: 4rem !important;
+    padding-right: 4rem !important;
+  }
+}
+
 section {
-  padding: 6rem 0;
+  padding: 5rem 0 !important;
   position: relative;
   max-width: 100%;
   overflow-x: hidden;
+}
+
+/* Section başlıkları tutarlı margin */
+section > .container > .text-center > h2.mb-2,
+section > .container > div > h2.mb-2,
+section h2.text-3xl.md\:text-5xl {
+  margin-bottom: 2.5rem !important;
+}
+
+section > .container > div > h3.mb-6,
+section h3.text-3xl.md\:text-4xl {
+  margin-bottom: 2.5rem !important;
+}
+
+/* About (hero) section - navbar sonrası küçük padding */
+#about,
+section[data-section-en="about"] {
+  padding-top: 1.5rem !important;
+  padding-bottom: 2rem !important;
+}
+
+@media (min-width: 768px) {
+  #about,
+  section[data-section-en="about"] {
+    padding-top: 2rem !important;
+    padding-bottom: 3rem !important;
+  }
 }
 
 /* İstatistikler bölümü: orta boy container, taşma yok */
@@ -1811,12 +1887,18 @@ html[lang="tr"] .stat-satisfaction-tr {
 }
 #team .team-grid-engineers,
 #ekip .team-grid-engineers {
-  grid-template-columns: repeat(3, 320px) !important;
+  grid-template-columns: repeat(2, 320px) !important;
+  justify-content: center !important;
+}
+#team .team-grid-engineers .ud-single-team:first-child,
+#ekip .team-grid-engineers .ud-single-team:first-child {
+  grid-column: 1 / -1 !important;
+  justify-self: center !important;
 }
 @media (min-width: 768px) {
   #team .team-grid-engineers,
   #ekip .team-grid-engineers {
-    grid-template-columns: repeat(3, 320px) !important;
+    grid-template-columns: repeat(2, 320px) !important;
   }
 }
 
@@ -1973,36 +2055,44 @@ html[lang="tr"] .stat-satisfaction-tr {
    Footer
    ============================= */
 
-/* Footer sosyal ikonlar: desktop sıkı, mobil iç içe geçmesin */
-#footer {
-  --footer-socials-gap: 0.15rem;
-}
-@media (min-width: 1025px) {
-  #footer {
-    --footer-socials-gap: 0.06rem;
-  }
-}
-@media (min-width: 1440px) {
-  #footer {
-    --footer-socials-gap: 0;
-  }
-}
-@media (max-width: 767px) {
-  #footer {
-    --footer-socials-gap: 1rem;
-  }
-}
-@media (max-width: 480px) {
-  #footer {
-    --footer-socials-gap: 0.9rem;
-  }
-}
+/* Footer sosyal ikonlar: tek satırlı görünüm */
 #footer .footer-socials {
-  gap: var(--footer-socials-gap) !important;
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  gap: 0.75rem !important;
+  max-width: 100% !important;
+  justify-content: center !important;
+  align-items: center !important;
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+}
+
+@media (min-width: 768px) {
+  #footer .footer-socials {
+    gap: 1rem !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  #footer .footer-socials {
+    gap: 1.25rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  #footer .footer-socials {
+    gap: 0.5rem !important;
+  }
 }
 /* Footer logo biraz aşağı */
 #footer .container > div:first-child {
   margin-top: 1.25rem;
+}
+
+/* Footer logoyu biraz aşağı al */
+#footer .container > a:first-child {
+  margin-top: 2rem;
+  display: block;
 }
 
 /* =============================
@@ -2143,10 +2233,7 @@ html[lang="tr"] .stat-satisfaction-tr {
   contain: paint;
   isolation: isolate;
 }
-.animations-ready body {
-  contain: paint;
-  isolation: isolate;
-}
+/* body'de contain/isolation YOK - position:fixed header bozulmasın */
 
 /* =============================
    Language Flags
@@ -2622,50 +2709,4 @@ textarea:focus {
   background-color: #1e3a8a;
 }
 
-/* Footer sosyal ikonlar: desktop sıkı, mobil ayrık (dosya sonu) */
-#footer div.footer-socials.flex {
-  gap: 0.15rem !important;
-}
-@media (min-width: 1025px) {
-  #footer div.footer-socials.flex {
-    gap: 0.06rem !important;
-  }
-}
-@media (min-width: 1440px) {
-  #footer div.footer-socials.flex,
-  #footer .footer-socials {
-    gap: 0 !important;
-    width: max-content !important;
-    max-width: 100% !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-  }
-  #footer .footer-socials a {
-    margin-left: -6px !important;
-    margin-right: -6px !important;
-  }
-}
-@media (min-width: 768px) and (max-width: 1024px) {
-  #footer div.footer-socials.flex {
-    gap: 0.25rem !important;
-  }
-}
-@media (max-width: 767px) {
-  #footer div.footer-socials.flex {
-    gap: 1rem !important;
-  }
-}
-@media (max-width: 480px) {
-  #footer div.footer-socials.flex {
-    gap: 0.9rem !important;
-  }
-}
-@media (max-width: 360px) {
-  #footer {
-    --footer-socials-gap: 0.8rem;
-  }
-  #footer div.footer-socials.flex {
-    gap: 0.8rem !important;
-  }
-}
 
