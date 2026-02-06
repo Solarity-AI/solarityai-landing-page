@@ -41,7 +41,7 @@ window.translations = {
     aboutUs: "About",
     servicesTitle: "Our Services",
     serviceAI: "AI & ML",
-    serviceAIDesc: "Advanced AI and machine learning solutions powered by state-of-the-art algorithms and neural networks. Deep learning models, natural language processing, and computer vision applications.",
+    serviceAIDesc: "AI and ML solutions with deep learning and computer vision.",
     serviceEnterprise: "Enterprise Software Solutions",
     serviceEnterpriseDesc: "Custom-designed enterprise software solutions tailored to your business needs. ERP, CRM, and specialized business applications.",
     serviceCloud: "Cloud-Based Applications",
@@ -50,8 +50,8 @@ window.translations = {
     serviceWebDesc: "Scalable and responsive web applications built with modern technologies. React, Vue, Angular, and Next.js.",
     serviceMobile: "Mobile Application Development",
     serviceMobileDesc: "Native and cross-platform mobile applications for iOS and Android. React Native, Flutter, Swift and Kotlin.",
-    serviceDevOps: "DevOps & Infrastructure",
-    serviceDevOpsDesc: "CI/CD pipelines, containerization, and infrastructure as code. Accelerate delivery and ensure reliability.",
+    serviceConsulting: "Consulting",
+    serviceConsultingDesc: "Strategy, digital transformation, and process optimization for your business.",
 
     // Service Tags (AI Card) - 5 SEO keywords
     tagGenAI: "Gen AI",
@@ -88,12 +88,12 @@ window.translations = {
     tagAndroid: "Android",
     tagKotlin: "Kotlin",
 
-    // DevOps service tags - 5
-    tagCICD: "CI/CD",
-    tagDocker: "Docker",
-    tagMonitoring: "Monitoring",
-    tagTerraform: "Terraform",
-    tagLinux: "Linux",
+    // Consulting service tags - 5
+    tagStrategy: "Strategy",
+    tagDigitalTransform: "Digital Transformation",
+    tagProcessOpt: "Process Optimization",
+    tagAdvisory: "Advisory",
+    tagChangeMgmt: "Change Management",
 
     // Partnerships Section
     partnerships: "Partnerships",
@@ -135,7 +135,7 @@ window.translations = {
     // Contact Section
     contact: "Contact Us",
     contactSubtitle: "Let's Build Something Great Together 🚀",
-    contactSubtitleDesc: "Get in touch to learn how we can help you be the best at what you do.",
+    contactSubtitleDesc: "Ready to transform your business with AI? We would love to hear about your project and explore how we can help.",
     contactAddress: "Headquarters",
     contactAddressValue: "310 Gran Via, Irving, TX 75039, USA",
     contactResponseTime: "Response time",
@@ -161,12 +161,15 @@ window.translations = {
     contactFormSuccess: "Message sent successfully 🚀",
     contactFormSuccessMsg: "We'll get back to you as soon as possible.",
     contactFormSubject: "New Contact Form Submission - Solarity AI",
+    showMap: "Show Map",
     
     // Footer
     footerQuickLinks: "Quick Links",
     footerContact: "Contact",
     footerFollowUs: "Follow Us",
     footerCopyright: "© 2026 Solarity AI LLC. All rights reserved.",
+    footerCreditsPrefix: "Draft created by Hasan Erdem AK • Lead development by ",
+    footerCreditsSuffix: " • Shaped by valuable feedback from our boss, Ata TURHAN, and our team",
     footerPrivacy: "Privacy",
     footerTerms: "Terms",
     footerDescription: "🔥 Creating the world’s best B2B and B2C solutions for YOU 🔥",
@@ -312,7 +315,7 @@ window.translations = {
     // Services Section - 6 Services (updated from capabilities)
     servicesTitle: "Hizmetlerimiz",
     serviceAI: "Yapay Zeka ve Makine Öğrenmesi",
-    serviceAIDesc: "En güncel algoritmalar ve sinir ağlarıyla desteklenen ileri düzey yapay zeka ve makine öğrenmesi çözümleri. Derin öğrenme modelleri, doğal dil işleme ve bilgisayarlı görü uygulamaları.",
+    serviceAIDesc: "Derin öğrenme ve bilgisayarlı görü ile AI ve ML çözümleri.",
     serviceEnterprise: "Kurumsal Yazılım Çözümleri",
     serviceEnterpriseDesc: "İş ihtiyaçlarınıza özel olarak tasarlanmış kurumsal yazılım çözümleri. ERP, CRM ve özel iş uygulamaları.",
     serviceCloud: "Bulut Tabanlı Uygulamalar",
@@ -321,8 +324,8 @@ window.translations = {
     serviceWebDesc: "Modern teknolojilerle geliştirilmiş, ölçeklenebilir ve duyarlı web uygulamaları. React, Vue, Angular ve Next.js.",
     serviceMobile: "Mobil Uygulama Geliştirme",
     serviceMobileDesc: "iOS ve Android platformları için yerel ve çapraz platform mobil uygulamalar. React Native, Flutter, Swift ve Kotlin.",
-    serviceDevOps: "DevOps ve Altyapı",
-    serviceDevOpsDesc: "CI/CD pipeline'ları, konteynerleştirme ve altyapı kodu. Teslimatı hızlandırın ve güvenilirliği sağlayın.",
+    serviceConsulting: "Danışmanlık",
+    serviceConsultingDesc: "Strateji, dijital dönüşüm ve iş süreçleri optimizasyonu.",
 
     // Service Tags (AI Card) - 5 SEO keywords
     tagGenAI: "Gen AI",
@@ -359,12 +362,12 @@ window.translations = {
     tagAndroid: "Android",
     tagKotlin: "Kotlin",
 
-    // DevOps service tags - 5
-    tagCICD: "CI/CD",
-    tagDocker: "Docker",
-    tagMonitoring: "İzleme",
-    tagTerraform: "Terraform",
-    tagLinux: "Linux",
+    // Consulting service tags - 5
+    tagStrategy: "Strateji",
+    tagDigitalTransform: "Dijital Dönüşüm",
+    tagProcessOpt: "Süreç Optimizasyonu",
+    tagAdvisory: "Danışmanlık",
+    tagChangeMgmt: "Değişim Yönetimi",
 
     // Stats Bar
     statsProjects: "Tamamlanan Projeler",
@@ -414,7 +417,7 @@ window.translations = {
     // Contact Section
     contact: "İletişim",
     contactSubtitle: "Birlikte Büyük İşler Başaralım 🚀",
-    contactSubtitleDesc: "Yaptığınız işte en iyisi olmanıza nasıl yardımcı olabileceğimizi öğrenmek için bizimle iletişime geçin.",
+    contactSubtitleDesc: "İşinizi yapay zeka ile dönüştürmeye hazır mısınız? Projenizi duymak ve size nasıl yardımcı olabileceğimizi keşfetmek isteriz.",
     contactAddress: "Adresimiz",
     contactAddressValue: "310 Gran Via, Irving, TX 75039, ABD",
     contactResponseTime: "Yanıt süresi",
@@ -441,12 +444,15 @@ window.translations = {
     contactFormSuccess: "Mesajınız başarıyla gönderildi 🚀",
     contactFormSuccessMsg: "En kısa sürede size dönüş yapacağız.",
     contactFormSubject: "Yeni İletişim Formu Gönderimi - Solarity AI",
+    showMap: "Haritayı Göster",
     
     // Footer
     footerQuickLinks: "Hızlı Bağlantılar",
     footerContact: "İletişim",
     footerFollowUs: "Bizi Takip Edin",
     footerCopyright: "© 2026 Solarity AI LLC. Tüm hakları saklıdır.",
+    footerCreditsPrefix: "Taslak: Hasan Erdem AK • Geliştirme: ",
+    footerCreditsSuffix: " • Patronumuz Ata TURHAN ve ekibimizin değerli geri bildirimleriyle şekillendirildi",
     footerPrivacy: "Gizlilik",
     footerTerms: "Koşullar",
     footerDescription: "🔥 Sizin için dünyanın en iyi B2B ve B2C çözümlerini geliştiriyoruz 🔥",

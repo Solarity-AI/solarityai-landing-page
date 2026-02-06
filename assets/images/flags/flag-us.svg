@@ -1,93 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1900 1000" width="1900" height="1000" preserveAspectRatio="xMidYMid meet">
-  <!-- US flag simplified: 13 stripes and blue canton with stars grid -->
-  <rect width="1900" height="1000" fill="#B22234" />
-  <!-- white stripes -->
-  <g fill="#FFFFFF">
-    <rect y="76.923" width="1900" height="76.923" />
-    <rect y="230.769" width="1900" height="76.923" />
-    <rect y="384.615" width="1900" height="76.923" />
-    <rect y="538.461" width="1900" height="76.923" />
-    <rect y="692.307" width="1900" height="76.923" />
-    <rect y="846.153" width="1900" height="76.923" />
-  </g>
-  <!-- blue canton -->
-  <rect width="760" height="538.461" fill="#002868" />
-  <!-- simplified stars: rows of white stars -->
-  <g fill="#FFFFFF" transform="translate(40,40)">
-    <!-- 9 rows alternating 6 and 5 stars -->
-    <!-- We'll generate a simple grid -->
-    <g id="stars">
-      <!-- 6-star rows -->
-      <!-- generate manually for SVG simplicity -->
-      <g transform="translate(0,0)">
-        <circle cx="60" cy="40" r="18" />
-        <circle cx="180" cy="40" r="18" />
-        <circle cx="300" cy="40" r="18" />
-        <circle cx="420" cy="40" r="18" />
-        <circle cx="540" cy="40" r="18" />
-        <circle cx="660" cy="40" r="18" />
-      </g>
-      <g transform="translate(30,80)">
-        <circle cx="60" cy="40" r="18" />
-        <circle cx="180" cy="40" r="18" />
-        <circle cx="300" cy="40" r="18" />
-        <circle cx="420" cy="40" r="18" />
-        <circle cx="540" cy="40" r="18" />
-      </g>
-      <g transform="translate(0,160)">
-        <circle cx="60" cy="40" r="18" />
-        <circle cx="180" cy="40" r="18" />
-        <circle cx="300" cy="40" r="18" />
-        <circle cx="420" cy="40" r="18" />
-        <circle cx="540" cy="40" r="18" />
-        <circle cx="660" cy="40" r="18" />
-      </g>
-      <g transform="translate(30,240)">
-        <circle cx="60" cy="40" r="18" />
-        <circle cx="180" cy="40" r="18" />
-        <circle cx="300" cy="40" r="18" />
-        <circle cx="420" cy="40" r="18" />
-        <circle cx="540" cy="40" r="18" />
-      </g>
-      <g transform="translate(0,320)">
-        <circle cx="60" cy="40" r="18" />
-        <circle cx="180" cy="40" r="18" />
-        <circle cx="300" cy="40" r="18" />
-        <circle cx="420" cy="40" r="18" />
-        <circle cx="540" cy="40" r="18" />
-        <circle cx="660" cy="40" r="18" />
-      </g>
-      <g transform="translate(30,400)">
-        <circle cx="60" cy="40" r="18" />
-        <circle cx="180" cy="40" r="18" />
-        <circle cx="300" cy="40" r="18" />
-        <circle cx="420" cy="40" r="18" />
-        <circle cx="540" cy="40" r="18" />
-      </g>
-      <g transform="translate(0,480)">
-        <circle cx="60" cy="40" r="18" />
-        <circle cx="180" cy="40" r="18" />
-        <circle cx="300" cy="40" r="18" />
-        <circle cx="420" cy="40" r="18" />
-        <circle cx="540" cy="40" r="18" />
-        <circle cx="660" cy="40" r="18" />
-      </g>
-      <g transform="translate(30,560)">
-        <circle cx="60" cy="40" r="18" />
-        <circle cx="180" cy="40" r="18" />
-        <circle cx="300" cy="40" r="18" />
-        <circle cx="420" cy="40" r="18" />
-        <circle cx="540" cy="40" r="18" />
-      </g>
-      <g transform="translate(0,640)">
-        <circle cx="60" cy="40" r="18" />
-        <circle cx="180" cy="40" r="18" />
-        <circle cx="300" cy="40" r="18" />
-        <circle cx="420" cy="40" r="18" />
-        <circle cx="540" cy="40" r="18" />
-        <circle cx="660" cy="40" r="18" />
-      </g>
-    </g>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1235" height="650" viewBox="0 0 7410 3900">
+<path d="M0,0h7410v3900H0" fill="#b31942"/>
+<path d="M0,450H7410m0,600H0m0,600H7410m0,600H0m0,600H7410m0,600H0" stroke="#FFF" stroke-width="300"/>
+<path d="M0,0h2964v2100H0" fill="#0a3161"/>
+<g fill="#FFF">
+<g id="s18">
+<g id="s9">
+<g id="s5">
+<g id="s4">
+<path id="s" d="M247,90 317.534230,307.082039 132.873218,172.917961H361.126782L176.465770,307.082039z"/>
+<use xlink:href="#s" y="420"/>
+<use xlink:href="#s" y="840"/>
+<use xlink:href="#s" y="1260"/>
+</g>
+<use xlink:href="#s" y="1680"/>
+</g>
+<use xlink:href="#s4" x="247" y="210"/>
+</g>
+<use xlink:href="#s9" x="494"/>
+</g>
+<use xlink:href="#s18" x="988"/>
+<use xlink:href="#s9" x="1976"/>
+<use xlink:href="#s5" x="2470"/>
+</g>
 </svg>

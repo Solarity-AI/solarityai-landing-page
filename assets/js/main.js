@@ -4,9 +4,8 @@
   // ======= Sticky Header
   window.onscroll = function () {
     const ud_header = document.querySelector(".ud-header");
+    if (!ud_header) return;
     const sticky = ud_header.offsetTop;
-    const logo = document.querySelector(".navbar-brand img");
-
     if (window.pageYOffset > sticky) {
       ud_header.classList.add("sticky");
     } else {
@@ -50,13 +49,32 @@
     });
   });
 
+  // ====== Throttle helper
+  function throttle(func, wait) {
+    let timeout;
+    let lastRan;
+    return function executedFunction() {
+      const context = this;
+      const args = arguments;
+      if (!lastRan) {
+        func.apply(context, args);
+        lastRan = Date.now();
+      } else {
+        clearTimeout(timeout);
+        timeout = setTimeout(function() {
+          if ((Date.now() - lastRan) >= wait) {
+            func.apply(context, args);
+            lastRan = Date.now();
+          }
+        }, wait - (Date.now() - lastRan));
+      }
+    };
+  }
+
   // ====== Active Menu Item on Scroll
+  const sections = document.querySelectorAll("section[id]");
   function onScroll(event) {
-    const sections = document.querySelectorAll("section[id]");
-    const scrollPos =
-      window.pageYOffset ||
-      document.documentElement.scrollTop ||
-      document.body.scrollTop;
+    const scrollPos = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
 
     sections.forEach((section) => {
       const sectionTop = section.offsetTop - 100;
@@ -75,7 +93,7 @@
     });
   }
 
-  window.document.addEventListener("scroll", onScroll);
+  window.addEventListener("scroll", throttle(onScroll, 100), { passive: true });
 
   // ====== WOW.js Initialization
   if (typeof WOW !== "undefined") {
@@ -229,7 +247,7 @@
     linkedinLinks.forEach((link, index) => {
         link.addEventListener('click', function(e) {
             const linkedinUrl = this.getAttribute('href');
-            const teamMemberName = this.closest('.ud-single-team')?.querySelector('.ud-team-info h5')?.textContent?.trim() || 'Unknown';
+            const teamMemberName = this.closest('.ud-single-team')?.querySelector('.ud-team-info .team-role')?.textContent?.trim() || 'Unknown';
             const clickType = this.closest('.ud-team-image') ? 'image' : 'icon';
             
             // Log to console for debugging

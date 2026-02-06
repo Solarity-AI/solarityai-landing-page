@@ -9,31 +9,8 @@ Disallow: /admin/
 Disallow: /private/
 Disallow: /api/
 
-# Allow important files
-Allow: /assets/
-Allow: /careers.html
-Allow: /index.html
+# Cloudflare: Disable email obfuscation
+User-agent: Cloudflare
+Disallow: /cdn-cgi/
 
-# Sitemap location
 Sitemap: https://solarityai.com/sitemap.xml
-
-# Crawl-delay (optional, helps prevent server overload)
-Crawl-delay: 1
-
-# Specific bot rules
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
-User-agent: Slurp
-Allow: /
-
-# Block bad bots (optional)
-User-agent: AhrefsBot
-Crawl-delay: 10
-
-User-agent: SemrushBot
-Crawl-delay: 10
-

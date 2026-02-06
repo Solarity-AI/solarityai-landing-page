@@ -68,3 +68,5 @@ env/
 *.local
 local/
 
+.vercel
+.env*.local

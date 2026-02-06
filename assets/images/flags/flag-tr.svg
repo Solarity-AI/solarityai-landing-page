@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" width="900" height="600" preserveAspectRatio="xMidYMid meet">
-  <!-- Turkish flag: red background, white crescent and star -->
-  <rect width="900" height="600" fill="#E30A17" />
-  <!-- Crescent: use two circles to create crescent shape -->
-  <circle cx="360" cy="300" r="170" fill="#FFFFFF" />
-  <circle cx="405" cy="300" r="140" fill="#E30A17" />
-  <!-- Star: 5-pointed star centered to the right of crescent -->
-  <polygon fill="#FFFFFF" points="550,300 578,338 621,347 587,375 596,417 550,396 504,417 513,375 479,347 522,338" />
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 -30000 90000 60000">
+	<title>Flag of Turkey</title>
+	<path fill="#e30a17" d="m0-30000h90000v60000H0z"/>
+	<path fill="#fff" d="m41750 0 13568-4408-8386 11541V-7133l8386 11541zm925 8021a15000 15000 0 1 1 0-16042 12000 12000 0 1 0 0 16042z"/>
 </svg>

@@ -111,27 +111,28 @@
     });
   }
 
-  // Google Maps embed: her zaman İngilizce harita (EN embed)
+  // Google Maps embed: diline göre TR veya EN harita (lazy-load sonrası veya dil değişince replace)
   function updateMapEmbedLang(lang) {
     var iframe = document.getElementById('contactMapEmbed');
     if (!iframe) return;
-    var baseSrc = iframe.getAttribute('data-src-en');
-    if (!baseSrc) return;
+    var srcTr = iframe.getAttribute('data-src-tr');
+    var srcEn = iframe.getAttribute('data-src-en');
+    var url = (lang === 'tr' ? srcTr : srcEn) || srcEn;
+    if (!url) return;
     var parent = iframe.parentNode;
     var newIframe = document.createElement('iframe');
     newIframe.id = 'contactMapEmbed';
     newIframe.title = iframe.title || 'Solarity AI - Dallas Office';
-    newIframe.setAttribute('data-src-tr', iframe.getAttribute('data-src-tr') || '');
-    newIframe.setAttribute('data-src-en', iframe.getAttribute('data-src-en') || '');
+    newIframe.setAttribute('data-src-tr', srcTr || '');
+    newIframe.setAttribute('data-src-en', srcEn || '');
     newIframe.className = iframe.className || 'w-full h-full min-h-[260px] md:min-h-[320px]';
     newIframe.style.border = '0';
     newIframe.setAttribute('allowfullscreen', '');
     newIframe.setAttribute('referrerpolicy', iframe.getAttribute('referrerpolicy') || 'no-referrer-when-downgrade');
-    newIframe.setAttribute('loading', 'eager');
     parent.replaceChild(newIframe, iframe);
-    var sep = baseSrc.indexOf('?') >= 0 ? '&' : '?';
-    newIframe.src = baseSrc + sep + '_=' + Date.now();
-    log('🗺️ Map embed set to English');
+    var sep = url.indexOf('?') >= 0 ? '&' : '?';
+    newIframe.src = url + sep + '_=' + Date.now();
+    log('🗺️ Map embed set to', lang === 'tr' ? 'Turkish' : 'English');
   }
 
   // Ekip üyesi isimleri: EN'de Türkçe karakter yok, TR'de orijinal
@@ -202,8 +203,11 @@
     document.documentElement.lang = lang;
   }
 
-  // Initialize language on page load
+  // Initialize language on page load (tek sefer çalışsın – long task azaltma)
+  var _languageInitialized = false;
   function initLanguage() {
+    if (_languageInitialized) return;
+    _languageInitialized = true;
     setupLanguageSwitcher();
     setLanguage(currentLang);
     updateLanguageSwitcher();
@@ -240,27 +244,18 @@
     // Hemen mevcut scroll’u hedefe çek – focus vb. scroll’u bozmuşsa düzelt
     var scrollbarW = window.innerWidth - document.documentElement.clientWidth;
     document.documentElement.style.scrollBehavior = 'auto';
-    document.body.style.setProperty('overflow', 'hidden', 'important');
-    document.body.style.setProperty('position', 'fixed', 'important');
-    document.body.style.setProperty('top', '-' + savedScrollY + 'px', 'important');
-    document.body.style.setProperty('left', '0', 'important');
-    document.body.style.setProperty('right', '0', 'important');
-    document.body.style.setProperty('width', '100%', 'important');
-    if (scrollbarW > 0) document.body.style.setProperty('padding-right', scrollbarW + 'px', 'important');
+    // Scroll bar'ı korumak için body'yi kilitlemiyoruz - sadece scroll'u kaydedip restore ediyoruz
+    // position: fixed KULLANMIYORUZ çünkü scroll bar'ı kaybettirir
 
     function unlockScrollAndRestore() {
-      document.body.style.removeProperty('overflow');
-      document.body.style.removeProperty('position');
-      document.body.style.removeProperty('top');
-      document.body.style.removeProperty('left');
-      document.body.style.removeProperty('right');
-      document.body.style.removeProperty('width');
-      document.body.style.removeProperty('padding-right');
-      var d = document.documentElement;
-      var max = Math.max(0, d.scrollHeight - (window.innerHeight || d.clientHeight));
-      var targetY = savedScrollRatio * max;
-      if (targetY > max) targetY = max;
-      window.scrollTo(0, targetY);
+      // Hiçbir şey yapmıyoruz - body zaten kilitli değil, sadece scroll restore edilecek
+      requestAnimationFrame(function() {
+        var d = document.documentElement;
+        var max = Math.max(0, d.scrollHeight - (window.innerHeight || d.clientHeight));
+        var targetY = savedScrollRatio * max;
+        if (targetY > max) targetY = max;
+        window.scrollTo(0, targetY);
+      });
     }
 
     // Bolum id'lerini guncelle (hash yok artik, scroll tetiklenmez)
@@ -268,26 +263,16 @@
     // Güvenlik: çeviri hiç yüklenmezse 3 saniye sonra yine de body'yi göster
     if (window._langLoadingFallback) clearTimeout(window._langLoadingFallback);
     function restoreScroll() {
-      var d = document.documentElement;
-      var max = Math.max(0, d.scrollHeight - (window.innerHeight || d.clientHeight));
-      var targetY = savedScrollRatio * max;
-      if (targetY > max) targetY = max;
-      window.scrollTo(0, targetY);
+      requestAnimationFrame(function() {
+        var d = document.documentElement;
+        var max = Math.max(0, d.scrollHeight - (window.innerHeight || d.clientHeight));
+        var targetY = savedScrollRatio * max;
+        if (targetY > max) targetY = max;
+        window.scrollTo(0, targetY);
+      });
     }
-    var scrollPinEnd = Date.now() + 2500;
-    function scrollPinLoop() {
-      if (Date.now() >= scrollPinEnd) return;
-      var d = document.documentElement;
-      var max = Math.max(0, d.scrollHeight - (window.innerHeight || d.clientHeight));
-      var targetY = savedScrollRatio * max;
-      if (targetY > max) targetY = max;
-      var nowY = window.scrollY || document.documentElement.scrollTop;
-      if (Math.abs(nowY - targetY) > 1) window.scrollTo(0, targetY);
-      if (typeof requestAnimationFrame !== 'undefined') requestAnimationFrame(scrollPinLoop);
-      else setTimeout(scrollPinLoop, 16);
-    }
-    if (typeof requestAnimationFrame !== 'undefined') requestAnimationFrame(scrollPinLoop);
-    else setTimeout(scrollPinLoop, 0);
+    // Scroll pin loop devre dışı - scroll takılmasını önler
+    var scrollPinEnd = 0;
     function restoreScrollAbsolute() {
       window.scrollTo(0, savedScrollY);
     }
@@ -477,23 +462,15 @@
         updateMetaTags(lang, window.location.pathname);
         updateMapEmbedLang(lang);
         if (typeof unlockScrollAndRestore === "function") {
-          unlockScrollAndRestore();
-          requestAnimationFrame(function() { if (typeof restoreScroll === "function") restoreScroll(); });
+          // Zorunlu reflow’u azalt: layout okuyan unlockScrollAndRestore/restoreScroll’u bir sonraki frame’e ertele
+          var doUnlock = function() {
+            unlockScrollAndRestore();
+            if (typeof restoreScroll === "function") restoreScroll();
+          };
+          if (typeof requestAnimationFrame !== "undefined") requestAnimationFrame(doUnlock);
+          else setTimeout(doUnlock, 0);
           setTimeout(function() { if (typeof restoreScroll === "function") restoreScroll(); }, 50);
-          var lockEnd = Date.now() + 400;
-          function scrollLock() {
-            if (Date.now() >= lockEnd) {
-              window.removeEventListener("scroll", scrollLock, true);
-              return;
-            }
-            var d = document.documentElement;
-            var max = Math.max(0, d.scrollHeight - (window.innerHeight || d.clientHeight));
-            var targetY = savedScrollRatio * max;
-            var nowY = window.scrollY || document.documentElement.scrollTop;
-            if (Math.abs(nowY - targetY) > 10 && typeof restoreScroll === "function") restoreScroll();
-          }
-          window.addEventListener("scroll", scrollLock, true);
-          setTimeout(function() { window.removeEventListener("scroll", scrollLock, true); }, 450);
+          // Scroll lock devre dışı - scroll takılmasını önler
           if (hadHash) {
             var newHash = translateHash(hadHash, lang);
             if (newHash) {
@@ -559,34 +536,29 @@
         buttonListenerSetup = true;
         log('✅ Language switcher button event delegation attached');
       }
-      
-      // Also ensure direct listener is attached to the current button
-      // Remove any existing listeners by cloning (but keep the element reference)
-      const directHandler = function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        if (e.target && e.target.blur) e.target.blur();
-        if (document.activeElement && document.activeElement.blur) document.activeElement.blur();
-        log('🔘 Language button clicked via direct listener!');
-        toggleLanguage();
-        return false;
-      };
-      
-      // Remove old listener if exists and add new one
-      switcher.removeEventListener('click', directHandler);
-      switcher.addEventListener('click', directHandler);
-      
-      // Also attach direct listener to mobile switcher if present
-      const mobileSwitcher = document.getElementById('languageSwitcherMobile');
-      if (mobileSwitcher) {
-        try {
-          mobileSwitcher.removeEventListener('click', directHandler);
-        } catch (e) {}
-        mobileSwitcher.addEventListener('click', directHandler);
-        log('✅ Language switcher mobile direct listener attached');
+      // Direct listener’ları ayrı tick’te ekle (uzun görev kırma)
+      function attachDirectListeners() {
+        var directHandler = function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          if (e.target && e.target.blur) e.target.blur();
+          if (document.activeElement && document.activeElement.blur) document.activeElement.blur();
+          log('🔘 Language button clicked via direct listener!');
+          toggleLanguage();
+          return false;
+        };
+        switcher.removeEventListener('click', directHandler);
+        switcher.addEventListener('click', directHandler);
+        var mobileSwitcher = document.getElementById('languageSwitcherMobile');
+        if (mobileSwitcher) {
+          try { mobileSwitcher.removeEventListener('click', directHandler); } catch (e) {}
+          mobileSwitcher.addEventListener('click', directHandler);
+          log('✅ Language switcher mobile direct listener attached');
+        }
+        log('✅ Language switcher button direct listener attached');
       }
-
-      log('✅ Language switcher button direct listener attached');
+      if (typeof requestAnimationFrame !== 'undefined') requestAnimationFrame(attachDirectListeners);
+      else setTimeout(attachDirectListeners, 0);
       return switcher;
     } else {
       warn('⚠️ Language switcher button not found! Will retry...');
@@ -595,6 +567,15 @@
   }
 
   // Update language switcher button
+  
+  // Platform tespiti: inline script zaten window.USE_SVG_FLAGS set etti
+  // Eğer set edilmemişse, burada tespit yap
+  if (typeof window.USE_SVG_FLAGS === 'undefined') {
+    const isWindows = /Win/.test(navigator.userAgent || navigator.platform || '');
+    window.USE_SVG_FLAGS = isWindows;
+  }
+  const useEmojiFlags = !window.USE_SVG_FLAGS;
+  
   function updateLanguageSwitcher() {
     const switcher = document.getElementById('languageSwitcher');
     const switcherMobile = document.getElementById('languageSwitcherMobile');
@@ -602,22 +583,25 @@
     // Compute the target language (the one the button should switch TO)
     const targetLang = currentLang === 'tr' ? 'en' : 'tr';
     const langCodeForButton = targetLang === 'tr' ? 'TR' : 'EN';
-    const flagSrcForButton = targetLang === 'tr' ? 'assets/images/flags/flag-tr.svg?v=1' : 'assets/images/flags/flag-us.svg?v=1';
+    const flagEmojiForButton = targetLang === 'tr' ? '🇹🇷' : '🇺🇸';
+    const flagSvgForButton = targetLang === 'tr' ? 'assets/images/flags/flag-tr.svg?v=2' : 'assets/images/flags/flag-us.svg?v=2';
 
     if (switcher) {
       const flagEl = document.getElementById('flagIcon');
       const codeEl = document.getElementById('currentLang');
 
-      if (flagEl && flagEl.tagName === 'IMG') {
-        // show the flag of the language we will switch TO
-        flagEl.src = flagSrcForButton;
-        flagEl.alt = targetLang === 'tr' ? 'Türkçe' : 'English';
-        flagEl.title = targetLang === 'tr' ? 'Türkçe' : 'English';
-        log('✅ Language.js set desktop <img> src to (target):', flagSrcForButton);
-      } else if (flagEl) {
-        // fallback if not an img element
-        flagEl.style.background = targetLang === 'tr' ? '#E30A17' : 'linear-gradient(to bottom, #012169 0%, #012169 33%, white 33%, white 67%, #C8102E 67%, #C8102E 100%)';
-        warn('⚠️ flagIcon is not an <img>, applied background fallback for target flag');
+      if (flagEl) {
+        if (useEmojiFlags) {
+          // Emoji (iOS, macOS, Android)
+          flagEl.textContent = flagEmojiForButton;
+          flagEl.style.fontSize = '2rem';
+          log('✅ Desktop flag emoji:', flagEmojiForButton);
+        } else {
+          // Windows: SVG fallback
+          flagEl.src = flagSvgForButton;
+          flagEl.alt = targetLang.toUpperCase();
+          log('✅ Desktop flag SVG (Windows):', flagSvgForButton);
+        }
       } else {
         warn('⚠️ flagIcon element not found (desktop)');
       }
@@ -632,14 +616,18 @@
       const flagElMobile = document.getElementById('flagIconMobile');
       const codeElMobile = document.getElementById('currentLangMobile');
 
-      if (flagElMobile && flagElMobile.tagName === 'IMG') {
-        flagElMobile.src = flagSrcForButton;
-        flagElMobile.alt = targetLang === 'tr' ? 'Türkçe' : 'English';
-        flagElMobile.title = targetLang === 'tr' ? 'Türkçe' : 'English';
-        log('✅ Language.js set mobile <img> src to (target):', flagSrcForButton);
-      } else if (flagElMobile) {
-        flagElMobile.style.background = targetLang === 'tr' ? '#E30A17' : 'linear-gradient(to bottom, #012169 0%, #012169 33%, white 33%, white 67%, #C8102E 67%, #C8102E 100%)';
-        warn('⚠️ flagIconMobile is not an <img>, applied background fallback for target flag');
+      if (flagElMobile) {
+        if (useEmojiFlags) {
+          // Emoji (iOS, macOS, Android)
+          flagElMobile.textContent = flagEmojiForButton;
+          flagElMobile.style.fontSize = '2.5rem';
+          log('✅ Mobile flag emoji:', flagEmojiForButton);
+        } else {
+          // Windows: SVG fallback
+          flagElMobile.src = flagSvgForButton;
+          flagElMobile.alt = targetLang.toUpperCase();
+          log('✅ Mobile flag SVG (Windows):', flagSvgForButton);
+        }
       }
 
       if (codeElMobile) codeElMobile.textContent = langCodeForButton;
@@ -665,13 +653,12 @@
     if (typeof window.toggleLanguage === 'function') return window.toggleLanguage();
   };
 
-  // Initialize on DOM ready
+  // Initialize on DOM ready – iki tick’e bölünür: TBT / uzun ana iş parçacığı görevinden kaçın
   function initialize() {
     log('=== LANGUAGE SYSTEM INITIALIZING ===');
     log('Current language:', currentLang);
     log('Translations object exists:', typeof translations !== 'undefined');
     
-    // Wait for translations to be loaded (check both window.translations and translations)
     const translationsObj = window.translations || (typeof translations !== 'undefined' ? translations : null);
     if (!translationsObj) {
       log('⏳ Waiting for translations to load...');
@@ -683,12 +670,19 @@
     log('✅ Turkish translations available:', !!translationsObj['tr']);
     log('✅ Sample Turkish navAbout:', translationsObj['tr'] ? translationsObj['tr']['navAbout'] : 'NOT FOUND');
     
-    setTimeout(function() {
+    // 1. tick: sadece buton dinleyicisi (setupLanguageSwitcher + attachDirectListeners ertelenir)
+    setupLanguageSwitcher();
+    // 2.–3. tick: setLanguage + updateLanguageSwitcher (initLanguage bir frame sonra, uzun görevi böler)
+    function runInitLanguage() {
       log('=== RUNNING INITIAL TRANSLATION ===');
       log('Language:', currentLang);
-      setupLanguageSwitcher();
       initLanguage();
-    }, 0);
+    }
+    if (typeof requestAnimationFrame !== 'undefined') {
+      requestAnimationFrame(function() { requestAnimationFrame(runInitLanguage); });
+    } else {
+      setTimeout(runInitLanguage, 0);
+    }
   }
 
   function runInitialize() {
@@ -698,33 +692,27 @@
       setTimeout(initialize, 150);
     }
   }
+  // Script yüklendiğinde hemen yield: uzun görev ilk tick’te bitmesin
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', runInitialize);
+    document.addEventListener('DOMContentLoaded', function() {
+      setTimeout(runInitialize, 0);
+    });
   } else {
-    runInitialize();
+    setTimeout(runInitialize, 0);
   }
 
   window.addEventListener('load', function() {
+    if (_languageInitialized) return;
     if (typeof requestIdleCallback !== 'undefined') {
       requestIdleCallback(function() {
         const translationsObj = window.translations || (typeof translations !== 'undefined' ? translations : null);
-        if (translationsObj) {
-          log('=== WINDOW LOAD - RUNNING TRANSLATION ===');
-          setupLanguageSwitcher();
-          setLanguage(currentLang);
-          updateLanguageSwitcher();
-        } else {
-          err('❌ Translations still not loaded on window load!');
-        }
+        if (translationsObj) initLanguage();
+        else err('❌ Translations still not loaded on window load!');
       }, { timeout: 700 });
     } else {
       setTimeout(function() {
         const translationsObj = window.translations || (typeof translations !== 'undefined' ? translations : null);
-        if (translationsObj) {
-          setupLanguageSwitcher();
-          setLanguage(currentLang);
-          updateLanguageSwitcher();
-        }
+        if (translationsObj) initLanguage();
       }, 500);
     }
   });

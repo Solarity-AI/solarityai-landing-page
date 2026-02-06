@@ -1,7 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="overflow-y: scroll !important; overflow-x: hidden !important;">
 <head>
-    <style>html.lang-loading body{visibility:hidden;}</style>
+    <style>
+    html,html[lang],html[lang="en"],html[lang="tr"]{overflow-y:scroll!important;overflow-x:hidden!important;height:100%!important;width:100%!important;}
+    body{overflow:visible!important;min-height:100%!important;height:auto!important;width:100%!important;margin:0!important;padding:0!important;position:relative!important;}
+    #main-content,main{overflow:visible!important;}
+    html::-webkit-scrollbar{-webkit-appearance:none!important;width:14px!important;height:14px!important;background:#1e293b!important;}
+    html::-webkit-scrollbar-track{background:#0f172a!important;border-right:1px solid #334155!important;}
+    html::-webkit-scrollbar-thumb{background:#10b981!important;border-radius:10px!important;border:3px solid #0f172a!important;min-height:40px!important;}
+    html::-webkit-scrollbar-thumb:hover{background:#34d399!important;border:2px solid #0f172a!important;}
+    html::-webkit-scrollbar-thumb:active{background:#059669!important;}
+    body::-webkit-scrollbar{display:none!important;width:0!important;height:0!important;}
+    html{scrollbar-width:auto!important;scrollbar-color:#10b981 #0f172a!important;}
+    body{scrollbar-width:none!important;}
+    html.lang-loading body{opacity:0;pointer-events:none;}
+    </style>
+    <script>
+    (function() {
+      var html = document.documentElement;
+      var body = document.body || document.createElement('body');
+      function forceScrollbar() {
+        html.style.setProperty('overflow-y', 'scroll', 'important');
+        html.style.setProperty('overflow-x', 'hidden', 'important');
+        html.style.setProperty('height', '100%', 'important');
+        if (body) {
+          body.style.setProperty('overflow', 'visible', 'important');
+          body.style.setProperty('height', '100%', 'important');
+        }
+      }
+      forceScrollbar();
+      document.addEventListener('DOMContentLoaded', forceScrollbar);
+      window.addEventListener('load', forceScrollbar);
+      var observer = new MutationObserver(forceScrollbar);
+      observer.observe(html, { attributes: true, attributeFilter: ['style', 'class'] });
+      if (body) observer.observe(body, { attributes: true, attributeFilter: ['style', 'class'] });
+      function checkLoop() {
+        forceScrollbar();
+        requestAnimationFrame(checkLoop);
+      }
+      checkLoop();
+    })();
+    </script>
     <script>
       (function(){
         try {
@@ -44,8 +83,12 @@
     <meta name="theme-color" content="#0a192f" />
     <link rel="canonical" href="https://solarityai.com/blog.html" />
 
-    <!-- Performance: preload LCP image (logo) -->
-    <link rel="preload" as="image" href="assets/images/logo/CompanyLogo.png" />
+    <!-- Cloudflare: Disable email obfuscation (prevents email-decode.min.js) -->
+    <meta name="cfemail" content="off" />
+    <!-- Performance: preload LCP logo (mobile first – 120w) -->
+    <link rel="preload" as="image" href="assets/images/logo/CompanyLogo-120w.webp" type="image/webp" imagesrcset="assets/images/logo/CompanyLogo-120w.webp 120w, assets/images/logo/CompanyLogo-180w.webp 180w" imagesizes="(max-width: 1024px) 120px, 180px" />
+    <!-- Font: LineIcons preload (critical’de @font-face yok) -->
+    <link rel="preload" href="assets/fonts/LineIcons.woff2" as="font" type="font/woff2" crossorigin />
 
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -64,12 +107,15 @@
 
     <!-- Google Fonts: loaded after window.load (off critical path, font-display: optional) -->
     <noscript><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" /></noscript>
-    <!-- LineIcons (non-render-blocking to improve FCP/LCP) -->
+    <!-- Critical CSS: above-the-fold inline -->
+    <style id="critical-css">:root{--font-primary:'Inter',-apple-system,sans-serif;--font-secondary:'Poppins',sans-serif;--color-dark-bg:#0f172a;--color-text-primary:#f8fafc;--color-text-secondary:#cbd5e1;--brand-space:clamp(200px,20vw,340px)}*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth;overflow-x:hidden;overflow-y:scroll;scrollbar-gutter:stable;max-width:100vw}body{font-family:var(--font-primary);color:var(--color-text-secondary);background-color:var(--color-dark-bg);overflow-x:hidden;max-width:100vw}.hidden{display:none!important}main#main-content{padding-top:4.5rem!important}header{position:fixed!important;top:0!important;left:0!important;right:0!important;width:100%!important;z-index:9999!important}.ud-header{position:fixed!important;top:0!important;left:0!important;right:0!important;width:100%;z-index:999;background:rgba(15,23,42,.85);backdrop-filter:blur(20px)}.navbar{padding:0;display:flex;align-items:center;justify-content:center;width:100%;min-height:88px}.nav-spacer{display:none}@media(min-width:1025px){.nav-spacer{display:block!important}}.nav-right-wrap{min-width:240px;max-width:100%}.nav-desktop-scroll{display:none}@media(min-width:1025px){.nav-desktop-scroll{display:block!important}}.nav-mobile-wrap{display:flex}@media(min-width:1025px){.nav-mobile-wrap{display:none!important};#mobileMenu{display:none!important}}.logo-standard{height:11rem!important;max-width:100%;object-fit:contain}header .logo-standard{height:auto!important;max-height:100%!important;max-width:100%}.container{max-width:100%;width:100%;box-sizing:border-box}</style>
+    <!-- LineIcons (async) -->
     <link rel="preload" href="assets/css/lineicons.css" as="style" />
     <link rel="stylesheet" href="assets/css/lineicons.css" media="print" onload="this.media='all'" />
     <noscript><link rel="stylesheet" href="assets/css/lineicons.css" /></noscript>
-    <link rel="preload" href="assets/css/main.min.css" as="style" fetchpriority="high" />
-    <link rel="stylesheet" href="assets/css/main.min.css" />
+    <!-- Yayında main.min.css kullanılıyor -->
+    <link rel="preload" href="assets/css/main.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="assets/css/main.min.css" /></noscript>
     <!-- Navbar: ana sayfa ile aynı (yükseklik, logo, CTA ortada) -->
     <style>
       header { display: flex; align-items: center; min-height: 6rem; }
@@ -82,11 +128,15 @@
     </style>
 
     <style>
+      /* CRITICAL: Header must stay fixed at top */
+      header { position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important; }
       html { scroll-behavior: smooth; overflow-x: hidden !important; max-width: 100vw; width: 100%; }
       @keyframes gradient {
         0%, 100% { background-position: 0% 50%; }
         50% { background-position: 100% 50%; }
       }
+      body { animation: none !important; }
+      body.animations-ready { animation: gradient 15s ease infinite !important; }
       body {
         font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
         background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
@@ -153,13 +203,73 @@
     </style>
 </head>
 <body id="top" class="text-slate-200">
+    <script>(function(){function go(){document.body.classList.add('animations-ready');}if(typeof requestIdleCallback!=='undefined')requestIdleCallback(go,{timeout:600});else setTimeout(go,500);})();</script>
+
+    <!-- Windows bayrak emoji fallback -->
+    <script>
+      (function() {
+        const isWindows = /Win/.test(navigator.userAgent || navigator.platform || '');
+        if (isWindows) {
+          window.USE_SVG_FLAGS = true;
+          document.addEventListener('DOMContentLoaded', function() {
+            const currentLang = localStorage.getItem('solarityai-lang') || 'en';
+            const targetLang = currentLang === 'tr' ? 'en' : 'tr';
+            const flagSvg = targetLang === 'tr' ? 'assets/images/flags/flag-tr.svg?v=2' : 'assets/images/flags/flag-us.svg?v=2';
+            
+            const flagEl = document.getElementById('flagIcon');
+            const flagElMobile = document.getElementById('flagIconMobile');
+            
+            if (flagEl) {
+              flagEl.innerHTML = `<img src="${flagSvg}" alt="${targetLang.toUpperCase()}" style="width:44px;height:28px;object-fit:contain;display:block;" />`;
+            }
+            if (flagElMobile) {
+              flagElMobile.innerHTML = `<img src="${flagSvg}" alt="${targetLang.toUpperCase()}" style="width:48px;height:30px;object-fit:contain;display:block;" />`;
+            }
+          });
+        } else {
+          window.USE_SVG_FLAGS = false;
+        }
+      })();
+    </script>
 
     <!-- Header/Navbar - index.html ile aynı -->
-    <header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b" style="background: rgba(10, 25, 47, 0.95); border-color: rgba(16, 185, 129, 0.2);">
+    <!-- Windows bayrak emoji fallback: sayfa yüklenir yüklenmez çalışsın -->
+    <script>
+      (function() {
+        const isWindows = /Win/.test(navigator.userAgent || navigator.platform || '');
+        window.USE_SVG_FLAGS = isWindows;
+        
+        if (isWindows) {
+          // Hemen çalışsın, event'e bağlı değil
+          function replaceFlagsImmediately() {
+            const currentLang = localStorage.getItem('solarityai-lang') || 'en';
+            const targetLang = currentLang === 'tr' ? 'en' : 'tr';
+            const flagSvg = targetLang === 'tr' ? 'assets/images/flags/flag-tr.svg?v=2' : 'assets/images/flags/flag-us.svg?v=2';
+            
+            const flagEl = document.getElementById('flagIcon');
+            const flagElMobile = document.getElementById('flagIconMobile');
+            
+            if (flagEl && flagEl.textContent) {
+              flagEl.innerHTML = `<img src="${flagSvg}" alt="${targetLang.toUpperCase()}" style="width:44px;height:28px;object-fit:contain;display:block;" />`;
+            }
+            if (flagElMobile && flagElMobile.textContent) {
+              flagElMobile.innerHTML = `<img src="${flagSvg}" alt="${targetLang.toUpperCase()}" style="width:48px;height:30px;object-fit:contain;display:block;" />`;
+            }
+          }
+          
+          // Hemen ve delay ile çalıştır
+          replaceFlagsImmediately();
+          setTimeout(replaceFlagsImmediately, 100);
+          setTimeout(replaceFlagsImmediately, 500);
+          document.addEventListener('DOMContentLoaded', replaceFlagsImmediately);
+        }
+      })();
+    </script>
+    <header class="w-full z-50 backdrop-blur-md border-b" style="background: rgba(10, 25, 47, 0.95); border-color: rgba(16, 185, 129, 0.2); position: fixed !important; top: 0 !important; left: 0 !important;">
         <div class="container mx-auto px-4 md:px-12">
             <nav class="flex items-center justify-between py-0.5 w-full" style="gap: 1.25rem;" aria-label="Main navigation">
                 <a href="index.html" class="flex items-center flex-shrink-0">
-                    <img src="assets/images/logo/CompanyLogo.png" alt="Solarity AI" class="logo-standard" width="360" height="90" fetchpriority="high" />
+                    <img src="assets/images/logo/CompanyLogo-120w.webp" srcset="assets/images/logo/CompanyLogo-120w.webp 120w, assets/images/logo/CompanyLogo-180w.webp 180w" sizes="(max-width: 1024px) 120px, 180px" width="180" height="45" fetchpriority="high" loading="eager" alt="Solarity AI" class="logo-standard" style="width: 180px !important; height: auto !important;" />
                 </a>
                 <div class="nav-spacer flex-1 min-w-0" aria-hidden="true"></div>
                 <a id="bannerCTA" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2qgXk0ZfBd6QJf7ef-306in7AI0Kzc-pL3NJFK1fU74vAUGiftVJPF3-DoXp9_RZoyqW_sjSpI" target="_blank" rel="noopener noreferrer" class="nav-cta-desktop flex-shrink-0 inline-flex items-center justify-center gap-1.5 md:gap-2 px-3 py-2 md:px-5 md:py-3 rounded-lg md:rounded-xl font-bold text-xs md:text-base text-center transition-all max-w-[140px] md:max-w-none" style="background: rgba(255, 255, 255, 0.95); color: #1e40af; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);" onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 8px 24px rgba(0, 0, 0, 0.3)';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 16px rgba(0, 0, 0, 0.2)';" data-i18n="bannerCTA">🚀 Book a call with our CEO 🚀</a>
@@ -181,13 +291,13 @@
                     <button id="languageSwitcher" type="button" onclick="window.invokeToggleLanguage()" aria-label="Switch language"
                             class="nav-lang-btn inline-flex flex-shrink-0 items-center justify-center px-3 py-2 rounded-lg transition hover:scale-105"
                             style="background: rgba(16, 185, 129, 0.15); border: 2px solid rgba(16, 185, 129, 0.4); color: #10b981;">
-                        <img id="flagIcon" src="assets/images/flags/flag-us.svg?v=1" alt="" width="56" height="40" style="object-fit:cover; border-radius:5px; box-shadow:0 1px 3px rgba(0,0,0,0.2);" />
+                        <span id="flagIcon" style="font-size: 2rem; line-height: 1; display: block;">🇺🇸</span>
                     </button>
                     <div class="nav-mobile-wrap items-center gap-3 flex-shrink-0">
                     <button id="languageSwitcherMobile" type="button" onclick="window.invokeToggleLanguage()" aria-label="Switch language"
                             class="inline-flex items-center justify-center p-2 rounded-lg"
                             style="background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.3); color: #10b981;">
-                        <img id="flagIconMobile" src="assets/images/flags/flag-us.svg?v=1" alt="" width="48" height="34" style="object-fit:cover; border-radius:4px; box-shadow:0 1px 2px rgba(0,0,0,0.2);" />
+                        <span id="flagIconMobile" style="font-size: 2.5rem; line-height: 1; display: block;">🇺🇸</span>
                     </button>
                     <button id="mobileMenuBtn" type="button" class="text-2xl text-emerald-400" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">☰</button>
                     </div>
@@ -255,41 +365,43 @@
 
     </main>
 
-    <!-- Footer: index.html ile aynı -->
-    <footer id="footer" class="bg-slate-950 border-t border-slate-800 py-4 md:py-6 px-4 md:px-12">
-        <div class="container mx-auto max-w-5xl" style="display:grid;grid-template-columns:1fr 1fr;gap:0 2rem;align-items:start;">
-            <div class="max-w-md text-center mx-auto w-full" style="grid-column:1/-1;">
-                <a href="index.html" class="inline-block cursor-pointer hover:opacity-80 transition" title="Back to top">
-                    <img src="assets/images/logo/CompanyLogo.png" alt="Solarity AI" class="logo-standard mb-1 h-auto mx-auto" width="360" height="90" loading="lazy" decoding="async" style="display:block;" />
-                </a>
-                <p class="text-lg md:text-xl text-slate-300 leading-relaxed" data-i18n="footerDescription">AI-Native Software Company Creating High-Impact B2B and B2C Solutions with World-Class Quality.</p>
+    <!-- Footer: ana sayfa ile aynı yapı -->
+    <footer id="footer" class="footer-stacked bg-slate-950 border-t border-slate-800 py-0 px-4 md:px-12 pb-0">
+        <div class="container mx-auto max-w-5xl flex flex-col items-center justify-center text-center gap-5 md:gap-6">
+            <a href="index.html" class="inline-block cursor-pointer hover:opacity-80 transition" title="Back to home">
+                <picture><source type="image/webp" srcset="assets/images/logo/CompanyLogo-120w.webp 120w, assets/images/logo/CompanyLogo-180w.webp 180w" sizes="(max-width: 768px) 120px, 180px" /><img src="assets/images/logo/CompanyLogo-180w.png" srcset="assets/images/logo/CompanyLogo-120w.png 120w, assets/images/logo/CompanyLogo-180w.png 180w" sizes="(max-width: 768px) 120px, 180px" alt="Solarity AI" class="logo-standard mb-1 h-auto mx-auto" width="180" height="45" loading="lazy" decoding="async" style="display:block; width: 180px !important; height: auto !important;" /></picture>
+            </a>
+            <p class="text-xl md:text-2xl text-slate-300 leading-relaxed max-w-md" data-i18n="footerDescription">AI-Native Software Company Creating High-Impact B2B and B2C Solutions with World-Class Quality.</p>
+            <div class="border-b border-slate-700 w-full max-w-xs mx-auto"></div>
+            <p class="text-slate-400 text-base md:text-lg footer-copyright-text" data-i18n="footerCopyright">© 2026 Solarity AI LLC. All rights reserved.</p>
+            <p class="text-slate-500 text-lg md:text-xl footer-credits">
+                <span data-i18n="footerCreditsPrefix">Draft created by Hasan Erdem AK • Lead development by </span><a href="https://www.instagram.com/mehmet.begun0" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-amber-400 transition-colors underline">Mehmet BEGUN</a><span data-i18n="footerCreditsSuffix"> • Shaped by valuable feedback from our boss, Ata TURHAN, and our team</span>
+            </p>
+            <div class="footer-page-links flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-slate-400">
+                <a href="legal.html#privacy" class="footer-page-link hover:text-slate-200 transition" data-i18n="footerPrivacy">Privacy</a>
+                <a href="legal.html#terms" class="footer-page-link hover:text-slate-200 transition" data-i18n="footerTerms">Terms</a>
+                <a href="legal.html" class="footer-page-link hover:text-slate-200 transition" data-i18n="navLegal">Legal</a>
+                <a href="blog.html" class="footer-page-link hover:text-slate-200 transition" data-i18n="navBlog">Blog</a>
             </div>
-            <div style="grid-column:2;"></div>
-            <div class="border-b border-slate-700 mt-4 pb-3" style="grid-column:1/-1;"></div>
-            <div class="footer-copyright-row flex items-center text-slate-400 pt-3 text-left" style="grid-column:1;grid-row:4;font-size:1.125rem;gap:0 0.75rem;align-self:center;flex-wrap:nowrap;">
-                <span class="shrink-0" data-i18n="footerCopyright">© 2026 Solarity AI LLC. All rights reserved.</span>
-                <div class="footer-page-links shrink-0">
-                    <a href="legal.html#privacy" class="footer-page-link" data-i18n="footerPrivacy">Privacy</a>
-                    <a href="legal.html#terms" class="footer-page-link" data-i18n="footerTerms">Terms</a>
-                    <a href="legal.html" class="footer-page-link" data-i18n="navLegal">Legal</a>
-                    <a href="blog.html" class="footer-page-link" data-i18n="navBlog">Blog</a>
-                </div>
-            </div>
-            <div class="footer-socials flex justify-center md:justify-end items-center flex-wrap pt-2" style="grid-column:2;grid-row:4;align-self:center;gap:0.15rem;">
-                    <a href="https://linktr.ee/solarity_ai_company" target="_blank" rel="noopener noreferrer" aria-label="Linktree – tüm linkler (opens in new tab)" class="inline-flex items-center justify-center w-24 h-24 text-slate-400 hover:text-brand-blue transition"><i class="lni lni-link text-6xl" aria-hidden="true"></i></a>
-                    <a href="https://www.instagram.com/solarity_ai_company" target="_blank" rel="noopener noreferrer" aria-label="Instagram (opens in new tab)" class="inline-flex items-center justify-center w-24 h-24 text-slate-400 hover:text-brand-blue transition"><i class="lni lni-instagram-original text-6xl" aria-hidden="true"></i></a>
-                    <a href="https://www.facebook.com/solarity_ai_company" target="_blank" rel="noopener noreferrer" aria-label="Facebook (opens in new tab)" class="inline-flex items-center justify-center w-24 h-24 text-slate-400 hover:text-brand-blue transition"><i class="lni lni-facebook-original text-6xl" aria-hidden="true"></i></a>
-                    <a href="https://www.tiktok.com/@solarity_ai_company" target="_blank" rel="noopener noreferrer" aria-label="TikTok (opens in new tab)" class="inline-flex items-center justify-center w-24 h-24 text-slate-400 hover:text-brand-blue transition"><i class="lni lni-tiktok text-6xl" aria-hidden="true"></i></a>
-                    <a href="https://www.youtube.com/@solarity_ai_company" target="_blank" rel="noopener noreferrer" aria-label="YouTube (opens in new tab)" class="inline-flex items-center justify-center w-24 h-24 text-slate-400 hover:text-brand-blue transition"><i class="lni lni-youtube text-6xl" aria-hidden="true"></i></a>
-                    <a href="https://x.com/solarity_ai_com" target="_blank" rel="noopener noreferrer" aria-label="X (opens in new tab)" class="inline-flex items-center justify-center w-24 h-24 text-slate-400 hover:text-brand-blue transition"><svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="shrink-0"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
-                    <a href="https://www.linkedin.com/company/solarityai-llc" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in new tab)" class="inline-flex items-center justify-center w-24 h-24 text-slate-400 hover:text-brand-blue transition"><i class="lni lni-linkedin-original text-6xl" aria-hidden="true"></i></a>
-                    <a href="https://github.com/Solarity-AI" target="_blank" rel="noopener noreferrer" aria-label="GitHub (opens in new tab)" class="inline-flex items-center justify-center w-24 h-24 text-slate-400 hover:text-brand-blue transition"><i class="lni lni-github-original text-6xl" aria-hidden="true"></i></a>
+            <div class="footer-socials flex items-center justify-center flex-wrap">
+                <a href="https://linktr.ee/solarity_ai" target="_blank" rel="noopener noreferrer" aria-label="Linktree (opens in new tab)" class="inline-flex items-center justify-center w-10 h-10 md:w-12 md:h-12 text-slate-400 hover:text-brand-blue transition"><i class="lni lni-link text-2xl md:text-3xl" aria-hidden="true"></i></a>
+                <a href="https://www.instagram.com/solarity_ai" target="_blank" rel="noopener noreferrer" aria-label="Instagram (opens in new tab)" class="inline-flex items-center justify-center w-10 h-10 md:w-12 md:h-12 text-slate-400 hover:text-brand-blue transition"><i class="lni lni-instagram-original text-2xl md:text-3xl" aria-hidden="true"></i></a>
+                <a href="https://www.facebook.com/solarity.ai.company" target="_blank" rel="noopener noreferrer" aria-label="Facebook (opens in new tab)" class="inline-flex items-center justify-center w-10 h-10 md:w-12 md:h-12 text-slate-400 hover:text-brand-blue transition"><i class="lni lni-facebook-original text-2xl md:text-3xl" aria-hidden="true"></i></a>
+                <a href="https://www.tiktok.com/@solarityai" target="_blank" rel="noopener noreferrer" aria-label="TikTok (opens in new tab)" class="inline-flex items-center justify-center w-10 h-10 md:w-12 md:h-12 text-slate-400 hover:text-brand-blue transition"><i class="lni lni-tiktok text-2xl md:text-3xl" aria-hidden="true"></i></a>
+                <a href="https://www.youtube.com/@solarity_ai" target="_blank" rel="noopener noreferrer" aria-label="YouTube (opens in new tab)" class="inline-flex items-center justify-center w-10 h-10 md:w-12 md:h-12 text-slate-400 hover:text-brand-blue transition"><i class="lni lni-youtube text-2xl md:text-3xl" aria-hidden="true"></i></a>
+                <a href="https://x.com/solarity_ai" target="_blank" rel="noopener noreferrer" aria-label="X (opens in new tab)" class="inline-flex items-center justify-center w-10 h-10 md:w-12 md:h-12 text-slate-400 hover:text-brand-blue transition"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="shrink-0"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                <a href="https://www.linkedin.com/company/solarity-ai-company/posts/?feedView=all" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in new tab)" class="inline-flex items-center justify-center w-10 h-10 md:w-12 md:h-12 text-slate-400 hover:text-brand-blue transition"><i class="lni lni-linkedin-original text-2xl md:text-3xl" aria-hidden="true"></i></a>
+                <a href="https://github.com/Solarity-AI" target="_blank" rel="noopener noreferrer" aria-label="GitHub (opens in new tab)" class="inline-flex items-center justify-center w-10 h-10 md:w-12 md:h-12 text-slate-400 hover:text-brand-blue transition"><i class="lni lni-github-original text-2xl md:text-3xl" aria-hidden="true"></i></a>
+                <a href="https://www.whatsapp.com/channel/0029Vb6z14n42DcffGUs9x3R" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp (opens in new tab)" class="inline-flex items-center justify-center w-10 h-10 md:w-12 md:h-12 text-slate-400 hover:text-brand-blue transition"><i class="lni lni-whatsapp text-2xl md:text-3xl" aria-hidden="true"></i></a>
+                <a href="https://t.me/solarity_ai" target="_blank" rel="noopener noreferrer" aria-label="Telegram (opens in new tab)" class="inline-flex items-center justify-center w-10 h-10 md:w-12 md:h-12 text-slate-400 hover:text-brand-blue transition"><i class="lni lni-telegram-original text-2xl md:text-3xl" aria-hidden="true"></i></a>
+                <a href="https://medium.com/solarity-ai" target="_blank" rel="noopener noreferrer" aria-label="Medium (opens in new tab)" class="inline-flex items-center justify-center w-10 h-10 md:w-12 md:h-12 text-slate-400 hover:text-brand-blue transition"><i class="lni lni-medium text-2xl md:text-3xl" aria-hidden="true"></i></a>
+                <a href="https://tr.pinterest.com/solarity_ai/" target="_blank" rel="noopener noreferrer" aria-label="Pinterest (opens in new tab)" class="inline-flex items-center justify-center w-10 h-10 md:w-12 md:h-12 text-slate-400 hover:text-brand-blue transition"><i class="lni lni-pinterest text-2xl md:text-3xl" aria-hidden="true"></i></a>
             </div>
         </div>
     </footer>
 
-    <script src="assets/js/translations.js"></script>
-    <script src="assets/js/language.js"></script>
+    <script src="assets/js/translations.min.js?v=2" defer></script>
+    <script src="assets/js/language.min.js" defer></script>
     <script>
         document.getElementById('mobileMenuBtn').addEventListener('click', function() { document.getElementById('mobileMenu').classList.toggle('hidden'); });
         function toggleLanguage() { if (window && typeof window.toggleLanguage === 'function') return window.toggleLanguage(); }
@@ -340,5 +452,16 @@
     <script>
     (function(){ function loadFonts(){ var p1=document.createElement('link'); p1.rel='preconnect'; p1.href='https://fonts.googleapis.com'; document.head.appendChild(p1); var p2=document.createElement('link'); p2.rel='preconnect'; p2.href='https://fonts.gstatic.com'; p2.crossOrigin='anonymous'; document.head.appendChild(p2); var l=document.createElement('link'); l.rel='stylesheet'; l.href='https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800&display=optional'; document.head.appendChild(l); } function s(){ if(typeof requestIdleCallback!=='undefined') requestIdleCallback(loadFonts,{timeout:2000}); else setTimeout(loadFonts,500); } if(document.readyState==='complete') s(); else window.addEventListener('load',s); })();
     </script>
+    <!-- Navbar her zaman üstte kalsın - en yüksek öncelik -->
+    <style>#main-header,.ud-header,header{position:fixed!important;top:0!important;left:0!important;right:0!important;width:100%!important;z-index:9999!important;}</style>
+    <!-- Scroll bar her zaman gözüksün - hiçbir zaman kaybolmasın -->
+    <style>
+    html,html[lang],html[lang="en"],html[lang="tr"]{overflow-y:scroll!important;overflow-x:hidden!important;}
+    html::-webkit-scrollbar{width:14px!important;background:#1e293b!important;}
+    html::-webkit-scrollbar-track{background:#0f172a!important;}
+    html::-webkit-scrollbar-thumb{background:#10b981!important;border:3px solid #0f172a!important;border-radius:10px!important;min-height:40px!important;}
+    html::-webkit-scrollbar-thumb:hover{background:#34d399!important;}
+    body::-webkit-scrollbar{display:none!important;width:0!important;}
+    </style>
 </body>
 </html>
