@@ -244,22 +244,11 @@
     // Hemen mevcut scroll’u hedefe çek – focus vb. scroll’u bozmuşsa düzelt
     var scrollbarW = window.innerWidth - document.documentElement.clientWidth;
     document.documentElement.style.scrollBehavior = 'auto';
-    document.body.style.setProperty('overflow', 'hidden', 'important');
-    document.body.style.setProperty('position', 'fixed', 'important');
-    document.body.style.setProperty('top', '-' + savedScrollY + 'px', 'important');
-    document.body.style.setProperty('left', '0', 'important');
-    document.body.style.setProperty('right', '0', 'important');
-    document.body.style.setProperty('width', '100%', 'important');
-    if (scrollbarW > 0) document.body.style.setProperty('padding-right', scrollbarW + 'px', 'important');
+    // Scroll bar'ı korumak için body'yi kilitlemiyoruz - sadece scroll'u kaydedip restore ediyoruz
+    // position: fixed KULLANMIYORUZ çünkü scroll bar'ı kaybettirir
 
     function unlockScrollAndRestore() {
-      document.body.style.removeProperty('overflow');
-      document.body.style.removeProperty('position');
-      document.body.style.removeProperty('top');
-      document.body.style.removeProperty('left');
-      document.body.style.removeProperty('right');
-      document.body.style.removeProperty('width');
-      document.body.style.removeProperty('padding-right');
+      // Hiçbir şey yapmıyoruz - body zaten kilitli değil, sadece scroll restore edilecek
       requestAnimationFrame(function() {
         var d = document.documentElement;
         var max = Math.max(0, d.scrollHeight - (window.innerHeight || d.clientHeight));
@@ -282,20 +271,8 @@
         window.scrollTo(0, targetY);
       });
     }
-    var scrollPinEnd = Date.now() + 2500;
-    function scrollPinLoop() {
-      if (Date.now() >= scrollPinEnd) return;
-      var d = document.documentElement;
-      var max = Math.max(0, d.scrollHeight - (window.innerHeight || d.clientHeight));
-      var targetY = savedScrollRatio * max;
-      if (targetY > max) targetY = max;
-      var nowY = window.scrollY || document.documentElement.scrollTop;
-      if (Math.abs(nowY - targetY) > 1) window.scrollTo(0, targetY);
-      if (typeof requestAnimationFrame !== 'undefined') requestAnimationFrame(scrollPinLoop);
-      else setTimeout(scrollPinLoop, 16);
-    }
-    if (typeof requestAnimationFrame !== 'undefined') requestAnimationFrame(scrollPinLoop);
-    else setTimeout(scrollPinLoop, 0);
+    // Scroll pin loop devre dışı - scroll takılmasını önler
+    var scrollPinEnd = 0;
     function restoreScrollAbsolute() {
       window.scrollTo(0, savedScrollY);
     }
@@ -493,20 +470,7 @@
           if (typeof requestAnimationFrame !== "undefined") requestAnimationFrame(doUnlock);
           else setTimeout(doUnlock, 0);
           setTimeout(function() { if (typeof restoreScroll === "function") restoreScroll(); }, 50);
-          var lockEnd = Date.now() + 400;
-          function scrollLock() {
-            if (Date.now() >= lockEnd) {
-              window.removeEventListener("scroll", scrollLock, true);
-              return;
-            }
-            var d = document.documentElement;
-            var max = Math.max(0, d.scrollHeight - (window.innerHeight || d.clientHeight));
-            var targetY = savedScrollRatio * max;
-            var nowY = window.scrollY || document.documentElement.scrollTop;
-            if (Math.abs(nowY - targetY) > 10 && typeof restoreScroll === "function") restoreScroll();
-          }
-          window.addEventListener("scroll", scrollLock, true);
-          setTimeout(function() { window.removeEventListener("scroll", scrollLock, true); }, 450);
+          // Scroll lock devre dışı - scroll takılmasını önler
           if (hadHash) {
             var newHash = translateHash(hadHash, lang);
             if (newHash) {
@@ -603,6 +567,15 @@
   }
 
   // Update language switcher button
+  
+  // Platform tespiti: inline script zaten window.USE_SVG_FLAGS set etti
+  // Eğer set edilmemişse, burada tespit yap
+  if (typeof window.USE_SVG_FLAGS === 'undefined') {
+    const isWindows = /Win/.test(navigator.userAgent || navigator.platform || '');
+    window.USE_SVG_FLAGS = isWindows;
+  }
+  const useEmojiFlags = !window.USE_SVG_FLAGS;
+  
   function updateLanguageSwitcher() {
     const switcher = document.getElementById('languageSwitcher');
     const switcherMobile = document.getElementById('languageSwitcherMobile');
@@ -610,22 +583,25 @@
     // Compute the target language (the one the button should switch TO)
     const targetLang = currentLang === 'tr' ? 'en' : 'tr';
     const langCodeForButton = targetLang === 'tr' ? 'TR' : 'EN';
-    const flagSrcForButton = targetLang === 'tr' ? 'assets/images/flags/flag-tr.svg?v=1' : 'assets/images/flags/flag-us.svg?v=1';
+    const flagEmojiForButton = targetLang === 'tr' ? '🇹🇷' : '🇺🇸';
+    const flagSvgForButton = targetLang === 'tr' ? 'assets/images/flags/flag-tr.svg?v=2' : 'assets/images/flags/flag-us.svg?v=2';
 
     if (switcher) {
       const flagEl = document.getElementById('flagIcon');
       const codeEl = document.getElementById('currentLang');
 
-      if (flagEl && flagEl.tagName === 'IMG') {
-        // show the flag of the language we will switch TO
-        flagEl.src = flagSrcForButton;
-        flagEl.alt = targetLang === 'tr' ? 'Türkçe' : 'English';
-        flagEl.title = targetLang === 'tr' ? 'Türkçe' : 'English';
-        log('✅ Language.js set desktop <img> src to (target):', flagSrcForButton);
-      } else if (flagEl) {
-        // fallback if not an img element
-        flagEl.style.background = targetLang === 'tr' ? '#E30A17' : 'linear-gradient(to bottom, #012169 0%, #012169 33%, white 33%, white 67%, #C8102E 67%, #C8102E 100%)';
-        warn('⚠️ flagIcon is not an <img>, applied background fallback for target flag');
+      if (flagEl) {
+        if (useEmojiFlags) {
+          // Emoji (iOS, macOS, Android)
+          flagEl.textContent = flagEmojiForButton;
+          flagEl.style.fontSize = '2rem';
+          log('✅ Desktop flag emoji:', flagEmojiForButton);
+        } else {
+          // Windows: SVG fallback
+          flagEl.src = flagSvgForButton;
+          flagEl.alt = targetLang.toUpperCase();
+          log('✅ Desktop flag SVG (Windows):', flagSvgForButton);
+        }
       } else {
         warn('⚠️ flagIcon element not found (desktop)');
       }
@@ -640,14 +616,18 @@
       const flagElMobile = document.getElementById('flagIconMobile');
       const codeElMobile = document.getElementById('currentLangMobile');
 
-      if (flagElMobile && flagElMobile.tagName === 'IMG') {
-        flagElMobile.src = flagSrcForButton;
-        flagElMobile.alt = targetLang === 'tr' ? 'Türkçe' : 'English';
-        flagElMobile.title = targetLang === 'tr' ? 'Türkçe' : 'English';
-        log('✅ Language.js set mobile <img> src to (target):', flagSrcForButton);
-      } else if (flagElMobile) {
-        flagElMobile.style.background = targetLang === 'tr' ? '#E30A17' : 'linear-gradient(to bottom, #012169 0%, #012169 33%, white 33%, white 67%, #C8102E 67%, #C8102E 100%)';
-        warn('⚠️ flagIconMobile is not an <img>, applied background fallback for target flag');
+      if (flagElMobile) {
+        if (useEmojiFlags) {
+          // Emoji (iOS, macOS, Android)
+          flagElMobile.textContent = flagEmojiForButton;
+          flagElMobile.style.fontSize = '2.5rem';
+          log('✅ Mobile flag emoji:', flagEmojiForButton);
+        } else {
+          // Windows: SVG fallback
+          flagElMobile.src = flagSvgForButton;
+          flagElMobile.alt = targetLang.toUpperCase();
+          log('✅ Mobile flag SVG (Windows):', flagSvgForButton);
+        }
       }
 
       if (codeElMobile) codeElMobile.textContent = langCodeForButton;
