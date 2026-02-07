@@ -634,6 +634,18 @@ img {
   box-shadow: 0 6px 16px rgba(16, 185, 129, 0.45);
 }
 
+/* Kariyer butonu sığsın: 1024px–1440px arası kompakt */
+@media (min-width: 1024px) and (max-width: 1440px) {
+  .nav-page-btn-careers {
+    padding: 0.4rem 0.65rem !important;
+    font-size: 0.8125rem !important;
+    gap: 0.25rem !important;
+  }
+  .nav-page-btn-careers i {
+    font-size: 0.875rem !important;
+  }
+}
+
 /* Footer: 4’lü sayfa linkleri (Privacy, Terms, Legal, Blog) – premium pill chip grubu */
 #footer .footer-copyright-row {
   display: flex;
@@ -1186,6 +1198,29 @@ header.overflow-menu #mobileMenu ul li a:hover {
 /* Tablet (768px) ve üzeri: header’da CTA butonu görünsün */
 @media (min-width: 768px) {
   .nav-cta-desktop {
+    display: inline-flex !important;
+  }
+}
+
+/* 1440px ve uzeri: quick links goster, hamburger asla */
+@media (min-width: 1440px) {
+  .nav-desktop-scroll,
+  header.overflow-menu .nav-desktop-scroll {
+    display: block !important;
+  }
+  .nav-mobile-wrap,
+  header.overflow-menu .nav-mobile-wrap {
+    display: none !important;
+  }
+  .nav-lang-btn,
+  header.overflow-menu .nav-lang-btn {
+    display: inline-flex !important;
+  }
+  .nav-spacer,
+  header.overflow-menu .nav-spacer {
+    display: block !important;
+  }
+  header.overflow-menu .nav-cta-desktop {
     display: inline-flex !important;
   }
 }
