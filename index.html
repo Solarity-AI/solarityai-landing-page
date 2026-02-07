@@ -14,7 +14,7 @@
     </style>
     <style>html.lang-loading body{opacity:0;}main{display:flex;flex-direction:column}#about,#hakkimizda{order:1}#stats-section{order:2}main>section:not(#about):not(#hakkimizda):not(#stats-section){order:3}</style>
     <!-- İlk boyamada animasyon yok; idle sonra aynı animasyonlar başlar (Lighthouse) -->
-    <style>body{animation:none !important;transform:translateZ(0);backface-visibility:hidden}.animate-gradient{animation:none !important;transform:translateZ(0);backface-visibility:hidden}body.animations-ready{animation:gradient 15s ease infinite !important;will-change:background-position;contain:paint;isolation:isolate}.animations-ready .animate-gradient{animation:gradient 8s ease infinite !important;will-change:background-position;contain:paint;isolation:isolate}</style>
+    <style>body{animation:none !important;backface-visibility:hidden}.animate-gradient{animation:none !important;transform:translateZ(0);backface-visibility:hidden}body.animations-ready{animation:gradient 15s ease infinite !important;will-change:background-position}.animations-ready .animate-gradient{animation:gradient 8s ease infinite !important;will-change:background-position;contain:paint;isolation:isolate}</style>
     <!-- LCP: stats-bar ilk paint'te tamamen statik; lang-loading sırasında da görünsün -->
     <style>#stats-section{padding:0.5rem 1rem 1.5rem;min-height:110px}@media(min-width:768px){#stats-section{padding:1rem 3rem 2rem;min-height:140px}}.stats-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:2rem;max-width:52rem;margin:0 auto;opacity:1 !important;transform:none !important;animation:none !important;}@media(min-width:768px){.stats-bar{gap:3rem;max-width:58rem}}.stat-item{display:flex;flex-direction:column;align-items:center;text-align:center;min-width:8rem}.stat-number{font-size:2rem;font-weight:700;color:#10b981;line-height:1.2;margin-bottom:0.25rem}@media(min-width:768px){.stat-number{font-size:2.5rem}}.stat-label{font-size:0.875rem;color:#cbd5e1;font-weight:500}@media(min-width:768px){.stat-label{font-size:1rem}}html.lang-loading #stats-section,html.lang-loading #stats-section *{opacity:1 !important;pointer-events:auto !important;}</style>
     <script>
@@ -147,7 +147,7 @@
     <link rel="stylesheet" href="assets/css/tailwind.css" />
 
     <!-- Critical CSS: above-the-fold (header, hero, stats) – inline for LCP, no render block -->
-    <style id="critical-css">:root{--font-primary:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;--font-secondary:'Poppins',sans-serif;--color-dark-bg:#0f172a;--color-text-primary:#f8fafc;--color-text-secondary:#cbd5e1;--transition-base:.3s ease}*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth;font-size:16px;-webkit-text-size-adjust:100%;overflow-x:hidden;max-width:100vw}body{font-family:var(--font-primary);color:var(--color-text-secondary);background-color:var(--color-dark-bg);overflow-x:hidden;max-width:100vw;line-height:1.7;-webkit-font-smoothing:antialiased}.hidden{display:none!important}header,.ud-header{position:fixed!important;top:0!important;left:0!important;right:0!important;width:100%!important;z-index:9999!important}main#main-content{padding-top:6rem}@media(min-width:768px){main#main-content{padding-top:7rem}}section{padding:6rem 0;position:relative;max-width:100%;overflow-x:hidden}.stat-satisfaction-en,.stat-satisfaction-tr{display:none}html[lang="en"] .stat-satisfaction-en{display:block}html[lang="tr"] .stat-satisfaction-tr{display:block}.nav-spacer{display:none}@media(min-width:1025px){.nav-spacer{display:block!important}}.nav-desktop-scroll{display:none}@media(min-width:1025px){.nav-desktop-scroll{display:block!important}}.nav-mobile-wrap{display:flex}@media(min-width:1025px){.nav-mobile-wrap{display:none!important}}.logo-standard{height:11rem!important;max-height:12rem!important;max-width:100%;object-fit:contain}@media(min-width:768px){.logo-standard{height:13rem!important;max-height:15rem!important}}header .logo-standard{height:auto!important;width:180px!important;max-width:180px!important;object-fit:contain}@media(max-width:1024px){header .logo-standard{max-width:120px!important;width:120px!important}}#mobileMenu{display:none}@media(max-width:1024px){#mobileMenu{width:100%;padding:1rem 0 1.25rem;display:flex;flex-direction:column;gap:.75rem;border-top:1px solid rgba(16,185,129,.25);background:rgba(10,25,47,.6)}#mobileMenu.hidden{display:none!important}}h1,h2,h3,h4,h5,h6{font-family:var(--font-secondary);font-weight:600;color:var(--color-text-primary);line-height:1.3}a{text-decoration:none;color:inherit;transition:all var(--transition-base)}img{max-width:100%;height:auto;display:block}.container{max-width:100%;width:100%;box-sizing:border-box}</style>
+    <style id="critical-css">:root{--font-primary:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;--font-secondary:'Poppins',sans-serif;--color-dark-bg:#0f172a;--color-text-primary:#f8fafc;--color-text-secondary:#cbd5e1;--transition-base:.3s ease}*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth;font-size:16px;-webkit-text-size-adjust:100%;overflow-x:hidden;max-width:100vw}body{font-family:var(--font-primary);color:var(--color-text-secondary);background-color:var(--color-dark-bg);overflow-x:hidden;max-width:100vw;line-height:1.7;-webkit-font-smoothing:antialiased}.hidden{display:none!important}header,.ud-header{position:fixed!important;top:0!important;left:0!important;right:0!important;width:100%!important;z-index:9999!important}main#main-content{padding-top:5rem}@media(min-width:768px){main#main-content{padding-top:6rem}}section{padding:6rem 0;position:relative;max-width:100%;overflow-x:hidden}.stat-satisfaction-en,.stat-satisfaction-tr{display:none}html[lang="en"] .stat-satisfaction-en{display:block}html[lang="tr"] .stat-satisfaction-tr{display:block}.nav-spacer{display:none}@media(min-width:1025px){.nav-spacer{display:block!important}}.nav-desktop-scroll{display:none}@media(min-width:1025px){.nav-desktop-scroll{display:block!important}}.nav-mobile-wrap{display:flex}@media(min-width:1025px){.nav-mobile-wrap{display:none!important}}.logo-standard{height:11rem!important;max-height:12rem!important;max-width:100%;object-fit:contain}@media(min-width:768px){.logo-standard{height:13rem!important;max-height:15rem!important}}header .logo-standard{height:auto!important;width:180px!important;max-width:180px!important;object-fit:contain}@media(max-width:1024px){header .logo-standard{max-width:120px!important;width:120px!important}}#mobileMenu{display:none}@media(max-width:1024px){#mobileMenu{width:100%;padding:1rem 0 1.25rem;display:flex;flex-direction:column;gap:.75rem;border-top:1px solid rgba(16,185,129,.25);background:rgba(10,25,47,.6)}#mobileMenu.hidden{display:none!important}}h1,h2,h3,h4,h5,h6{font-family:var(--font-secondary);font-weight:600;color:var(--color-text-primary);line-height:1.3}a{text-decoration:none;color:inherit;transition:all var(--transition-base)}img{max-width:100%;height:auto;display:block}.container{max-width:100%;width:100%;box-sizing:border-box}</style>
 
     <!-- LineIcons (async) -->
     <link rel="preload" href="assets/css/lineicons.css" as="style" />
@@ -181,6 +181,28 @@
           padding-bottom: 1.5rem !important;
           min-height: 140px !important;
         }
+      }
+    </style>
+    <!-- Hero bölümü: üst boşluk + CTA üst/alt boşluk eşit -->
+    <style id="hero-section-padding">
+      #about, #hakkimizda, section[data-section-en="about"] {
+        padding-top: 3.5rem !important;
+        padding-bottom: 0 !important;
+      }
+      @media (min-width: 768px) {
+        #about, #hakkimizda, section[data-section-en="about"] {
+          padding-top: 4.5rem !important;
+          padding-bottom: 0 !important;
+        }
+      }
+      .hero-cta-wrap {
+        margin-top: 2.5rem;
+        margin-bottom: 2.5rem;
+      }
+      /* CTA ile stats arası boşluk sadece CTA margin olsun (eşit görünsün) */
+      #stats-section { padding-top: 0 !important; }
+      @media (min-width: 768px) {
+        #stats-section { padding-top: 0 !important; }
       }
     </style>
 
@@ -234,7 +256,7 @@
 <body id="top" class="text-slate-200 lang-en" style="background: #0a192f;">
     <a href="#main-content" class="skip-link" id="skip-link">Skip to main content</a>
 
-    <header class="ud-header fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b" style="background: rgba(10, 25, 47, 0.95); border-color: rgba(16, 185, 129, 0.2); position: fixed !important; top: 0 !important; left: 0 !important;">
+    <header class="ud-header fixed top-0 left-0 right-0 z-50 backdrop-blur-md" style="background: rgba(10, 25, 47, 0.95); position: fixed !important; top: 0 !important; left: 0 !important;">
         <div class="container mx-auto px-4 md:px-12">
             <nav class="flex items-center justify-between py-0.5 w-full" style="gap: 1.25rem;" aria-label="Main navigation">
                 <a href="#top" class="flex items-center flex-shrink-0">
@@ -265,7 +287,7 @@
                             style="background: rgba(16, 185, 129, 0.15); border: 2px solid rgba(16, 185, 129, 0.4); color: #10b981;">
                         <img id="flagIcon" src="assets/images/flags/flag-us.svg?v=2" alt="" width="44" height="32" style="object-fit:cover; border-radius:5px; box-shadow:0 1px 3px rgba(0,0,0,0.2);" />
                     </button>
-                    <div class="nav-mobile-wrap items-center gap-3 flex-shrink-0">
+                    <div class="nav-mobile-wrap flex items-center gap-3 flex-shrink-0">
                     <button id="languageSwitcherMobile" type="button" onclick="window.invokeToggleLanguage()" aria-label="Switch language"
                             class="inline-flex items-center justify-center p-2 rounded-lg"
                             style="background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.3); color: #10b981;">
@@ -293,12 +315,62 @@
     <!-- Doğru bayrağı göster: EN ise TR bayrağı, TR ise US bayrağı -->
     <script>
       (function() {
-        var currentLang = document.documentElement.getAttribute('lang') || 'en';
-        var targetFlag = currentLang === 'tr' ? 'assets/images/flags/flag-us.svg?v=2' : 'assets/images/flags/flag-tr.svg?v=2';
-        var flagIcon = document.getElementById('flagIcon');
-        var flagIconMobile = document.getElementById('flagIconMobile');
-        if (flagIcon) flagIcon.src = targetFlag;
-        if (flagIconMobile) flagIconMobile.src = targetFlag;
+        const isWindows = /Win/.test(navigator.userAgent || navigator.platform || '');
+        window.USE_SVG_FLAGS = isWindows;
+        
+        // Doğru bayrağı göster (mevcut dil TR ise US bayrağı göster, EN ise TR bayrağı)
+        function setCorrectFlag() {
+          const currentLang = localStorage.getItem('solarityai-lang') || document.documentElement.getAttribute('lang') || 'en';
+          const targetLang = currentLang === 'tr' ? 'en' : 'tr';
+          
+          const flagEl = document.getElementById('flagIcon');
+          const flagElMobile = document.getElementById('flagIconMobile');
+          
+          if (isWindows) {
+            // Windows: SVG kullan
+            const flagSvg = targetLang === 'tr' ? 'assets/images/flags/flag-tr.svg?v=2' : 'assets/images/flags/flag-us.svg?v=2';
+            
+            if (flagEl && flagEl.tagName === 'IMG') {
+              flagEl.src = flagSvg;
+            }
+            if (flagElMobile && flagElMobile.tagName === 'IMG') {
+              flagElMobile.src = flagSvg;
+            }
+          } else {
+            // Diğer cihazlar: Emoji kullan
+            const flagEmoji = targetLang === 'tr' ? '🇹🇷' : '🇺🇸';
+            
+            if (flagEl && flagEl.tagName === 'IMG') {
+              // IMG ise span'a çevir
+              const newSpan = document.createElement('span');
+              newSpan.id = 'flagIcon';
+              newSpan.style.fontSize = '2rem';
+              newSpan.style.lineHeight = '1';
+              newSpan.style.display = 'block';
+              newSpan.textContent = flagEmoji;
+              flagEl.parentNode.replaceChild(newSpan, flagEl);
+            }
+            if (flagElMobile && flagElMobile.tagName === 'IMG') {
+              // IMG ise span'a çevir
+              const newSpanMobile = document.createElement('span');
+              newSpanMobile.id = 'flagIconMobile';
+              newSpanMobile.style.fontSize = '2.5rem';
+              newSpanMobile.style.lineHeight = '1';
+              newSpanMobile.style.display = 'block';
+              newSpanMobile.textContent = flagEmoji;
+              flagElMobile.parentNode.replaceChild(newSpanMobile, flagElMobile);
+            }
+          }
+        }
+        
+        // Hemen çalıştır
+        setCorrectFlag();
+        
+        // Güvenlik için tekrar çalıştır
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', setCorrectFlag);
+        }
+        setTimeout(setCorrectFlag, 100);
       })();
     </script>
 
@@ -330,7 +402,7 @@
                 </div>
             </div>
     </section>
-    <section id="about" data-section-tr="hakkimizda" data-section-en="about" class="pt-0 pb-0 md:pb-2 px-4 md:px-12" aria-label="Hero">
+    <section id="about" data-section-tr="hakkimizda" data-section-en="about" class="pt-20 pb-0 md:pb-2 md:pt-28 px-4 md:px-12" aria-label="Hero">
         <div class="container mx-auto text-center">
             <h1 class="text-4xl md:text-6xl font-bold font-display mb-4 text-white">
                 <span class="emoji-lightning">⚡</span><span class="bg-clip-text text-transparent animate-gradient" style="background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 50%, #1e40af 100%); background-size: 200% 200%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;" data-i18n="aboutTitle">
@@ -341,8 +413,8 @@
               🔥 Creating the world’s best B2B and B2C solutions for YOU 🔥
             </p>
 
-            <!-- CTA eski yeri: hero içinde, alt başlığın altında -->
-            <div class="mt-8 flex justify-center">
+            <!-- CTA: ortada, üst ve alt boşluk eşit -->
+            <div class="hero-cta-wrap flex justify-center">
                 <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2qgXk0ZfBd6QJf7ef-306in7AI0Kzc-pL3NJFK1fU74vAUGiftVJPF3-DoXp9_RZoyqW_sjSpI" target="_blank" rel="noopener noreferrer" class="bannerCTA-hero inline-flex items-center justify-center gap-2 px-6 py-3 md:px-8 md:py-4 rounded-xl font-bold text-sm md:text-base lg:text-lg text-center transition-all" data-i18n="bannerCTA">🚀 Book a call with our CEO 🚀</a>
             </div>
         </div>
@@ -825,7 +897,7 @@
                         <div class="ud-team-image-wrapper">
                             <div class="ud-team-image">
                                 <a href="#" target="_blank" rel="noopener noreferrer">
-                                    <img src="assets/images/team/cenk.webp" alt="Cenk" class="team-avatar" data-alt-en="Cenk" data-alt-tr="Cenk" width="176" height="224" loading="lazy" decoding="async" />
+                                    <img src="assets/images/team/Cenk.webp" alt="Cenk" class="team-avatar" data-alt-en="Cenk" data-alt-tr="Cenk" width="176" height="224" loading="lazy" decoding="async" />
                                 </a>
                             </div>
                         </div>
@@ -1068,7 +1140,7 @@
             <div class="border-b border-slate-700 w-full max-w-xs mx-auto"></div>
             <p class="text-slate-400 text-base md:text-lg footer-copyright-text" data-i18n="footerCopyright">© 2026 Solarity AI LLC. All rights reserved.</p>
             <p class="text-slate-500 text-lg md:text-xl footer-credits">
-                <span data-i18n="footerCreditsPrefix">Draft created by Hasan Erdem AK • Lead development by </span><a href="https://www.instagram.com/mehmet.begun0" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-amber-400 transition-colors underline">Mehmet BEGUN</a><span data-i18n="footerCreditsSuffix"> • Shaped by valuable feedback from our boss, Ata TURHAN, and our team</span>
+                <span data-i18n="footerCreditsPrefix">Draft created by </span><a href="https://www.instagram.com/h.erdemak/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-amber-400 transition-colors underline">Hasan Erdem AK</a><span data-i18n="footerCreditsMiddle"> • Lead development by </span><a href="https://www.instagram.com/mehmet.begun0" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-amber-400 transition-colors underline">Mehmet BEGUN</a><span data-i18n="footerCreditsSuffix"> • Shaped by valuable feedback from our boss, </span><a href="https://www.instagram.com/ataturhan21/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-amber-400 transition-colors underline">Ata TURHAN</a><span data-i18n="footerCreditsEnd">, and our team</span>
             </p>
             <div class="footer-page-links flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-slate-400">
                 <a href="legal.html#privacy" class="footer-page-link hover:text-slate-200 transition" data-i18n="footerPrivacy">Privacy</a>
@@ -1093,6 +1165,36 @@
         </div>
     </footer>
 
+    <!-- Navbar her zaman üstte kalsın (diğer sayfalarla aynı) -->
+    <style>#main-header,.ud-header,header{position:fixed!important;top:0!important;left:0!important;right:0!important;width:100%!important;z-index:9999!important;}</style>
+    
+    <!-- Footer sosyal gap: laptop'ta az, mobilde yeterli satır arası -->
+    <script>
+      (function() {
+        function setFooterGap() {
+          var footerSocials = document.querySelector('#footer .footer-socials');
+          if (!footerSocials) return;
+          if (window.innerWidth >= 1440) {
+            // Büyük ekran (1440px+): az boşluk
+            footerSocials.style.setProperty('gap', '3px', 'important');
+          } else if (window.innerWidth >= 1024) {
+            // Laptop (1024px-1439px): orta boşluk
+            footerSocials.style.setProperty('gap', '8px', 'important');
+          } else {
+            // Mobil/tablet: main.css'teki varsayılan gap uygulansın (satır arası yeterli olsun)
+            footerSocials.style.removeProperty('gap');
+          }
+        }
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', setFooterGap);
+        } else {
+          setFooterGap();
+        }
+        window.addEventListener('load', setFooterGap);
+        window.addEventListener('resize', setFooterGap);
+      })();
+    </script>
+    
     <!-- Scripts: language.min.js tek kez yüklenir, dil init tek kez çalışır (TBT) -->
     <script>
         window.invokeToggleLanguage = function() {
@@ -1513,5 +1615,6 @@
     </style>
     <!-- Navbar her zaman üstte kalsın - diğer sayfalarla aynı, en yüksek öncelik -->
     <style id="navbar-fixed-enforce">#main-header,.ud-header,header{position:fixed!important;top:0!important;left:0!important;right:0!important;width:100%!important;z-index:9999!important;}</style>
+    
 </body>
 </html>

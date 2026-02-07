@@ -593,14 +593,41 @@
       if (flagEl) {
         if (useEmojiFlags) {
           // Emoji (iOS, macOS, Android)
-          flagEl.textContent = flagEmojiForButton;
-          flagEl.style.fontSize = '2rem';
-          log('✅ Desktop flag emoji:', flagEmojiForButton);
+          if (flagEl.tagName === 'IMG') {
+            // IMG ise span'a çevir
+            const newSpan = document.createElement('span');
+            newSpan.id = 'flagIcon';
+            newSpan.textContent = flagEmojiForButton;
+            newSpan.style.fontSize = '2rem';
+            newSpan.style.lineHeight = '1';
+            newSpan.style.display = 'block';
+            flagEl.parentNode.replaceChild(newSpan, flagEl);
+            log('✅ Desktop flag converted to emoji:', flagEmojiForButton);
+          } else {
+            flagEl.textContent = flagEmojiForButton;
+            flagEl.style.fontSize = '2rem';
+            log('✅ Desktop flag emoji:', flagEmojiForButton);
+          }
         } else {
           // Windows: SVG fallback
-          flagEl.src = flagSvgForButton;
-          flagEl.alt = targetLang.toUpperCase();
-          log('✅ Desktop flag SVG (Windows):', flagSvgForButton);
+          if (flagEl.tagName === 'IMG') {
+            flagEl.src = flagSvgForButton;
+            flagEl.alt = targetLang.toUpperCase();
+            log('✅ Desktop flag SVG (Windows):', flagSvgForButton);
+          } else {
+            // SPAN ise IMG'ye çevir
+            const newImg = document.createElement('img');
+            newImg.id = 'flagIcon';
+            newImg.src = flagSvgForButton;
+            newImg.alt = targetLang.toUpperCase();
+            newImg.width = 44;
+            newImg.height = 32;
+            newImg.style.objectFit = 'cover';
+            newImg.style.borderRadius = '5px';
+            newImg.style.boxShadow = '0 1px 3px rgba(0,0,0,0.2)';
+            flagEl.parentNode.replaceChild(newImg, flagEl);
+            log('✅ Desktop flag converted to SVG:', flagSvgForButton);
+          }
         }
       } else {
         warn('⚠️ flagIcon element not found (desktop)');
@@ -619,14 +646,41 @@
       if (flagElMobile) {
         if (useEmojiFlags) {
           // Emoji (iOS, macOS, Android)
-          flagElMobile.textContent = flagEmojiForButton;
-          flagElMobile.style.fontSize = '2.5rem';
-          log('✅ Mobile flag emoji:', flagEmojiForButton);
+          if (flagElMobile.tagName === 'IMG') {
+            // IMG ise span'a çevir
+            const newSpan = document.createElement('span');
+            newSpan.id = 'flagIconMobile';
+            newSpan.textContent = flagEmojiForButton;
+            newSpan.style.fontSize = '2.5rem';
+            newSpan.style.lineHeight = '1';
+            newSpan.style.display = 'block';
+            flagElMobile.parentNode.replaceChild(newSpan, flagElMobile);
+            log('✅ Mobile flag converted to emoji:', flagEmojiForButton);
+          } else {
+            flagElMobile.textContent = flagEmojiForButton;
+            flagElMobile.style.fontSize = '2.5rem';
+            log('✅ Mobile flag emoji:', flagEmojiForButton);
+          }
         } else {
           // Windows: SVG fallback
-          flagElMobile.src = flagSvgForButton;
-          flagElMobile.alt = targetLang.toUpperCase();
-          log('✅ Mobile flag SVG (Windows):', flagSvgForButton);
+          if (flagElMobile.tagName === 'IMG') {
+            flagElMobile.src = flagSvgForButton;
+            flagElMobile.alt = targetLang.toUpperCase();
+            log('✅ Mobile flag SVG (Windows):', flagSvgForButton);
+          } else {
+            // SPAN ise IMG'ye çevir
+            const newImg = document.createElement('img');
+            newImg.id = 'flagIconMobile';
+            newImg.src = flagSvgForButton;
+            newImg.alt = targetLang.toUpperCase();
+            newImg.width = 48;
+            newImg.height = 34;
+            newImg.style.objectFit = 'cover';
+            newImg.style.borderRadius = '4px';
+            newImg.style.boxShadow = '0 1px 2px rgba(0,0,0,0.2)';
+            flagElMobile.parentNode.replaceChild(newImg, flagElMobile);
+            log('✅ Mobile flag converted to SVG:', flagSvgForButton);
+          }
         }
       }
 

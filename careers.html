@@ -440,35 +440,68 @@
         const isWindows = /Win/.test(navigator.userAgent || navigator.platform || '');
         window.USE_SVG_FLAGS = isWindows;
         
-        if (isWindows) {
-          // Hemen çalışsın, event'e bağlı değil
-          function replaceFlagsImmediately() {
-            const currentLang = localStorage.getItem('solarityai-lang') || 'en';
-            const targetLang = currentLang === 'tr' ? 'en' : 'tr';
+        // Doğru bayrağı göster (mevcut dil TR ise US bayrağı göster, EN ise TR bayrağı)
+        function setCorrectFlag() {
+          const currentLang = localStorage.getItem('solarityai-lang') || document.documentElement.getAttribute('lang') || 'en';
+          const targetLang = currentLang === 'tr' ? 'en' : 'tr';
+          
+          const flagEl = document.getElementById('flagIcon');
+          const flagElMobile = document.getElementById('flagIconMobile');
+          
+          if (isWindows) {
+            // Windows: SVG kullan
             const flagSvg = targetLang === 'tr' ? 'assets/images/flags/flag-tr.svg?v=2' : 'assets/images/flags/flag-us.svg?v=2';
             
-            const flagEl = document.getElementById('flagIcon');
-            const flagElMobile = document.getElementById('flagIconMobile');
-            
-            if (flagEl && flagEl.textContent) {
-              flagEl.innerHTML = `<img src="${flagSvg}" alt="${targetLang.toUpperCase()}" style="width:44px;height:28px;object-fit:contain;display:block;" />`;
+            if (flagEl) {
+              if (flagEl.tagName === 'IMG') {
+                flagEl.src = flagSvg;
+              } else if (flagEl.textContent) {
+                flagEl.innerHTML = `<img src="${flagSvg}" alt="${targetLang.toUpperCase()}" style="width:44px;height:28px;object-fit:contain;display:block;" />`;
+              }
             }
-            if (flagElMobile && flagElMobile.textContent) {
-              flagElMobile.innerHTML = `<img src="${flagSvg}" alt="${targetLang.toUpperCase()}" style="width:48px;height:30px;object-fit:contain;display:block;" />`;
+            if (flagElMobile) {
+              if (flagElMobile.tagName === 'SPAN' && flagElMobile.textContent) {
+                flagElMobile.innerHTML = `<img src="${flagSvg}" alt="${targetLang.toUpperCase()}" style="width:48px;height:30px;object-fit:contain;display:block;" />`;
+              }
+            }
+          } else {
+            // Diğer cihazlar: Emoji kullan
+            const flagEmoji = targetLang === 'tr' ? '🇹🇷' : '🇺🇸';
+            
+            if (flagEl) {
+              if (flagEl.tagName === 'IMG') {
+                // IMG ise span'a çevir
+                const newSpan = document.createElement('span');
+                newSpan.id = 'flagIcon';
+                newSpan.style.fontSize = '2rem';
+                newSpan.style.lineHeight = '1';
+                newSpan.style.display = 'block';
+                newSpan.textContent = flagEmoji;
+                flagEl.parentNode.replaceChild(newSpan, flagEl);
+              } else {
+                flagEl.textContent = flagEmoji;
+              }
+            }
+            if (flagElMobile) {
+              flagElMobile.textContent = flagEmoji;
             }
           }
-          
-          // Hemen ve delay ile çalıştır
-          replaceFlagsImmediately();
-          setTimeout(replaceFlagsImmediately, 100);
-          setTimeout(replaceFlagsImmediately, 500);
-          document.addEventListener('DOMContentLoaded', replaceFlagsImmediately);
         }
+        
+        // Hemen çalıştır
+        setCorrectFlag();
+        
+        // Güvenlik için tekrar çalıştır
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', setCorrectFlag);
+        }
+        setTimeout(setCorrectFlag, 100);
+        setTimeout(setCorrectFlag, 500);
       })();
     </script>
 
     <!-- Header/Navbar - index.html ile aynı -->
-    <header class="w-full z-50 backdrop-blur-md border-b" style="background: rgba(10, 25, 47, 0.95); border-color: rgba(16, 185, 129, 0.2); position: fixed !important; top: 0 !important; left: 0 !important;">
+    <header class="ud-header fixed top-0 left-0 right-0 z-50 backdrop-blur-md" style="background: rgba(10, 25, 47, 0.95); position: fixed !important; top: 0 !important; left: 0 !important;">
         <div class="container mx-auto px-4 md:px-12">
             <nav class="flex items-center justify-between py-0.5 w-full" style="gap: 1.25rem;" aria-label="Main navigation">
                 <a href="index.html" class="flex items-center flex-shrink-0">
@@ -496,7 +529,7 @@
                             style="background: rgba(16, 185, 129, 0.15); border: 2px solid rgba(16, 185, 129, 0.4); color: #10b981;">
                         <img id="flagIcon" src="assets/images/flags/flag-us.svg?v=1" alt="" width="56" height="40" style="object-fit:contain; border-radius:5px; box-shadow:0 1px 3px rgba(0,0,0,0.2);" />
                     </button>
-                    <div class="nav-mobile-wrap items-center gap-3 flex-shrink-0">
+                    <div class="nav-mobile-wrap flex items-center gap-3 flex-shrink-0">
                     <button id="languageSwitcherMobile" type="button" onclick="window.invokeToggleLanguage()" aria-label="Switch language"
                             class="inline-flex items-center justify-center p-2 rounded-lg"
                             style="background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.3); color: #10b981;">
@@ -743,7 +776,7 @@
             <div class="border-b border-slate-700 w-full max-w-xs mx-auto"></div>
             <p class="text-slate-400 text-base md:text-lg footer-copyright-text" data-i18n="footerCopyright">© 2026 Solarity AI LLC. All rights reserved.</p>
             <p class="text-slate-500 text-lg md:text-xl footer-credits">
-                <span data-i18n="footerCreditsPrefix">Draft created by Hasan Erdem AK • Lead development by </span><a href="https://www.instagram.com/mehmet.begun0" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-amber-400 transition-colors underline">Mehmet BEGUN</a><span data-i18n="footerCreditsSuffix"> • Shaped by valuable feedback from our boss, Ata TURHAN, and our team</span>
+                <span data-i18n="footerCreditsPrefix">Draft created by </span><a href="https://www.instagram.com/h.erdemak/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-amber-400 transition-colors underline">Hasan Erdem AK</a><span data-i18n="footerCreditsMiddle"> • Lead development by </span><a href="https://www.instagram.com/mehmet.begun0" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-amber-400 transition-colors underline">Mehmet BEGUN</a><span data-i18n="footerCreditsSuffix"> • Shaped by valuable feedback from our boss, </span><a href="https://www.instagram.com/ataturhan21/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-amber-400 transition-colors underline">Ata TURHAN</a><span data-i18n="footerCreditsEnd">, and our team</span>
             </p>
             <div class="footer-page-links flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-slate-400">
                 <a href="legal.html#privacy" class="footer-page-link hover:text-slate-200 transition" data-i18n="footerPrivacy">Privacy</a>
@@ -1131,6 +1164,31 @@
     </script>
     <!-- Navbar her zaman üstte kalsın - en yüksek öncelik -->
     <style>#main-header,.ud-header,header{position:fixed!important;top:0!important;left:0!important;right:0!important;width:100%!important;z-index:9999!important;}</style>
+    
+    <!-- Footer sosyal gap: 1440px+ az, laptop orta, mobil varsayılan -->
+    <script>
+      (function() {
+        function setFooterGap() {
+          var footerSocials = document.querySelector('#footer .footer-socials');
+          if (!footerSocials) return;
+          if (window.innerWidth >= 1440) {
+            footerSocials.style.setProperty('gap', '3px', 'important');
+          } else if (window.innerWidth >= 1024) {
+            footerSocials.style.setProperty('gap', '8px', 'important');
+          } else {
+            footerSocials.style.removeProperty('gap');
+          }
+        }
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', setFooterGap);
+        } else {
+          setFooterGap();
+        }
+        window.addEventListener('load', setFooterGap);
+        window.addEventListener('resize', setFooterGap);
+      })();
+    </script>
+    
     <!-- Scroll bar her zaman gözüksün - hiçbir zaman kaybolmasın -->
     <style>
     html,html[lang],html[lang="en"],html[lang="tr"]{overflow-y:scroll!important;overflow-x:hidden!important;}

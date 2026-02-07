@@ -471,24 +471,25 @@ img {
    Header & Navigation
    ============================= */
 .ud-header {
-  position: fixed;
-  top: 0;
-  left: 0;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
   width: 100%;
-  z-index: 1000;
+  z-index: 9999 !important;
   background: rgba(15, 23, 42, 0.85);
   backdrop-filter: blur(20px);
   transition: all var(--transition-base);
   padding: 0.75rem 0;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2), 0 2px 8px rgba(0, 0, 0, 0.1);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: none;
 }
 
 .ud-header.sticky {
   background: rgba(15, 23, 42, 0.95);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 4px 16px rgba(0, 0, 0, 0.2);
   padding: 0.5rem 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: none;
 }
 
 .navbar {
@@ -738,7 +739,7 @@ header .container {
   align-items: center;
   min-height: inherit;
   width: 100%;
-  border-bottom: 1px solid rgba(16, 185, 129, 0.2);
+  border-bottom: none;
 }
 header nav {
   overflow: visible;
@@ -837,6 +838,22 @@ header nav > a:first-child .logo-standard {
 @media (min-width: 1025px) {
   .nav-mobile-wrap {
     display: none !important;
+  }
+}
+/* 767px altı: hamburger her zaman görünsün, taşma kesilmesin */
+@media (max-width: 767px) {
+  header,
+  header .container,
+  header nav {
+    overflow: visible !important;
+  }
+  .nav-mobile-wrap {
+    display: flex !important;
+  }
+  #mobileMenuBtn {
+    display: inline-flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
   }
 }
 /* Dar ekranda sadece mobil dil butonu; masaüstü dil butonu gizle */
@@ -1042,8 +1059,8 @@ header.overflow-menu #mobileMenu ul li a:hover {
   }
 }
 
-/* 320px ve dar ekranlarda hamburger tam görünsün – logo küçült, sağda menü butonu için yer bırak */
-@media (max-width: 360px) {
+/* 400px ve dar ekranlarda hamburger tam görünsün – logo küçült, sağda menü butonu için yer bırak */
+@media (max-width: 400px) {
   header {
     overflow: visible !important;
   }
@@ -1072,11 +1089,45 @@ header.overflow-menu #mobileMenu ul li a:hover {
   header .nav-right-wrap {
     flex-shrink: 0 !important;
     padding-right: 0 !important;
+    min-width: 0 !important;
   }
   .nav-mobile-wrap {
+    display: flex !important;
     gap: 0.35rem !important;
     flex-shrink: 0 !important;
     padding-right: 0.25rem !important;
+    min-width: 0 !important;
+    visibility: visible !important;
+  }
+}
+
+/* 425px–500px: hamburger kenarda kalmasın, sağdan boşluk */
+@media (max-width: 500px) {
+  header .container {
+    padding-right: 0.75rem !important;
+  }
+  .nav-mobile-wrap {
+    padding-right: 0.5rem !important;
+  }
+}
+
+/* 400px ve altı: sağdan boşluk + mevcut mobil kurallar */
+@media (max-width: 400px) {
+  header .container {
+    padding-right: 0.65rem !important;
+  }
+  .nav-mobile-wrap {
+    padding-right: 0.4rem !important;
+  }
+  .nav-mobile-wrap #mobileMenuBtn {
+    display: inline-flex !important;
+    visibility: visible !important;
+    min-width: 2.25rem !important;
+    min-height: 2.25rem !important;
+    font-size: 1.5rem !important;
+    flex-shrink: 0 !important;
+    margin-right: 0 !important;
+    padding: 0.4rem !important;
   }
   .nav-mobile-wrap #languageSwitcherMobile {
     padding: 0.35rem 0.5rem !important;
@@ -1086,14 +1137,6 @@ header.overflow-menu #mobileMenu ul li a:hover {
   .nav-mobile-wrap #flagIconMobile {
     width: 34px !important;
     height: 24px !important;
-  }
-  .nav-mobile-wrap #mobileMenuBtn {
-    margin-right: 0 !important;
-    padding: 0.4rem !important;
-    min-width: 2.25rem !important;
-    min-height: 2.25rem !important;
-    font-size: 1.5rem !important;
-    flex-shrink: 0 !important;
   }
 }
 /* Hamburger görünümünde menü ikonu ve dil butonu orijinalin 1.5 katı */
@@ -1204,7 +1247,13 @@ header .logo-standard {
 }
 /* Başlık navbar’a mümkün olduğunca yakın */
 main#main-content {
-  padding-top: 6rem; /* header 6rem – mobilde hero başlığı görünsün */
+  padding-top: 5rem; /* header altı az boşluk */
+}
+@media (max-width: 768px) {
+  .logo-standard {
+    width: 120px !important;
+    height: auto !important;
+  }
 }
 @media (max-width: 768px) {
   .logo-standard {
@@ -1214,7 +1263,7 @@ main#main-content {
 }
 @media (min-width: 768px) {
   main#main-content {
-    padding-top: 7rem; /* header 7rem */
+    padding-top: 6rem; /* header altı az boşluk */
   }
 }
 
@@ -1290,18 +1339,122 @@ section h3.text-3xl.md\:text-4xl {
   margin-bottom: 2.5rem !important;
 }
 
-/* About (hero) section - navbar sonrası küçük padding */
+/* About (hero) section - hero biraz aşağıda */
 #about,
 section[data-section-en="about"] {
-  padding-top: 1.5rem !important;
+  padding-top: 3.5rem !important;
   padding-bottom: 2rem !important;
 }
 
 @media (min-width: 768px) {
   #about,
   section[data-section-en="about"] {
-    padding-top: 2rem !important;
+    padding-top: 4.5rem !important;
     padding-bottom: 3rem !important;
+  }
+}
+
+/* 320px: hero CTA butonu küçült */
+@media (max-width: 320px) {
+  .bannerCTA-hero {
+    font-size: 0.6875rem !important;
+    padding: 0.4rem 0.5rem !important;
+    gap: 0.25rem !important;
+    max-width: 100%;
+    white-space: normal !important;
+    text-align: center !important;
+    line-height: 1.25 !important;
+  }
+}
+
+/* 1024px ve altı: hero sağ-sol boşluk eşit, başlık ortada */
+@media (max-width: 1024px) {
+  #about,
+  #hakkimizda,
+  section[data-section-en="about"] {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    padding-inline: 1rem !important;
+    box-sizing: border-box !important;
+  }
+  #about .container,
+  #hakkimizda .container,
+  section[data-section-en="about"] .container {
+    text-align: center !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    padding-inline: 1rem !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-inline: auto !important;
+    overflow-x: hidden !important;
+    box-sizing: border-box !important;
+  }
+  #about .container > h1,
+  #hakkimizda .container > h1,
+  section[data-section-en="about"] .container > h1 {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    margin-inline: 0 !important;
+    font-size: clamp(1.125rem, 2.8vw + 0.75rem, 1.75rem) !important;
+    line-height: 1.25 !important;
+    text-align: center !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    padding-inline: 0 !important;
+    box-sizing: border-box !important;
+    word-break: keep-all;
+  }
+  #about .container > p,
+  #about .container > .hero-cta-wrap,
+  #hakkimizda .container > p,
+  #hakkimizda .container > .hero-cta-wrap,
+  section[data-section-en="about"] .container > p,
+  section[data-section-en="about"] .container > .hero-cta-wrap {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: center !important;
+  }
+  #about .container > p,
+  #hakkimizda .container > p,
+  section[data-section-en="about"] .container > p {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    padding-inline: 0 !important;
+    box-sizing: border-box !important;
+  }
+}
+
+/* 768px altı: başlık responsive, iki satırda da hizalı */
+@media (max-width: 767px) {
+  #about .container > h1,
+  #hakkimizda .container > h1,
+  section[data-section-en="about"] .container > h1 {
+    font-size: clamp(1rem, 4vw + 0.5rem, 1.4rem) !important;
+    line-height: 1.3 !important;
+  }
+}
+
+/* 480px altı: daha küçük, taşma yok */
+@media (max-width: 480px) {
+  #about .container > h1,
+  #hakkimizda .container > h1,
+  section[data-section-en="about"] .container > h1 {
+    font-size: clamp(1rem, 4.5vw + 0.5rem, 1.35rem) !important;
+  }
+  #about .container > p,
+  #hakkimizda .container > p,
+  section[data-section-en="about"] .container > p {
+    font-size: 0.9375rem !important;
   }
 }
 
@@ -2058,13 +2211,16 @@ html[lang="tr"] .stat-satisfaction-tr {
 /* Footer sosyal ikonlar: tek satırlı görünüm */
 #footer .footer-socials {
   display: flex !important;
-  flex-wrap: nowrap !important;
+  flex-wrap: wrap !important;
   gap: 0.75rem !important;
   max-width: 100% !important;
   justify-content: center !important;
   align-items: center !important;
-  overflow-x: auto !important;
-  -webkit-overflow-scrolling: touch !important;
+}
+@media (min-width: 768px) {
+  #footer .footer-socials {
+    flex-wrap: nowrap !important;
+  }
 }
 
 @media (min-width: 768px) {
@@ -2504,7 +2660,7 @@ section[id] h2.font-display {
   }
 }
 
-/* Footer mobil: sosyal ikonlar tek satırda sığsın, copyright + 4 buton ortada */
+/* Footer mobil: sosyal ikonlar 6+6 iki satır, eşit böl */
 @media (max-width: 767px) {
   #footer .footer-socials a {
     width: 2rem !important;
@@ -2519,12 +2675,13 @@ section[id] h2.font-display {
     height: 1.1rem !important;
   }
   #footer .footer-socials {
-    flex-wrap: nowrap !important;
-    justify-content: center !important;
+    display: grid !important;
+    grid-template-columns: repeat(6, 1fr) !important;
     gap: 0.85rem !important;
     max-width: 100%;
     min-width: 0;
     margin-top: 1.25rem !important;
+    justify-items: center !important;
   }
   #footer .container {
     max-width: 100% !important;
@@ -2629,7 +2786,7 @@ section[id] h2.font-display {
   }
   #footer .footer-socials {
     gap: 0.8rem !important;
-    flex-wrap: nowrap !important;
+    flex-wrap: wrap !important;
     justify-content: center !important;
     max-width: 100% !important;
   }
