@@ -1255,6 +1255,12 @@ main#main-content {
     height: auto !important;
   }
 }
+@media (max-width: 768px) {
+  .logo-standard {
+    width: 120px !important;
+    height: auto !important;
+  }
+}
 @media (min-width: 768px) {
   main#main-content {
     padding-top: 6rem; /* header altı az boşluk */
