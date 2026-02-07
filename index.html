@@ -1234,11 +1234,11 @@
         }
         function initDeferredChunk2() {
             var header = document.querySelector('header');
-            var BREAK = 1024;
             function check() {
                 if (!header) return;
                 var w = window.innerWidth;
-                if (w <= BREAK) { header.classList.add('overflow-menu'); return; }
+                if (w >= 1440) { header.classList.remove('overflow-menu'); return; }
+                if (w <= 1024) { header.classList.add('overflow-menu'); return; }
                 header.classList.remove('overflow-menu');
                 requestAnimationFrame(function() {
                     requestAnimationFrame(function() {
