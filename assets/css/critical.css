@@ -16,7 +16,7 @@ section{padding:6rem 0;position:relative;max-width:100%;overflow-x:hidden}
 .stat-satisfaction-en,.stat-satisfaction-tr{display:none}
 html[lang="en"] .stat-satisfaction-en{display:block}
 html[lang="tr"] .stat-satisfaction-tr{display:block}
-.ud-header,header{position:fixed!important;top:0!important;left:0!important;right:0!important;width:100%;z-index:9999;background:rgba(15,23,42,.85);backdrop-filter:blur(20px);padding:.75rem 0;border-bottom:1px solid rgba(255,255,255,.05)}
+.ud-header,header{position:fixed!important;top:0!important;left:0!important;right:0!important;width:100%;z-index:9999;background:rgba(15,23,42,.85);backdrop-filter:blur(20px);padding:.75rem 0;border-bottom:none}
 .navbar{padding:0;display:flex;align-items:center;justify-content:center;width:100%;min-height:88px;padding-left:var(--brand-space)}
 .navbar-brand{position:absolute;left:0;top:50%;transform:translateY(-50%);display:flex;align-items:center;width:var(--brand-space);min-width:var(--brand-space)}
 .navbar-brand img{max-height:88px;width:auto}
