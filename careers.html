@@ -434,7 +434,7 @@
 <body id="top" class="text-slate-200" style="background: #0a192f;">
     <script>(function(){function go(){document.body.classList.add('animations-ready');}if(typeof requestIdleCallback!=='undefined')requestIdleCallback(go,{timeout:600});else setTimeout(go,500);})();</script>
 
-    <!-- Windows bayrak emoji fallback -->
+    <!-- Bayrak: sadece Windows'ta SVG, diğer işletim sistemlerinde emoji (index ile aynı) -->
     <script>
       (function() {
         const isWindows = /Win/.test(navigator.userAgent || navigator.platform || '');
@@ -527,13 +527,13 @@
                     <button id="languageSwitcher" type="button" onclick="window.invokeToggleLanguage()" aria-label="Switch language"
                             class="nav-lang-btn inline-flex flex-shrink-0 items-center justify-center px-3 py-2 rounded-lg transition hover:scale-105"
                             style="background: rgba(16, 185, 129, 0.15); border: 2px solid rgba(16, 185, 129, 0.4); color: #10b981;">
-                        <img id="flagIcon" src="assets/images/flags/flag-us.svg?v=1" alt="" width="56" height="40" style="object-fit:contain; border-radius:5px; box-shadow:0 1px 3px rgba(0,0,0,0.2);" />
+                        <img id="flagIcon" src="assets/images/flags/flag-us.svg?v=2" alt="" width="44" height="32" style="object-fit:cover; border-radius:5px; box-shadow:0 1px 3px rgba(0,0,0,0.2);" />
                     </button>
                     <div class="nav-mobile-wrap flex items-center gap-3 flex-shrink-0">
                     <button id="languageSwitcherMobile" type="button" onclick="window.invokeToggleLanguage()" aria-label="Switch language"
                             class="inline-flex items-center justify-center p-2 rounded-lg"
                             style="background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.3); color: #10b981;">
-                        <span id="flagIconMobile" style="font-size: 2.5rem; line-height: 1; display: block;">🇺🇸</span>
+                        <img id="flagIconMobile" src="assets/images/flags/flag-us.svg?v=2" alt="" width="48" height="34" style="object-fit:cover; border-radius:4px; box-shadow:0 1px 2px rgba(0,0,0,0.2);" />
                     </button>
                     <button id="mobileMenuBtn" type="button" class="text-2xl text-emerald-400" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">☰</button>
                     </div>

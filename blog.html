@@ -205,104 +205,35 @@
 <body id="top" class="text-slate-200">
     <script>(function(){function go(){document.body.classList.add('animations-ready');}if(typeof requestIdleCallback!=='undefined')requestIdleCallback(go,{timeout:600});else setTimeout(go,500);})();</script>
 
-    <!-- Windows bayrak emoji fallback -->
-    <script>
-      (function() {
-        const isWindows = /Win/.test(navigator.userAgent || navigator.platform || '');
-        if (isWindows) {
-          window.USE_SVG_FLAGS = true;
-          document.addEventListener('DOMContentLoaded', function() {
-            const currentLang = localStorage.getItem('solarityai-lang') || 'en';
-            const targetLang = currentLang === 'tr' ? 'en' : 'tr';
-            const flagSvg = targetLang === 'tr' ? 'assets/images/flags/flag-tr.svg?v=2' : 'assets/images/flags/flag-us.svg?v=2';
-            
-            const flagEl = document.getElementById('flagIcon');
-            const flagElMobile = document.getElementById('flagIconMobile');
-            
-            if (flagEl) {
-              flagEl.innerHTML = `<img src="${flagSvg}" alt="${targetLang.toUpperCase()}" style="width:44px;height:28px;object-fit:contain;display:block;" />`;
-            }
-            if (flagElMobile) {
-              flagElMobile.innerHTML = `<img src="${flagSvg}" alt="${targetLang.toUpperCase()}" style="width:48px;height:30px;object-fit:contain;display:block;" />`;
-            }
-          });
-        } else {
-          window.USE_SVG_FLAGS = false;
-        }
-      })();
-    </script>
-
-    <!-- Header/Navbar - index.html ile aynı -->
-    <!-- Windows bayrak emoji fallback: sayfa yüklenir yüklenmez çalışsın -->
+    <!-- Bayrak: sadece Windows’ta SVG, diğer işletim sistemlerinde emoji (index ile aynı) -->
     <script>
       (function() {
         const isWindows = /Win/.test(navigator.userAgent || navigator.platform || '');
         window.USE_SVG_FLAGS = isWindows;
-        
-        // Doğru bayrağı göster (mevcut dil TR ise US bayrağı göster, EN ise TR bayrağı)
         function setCorrectFlag() {
           const currentLang = localStorage.getItem('solarityai-lang') || document.documentElement.getAttribute('lang') || 'en';
           const targetLang = currentLang === 'tr' ? 'en' : 'tr';
-          
           const flagEl = document.getElementById('flagIcon');
           const flagElMobile = document.getElementById('flagIconMobile');
-          
           if (isWindows) {
-            // Windows: SVG kullan
-            const flagSvg = targetLang === 'tr' ? 'assets/images/flags/flag-tr.svg?v=2' : 'assets/images/flags/flag-us.svg?v=2';
-            
-            if (flagEl && flagEl.textContent) {
-              flagEl.innerHTML = `<img src="${flagSvg}" alt="${targetLang.toUpperCase()}" style="width:44px;height:28px;object-fit:contain;display:block;" />`;
-            }
-            if (flagElMobile && flagElMobile.textContent) {
-              flagElMobile.innerHTML = `<img src="${flagSvg}" alt="${targetLang.toUpperCase()}" style="width:48px;height:30px;object-fit:contain;display:block;" />`;
-            }
+            var flagSvg = targetLang === 'tr' ? 'assets/images/flags/flag-tr.svg?v=2' : 'assets/images/flags/flag-us.svg?v=2';
+            if (flagEl && flagEl.tagName === 'IMG') flagEl.src = flagSvg;
+            if (flagElMobile && flagElMobile.tagName === 'IMG') flagElMobile.src = flagSvg;
           } else {
-            // Diğer cihazlar: Emoji kullan
-            const flagEmoji = targetLang === 'tr' ? '🇹🇷' : '🇺🇸';
-            
-            if (flagEl) {
-              flagEl.textContent = flagEmoji;
-            }
-            if (flagElMobile) {
-              flagElMobile.textContent = flagEmoji;
-            }
+            var flagEmoji = targetLang === 'tr' ? '🇹🇷' : '🇺🇸';
+            if (flagEl && flagEl.tagName === 'IMG') {
+              var s = document.createElement('span'); s.id = 'flagIcon'; s.style.fontSize = '2rem'; s.style.lineHeight = '1'; s.style.display = 'block'; s.textContent = flagEmoji;
+              flagEl.parentNode.replaceChild(s, flagEl);
+            } else if (flagEl) flagEl.textContent = flagEmoji;
+            if (flagElMobile && flagElMobile.tagName === 'IMG') {
+              var m = document.createElement('span'); m.id = 'flagIconMobile'; m.style.fontSize = '2.5rem'; m.style.lineHeight = '1'; m.style.display = 'block'; m.textContent = flagEmoji;
+              flagElMobile.parentNode.replaceChild(m, flagElMobile);
+            } else if (flagElMobile) flagElMobile.textContent = flagEmoji;
           }
         }
-        
-        // Hemen çalıştır
         setCorrectFlag();
-        
-        // Güvenlik için tekrar çalıştır
-        if (document.readyState === 'loading') {
-          document.addEventListener('DOMContentLoaded', setCorrectFlag);
-        }
+        if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', setCorrectFlag);
         setTimeout(setCorrectFlag, 100);
-        
-        // Eski kod - sadece Windows için
-        if (isWindows) {
-          function replaceFlagsImmediately() {
-            const currentLang = localStorage.getItem('solarityai-lang') || 'en';
-            const targetLang = currentLang === 'tr' ? 'en' : 'tr';
-            const flagSvg = targetLang === 'tr' ? 'assets/images/flags/flag-tr.svg?v=2' : 'assets/images/flags/flag-us.svg?v=2';
-            
-            const flagEl = document.getElementById('flagIcon');
-            const flagElMobile = document.getElementById('flagIconMobile');
-            
-            if (flagEl && flagEl.textContent) {
-              flagEl.innerHTML = `<img src="${flagSvg}" alt="${targetLang.toUpperCase()}" style="width:44px;height:28px;object-fit:contain;display:block;" />`;
-            }
-            if (flagElMobile && flagElMobile.textContent) {
-              flagElMobile.innerHTML = `<img src="${flagSvg}" alt="${targetLang.toUpperCase()}" style="width:48px;height:30px;object-fit:contain;display:block;" />`;
-            }
-          }
-          
-          // Hemen ve delay ile çalıştır
-          replaceFlagsImmediately();
-          setTimeout(replaceFlagsImmediately, 100);
-          setTimeout(replaceFlagsImmediately, 500);
-          document.addEventListener('DOMContentLoaded', replaceFlagsImmediately);
-        }
       })();
     </script>
     <header class="ud-header fixed top-0 left-0 right-0 z-50 backdrop-blur-md" style="background: rgba(10, 25, 47, 0.95); position: fixed !important; top: 0 !important; left: 0 !important;">
@@ -331,13 +262,13 @@
                     <button id="languageSwitcher" type="button" onclick="window.invokeToggleLanguage()" aria-label="Switch language"
                             class="nav-lang-btn inline-flex flex-shrink-0 items-center justify-center px-3 py-2 rounded-lg transition hover:scale-105"
                             style="background: rgba(16, 185, 129, 0.15); border: 2px solid rgba(16, 185, 129, 0.4); color: #10b981;">
-                        <span id="flagIcon" style="font-size: 2rem; line-height: 1; display: block;">🇺🇸</span>
+                        <img id="flagIcon" src="assets/images/flags/flag-us.svg?v=2" alt="" width="44" height="32" style="object-fit:cover; border-radius:5px; box-shadow:0 1px 3px rgba(0,0,0,0.2);" />
                     </button>
                     <div class="nav-mobile-wrap flex items-center gap-3 flex-shrink-0">
                     <button id="languageSwitcherMobile" type="button" onclick="window.invokeToggleLanguage()" aria-label="Switch language"
                             class="inline-flex items-center justify-center p-2 rounded-lg"
                             style="background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.3); color: #10b981;">
-                        <span id="flagIconMobile" style="font-size: 2.5rem; line-height: 1; display: block;">🇺🇸</span>
+                        <img id="flagIconMobile" src="assets/images/flags/flag-us.svg?v=2" alt="" width="48" height="34" style="object-fit:cover; border-radius:4px; box-shadow:0 1px 2px rgba(0,0,0,0.2);" />
                     </button>
                     <button id="mobileMenuBtn" type="button" class="text-2xl text-emerald-400" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">☰</button>
                     </div>
