@@ -2650,12 +2650,28 @@ html[lang="tr"] .stat-satisfaction-tr {
   line-height: 1;
 }
 
-/* CTA, dil butonu, hamburger: aynı yükseklik (--header-control-h), border/padding kutu içinde */
+/* CTA, dil butonu, hamburger, kariyer (mobil): aynı yükseklik (--header-control-h) */
 #languageSwitcher,
 #languageSwitcherMobile,
 .nav-cta-desktop,
-#mobileMenuBtn {
+#mobileMenuBtn,
+.nav-careers-mobile {
   box-sizing: border-box !important;
+}
+/* Mobil kariyer butonu: bayrağın solunda, aynı hizada */
+.nav-careers-mobile {
+  height: var(--header-control-h) !important;
+  min-height: var(--header-control-h) !important;
+  max-height: var(--header-control-h) !important;
+  padding: 0.35rem 0.5rem !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-decoration: none !important;
+  border-radius: 0.5rem;
+}
+.nav-careers-mobile:hover {
+  filter: brightness(1.08);
 }
 #languageSwitcher,
 #languageSwitcherMobile {
