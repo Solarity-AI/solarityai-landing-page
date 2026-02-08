@@ -568,8 +568,7 @@
 
   // Update language switcher button
   
-  // Platform tespiti: inline script zaten window.USE_SVG_FLAGS set etti
-  // Eğer set edilmemişse, burada tespit yap
+  // SVG sadece Windows; macOS, Linux, iOS, Android vb. için emoji kullan
   if (typeof window.USE_SVG_FLAGS === 'undefined') {
     const isWindows = /Win/.test(navigator.userAgent || navigator.platform || '');
     window.USE_SVG_FLAGS = isWindows;
