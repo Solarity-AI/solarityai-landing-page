@@ -2949,7 +2949,7 @@ section[id] h2.font-display {
   }
   #footer .footer-socials {
     justify-content: center !important;
-    margin-top: 1rem !important;
+    margin-top: 1.5rem !important;
     width: 100% !important;
     max-width: 100% !important;
     flex-wrap: nowrap !important;
@@ -2970,6 +2970,9 @@ section[id] h2.font-display {
 
 /* Footer mobil: sosyal ikonlar 6+6 iki satır, eşit böl */
 @media (max-width: 767px) {
+  #footer {
+    padding-bottom: 2.25rem !important;
+  }
   #footer .footer-socials a {
     width: 2rem !important;
     height: 2rem !important;
@@ -2985,10 +2988,10 @@ section[id] h2.font-display {
   #footer .footer-socials {
     display: grid !important;
     grid-template-columns: repeat(6, 1fr) !important;
-    gap: 0.85rem !important;
+    gap: 1rem !important;
     max-width: 100%;
     min-width: 0;
-    margin-top: 1.25rem !important;
+    margin-top: 1.75rem !important;
     justify-items: center !important;
   }
   #footer .container {
@@ -3019,6 +3022,9 @@ section[id] h2.font-display {
   }
 }
 @media (max-width: 480px) {
+  #footer {
+    padding-bottom: 2.5rem !important;
+  }
   #footer .container {
     display: block !important;
     grid-template-columns: none !important;
@@ -3036,8 +3042,8 @@ section[id] h2.font-display {
     height: 0.95rem !important;
   }
   #footer .footer-socials {
-    gap: 0.75rem !important;
-    margin-top: 1.25rem !important;
+    gap: 0.9rem !important;
+    margin-top: 1.75rem !important;
   }
   #footer .footer-copyright-row {
     flex-wrap: wrap !important;
@@ -3072,6 +3078,7 @@ section[id] h2.font-display {
   #footer {
     padding-left: 0.5rem !important;
     padding-right: 0.5rem !important;
+    padding-bottom: 2.25rem !important;
     overflow-x: hidden;
     min-width: 0;
   }
@@ -3093,7 +3100,8 @@ section[id] h2.font-display {
     height: 0.75rem !important;
   }
   #footer .footer-socials {
-    gap: 0.8rem !important;
+    gap: 0.85rem !important;
+    margin-top: 1.5rem !important;
     flex-wrap: wrap !important;
     justify-content: center !important;
     max-width: 100% !important;
