@@ -202,7 +202,8 @@
       #languageSwitcher:hover, #languageSwitcherMobile:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3); }
     </style>
 </head>
-<body id="top" class="text-slate-200">
+<body id="top" class="text-slate-200 lang-en" style="background: #0a192f;">
+    <a href="#main-content" class="skip-link" id="skip-link">Skip to main content</a>
     <script>(function(){function go(){document.body.classList.add('animations-ready');}if(typeof requestIdleCallback!=='undefined')requestIdleCallback(go,{timeout:600});else setTimeout(go,500);})();</script>
 
     <!-- Bayrak: sadece Windows’ta SVG, diğer işletim sistemlerinde emoji (index ile aynı) -->
@@ -243,7 +244,7 @@
                     <img src="assets/images/logo/CompanyLogo-120w.webp" srcset="assets/images/logo/CompanyLogo-120w.webp 120w, assets/images/logo/CompanyLogo-180w.webp 180w" sizes="(max-width: 1024px) 120px, 180px" width="180" height="45" fetchpriority="high" loading="eager" alt="Solarity AI" class="logo-standard" style="width: 180px !important; height: auto !important;" />
                 </a>
                 <div class="nav-spacer flex-1 min-w-0" aria-hidden="true"></div>
-                <a id="bannerCTA" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2qgXk0ZfBd6QJf7ef-306in7AI0Kzc-pL3NJFK1fU74vAUGiftVJPF3-DoXp9_RZoyqW_sjSpI" target="_blank" rel="noopener noreferrer" class="nav-cta-desktop flex-shrink-0 inline-flex items-center justify-center gap-1.5 md:gap-2 px-3 py-2 md:px-5 md:py-3 rounded-lg md:rounded-xl font-bold text-xs md:text-base text-center transition-all max-w-[140px] md:max-w-none" style="background: rgba(255, 255, 255, 0.95); color: #1e40af; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);" onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 8px 24px rgba(0, 0, 0, 0.3)';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 16px rgba(0, 0, 0, 0.2)';" data-i18n="bannerCTA">🚀 Book a call with our CEO 🚀</a>
+                <a id="bannerCTA" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2qgXk0ZfBd6QJf7ef-306in7AI0Kzc-pL3NJFK1fU74vAUGiftVJPF3-DoXp9_RZoyqW_sjSpI" target="_blank" rel="noopener noreferrer" class="nav-cta-desktop flex-shrink-0 inline-flex items-center justify-center gap-1.5 md:gap-2 px-3 py-2 md:px-5 md:py-3 rounded-lg md:rounded-xl font-bold text-xs md:text-base text-center transition-all max-w-[140px] md:max-w-none" data-i18n="bannerCTA">🚀 Book a call with our CEO 🚀</a>
                 <div class="nav-spacer flex-1 min-w-0" aria-hidden="true"></div>
                 <div class="nav-right-wrap flex items-center justify-end">
                     <div class="nav-desktop-scroll">
@@ -374,7 +375,38 @@
     <script src="assets/js/translations.min.js?v=2" defer></script>
     <script src="assets/js/language.min.js" defer></script>
     <script>
-        document.getElementById('mobileMenuBtn').addEventListener('click', function() { document.getElementById('mobileMenu').classList.toggle('hidden'); });
+        function runChunks(fns) { var i = 0; function next() { if (i < fns.length) { fns[i++](); setTimeout(next, 0); } } next(); }
+        function initDeferredChunk1() {
+            var btn = document.getElementById('mobileMenuBtn');
+            var menu = document.getElementById('mobileMenu');
+            if (!btn || !menu) return;
+            btn.addEventListener('click', function() {
+                var isHidden = menu.classList.toggle('hidden');
+                this.setAttribute('aria-expanded', !isHidden);
+                this.setAttribute('aria-label', isHidden ? 'Open menu' : 'Close menu');
+                menu.setAttribute('aria-hidden', isHidden);
+            });
+        }
+        function initDeferredChunk2() {
+            var header = document.querySelector('header');
+            function check() {
+                if (!header) return;
+                var w = window.innerWidth;
+                if (w >= 1440) { header.classList.remove('overflow-menu'); return; }
+                if (w <= 1024) { header.classList.add('overflow-menu'); return; }
+                header.classList.remove('overflow-menu');
+                requestAnimationFrame(function() {
+                    requestAnimationFrame(function() {
+                        var scrollEl = header.querySelector('.nav-desktop-scroll');
+                        if (scrollEl && scrollEl.scrollWidth > scrollEl.clientWidth) header.classList.add('overflow-menu');
+                    });
+                });
+            }
+            window.addEventListener('resize', check);
+            if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', check);
+            else check();
+        }
+        runChunks([initDeferredChunk1, initDeferredChunk2]);
         function toggleLanguage() { if (window && typeof window.toggleLanguage === 'function') return window.toggleLanguage(); }
     </script>
     <div id="cookie-consent-banner" role="dialog" aria-label="Cookie consent" aria-live="polite" class="hidden fixed bottom-0 left-0 right-0 z-[100] p-4 bg-slate-800/95 border-t border-slate-600 shadow-lg">
