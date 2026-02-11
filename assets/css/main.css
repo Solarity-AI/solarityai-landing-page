@@ -92,6 +92,15 @@ html[lang="tr"] {
 }
 
 /* TBT: Style & Layout azalt – below-fold bölümlerde layout/paint ertele */
+#partnerships {
+  overflow-anchor: none;
+}
+#partnerships .partner-slider-container {
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  overscroll-behavior-y: none;
+}
 #partnerships,
 #services,
 #projects,
@@ -970,8 +979,9 @@ header.overflow-menu .nav-cta-desktop { display: none !important; }
 /* Overflow menü açıkken (1025–1439px): dil + hamburger aynı yapı ve yükseklik, bayrak taşmasın */
 header.overflow-menu #languageSwitcherMobile,
 header.overflow-menu #mobileMenuBtn {
-  height: 2.75rem !important;
-  min-height: 2.75rem !important;
+  height: var(--nav-mobile-btn-h) !important;
+  min-height: var(--nav-mobile-btn-h) !important;
+  max-height: var(--nav-mobile-btn-h) !important;
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -980,24 +990,20 @@ header.overflow-menu #mobileMenuBtn {
 header.overflow-menu #languageSwitcherMobile {
   padding: 0.35rem 0.5rem !important;
   min-width: 3rem !important;
-  max-height: 2.75rem !important;
   overflow: hidden !important;
   flex-shrink: 0 !important;
 }
 header.overflow-menu #mobileMenuBtn {
   padding: 0.35rem !important;
-  height: 2.75rem !important;
-  min-height: 2.75rem !important;
-  max-height: 2.75rem !important;
-  min-width: 2.75rem !important;
-  width: 2.75rem !important;
+  min-width: var(--nav-mobile-btn-h) !important;
+  width: var(--nav-mobile-btn-h) !important;
 }
 header.overflow-menu #languageSwitcherMobile img#flagIconMobile,
 header.overflow-menu #languageSwitcherMobile span#flagIconMobile {
-  width: 2.75rem !important;
-  height: 2.75rem !important;
-  max-width: 2.75rem !important;
-  max-height: 2.75rem !important;
+  width: 3.25rem !important;
+  height: 3.25rem !important;
+  max-width: 3.25rem !important;
+  max-height: 3.25rem !important;
   object-fit: contain !important;
   flex-shrink: 0 !important;
   display: flex !important;
@@ -1277,10 +1283,11 @@ header.overflow-menu #mobileMenu ul li a:hover {
   .nav-mobile-wrap #mobileMenuBtn {
     display: inline-flex !important;
     visibility: visible !important;
-    min-width: 2.75rem !important;
-    width: 2.75rem !important;
-    height: 2.75rem !important;
-    min-height: 2.75rem !important;
+    min-width: var(--nav-mobile-btn-h) !important;
+    width: var(--nav-mobile-btn-h) !important;
+    height: var(--nav-mobile-btn-h) !important;
+    min-height: var(--nav-mobile-btn-h) !important;
+    max-height: var(--nav-mobile-btn-h) !important;
     font-size: 1.5rem !important;
     flex-shrink: 0 !important;
     margin-right: 0 !important;
@@ -1290,16 +1297,17 @@ header.overflow-menu #mobileMenu ul li a:hover {
     font-size: 0.75rem !important;
   }
 }
-/* Hamburger + dil butonu + kariyer: aynı yükseklik (2.75rem) */
+/* Hamburger + dil butonu + kariyer: her zaman aynı yükseklik */
 @media (max-width: 1024px) {
   .nav-mobile-wrap #mobileMenuBtn {
     font-size: 2.25rem;
     line-height: 1;
     padding: 0.35rem;
-    min-width: 2.75rem;
-    width: 2.75rem;
-    height: 2.75rem !important;
-    min-height: 2.75rem !important;
+    min-width: var(--nav-mobile-btn-h) !important;
+    width: var(--nav-mobile-btn-h) !important;
+    height: var(--nav-mobile-btn-h) !important;
+    min-height: var(--nav-mobile-btn-h) !important;
+    max-height: var(--nav-mobile-btn-h) !important;
     margin-right: 0.75rem;
     display: inline-flex;
     align-items: center;
@@ -1331,15 +1339,15 @@ header.overflow-menu #mobileMenu ul li a:hover {
 @media (min-width: 768px) {
   .nav-cta-desktop {
     display: inline-flex !important;
-    height: var(--header-control-h) !important;
-    min-height: var(--header-control-h) !important;
+    min-height: 2.75rem !important;
+    height: auto !important;
     align-items: center !important;
     justify-content: center !important;
     box-sizing: border-box !important;
   }
 }
 
-/* 1440px ve uzeri: quick links goster (hizalı), hamburger asla */
+/* 1440px ve uzeri: quick links goster (hizalı), dil butonu her zaman görünsün, taşma/kaybolma yok */
 @media (min-width: 1440px) {
   .nav-desktop-scroll,
   header.overflow-menu .nav-desktop-scroll {
@@ -1354,6 +1362,15 @@ header.overflow-menu #mobileMenu ul li a:hover {
   .nav-lang-btn,
   header.overflow-menu .nav-lang-btn {
     display: inline-flex !important;
+  }
+  /* overflow-menu'de de masaüstü dil butonu görünsün (id seçicisi yüzünden ayrıca zorunlu) */
+  header.overflow-menu #languageSwitcher,
+  header.overflow-menu button#languageSwitcher {
+    display: inline-flex !important;
+  }
+  header.overflow-menu #languageSwitcherMobile,
+  header.overflow-menu button#languageSwitcherMobile {
+    display: none !important;
   }
   .nav-spacer,
   header.overflow-menu .nav-spacer {
@@ -1637,18 +1654,18 @@ section[data-section-en="about"] {
   max-width: 52rem; /* ~832px */
 }
 #stats-section {
-  padding-top: 0.5rem;
-  padding-bottom: 1.25rem;
-  min-height: 110px;
+  padding-top: 0.1rem;
+  padding-bottom: 0.35rem;
+  min-height: 0;
 }
 @media (min-width: 768px) {
   #stats-section .container {
     max-width: 58rem; /* ~928px */
   }
   #stats-section {
-    padding-top: 0.75rem;
-    padding-bottom: 1.5rem;
-    min-height: 140px;
+    padding-top: 0.2rem;
+    padding-bottom: 0.45rem;
+    min-height: 0;
   }
 }
 
@@ -2390,11 +2407,13 @@ html[lang="tr"] .stat-satisfaction-tr {
    Footer
    ============================= */
 
-/* Footer sosyal ikonlar: tek satırlı görünüm */
+/* Footer sosyal ikonlar: tek satırlı görünüm, tüm boyutlarda biraz aşağıda */
 #footer .footer-socials {
   display: flex !important;
   flex-wrap: wrap !important;
   gap: 0.75rem !important;
+  row-gap: 1rem !important;
+  margin-top: 1.25rem !important;
   max-width: 100% !important;
   justify-content: center !important;
   align-items: center !important;
@@ -2408,20 +2427,41 @@ html[lang="tr"] .stat-satisfaction-tr {
 @media (min-width: 768px) {
   #footer .footer-socials {
     gap: 1rem !important;
+    row-gap: 1.25rem !important;
+    margin-bottom: 1.5rem !important;
   }
 }
 
 @media (min-width: 1024px) {
   #footer .footer-socials {
     gap: 1.25rem !important;
+    row-gap: 1.25rem !important;
+    margin-bottom: 1.5rem !important;
   }
 }
 
 @media (max-width: 480px) {
   #footer .footer-socials {
-    gap: 0.5rem !important;
+    gap: 1.25rem !important;
+    row-gap: 1.25rem !important;
   }
 }
+/* Copyright / credits altında yeşil çizgi olmasın (tüm boyutlar) */
+#footer .footer-copyright-text {
+  border: none !important;
+  border-bottom: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+#footer .footer-credits {
+  border: none !important;
+  border-top: none !important;
+}
+/* Footer’daki açıklama–copyright arası çizgi yeşil olmasın */
+#footer .container .border-b {
+  border-color: rgba(100, 116, 139, 0.5) !important;
+}
+
 /* Footer logo biraz aşağı */
 #footer .container > div:first-child {
   margin-top: 1.25rem;
@@ -2661,7 +2701,11 @@ html[lang="tr"] .stat-satisfaction-tr {
   line-height: 1;
 }
 
-/* CTA, dil butonu, hamburger, kariyer (mobil): aynı yükseklik (--header-control-h) */
+/* Kariyer, dil, hamburger: tek yükseklik (değiştirmeyin – hep aynı) */
+:root {
+  --nav-mobile-btn-h: 2.75rem;
+}
+/* CTA, dil butonu, hamburger, kariyer (mobil): aynı yükseklik */
 #languageSwitcher,
 #languageSwitcherMobile,
 .nav-cta-desktop,
@@ -2671,9 +2715,9 @@ html[lang="tr"] .stat-satisfaction-tr {
 }
 /* Mobil kariyer butonu: bayrağın solunda, aynı hizada */
 .nav-careers-mobile {
-  height: 2.75rem !important;
-  min-height: 2.75rem !important;
-  max-height: 2.75rem !important;
+  height: var(--nav-mobile-btn-h) !important;
+  min-height: var(--nav-mobile-btn-h) !important;
+  max-height: var(--nav-mobile-btn-h) !important;
   padding: 0.35rem 0.5rem !important;
   display: inline-flex !important;
   align-items: center !important;
@@ -2694,14 +2738,14 @@ html[lang="tr"] .stat-satisfaction-tr {
   transition: all var(--transition-base);
   box-sizing: border-box;
 }
-/* Dil butonu ve hamburger (mobil): kariyer ile aynı yükseklik 2.75rem */
+/* Dil butonu ve hamburger: kariyer ile her zaman aynı yükseklik */
 #languageSwitcherMobile,
 #mobileMenuBtn {
-  min-width: 2.75rem;
+  min-width: var(--nav-mobile-btn-h);
   width: auto;
-  height: 2.75rem !important;
-  max-height: 2.75rem !important;
-  min-height: 2.75rem !important;
+  height: var(--nav-mobile-btn-h) !important;
+  max-height: var(--nav-mobile-btn-h) !important;
+  min-height: var(--nav-mobile-btn-h) !important;
   padding: 0.35rem 0.5rem !important;
   display: inline-flex !important;
   align-items: center !important;
@@ -2715,7 +2759,7 @@ html[lang="tr"] .stat-satisfaction-tr {
   border-color: rgba(16, 185, 129, 0.3);
 }
 #mobileMenuBtn {
-  width: 2.75rem;
+  width: var(--nav-mobile-btn-h);
   padding: 0.35rem !important;
 }
 
@@ -2735,17 +2779,17 @@ html[lang="tr"] .stat-satisfaction-tr {
   }
   #languageSwitcher img#flagIcon,
   #languageSwitcher span#flagIcon {
-    width: 3.5rem !important;
-    height: 2.5rem !important;
-    max-width: 3.5rem !important;
-    max-height: 2.5rem !important;
+    width: 4.5rem !important;
+    height: 3.25rem !important;
+    max-width: 4.5rem !important;
+    max-height: 3.25rem !important;
     object-fit: contain !important;
     flex-shrink: 0 !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
     overflow: hidden !important;
-    font-size: 2.25rem !important;
+    font-size: 2.875rem !important;
     line-height: 1 !important;
   }
   #languageSwitcher img#flagIcon {
@@ -2758,9 +2802,9 @@ html[lang="tr"] .stat-satisfaction-tr {
   #languageSwitcherMobile {
     padding: 0.35rem 0.5rem !important;
     min-width: 4rem;
-    height: 2.75rem !important;
-    max-height: 2.75rem !important;
-    min-height: 2.75rem !important;
+    height: var(--nav-mobile-btn-h) !important;
+    max-height: var(--nav-mobile-btn-h) !important;
+    min-height: var(--nav-mobile-btn-h) !important;
     overflow: hidden !important;
     display: inline-flex !important;
     align-items: center !important;
@@ -2769,11 +2813,11 @@ html[lang="tr"] .stat-satisfaction-tr {
   }
   #mobileMenuBtn {
     padding: 0.35rem !important;
-    min-width: 2.75rem !important;
-    width: 2.75rem !important;
-    height: 2.75rem !important;
-    max-height: 2.75rem !important;
-    min-height: 2.75rem !important;
+    min-width: var(--nav-mobile-btn-h) !important;
+    width: var(--nav-mobile-btn-h) !important;
+    height: var(--nav-mobile-btn-h) !important;
+    max-height: var(--nav-mobile-btn-h) !important;
+    min-height: var(--nav-mobile-btn-h) !important;
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
@@ -2781,17 +2825,17 @@ html[lang="tr"] .stat-satisfaction-tr {
   }
   #languageSwitcherMobile img#flagIconMobile,
   #languageSwitcherMobile span#flagIconMobile {
-    width: 3.75rem !important;
-    height: 2.75rem !important;
-    max-width: 3.75rem !important;
-    max-height: 2.75rem !important;
+    width: 4.75rem !important;
+    height: 3.25rem !important;
+    max-width: 4.75rem !important;
+    max-height: 3.25rem !important;
     object-fit: contain !important;
     flex-shrink: 0 !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
     overflow: hidden !important;
-    font-size: 2.5rem !important;
+    font-size: 3rem !important;
     line-height: 1 !important;
   }
 }
@@ -2807,11 +2851,11 @@ html[lang="tr"] .stat-satisfaction-tr {
   }
   #languageSwitcherMobile img#flagIconMobile,
   #languageSwitcherMobile span#flagIconMobile {
-    width: 2.5rem !important;
-    height: 2.5rem !important;
-    max-width: 2.5rem !important;
-    max-height: 2.5rem !important;
-    font-size: 2rem !important;
+    width: 3rem !important;
+    height: 3rem !important;
+    max-width: 3rem !important;
+    max-height: 3rem !important;
+    font-size: 2.5rem !important;
   }
 }
 
@@ -2889,6 +2933,23 @@ section[id] h2.font-display {
   box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.15);
 }
 
+/* Solarity logosu (Back to top) – altında yeşil çizgi/outline olmasın */
+#footer .container > a:first-child,
+#footer a[href="#top"] {
+  text-decoration: none !important;
+  border-bottom: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+#footer .container > a:first-child:focus,
+#footer .container > a:first-child:focus-visible,
+#footer a[href="#top"]:focus,
+#footer a[href="#top"]:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+  border-bottom: none !important;
+}
+
 #footer .footer-socials a {
   width: 72px !important;
   height: 72px !important;
@@ -2901,9 +2962,14 @@ section[id] h2.font-display {
   justify-content: center;
   font-size: 2.5rem !important;
 }
+/* X ikonu diğer ikonlarla aynı boyutta – sabit rem (tüm breakpoint’lerde) */
 #footer .footer-socials a svg {
-  width: 42px !important;
-  height: 42px !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 2.5rem !important;
+  max-height: 2.5rem !important;
+  flex-shrink: 0;
+  object-fit: contain;
 }
 
 #footer .footer-socials a:hover,
@@ -2976,8 +3042,10 @@ section[id] h2.font-display {
     font-size: 1.25rem !important;
   }
   #footer .footer-socials a svg {
-    width: 1.2rem !important;
-    height: 1.2rem !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 2.25rem !important;
+    max-height: 2.25rem !important;
   }
 }
 
@@ -2995,13 +3063,16 @@ section[id] h2.font-display {
     flex-shrink: 0;
   }
   #footer .footer-socials a svg {
-    width: 1.1rem !important;
-    height: 1.1rem !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 2rem !important;
+    max-height: 2rem !important;
   }
   #footer .footer-socials {
     display: grid !important;
     grid-template-columns: repeat(6, 1fr) !important;
-    gap: 1rem !important;
+    gap: 1.5rem !important;
+    row-gap: 1.5rem !important;
     max-width: 100%;
     min-width: 0;
     margin-top: 1.75rem !important;
@@ -3042,20 +3113,26 @@ section[id] h2.font-display {
     display: block !important;
     grid-template-columns: none !important;
   }
-  /* Sosyal ikonlar tek satır – çok dar ekranda daha küçük */
+  /* Sosyal ikonlar tek satır – çok dar ekranda daha küçük, X ile aynı boyut */
   #footer .footer-socials a {
     width: 1.65rem !important;
     height: 1.65rem !important;
     min-width: 1.65rem !important;
     min-height: 1.65rem !important;
-    font-size: 0.95rem !important;
+    font-size: 1.65rem !important;
+  }
+  #footer .footer-socials a i {
+    font-size: 1.65rem !important;
   }
   #footer .footer-socials a svg {
-    width: 0.95rem !important;
-    height: 0.95rem !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 1.65rem !important;
+    max-height: 1.65rem !important;
   }
   #footer .footer-socials {
-    gap: 0.9rem !important;
+    gap: 1.25rem !important;
+    row-gap: 1.25rem !important;
     margin-top: 1.75rem !important;
   }
   #footer .footer-copyright-row {
@@ -3107,13 +3184,22 @@ section[id] h2.font-display {
     height: 1.3rem !important;
     min-width: 1.3rem !important;
     min-height: 1.3rem !important;
+    font-size: 1.3rem !important;
+  }
+  #footer .footer-socials a i {
+    font-size: 1.3rem !important;
   }
   #footer .footer-socials a svg {
-    width: 0.75rem !important;
-    height: 0.75rem !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 1.3rem !important;
+    max-height: 1.3rem !important;
+    min-width: 1.3rem !important;
+    min-height: 1.3rem !important;
   }
   #footer .footer-socials {
-    gap: 0.85rem !important;
+    gap: 1.25rem !important;
+    row-gap: 1.25rem !important;
     margin-top: 1.5rem !important;
     flex-wrap: wrap !important;
     justify-content: center !important;
@@ -3138,14 +3224,37 @@ section[id] h2.font-display {
   }
 }
 
-/* 320px: copyright satırı tek satırda */
+/* 320px: copyright satıra sığmazsa alt satıra geçsin; yeşil çizgi kesinlikle olmasın */
 @media (max-width: 320px) {
   #footer .footer-copyright-text {
-    font-size: 0.625rem !important;
-    white-space: nowrap;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+    font-size: 1rem !important;
+    white-space: normal !important;
+    overflow-x: visible !important;
+    overflow-wrap: break-word !important;
+    word-break: break-word !important;
     max-width: 100%;
+    border: none !important;
+    border-bottom: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+  }
+  #footer .footer-credits {
+    border: none !important;
+    border-top: none !important;
+  }
+  /* Açıklama ile copyright arası çizgi kaldır (yeşil görünmesin) */
+  #footer .container .border-b.border-slate-700 {
+    border: none !important;
+    border-bottom: none !important;
+    background: transparent !important;
+  }
+  /* Pseudo-element çizgisi varsa kaldır */
+  #footer .footer-copyright-text::after,
+  #footer .footer-copyright-text::before,
+  #footer .footer-credits::before,
+  #footer .footer-credits::after {
+    display: none !important;
+    border: none !important;
   }
 }
 
@@ -3195,27 +3304,39 @@ textarea:focus {
   background-color: #1e3a8a;
 }
 
-/* Hamburger + kariyer + dil: mobilde kesin aynı yükseklik (son override) */
-@media (max-width: 1024px) {
-  header .nav-mobile-wrap #mobileMenuBtn,
-  header.overflow-menu .nav-mobile-wrap #mobileMenuBtn {
-    height: 2.75rem !important;
-    min-height: 2.75rem !important;
-    max-height: 2.75rem !important;
-    width: 2.75rem !important;
-    min-width: 2.75rem !important;
-    padding: 0.35rem !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    box-sizing: border-box !important;
-  }
-  header .nav-mobile-wrap .nav-careers-mobile,
-  header .nav-mobile-wrap #languageSwitcherMobile {
-    height: 2.75rem !important;
-    min-height: 2.75rem !important;
-    max-height: 2.75rem !important;
-  }
+/* Hamburger + kariyer + dil: kesin aynı yükseklik – sabit 2.75rem, tüm breakpoint’ler */
+header .nav-mobile-wrap .nav-careers-mobile,
+header .nav-mobile-wrap #languageSwitcherMobile,
+header .nav-mobile-wrap #mobileMenuBtn,
+header.overflow-menu .nav-careers-mobile,
+header.overflow-menu #languageSwitcherMobile,
+header.overflow-menu #mobileMenuBtn {
+  height: 2.75rem !important;
+  min-height: 2.75rem !important;
+  max-height: 2.75rem !important;
+  padding-top: 0.35rem !important;
+  padding-bottom: 0.35rem !important;
+  box-sizing: border-box !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  line-height: 1 !important;
+}
+/* Dil butonu içindeki bayrak: buton yüksekliğini aşmasın */
+header .nav-mobile-wrap #languageSwitcherMobile img#flagIconMobile,
+header .nav-mobile-wrap #languageSwitcherMobile span#flagIconMobile,
+header.overflow-menu #languageSwitcherMobile img#flagIconMobile,
+header.overflow-menu #languageSwitcherMobile span#flagIconMobile {
+  max-height: 2.75rem !important;
+  object-fit: contain !important;
+}
+/* Hamburger genişliği sabit */
+header .nav-mobile-wrap #mobileMenuBtn,
+header.overflow-menu #mobileMenuBtn {
+  width: 2.75rem !important;
+  min-width: 2.75rem !important;
+  padding-left: 0.35rem !important;
+  padding-right: 0.35rem !important;
 }
 
 
