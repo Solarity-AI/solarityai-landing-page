@@ -11,8 +11,8 @@ main#main-content{padding-top:6rem}
 @media(min-width:768px){:where(section[id]){scroll-margin-top:6.5rem}}
 section{padding:6rem 0;position:relative;max-width:100%;overflow-x:hidden}
 #stats-section .container{max-width:52rem}
-#stats-section{padding-top:.5rem;padding-bottom:1.25rem;min-height:110px}
-@media(min-width:768px){#stats-section .container{max-width:58rem};#stats-section{padding-top:.75rem;padding-bottom:1.5rem;min-height:140px}}
+#stats-section{padding-top:.1rem;padding-bottom:.35rem;min-height:0}
+@media(min-width:768px){#stats-section .container{max-width:58rem};#stats-section{padding-top:.2rem;padding-bottom:.45rem;min-height:0}}
 .stat-satisfaction-en,.stat-satisfaction-tr{display:none}
 html[lang="en"] .stat-satisfaction-en{display:block}
 html[lang="tr"] .stat-satisfaction-tr{display:block}
