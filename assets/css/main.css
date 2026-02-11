@@ -970,8 +970,8 @@ header.overflow-menu .nav-cta-desktop { display: none !important; }
 /* Overflow menü açıkken (1025–1439px): dil + hamburger aynı yapı ve yükseklik, bayrak taşmasın */
 header.overflow-menu #languageSwitcherMobile,
 header.overflow-menu #mobileMenuBtn {
-  height: var(--header-control-h) !important;
-  min-height: var(--header-control-h) !important;
+  height: 2.75rem !important;
+  min-height: 2.75rem !important;
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -979,8 +979,8 @@ header.overflow-menu #mobileMenuBtn {
 }
 header.overflow-menu #languageSwitcherMobile {
   padding: 0.35rem 0.5rem !important;
-  min-width: 2.75rem !important;
-  max-height: var(--header-control-h) !important;
+  min-width: 3rem !important;
+  max-height: 2.75rem !important;
   overflow: hidden !important;
   flex-shrink: 0 !important;
 }
@@ -992,17 +992,17 @@ header.overflow-menu #mobileMenuBtn {
 }
 header.overflow-menu #languageSwitcherMobile img#flagIconMobile,
 header.overflow-menu #languageSwitcherMobile span#flagIconMobile {
-  width: 2rem !important;
-  height: 2rem !important;
-  max-width: 2rem !important;
-  max-height: 2rem !important;
+  width: 2.75rem !important;
+  height: 2.75rem !important;
+  max-width: 2.75rem !important;
+  max-height: 2.75rem !important;
   object-fit: contain !important;
   flex-shrink: 0 !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
   overflow: hidden !important;
-  font-size: 1.5rem !important;
+  font-size: 2.25rem !important;
   line-height: 1 !important;
 }
 header.overflow-menu .nav-mobile-wrap {
@@ -2179,12 +2179,16 @@ html[lang="tr"] .stat-satisfaction-tr {
 #team .team-grid-managers,
 #team .team-grid-bdm,
 #team .team-grid-engineers,
+#team .team-grid-engineers-managers,
+#team .team-grid-engineers-fs,
 #team .team-grid-marketers,
 #team .grid[style*="gap"],
 #ekip .team-grid-executives,
 #ekip .team-grid-managers,
 #ekip .team-grid-bdm,
 #ekip .team-grid-engineers,
+#ekip .team-grid-engineers-managers,
+#ekip .team-grid-engineers-fs,
 #ekip .team-grid-marketers,
 #ekip .grid[style*="gap"] {
   align-items: stretch;
@@ -2209,21 +2213,21 @@ html[lang="tr"] .stat-satisfaction-tr {
 #ekip .team-grid-bdm {
   grid-template-columns: repeat(2, 320px) !important;
 }
-#team .team-grid-engineers,
-#ekip .team-grid-engineers {
+/* Engineers: Hasan + Emrecan 2'li yan yana */
+#team .team-grid-engineers-managers,
+#ekip .team-grid-engineers-managers {
+  display: grid !important;
   grid-template-columns: repeat(2, 320px) !important;
   justify-content: center !important;
+  align-items: stretch !important;
 }
-#team .team-grid-engineers .ud-single-team:first-child,
-#ekip .team-grid-engineers .ud-single-team:first-child {
-  grid-column: 1 / -1 !important;
-  justify-self: center !important;
-}
-@media (min-width: 768px) {
-  #team .team-grid-engineers,
-  #ekip .team-grid-engineers {
-    grid-template-columns: repeat(2, 320px) !important;
-  }
+/* Full-Stack Engineers: Mehmet, Cenk, Eren 3'lü yan yana */
+#team .team-grid-engineers-fs,
+#ekip .team-grid-engineers-fs {
+  display: grid !important;
+  grid-template-columns: repeat(3, 320px) !important;
+  justify-content: center !important;
+  align-items: stretch !important;
 }
 
 /* Üst yönetim (3 kart): LinkedIn ve unvan yatay hizalı – sabit yükseklik yok, title görünsün */
@@ -2244,11 +2248,15 @@ html[lang="tr"] .stat-satisfaction-tr {
   #team .team-grid-managers,
   #team .team-grid-bdm,
   #team .team-grid-engineers,
+  #team .team-grid-engineers-managers,
+  #team .team-grid-engineers-fs,
   #team .team-grid-marketers,
   #ekip .team-grid-executives,
   #ekip .team-grid-managers,
   #ekip .team-grid-bdm,
   #ekip .team-grid-engineers,
+  #ekip .team-grid-engineers-managers,
+  #ekip .team-grid-engineers-fs,
   #ekip .team-grid-marketers {
     grid-template-columns: 1fr !important;
     display: grid !important;
@@ -2718,23 +2726,23 @@ html[lang="tr"] .stat-satisfaction-tr {
 @media (min-width: 1025px) {
   #languageSwitcher {
     padding: 0.375rem 0.5rem !important;
-    min-width: 2.75rem;
-    height: var(--header-control-h) !important;
-    min-height: var(--header-control-h) !important;
+    min-width: 3.75rem;
+    height: 2.75rem !important;
+    min-height: 2.75rem !important;
   }
   #languageSwitcher img#flagIcon,
   #languageSwitcher span#flagIcon {
-    width: 2rem !important;
-    height: 1.5rem !important;
-    max-width: 2rem !important;
-    max-height: 1.5rem !important;
+    width: 3.5rem !important;
+    height: 2.5rem !important;
+    max-width: 3.5rem !important;
+    max-height: 2.5rem !important;
     object-fit: contain !important;
     flex-shrink: 0 !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
     overflow: hidden !important;
-    font-size: 1rem !important;
+    font-size: 2.25rem !important;
     line-height: 1 !important;
   }
   #languageSwitcher img#flagIcon {
@@ -2746,10 +2754,10 @@ html[lang="tr"] .stat-satisfaction-tr {
 @media (max-width: 1024px) {
   #languageSwitcherMobile {
     padding: 0.35rem 0.5rem !important;
-    min-width: 2.75rem;
-    height: var(--header-control-h) !important;
-    max-height: var(--header-control-h) !important;
-    min-height: var(--header-control-h) !important;
+    min-width: 4rem;
+    height: 2.75rem !important;
+    max-height: 2.75rem !important;
+    min-height: 2.75rem !important;
     overflow: hidden !important;
     display: inline-flex !important;
     align-items: center !important;
@@ -2758,9 +2766,9 @@ html[lang="tr"] .stat-satisfaction-tr {
   }
   #mobileMenuBtn {
     padding: 0.35rem !important;
-    height: var(--header-control-h) !important;
-    max-height: var(--header-control-h) !important;
-    min-height: var(--header-control-h) !important;
+    height: 2.75rem !important;
+    max-height: 2.75rem !important;
+    min-height: 2.75rem !important;
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
@@ -2768,17 +2776,17 @@ html[lang="tr"] .stat-satisfaction-tr {
   }
   #languageSwitcherMobile img#flagIconMobile,
   #languageSwitcherMobile span#flagIconMobile {
-    width: 2rem !important;
-    height: 2rem !important;
-    max-width: 2rem !important;
-    max-height: 2rem !important;
+    width: 3.75rem !important;
+    height: 2.75rem !important;
+    max-width: 3.75rem !important;
+    max-height: 2.75rem !important;
     object-fit: contain !important;
     flex-shrink: 0 !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
     overflow: hidden !important;
-    font-size: 1.5rem !important;
+    font-size: 2.5rem !important;
     line-height: 1 !important;
   }
 }
@@ -2794,11 +2802,11 @@ html[lang="tr"] .stat-satisfaction-tr {
   }
   #languageSwitcherMobile img#flagIconMobile,
   #languageSwitcherMobile span#flagIconMobile {
-    width: 1.5rem !important;
-    height: 1.5rem !important;
-    max-width: 1.5rem !important;
-    max-height: 1.5rem !important;
-    font-size: 1.25rem !important;
+    width: 2.5rem !important;
+    height: 2.5rem !important;
+    max-width: 2.5rem !important;
+    max-height: 2.5rem !important;
+    font-size: 2rem !important;
   }
 }
 

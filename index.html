@@ -154,8 +154,8 @@
     <link rel="stylesheet" href="assets/css/lineicons.css" media="print" onload="this.media='all'" />
     <noscript><link rel="stylesheet" href="assets/css/lineicons.css" /></noscript>
     <!-- main.min.css: async, minified (~3–4 KiB smaller than main.css) -->
-    <link rel="preload" href="assets/css/main.min.css?v=20260206-scroll-fix" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-    <noscript><link rel="stylesheet" href="assets/css/main.min.css?v=20260206-scroll-fix" /></noscript>
+    <link rel="preload" href="assets/css/main.min.css?v=20260211-flag-size" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="assets/css/main.min.css?v=20260211-flag-size" /></noscript>
     <!-- Header: logo footer ile aynı boyut (11rem / 13rem), navbar’da dikey ortada -->
     <style>
       header { display: flex; align-items: center; min-height: 6rem; }
@@ -285,14 +285,14 @@
                     <button id="languageSwitcher" type="button" onclick="window.invokeToggleLanguage()" aria-label="Switch language"
                             class="nav-lang-btn inline-flex flex-shrink-0 items-center justify-center px-3 py-2 rounded-lg transition hover:scale-105"
                             style="background: rgba(16, 185, 129, 0.15); border: 2px solid rgba(16, 185, 129, 0.4); color: #10b981;">
-                        <img id="flagIcon" src="assets/images/flags/flag-us.svg?v=2" alt="" width="44" height="32" style="object-fit:cover; border-radius:5px; box-shadow:0 1px 3px rgba(0,0,0,0.2);" />
+                        <img id="flagIcon" src="assets/images/flags/flag-us.svg?v=2" alt="" width="56" height="40" style="object-fit:cover; border-radius:5px; box-shadow:0 1px 3px rgba(0,0,0,0.2);" />
                     </button>
                     <div class="nav-mobile-wrap flex items-center gap-3 flex-shrink-0">
                     <a href="careers.html" class="nav-careers-mobile inline-flex flex-shrink-0 items-center justify-center gap-1.5 px-3 py-2 rounded-lg text-sm font-semibold transition hover:shadow-lg whitespace-nowrap" style="background: linear-gradient(135deg, #10b981, #059669); color: #fff; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35);"><i class="lni lni-briefcase" aria-hidden="true"></i><span data-i18n="navCareers">Careers</span></a>
                     <button id="languageSwitcherMobile" type="button" onclick="window.invokeToggleLanguage()" aria-label="Switch language"
                             class="inline-flex items-center justify-center p-2 rounded-lg"
                             style="background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.3); color: #10b981;">
-                        <img id="flagIconMobile" src="assets/images/flags/flag-us.svg?v=2" alt="" width="48" height="34" style="object-fit:cover; border-radius:4px; box-shadow:0 1px 2px rgba(0,0,0,0.2);" />
+                        <img id="flagIconMobile" src="assets/images/flags/flag-us.svg?v=2" alt="" width="60" height="44" style="object-fit:cover; border-radius:4px; box-shadow:0 1px 2px rgba(0,0,0,0.2);" />
                     </button>
                     <button id="mobileMenuBtn" type="button" class="text-2xl text-emerald-400" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">☰</button>
                     </div>
@@ -341,22 +341,30 @@
             const flagEmoji = targetLang === 'tr' ? '🇹🇷' : '🇺🇸';
             
             if (flagEl && flagEl.tagName === 'IMG') {
-              // IMG ise span'a çevir
+              // IMG ise span'a çevir – kutuyla orantılı (44x32)
               const newSpan = document.createElement('span');
               newSpan.id = 'flagIcon';
-              newSpan.style.fontSize = '2rem';
+              newSpan.style.display = 'inline-flex';
+              newSpan.style.alignItems = 'center';
+              newSpan.style.justifyContent = 'center';
+              newSpan.style.width = '56px';
+              newSpan.style.height = '40px';
+              newSpan.style.fontSize = '2.25rem';
               newSpan.style.lineHeight = '1';
-              newSpan.style.display = 'block';
               newSpan.textContent = flagEmoji;
               flagEl.parentNode.replaceChild(newSpan, flagEl);
             }
             if (flagElMobile && flagElMobile.tagName === 'IMG') {
-              // IMG ise span'a çevir
+              // IMG ise span'a çevir – kutuyla orantılı (48x34)
               const newSpanMobile = document.createElement('span');
               newSpanMobile.id = 'flagIconMobile';
+              newSpanMobile.style.display = 'inline-flex';
+              newSpanMobile.style.alignItems = 'center';
+              newSpanMobile.style.justifyContent = 'center';
+              newSpanMobile.style.width = '60px';
+              newSpanMobile.style.height = '44px';
               newSpanMobile.style.fontSize = '2.5rem';
               newSpanMobile.style.lineHeight = '1';
-              newSpanMobile.style.display = 'block';
               newSpanMobile.textContent = flagEmoji;
               flagElMobile.parentNode.replaceChild(newSpanMobile, flagElMobile);
             }
@@ -832,7 +840,8 @@
             <!-- Engineers -->
             <div class="mb-20">
                 <h3 class="text-3xl md:text-4xl font-bold text-center mb-6 text-brand-blue" data-i18n="teamEngineers">Engineers</h3>
-                <div class="grid max-w-6xl mx-auto team-grid-engineers" style="gap: var(--team-gap);">
+                <!-- Hasan + Emrecan yan yana (2'li) -->
+                <div class="grid max-w-4xl mx-auto team-grid-engineers-managers mb-8" style="gap: var(--team-gap);">
                     <div class="ud-single-team team-card team-card-engineer">
                         <div class="ud-team-image-wrapper">
                             <div class="ud-team-image">
@@ -863,7 +872,7 @@
                         </div>
                         <div class="ud-team-info">
                             <h4 class="text-xl font-semibold team-member-name" data-name-en="Emrecan Ozkan" data-name-tr="Emrecan Özkan">Emrecan Ozkan</h4>
-                            <p class="team-role text-brand-blue" data-i18n="teamSeniorFullStack">Senior Full-Stack Engineer</p>
+                            <p class="team-role text-brand-blue" data-i18n="teamLeadFullStack">Engineering Manager & Lead Full-Stack Engineer</p>
                         </div>
                         <ul class="ud-team-socials">
                             <li>
@@ -873,6 +882,9 @@
                             </li>
                         </ul>
                     </div>
+                </div>
+                <!-- Full-Stack Engineers 3'lü yan yana -->
+                <div class="grid max-w-6xl mx-auto team-grid-engineers-fs" style="gap: var(--team-gap);">
                     <div class="ud-single-team team-card team-card-engineer">
                         <div class="ud-team-image-wrapper">
                             <div class="ud-team-image">
