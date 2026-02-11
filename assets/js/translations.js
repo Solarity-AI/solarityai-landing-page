@@ -110,7 +110,7 @@ window.translations = {
 
     // Projects Section
     projects: "Projects",
-    projectsSubtitle: "Selected Case Studies and Success Stories",
+    projectsSubtitle: "Selected Success Stories",
     projectsSubtitleDesc: "Showcasing our expertise through impactful solutions",
     projectMinistryTrade: "Ministry of Trade",
     projectEAuction: "E-Auction",
