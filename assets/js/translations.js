@@ -6,6 +6,7 @@ window.translations = {
     navAboutUs: "About Us",
     navAbout: "Services",
     navPartnerships: "Partnerships",
+    navProducts: "Products",
     navProjects: "Projects",
     navTeam: "Team",
     navContact: "Contact",
@@ -99,6 +100,14 @@ window.translations = {
     partnerships: "Partnerships",
     partnershipsSubtitle: "Selected Partners",
     
+    // Product Section
+    products: "Products",
+    productsTitle: "Our Products",
+    productChatTherapy: "Chat Therapy",
+    productChatTherapyDesc: "Chat Therapy is an AI-powered mental wellness app that provides accessible, anonymous support. It matters because it helps users manage stress and emotional well-being anytime. The app works by connecting users with guided conversations and evidence-based coping tools.",
+    productOnlyCampus: "Only Campus",
+    productOnlyCampusDesc: "Only Campus is a campus-life and education platform that connects students, faculty, and institutions in one place. It matters because it simplifies communication, event discovery, and resource sharing. The platform works by offering a unified hub for announcements, schedules, and campus services.",
+
     // Projects Section
     projects: "Projects",
     projectsSubtitle: "Selected Case Studies and Success Stories",
@@ -301,6 +310,7 @@ window.translations = {
     navAboutUs: "Hakkımızda",
     navAbout: "Hizmetler",
     navPartnerships: "Ortaklıklar",
+    navProducts: "Ürünler",
     navProjects: "Projeler",
     navTeam: "Ekip",
     navContact: "İletişim",
@@ -383,6 +393,14 @@ window.translations = {
     partnerships: "Ortaklıklarımız",
     partnershipsSubtitle: "Sektör Liderleri Tarafından Güvenilen",
     
+    // Product Section
+    products: "Ürünlerimiz",
+    productsTitle: "Ürünlerimiz",
+    productChatTherapy: "Chat Therapy",
+    productChatTherapyDesc: "Chat Therapy, erişilebilir ve anonim destek sunan yapay zeka destekli bir ruh sağlığı uygulamasıdır. Kullanıcıların stres ve duygusal iyilik halini her an yönetmelerine yardımcı olduğu için önemlidir. Uygulama, kullanıcıları rehberli sohbetler ve kanıta dayalı başa çıkma araçlarıyla buluşturarak çalışır.",
+    productOnlyCampus: "Only Campus",
+    productOnlyCampusDesc: "Only Campus, öğrencileri, akademisyenleri ve kurumları tek bir çatı altında buluşturan bir kampüs yaşamı ve eğitim platformudur. İletişimi, etkinlik keşfini ve kaynak paylaşımını kolaylaştırdığı için önemlidir. Platform, duyurular, programlar ve kampüs hizmetleri için tek bir merkez sunarak çalışır.",
+
     // Projects Section
     projects: "Projelerimiz",
     projectsSubtitle: "Seçili Projeler ve Başarı Hikayeleri",
