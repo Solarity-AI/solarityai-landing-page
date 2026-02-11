@@ -223,13 +223,13 @@
           } else {
             var flagEmoji = targetLang === 'tr' ? '🇹🇷' : '🇺🇸';
             if (flagEl && flagEl.tagName === 'IMG') {
-              var s = document.createElement('span'); s.id = 'flagIcon'; s.style.fontSize = '2rem'; s.style.lineHeight = '1'; s.style.display = 'block'; s.textContent = flagEmoji;
+              var s = document.createElement('span'); s.id = 'flagIcon'; s.style.display = 'inline-flex'; s.style.alignItems = 'center'; s.style.justifyContent = 'center'; s.style.width = '56px'; s.style.height = '40px'; s.style.fontSize = '2.25rem'; s.style.lineHeight = '1'; s.textContent = flagEmoji;
               flagEl.parentNode.replaceChild(s, flagEl);
-            } else if (flagEl) flagEl.textContent = flagEmoji;
+            } else if (flagEl) { flagEl.textContent = flagEmoji; flagEl.style.width = '56px'; flagEl.style.height = '40px'; flagEl.style.fontSize = '2.25rem'; }
             if (flagElMobile && flagElMobile.tagName === 'IMG') {
-              var m = document.createElement('span'); m.id = 'flagIconMobile'; m.style.fontSize = '2.5rem'; m.style.lineHeight = '1'; m.style.display = 'block'; m.textContent = flagEmoji;
+              var m = document.createElement('span'); m.id = 'flagIconMobile'; m.style.display = 'inline-flex'; m.style.alignItems = 'center'; m.style.justifyContent = 'center'; m.style.width = '60px'; m.style.height = '44px'; m.style.fontSize = '2.5rem'; m.style.lineHeight = '1'; m.textContent = flagEmoji;
               flagElMobile.parentNode.replaceChild(m, flagElMobile);
-            } else if (flagElMobile) flagElMobile.textContent = flagEmoji;
+            } else if (flagElMobile) { flagElMobile.textContent = flagEmoji; flagElMobile.style.width = '60px'; flagElMobile.style.height = '44px'; flagElMobile.style.fontSize = '2.5rem'; }
           }
         }
         setCorrectFlag();
@@ -263,14 +263,14 @@
                     <button id="languageSwitcher" type="button" onclick="window.invokeToggleLanguage()" aria-label="Switch language"
                             class="nav-lang-btn inline-flex flex-shrink-0 items-center justify-center px-3 py-2 rounded-lg transition hover:scale-105"
                             style="background: rgba(16, 185, 129, 0.15); border: 2px solid rgba(16, 185, 129, 0.4); color: #10b981;">
-                        <img id="flagIcon" src="assets/images/flags/flag-us.svg?v=2" alt="" width="44" height="32" style="object-fit:cover; border-radius:5px; box-shadow:0 1px 3px rgba(0,0,0,0.2);" />
+                        <img id="flagIcon" src="assets/images/flags/flag-us.svg?v=2" alt="" width="56" height="40" style="object-fit:cover; border-radius:5px; box-shadow:0 1px 3px rgba(0,0,0,0.2);" />
                     </button>
                     <div class="nav-mobile-wrap flex items-center gap-3 flex-shrink-0">
                     <a href="careers.html" class="nav-careers-mobile inline-flex flex-shrink-0 items-center justify-center gap-1.5 px-3 py-2 rounded-lg text-sm font-semibold transition hover:shadow-lg whitespace-nowrap" style="background: linear-gradient(135deg, #10b981, #059669); color: #fff; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35);"><i class="lni lni-briefcase" aria-hidden="true"></i><span data-i18n="navCareers">Careers</span></a>
                     <button id="languageSwitcherMobile" type="button" onclick="window.invokeToggleLanguage()" aria-label="Switch language"
                             class="inline-flex items-center justify-center p-2 rounded-lg"
                             style="background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.3); color: #10b981;">
-                        <img id="flagIconMobile" src="assets/images/flags/flag-us.svg?v=2" alt="" width="48" height="34" style="object-fit:cover; border-radius:4px; box-shadow:0 1px 2px rgba(0,0,0,0.2);" />
+                        <img id="flagIconMobile" src="assets/images/flags/flag-us.svg?v=2" alt="" width="60" height="44" style="object-fit:cover; border-radius:4px; box-shadow:0 1px 2px rgba(0,0,0,0.2);" />
                     </button>
                     <button id="mobileMenuBtn" type="button" class="text-2xl text-emerald-400" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">☰</button>
                     </div>

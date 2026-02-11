@@ -591,20 +591,29 @@
 
       if (flagEl) {
         if (useEmojiFlags) {
-          // Emoji (iOS, macOS, Android)
+          // Emoji (iOS, macOS, Android) – kutuyla orantılı 44x32
           if (flagEl.tagName === 'IMG') {
-            // IMG ise span'a çevir
             const newSpan = document.createElement('span');
             newSpan.id = 'flagIcon';
             newSpan.textContent = flagEmojiForButton;
-            newSpan.style.fontSize = '2rem';
+            newSpan.style.display = 'inline-flex';
+            newSpan.style.alignItems = 'center';
+            newSpan.style.justifyContent = 'center';
+            newSpan.style.width = '56px';
+            newSpan.style.height = '40px';
+            newSpan.style.fontSize = '2.25rem';
             newSpan.style.lineHeight = '1';
-            newSpan.style.display = 'block';
             flagEl.parentNode.replaceChild(newSpan, flagEl);
             log('✅ Desktop flag converted to emoji:', flagEmojiForButton);
           } else {
             flagEl.textContent = flagEmojiForButton;
-            flagEl.style.fontSize = '2rem';
+            flagEl.style.display = 'inline-flex';
+            flagEl.style.alignItems = 'center';
+            flagEl.style.justifyContent = 'center';
+            flagEl.style.width = '56px';
+            flagEl.style.height = '40px';
+            flagEl.style.fontSize = '2.25rem';
+            flagEl.style.lineHeight = '1';
             log('✅ Desktop flag emoji:', flagEmojiForButton);
           }
         } else {
@@ -619,8 +628,8 @@
             newImg.id = 'flagIcon';
             newImg.src = flagSvgForButton;
             newImg.alt = targetLang.toUpperCase();
-            newImg.width = 44;
-            newImg.height = 32;
+            newImg.width = 56;
+            newImg.height = 40;
             newImg.style.objectFit = 'cover';
             newImg.style.borderRadius = '5px';
             newImg.style.boxShadow = '0 1px 3px rgba(0,0,0,0.2)';
@@ -644,20 +653,29 @@
 
       if (flagElMobile) {
         if (useEmojiFlags) {
-          // Emoji (iOS, macOS, Android)
+          // Emoji (iOS, macOS, Android) – kutuyla orantılı 48x34
           if (flagElMobile.tagName === 'IMG') {
-            // IMG ise span'a çevir
             const newSpan = document.createElement('span');
             newSpan.id = 'flagIconMobile';
             newSpan.textContent = flagEmojiForButton;
+            newSpan.style.display = 'inline-flex';
+            newSpan.style.alignItems = 'center';
+            newSpan.style.justifyContent = 'center';
+            newSpan.style.width = '60px';
+            newSpan.style.height = '44px';
             newSpan.style.fontSize = '2.5rem';
             newSpan.style.lineHeight = '1';
-            newSpan.style.display = 'block';
             flagElMobile.parentNode.replaceChild(newSpan, flagElMobile);
             log('✅ Mobile flag converted to emoji:', flagEmojiForButton);
           } else {
             flagElMobile.textContent = flagEmojiForButton;
+            flagElMobile.style.display = 'inline-flex';
+            flagElMobile.style.alignItems = 'center';
+            flagElMobile.style.justifyContent = 'center';
+            flagElMobile.style.width = '60px';
+            flagElMobile.style.height = '44px';
             flagElMobile.style.fontSize = '2.5rem';
+            flagElMobile.style.lineHeight = '1';
             log('✅ Mobile flag emoji:', flagEmojiForButton);
           }
         } else {
@@ -672,8 +690,8 @@
             newImg.id = 'flagIconMobile';
             newImg.src = flagSvgForButton;
             newImg.alt = targetLang.toUpperCase();
-            newImg.width = 48;
-            newImg.height = 34;
+            newImg.width = 60;
+            newImg.height = 44;
             newImg.style.objectFit = 'cover';
             newImg.style.borderRadius = '4px';
             newImg.style.boxShadow = '0 1px 2px rgba(0,0,0,0.2)';
