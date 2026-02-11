@@ -54,6 +54,8 @@
         '#about': '#services',
         '#hakkimizda': '#services',
         '#partnerships': '#ortakliklar',
+        '#products': '#urunler',
+        '#urunler': '#urunler',
         '#projects': '#projeler',
         '#team': '#ekip',
         '#contact': '#iletisim'
@@ -64,7 +66,9 @@
         '#hakkimizda': '#services',
         '#hizmetler': '#services',
         '#ortakliklar': '#partnerships',
-        '#projeler': '#projects',
+        '#products': '#products',
+        '#urunler': '#products',
+        '#projects': '#projects',
         '#ekip': '#team',
         '#iletisim': '#contact'
       }
