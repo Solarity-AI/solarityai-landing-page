@@ -986,9 +986,11 @@ header.overflow-menu #languageSwitcherMobile {
 }
 header.overflow-menu #mobileMenuBtn {
   padding: 0.35rem !important;
-  max-height: var(--header-control-h) !important;
-  min-width: var(--header-control-h) !important;
-  width: var(--header-control-h) !important;
+  height: 2.75rem !important;
+  min-height: 2.75rem !important;
+  max-height: 2.75rem !important;
+  min-width: 2.75rem !important;
+  width: 2.75rem !important;
 }
 header.overflow-menu #languageSwitcherMobile img#flagIconMobile,
 header.overflow-menu #languageSwitcherMobile span#flagIconMobile {
@@ -1275,28 +1277,29 @@ header.overflow-menu #mobileMenu ul li a:hover {
   .nav-mobile-wrap #mobileMenuBtn {
     display: inline-flex !important;
     visibility: visible !important;
-    min-width: var(--header-control-h) !important;
-    height: var(--header-control-h) !important;
-    min-height: var(--header-control-h) !important;
+    min-width: 2.75rem !important;
+    width: 2.75rem !important;
+    height: 2.75rem !important;
+    min-height: 2.75rem !important;
     font-size: 1.5rem !important;
     flex-shrink: 0 !important;
     margin-right: 0 !important;
-    padding: 0.4rem !important;
+    padding: 0.35rem !important;
   }
   .nav-mobile-wrap #languageSwitcherMobile {
     font-size: 0.75rem !important;
   }
 }
-/* Hamburger + dil butonu: CTA ile aynı yükseklik (--header-control-h) */
+/* Hamburger + dil butonu + kariyer: aynı yükseklik (2.75rem) */
 @media (max-width: 1024px) {
   .nav-mobile-wrap #mobileMenuBtn {
     font-size: 2.25rem;
     line-height: 1;
-    padding: 0.4rem;
-    min-width: var(--header-control-h);
-    width: var(--header-control-h);
-    height: var(--header-control-h) !important;
-    min-height: var(--header-control-h) !important;
+    padding: 0.35rem;
+    min-width: 2.75rem;
+    width: 2.75rem;
+    height: 2.75rem !important;
+    min-height: 2.75rem !important;
     margin-right: 0.75rem;
     display: inline-flex;
     align-items: center;
@@ -2668,9 +2671,9 @@ html[lang="tr"] .stat-satisfaction-tr {
 }
 /* Mobil kariyer butonu: bayrağın solunda, aynı hizada */
 .nav-careers-mobile {
-  height: var(--header-control-h) !important;
-  min-height: var(--header-control-h) !important;
-  max-height: var(--header-control-h) !important;
+  height: 2.75rem !important;
+  min-height: 2.75rem !important;
+  max-height: 2.75rem !important;
   padding: 0.35rem 0.5rem !important;
   display: inline-flex !important;
   align-items: center !important;
@@ -2691,14 +2694,14 @@ html[lang="tr"] .stat-satisfaction-tr {
   transition: all var(--transition-base);
   box-sizing: border-box;
 }
-/* Dil butonu ve hamburger: kesin aynı yükseklik – max-height ile taşma engelle, aynı padding */
+/* Dil butonu ve hamburger (mobil): kariyer ile aynı yükseklik 2.75rem */
 #languageSwitcherMobile,
 #mobileMenuBtn {
-  min-width: var(--header-control-h);
+  min-width: 2.75rem;
   width: auto;
-  height: var(--header-control-h) !important;
-  max-height: var(--header-control-h) !important;
-  min-height: var(--header-control-h) !important;
+  height: 2.75rem !important;
+  max-height: 2.75rem !important;
+  min-height: 2.75rem !important;
   padding: 0.35rem 0.5rem !important;
   display: inline-flex !important;
   align-items: center !important;
@@ -2712,7 +2715,7 @@ html[lang="tr"] .stat-satisfaction-tr {
   border-color: rgba(16, 185, 129, 0.3);
 }
 #mobileMenuBtn {
-  width: var(--header-control-h);
+  width: 2.75rem;
   padding: 0.35rem !important;
 }
 
@@ -2766,6 +2769,8 @@ html[lang="tr"] .stat-satisfaction-tr {
   }
   #mobileMenuBtn {
     padding: 0.35rem !important;
+    min-width: 2.75rem !important;
+    width: 2.75rem !important;
     height: 2.75rem !important;
     max-height: 2.75rem !important;
     min-height: 2.75rem !important;
@@ -3188,6 +3193,29 @@ textarea:focus {
 }
 #cookie-consent-accept:hover {
   background-color: #1e3a8a;
+}
+
+/* Hamburger + kariyer + dil: mobilde kesin aynı yükseklik (son override) */
+@media (max-width: 1024px) {
+  header .nav-mobile-wrap #mobileMenuBtn,
+  header.overflow-menu .nav-mobile-wrap #mobileMenuBtn {
+    height: 2.75rem !important;
+    min-height: 2.75rem !important;
+    max-height: 2.75rem !important;
+    width: 2.75rem !important;
+    min-width: 2.75rem !important;
+    padding: 0.35rem !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+  }
+  header .nav-mobile-wrap .nav-careers-mobile,
+  header .nav-mobile-wrap #languageSwitcherMobile {
+    height: 2.75rem !important;
+    min-height: 2.75rem !important;
+    max-height: 2.75rem !important;
+  }
 }
 
 
