@@ -694,8 +694,8 @@
     <section class="py-16 px-4 md:px-12">
         <div id="careers-form-wrap" class="container mx-auto">
             <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold font-display mb-4" data-i18n="careersFormTitle">Başvuru Formu</h2>
-                <p class="text-slate-400" data-i18n="careersFormSubtitle">Aşağıdaki formu doldurarak ekibimize katılma başvurunuzu yapabilirsiniz.</p>
+                <h2 class="text-3xl md:text-4xl font-bold font-display mb-4" data-i18n="careersFormTitle">Application Form</h2>
+                <p class="text-slate-400" data-i18n="careersFormSubtitle">Fill out the form below to apply to join our team.</p>
             </div>
 
             <div class="form-card">
@@ -736,10 +736,10 @@
 
                     <!-- LinkedIn Profil URL – zorunlu, ana sayfa ile aynı validasyon -->
                     <div class="mb-6">
-                        <label for="careersLinkedIn" class="form-label" data-i18n="careersLinkedIn">LinkedIn Profil URL *</label>
+                        <label for="careersLinkedIn" class="form-label" data-i18n="careersLinkedIn">LinkedIn Profile URL *</label>
                         <input type="url" id="careersLinkedIn" name="linkedin" required
                                class="form-input"
-                               placeholder="https://www.linkedin.com/in/kullanici-adi"
+                               placeholder="https://www.linkedin.com/in/your-profile"
                                data-i18n-placeholder="careersLinkedInPlaceholder"
                                pattern="^https?:\/\/([a-z0-9-]+\.)?linkedin\.com\/in\/.+"
                                title="Please enter a valid LinkedIn profile URL (e.g. https://www.linkedin.com/in/...)"
@@ -750,43 +750,43 @@
 
                     <!-- Portfolio / Web sayfası – zorunlu (GitHub, Linktree veya diğer) -->
                     <div class="mb-6">
-                        <label for="careersPortfolio" class="form-label" data-i18n="careersPortfolio">Portfolio / Web Sayfası *</label>
+                        <label for="careersPortfolio" class="form-label" data-i18n="careersPortfolio">Portfolio / Website *</label>
                         <input type="url" id="careersPortfolio" name="portfolio" required
                                class="form-input"
-                               placeholder="https://github.com/username or https://linktr.ee/..."
+                               placeholder="https://github.com/your-username or https://linktr.ee/..."
                                data-i18n-placeholder="careersPortfolioPlaceholder"
                                pattern="^https?:\/\/[^\s/$.?#][^\s]*$"
                                title="Please enter a valid portfolio URL (e.g. GitHub, Linktree or your website)."
                                data-i18n-title="careersPortfolioInvalid"
                                data-msg-portfolio="careersPortfolioInvalid" />
-                        <p class="text-sm text-amber-400 mt-1 hidden" id="portfolioError" role="alert" data-i18n="careersPortfolioInvalid">Please enter a valid portfolio URL (e.g. GitHub, Linktree).</p>
+                        <p class="text-sm text-amber-400 mt-1 hidden" id="portfolioError" role="alert" data-i18n="careersPortfolioInvalid">Please enter a valid portfolio URL (e.g. GitHub, Linktree or your website).</p>
                     </div>
 
                     <!-- Position Dropdown - SADECE 4 POZİSYON -->
                     <div class="mb-6">
-                        <label for="position" class="form-label" data-i18n="careersFormPosition">Başvurulan Pozisyon *</label>
+                        <label for="position" class="form-label" data-i18n="careersFormPosition">Position *</label>
                         <select id="position" name="position" required class="form-select">
-                            <option value="" data-i18n="careersFormPositionSelect">Pozisyon seçiniz</option>
-                            <option value="full-stack-engineer" data-i18n="careersPos1Title">Full Stack Mühendisi</option>
-                            <option value="marketing-specialist" data-i18n="careersPos2Title">Pazarlama Uzmanı</option>
-                            <option value="business-development-manager" data-i18n="careersPos3Title">İş Geliştirme Müdürü</option>
+                            <option value="" data-i18n="careersFormPositionSelect">Select a position</option>
+                            <option value="full-stack-engineer" data-i18n="careersPos1Title">Full Stack Engineer</option>
+                            <option value="marketing-specialist" data-i18n="careersPos2Title">Marketing Specialist</option>
+                            <option value="business-development-manager" data-i18n="careersPos3Title">Business Development Manager</option>
                            
                         </select>
                     </div>
 
                     <!-- Work Type Dropdown - YENİ: TAM/YARI ZAMANLI SEÇİMİ -->
                     <div class="mb-6">
-                        <label for="workType" class="form-label" data-i18n="careersFormWorkType">Çalışma Şekli *</label>
+                        <label for="workType" class="form-label" data-i18n="careersFormWorkType">Work Type *</label>
                         <select id="workType" name="workType" required class="form-select">
-                            <option value="" data-i18n="careersFormWorkTypeSelect">Çalışma şekli seçiniz</option>
-                            <option value="full-time" data-i18n="careersFullTime">Tam Zamanlı</option>
-                            <option value="part-time" data-i18n="careersPartTime">Yarı Zamanlı</option>
+                            <option value="" data-i18n="careersFormWorkTypeSelect">Select work type</option>
+                            <option value="full-time" data-i18n="careersFullTime">Full-time</option>
+                            <option value="part-time" data-i18n="careersPartTime">Part-time</option>
                         </select>
                     </div>
                     
                     <!-- Submit Button -->
                     <button type="submit" class="submit-button" id="submitBtn">
-                        <span data-i18n="careersFormSubmit">Başvuruyu Gönder</span>
+                        <span data-i18n="careersFormSubmit">Submit Application</span>
                     </button>
 
                     <!-- Success/Error Messages -->
