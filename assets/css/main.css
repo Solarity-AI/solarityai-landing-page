@@ -977,11 +977,59 @@ header .nav-desktop-inner .nav-page-btn-careers {
     opacity: 1 !important;
   }
 }
-/* Dar ekranda sadece mobil dil butonu; masaüstü dil butonu gizle */
+/* 1024px ve altı: header kompakt – logo sol, dil + hamburger sağ, hepsi hizalı ve aynı yükseklik */
 @media (max-width: 1024px) {
   #languageSwitcher,
   button#languageSwitcher {
     display: none !important;
+  }
+  header,
+  header .container,
+  header nav {
+    min-height: 4rem !important;
+    height: 4rem !important;
+    align-items: center !important;
+  }
+  header nav > a:first-child {
+    align-items: center !important;
+  }
+  header nav > a:first-child .logo-standard {
+    max-height: 2.75rem !important;
+    width: auto !important;
+  }
+  .nav-spacer,
+  .nav-cta-desktop {
+    display: none !important;
+  }
+  .nav-right-wrap {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+  }
+  .nav-mobile-wrap {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    flex-shrink: 0 !important;
+  }
+  .nav-careers-mobile {
+    height: 2.75rem !important;
+    min-height: 2.75rem !important;
+    max-height: 2.75rem !important;
+  }
+  #languageSwitcherMobile,
+  #mobileMenuBtn {
+    width: 2.75rem !important;
+    min-width: 2.75rem !important;
+    height: 2.75rem !important;
+    max-height: 2.75rem !important;
+    min-height: 2.75rem !important;
+    padding: 0.35rem !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+    flex-shrink: 0 !important;
   }
 }
 @media (min-width: 1025px) {
@@ -1029,20 +1077,31 @@ header.overflow-menu #mobileMenuBtn {
   min-width: var(--nav-mobile-btn-h) !important;
   width: var(--nav-mobile-btn-h) !important;
 }
-header.overflow-menu #languageSwitcherMobile img#flagIconMobile,
-header.overflow-menu #languageSwitcherMobile span#flagIconMobile {
-  width: 3.25rem !important;
-  height: 3.25rem !important;
-  max-width: 3.25rem !important;
-  max-height: 3.25rem !important;
+/* Windows: SVG taşmasın */
+header.overflow-menu #languageSwitcherMobile img#flagIconMobile {
+  width: 2.5rem !important;
+  height: 1.9rem !important;
+  max-width: 2.5rem !important;
+  max-height: 1.9rem !important;
   object-fit: contain !important;
   flex-shrink: 0 !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
   overflow: hidden !important;
-  font-size: 2.25rem !important;
+}
+/* Mac: emoji – boyut değişmez */
+header.overflow-menu #languageSwitcherMobile span#flagIconMobile {
+  width: 4.75rem !important;
+  height: 3.25rem !important;
+  max-width: 4.75rem !important;
+  max-height: 3.25rem !important;
+  font-size: 3rem !important;
   line-height: 1 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
 }
 header.overflow-menu .nav-mobile-wrap {
   display: flex !important;
@@ -2865,13 +2924,25 @@ html[lang="tr"] .stat-satisfaction-tr {
     height: 2.75rem !important;
     min-height: 2.75rem !important;
   }
-  #languageSwitcher img#flagIcon,
+  /* Windows: SVG buton içine sığsın, taşmasın */
+  #languageSwitcher img#flagIcon {
+    width: 2.75rem !important;
+    height: 1.9rem !important;
+    max-width: 2.75rem !important;
+    max-height: 1.9rem !important;
+    object-fit: contain !important;
+    flex-shrink: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    overflow: hidden !important;
+  }
+  /* Mac: emoji – boyut değişmez */
   #languageSwitcher span#flagIcon {
     width: 4.5rem !important;
     height: 3.25rem !important;
     max-width: 4.5rem !important;
     max-height: 3.25rem !important;
-    object-fit: contain !important;
     flex-shrink: 0 !important;
     display: flex !important;
     align-items: center !important;
@@ -2880,16 +2951,14 @@ html[lang="tr"] .stat-satisfaction-tr {
     font-size: 2.875rem !important;
     line-height: 1 !important;
   }
-  #languageSwitcher img#flagIcon {
-    object-fit: contain !important;
-  }
 }
 
-/* Mobil dil butonu + hamburger – 1024px ve alti: aynı yükseklik, aynı dikey padding */
+/* Mobil dil butonu + hamburger – 1024px ve alti: logo/dil/hamburger aynı yükseklik (2.75rem), dil ve hamburger kare */
 @media (max-width: 1024px) {
   #languageSwitcherMobile {
-    padding: 0.35rem 0.5rem !important;
-    min-width: 4rem;
+    padding: 0.35rem !important;
+    min-width: 2.75rem !important;
+    width: 2.75rem !important;
     height: var(--nav-mobile-btn-h) !important;
     max-height: var(--nav-mobile-btn-h) !important;
     min-height: var(--nav-mobile-btn-h) !important;
@@ -2911,13 +2980,25 @@ html[lang="tr"] .stat-satisfaction-tr {
     justify-content: center !important;
     box-sizing: border-box !important;
   }
-  #languageSwitcherMobile img#flagIconMobile,
+  /* Windows: SVG – biraz küçük */
+  #languageSwitcherMobile img#flagIconMobile {
+    width: 2.5rem !important;
+    height: 1.9rem !important;
+    max-width: 2.5rem !important;
+    max-height: 1.9rem !important;
+    object-fit: contain !important;
+    flex-shrink: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    overflow: hidden !important;
+  }
+  /* Mac: emoji – boyut değişmez (önceki gibi) */
   #languageSwitcherMobile span#flagIconMobile {
     width: 4.75rem !important;
     height: 3.25rem !important;
     max-width: 4.75rem !important;
     max-height: 3.25rem !important;
-    object-fit: contain !important;
     flex-shrink: 0 !important;
     display: flex !important;
     align-items: center !important;
@@ -2937,7 +3018,14 @@ html[lang="tr"] .stat-satisfaction-tr {
     padding: 0.35rem 0.5rem !important;
     min-width: 2.25rem;
   }
-  #languageSwitcherMobile img#flagIconMobile,
+  /* Windows: SVG küçük */
+  #languageSwitcherMobile img#flagIconMobile {
+    width: 2.1rem !important;
+    height: 1.65rem !important;
+    max-width: 2.1rem !important;
+    max-height: 1.65rem !important;
+  }
+  /* Mac: emoji – boyut değişmez */
   #languageSwitcherMobile span#flagIconMobile {
     width: 3rem !important;
     height: 3rem !important;
@@ -3434,10 +3522,14 @@ header.overflow-menu #mobileMenuBtn {
   justify-content: center !important;
   line-height: 1 !important;
 }
-/* Dil butonu içindeki bayrak: buton yüksekliğini aşmasın */
+/* Dil butonu bayrak: Windows SVG sınırı, Mac emoji dokunulmaz */
 header .nav-mobile-wrap #languageSwitcherMobile img#flagIconMobile,
+header.overflow-menu #languageSwitcherMobile img#flagIconMobile {
+  max-height: 1.9rem !important;
+  max-width: 2.5rem !important;
+  object-fit: contain !important;
+}
 header .nav-mobile-wrap #languageSwitcherMobile span#flagIconMobile,
-header.overflow-menu #languageSwitcherMobile img#flagIconMobile,
 header.overflow-menu #languageSwitcherMobile span#flagIconMobile {
   max-height: 2.75rem !important;
   object-fit: contain !important;
