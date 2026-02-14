@@ -18,7 +18,8 @@ window.translations = {
     // About Section (hero label; section is now "Services")
     about: "Services",
     aboutTitle: "AI-Native Software Company",
-    aboutSubtitle: "🔥 Creating the world’s best B2B and B2C solutions for YOU 🔥",
+    aboutSubtitle: "🔥 Creating the world’s highest-quality B2B and B2C solutions for YOU 🔥",
+    heroMVP: "🏎️ Your MVP is ready in 1 Week 🏎️",
     capabilityAI: "AI & ML",
     capabilityAIDesc: "Advanced AI/ML solutions powered by cutting-edge algorithms and neural networks",
     capabilityMobile: "Mobile Application Development",
@@ -183,7 +184,7 @@ window.translations = {
     footerCreditsEnd: ", and our team",
     footerPrivacy: "Privacy",
     footerTerms: "Terms",
-    footerDescription: "🔥 Creating the world’s best B2B and B2C solutions for YOU 🔥",
+    footerDescription: "🔥 Creating the world’s highest-quality B2B and B2C solutions for YOU 🔥",
     legalPageTitle: "Legal Information",
     legalHeroTag: "Legal",
     legalHeroSubtitle: "Transparency and trust. Our legal documents and policies in one place.",
@@ -327,7 +328,8 @@ window.translations = {
     // About Section (section is now "Services")
     about: "Hizmetler",
     aboutTitle: "Yapay Zeka Odaklı Yazılım Şirketi",
-    aboutSubtitle: "🔥 Sizin için dünyanın en iyi B2B ve B2C çözümlerini yaratıyoruz 🔥",
+    aboutSubtitle: "🔥 Sizin için dünyanın en yüksek kaliteli B2B ve B2C çözümlerini yaratıyoruz 🔥",
+    heroMVP: "🏎️ MVP'niz 1 Haftada Hazır 🏎️",
 
     // Services Section - 6 Services (updated from capabilities)
     servicesTitle: "Hizmetlerimiz",
@@ -396,7 +398,7 @@ window.translations = {
 
     // Partnerships Section
     partnerships: "Ortaklıklarımız",
-    partnershipsSubtitle: "Sektör Liderleri Tarafından Güvenilen",
+    partnershipsSubtitle: "Seçili İş Ortakları",
     
     // Product Section
     products: "Ürünlerimiz",
@@ -482,7 +484,7 @@ window.translations = {
     footerCreditsEnd: " ve ekibimizin değerli geri bildirimleriyle şekillendirildi",
     footerPrivacy: "Gizlilik",
     footerTerms: "Koşullar",
-    footerDescription: "🔥 Sizin için dünyanın en iyi B2B ve B2C çözümlerini geliştiriyoruz 🔥",
+    footerDescription: "🔥 Sizin için dünyanın en yüksek kaliteli B2B ve B2C çözümlerini geliştiriyoruz 🔥",
     legalPageTitle: "Yasal Bilgiler",
     legalHeroTag: "Yasal",
     legalHeroSubtitle: "Şeffaflık ve güven. Yasal belgelerimiz ve politikalarımız tek yerde.",
