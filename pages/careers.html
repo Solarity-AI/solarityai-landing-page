@@ -81,9 +81,9 @@
     <meta property="twitter:image" content="https://solarityai.com/assets/images/logo/CompanyLogo.png">
 
     <!-- Favicons -->
-    <link rel="icon" type="image/png" href="assets/images/logo/CompanyLogo.png" />
-    <link rel="shortcut icon" href="assets/images/logo/CompanyLogo.png" />
-    <link rel="apple-touch-icon" href="assets/images/logo/CompanyLogo.png" />
+    <link rel="icon" type="image/png" href="../assets/images/logo/CompanyLogo.png" />
+    <link rel="shortcut icon" href="../assets/images/logo/CompanyLogo.png" />
+    <link rel="apple-touch-icon" href="../assets/images/logo/CompanyLogo.png" />
     <meta name="apple-mobile-web-app-title" content="Solarity AI" />
     <meta name="theme-color" content="#0a192f" />
 
@@ -93,9 +93,9 @@
     <!-- Cloudflare: Disable email obfuscation (prevents email-decode.min.js) -->
     <meta name="cfemail" content="off" />
     <!-- Performance: preload LCP logo (mobile first – 120w) -->
-    <link rel="preload" as="image" href="assets/images/logo/CompanyLogo-120w.webp" type="image/webp" imagesrcset="assets/images/logo/CompanyLogo-120w.webp 120w, assets/images/logo/CompanyLogo-180w.webp 180w" imagesizes="(max-width: 1024px) 120px, 180px" />
+    <link rel="preload" as="image" href="../assets/images/logo/CompanyLogo-120w.webp" type="image/webp" imagesrcset="../assets/images/logo/CompanyLogo-120w.webp 120w, ../assets/images/logo/CompanyLogo-180w.webp 180w" imagesizes="(max-width: 1024px) 120px, 180px" />
     <!-- Font: LineIcons preload (critical’de @font-face yok) -->
-    <link rel="preload" href="assets/fonts/LineIcons.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="../assets/fonts/LineIcons.woff2" as="font" type="font/woff2" crossorigin />
 
     <!-- Google tag (gtag.js) - Consent Mode: script sadece kullanıcı kabul edince yüklenecek -->
     <script>
@@ -110,8 +110,8 @@
     </script>
 
     <!-- Tailwind CSS (built, no render-blocking script) -->
-    <link rel="preload" href="assets/css/tailwind.css" as="style" />
-    <link rel="stylesheet" href="assets/css/tailwind.css" />
+    <link rel="preload" href="../assets/css/tailwind.css" as="style" />
+    <link rel="stylesheet" href="../assets/css/tailwind.css" />
 
     <!-- Google Fonts: loaded after window.load (off critical path, font-display: optional) -->
     <noscript><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" /></noscript>
@@ -119,12 +119,12 @@
     <!-- Critical CSS: above-the-fold inline -->
     <style id="critical-css">:root{--font-primary:'Inter',-apple-system,sans-serif;--font-secondary:'Poppins',sans-serif;--color-dark-bg:#0f172a;--color-text-primary:#f8fafc;--color-text-secondary:#cbd5e1;--brand-space:clamp(200px,20vw,340px)}*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth;overflow-x:hidden;overflow-y:scroll;scrollbar-gutter:stable;max-width:100vw}body{font-family:var(--font-primary);color:var(--color-text-secondary);background-color:var(--color-dark-bg);overflow-x:hidden;max-width:100vw}.hidden{display:none!important}main#main-content{padding-top:4.5rem!important}header{position:fixed!important;top:0!important;left:0!important;right:0!important;width:100%!important;z-index:9999!important}.ud-header{position:fixed!important;top:0!important;left:0!important;right:0!important;width:100%;z-index:999;background:rgba(15,23,42,.85);backdrop-filter:blur(20px)}.navbar{padding:0;display:flex;align-items:center;justify-content:center;width:100%;min-height:88px}.nav-spacer{display:none}@media(min-width:1025px){.nav-spacer{display:block!important}}.nav-right-wrap{min-width:240px;max-width:100%}.nav-desktop-scroll{display:none}@media(min-width:1025px){.nav-desktop-scroll{display:block!important}}.nav-mobile-wrap{display:flex}@media(min-width:1025px){.nav-mobile-wrap{display:none!important};#mobileMenu{display:none!important}}.logo-standard{height:11rem!important;max-width:100%;object-fit:contain}header .logo-standard{height:auto!important;max-height:100%!important;max-width:100%}.container{max-width:100%;width:100%;box-sizing:border-box}</style>
     <!-- LineIcons (async) -->
-    <link rel="preload" href="assets/css/lineicons.css" as="style" />
-    <link rel="stylesheet" href="assets/css/lineicons.css" media="print" onload="this.media='all'" />
-    <noscript><link rel="stylesheet" href="assets/css/lineicons.css" /></noscript>
+    <link rel="preload" href="../assets/css/lineicons.css" as="style" />
+    <link rel="stylesheet" href="../assets/css/lineicons.css" media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href="../assets/css/lineicons.css" /></noscript>
     <!-- Yayında main.min.css kullanılıyor -->
-    <link rel="preload" href="assets/css/main.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-    <noscript><link rel="stylesheet" href="assets/css/main.min.css" /></noscript>
+    <link rel="preload" href="../assets/css/main.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="../assets/css/main.min.css" /></noscript>
     <!-- Navbar: ana sayfa ile aynı (yükseklik, logo, CTA ortada) -->
     <style>
       /* CRITICAL: Header must stay fixed at top */
@@ -451,7 +451,7 @@
           
           if (isWindows) {
             // Windows: SVG kullan
-            const flagSvg = targetLang === 'tr' ? 'assets/images/flags/flag-tr.svg?v=2' : 'assets/images/flags/flag-us.svg?v=2';
+            const flagSvg = targetLang === 'tr' ? '../assets/images/flags/flag-tr.svg?v=2' : '../assets/images/flags/flag-us.svg?v=2';
             
             if (flagEl) {
               if (flagEl.tagName === 'IMG') {
@@ -534,8 +534,8 @@
     <header class="ud-header fixed top-0 left-0 right-0 z-50 backdrop-blur-md" style="background: rgba(10, 25, 47, 0.95); position: fixed !important; top: 0 !important; left: 0 !important;">
         <div class="container mx-auto px-4 md:px-12">
             <nav class="flex items-center justify-between py-0.5 w-full" style="gap: 1.25rem;" aria-label="Main navigation">
-                <a href="index.html" class="flex items-center flex-shrink-0">
-                    <img src="assets/images/logo/CompanyLogo-120w.webp" srcset="assets/images/logo/CompanyLogo-120w.webp 120w, assets/images/logo/CompanyLogo-180w.webp 180w" sizes="(max-width: 1024px) 120px, 180px" width="180" height="45" fetchpriority="high" loading="eager" alt="Solarity AI" class="logo-standard" style="width: 180px !important; height: auto !important;" />
+                <a href="../index.html" class="flex items-center flex-shrink-0">
+                    <img src="../assets/images/logo/CompanyLogo-120w.webp" srcset="../assets/images/logo/CompanyLogo-120w.webp 120w, ../assets/images/logo/CompanyLogo-180w.webp 180w" sizes="(max-width: 1024px) 120px, 180px" width="180" height="45" fetchpriority="high" loading="eager" alt="Solarity AI" class="logo-standard" style="width: 180px !important; height: auto !important;" />
                 </a>
                 <div class="nav-spacer flex-1 min-w-0" aria-hidden="true"></div>
                 <a id="bannerCTA" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2qgXk0ZfBd6QJf7ef-306in7AI0Kzc-pL3NJFK1fU74vAUGiftVJPF3-DoXp9_RZoyqW_sjSpI" target="_blank" rel="noopener noreferrer" class="nav-cta-desktop flex-shrink-0 inline-flex items-center justify-center gap-1.5 md:gap-2 px-3 py-2 md:px-5 md:py-3 rounded-lg md:rounded-xl font-bold text-xs md:text-base text-center transition-all max-w-[140px] md:max-w-none" data-i18n="bannerCTA">🚀 Book a call with our CEO 🚀</a>
@@ -544,13 +544,13 @@
                     <div class="nav-desktop-scroll">
                     <div class="nav-desktop-inner flex items-center gap-3 md:gap-4 flex-nowrap">
                     <ul class="flex items-center flex-shrink-0 gap-4 md:gap-6 text-base font-medium">
-                        <li><a href="index.html#about" data-href-tr="index.html#hakkimizda" data-href-en="index.html#about" class="hover:text-emerald-400 transition nav-link whitespace-nowrap" data-i18n="navAboutUs">About Us</a></li>
-                        <li><a href="index.html#partnerships" data-href-tr="index.html#ortakliklar" data-href-en="index.html#partnerships" class="hover:text-emerald-400 transition nav-link whitespace-nowrap" data-i18n="navPartnerships">Partnerships</a></li>
-                        <li><a href="index.html#services" data-href-tr="index.html#services" data-href-en="index.html#services" class="hover:text-emerald-400 transition nav-link whitespace-nowrap" data-i18n="navAbout">Services</a></li>
-                        <li><a href="index.html#products" data-href-tr="index.html#urunler" data-href-en="index.html#products" class="hover:text-emerald-400 transition nav-link whitespace-nowrap" data-i18n="navProducts">Products</a></li>
-                        <li><a href="index.html#projects" data-href-tr="index.html#projeler" data-href-en="index.html#projects" class="hover:text-emerald-400 transition nav-link whitespace-nowrap" data-i18n="navProjects">Projects</a></li>
-                        <li><a href="index.html#team" data-href-tr="index.html#ekip" data-href-en="index.html#team" class="hover:text-emerald-400 transition nav-link whitespace-nowrap" data-i18n="navTeam">Team</a></li>
-                        <li><a href="index.html#contact" data-href-tr="index.html#iletisim" data-href-en="index.html#contact" class="hover:text-emerald-400 transition nav-link whitespace-nowrap" data-i18n="navContact">Contact</a></li>
+                        <li><a href="../index.html#about" data-href-tr="../index.html#hakkimizda" data-href-en="../index.html#about" class="hover:text-emerald-400 transition nav-link whitespace-nowrap" data-i18n="navAboutUs">About Us</a></li>
+                        <li><a href="../index.html#partnerships" data-href-tr="../index.html#ortakliklar" data-href-en="../index.html#partnerships" class="hover:text-emerald-400 transition nav-link whitespace-nowrap" data-i18n="navPartnerships">Partnerships</a></li>
+                        <li><a href="../index.html#services" data-href-tr="../index.html#services" data-href-en="../index.html#services" class="hover:text-emerald-400 transition nav-link whitespace-nowrap" data-i18n="navAbout">Services</a></li>
+                        <li><a href="../index.html#products" data-href-tr="../index.html#urunler" data-href-en="../index.html#products" class="hover:text-emerald-400 transition nav-link whitespace-nowrap" data-i18n="navProducts">Products</a></li>
+                        <li><a href="../index.html#projects" data-href-tr="../index.html#projeler" data-href-en="../index.html#projects" class="hover:text-emerald-400 transition nav-link whitespace-nowrap" data-i18n="navProjects">Projects</a></li>
+                        <li><a href="../index.html#team" data-href-tr="../index.html#ekip" data-href-en="../index.html#team" class="hover:text-emerald-400 transition nav-link whitespace-nowrap" data-i18n="navTeam">Team</a></li>
+                        <li><a href="../index.html#contact" data-href-tr="../index.html#iletisim" data-href-en="../index.html#contact" class="hover:text-emerald-400 transition nav-link whitespace-nowrap" data-i18n="navContact">Contact</a></li>
                     </ul>
                     <a href="careers.html" class="nav-page-btn nav-page-btn-careers inline-flex flex-shrink-0 items-center gap-2 px-5 py-2.5 text-sm font-semibold rounded-lg transition hover:shadow-lg whitespace-nowrap"><i class="lni lni-briefcase"></i><span data-i18n="navCareers">Careers</span></a>
                     </div>
@@ -558,14 +558,14 @@
                     <button id="languageSwitcher" type="button" onclick="window.invokeToggleLanguage()" aria-label="Switch language"
                             class="nav-lang-btn inline-flex flex-shrink-0 items-center justify-center px-3 py-2 rounded-lg transition hover:scale-105"
                             style="background: rgba(16, 185, 129, 0.15); border: 2px solid rgba(16, 185, 129, 0.4); color: #10b981;">
-                        <img id="flagIcon" src="assets/images/flags/flag-us.svg?v=2" alt="" width="56" height="40" style="object-fit:cover; border-radius:5px; box-shadow:0 1px 3px rgba(0,0,0,0.2);" />
+                        <img id="flagIcon" src="../assets/images/flags/flag-us.svg?v=2" alt="" width="56" height="40" style="object-fit:cover; border-radius:5px; box-shadow:0 1px 3px rgba(0,0,0,0.2);" />
                     </button>
                     <div class="nav-mobile-wrap flex items-center gap-3 flex-shrink-0">
                     <a href="careers.html" class="nav-careers-mobile inline-flex flex-shrink-0 items-center justify-center gap-1.5 px-3 py-2 rounded-lg text-sm font-semibold transition hover:shadow-lg whitespace-nowrap" style="background: linear-gradient(135deg, #10b981, #059669); color: #fff; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35);"><i class="lni lni-briefcase" aria-hidden="true"></i><span data-i18n="navCareers">Careers</span></a>
                     <button id="languageSwitcherMobile" type="button" onclick="window.invokeToggleLanguage()" aria-label="Switch language"
                             class="inline-flex items-center justify-center p-2 rounded-lg"
                             style="background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.3); color: #10b981;">
-                        <img id="flagIconMobile" src="assets/images/flags/flag-us.svg?v=2" alt="" width="60" height="44" style="object-fit:cover; border-radius:4px; box-shadow:0 1px 2px rgba(0,0,0,0.2);" />
+                        <img id="flagIconMobile" src="../assets/images/flags/flag-us.svg?v=2" alt="" width="60" height="44" style="object-fit:cover; border-radius:4px; box-shadow:0 1px 2px rgba(0,0,0,0.2);" />
                     </button>
                     <button id="mobileMenuBtn" type="button" class="text-2xl text-emerald-400" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">☰</button>
                     </div>
@@ -574,13 +574,13 @@
             <div id="mobileMenu" class="mobile-menu-dropdown hidden" aria-hidden="true">
                 <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2qgXk0ZfBd6QJf7ef-306in7AI0Kzc-pL3NJFK1fU74vAUGiftVJPF3-DoXp9_RZoyqW_sjSpI" target="_blank" rel="noopener noreferrer" class="mobile-menu-cta" style="background: rgba(255, 255, 255, 0.95); color: #1e40af;" data-i18n="bannerCTA">🚀 Book a call with our CEO 🚀</a>
                 <ul class="mobile-menu-list">
-                    <li><a href="index.html#about" data-href-tr="index.html#hakkimizda" data-href-en="index.html#about" data-i18n="navAboutUs">About Us</a></li>
-                    <li><a href="index.html#partnerships" data-href-tr="index.html#ortakliklar" data-href-en="index.html#partnerships" data-i18n="navPartnerships">Partnerships</a></li>
-                    <li><a href="index.html#services" data-href-tr="index.html#services" data-href-en="index.html#services" data-i18n="navAbout">Services</a></li>
-                    <li><a href="index.html#products" data-href-tr="index.html#urunler" data-href-en="index.html#products" data-i18n="navProducts">Products</a></li>
-                    <li><a href="index.html#projects" data-href-tr="index.html#projeler" data-href-en="index.html#projects" data-i18n="navProjects">Projects</a></li>
-                    <li><a href="index.html#team" data-href-tr="index.html#ekip" data-href-en="index.html#team" data-i18n="navTeam">Team</a></li>
-                    <li><a href="index.html#contact" data-href-tr="index.html#iletisim" data-href-en="index.html#contact" data-i18n="navContact">Contact</a></li>
+                    <li><a href="../index.html#about" data-href-tr="../index.html#hakkimizda" data-href-en="../index.html#about" data-i18n="navAboutUs">About Us</a></li>
+                    <li><a href="../index.html#partnerships" data-href-tr="../index.html#ortakliklar" data-href-en="../index.html#partnerships" data-i18n="navPartnerships">Partnerships</a></li>
+                    <li><a href="../index.html#services" data-href-tr="../index.html#services" data-href-en="../index.html#services" data-i18n="navAbout">Services</a></li>
+                    <li><a href="../index.html#products" data-href-tr="../index.html#urunler" data-href-en="../index.html#products" data-i18n="navProducts">Products</a></li>
+                    <li><a href="../index.html#projects" data-href-tr="../index.html#projeler" data-href-en="../index.html#projects" data-i18n="navProjects">Projects</a></li>
+                    <li><a href="../index.html#team" data-href-tr="../index.html#ekip" data-href-en="../index.html#team" data-i18n="navTeam">Team</a></li>
+                    <li><a href="../index.html#contact" data-href-tr="../index.html#iletisim" data-href-en="../index.html#contact" data-i18n="navContact">Contact</a></li>
                 </ul>
             </div>
         </div>
@@ -801,8 +801,8 @@
     <!-- Footer: ana sayfa ile aynı yapı -->
     <footer id="footer" class="footer-stacked bg-slate-950 border-t border-slate-800 py-0 px-4 md:px-12 pb-0">
         <div class="container mx-auto max-w-5xl flex flex-col items-center justify-center text-center gap-5 md:gap-6">
-            <a href="index.html" class="inline-block cursor-pointer hover:opacity-80 transition" title="Back to home">
-                <picture><source type="image/webp" srcset="assets/images/logo/CompanyLogo-120w.webp 120w, assets/images/logo/CompanyLogo-180w.webp 180w" sizes="(max-width: 768px) 120px, 180px" /><img src="assets/images/logo/CompanyLogo-180w.png" srcset="assets/images/logo/CompanyLogo-120w.png 120w, assets/images/logo/CompanyLogo-180w.png 180w" sizes="(max-width: 768px) 120px, 180px" alt="Solarity AI" class="logo-standard mb-1 h-auto mx-auto" width="180" height="45" loading="lazy" decoding="async" style="display:block; width: 180px !important; height: auto !important;" /></picture>
+            <a href="../index.html" class="inline-block cursor-pointer hover:opacity-80 transition" title="Back to home">
+                <picture><source type="image/webp" srcset="../assets/images/logo/CompanyLogo-120w.webp 120w, ../assets/images/logo/CompanyLogo-180w.webp 180w" sizes="(max-width: 768px) 120px, 180px" /><img src="../assets/images/logo/CompanyLogo-180w.png" srcset="../assets/images/logo/CompanyLogo-120w.png 120w, ../assets/images/logo/CompanyLogo-180w.png 180w" sizes="(max-width: 768px) 120px, 180px" alt="Solarity AI" class="logo-standard mb-1 h-auto mx-auto" width="180" height="45" loading="lazy" decoding="async" style="display:block; width: 180px !important; height: auto !important;" /></picture>
             </a>
             <p class="text-xl md:text-2xl text-slate-300 leading-relaxed max-w-md" data-i18n="footerDescription">AI-Native Software Company Creating High-Impact B2B and B2C Solutions with World-Class Quality.</p>
             <div class="border-b border-slate-700 w-full max-w-xs mx-auto"></div>
@@ -834,8 +834,8 @@
     </footer>
 
     <!-- Scripts -->
-    <script src="assets/js/translations.min.js?v=2" defer></script>
-    <script src="assets/js/language.min.js" defer></script>
+    <script src="../assets/js/translations.min.js?v=2" defer></script>
+    <script src="../assets/js/language.min.js" defer></script>
 
 
     <script>
