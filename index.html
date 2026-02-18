@@ -1221,32 +1221,7 @@
     <!-- Navbar her zaman üstte kalsın (diğer sayfalarla aynı) -->
     <style>#main-header,.ud-header,header{position:fixed!important;top:0!important;left:0!important;right:0!important;width:100%!important;z-index:9999!important;}</style>
     
-    <!-- Footer sosyal gap: laptop'ta az, mobilde yeterli satır arası -->
-    <script>
-      (function() {
-        function setFooterGap() {
-          var footerSocials = document.querySelector('#footer .footer-socials');
-          if (!footerSocials) return;
-          if (window.innerWidth >= 1440) {
-            // Büyük ekran (1440px+): az boşluk
-            footerSocials.style.setProperty('gap', '3px', 'important');
-          } else if (window.innerWidth >= 1024) {
-            // Laptop (1024px-1439px): orta boşluk
-            footerSocials.style.setProperty('gap', '8px', 'important');
-          } else {
-            // Mobil/tablet: main.css'teki varsayılan gap uygulansın (satır arası yeterli olsun)
-            footerSocials.style.removeProperty('gap');
-          }
-        }
-        if (document.readyState === 'loading') {
-          document.addEventListener('DOMContentLoaded', setFooterGap);
-        } else {
-          setFooterGap();
-        }
-        window.addEventListener('load', setFooterGap);
-        window.addEventListener('resize', setFooterGap);
-      })();
-    </script>
+    <!-- Footer sosyal gap: CSS media query ile yönetilir (JS reflow yok) -->
     
     <!-- Scripts: language.min.js tek kez yüklenir, dil init tek kez çalışır (TBT) -->
     <script>

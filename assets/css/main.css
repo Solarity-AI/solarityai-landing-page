@@ -2584,9 +2584,15 @@ html[lang="tr"] .stat-satisfaction-tr {
 
 @media (min-width: 1024px) {
   #footer .footer-socials {
-    gap: 1.25rem !important;
+    gap: 8px !important;
     row-gap: 1.25rem !important;
     margin-bottom: 1.5rem !important;
+  }
+}
+
+@media (min-width: 1440px) {
+  #footer .footer-socials {
+    gap: 3px !important;
   }
 }
 
