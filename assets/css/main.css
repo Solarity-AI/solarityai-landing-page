@@ -96,27 +96,33 @@ html[lang="tr"] {
   overflow-anchor: none;
 }
 #partnerships .partner-slider-container {
-  overflow-x: scroll;
-  overflow-y: hidden;
-  overscroll-behavior-x: contain;
-  overscroll-behavior-y: none;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(16, 185, 129, 0.7) rgba(30, 41, 59, 0.8);
-  padding-bottom: 0.25rem;
+  overflow: hidden;
+  cursor: default;
 }
-#partnerships .partner-slider-container::-webkit-scrollbar {
-  height: 8px;
+/* Partner slider: sonsuz döngü için flex düzeni */
+#partnerships .partner-slider {
+  display: flex;
+  flex-wrap: nowrap;
+  will-change: transform;
 }
-#partnerships .partner-slider-container::-webkit-scrollbar-track {
-  background: rgba(30, 41, 59, 0.6);
+#partnerships .partner-slider-set {
+  display: flex;
+  flex-shrink: 0;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 1.5rem;
 }
-#partnerships .partner-slider-container::-webkit-scrollbar-thumb {
-  background: rgba(16, 185, 129, 0.7);
-  border-radius: 4px;
+#partnerships .partner-logo-card {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  opacity: 0.8;
+  transition: opacity 0.2s;
 }
-#partnerships .partner-slider-container::-webkit-scrollbar-thumb:hover {
-  background: rgba(16, 185, 129, 0.9);
+#partnerships .partner-logo-card:hover {
+  opacity: 1;
 }
 #partnerships,
 #services,
@@ -2185,7 +2191,7 @@ html[lang="tr"] .stat-satisfaction-tr {
   height: 100%;
   overflow: hidden;
   display: grid;
-  grid-template-rows: 290px 5.5rem auto auto;
+  grid-template-rows: 290px auto auto auto;
   grid-template-columns: 1fr;
   align-items: start;
   width: 320px !important;
@@ -2239,42 +2245,39 @@ html[lang="tr"] .stat-satisfaction-tr {
   align-items: center;
   justify-content: flex-start;
   text-align: center;
-  min-height: 5.5rem !important;
-  height: 5.5rem !important;
-  max-height: 5.5rem !important;
+  min-height: 5rem;
+  height: auto;
+  max-height: none;
   width: 100%;
   margin: 0;
-  padding: 0.2rem 0.35rem 0;
-  gap: 0;
-  overflow: hidden;
+  padding: 0.1rem 0.35rem 0.25rem;
+  gap: 0.15rem;
+  overflow: visible;
   box-sizing: border-box;
 }
 #team .ud-team-info h4,
 #ekip .ud-team-info h4 {
-  font-size: 1.95rem;
+  font-size: 1.75rem;
   margin: 0;
-  line-height: 1.28;
+  line-height: 1.3;
   text-align: center;
   width: 100%;
   overflow-wrap: break-word;
   word-break: break-word;
-  flex: 1 1 auto;
-  min-height: 0;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
+  flex: 0 0 auto;
 }
 #team .ud-team-info .team-role,
 #ekip .ud-team-info .team-role {
-  font-size: 1.4rem;
+  font-size: 1.25rem;
   line-height: 1.3;
   margin: 0;
-  padding: 0.15rem 0 0;
+  padding: 0;
   text-align: center;
   width: 100%;
   white-space: normal;
+  overflow: visible;
+  text-overflow: unset;
   flex: 0 0 auto;
-  min-height: 2rem;
 }
 #team .ud-team-info h6,
 #ekip .ud-team-info h6 {
@@ -2450,7 +2453,7 @@ html[lang="tr"] .stat-satisfaction-tr {
     aspect-ratio: unset !important;
     padding-bottom: 1rem !important;
     display: grid !important;
-    grid-template-rows: 255px 7rem auto !important;
+    grid-template-rows: 255px auto auto !important;
     grid-template-columns: 1fr !important;
     align-items: start !important;
     align-self: stretch !important;
@@ -2475,7 +2478,7 @@ html[lang="tr"] .stat-satisfaction-tr {
     justify-content: flex-start !important;
     width: 100% !important;
     margin: 0 !important;
-    padding: 0.3rem 0.35rem 0.35rem !important;
+    padding: 0.1rem 0.35rem 0.35rem !important;
     gap: 0.15rem !important;
     min-height: 7rem !important;
     height: auto !important;

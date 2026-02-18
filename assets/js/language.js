@@ -585,9 +585,10 @@
 
     // Compute the target language (the one the button should switch TO)
     const targetLang = currentLang === 'tr' ? 'en' : 'tr';
-    const langCodeForButton = targetLang === 'tr' ? 'TR' : 'EN';
-    const flagEmojiForButton = targetLang === 'tr' ? '🇹🇷' : '🇺🇸';
-    const flagSvgForButton = targetLang === 'tr' ? 'assets/images/flags/flag-tr.svg?v=2' : 'assets/images/flags/flag-us.svg?v=2';
+    // Buton mevcut dili gösterir (geçilecek dili değil)
+    const langCodeForButton = currentLang === 'tr' ? 'TR' : 'EN';
+    const flagEmojiForButton = currentLang === 'tr' ? '🇹🇷' : '🇺🇸';
+    const flagSvgForButton = currentLang === 'tr' ? 'assets/images/flags/flag-tr.svg?v=2' : 'assets/images/flags/flag-us.svg?v=2';
 
     if (switcher) {
       const flagEl = document.getElementById('flagIcon');
@@ -624,14 +625,14 @@
           // Windows: SVG fallback
           if (flagEl.tagName === 'IMG') {
             flagEl.src = flagSvgForButton;
-            flagEl.alt = targetLang.toUpperCase();
+            flagEl.alt = currentLang.toUpperCase();
             log('✅ Desktop flag SVG (Windows):', flagSvgForButton);
           } else {
             // SPAN ise IMG'ye çevir
             const newImg = document.createElement('img');
             newImg.id = 'flagIcon';
             newImg.src = flagSvgForButton;
-            newImg.alt = targetLang.toUpperCase();
+            newImg.alt = currentLang.toUpperCase();
             newImg.width = 56;
             newImg.height = 40;
             newImg.style.objectFit = 'cover';
@@ -686,14 +687,14 @@
           // Windows: SVG fallback
           if (flagElMobile.tagName === 'IMG') {
             flagElMobile.src = flagSvgForButton;
-            flagElMobile.alt = targetLang.toUpperCase();
+            flagElMobile.alt = currentLang.toUpperCase();
             log('✅ Mobile flag SVG (Windows):', flagSvgForButton);
           } else {
             // SPAN ise IMG'ye çevir
             const newImg = document.createElement('img');
             newImg.id = 'flagIconMobile';
             newImg.src = flagSvgForButton;
-            newImg.alt = targetLang.toUpperCase();
+            newImg.alt = currentLang.toUpperCase();
             newImg.width = 60;
             newImg.height = 44;
             newImg.style.objectFit = 'cover';
