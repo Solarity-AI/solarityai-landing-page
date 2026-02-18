@@ -449,7 +449,7 @@
             <!-- Partner logos: otomatik kayar; istersen sağa/sola elle de kaydırabilirsin -->
             <div class="partner-slider-container">
                 <div class="partner-slider">
-                    <div class="partner-slider-set">
+                    <div class="partner-slider-set" id="partnerSliderSet">
                         <a href="https://www.ticaret.gov.tr/" target="_blank" rel="noopener noreferrer" aria-label="Ministry of Trade (opens in new tab)" class="partner-logo-card">
                             <img src="assets/images/brands/Ticaret_Bakanligi_logo.svg" alt="Ticaret Bakanlığı" width="120" height="60" loading="lazy" decoding="async" />
                         </a>
@@ -479,6 +479,11 @@
                         </a>
                     </div>
                 </div>
+            </div>
+            <!-- Partner slider scrollbar -->
+            <div class="partner-scrollbar" id="partnerScrollbar" role="scrollbar" aria-label="Partners slider" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                <div class="partner-scrollbar-thumb" id="partnerScrollbarThumb"></div>
+                <div class="partner-scrollbar-thumb" id="partnerScrollbarGhost" aria-hidden="true" style="display:none"></div>
             </div>
         </div>
     </section>
@@ -1460,9 +1465,17 @@
       (function() {
         function initPartnerSlider() {
           var container = document.querySelector('.partner-slider-container');
-          var slider = document.querySelector('.partner-slider');
-          var setEl = document.querySelector('.partner-slider-set');
+          var slider    = document.querySelector('.partner-slider');
+          var setEl     = document.querySelector('.partner-slider-set');
           if (!container || !slider || !setEl) return;
+
+          // Scrollbar elemanları
+          var scrollbar = document.getElementById('partnerScrollbar');
+          var thumb     = document.getElementById('partnerScrollbarThumb');
+          var ghost     = document.getElementById('partnerScrollbarGhost');
+
+          // Sabit thumb genişliği
+          var THUMB_W = 280;
 
           // Klonla: sonsuz döngü için orijinal seti çoğalt
           var clone1 = setEl.cloneNode(true);
@@ -1472,46 +1485,129 @@
           slider.appendChild(clone1);
           slider.appendChild(clone2);
 
-          var rafId = null;
+          var rafId   = null;
           var position = 0;
-          var speed = 0.5; // px/frame
-          var paused = false;
+          var speed    = 0.5; // px/frame
+          var paused   = false;
+          var dragging = false;
           var setWidth = 0;
-          var gap = 0;
 
           function getSetWidth() {
-            // gap: slider'ın gap değeri (CSS'teki 1.5rem = 24px varsayılan)
             var style = window.getComputedStyle(slider);
-            gap = parseFloat(style.columnGap || style.gap || '24') || 24;
+            var gap = parseFloat(style.columnGap || style.gap || '24') || 24;
             setWidth = setEl.offsetWidth + gap;
           }
 
-          function tick() {
-            if (!paused) {
-              position += speed;
-              // Bir set genişliğini geçince sıfırla – sonsuz döngü
-              if (setWidth > 0 && position >= setWidth) {
-                position -= setWidth;
+          // Thumb: sağdan çıkıp soldan girer (wrap-around)
+          function updateScrollbar() {
+            if (!scrollbar || !thumb || setWidth <= 0) return;
+            var trackW   = scrollbar.offsetWidth;
+            var progress = position / setWidth;           // 0–1
+            // Thumb merkezi track boyunca döngüsel hareket eder
+            var center   = progress * trackW;             // 0 – trackW
+            var leftPx   = center - THUMB_W / 2;
+
+            thumb.style.left  = leftPx + 'px';
+
+            // Ghost: thumb track dışına taşarsa karşı uçtan girer
+            if (ghost) {
+              if (leftPx + THUMB_W > trackW) {
+                // Sağdan çıkıyor → soldan giriyor
+                ghost.style.left    = (leftPx - trackW) + 'px';
+                ghost.style.display = '';
+              } else if (leftPx < 0) {
+                // Soldan çıkıyor → sağdan giriyor
+                ghost.style.left    = (leftPx + trackW) + 'px';
+                ghost.style.display = '';
+              } else {
+                ghost.style.display = 'none';
               }
+            }
+
+            if (scrollbar.setAttribute)
+              scrollbar.setAttribute('aria-valuenow', Math.round(progress * 100));
+          }
+
+          function tick() {
+            if (!paused && !dragging) {
+              position += speed;
+              if (setWidth > 0 && position >= setWidth) position -= setWidth;
               slider.style.transform = 'translateX(-' + position + 'px)';
             }
+            updateScrollbar();
             rafId = requestAnimationFrame(tick);
           }
 
           function start() {
             getSetWidth();
-            if (setWidth <= 0) {
-              requestAnimationFrame(start);
-              return;
-            }
+            if (setWidth <= 0) { requestAnimationFrame(start); return; }
             if (!rafId) rafId = requestAnimationFrame(tick);
           }
 
-          // Hover/touch: duraklat
+          // ── Hover: container duraklat ──
           container.addEventListener('mouseenter', function() { paused = true; });
           container.addEventListener('mouseleave', function() { paused = false; });
-          container.addEventListener('touchstart', function() { paused = true; }, { passive: true });
-          container.addEventListener('touchend', function() { paused = false; }, { passive: true });
+
+          // ── Scrollbar track tıklama → o konuma atla ──
+          if (scrollbar) {
+            scrollbar.addEventListener('click', function(e) {
+              if (e.target === thumb || e.target === ghost) return;
+              var trackW   = scrollbar.offsetWidth;
+              var rect     = scrollbar.getBoundingClientRect();
+              var clickX   = e.clientX - rect.left;
+              var progress = Math.max(0, Math.min(0.9999, clickX / trackW));
+              position     = progress * setWidth;
+              slider.style.transform = 'translateX(-' + position + 'px)';
+            });
+          }
+
+          // ── Sürükleme yardımcısı (mouse + touch) ──
+          function startDrag(startClientX) {
+            dragging = true;
+            if (thumb) thumb.classList.add('dragging');
+            if (ghost) ghost.classList.add('dragging');
+            var startPos = position;
+            var trackW   = scrollbar ? scrollbar.offsetWidth : 300;
+
+            return {
+              move: function(clientX) {
+                var dx      = clientX - startClientX;
+                var newPos  = startPos + dx * (setWidth / trackW);
+                // Wrap: sürüklerken de dairesel geçiş
+                position = ((newPos % setWidth) + setWidth) % setWidth;
+                slider.style.transform = 'translateX(-' + position + 'px)';
+              },
+              end: function() {
+                dragging = false;
+                if (thumb) thumb.classList.remove('dragging');
+                if (ghost) ghost.classList.remove('dragging');
+              }
+            };
+          }
+
+          function attachDrag(el) {
+            if (!el) return;
+            // Mouse
+            el.addEventListener('mousedown', function(e) {
+              e.preventDefault();
+              var d = startDrag(e.clientX);
+              function onMove(ev) { d.move(ev.clientX); }
+              function onUp()     { d.end(); document.removeEventListener('mousemove', onMove); document.removeEventListener('mouseup', onUp); }
+              document.addEventListener('mousemove', onMove);
+              document.addEventListener('mouseup',   onUp);
+            });
+            // Touch
+            el.addEventListener('touchstart', function(e) {
+              var d = startDrag(e.touches[0].clientX);
+              function onMove(ev) { d.move(ev.touches[0].clientX); }
+              function onEnd()    { d.end(); el.removeEventListener('touchmove', onMove); el.removeEventListener('touchend', onEnd); }
+              el.addEventListener('touchmove', onMove, { passive: true });
+              el.addEventListener('touchend',  onEnd,  { passive: true });
+            }, { passive: true });
+          }
+
+          attachDrag(thumb);
+          attachDrag(ghost);
 
           // Pencere boyutu değişirse genişliği yeniden hesapla
           window.addEventListener('resize', function() { getSetWidth(); });

@@ -124,6 +124,41 @@ html[lang="tr"] {
 #partnerships .partner-logo-card:hover {
   opacity: 1;
 }
+/* Partner slider scrollbar */
+#partnerships .partner-scrollbar {
+  position: relative;
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  margin-top: 1.25rem;
+  cursor: pointer;
+  overflow: hidden; /* thumb sağdan çıkıp soldan girer */
+}
+#partnerships .partner-scrollbar:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+#partnerships .partner-scrollbar-thumb {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 6px;
+  width: 280px; /* sabit thumb */
+  background: linear-gradient(90deg, #34d399, #10b981);
+  border-radius: 999px;
+  cursor: grab;
+  will-change: left;
+  transition: height 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: 0 0 6px rgba(52, 211, 153, 0.4);
+}
+#partnerships .partner-scrollbar-thumb:hover,
+#partnerships .partner-scrollbar-thumb.dragging {
+  height: 10px;
+  box-shadow: 0 0 10px rgba(52, 211, 153, 0.6);
+}
+#partnerships .partner-scrollbar-thumb.dragging {
+  cursor: grabbing;
+}
 #partnerships,
 #services,
 #projects,
