@@ -1,18 +1,19 @@
 import type { Metadata, Viewport } from 'next'
-import { Inter, Poppins } from 'next/font/google'
+import { Plus_Jakarta_Sans, Sora } from 'next/font/google'
 import Script from 'next/script'
 import './globals.css'
 import { LanguageProvider } from '@/context/LanguageContext'
 
 const LOGO_ASSET_VERSION = '20260207'
 
-const inter = Inter({
+const inter = Plus_Jakarta_Sans({
   variable: '--font-inter',
   subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800'],
   display: 'swap',
 })
 
-const poppins = Poppins({
+const poppins = Sora({
   variable: '--font-poppins',
   subsets: ['latin'],
   weight: ['400', '500', '600', '700', '800'],

@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X } from 'lucide-react'
+import { Globe, Menu, X } from 'lucide-react'
 import { useLanguage } from '@/context/LanguageContext'
 
 const ASSET_VERSION = '20260207'
@@ -125,6 +125,7 @@ export default function Navbar() {
                 className="hidden md:flex items-center gap-1 text-xs font-semibold text-text-2 hover:text-text-1 transition-colors duration-200 bg-white/5 hover:bg-white/10 rounded-full px-3 py-1.5 border border-border-subtle"
                 aria-label="Toggle language"
               >
+                <Globe size={12} aria-hidden="true" />
                 <span className={lang === 'en' ? 'text-text-1' : 'text-text-2'}>EN</span>
                 <span className="text-text-3">|</span>
                 <span className={lang === 'tr' ? 'text-text-1' : 'text-text-2'}>TR</span>
@@ -189,6 +190,7 @@ export default function Navbar() {
                   onClick={toggle}
                   className="flex items-center gap-1 text-sm font-semibold text-text-2 bg-white/5 rounded-full px-4 py-2 border border-border-subtle"
                 >
+                  <Globe size={14} aria-hidden="true" />
                   <span className={lang === 'en' ? 'text-text-1' : 'text-text-2'}>EN</span>
                   <span className="text-text-3">|</span>
                   <span className={lang === 'tr' ? 'text-text-1' : 'text-text-2'}>TR</span>
