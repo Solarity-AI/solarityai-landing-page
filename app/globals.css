@@ -69,6 +69,54 @@ body {
   color: var(--color-text-1);
 }
 
+.partner-logo {
+  opacity: 0.72;
+  filter: grayscale(1) brightness(0) invert(1);
+  transition: filter 280ms ease, opacity 280ms ease;
+}
+
+.group:hover .partner-logo,
+.group:focus-within .partner-logo {
+  opacity: 1;
+  filter: none;
+}
+
+.partner-logo-white {
+  opacity: 0.75;
+  filter: brightness(0.82) contrast(0.94);
+  transition: opacity 280ms ease, filter 280ms ease;
+}
+
+.partner-logo-color {
+  opacity: 0;
+  transition: opacity 280ms ease;
+}
+
+.group:hover .partner-logo-white,
+.group:focus-within .partner-logo-white {
+  opacity: 0;
+}
+
+.group:hover .partner-logo-color,
+.group:focus-within .partner-logo-color {
+  opacity: 1;
+}
+
+@media (hover: none) {
+  .partner-logo {
+    opacity: 1;
+    filter: none;
+  }
+
+  .partner-logo-white {
+    opacity: 0;
+  }
+
+  .partner-logo-color {
+    opacity: 1;
+  }
+}
+
 /* Hero animated gradient orbs */
 @keyframes float {
   0%, 100% { transform: translate(0, 0) scale(1); }
