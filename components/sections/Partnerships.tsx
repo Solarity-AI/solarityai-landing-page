@@ -26,7 +26,7 @@ const partners = [
   { name: 'Everva', src: '/assets/brands/everva.png', href: 'https://everva.com.tr/' },
   { name: 'Siemens', src: '/assets/brands/Siemens_AG_logo.svg', href: 'https://www.siemens.com/' },
   { name: 'Techsign', src: '/assets/brands/techsign.png', href: 'https://www.techsign.com.tr/' },
-  { name: 'TÜBİTAK', src: '/assets/brands/TUBITAK_logo.svg', href: 'https://www.tubitak.gov.tr/' },
+  { name: 'TÜBİTAK', src: '/assets/brands/tubitak-horiz-logo.webp', href: 'https://www.tubitak.gov.tr/' },
   { name: 'Akuakare', src: '/assets/brands/akuakare.webp', whiteSrc: '/assets/brands/akuakare-white.webp', href: 'https://akuakare.com/' },
 ]
 
