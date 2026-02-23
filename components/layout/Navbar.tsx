@@ -70,7 +70,7 @@ export default function Navbar() {
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
             ? 'backdrop-blur-xl bg-bg/80 border-b border-border-subtle shadow-lg shadow-black/10'
-            : 'bg-transparent'
+            : 'bg-bg/40 backdrop-blur-sm'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
