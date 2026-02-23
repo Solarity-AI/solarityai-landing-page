@@ -36,7 +36,7 @@ export default function Hero() {
   const { t } = useLanguage()
 
   return (
-    <section id="about" className="relative flex items-center justify-center min-h-screen overflow-hidden bg-bg">
+    <section id="about" className="relative flex items-center justify-center min-h-screen overflow-hidden bg-bg pt-[60px] md:pt-[72px]">
       {/* Animated gradient orbs */}
       <div
         className="hero-orb absolute top-[-20%] left-[-10%] w-[600px] h-[600px] rounded-full opacity-30 blur-[120px] pointer-events-none"
