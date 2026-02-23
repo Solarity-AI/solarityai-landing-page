@@ -1,4 +1,4 @@
-name: Deploy Static Website to AWS
+name: Deploy Next.js Website to AWS
 
 on:
   push:
@@ -12,13 +12,26 @@ permissions:
 
 jobs:
   deploy:
-    name: Deploy to S3 and Invalidate CloudFront
+    name: Build, Export and Deploy to S3 + CloudFront
     runs-on: ubuntu-latest
-    timeout-minutes: 10
-    
+    timeout-minutes: 15
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build and export static site
+        run: npm run build
+        # next.config.ts has output: 'export' — generates the out/ directory
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
@@ -30,58 +43,37 @@ jobs:
         run: |
           if [ -z "${{ secrets.AWS_ROLE_ARN }}" ]; then
             echo "❌ Error: AWS_ROLE_ARN secret is not set"
-            echo "Get the role ARN from Terraform output: terraform output github_actions_role_arn"
             exit 1
           fi
           if [ -z "${{ secrets.S3_BUCKET_NAME }}" ]; then
             echo "❌ Error: S3_BUCKET_NAME secret is not set"
-            echo "Get the bucket name from Terraform output: terraform output s3_bucket_id"
             exit 1
           fi
           if [ -z "${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}" ]; then
             echo "❌ Error: CLOUDFRONT_DISTRIBUTION_ID secret is not set"
-            echo "Get the distribution ID from Terraform output: terraform output cloudfront_distribution_id"
             exit 1
           fi
           echo "✅ All required secrets are set"
 
-      - name: Deploy to S3
+      - name: Deploy static assets to S3 (long cache)
         run: |
-          echo "📤 Uploading files to S3 bucket: ${{ secrets.S3_BUCKET_NAME }}"
-          
-          # Upload static assets (CSS, JS, images, fonts) with long cache
-          echo "📦 Uploading static assets (CSS, JS, images, fonts)..."
-          aws s3 sync . s3://${{ secrets.S3_BUCKET_NAME }}/ \
-            --exclude ".git/*" \
-            --exclude ".github/*" \
-            --exclude "ansible/*" \
-            --exclude "*.md" \
-            --exclude "**/*.md" \
-            --exclude ".gitignore" \
-            --exclude ".cursor/*" \
-            --exclude ".vscode/*" \
-            --exclude "*.bak" \
-            --exclude "*.backup" \
-            --exclude "TestCommit" \
+          echo "📦 Uploading static assets (JS, CSS, images, fonts)..."
+          aws s3 sync out/ s3://${{ secrets.S3_BUCKET_NAME }}/ \
             --exclude "*.html" \
             --exclude "robots.txt" \
             --exclude "sitemap.xml" \
-            --exclude "humans.txt" \
             --cache-control "public, max-age=31536000, immutable" \
             --delete
-          
-          # Upload HTML files and metadata files with shorter cache
+
+      - name: Deploy HTML and metadata to S3 (short cache)
+        run: |
           echo "📄 Uploading HTML files and metadata..."
-          aws s3 sync . s3://${{ secrets.S3_BUCKET_NAME }}/ \
+          aws s3 sync out/ s3://${{ secrets.S3_BUCKET_NAME }}/ \
             --exclude "*" \
             --include "*.html" \
             --include "robots.txt" \
             --include "sitemap.xml" \
-            --include "humans.txt" \
-            --cache-control "public, max-age=3600, must-revalidate" \
-            --delete
-          
-          echo "✅ Files uploaded successfully"
+            --cache-control "public, max-age=3600, must-revalidate"
 
       - name: Invalidate CloudFront cache
         run: |
@@ -91,18 +83,13 @@ jobs:
             --paths "/*" \
             --query 'Invalidation.Id' \
             --output text)
-          
-          echo "✅ CloudFront cache invalidation created: $INVALIDATION_ID"
-          echo "⏳ Waiting for invalidation to complete (this may take a few minutes)..."
-          
-          # Wait for invalidation to complete (with timeout)
+
+          echo "✅ Invalidation created: $INVALIDATION_ID"
           aws cloudfront wait invalidation-completed \
             --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} \
             --id $INVALIDATION_ID \
             --max-attempts 30 \
-            --delay 10 || echo "⚠️  Invalidation is in progress (may take 5-15 minutes to complete)"
-          
-          echo "✅ CloudFront cache invalidated"
+            --delay 10 || echo "⚠️  Invalidation in progress (may take 5-15 minutes)"
 
       - name: Deployment summary
         run: |
@@ -119,9 +106,7 @@ jobs:
           echo "- **Production:** https://solarityai.com" >> $GITHUB_STEP_SUMMARY
           echo "- **WWW:** https://www.solarityai.com" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "### ⏱️ Timeline" >> $GITHUB_STEP_SUMMARY
           echo "Changes will be live in 1-2 minutes after CloudFront propagation completes." >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "---" >> $GITHUB_STEP_SUMMARY
           echo "*Deployed via GitHub Actions using OIDC authentication*" >> $GITHUB_STEP_SUMMARY
-
