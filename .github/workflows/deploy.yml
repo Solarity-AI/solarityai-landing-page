@@ -3,7 +3,7 @@ name: Deploy Next.js Website to AWS
 on:
   push:
     branches:
-      - feature/nextjs-rewrite
+      - develop
   workflow_dispatch: # Allow manual trigger
 
 permissions:
