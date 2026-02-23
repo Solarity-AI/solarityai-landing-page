@@ -133,3 +133,15 @@ body {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
+
+/* Safari-specific performance overrides — Chrome unaffected */
+.is-safari .hero-orb {
+  filter: blur(40px);
+  animation: none;
+  will-change: auto;
+}
+
+.is-safari header {
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}

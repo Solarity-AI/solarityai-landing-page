@@ -39,7 +39,7 @@ export default function Hero() {
     <section id="about" className="relative flex items-center justify-center min-h-screen overflow-hidden bg-bg">
       {/* Animated gradient orbs */}
       <div
-        className="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] rounded-full opacity-30 blur-[120px] pointer-events-none"
+        className="hero-orb absolute top-[-20%] left-[-10%] w-[600px] h-[600px] rounded-full opacity-30 blur-[120px] pointer-events-none"
         style={{
           background: 'radial-gradient(circle, rgba(37,99,235,0.4) 0%, transparent 70%)',
           animation: 'float 20s ease-in-out infinite',
@@ -47,7 +47,7 @@ export default function Hero() {
         }}
       />
       <div
-        className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] rounded-full opacity-20 blur-[120px] pointer-events-none"
+        className="hero-orb absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] rounded-full opacity-20 blur-[120px] pointer-events-none"
         style={{
           background: 'radial-gradient(circle, rgba(139,92,246,0.4) 0%, transparent 70%)',
           animation: 'float 25s ease-in-out infinite reverse',

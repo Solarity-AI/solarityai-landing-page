@@ -58,6 +58,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
       <head>
+        {/* Safari detection — adds 'is-safari' class to <html> for CSS-scoped overrides */}
+        <script dangerouslySetInnerHTML={{ __html: `try{if(/^((?!chrome|android).)*safari/i.test(navigator.userAgent))document.documentElement.classList.add('is-safari')}catch(e){}` }} />
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-KPPM46EHP9"
           strategy="afterInteractive"
