@@ -2,6 +2,7 @@ import dynamic from 'next/dynamic'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import Hero from '@/components/sections/Hero'
+import HashScroller from '@/components/HashScroller'
 
 const About        = dynamic(() => import('@/components/sections/About'))
 const Partnerships = dynamic(() => import('@/components/sections/Partnerships'))
@@ -19,6 +20,7 @@ function SectionDivider() {
 export default function HomePage() {
   return (
     <>
+      <HashScroller />
       <Navbar />
       <main>
         <Hero />
