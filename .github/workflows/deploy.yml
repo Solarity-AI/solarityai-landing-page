@@ -20,19 +20,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build and export static site
-        run: npm run build
-        # next.config.ts has output: 'export' — generates the out/ directory
-
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -58,7 +45,7 @@ jobs:
       - name: Deploy static assets to S3 (long cache)
         run: |
           echo "📦 Uploading static assets (JS, CSS, images, fonts)..."
-          aws s3 sync out/ s3://${{ secrets.S3_BUCKET_NAME }}/ \
+          aws s3 sync legacy/ s3://${{ secrets.S3_BUCKET_NAME }}/ \
             --exclude "*.html" \
             --exclude "robots.txt" \
             --exclude "sitemap.xml" \
@@ -68,7 +55,7 @@ jobs:
       - name: Deploy HTML and metadata to S3 (short cache)
         run: |
           echo "📄 Uploading HTML files and metadata..."
-          aws s3 sync out/ s3://${{ secrets.S3_BUCKET_NAME }}/ \
+          aws s3 sync legacy/ s3://${{ secrets.S3_BUCKET_NAME }}/ \
             --exclude "*" \
             --include "*.html" \
             --include "robots.txt" \
