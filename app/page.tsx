@@ -1,15 +1,13 @@
-import dynamic from 'next/dynamic'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import Hero from '@/components/sections/Hero'
+import About from '@/components/sections/About'
+import Partnerships from '@/components/sections/Partnerships'
+import Products from '@/components/sections/Products'
+import Projects from '@/components/sections/Projects'
+import Team from '@/components/sections/Team'
+import Contact from '@/components/sections/Contact'
 import HashScroller from '@/components/HashScroller'
-
-const About        = dynamic(() => import('@/components/sections/About'))
-const Partnerships = dynamic(() => import('@/components/sections/Partnerships'))
-const Products     = dynamic(() => import('@/components/sections/Products'))
-const Projects     = dynamic(() => import('@/components/sections/Projects'))
-const Team         = dynamic(() => import('@/components/sections/Team'))
-const Contact      = dynamic(() => import('@/components/sections/Contact'))
 
 function SectionDivider() {
   return (
