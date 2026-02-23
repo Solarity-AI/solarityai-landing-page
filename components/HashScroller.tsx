@@ -7,21 +7,24 @@ export default function HashScroller() {
     const hash = window.location.hash
     if (!hash) return
 
-    let attempts = 0
-    const maxAttempts = 30
-
-    const tryScroll = () => {
+    const scrollToHash = () => {
       const el = document.querySelector(hash)
       if (el) {
-        el.scrollIntoView({ behavior: 'smooth' })
-      } else if (attempts < maxAttempts) {
-        attempts++
-        setTimeout(tryScroll, 100)
+        // instant: smooth scroll layout shift'ten etkileniyor
+        el.scrollIntoView({ behavior: 'instant' as ScrollBehavior })
       }
     }
 
-    // İlk denemeden önce kısa bir bekleme — layout'un oturması için
-    setTimeout(tryScroll, 50)
+    // Tüm görseller yüklenince scroll et — önce scroll edince
+    // yüklenmemiş görseller layout shift yapıp section'ı kaydırıyor
+    if (document.readyState === 'complete') {
+      // Başka sayfadan gelince zaten yüklü, bir sonraki frame'de scroll et
+      requestAnimationFrame(() => requestAnimationFrame(scrollToHash))
+    } else {
+      window.addEventListener('load', () => {
+        requestAnimationFrame(() => requestAnimationFrame(scrollToHash))
+      }, { once: true })
+    }
   }, [])
 
   return null
