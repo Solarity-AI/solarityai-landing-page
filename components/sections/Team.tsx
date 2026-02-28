@@ -118,12 +118,6 @@ const marketers: TeamMember[] = [
     linkedin: 'https://www.linkedin.com/in/lara-%C5%9Fen-409b61353',
   },
   {
-    name: 'Beril Damaci',
-    titleKey: 'teamMarketer',
-    image: '/assets/team/BerilDamaci.webp',
-    linkedin: 'https://www.linkedin.com/in/beril-damaci/',
-  },
-  {
     name: 'Hilal Genc',
     titleKey: 'teamMarketer',
     image: '/assets/team/HilalGenc.webp',
