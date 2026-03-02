@@ -25,11 +25,8 @@
   <!-- Canonical -->
   <link rel="canonical" href="https://www.solarityai.com/" />
 
-  <!-- Fonts (non-render-blocking) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" /></noscript>
+  <!-- Self-hosted fonts (Poppins 700 preloaded — it is the LCP element font) -->
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/poppins-700.woff2" />
 
   <!-- Favicon -->
   <link rel="icon" type="image/webp" href="/assets/logo/logo.webp" />
@@ -87,7 +84,7 @@
     <div class="nav-inner">
       <!-- Brand -->
       <a href="/" class="nav-brand" aria-label="Solarity AI — Home">
-        <img src="/assets/logo/logo.webp?v=20260207" alt="Solarity AI" width="44" height="44" />
+        <img src="/assets/logo/logo.webp?v=20260207" alt="Solarity AI" width="44" height="44" fetchpriority="high" />
         <span class="nav-brand-name">Solarity AI</span>
       </a>
 
@@ -390,7 +387,7 @@
       <!-- Everva -->
       <div class="partner-card fade-in-up stagger-5">
         <a href="https://everva.com.tr/" target="_blank" rel="noopener noreferrer" aria-label="Everva website">
-          <img class="partner-logo" src="/assets/brands/everva.webp" alt="Everva" width="160" height="35" loading="lazy" />
+          <img class="partner-logo" src="/assets/brands/everva.webp" alt="Everva" width="222" height="50" loading="lazy" />
         </a>
       </div>
 
