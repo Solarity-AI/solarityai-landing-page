@@ -1491,6 +1491,7 @@
           var paused   = false;
           var dragging = false;
           var setWidth = 0;
+          var cachedTrackW = 0;
 
           function getSetWidth() {
             var style = window.getComputedStyle(slider);
@@ -1501,7 +1502,7 @@
           // Thumb: sağdan çıkıp soldan girer (wrap-around)
           function updateScrollbar() {
             if (!scrollbar || !thumb || setWidth <= 0) return;
-            var trackW   = scrollbar.offsetWidth;
+            var trackW   = cachedTrackW;
             var progress = position / setWidth;           // 0–1
             // Thumb merkezi track boyunca döngüsel hareket eder
             var center   = progress * trackW;             // 0 – trackW
@@ -1541,6 +1542,7 @@
           function start() {
             getSetWidth();
             if (setWidth <= 0) { requestAnimationFrame(start); return; }
+            if (scrollbar) cachedTrackW = scrollbar.offsetWidth;
             if (!rafId) rafId = requestAnimationFrame(tick);
           }
 
@@ -1552,7 +1554,7 @@
           if (scrollbar) {
             scrollbar.addEventListener('click', function(e) {
               if (e.target === thumb || e.target === ghost) return;
-              var trackW   = scrollbar.offsetWidth;
+              var trackW   = cachedTrackW;
               var rect     = scrollbar.getBoundingClientRect();
               var clickX   = e.clientX - rect.left;
               var progress = Math.max(0, Math.min(0.9999, clickX / trackW));
@@ -1567,7 +1569,7 @@
             if (thumb) thumb.classList.add('dragging');
             if (ghost) ghost.classList.add('dragging');
             var startPos = position;
-            var trackW   = scrollbar ? scrollbar.offsetWidth : 300;
+            var trackW   = cachedTrackW || 300;
 
             return {
               move: function(clientX) {
@@ -1610,7 +1612,7 @@
           attachDrag(ghost);
 
           // Pencere boyutu değişirse genişliği yeniden hesapla
-          window.addEventListener('resize', function() { getSetWidth(); });
+          window.addEventListener('resize', function() { getSetWidth(); if (scrollbar) cachedTrackW = scrollbar.offsetWidth; });
 
           requestAnimationFrame(function() { requestAnimationFrame(start); });
         }
