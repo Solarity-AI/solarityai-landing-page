@@ -12,11 +12,19 @@
     body::-webkit-scrollbar{display:none!important;width:0!important;height:0!important;}
     body{scrollbar-width:none!important;}
     </style>
-    <style>html.lang-loading body{opacity:0;}html[lang="en"].lang-loading body{opacity:1;}main{display:flex!important;flex-direction:column!important}#about,#hakkimizda{order:1!important}#stats-section{order:2!important}main>section:not(#about):not(#hakkimizda):not(#stats-section){order:3!important}</style>
+    <style>
+    /* lang-loading: hide only non-hero translated text so LCP element (#about p) stays visible.
+       Hiding the whole body caused 2.5 s+ LCP render delays on slow devices. */
+    html.lang-loading [data-i18n]:not(#about [data-i18n]):not(#hakkimizda [data-i18n]):not(#stats-section [data-i18n]){ visibility:hidden }
+    /* Keep hero & stats fully visible for Largest Contentful Paint */
+    html.lang-loading #about [data-i18n],
+    html.lang-loading #hakkimizda [data-i18n],
+    html.lang-loading #stats-section [data-i18n]{ visibility:visible!important }
+    main{display:flex!important;flex-direction:column!important}#about,#hakkimizda{order:1!important}#stats-section{order:2!important}main>section:not(#about):not(#hakkimizda):not(#stats-section){order:3!important}</style>
     <!-- İlk boyamada animasyon yok; idle sonra aynı animasyonlar başlar (Lighthouse) -->
     <style>body{animation:none !important;backface-visibility:hidden}.animate-gradient{animation:none !important;transform:translateZ(0);backface-visibility:hidden}body.animations-ready{animation:gradient 15s ease infinite !important;will-change:background-position}.animations-ready .animate-gradient{animation:gradient 8s ease infinite !important;will-change:background-position;contain:paint;isolation:isolate}</style>
     <!-- LCP: stats-bar ilk paint'te tamamen statik; lang-loading sırasında da görünsün -->
-    <style>#stats-section{padding:0.1rem 0 0.35rem;min-height:0}@media(min-width:768px){#stats-section{padding:0.2rem 0 0.45rem;min-height:0}}.stats-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:0.6rem;max-width:52rem;margin:0 auto;opacity:1 !important;transform:none !important;animation:none !important;}@media(min-width:768px){.stats-bar{gap:1rem;max-width:58rem}}.stat-item{display:flex;flex-direction:column;align-items:center;text-align:center;min-width:5rem;padding:0}.stat-number{font-size:1.35rem;font-weight:700;color:#10b981;line-height:1;margin-bottom:0.04rem}@media(min-width:768px){.stat-number{font-size:1.65rem}}.stat-label{font-size:0.6875rem;color:#cbd5e1;font-weight:500;line-height:1.15}@media(min-width:768px){.stat-label{font-size:0.8125rem}}html.lang-loading #stats-section,html.lang-loading #stats-section *{opacity:1 !important;pointer-events:auto !important;}</style>
+    <style>#stats-section{padding:0.1rem 0 0.35rem;min-height:0}@media(min-width:768px){#stats-section{padding:0.2rem 0 0.45rem;min-height:0}}.stats-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:0.6rem;max-width:52rem;margin:0 auto;opacity:1 !important;transform:none !important;animation:none !important;}@media(min-width:768px){.stats-bar{gap:1rem;max-width:58rem}}.stat-item{display:flex;flex-direction:column;align-items:center;text-align:center;min-width:5rem;padding:0}.stat-number{font-size:1.35rem;font-weight:700;color:#10b981;line-height:1;margin-bottom:0.04rem}@media(min-width:768px){.stat-number{font-size:1.65rem}}.stat-label{font-size:0.6875rem;color:#cbd5e1;font-weight:500;line-height:1.15}@media(min-width:768px){.stat-label{font-size:0.8125rem}}</style>
     <script>
       (function(){
         try {
@@ -1428,7 +1436,13 @@
         function initNavScroll() {
           attachNavHandlers();
           requestAnimationFrame(function(){ updateHeaderOffset(); });
-          window.addEventListener('resize', updateHeaderOffset);
+          // rAF-throttle resize so getBoundingClientRect() is called at most once per frame
+          var _hdrRafPending = false;
+          window.addEventListener('resize', function() {
+            if (_hdrRafPending) return;
+            _hdrRafPending = true;
+            requestAnimationFrame(function() { _hdrRafPending = false; updateHeaderOffset(); });
+          });
           window.addEventListener('orientationchange', updateHeaderOffset);
           var nav = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
           var isReload = nav && nav.type === 'reload';
@@ -1492,11 +1506,15 @@
           var setWidth = 0;
           var cachedTrackW = 0;
 
-          function getSetWidth() {
-            var style = window.getComputedStyle(slider);
-            var gap = parseFloat(style.columnGap || style.gap || '24') || 24;
+          // Batch all layout reads into one function → single reflow instead of 3
+          function measureLayout() {
+            var gap = parseFloat(window.getComputedStyle(slider).columnGap) || 24;
             setWidth = setEl.offsetWidth + gap;
+            if (scrollbar) cachedTrackW = scrollbar.offsetWidth;
           }
+
+          // Keep legacy name so resize handler below can call it
+          function getSetWidth() { measureLayout(); }
 
           // Thumb: sağdan çıkıp soldan girer (wrap-around)
           function updateScrollbar() {
@@ -1539,9 +1557,8 @@
           }
 
           function start() {
-            getSetWidth();
+            measureLayout(); // one batched reflow: reads setEl.offsetWidth + scrollbar.offsetWidth
             if (setWidth <= 0) { requestAnimationFrame(start); return; }
-            if (scrollbar) cachedTrackW = scrollbar.offsetWidth;
             if (!rafId) rafId = requestAnimationFrame(tick);
           }
 
@@ -1610,8 +1627,13 @@
           attachDrag(thumb);
           attachDrag(ghost);
 
-          // Pencere boyutu değişirse genişliği yeniden hesapla
-          window.addEventListener('resize', function() { getSetWidth(); if (scrollbar) cachedTrackW = scrollbar.offsetWidth; });
+          // Pencere boyutu değişirse genişliği yeniden hesapla – rAF-throttled
+          var _sliderRafPending = false;
+          window.addEventListener('resize', function() {
+            if (_sliderRafPending) return;
+            _sliderRafPending = true;
+            requestAnimationFrame(function() { _sliderRafPending = false; measureLayout(); });
+          });
 
           requestAnimationFrame(function() { requestAnimationFrame(start); });
         }
