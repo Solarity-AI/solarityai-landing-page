@@ -233,6 +233,14 @@
       setTimeout(function() { setLanguage(lang); }, 100);
       return;
     }
+
+    // Increment generation: any async work still in flight from a previous call
+    // will see its captured myGen !== _langGen and bail out immediately.
+    var myGen = ++_langGen;
+
+    // Cancel the loading-fallback timer from any previous in-flight call right away
+    if (window._langLoadingFallback) { clearTimeout(window._langLoadingFallback); window._langLoadingFallback = null; }
+
     // Dil degisince sayfa ayni yerde kalsin: scroll (mutlak + oran) ve hash kaydet
     // Tıklamadan önce (mousedown/touchstart) kaydedilen pozisyon varsa onu kullan – focus scroll’u bozmasın
     var prior = window._langScrollBeforeSwitch;
@@ -305,14 +313,16 @@
     // Hash guncellemesi finishI18n'de yapilacak (scroll restore'dan sonra)
 
     setTimeout(function() {
+      if (myGen !== _langGen) return;
       updateNavigationLinks(lang);
       updateMapEmbedLang(lang);
       fixTeamPhotoSize(lang);
-      if (lang === 'tr') setTimeout(function() { fixTeamPhotoSize('tr'); }, 80);
+      if (lang === 'tr') setTimeout(function() { if (myGen === _langGen) fixTeamPhotoSize('tr'); }, 80);
       updateTeamMemberNames(lang);
     }, 0);
 
     setTimeout(function doHeavyI18n() {
+    if (myGen !== _langGen) return;
     log('🌐 Setting language to:', lang);
     if (!translationsObj || !translationsObj[lang]) {
       err('❌ Cannot translate - translations object or language not available!');
@@ -366,6 +376,7 @@
     var idx = 0;
     var CHUNK = 1;
     function runChunk() {
+      if (myGen !== _langGen) return;
       var end = Math.min(idx + CHUNK, elements.length);
       for (; idx < end; idx++) applyOne(elements[idx]);
       if (idx < elements.length) {
@@ -379,10 +390,12 @@
     setTimeout(runChunk, 0);
 
     function doRestI18n() {
+      if (myGen !== _langGen) return;
       var placeholders = document.querySelectorAll('[data-i18n-placeholder]');
       var chunkSize = 4;
       var pHIdx = 0;
       function runPlaceholderChunk() {
+        if (myGen !== _langGen) return;
         var end = Math.min(pHIdx + chunkSize, placeholders.length);
         for (; pHIdx < end; pHIdx++) {
           var el = placeholders[pHIdx];
@@ -398,10 +411,12 @@
       runPlaceholderChunk();
     }
     function step2() {
+      if (myGen !== _langGen) return;
       var htmlEls = document.querySelectorAll('[data-i18n-html]');
       var chunkSize = 4;
       var idx = 0;
       function runChunk() {
+        if (myGen !== _langGen) return;
         var end = Math.min(idx + chunkSize, htmlEls.length);
         for (; idx < end; idx++) {
           var el = htmlEls[idx];
@@ -414,10 +429,12 @@
       runChunk();
     }
     function step3() {
+      if (myGen !== _langGen) return;
       var ariaEls = document.querySelectorAll('[data-i18n-aria-label]');
       var chunkSize = 4;
       var idx = 0;
       function runChunk() {
+        if (myGen !== _langGen) return;
         var end = Math.min(idx + chunkSize, ariaEls.length);
         for (; idx < end; idx++) {
           var el = ariaEls[idx];
@@ -430,10 +447,12 @@
       runChunk();
     }
     function step4() {
+      if (myGen !== _langGen) return;
       var titleEls = document.querySelectorAll('[data-i18n-title]');
       var chunkSize = 4;
       var idx = 0;
       function runChunk() {
+        if (myGen !== _langGen) return;
         var end = Math.min(idx + chunkSize, titleEls.length);
         for (; idx < end; idx++) {
           var el = titleEls[idx];
@@ -446,6 +465,7 @@
       runChunk();
     }
     function step5() {
+      if (myGen !== _langGen) return;
       try {
         var sk = 'statsSupportNumber';
         if (translationsObj[lang] && translationsObj[lang][sk]) {
@@ -465,6 +485,7 @@
       var cfar = document.getElementById("careersFormAutoresponse");
       if (cfar && translationsObj[lang] && translationsObj[lang]["careersFormAutoresponse"]) cfar.value = translationsObj[lang]["careersFormAutoresponse"];
       setTimeout(function finishI18n() {
+        if (myGen !== _langGen) return;
         scrollPinEnd = 0;
         if (window._langLoadingFallback) { clearTimeout(window._langLoadingFallback); window._langLoadingFallback = null; }
         document.documentElement.classList.remove("lang-loading");
@@ -498,6 +519,10 @@
     }
     }, 0);
   }
+
+  // Generation counter: each setLanguage call gets a unique ID so stale async
+  // callbacks from previous (cancelled) calls can detect they are outdated and bail out.
+  var _langGen = 0;
 
   // Track if button listener is set up
   let buttonListenerSetup = false;
