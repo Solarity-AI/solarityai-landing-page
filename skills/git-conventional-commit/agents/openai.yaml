@@ -1,0 +1,4 @@
+interface:
+  display_name: "Conventional Commit"
+  short_description: "Create one-line conventional Git commits safely"
+  default_prompt: "Use $git-conventional-commit to stage, split, and commit changes with one-line conventional messages."
