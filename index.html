@@ -12,7 +12,7 @@
     body::-webkit-scrollbar{display:none!important;width:0!important;height:0!important;}
     body{scrollbar-width:none!important;}
     </style>
-    <style>html.lang-loading body{opacity:0;}main{display:flex;flex-direction:column}#about,#hakkimizda{order:1}#stats-section{order:2}main>section:not(#about):not(#hakkimizda):not(#stats-section){order:3}</style>
+    <style>html.lang-loading body{opacity:0;}html[lang="en"].lang-loading body{opacity:1;}main{display:flex;flex-direction:column}#about,#hakkimizda{order:1}#stats-section{order:2}main>section:not(#about):not(#hakkimizda):not(#stats-section){order:3}</style>
     <!-- İlk boyamada animasyon yok; idle sonra aynı animasyonlar başlar (Lighthouse) -->
     <style>body{animation:none !important;backface-visibility:hidden}.animate-gradient{animation:none !important;transform:translateZ(0);backface-visibility:hidden}body.animations-ready{animation:gradient 15s ease infinite !important;will-change:background-position}.animations-ready .animate-gradient{animation:gradient 8s ease infinite !important;will-change:background-position;contain:paint;isolation:isolate}</style>
     <!-- LCP: stats-bar ilk paint'te tamamen statik; lang-loading sırasında da görünsün -->

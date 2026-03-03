@@ -213,7 +213,15 @@
     if (_languageInitialized) return;
     _languageInitialized = true;
     setupLanguageSwitcher();
-    setLanguage(currentLang);
+    // EN içerik varsayılan olarak HTML'de hazır; ilk boyamada tekrar çeviri yapıp
+    // LCP metnini yeniden boyamamak için yalnızca TR'de full i18n çalıştır.
+    if (currentLang === 'tr') {
+      setLanguage(currentLang);
+    } else {
+      updateSectionIds('en');
+      updateMetaTags('en', window.location.pathname);
+      document.documentElement.classList.remove('lang-loading');
+    }
     updateLanguageSwitcher();
   }
 
@@ -821,7 +829,7 @@
       }
       
       const translationsObj = window.translations || (typeof translations !== 'undefined' ? translations : null);
-      if (shouldRetranslate && translationsObj) {
+      if (shouldRetranslate && translationsObj && currentLang === 'tr') {
         setTimeout(function() {
           log('🔄 Retranslating due to DOM changes');
           setLanguage(currentLang);
@@ -838,17 +846,6 @@
     }, 1000);
   }
   
-  // Force retranslation after animations (WOW.js typically finishes around 1-2 seconds)
-  setTimeout(function() {
-    const translationsObj = window.translations || (typeof translations !== 'undefined' ? translations : null);
-    if (translationsObj) {
-      log('=== FINAL TRANSLATION CHECK AFTER ANIMATIONS ===');
-      setLanguage(currentLang);
-    } else {
-      err('❌ Translations not available for final check!');
-    }
-  }, 2000);
-
   // Expose other functions globally (toggleLanguage already exposed above)
   window.setLanguage = setLanguage;
   window.getCurrentLanguage = () => currentLang;
