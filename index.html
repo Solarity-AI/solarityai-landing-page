@@ -211,7 +211,11 @@
         max-width: 100% !important;
         margin-left: 0 !important;
         margin-right: 0 !important;
-        font-size: clamp(1.125rem, 2.8vw + .75rem, 2.2rem) !important;
+      }
+      @media (max-width: 1024px) {
+        #about .container>h1, #hakkimizda .container>h1, section[data-section-en="about"] .container>h1 {
+          font-size: clamp(1.125rem, 2.8vw + .75rem, 1.75rem) !important;
+        }
       }
       @media (max-width: 767px) {
         #about .container>h1, #hakkimizda .container>h1 {
