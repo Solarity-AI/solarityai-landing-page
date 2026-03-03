@@ -223,13 +223,6 @@
   document.addEventListener("DOMContentLoaded", function () {
     // Set initial active menu item
     onScroll();
-    
-    // Add loading animation
-    document.body.style.opacity = "0";
-    setTimeout(() => {
-      document.body.style.transition = "opacity 0.5s ease";
-      document.body.style.opacity = "1";
-    }, 100);
   });
 
   // === LinkedIn Profile Click Tracking ===
