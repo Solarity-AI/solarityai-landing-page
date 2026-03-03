@@ -183,23 +183,67 @@
         }
       }
     </style>
-    <!-- Hero bölümü: üst boşluk + CTA üst/alt boşluk eşit -->
+    <!-- Hero + partner: main.min.css ile aynı final değerler → async CSS yüklenince CLS olmaz -->
     <style id="hero-section-padding">
       #about, #hakkimizda, section[data-section-en="about"] {
         padding-top: 3.5rem !important;
-        padding-bottom: 0 !important;
+        padding-bottom: 2rem !important;
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+        box-sizing: border-box !important;
       }
       @media (min-width: 768px) {
         #about, #hakkimizda, section[data-section-en="about"] {
           padding-top: 4.5rem !important;
-          padding-bottom: 0 !important;
+          padding-bottom: 3rem !important;
         }
+      }
+      #about .container, #hakkimizda .container, section[data-section-en="about"] .container {
+        text-align: center !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+      }
+      #about .container>h1, #hakkimizda .container>h1, section[data-section-en="about"] .container>h1 {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        font-size: clamp(1.125rem, 2.8vw + .75rem, 2.2rem) !important;
+      }
+      @media (max-width: 767px) {
+        #about .container>h1, #hakkimizda .container>h1 {
+          font-size: clamp(1rem, 4vw + .5rem, 1.4rem) !important;
+        }
+      }
+      @media (max-width: 480px) {
+        #about .container>h1, #hakkimizda .container>h1 {
+          font-size: clamp(1rem, 4.5vw + .5rem, 1.35rem) !important;
+        }
+      }
+      #about .container>.hero-cta-wrap, #about .container>p,
+      #hakkimizda .container>.hero-cta-wrap, #hakkimizda .container>p,
+      section[data-section-en="about"] .container>.hero-cta-wrap, section[data-section-en="about"] .container>p {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        text-align: center !important;
+      }
+      #partnerships .partner-logo-card {
+        flex-shrink: 0;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        padding: .5rem 1rem !important;
+        opacity: .8;
       }
       .hero-cta-wrap {
         margin-top: 2.5rem;
         margin-bottom: 2.5rem;
       }
-      /* CTA ile stats arası boşluk sadece CTA margin olsun (eşit görünsün) */
       #stats-section { padding-top: 0 !important; }
       @media (min-width: 768px) {
         #stats-section { padding-top: 0 !important; }
