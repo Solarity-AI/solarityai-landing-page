@@ -245,8 +245,6 @@
     if (hadHash) {
       try { window.history.replaceState(null, "", window.location.pathname + window.location.search); } catch (e) {}
     }
-    // Hemen mevcut scroll’u hedefe çek – focus vb. scroll’u bozmuşsa düzelt
-    var scrollbarW = window.innerWidth - document.documentElement.clientWidth;
     document.documentElement.style.scrollBehavior = 'auto';
     // Scroll bar'ı korumak için body'yi kilitlemiyoruz - sadece scroll'u kaydedip restore ediyoruz
     // position: fixed KULLANMIYORUZ çünkü scroll bar'ı kaybettirir
