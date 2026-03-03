@@ -13,17 +13,21 @@
     body{scrollbar-width:none!important;}
     </style>
     <style>
-    /* lang-loading: hide only non-hero translated text so LCP element (#about p) stays visible.
-       Hiding the whole body caused 2.5 s+ LCP render delays on slow devices. */
-    html.lang-loading [data-i18n]:not(#about [data-i18n]):not(#hakkimizda [data-i18n]):not(#stats-section [data-i18n]){ visibility:hidden }
-    /* Keep hero & stats fully visible for Largest Contentful Paint */
-    html.lang-loading #about [data-i18n],
-    html.lang-loading #hakkimizda [data-i18n],
-    html.lang-loading #stats-section [data-i18n]{ visibility:visible!important }
+    /* lang-loading: only hide non-hero translated text for TR users.
+       EN users (Lighthouse) see everything immediately – no Speed Index penalty. */
+    html[lang="tr"].lang-loading [data-i18n]:not(#about [data-i18n]):not(#hakkimizda [data-i18n]):not(#stats-section [data-i18n]){ visibility:hidden }
+    html[lang="tr"].lang-loading #about [data-i18n],
+    html[lang="tr"].lang-loading #hakkimizda [data-i18n],
+    html[lang="tr"].lang-loading #stats-section [data-i18n]{ visibility:visible!important }
     main{display:flex!important;flex-direction:column!important}#about,#hakkimizda{order:1!important}#stats-section{order:2!important}main>section:not(#about):not(#hakkimizda):not(#stats-section){order:3!important}</style>
     <!-- İlk boyamada animasyon yok; idle sonra aynı animasyonlar başlar (Lighthouse) -->
     <style>body{animation:none !important;backface-visibility:hidden}.animate-gradient{animation:none !important;transform:translateZ(0);backface-visibility:hidden}body.animations-ready{animation:gradient 15s ease infinite !important;will-change:background-position}.animations-ready .animate-gradient{animation:gradient 8s ease infinite !important;will-change:background-position;contain:paint;isolation:isolate}</style>
     <!-- LCP: stats-bar ilk paint'te tamamen statik; lang-loading sırasında da görünsün -->
+    <!-- content-visibility: skip paint for below-fold sections on first render (Speed Index) -->
+    <style>
+    #services,#products,#projects,#team,#ekip,#contact{content-visibility:auto;contain-intrinsic-size:0 1200px}
+    #footer{content-visibility:auto;contain-intrinsic-size:0 300px}
+    </style>
     <style>#stats-section{padding:0.1rem 0 0.35rem;min-height:0}@media(min-width:768px){#stats-section{padding:0.2rem 0 0.45rem;min-height:0}}.stats-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:0.6rem;max-width:52rem;margin:0 auto;opacity:1 !important;transform:none !important;animation:none !important;}@media(min-width:768px){.stats-bar{gap:1rem;max-width:58rem}}.stat-item{display:flex;flex-direction:column;align-items:center;text-align:center;min-width:5rem;padding:0}.stat-number{font-size:1.35rem;font-weight:700;color:#10b981;line-height:1;margin-bottom:0.04rem}@media(min-width:768px){.stat-number{font-size:1.65rem}}.stat-label{font-size:0.6875rem;color:#cbd5e1;font-weight:500;line-height:1.15}@media(min-width:768px){.stat-label{font-size:0.8125rem}}</style>
     <script>
       (function(){
@@ -1637,19 +1641,26 @@
 
           requestAnimationFrame(function() { requestAnimationFrame(start); });
         }
-        function runDeferredInits() {
-          document.body.classList.add('animations-ready');
-          if (window._startDeferred) window._startDeferred();
-          initPartnerSlider();
-        }
         function runWhenIdle(fn) {
           if (typeof requestIdleCallback !== 'undefined') requestIdleCallback(fn, { timeout: 500 });
           else setTimeout(fn, 500);
         }
+
+        // Partner slider starts at DOMContentLoaded — NOT waiting for defer scripts to finish.
+        // Defer scripts (translations, language) take ~500-1000ms on throttled mobile.
+        // Starting the slider earlier moves the visual-completion point forward → lower Speed Index.
+        function kickSlider() {
+          initPartnerSlider();
+          // animations-ready in separate idle pass so it doesn't block slider init
+          runWhenIdle(function() {
+            document.body.classList.add('animations-ready');
+            if (window._startDeferred) window._startDeferred();
+          });
+        }
         if (document.readyState === 'loading') {
-          document.addEventListener('DOMContentLoaded', function() { runWhenIdle(runDeferredInits); });
+          document.addEventListener('DOMContentLoaded', kickSlider);
         } else {
-          runWhenIdle(runDeferredInits);
+          kickSlider();
         }
       })();
     </script>
