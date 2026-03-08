@@ -1,0 +1,14 @@
+.git/
+.gitignore
+node_modules/
+ansible/
+tests/
+scripts/
+*.md
+playwright.config.js
+purgecss.config.js
+tailwind.config.js
+next-env.d.ts
+package.json
+package-lock.json
+server.js
