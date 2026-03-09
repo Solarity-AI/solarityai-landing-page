@@ -31,6 +31,7 @@ server {
     add_header X-Content-Type-Options "nosniff" always;
     add_header X-XSS-Protection "1; mode=block" always;
     add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+    add_header cf-email-decoding "off" always;
 
     # Gzip compression for faster transfer
     gzip on;
@@ -56,23 +57,39 @@ server {
         image/svg+xml
         image/x-icon;
 
-    # HTML files - always fetch fresh
+    # HTML files - short cache for faster repeat navigations without stale content
     location ~* \.html$ {
-        expires -1;
-        add_header Cache-Control "no-store, no-cache, must-revalidate, max-age=0" always;
-        add_header Pragma "no-cache" always;
+        expires 1h;
+        add_header Cache-Control "public, max-age=3600, must-revalidate" always;
     }
 
     # Static assets caching (CSS, JS, images, fonts)
     location ~* \.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot|webp|avif)$ {
         expires 1y;
-        add_header Cache-Control "public, max-age=31536000, immutable";
+        add_header Cache-Control "public, max-age=31536000, immutable" always;
         access_log off;
+    }
+
+    location = /robots.txt {
+        expires 1d;
+        add_header Cache-Control "public, max-age=86400, must-revalidate" always;
+    }
+
+    location = /sitemap.xml {
+        expires 1d;
+        add_header Cache-Control "public, max-age=86400, must-revalidate" always;
+    }
+
+    location = /humans.txt {
+        expires 1d;
+        add_header Cache-Control "public, max-age=86400, must-revalidate" always;
     }
 
     # Main location - serve static files
     location / {
         try_files $uri $uri/ /index.html;
+        expires 1h;
+        add_header Cache-Control "public, max-age=3600, must-revalidate" always;
     }
 
     # Health check endpoint (optional)

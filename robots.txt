@@ -1,16 +1,7 @@
-# robots.txt for Solarity AI
-# https://solarityai.com/robots.txt
-
 User-agent: *
 Allow: /
-
-# Disallow admin and private areas (if any)
 Disallow: /admin/
 Disallow: /private/
 Disallow: /api/
-
-# Cloudflare: Disable email obfuscation
-User-agent: Cloudflare
-Disallow: /cdn-cgi/
 
 Sitemap: https://solarityai.com/sitemap.xml

@@ -33,13 +33,17 @@ const MIME = {
 };
 
 const LONG_CACHE = 'public, max-age=31536000, immutable';
-const NO_CACHE = 'public, max-age=0, must-revalidate';
+const HTML_CACHE = 'public, max-age=3600, must-revalidate';
+const METADATA_CACHE = 'public, max-age=86400, must-revalidate';
 
 function getCacheControl(filePath) {
   const ext = path.extname(filePath);
   const base = path.basename(filePath);
-  if (ext === '.html' || base === 'robots.txt' || base === 'sitemap.xml' || base === 'humans.txt') {
-    return NO_CACHE;
+  if (ext === '.html') {
+    return HTML_CACHE;
+  }
+  if (base === 'robots.txt' || base === 'sitemap.xml' || base === 'humans.txt') {
+    return METADATA_CACHE;
   }
   return LONG_CACHE;
 }
@@ -97,6 +101,8 @@ function serveFile(req, filePath, res) {
   const headers = {
     'Content-Type': contentType,
     'Cache-Control': cacheControl,
+    'cf-email-decoding': 'off',
+    'Vary': 'Accept-Encoding',
   };
   if (useGzip) {
     headers['Content-Encoding'] = 'gzip';
