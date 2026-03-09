@@ -13,51 +13,21 @@
     body::-webkit-scrollbar{display:none!important;width:0!important;height:0!important;}
     html{scrollbar-width:auto!important;scrollbar-color:#10b981 #0f172a!important;}
     body{scrollbar-width:none!important;}
-    html.lang-loading body{opacity:0;pointer-events:none;}
     </style>
-    <script>
-    (function() {
-      var html = document.documentElement;
-      var body = document.body || document.createElement('body');
-      function forceScrollbar() {
-        html.style.setProperty('overflow-y', 'scroll', 'important');
-        html.style.setProperty('overflow-x', 'hidden', 'important');
-        html.style.setProperty('height', '100%', 'important');
-        if (body) {
-          body.style.setProperty('overflow', 'visible', 'important');
-          body.style.setProperty('height', '100%', 'important');
-        }
-      }
-      forceScrollbar();
-      document.addEventListener('DOMContentLoaded', forceScrollbar);
-      window.addEventListener('load', forceScrollbar);
-      var observer = new MutationObserver(forceScrollbar);
-      observer.observe(html, { attributes: true, attributeFilter: ['style', 'class'] });
-      if (body) observer.observe(body, { attributes: true, attributeFilter: ['style', 'class'] });
-      function checkLoop() {
-        forceScrollbar();
-        requestAnimationFrame(checkLoop);
-      }
-      checkLoop();
-    })();
-    </script>
     <script>
       (function(){
         try {
           var L = localStorage.getItem('solarityai-lang');
           if (L === 'tr') document.documentElement.setAttribute('lang','tr');
-          else if (L === 'en' || !L) document.documentElement.setAttribute('lang','en');
-        } catch(e){}
-        document.documentElement.classList.add('lang-loading');
-        setTimeout(function(){ document.documentElement.classList.remove('lang-loading'); }, 400);
+          else document.documentElement.setAttribute('lang','en');
+        } catch(e){
+          document.documentElement.setAttribute('lang','en');
+        }
       })();
     </script>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-    <meta http-equiv="Pragma" content="no-cache" />
-    <meta http-equiv="Expires" content="0" />
     <title>Solarity AI - Blog</title>
     <meta name="title" content="Solarity AI - Blog">
     <meta name="description" content="News, insights and updates from Solarity AI. AI, software development and company updates.">
@@ -200,6 +170,23 @@
 
       #languageSwitcher, #languageSwitcherMobile { display: inline-flex; align-items: center; gap: 6px; transition: all 0.3s ease; }
       #languageSwitcher:hover, #languageSwitcherMobile:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3); }
+    </style>
+    <style>
+      @media (max-width: 1024px) {
+        body,
+        body.animations-ready {
+          animation: none !important;
+          background-attachment: scroll !important;
+        }
+        body::before {
+          position: absolute !important;
+        }
+        .ud-header,
+        .blog-card {
+          -webkit-backdrop-filter: none !important;
+          backdrop-filter: none !important;
+        }
+      }
     </style>
 </head>
 <body id="top" class="text-slate-200 lang-en" style="background: #0a192f;">

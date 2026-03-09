@@ -18,8 +18,7 @@
     html[lang="tr"].lang-loading [data-i18n]:not(#about [data-i18n]):not(#hakkimizda [data-i18n]):not(#stats-section [data-i18n]){ visibility:hidden }
     html[lang="tr"].lang-loading #about [data-i18n],
     html[lang="tr"].lang-loading #hakkimizda [data-i18n],
-    html[lang="tr"].lang-loading #stats-section [data-i18n]{ visibility:visible!important }
-    main{display:flex!important;flex-direction:column!important}#about,#hakkimizda{order:1!important}#stats-section{order:2!important}main>section:not(#about):not(#hakkimizda):not(#stats-section){order:3!important}</style>
+    html[lang="tr"].lang-loading #stats-section [data-i18n]{ visibility:visible!important }</style>
     <!-- İlk boyamada animasyon yok; idle sonra aynı animasyonlar başlar (Lighthouse) -->
     <style>body{animation:none !important;backface-visibility:hidden}.animate-gradient{animation:none !important;transform:translateZ(0);backface-visibility:hidden}body.animations-ready{animation:gradient 15s ease infinite !important;will-change:background-position}.animations-ready .animate-gradient{animation:gradient 8s ease infinite !important;will-change:background-position;contain:paint;isolation:isolate}</style>
     <!-- LCP: stats-bar ilk paint'te tamamen statik; lang-loading sırasında da görünsün -->
@@ -40,17 +39,20 @@
       (function(){
         try {
           var L = localStorage.getItem('solarityai-lang');
-          if (L === 'tr') document.documentElement.setAttribute('lang','tr');
-          else if (L === 'en' || !L) document.documentElement.setAttribute('lang','en');
-        } catch(e){}
-        document.documentElement.classList.add('lang-loading');
-        setTimeout(function(){ document.documentElement.classList.remove('lang-loading'); }, 100);
+          if (L === 'tr') {
+            document.documentElement.setAttribute('lang','tr');
+            document.documentElement.classList.add('lang-loading');
+            setTimeout(function(){ document.documentElement.classList.remove('lang-loading'); }, 1500);
+          } else {
+            document.documentElement.setAttribute('lang','en');
+          }
+        } catch(e){
+          document.documentElement.setAttribute('lang','en');
+        }
       })();
     </script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- no-store kaldırıldı: geri-ileri önbelleği (bfcache) çalışabilsin -->
-    <meta http-equiv="Cache-Control" content="no-cache, must-revalidate" />
     <!-- VERSION: 2026-01-28-FLAGS-UPDATED -->
     <!-- Primary Meta Tags (default: English for first load, sharing & search) -->
     <title>Solarity AI - Home</title>
@@ -90,9 +92,7 @@
 
     <!-- Cloudflare: Disable email obfuscation (prevents email-decode.min.js) -->
     <meta name="cfemail" content="off" />
-    <meta http-equiv="Cache-Control" content="public, max-age=31536000, immutable" />
-    <!-- Performance: preconnect/dns-prefetch for key origins (≤4 hints). gtag loads on consent; prefetch reduces latency when user accepts. -->
-    <link rel="preconnect" href="https://calendar.google.com" crossorigin />
+    <!-- Performance: gtag loads on consent; prefetch reduces latency when user accepts. -->
     <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
     <!-- Performance: preload LCP logo (mobile first – 120w) -->
     <link rel="preload" as="image" href="assets/images/logo/CompanyLogo-120w.webp" type="image/webp" imagesrcset="assets/images/logo/CompanyLogo-120w.webp 120w, assets/images/logo/CompanyLogo-180w.webp 180w" imagesizes="(max-width: 1024px) 120px, 180px" />
@@ -313,6 +313,26 @@
         });
       })();
     </script>
+    <style>
+      @media (max-width: 1024px) {
+        body,
+        body.animations-ready {
+          animation: none !important;
+          background-attachment: scroll !important;
+        }
+        .animations-ready .animate-gradient {
+          animation: none !important;
+        }
+        body::before {
+          position: absolute !important;
+        }
+        .ud-header {
+          -webkit-backdrop-filter: none !important;
+          backdrop-filter: none !important;
+          background: rgba(15, 23, 42, 0.96) !important;
+        }
+      }
+    </style>
 </head>
 
 <body id="top" class="text-slate-200 lang-en" style="background: #0a192f;">
@@ -446,6 +466,26 @@
     </script>
 
     <main id="main-content">
+    <section id="about" data-section-tr="hakkimizda" data-section-en="about" class="pt-20 pb-0 md:pb-2 md:pt-28 px-4 md:px-12" aria-label="Hero">
+        <div class="container mx-auto text-center">
+            <h1 class="text-4xl md:text-6xl font-bold font-display mb-4 text-white">
+                <span class="emoji-lightning">⚡</span><span class="bg-clip-text text-transparent animate-gradient" style="background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 50%, #1e40af 100%); background-size: 200% 200%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;" data-i18n="aboutTitle">
+                                    AI-Native Software Company
+                                </span><span class="emoji-lightning">⚡</span>
+            </h1>
+            <p class="text-lg md:text-xl text-slate-300 max-w-3xl mx-auto mb-6" data-i18n="aboutSubtitle">
+              🔥 Creating the world’s highest-quality B2B and B2C solutions for YOU 🔥
+            </p>
+            <p class="text-lg md:text-xl text-slate-300 max-w-3xl mx-auto mb-6" data-i18n="heroMVP">
+              🏎️ Your MVP is ready in 1 Week 🏎️
+            </p>
+
+            <!-- CTA: ortada, üst ve alt boşluk eşit -->
+            <div class="hero-cta-wrap flex justify-center">
+                <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2qgXk0ZfBd6QJf7ef-306in7AI0Kzc-pL3NJFK1fU74vAUGiftVJPF3-DoXp9_RZoyqW_sjSpI" target="_blank" rel="noopener noreferrer" class="bannerCTA-hero nav-cta-same inline-flex items-center justify-center gap-1.5 md:gap-2 px-4 py-2.5 md:px-5 md:py-3 rounded-lg md:rounded-xl font-bold text-sm md:text-base text-center transition-all" data-i18n="bannerCTA">🚀 Book a call with our CEO 🚀</a>
+            </div>
+        </div>
+    </section>
     <section id="stats-section" class="stats-section">
             <div class="stats-bar">
                 <div class="stat-item">
@@ -472,26 +512,6 @@
                     <div class="stat-label" data-i18n="statsGlobalPartners">Global Partners</div>
                 </div>
             </div>
-    </section>
-    <section id="about" data-section-tr="hakkimizda" data-section-en="about" class="pt-20 pb-0 md:pb-2 md:pt-28 px-4 md:px-12" aria-label="Hero">
-        <div class="container mx-auto text-center">
-            <h1 class="text-4xl md:text-6xl font-bold font-display mb-4 text-white">
-                <span class="emoji-lightning">⚡</span><span class="bg-clip-text text-transparent animate-gradient" style="background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 50%, #1e40af 100%); background-size: 200% 200%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;" data-i18n="aboutTitle">
-                                    AI-Native Software Company
-                                </span><span class="emoji-lightning">⚡</span>
-            </h1>
-            <p class="text-lg md:text-xl text-slate-300 max-w-3xl mx-auto mb-6" data-i18n="aboutSubtitle">
-              🔥 Creating the world’s highest-quality B2B and B2C solutions for YOU 🔥
-            </p>
-            <p class="text-lg md:text-xl text-slate-300 max-w-3xl mx-auto mb-6" data-i18n="heroMVP">
-              🏎️ Your MVP is ready in 1 Week 🏎️
-            </p>
-
-            <!-- CTA: ortada, üst ve alt boşluk eşit -->
-            <div class="hero-cta-wrap flex justify-center">
-                <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2qgXk0ZfBd6QJf7ef-306in7AI0Kzc-pL3NJFK1fU74vAUGiftVJPF3-DoXp9_RZoyqW_sjSpI" target="_blank" rel="noopener noreferrer" class="bannerCTA-hero nav-cta-same inline-flex items-center justify-center gap-1.5 md:gap-2 px-4 py-2.5 md:px-5 md:py-3 rounded-lg md:rounded-xl font-bold text-sm md:text-base text-center transition-all" data-i18n="bannerCTA">🚀 Book a call with our CEO 🚀</a>
-            </div>
-        </div>
     </section>
     <section id="partnerships" data-section-tr="ortakliklar" data-section-en="partnerships" class="py-16 px-4 md:px-12 bg-slate-900/30">
         <div class="container mx-auto">
@@ -1091,7 +1111,7 @@
                         <div class="contact-info-box p-4 rounded-xl bg-slate-800/80 border border-slate-600 border-l-4 border-l-amber-400 shadow-sm hover:border-amber-400/50 transition-colors" style="display:grid;grid-template-columns:4rem 1fr;grid-template-rows:auto auto;gap:0.125rem 1rem;align-items:start;">
                             <span style="grid-column:1;grid-row:1/span 2;width:4rem;min-height:4rem;height:100%;border-radius:0.75rem;background:rgba(250,204,21,0.15);color:#facc15;display:flex;align-items:center;justify-content:center;" aria-hidden="true"><i class="lni lni-envelope" style="font-size:1.75rem;"></i></span>
                             <p class="text-slate-500 leading-tight" style="grid-column:2;grid-row:1;margin:0;font-size:1rem;" data-i18n="contactEmail">Email us</p>
-                            <a href="mailto:ata.turhan@solarityai.com" class="contact-email text-lg font-semibold text-slate-100 hover:text-amber-300 transition-colors leading-snug" style="grid-column:2;grid-row:2;margin:0;margin-top:0.125rem;min-width:0;max-width:100%;">ata.turhan@solarityai.com</a>
+                            <a href="#" class="contact-email js-email-link text-lg font-semibold text-slate-100 hover:text-amber-300 transition-colors leading-snug" data-email-user="ata.turhan" data-email-domain="solarityai.com" style="grid-column:2;grid-row:2;margin:0;margin-top:0.125rem;min-width:0;max-width:100%;">ata.turhan [at] solarityai.com</a>
                         </div>
                         <div class="contact-info-box p-4 rounded-xl bg-slate-800/80 border border-slate-600 border-l-4 border-l-orange-500 shadow-sm hover:border-orange-500/50 transition-colors" style="display:grid;grid-template-columns:4rem 1fr;grid-template-rows:auto auto;gap:0.125rem 1rem;align-items:start;">
                             <span style="grid-column:1;grid-row:1/span 2;width:4rem;min-height:4rem;height:100%;border-radius:0.75rem;background:rgba(249,115,22,0.15);color:#f97316;display:flex;align-items:center;justify-content:center;" aria-hidden="true"><i class="lni lni-map-marker" style="font-size:1.75rem;"></i></span>
@@ -1240,6 +1260,18 @@
     <!-- Footer sosyal gap: CSS media query ile yönetilir (JS reflow yok) -->
     
     <!-- Scripts: language.min.js tek kez yüklenir, dil init tek kez çalışır (TBT) -->
+    <script>
+        (function() {
+            document.querySelectorAll('.js-email-link[data-email-user][data-email-domain]').forEach(function(link) {
+                var user = link.getAttribute('data-email-user');
+                var domain = link.getAttribute('data-email-domain');
+                if (!user || !domain) return;
+                var email = user + '@' + domain;
+                link.href = 'mailto:' + email;
+                link.textContent = email;
+            });
+        })();
+    </script>
     <script>
         window.invokeToggleLanguage = function() {
             if (window && typeof window.toggleLanguage === 'function') window.toggleLanguage();
