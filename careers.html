@@ -89,7 +89,7 @@
     <link rel="stylesheet" href="assets/css/tailwind.css" />
 
     <!-- Google Fonts: loaded after window.load (off critical path, font-display: optional) -->
-    <noscript><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" /></noscript>
+    <noscript><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" /></noscript>
 
     <!-- Critical CSS: above-the-fold inline -->
     <style id="critical-css">:root{--font-primary:'Inter',-apple-system,sans-serif;--font-secondary:'Poppins',sans-serif;--color-dark-bg:#0f172a;--color-text-primary:#f8fafc;--color-text-secondary:#cbd5e1;--brand-space:clamp(200px,20vw,340px)}*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth;overflow-x:hidden;overflow-y:scroll;scrollbar-gutter:stable;max-width:100vw}body{font-family:var(--font-primary);color:var(--color-text-secondary);background-color:var(--color-dark-bg);overflow-x:hidden;max-width:100vw}.hidden{display:none!important}main#main-content{padding-top:4.5rem!important}header{position:fixed!important;top:0!important;left:0!important;right:0!important;width:100%!important;z-index:9999!important}.ud-header{position:fixed!important;top:0!important;left:0!important;right:0!important;width:100%;z-index:999;background:rgba(15,23,42,.85);backdrop-filter:blur(20px)}.navbar{padding:0;display:flex;align-items:center;justify-content:center;width:100%;min-height:88px}.nav-spacer{display:none}@media(min-width:1025px){.nav-spacer{display:block!important}}.nav-right-wrap{min-width:240px;max-width:100%}.nav-desktop-scroll{display:none}@media(min-width:1025px){.nav-desktop-scroll{display:block!important}}.nav-mobile-wrap{display:flex}@media(min-width:1025px){.nav-mobile-wrap{display:none!important};#mobileMenu{display:none!important}}.logo-standard{height:11rem!important;max-width:100%;object-fit:contain}header .logo-standard{height:auto!important;max-height:100%!important;max-width:100%}.container{max-width:100%;width:100%;box-sizing:border-box}</style>
@@ -100,6 +100,20 @@
     <!-- Yayında main.min.css kullanılıyor -->
     <link rel="preload" href="assets/css/main.min.css?v=20260310-partners-header-fix" as="style" onload="this.onload=null;this.rel='stylesheet'" />
     <noscript><link rel="stylesheet" href="assets/css/main.min.css?v=20260310-partners-header-fix" /></noscript>
+    <style id="site-font-override">
+      :root {
+        --font-primary: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+      }
+      html,
+      body,
+      button,
+      input,
+      optgroup,
+      select,
+      textarea {
+        font-family: var(--font-primary) !important;
+      }
+    </style>
     <!-- Navbar: ana sayfa ile aynı (yükseklik, logo, CTA ortada) -->
     <style>
       /* CRITICAL: Header must stay fixed at top */
@@ -122,7 +136,7 @@
       body.animations-ready { animation: gradient 15s ease infinite !important; }
       /* Ana sayfa ile aynı arka plan: animasyonlu gradient + ışık katmanı */
       body {
-        font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+        font-family: var(--font-primary);
         background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
         background-size: 200% 200%;
         animation: gradient 15s ease infinite;
@@ -594,26 +608,26 @@
         <div class="container mx-auto max-w-5xl">
             <div class="text-center mb-16">
                 <h2 class="text-3xl md:text-5xl font-bold font-display mb-6" data-i18n="careersWhyTitle">Why Solarity AI?</h2>
-                <p class="text-slate-400 max-w-2xl mx-auto" data-i18n="careersWhySubtitle">When you join our team, you'll work in an enjoyable and productive environment.</p>
+                <p class="text-slate-400 max-w-2xl mx-auto" data-i18n="careersWhySubtitle">Create, market or sell world class mobile apps 📱 powered by AI 🤖 for the coolest company on Earth, a company that is on track to become the largest AI and software company in the world 🌍🚀</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="careers-why-card text-center p-6 rounded-xl" style="background: rgba(30, 41, 59, 0.4); border: 1px solid rgba(148, 163, 184, 0.12);">
-                    <div class="text-5xl mb-4">🚀</div>
-                    <h3 class="text-xl font-semibold mb-3" data-i18n="careersWhy1Title">Innovative Projects</h3>
-                    <p class="text-slate-400 text-sm" data-i18n="careersWhy1Desc">Opportunity to work with cutting-edge technologies in AI and machine learning</p>
+                    <div class="text-5xl mb-4">💰</div>
+                    <h3 class="text-xl font-semibold mb-3" data-i18n="careersWhy1Title">Very generous profit sharing</h3>
+                    <p class="text-slate-400 text-sm" data-i18n="careersWhy1Desc">You get a real cut of the value you help build — not just a paycheck.</p>
                 </div>
 
                 <div class="careers-why-card text-center p-6 rounded-xl" style="background: rgba(30, 41, 59, 0.4); border: 1px solid rgba(148, 163, 184, 0.12);">
-                    <div class="text-5xl mb-4">🌱</div>
-                    <h3 class="text-xl font-semibold mb-3" data-i18n="careersWhy2Title">Personal Growth</h3>
-                    <p class="text-slate-400 text-sm" data-i18n="careersWhy2Desc">Continuous learning culture, training programs, and mentorship support</p>
+                    <div class="text-5xl mb-4">🏠</div>
+                    <h3 class="text-xl font-semibold mb-3" data-i18n="careersWhy2Title">100% remote work, from anywhere in the world</h3>
+                    <p class="text-slate-400 text-sm" data-i18n="careersWhy2Desc">Work from wherever you're best. No office. No borders. No compromises.</p>
                 </div>
 
                 <div class="careers-why-card text-center p-6 rounded-xl" style="background: rgba(30, 41, 59, 0.4); border: 1px solid rgba(148, 163, 184, 0.12);">
-                    <div class="text-5xl mb-4">🤝</div>
-                    <h3 class="text-xl font-semibold mb-3" data-i18n="careersWhy3Title">Strong Team</h3>
-                    <p class="text-slate-400 text-sm" data-i18n="careersWhy3Desc">Collaborative environment with expert and passionate team members</p>
+                    <div class="text-5xl mb-4">🧠</div>
+                    <h3 class="text-xl font-semibold mb-3" data-i18n="careersWhy3Title">Extreme respect for your talent and the value you create here</h3>
+                    <p class="text-slate-400 text-sm" data-i18n="careersWhy3Desc">Your skill, judgment, and the value you create here are genuinely recognized.</p>
                 </div>
             </div>
         </div>
@@ -1248,7 +1262,7 @@
     })();
     </script>
     <script>
-    (function(){ function loadFonts(){ var p1=document.createElement('link'); p1.rel='preconnect'; p1.href='https://fonts.googleapis.com'; document.head.appendChild(p1); var p2=document.createElement('link'); p2.rel='preconnect'; p2.href='https://fonts.gstatic.com'; p2.crossOrigin='anonymous'; document.head.appendChild(p2); var l=document.createElement('link'); l.rel='stylesheet'; l.href='https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800&display=optional'; document.head.appendChild(l); } function s(){ if(typeof requestIdleCallback!=='undefined') requestIdleCallback(loadFonts,{timeout:2000}); else setTimeout(loadFonts,500); } if(document.readyState==='complete') s(); else window.addEventListener('load',s); })();
+    (function(){ function loadFonts(){ var p1=document.createElement('link'); p1.rel='preconnect'; p1.href='https://fonts.googleapis.com'; document.head.appendChild(p1); var p2=document.createElement('link'); p2.rel='preconnect'; p2.href='https://fonts.gstatic.com'; p2.crossOrigin='anonymous'; document.head.appendChild(p2); var l=document.createElement('link'); l.rel='stylesheet'; l.href='https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=optional'; document.head.appendChild(l); } function s(){ if(typeof requestIdleCallback!=='undefined') requestIdleCallback(loadFonts,{timeout:2000}); else setTimeout(loadFonts,500); } if(document.readyState==='complete') s(); else window.addEventListener('load',s); })();
     </script>
     <!-- Navbar her zaman üstte kalsın - en yüksek öncelik -->
     <style>#main-header,.ud-header,header{position:fixed!important;top:0!important;left:0!important;right:0!important;width:100%!important;z-index:9999!important;}</style>
