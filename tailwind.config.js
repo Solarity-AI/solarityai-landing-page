@@ -23,7 +23,7 @@ module.exports = {
         'brand-slate': '#0f172a',
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        sans: ['Poppins', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
         display: ['Poppins', 'system-ui', 'sans-serif'],
       },
       animation: {

@@ -166,6 +166,25 @@
     <!-- main.min.css: async, minified (~3–4 KiB smaller than main.css) -->
     <link rel="preload" href="assets/css/main.min.css?v=20260310-partners-header-fix" as="style" onload="this.onload=null;this.rel='stylesheet'" />
     <noscript><link rel="stylesheet" href="assets/css/main.min.css?v=20260310-partners-header-fix" /></noscript>
+    <!-- Google Fonts: Poppins loaded after window.load (off critical path) -->
+    <noscript><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" /></noscript>
+    <script>
+      (function(){ function loadFonts(){ var p1=document.createElement('link'); p1.rel='preconnect'; p1.href='https://fonts.googleapis.com'; document.head.appendChild(p1); var p2=document.createElement('link'); p2.rel='preconnect'; p2.href='https://fonts.gstatic.com'; p2.crossOrigin='anonymous'; document.head.appendChild(p2); var l=document.createElement('link'); l.rel='stylesheet'; l.href='https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=optional'; document.head.appendChild(l); } function s(){ if(typeof requestIdleCallback!=='undefined') requestIdleCallback(loadFonts,{timeout:2000}); else setTimeout(loadFonts,500); } if(document.readyState==='complete') s(); else window.addEventListener('load',s); })();
+    </script>
+    <style id="site-font-override">
+      :root {
+        --font-primary: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+      }
+      html,
+      body,
+      button,
+      input,
+      optgroup,
+      select,
+      textarea {
+        font-family: var(--font-primary) !important;
+      }
+    </style>
     <!-- Header: logo footer ile aynı boyut (11rem / 13rem), navbar’da dikey ortada -->
     <style>
       header { display: flex; align-items: center; min-height: 6rem; }

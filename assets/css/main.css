@@ -7,7 +7,7 @@
    CSS Variables & Theme
    ============================= */
 :root {
-  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+  --font-primary: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
   --font-secondary: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   /* Header CTA, dil butonu ve hamburger ayni yukseklikte olsun */
   --header-control-h: 2.5rem;
