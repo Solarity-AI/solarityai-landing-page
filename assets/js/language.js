@@ -153,7 +153,7 @@
     });
   }
 
-  // TR ve EN birebir aynı kart/fotoğraf boyutu – CSS’te #team/#ekip ortak; inline stil kaldırıldı
+  // TR ve EN birebir aynı kart/fotoğraf boyutu – CSS'te #team/#ekip ortak; inline stil kaldırıldı
   function fixTeamPhotoSize(lang) {
     var teamSection = document.querySelector('section[data-section-tr="ekip"]');
     if (!teamSection) return;
@@ -243,7 +243,7 @@
     if (window._langLoadingFallback) { clearTimeout(window._langLoadingFallback); window._langLoadingFallback = null; }
 
     // Dil degisince sayfa ayni yerde kalsin: scroll (mutlak + oran) ve hash kaydet
-    // Tıklamadan önce (mousedown/touchstart) kaydedilen pozisyon varsa onu kullan – focus scroll’u bozmasın
+    // Tıklamadan önce (mousedown/touchstart) kaydedilen pozisyon varsa onu kullan – focus scroll'u bozmasın
     var prior = window._langScrollBeforeSwitch;
     var savedScrollY, savedScrollRatio;
     if (prior && typeof prior.y === 'number') {
@@ -307,7 +307,7 @@
     // Update HTML lang attribute
     document.documentElement.lang = lang;
 
-    // Body sınıfı – TR/EN stilleri için (id’den bağımsız)
+    // Body sınıfı – TR/EN stilleri için (id'den bağımsız)
     document.body.classList.remove('lang-tr', 'lang-en');
     document.body.classList.add(lang === 'tr' ? 'lang-tr' : 'lang-en');
     
@@ -494,7 +494,7 @@
         updateMetaTags(lang, window.location.pathname);
         updateMapEmbedLang(lang);
         if (typeof unlockScrollAndRestore === "function") {
-          // Zorunlu reflow’u azalt: layout okuyan unlockScrollAndRestore/restoreScroll’u bir sonraki frame’e ertele
+          // Zorunlu reflow'u azalt: layout okuyan unlockScrollAndRestore/restoreScroll'u bir sonraki frame'e ertele
           var doUnlock = function() {
             unlockScrollAndRestore();
             if (typeof restoreScroll === "function") restoreScroll();
@@ -539,7 +539,7 @@
       
       // Only set up listener once to avoid duplicates
       if (!buttonListenerSetup) {
-        // mousedown/touchstart: tıklamadan önce scroll pozisyonunu kaydet – focus scroll’u bozmasın
+        // mousedown/touchstart: tıklamadan önce scroll pozisyonunu kaydet – focus scroll'u bozmasın
         function saveScrollBeforeSwitch(e) {
           const target = e.target;
           if (target && (target.id === 'languageSwitcher' || target.closest('#languageSwitcher') || target.id === 'languageSwitcherMobile' || target.closest('#languageSwitcherMobile'))) {
@@ -569,31 +569,31 @@
           }
         }, true); // Use capture phase for better reliability
 
-        // Direct listener’ları ayrı tick’te ekle (uzun görev kırma)
+        // Direct listener'ları ayrı tick'te ekle (uzun görev kırma)
         // directHandler modül seviyesinde saklanır → removeEventListener doğru referansı kullanır
         var directHandler = function(e) {
           e.preventDefault();
           e.stopPropagation();
           if (e.target && e.target.blur) e.target.blur();
           if (document.activeElement && document.activeElement.blur) document.activeElement.blur();
-          log(‘🔘 Language button clicked via direct listener!’);
+          log('🔘 Language button clicked via direct listener!');
           toggleLanguage();
           return false;
         };
         function attachDirectListeners() {
-          switcher.addEventListener(‘click’, directHandler);
-          var mobileSwitcher = document.getElementById(‘languageSwitcherMobile’);
+          switcher.addEventListener('click', directHandler);
+          var mobileSwitcher = document.getElementById('languageSwitcherMobile');
           if (mobileSwitcher) {
-            mobileSwitcher.addEventListener(‘click’, directHandler);
-            log(‘✅ Language switcher mobile direct listener attached’);
+            mobileSwitcher.addEventListener('click', directHandler);
+            log('✅ Language switcher mobile direct listener attached');
           }
-          log(‘✅ Language switcher button direct listener attached’);
+          log('✅ Language switcher button direct listener attached');
         }
-        if (typeof requestAnimationFrame !== ‘undefined’) requestAnimationFrame(attachDirectListeners);
+        if (typeof requestAnimationFrame !== 'undefined') requestAnimationFrame(attachDirectListeners);
         else setTimeout(attachDirectListeners, 0);
 
         buttonListenerSetup = true;
-        log(‘✅ Language switcher button event delegation attached’);
+        log('✅ Language switcher button event delegation attached');
       }
       return switcher;
     } else {
@@ -761,7 +761,7 @@
     if (typeof window.toggleLanguage === 'function') return window.toggleLanguage();
   };
 
-  // Initialize on DOM ready – iki tick’e bölünür: TBT / uzun ana iş parçacığı görevinden kaçın
+  // Initialize on DOM ready – iki tick'e bölünür: TBT / uzun ana iş parçacığı görevinden kaçın
   function initialize() {
     log('=== LANGUAGE SYSTEM INITIALIZING ===');
     log('Current language:', currentLang);
@@ -800,7 +800,7 @@
       setTimeout(initialize, 150);
     }
   }
-  // Script yüklendiğinde hemen yield: uzun görev ilk tick’te bitmesin
+  // Script yüklendiğinde hemen yield: uzun görev ilk tick'te bitmesin
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', function() {
       setTimeout(runInitialize, 0);
