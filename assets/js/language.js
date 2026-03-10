@@ -2,9 +2,9 @@
 (function() {
   'use strict';
   var noop = function() {};
-  var log = (typeof window !== 'undefined' && window.DEBUG_LANG) ? function() { log.apply(console, arguments); } : noop;
-  var warn = (typeof window !== 'undefined' && window.DEBUG_LANG) ? function() { warn.apply(console, arguments); } : noop;
-  var err = (typeof window !== 'undefined' && window.DEBUG_LANG) ? function() { err.apply(console, arguments); } : noop;
+  var log = (typeof window !== 'undefined' && window.DEBUG_LANG) ? function() { console.log.apply(console, arguments); } : noop;
+  var warn = (typeof window !== 'undefined' && window.DEBUG_LANG) ? function() { console.warn.apply(console, arguments); } : noop;
+  var err = (typeof window !== 'undefined' && window.DEBUG_LANG) ? function() { console.error.apply(console, arguments); } : noop;
 
   // Get current language from localStorage or default to 'en' (ENGLISH)
   let currentLang = localStorage.getItem('solarityai-lang') || 'en';
@@ -219,6 +219,7 @@
       setLanguage(currentLang);
     } else {
       updateSectionIds('en');
+      updateNavigationLinks('en');
       updateMetaTags('en', window.location.pathname);
       document.documentElement.classList.remove('lang-loading');
     }
@@ -568,32 +569,32 @@
           }
         }, true); // Use capture phase for better reliability
 
-        buttonListenerSetup = true;
-        log('✅ Language switcher button event delegation attached');
-      }
-      // Direct listener’ları ayrı tick’te ekle (uzun görev kırma)
-      function attachDirectListeners() {
+        // Direct listener’ları ayrı tick’te ekle (uzun görev kırma)
+        // directHandler modül seviyesinde saklanır → removeEventListener doğru referansı kullanır
         var directHandler = function(e) {
           e.preventDefault();
           e.stopPropagation();
           if (e.target && e.target.blur) e.target.blur();
           if (document.activeElement && document.activeElement.blur) document.activeElement.blur();
-          log('🔘 Language button clicked via direct listener!');
+          log(‘🔘 Language button clicked via direct listener!’);
           toggleLanguage();
           return false;
         };
-        switcher.removeEventListener('click', directHandler);
-        switcher.addEventListener('click', directHandler);
-        var mobileSwitcher = document.getElementById('languageSwitcherMobile');
-        if (mobileSwitcher) {
-          try { mobileSwitcher.removeEventListener('click', directHandler); } catch (e) {}
-          mobileSwitcher.addEventListener('click', directHandler);
-          log('✅ Language switcher mobile direct listener attached');
+        function attachDirectListeners() {
+          switcher.addEventListener(‘click’, directHandler);
+          var mobileSwitcher = document.getElementById(‘languageSwitcherMobile’);
+          if (mobileSwitcher) {
+            mobileSwitcher.addEventListener(‘click’, directHandler);
+            log(‘✅ Language switcher mobile direct listener attached’);
+          }
+          log(‘✅ Language switcher button direct listener attached’);
         }
-        log('✅ Language switcher button direct listener attached');
+        if (typeof requestAnimationFrame !== ‘undefined’) requestAnimationFrame(attachDirectListeners);
+        else setTimeout(attachDirectListeners, 0);
+
+        buttonListenerSetup = true;
+        log(‘✅ Language switcher button event delegation attached’);
       }
-      if (typeof requestAnimationFrame !== 'undefined') requestAnimationFrame(attachDirectListeners);
-      else setTimeout(attachDirectListeners, 0);
       return switcher;
     } else {
       warn('⚠️ Language switcher button not found! Will retry...');
@@ -616,10 +617,10 @@
 
     // Compute the target language (the one the button should switch TO)
     const targetLang = currentLang === 'tr' ? 'en' : 'tr';
-    // Buton mevcut dili gösterir (geçilecek dili değil)
-    const langCodeForButton = currentLang === 'tr' ? 'TR' : 'EN';
-    const flagEmojiForButton = currentLang === 'tr' ? '🇹🇷' : '🇺🇸';
-    const flagSvgForButton = currentLang === 'tr' ? 'assets/images/flags/flag-tr.svg?v=2' : 'assets/images/flags/flag-us.svg?v=2';
+    // Buton geçilecek dili gösterir: TR'deyken EN, EN'deyken TR
+    const langCodeForButton = targetLang === 'tr' ? 'TR' : 'EN';
+    const flagEmojiForButton = targetLang === 'tr' ? '🇹🇷' : '🇺🇸';
+    const flagSvgForButton = targetLang === 'tr' ? 'assets/images/flags/flag-tr.svg?v=2' : 'assets/images/flags/flag-us.svg?v=2';
 
     if (switcher) {
       const flagEl = document.getElementById('flagIcon');
@@ -749,7 +750,7 @@
     const newLang = currentLang === 'tr' ? 'en' : 'tr';
     log('🔄 Switching to', newLang);
     setLanguage(newLang);
-    updateMapEmbedLang(newLang);
+    // updateMapEmbedLang setLanguage içinde zaten çağrılıyor (setTimeout 0 + finishI18n)
     updateLanguageSwitcher();
     log('✅ Language toggled successfully');
   }
