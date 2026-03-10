@@ -6,8 +6,22 @@
   var warn = (typeof window !== 'undefined' && window.DEBUG_LANG) ? function() { console.warn.apply(console, arguments); } : noop;
   var err = (typeof window !== 'undefined' && window.DEBUG_LANG) ? function() { console.error.apply(console, arguments); } : noop;
 
+  function getStoredLanguage() {
+    try {
+      return localStorage.getItem('solarityai-lang') || 'en';
+    } catch (e) {
+      return 'en';
+    }
+  }
+
+  function setStoredLanguage(lang) {
+    try {
+      localStorage.setItem('solarityai-lang', lang);
+    } catch (e) {}
+  }
+
   // Get current language from localStorage or default to 'en' (ENGLISH)
-  let currentLang = localStorage.getItem('solarityai-lang') || 'en';
+  let currentLang = getStoredLanguage();
 
   // Yenilemede dil yanıp sönmesini önle: script yüklenir yüklenmez lang ve body sınıfını uygula
   try {
@@ -51,8 +65,8 @@
     const hashMap = {
       tr: {
         '#services': '#services',
-        '#about': '#services',
-        '#hakkimizda': '#services',
+        '#about': '#hakkimizda',
+        '#hakkimizda': '#hakkimizda',
         '#partnerships': '#ortakliklar',
         '#products': '#urunler',
         '#urunler': '#urunler',
@@ -62,8 +76,8 @@
       },
       en: {
         '#services': '#services',
-        '#about': '#services',
-        '#hakkimizda': '#services',
+        '#about': '#about',
+        '#hakkimizda': '#about',
         '#hizmetler': '#services',
         '#ortakliklar': '#partnerships',
         '#products': '#products',
@@ -224,6 +238,7 @@
       document.documentElement.classList.remove('lang-loading');
     }
     updateLanguageSwitcher();
+    completeLanguageSwitch();
   }
 
   // Set language and update all translatable elements
@@ -297,12 +312,14 @@
     }
     window._langLoadingFallback = setTimeout(function() {
       document.documentElement.classList.remove('lang-loading');
+      updateLanguageSwitcher();
+      completeLanguageSwitch();
       if (typeof unlockScrollAndRestore === 'function') unlockScrollAndRestore();
       else restoreScroll();
     }, 3000);
     
     currentLang = lang;
-    localStorage.setItem('solarityai-lang', lang);
+    setStoredLanguage(lang);
     
     // Update HTML lang attribute
     document.documentElement.lang = lang;
@@ -491,6 +508,8 @@
         log("Translation complete! Updated", elements.length, "elements");
         updateMetaTags(lang, window.location.pathname);
         updateMapEmbedLang(lang);
+        updateLanguageSwitcher();
+        completeLanguageSwitch();
         if (typeof unlockScrollAndRestore === "function") {
           // Zorunlu reflow'u azalt: layout okuyan unlockScrollAndRestore/restoreScroll'u bir sonraki frame'e ertele
           var doUnlock = function() {
@@ -525,6 +544,30 @@
 
   // Track if button listener is set up
   let buttonListenerSetup = false;
+
+  function getLanguageSwitcherLabel(uiLang, targetLang) {
+    if (uiLang === 'tr') {
+      return targetLang === 'tr' ? 'Dili Turkceye cevir' : 'Dili Ingilizceye cevir';
+    }
+    return targetLang === 'tr' ? 'Switch language to Turkish' : 'Switch language to English';
+  }
+
+  function setLanguageSwitcherBusy(isBusy) {
+    ['languageSwitcher', 'languageSwitcherMobile'].forEach(function(id) {
+      var button = document.getElementById(id);
+      if (!button) return;
+      button.disabled = !!isBusy;
+      button.setAttribute('aria-disabled', isBusy ? 'true' : 'false');
+      button.setAttribute('aria-busy', isBusy ? 'true' : 'false');
+      if (isBusy) button.setAttribute('data-lang-loading', 'true');
+      else button.removeAttribute('data-lang-loading');
+    });
+  }
+
+  function completeLanguageSwitch() {
+    window._languageToggleInFlight = false;
+    setLanguageSwitcherBusy(false);
+  }
 
   // Setup language switcher button event listener
   function setupLanguageSwitcher() {
@@ -615,6 +658,7 @@
 
     // Compute the target language (the one the button should switch TO)
     const targetLang = currentLang === 'tr' ? 'en' : 'tr';
+    const switcherLabel = getLanguageSwitcherLabel(currentLang, targetLang);
     // Buton geçilecek dili gösterir: TR'deyken EN, EN'deyken TR
     const langCodeForButton = targetLang === 'tr' ? 'TR' : 'EN';
     const flagEmojiForButton = targetLang === 'tr' ? '🇹🇷' : '🇺🇸';
@@ -623,6 +667,9 @@
     if (switcher) {
       const flagEl = document.getElementById('flagIcon');
       const codeEl = document.getElementById('currentLang');
+
+      switcher.setAttribute('aria-label', switcherLabel);
+      switcher.setAttribute('title', switcherLabel);
 
       if (flagEl) {
         if (useEmojiFlags) {
@@ -638,6 +685,7 @@
             newSpan.style.height = '40px';
             newSpan.style.fontSize = '2.25rem';
             newSpan.style.lineHeight = '1';
+            newSpan.setAttribute('aria-hidden', 'true');
             flagEl.parentNode.replaceChild(newSpan, flagEl);
             log('✅ Desktop flag converted to emoji:', flagEmojiForButton);
           } else {
@@ -649,25 +697,28 @@
             flagEl.style.height = '40px';
             flagEl.style.fontSize = '2.25rem';
             flagEl.style.lineHeight = '1';
+            flagEl.setAttribute('aria-hidden', 'true');
             log('✅ Desktop flag emoji:', flagEmojiForButton);
           }
         } else {
           // Windows: SVG fallback
           if (flagEl.tagName === 'IMG') {
             flagEl.src = flagSvgForButton;
-            flagEl.alt = currentLang.toUpperCase();
+            flagEl.alt = '';
+            flagEl.setAttribute('aria-hidden', 'true');
             log('✅ Desktop flag SVG (Windows):', flagSvgForButton);
           } else {
             // SPAN ise IMG'ye çevir
             const newImg = document.createElement('img');
             newImg.id = 'flagIcon';
             newImg.src = flagSvgForButton;
-            newImg.alt = currentLang.toUpperCase();
+            newImg.alt = '';
             newImg.width = 56;
             newImg.height = 40;
             newImg.style.objectFit = 'cover';
             newImg.style.borderRadius = '5px';
             newImg.style.boxShadow = '0 1px 3px rgba(0,0,0,0.2)';
+            newImg.setAttribute('aria-hidden', 'true');
             flagEl.parentNode.replaceChild(newImg, flagEl);
             log('✅ Desktop flag converted to SVG:', flagSvgForButton);
           }
@@ -686,6 +737,9 @@
       const flagElMobile = document.getElementById('flagIconMobile');
       const codeElMobile = document.getElementById('currentLangMobile');
 
+      switcherMobile.setAttribute('aria-label', switcherLabel);
+      switcherMobile.setAttribute('title', switcherLabel);
+
       if (flagElMobile) {
         if (useEmojiFlags) {
           // Emoji (iOS, macOS, Android) – kutuyla orantılı 48x34
@@ -700,6 +754,7 @@
             newSpan.style.height = '44px';
             newSpan.style.fontSize = '2.5rem';
             newSpan.style.lineHeight = '1';
+            newSpan.setAttribute('aria-hidden', 'true');
             flagElMobile.parentNode.replaceChild(newSpan, flagElMobile);
             log('✅ Mobile flag converted to emoji:', flagEmojiForButton);
           } else {
@@ -711,25 +766,28 @@
             flagElMobile.style.height = '44px';
             flagElMobile.style.fontSize = '2.5rem';
             flagElMobile.style.lineHeight = '1';
+            flagElMobile.setAttribute('aria-hidden', 'true');
             log('✅ Mobile flag emoji:', flagEmojiForButton);
           }
         } else {
           // Windows: SVG fallback
           if (flagElMobile.tagName === 'IMG') {
             flagElMobile.src = flagSvgForButton;
-            flagElMobile.alt = currentLang.toUpperCase();
+            flagElMobile.alt = '';
+            flagElMobile.setAttribute('aria-hidden', 'true');
             log('✅ Mobile flag SVG (Windows):', flagSvgForButton);
           } else {
             // SPAN ise IMG'ye çevir
             const newImg = document.createElement('img');
             newImg.id = 'flagIconMobile';
             newImg.src = flagSvgForButton;
-            newImg.alt = currentLang.toUpperCase();
+            newImg.alt = '';
             newImg.width = 60;
             newImg.height = 44;
             newImg.style.objectFit = 'cover';
             newImg.style.borderRadius = '4px';
             newImg.style.boxShadow = '0 1px 2px rgba(0,0,0,0.2)';
+            newImg.setAttribute('aria-hidden', 'true');
             flagElMobile.parentNode.replaceChild(newImg, flagElMobile);
             log('✅ Mobile flag converted to SVG:', flagSvgForButton);
           }
@@ -744,13 +802,18 @@
 
   // Toggle language
   function toggleLanguage() {
+    if (window._languageToggleInFlight) {
+      log('⏳ Language toggle already in progress');
+      return false;
+    }
+    window._languageToggleInFlight = true;
+    setLanguageSwitcherBusy(true);
     log('🔄 Toggling language from', currentLang);
     const newLang = currentLang === 'tr' ? 'en' : 'tr';
     log('🔄 Switching to', newLang);
     setLanguage(newLang);
-    // updateMapEmbedLang setLanguage içinde zaten çağrılıyor (setTimeout 0 + finishI18n)
-    updateLanguageSwitcher();
     log('✅ Language toggled successfully');
+    return true;
   }
 
   // Expose toggle function globally IMMEDIATELY so inline onclick handlers work
