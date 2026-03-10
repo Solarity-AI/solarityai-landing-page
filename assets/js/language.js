@@ -106,10 +106,6 @@
 
       log('🔗 Nav link updated:', link.href);
     });
-
-
-    // Also update section IDs (only if on same page)
-    updateSectionIds(lang);
   }
 
   // Update section IDs based on language
@@ -137,19 +133,14 @@
     var srcEn = iframe.getAttribute('data-src-en');
     var url = (lang === 'tr' ? srcTr : srcEn) || srcEn;
     if (!url) return;
-    var parent = iframe.parentNode;
-    var newIframe = document.createElement('iframe');
-    newIframe.id = 'contactMapEmbed';
-    newIframe.title = iframe.title || 'Solarity AI - Dallas Office';
-    newIframe.setAttribute('data-src-tr', srcTr || '');
-    newIframe.setAttribute('data-src-en', srcEn || '');
-    newIframe.className = iframe.className || 'w-full h-full min-h-[260px] md:min-h-[320px]';
-    newIframe.style.border = '0';
-    newIframe.setAttribute('allowfullscreen', '');
-    newIframe.setAttribute('referrerpolicy', iframe.getAttribute('referrerpolicy') || 'no-referrer-when-downgrade');
-    parent.replaceChild(newIframe, iframe);
+    var currentSrc = iframe.getAttribute('src') || '';
+    if (iframe.getAttribute('data-lang-current') === lang || currentSrc.indexOf(url) !== -1) {
+      iframe.setAttribute('data-lang-current', lang);
+      return;
+    }
     var sep = url.indexOf('?') >= 0 ? '&' : '?';
-    newIframe.src = url + sep + '_=' + Date.now();
+    iframe.setAttribute('data-lang-current', lang);
+    iframe.src = url + sep + '_=' + Date.now();
     log('🗺️ Map embed set to', lang === 'tr' ? 'Turkish' : 'English');
   }
 
@@ -221,329 +212,416 @@
     document.documentElement.lang = lang;
   }
 
-  // Initialize language on page load (tek sefer çalışsın – long task azaltma)
+  // Initialize language on page load
   var _languageInitialized = false;
+  var _translationBindings = null;
+  var _translationBindingsDirty = true;
+  var _scheduledLanguageRefresh = null;
+
+  function getTranslationsObject() {
+    return window.translations || (typeof translations !== 'undefined' ? translations : null);
+  }
+
+  function refreshTranslationBindings() {
+    _translationBindings = {
+      text: Array.from(document.querySelectorAll('[data-i18n]')),
+      placeholder: Array.from(document.querySelectorAll('[data-i18n-placeholder]')),
+      html: Array.from(document.querySelectorAll('[data-i18n-html]')),
+      ariaLabel: Array.from(document.querySelectorAll('[data-i18n-aria-label]')),
+      title: Array.from(document.querySelectorAll('[data-i18n-title]'))
+    };
+    _translationBindingsDirty = false;
+    return _translationBindings;
+  }
+
+  function getTranslationBindings() {
+    if (!_translationBindings || _translationBindingsDirty) return refreshTranslationBindings();
+    return _translationBindings;
+  }
+
+  function translateTextElement(element, translation) {
+    var tagName = element.tagName;
+    if (tagName === 'LABEL' && element.querySelector('.required')) {
+      var requiredSpan = element.querySelector('.required');
+      element.innerHTML = translation.replace('*', '') + ' ' + requiredSpan.outerHTML;
+    } else if (tagName === 'INPUT') {
+      if (element.type === 'submit' || element.type === 'button') element.value = translation;
+      else if (element.hasAttribute('placeholder')) element.placeholder = translation;
+      else element.value = translation;
+    } else if (tagName === 'TEXTAREA') {
+      if (element.hasAttribute('placeholder')) element.placeholder = translation;
+      else element.textContent = translation;
+    } else if (tagName === 'BUTTON' || tagName === 'OPTION') {
+      element.textContent = translation;
+    } else if (tagName === 'A') {
+      element.textContent = translation;
+    } else if (tagName === 'LABEL') {
+      var rs = element.querySelector('.required');
+      if (rs) element.innerHTML = translation.replace('*', '').trim() + ' ' + rs.outerHTML;
+      else element.textContent = translation;
+    } else if (tagName === 'P' && (element.classList.contains('ud-team-bio') || (element.parentElement && element.parentElement.classList.contains('ud-project-content')))) {
+      element.innerHTML = translation;
+    } else if (element.classList && (element.classList.contains('project-company') || element.classList.contains('project-name'))) {
+      element.textContent = translation;
+    } else {
+      element.textContent = translation;
+    }
+  }
+
+  function applyTranslations(lang, translationsObj) {
+    var locale = translationsObj && translationsObj[lang];
+    if (!locale) return;
+
+    var bindings = getTranslationBindings();
+
+    bindings.text.forEach(function(element) {
+      var key = element.getAttribute('data-i18n');
+      if (key && locale[key]) translateTextElement(element, locale[key]);
+    });
+
+    bindings.placeholder.forEach(function(element) {
+      var key = element.getAttribute('data-i18n-placeholder');
+      if (key && locale[key]) element.placeholder = locale[key];
+    });
+
+    bindings.html.forEach(function(element) {
+      var key = element.getAttribute('data-i18n-html');
+      if (key && locale[key]) element.innerHTML = locale[key];
+    });
+
+    bindings.ariaLabel.forEach(function(element) {
+      var key = element.getAttribute('data-i18n-aria-label');
+      if (key && locale[key]) element.setAttribute('aria-label', locale[key]);
+    });
+
+    bindings.title.forEach(function(element) {
+      var key = element.getAttribute('data-i18n-title');
+      if (key && locale[key]) element.setAttribute('title', locale[key]);
+    });
+  }
+
+  function applyLanguageMetadata(lang, translationsObj) {
+    try {
+      var sk = 'statsSupportNumber';
+      if (translationsObj[lang] && translationsObj[lang][sk]) {
+        document.querySelectorAll('[data-i18n="' + sk + '"]').forEach(function(el) {
+          el.textContent = translationsObj[lang][sk];
+        });
+      }
+    } catch (e) {}
+
+    var path = window.location.pathname;
+    var isCareer = path.indexOf('career') !== -1 || path.indexOf('kariyer') !== -1 || path.indexOf('careers') !== -1;
+    document.title = isCareer
+      ? (lang === 'tr' ? 'Solarity AI - Kariyer' : 'Solarity AI - Career')
+      : (lang === 'tr' ? 'Solarity AI - Ana Sayfa' : 'Solarity AI - Home');
+
+    var cfs = document.getElementById('contactFormSubject');
+    if (cfs && translationsObj[lang] && translationsObj[lang].contactFormSubject) cfs.value = translationsObj[lang].contactFormSubject;
+    var cfsub = document.getElementById('careersFormSubject');
+    if (cfsub && translationsObj[lang] && translationsObj[lang].careersFormSubject) cfsub.value = translationsObj[lang].careersFormSubject;
+    var cfar = document.getElementById('careersFormAutoresponse');
+    if (cfar && translationsObj[lang] && translationsObj[lang].careersFormAutoresponse) cfar.value = translationsObj[lang].careersFormAutoresponse;
+  }
+
+  function getCurrentScrollY() {
+    return window.scrollY !== undefined ? window.scrollY : (window.pageYOffset || document.documentElement.scrollTop || 0);
+  }
+
+  function getLanguageScrollProbeY() {
+    var header = document.querySelector('header');
+    var headerHeight = header ? Math.ceil(header.getBoundingClientRect().height) : 0;
+    var probeY = headerHeight + 24;
+    return Math.max(0, Math.min(probeY, Math.max(0, (window.innerHeight || document.documentElement.clientHeight) - 1)));
+  }
+
+  function getLanguageAnchorSectionMeta(element) {
+    if (!element || !element.closest) return null;
+    var section = element.closest('section[data-section-tr][data-section-en]');
+    if (!section) return null;
+    return {
+      sectionTr: section.getAttribute('data-section-tr'),
+      sectionEn: section.getAttribute('data-section-en')
+    };
+  }
+
+  function resolveLanguageAnchorSection(anchor) {
+    if (!anchor || !anchor.sectionTr || !anchor.sectionEn) return null;
+    return document.querySelector(
+      'section[data-section-tr="' + anchor.sectionTr + '"][data-section-en="' + anchor.sectionEn + '"]'
+    );
+  }
+
+  function collectLanguageAnchorNodes(scope, attrName, attrValue, tagName) {
+    return Array.from((scope || document).querySelectorAll('[' + attrName + ']')).filter(function(node) {
+      return node.getAttribute(attrName) === attrValue && (!tagName || node.tagName === tagName);
+    });
+  }
+
+  function isIgnoredLanguageAnchorId(id) {
+    return !id ||
+      id === 'languageSwitcher' ||
+      id === 'languageSwitcherMobile' ||
+      id === 'flagIcon' ||
+      id === 'flagIconMobile' ||
+      id === 'currentLang' ||
+      id === 'currentLangMobile' ||
+      id === 'mobileMenuBtn' ||
+      id === 'cookie-consent-banner';
+  }
+
+  function findLanguageAnchorElement(startEl) {
+    var node = startEl;
+    while (node && node !== document.body) {
+      if (node.matches && node.matches('section[data-section-tr][data-section-en]')) return node;
+      if (node.hasAttribute) {
+        if (node.hasAttribute('data-i18n')) return node;
+        if (node.hasAttribute('data-i18n-html')) return node;
+        if (node.id && !isIgnoredLanguageAnchorId(node.id)) return node;
+      }
+      node = node.parentElement;
+    }
+    return null;
+  }
+
+  function describeLanguageScrollAnchor(anchorEl) {
+    if (!anchorEl || !anchorEl.getBoundingClientRect) return null;
+
+    var rect = anchorEl.getBoundingClientRect();
+    var anchor = {
+      top: rect.top
+    };
+    var sectionMeta = getLanguageAnchorSectionMeta(anchorEl);
+    var sectionScope = sectionMeta ? resolveLanguageAnchorSection(sectionMeta) : null;
+    if (sectionMeta) {
+      anchor.sectionTr = sectionMeta.sectionTr;
+      anchor.sectionEn = sectionMeta.sectionEn;
+    }
+
+    if (anchorEl.matches && anchorEl.matches('section[data-section-tr][data-section-en]')) {
+      anchor.kind = 'section';
+      return anchor;
+    }
+
+    if (anchorEl.hasAttribute && anchorEl.hasAttribute('data-i18n')) {
+      anchor.kind = 'data-i18n';
+      anchor.key = anchorEl.getAttribute('data-i18n');
+      anchor.tag = anchorEl.tagName;
+      anchor.index = Math.max(0, collectLanguageAnchorNodes(sectionScope || document, 'data-i18n', anchor.key, anchor.tag).indexOf(anchorEl));
+      return anchor;
+    }
+
+    if (anchorEl.hasAttribute && anchorEl.hasAttribute('data-i18n-html')) {
+      anchor.kind = 'data-i18n-html';
+      anchor.key = anchorEl.getAttribute('data-i18n-html');
+      anchor.tag = anchorEl.tagName;
+      anchor.index = Math.max(0, collectLanguageAnchorNodes(sectionScope || document, 'data-i18n-html', anchor.key, anchor.tag).indexOf(anchorEl));
+      return anchor;
+    }
+
+    if (anchorEl.id && !isIgnoredLanguageAnchorId(anchorEl.id)) {
+      anchor.kind = 'id';
+      anchor.id = anchorEl.id;
+      return anchor;
+    }
+
+    if (sectionMeta) {
+      anchor.kind = 'section';
+      return anchor;
+    }
+
+    return null;
+  }
+
+  function captureLanguageScrollAnchor() {
+    var probeY = getLanguageScrollProbeY();
+    var probeXs = [0.35, 0.5, 0.65].map(function(ratio) {
+      return Math.max(0, Math.min(Math.round(window.innerWidth * ratio), Math.max(0, window.innerWidth - 1)));
+    });
+    var seen = [];
+
+    for (var i = 0; i < probeXs.length; i += 1) {
+      var stack = document.elementsFromPoint ? document.elementsFromPoint(probeXs[i], probeY) : [document.elementFromPoint(probeXs[i], probeY)];
+      for (var j = 0; j < stack.length; j += 1) {
+        var el = stack[j];
+        if (!el || !el.closest || el.closest('header') || el.closest('#cookie-consent-banner')) continue;
+        var anchorEl = findLanguageAnchorElement(el);
+        if (!anchorEl || seen.indexOf(anchorEl) !== -1) continue;
+        seen.push(anchorEl);
+        var described = describeLanguageScrollAnchor(anchorEl);
+        if (described) return described;
+      }
+    }
+
+    var probeSection = null;
+    Array.from(document.querySelectorAll('section[data-section-tr][data-section-en]')).forEach(function(section) {
+      if (section.getBoundingClientRect().top <= probeY + 8) probeSection = section;
+    });
+    return describeLanguageScrollAnchor(probeSection);
+  }
+
+  function resolveLanguageScrollAnchor(anchor) {
+    if (!anchor) return null;
+
+    var sectionScope = resolveLanguageAnchorSection(anchor);
+    if (anchor.kind === 'section') return sectionScope;
+
+    if (anchor.kind === 'data-i18n') {
+      var textNodes = collectLanguageAnchorNodes(sectionScope || document, 'data-i18n', anchor.key, anchor.tag);
+      return textNodes[anchor.index] || textNodes[0] || sectionScope;
+    }
+
+    if (anchor.kind === 'data-i18n-html') {
+      var htmlNodes = collectLanguageAnchorNodes(sectionScope || document, 'data-i18n-html', anchor.key, anchor.tag);
+      return htmlNodes[anchor.index] || htmlNodes[0] || sectionScope;
+    }
+
+    if (anchor.kind === 'id') {
+      return document.getElementById(anchor.id) || sectionScope;
+    }
+
+    return sectionScope;
+  }
+
+  function buildLanguageScrollState() {
+    var y = getCurrentScrollY();
+    return {
+      y: y,
+      hash: window.location.hash || '',
+      scrollBehavior: document.documentElement.style.scrollBehavior || '',
+      anchor: captureLanguageScrollAnchor()
+    };
+  }
+
+  function captureLanguageScrollState() {
+    var prior = window._langScrollBeforeSwitch;
+    if (prior && typeof prior.y === 'number') {
+      window._langScrollBeforeSwitch = null;
+      return prior;
+    }
+    return buildLanguageScrollState();
+  }
+
+  function restoreLanguageScrollState(state, lang) {
+    if (!state) {
+      document.documentElement.style.scrollBehavior = '';
+      return;
+    }
+
+    var translatedHash = state.hash ? translateHash(state.hash, lang) : '';
+    var attempts = 0;
+
+    function restore() {
+      var doc = document.documentElement;
+      var max = Math.max(0, doc.scrollHeight - (window.innerHeight || doc.clientHeight));
+      var targetY = Math.max(0, Math.min(state.y, max));
+      var anchorEl = resolveLanguageScrollAnchor(state.anchor);
+
+      if (anchorEl && anchorEl.getBoundingClientRect) {
+        var anchorTop = getCurrentScrollY() + anchorEl.getBoundingClientRect().top;
+        if (!isNaN(anchorTop)) targetY = Math.max(0, Math.min(anchorTop - (state.anchor.top || 0), max));
+      }
+
+      if (translatedHash) {
+        try { window.history.replaceState(null, '', translatedHash); } catch (e) {}
+      }
+
+      window.scrollTo(0, targetY);
+
+      attempts += 1;
+      if (attempts < 2) requestAnimationFrame(restore);
+      else document.documentElement.style.scrollBehavior = state.scrollBehavior || '';
+    }
+
+    requestAnimationFrame(restore);
+  }
+
+  function setDocumentLanguageState(lang) {
+    document.documentElement.lang = lang;
+    if (document.body) {
+      document.body.classList.remove('lang-tr', 'lang-en');
+      document.body.classList.add(lang === 'tr' ? 'lang-tr' : 'lang-en');
+    }
+  }
+
   function initLanguage() {
     if (_languageInitialized) return;
-    _languageInitialized = true;
-    setupLanguageSwitcher();
-    // EN içerik varsayılan olarak HTML'de hazır; ilk boyamada tekrar çeviri yapıp
-    // LCP metnini yeniden boyamamak için yalnızca TR'de full i18n çalıştır.
-    if (currentLang === 'tr') {
-      setLanguage(currentLang);
-    } else {
-      updateSectionIds('en');
-      updateNavigationLinks('en');
-      updateMetaTags('en', window.location.pathname);
-      document.documentElement.classList.remove('lang-loading');
+
+    var translationsObj = getTranslationsObject();
+    if (!translationsObj) {
+      setTimeout(initLanguage, 50);
+      return;
     }
+
+    _languageInitialized = true;
+    refreshTranslationBindings();
+    setupLanguageSwitcher();
+
+    if (currentLang === 'tr') {
+      setLanguage(currentLang, { preserveScroll: false, updateStorage: false });
+      return;
+    }
+
+    setDocumentLanguageState('en');
+    updateSectionIds('en');
+    updateNavigationLinks('en');
+    applyLanguageMetadata('en', translationsObj);
     updateLanguageSwitcher();
+    document.documentElement.classList.remove('lang-loading');
     completeLanguageSwitch();
   }
 
   // Set language and update all translatable elements
-  function setLanguage(lang) {
-    const translationsObj = window.translations || (typeof translations !== 'undefined' ? translations : null);
+  function setLanguage(lang, options) {
+    options = options || {};
+
+    var translationsObj = getTranslationsObject();
     if (!translationsObj) {
-      err('❌ Translations object not loaded yet!');
-      setTimeout(function() { setLanguage(lang); }, 100);
-      return;
+      if (!options.retryScheduled) {
+        var retryOptions = Object.assign({}, options, { retryScheduled: true });
+        setTimeout(function() { setLanguage(lang, retryOptions); }, 50);
+      }
+      return false;
     }
 
-    // Increment generation: any async work still in flight from a previous call
-    // will see its captured myGen !== _langGen and bail out immediately.
-    var myGen = ++_langGen;
-
-    // Cancel the loading-fallback timer from any previous in-flight call right away
-    if (window._langLoadingFallback) { clearTimeout(window._langLoadingFallback); window._langLoadingFallback = null; }
-
-    // Dil degisince sayfa ayni yerde kalsin: scroll (mutlak + oran) ve hash kaydet
-    // Tıklamadan önce (mousedown/touchstart) kaydedilen pozisyon varsa onu kullan – focus scroll'u bozmasın
-    var prior = window._langScrollBeforeSwitch;
-    var savedScrollY, savedScrollRatio;
-    if (prior && typeof prior.y === 'number') {
-      savedScrollY = prior.y;
-      savedScrollRatio = prior.ratio;
-      window._langScrollBeforeSwitch = null;
-    } else {
-      savedScrollY = window.scrollY !== undefined ? window.scrollY : (window.pageYOffset || document.documentElement.scrollTop || 0);
-      var doc = document.documentElement;
-      var maxScroll = Math.max(0, (doc.scrollHeight - (window.innerHeight || doc.clientHeight)));
-      savedScrollRatio = maxScroll > 0 ? savedScrollY / maxScroll : 0;
-    }
-    if (savedScrollRatio > 1) savedScrollRatio = 1;
-    if (savedScrollRatio < 0) savedScrollRatio = 0;
-    var hadHash = window.location.hash || "";
-    if (hadHash) {
-      try { window.history.replaceState(null, "", window.location.pathname + window.location.search); } catch (e) {}
-    }
-    document.documentElement.style.scrollBehavior = 'auto';
-    // Scroll bar'ı korumak için body'yi kilitlemiyoruz - sadece scroll'u kaydedip restore ediyoruz
-    // position: fixed KULLANMIYORUZ çünkü scroll bar'ı kaybettirir
-
-    function unlockScrollAndRestore() {
-      // Hiçbir şey yapmıyoruz - body zaten kilitli değil, sadece scroll restore edilecek
-      requestAnimationFrame(function() {
-        var d = document.documentElement;
-        var max = Math.max(0, d.scrollHeight - (window.innerHeight || d.clientHeight));
-        var targetY = savedScrollRatio * max;
-        if (targetY > max) targetY = max;
-        window.scrollTo(0, targetY);
-      });
-    }
-
-    // Bolum id'lerini guncelle (hash yok artik, scroll tetiklenmez)
-    updateSectionIds(lang);
-    // Güvenlik: çeviri hiç yüklenmezse 3 saniye sonra yine de body'yi göster
-    if (window._langLoadingFallback) clearTimeout(window._langLoadingFallback);
-    function restoreScroll() {
-      requestAnimationFrame(function() {
-        var d = document.documentElement;
-        var max = Math.max(0, d.scrollHeight - (window.innerHeight || d.clientHeight));
-        var targetY = savedScrollRatio * max;
-        if (targetY > max) targetY = max;
-        window.scrollTo(0, targetY);
-      });
-    }
-    // Scroll pin loop devre dışı - scroll takılmasını önler
-    var scrollPinEnd = 0;
-    function restoreScrollAbsolute() {
-      window.scrollTo(0, savedScrollY);
-    }
-    window._langLoadingFallback = setTimeout(function() {
-      document.documentElement.classList.remove('lang-loading');
-      updateLanguageSwitcher();
+    if (!translationsObj[lang]) {
+      err('❌ Cannot translate - translations object or language not available!');
       completeLanguageSwitch();
-      if (typeof unlockScrollAndRestore === 'function') unlockScrollAndRestore();
-      else restoreScroll();
-    }, 3000);
-    
+      return false;
+    }
+
+    var scrollState = options.preserveScroll === false ? null : captureLanguageScrollState();
+    if (scrollState && scrollState.hash) {
+      try { window.history.replaceState(null, '', window.location.pathname + window.location.search); } catch (e) {}
+    }
+
+    document.documentElement.style.scrollBehavior = 'auto';
     currentLang = lang;
-    setStoredLanguage(lang);
-    
-    // Update HTML lang attribute
-    document.documentElement.lang = lang;
+    if (options.updateStorage !== false) setStoredLanguage(lang);
 
-    // Body sınıfı – TR/EN stilleri için (id'den bağımsız)
-    document.body.classList.remove('lang-tr', 'lang-en');
-    document.body.classList.add(lang === 'tr' ? 'lang-tr' : 'lang-en');
-    
-    // Hash guncellemesi finishI18n'de yapilacak (scroll restore'dan sonra)
+    if (lang === 'tr') document.documentElement.classList.add('lang-loading');
+    setDocumentLanguageState(lang);
+    updateSectionIds(lang);
+    updateNavigationLinks(lang);
 
-    setTimeout(function() {
-      if (myGen !== _langGen) return;
-      updateNavigationLinks(lang);
+    if (options.translateContent !== false) applyTranslations(lang, translationsObj);
+
+    applyLanguageMetadata(lang, translationsObj);
+
+    if (options.refreshAuxiliary !== false) {
       updateMapEmbedLang(lang);
       fixTeamPhotoSize(lang);
-      if (lang === 'tr') setTimeout(function() { if (myGen === _langGen) fixTeamPhotoSize('tr'); }, 80);
       updateTeamMemberNames(lang);
-    }, 0);
-
-    setTimeout(function doHeavyI18n() {
-    if (myGen !== _langGen) return;
-    log('🌐 Setting language to:', lang);
-    if (!translationsObj || !translationsObj[lang]) {
-      err('❌ Cannot translate - translations object or language not available!');
-      return;
-    }
-    // Uzun ana iş parçacığı görevini kır: querySelectorAll ayrı tick'te
-    var elements = document.querySelectorAll('[data-i18n]');
-    log('Found', elements.length, 'elements with data-i18n attribute');
-    if (!elements.length) {
-      setTimeout(doRestI18n, 0);
-      return;
     }
 
-    var applyOne = function(element) {
-      var key = element.getAttribute('data-i18n');
-      if (translationsObj[lang] && translationsObj[lang][key]) {
-        var translation = translationsObj[lang][key];
-        var tagName = element.tagName;
-        if (tagName === 'LABEL' && element.querySelector('.required')) {
-          var requiredSpan = element.querySelector('.required');
-          element.innerHTML = translation.replace('*', '') + ' ' + requiredSpan.outerHTML;
-        } else if (tagName === 'INPUT') {
-          if (element.type === 'submit' || element.type === 'button') element.value = translation;
-          else if (element.hasAttribute('placeholder')) element.placeholder = translation;
-          else element.value = translation;
-        } else if (tagName === 'TEXTAREA') {
-          if (element.hasAttribute('placeholder')) element.placeholder = translation;
-          else element.textContent = translation;
-        } else if (tagName === 'BUTTON' || tagName === 'OPTION') {
-          element.textContent = translation;
-        } else if (tagName === 'A') {
-          element.textContent = translation;
-        } else if (tagName === 'LABEL') {
-          var rs = element.querySelector('.required');
-          if (rs) element.innerHTML = translation.replace('*', '').trim() + ' ' + rs.outerHTML;
-          else element.textContent = translation;
-        } else if (tagName === 'P' && (element.classList.contains('ud-team-bio') || (element.parentElement && element.parentElement.classList.contains('ud-project-content')))) {
-          element.innerHTML = translation;
-        } else if (element.classList && (element.classList.contains('project-company') || element.classList.contains('project-name'))) {
-          element.textContent = translation;
-        } else {
-          element.textContent = translation;
-        }
-      } else {
-        warn('Translation not found for key:', key, 'in language:', lang);
-      }
-    };
+    document.documentElement.classList.remove('lang-loading');
+    updateMetaTags(lang, window.location.pathname);
+    updateLanguageSwitcher();
+    completeLanguageSwitch();
+    restoreLanguageScrollState(scrollState, lang);
 
-    var idx = 0;
-    var CHUNK = 1;
-    function runChunk() {
-      if (myGen !== _langGen) return;
-      var end = Math.min(idx + CHUNK, elements.length);
-      for (; idx < end; idx++) applyOne(elements[idx]);
-      if (idx < elements.length) {
-        if (typeof requestAnimationFrame !== 'undefined') requestAnimationFrame(runChunk);
-        else setTimeout(runChunk, 0);
-      } else {
-        doRestI18n();
-      }
-    }
-    // Uzun görevleri kır: runChunk'ı bir sonraki tick'te başlat
-    setTimeout(runChunk, 0);
-
-    function doRestI18n() {
-      if (myGen !== _langGen) return;
-      var placeholders = document.querySelectorAll('[data-i18n-placeholder]');
-      var chunkSize = 4;
-      var pHIdx = 0;
-      function runPlaceholderChunk() {
-        if (myGen !== _langGen) return;
-        var end = Math.min(pHIdx + chunkSize, placeholders.length);
-        for (; pHIdx < end; pHIdx++) {
-          var el = placeholders[pHIdx];
-          var k = el.getAttribute('data-i18n-placeholder');
-          if (translationsObj[lang] && translationsObj[lang][k]) el.placeholder = translationsObj[lang][k];
-        }
-        if (pHIdx < placeholders.length) {
-          setTimeout(runPlaceholderChunk, 0);
-        } else {
-          setTimeout(step2, 0);
-        }
-      }
-      runPlaceholderChunk();
-    }
-    function step2() {
-      if (myGen !== _langGen) return;
-      var htmlEls = document.querySelectorAll('[data-i18n-html]');
-      var chunkSize = 4;
-      var idx = 0;
-      function runChunk() {
-        if (myGen !== _langGen) return;
-        var end = Math.min(idx + chunkSize, htmlEls.length);
-        for (; idx < end; idx++) {
-          var el = htmlEls[idx];
-          var k = el.getAttribute('data-i18n-html');
-          if (translationsObj[lang] && translationsObj[lang][k]) el.innerHTML = translationsObj[lang][k];
-        }
-        if (idx < htmlEls.length) setTimeout(runChunk, 0);
-        else setTimeout(step3, 0);
-      }
-      runChunk();
-    }
-    function step3() {
-      if (myGen !== _langGen) return;
-      var ariaEls = document.querySelectorAll('[data-i18n-aria-label]');
-      var chunkSize = 4;
-      var idx = 0;
-      function runChunk() {
-        if (myGen !== _langGen) return;
-        var end = Math.min(idx + chunkSize, ariaEls.length);
-        for (; idx < end; idx++) {
-          var el = ariaEls[idx];
-          var k = el.getAttribute('data-i18n-aria-label');
-          if (translationsObj[lang] && translationsObj[lang][k]) el.setAttribute('aria-label', translationsObj[lang][k]);
-        }
-        if (idx < ariaEls.length) setTimeout(runChunk, 0);
-        else setTimeout(step4, 0);
-      }
-      runChunk();
-    }
-    function step4() {
-      if (myGen !== _langGen) return;
-      var titleEls = document.querySelectorAll('[data-i18n-title]');
-      var chunkSize = 4;
-      var idx = 0;
-      function runChunk() {
-        if (myGen !== _langGen) return;
-        var end = Math.min(idx + chunkSize, titleEls.length);
-        for (; idx < end; idx++) {
-          var el = titleEls[idx];
-          var k = el.getAttribute('data-i18n-title');
-          if (translationsObj[lang] && translationsObj[lang][k]) el.setAttribute('title', translationsObj[lang][k]);
-        }
-        if (idx < titleEls.length) setTimeout(runChunk, 0);
-        else setTimeout(step5, 0);
-      }
-      runChunk();
-    }
-    function step5() {
-      if (myGen !== _langGen) return;
-      try {
-        var sk = 'statsSupportNumber';
-        if (translationsObj[lang] && translationsObj[lang][sk]) {
-          document.querySelectorAll('[data-i18n="' + sk + '"]').forEach(function(el) { el.textContent = translationsObj[lang][sk]; });
-        }
-      } catch (e) {}
-      var path = window.location.pathname;
-      var isCareer = path.indexOf("career") !== -1 || path.indexOf("kariyer") !== -1 || path.indexOf("careers") !== -1;
-      var titleText = isCareer
-        ? (lang === "tr" ? "Solarity AI - Kariyer" : "Solarity AI - Career")
-        : (lang === "tr" ? "Solarity AI - Ana Sayfa" : "Solarity AI - Home");
-      document.title = titleText;
-      var cfs = document.getElementById("contactFormSubject");
-      if (cfs && translationsObj[lang] && translationsObj[lang]["contactFormSubject"]) cfs.value = translationsObj[lang]["contactFormSubject"];
-      var cfsub = document.getElementById("careersFormSubject");
-      if (cfsub && translationsObj[lang] && translationsObj[lang]["careersFormSubject"]) cfsub.value = translationsObj[lang]["careersFormSubject"];
-      var cfar = document.getElementById("careersFormAutoresponse");
-      if (cfar && translationsObj[lang] && translationsObj[lang]["careersFormAutoresponse"]) cfar.value = translationsObj[lang]["careersFormAutoresponse"];
-      setTimeout(function finishI18n() {
-        if (myGen !== _langGen) return;
-        scrollPinEnd = 0;
-        if (window._langLoadingFallback) { clearTimeout(window._langLoadingFallback); window._langLoadingFallback = null; }
-        document.documentElement.classList.remove("lang-loading");
-        log("Translation complete! Updated", elements.length, "elements");
-        updateMetaTags(lang, window.location.pathname);
-        updateMapEmbedLang(lang);
-        updateLanguageSwitcher();
-        completeLanguageSwitch();
-        if (typeof unlockScrollAndRestore === "function") {
-          // Zorunlu reflow'u azalt: layout okuyan unlockScrollAndRestore/restoreScroll'u bir sonraki frame'e ertele
-          var doUnlock = function() {
-            unlockScrollAndRestore();
-            if (typeof restoreScroll === "function") restoreScroll();
-          };
-          if (typeof requestAnimationFrame !== "undefined") requestAnimationFrame(doUnlock);
-          else setTimeout(doUnlock, 0);
-          setTimeout(function() { if (typeof restoreScroll === "function") restoreScroll(); }, 50);
-          // Scroll lock devre dışı - scroll takılmasını önler
-          if (hadHash) {
-            var newHash = translateHash(hadHash, lang);
-            if (newHash) {
-              setTimeout(function() {
-                try { window.history.replaceState(null, "", newHash); } catch (e) {}
-                if (typeof restoreScroll === "function") restoreScroll();
-              }, 100);
-            }
-          }
-        } else if (hadHash) {
-          var newHash = translateHash(hadHash, lang);
-          if (newHash) try { window.history.replaceState(null, "", newHash); } catch (e) {}
-        }
-      }, 0);
-    }
-    }, 0);
+    return true;
   }
-
-  // Generation counter: each setLanguage call gets a unique ID so stale async
-  // callbacks from previous (cancelled) calls can detect they are outdated and bail out.
-  var _langGen = 0;
-
-  // Track if button listener is set up
-  let buttonListenerSetup = false;
 
   function getLanguageSwitcherLabel(uiLang, targetLang) {
     if (uiLang === 'tr') {
@@ -569,78 +647,41 @@
     setLanguageSwitcherBusy(false);
   }
 
+  function saveScrollBeforeLanguageSwitch() {
+    window._langScrollBeforeSwitch = buildLanguageScrollState();
+  }
+
+  function handleLanguageSwitcherClick(e) {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      if (e.currentTarget && e.currentTarget.blur) e.currentTarget.blur();
+    }
+    if (document.activeElement && document.activeElement.blur) document.activeElement.blur();
+    toggleLanguage();
+    return false;
+  }
+
+  function bindLanguageSwitcherButton(button) {
+    if (!button || button.getAttribute('data-lang-bound') === 'true') return;
+    button.addEventListener('pointerdown', saveScrollBeforeLanguageSwitch, { passive: true });
+    button.addEventListener('click', handleLanguageSwitcherClick);
+    button.setAttribute('data-lang-bound', 'true');
+  }
+
   // Setup language switcher button event listener
   function setupLanguageSwitcher() {
-    const switcher = document.getElementById('languageSwitcher');
-    if (switcher) {
-      log('🔘 Setting up language switcher button');
-      
-      // Keep inline onclick as backup, but also add event listeners
-      // Don't remove onclick - it works as a fallback
-      
-      // Only set up listener once to avoid duplicates
-      if (!buttonListenerSetup) {
-        // mousedown/touchstart: tıklamadan önce scroll pozisyonunu kaydet – focus scroll'u bozmasın
-        function saveScrollBeforeSwitch(e) {
-          const target = e.target;
-          if (target && (target.id === 'languageSwitcher' || target.closest('#languageSwitcher') || target.id === 'languageSwitcherMobile' || target.closest('#languageSwitcherMobile'))) {
-            var y = window.scrollY !== undefined ? window.scrollY : (window.pageYOffset || document.documentElement.scrollTop || 0);
-            var doc = document.documentElement;
-            var maxScroll = Math.max(0, (doc.scrollHeight - (window.innerHeight || doc.clientHeight)));
-            var ratio = maxScroll > 0 ? y / maxScroll : 0;
-            if (ratio > 1) ratio = 1;
-            if (ratio < 0) ratio = 0;
-            window._langScrollBeforeSwitch = { y: y, ratio: ratio };
-          }
-        }
-        document.body.addEventListener('mousedown', saveScrollBeforeSwitch, true);
-        document.body.addEventListener('touchstart', saveScrollBeforeSwitch, true);
+    var switcher = document.getElementById('languageSwitcher');
+    var switcherMobile = document.getElementById('languageSwitcherMobile');
 
-        // Use event delegation on document body for maximum reliability
-        document.body.addEventListener('click', function languageButtonHandler(e) {
-          const target = e.target;
-          if (target && (target.id === 'languageSwitcher' || target.closest('#languageSwitcher') || target.id === 'languageSwitcherMobile' || target.closest('#languageSwitcherMobile'))) {
-            e.preventDefault();
-            e.stopPropagation();
-            if (target.blur) target.blur();
-            if (document.activeElement && document.activeElement.blur) document.activeElement.blur();
-            log('🔘 Language button clicked via delegation! (desktop or mobile)');
-            toggleLanguage();
-            return false;
-          }
-        }, true); // Use capture phase for better reliability
-
-        // Direct listener'ları ayrı tick'te ekle (uzun görev kırma)
-        // directHandler modül seviyesinde saklanır → removeEventListener doğru referansı kullanır
-        var directHandler = function(e) {
-          e.preventDefault();
-          e.stopPropagation();
-          if (e.target && e.target.blur) e.target.blur();
-          if (document.activeElement && document.activeElement.blur) document.activeElement.blur();
-          log('🔘 Language button clicked via direct listener!');
-          toggleLanguage();
-          return false;
-        };
-        function attachDirectListeners() {
-          switcher.addEventListener('click', directHandler);
-          var mobileSwitcher = document.getElementById('languageSwitcherMobile');
-          if (mobileSwitcher) {
-            mobileSwitcher.addEventListener('click', directHandler);
-            log('✅ Language switcher mobile direct listener attached');
-          }
-          log('✅ Language switcher button direct listener attached');
-        }
-        if (typeof requestAnimationFrame !== 'undefined') requestAnimationFrame(attachDirectListeners);
-        else setTimeout(attachDirectListeners, 0);
-
-        buttonListenerSetup = true;
-        log('✅ Language switcher button event delegation attached');
-      }
-      return switcher;
-    } else {
+    if (!switcher && !switcherMobile) {
       warn('⚠️ Language switcher button not found! Will retry...');
+      return null;
     }
-    return null;
+
+    bindLanguageSwitcherButton(switcher);
+    bindLanguageSwitcherButton(switcherMobile);
+    return switcher || switcherMobile;
   }
 
   // Update language switcher button
@@ -822,115 +863,73 @@
     if (typeof window.toggleLanguage === 'function') return window.toggleLanguage();
   };
 
-  // Initialize on DOM ready – iki tick'e bölünür: TBT / uzun ana iş parçacığı görevinden kaçın
-  function initialize() {
-    log('=== LANGUAGE SYSTEM INITIALIZING ===');
-    log('Current language:', currentLang);
-    log('Translations object exists:', typeof translations !== 'undefined');
-    
-    const translationsObj = window.translations || (typeof translations !== 'undefined' ? translations : null);
-    if (!translationsObj) {
-      log('⏳ Waiting for translations to load...');
-      setTimeout(initialize, 50);
-      return;
-    }
-    
-    log('✅ Translations loaded! Available languages:', Object.keys(translationsObj));
-    log('✅ Turkish translations available:', !!translationsObj['tr']);
-    log('✅ Sample Turkish navAbout:', translationsObj['tr'] ? translationsObj['tr']['navAbout'] : 'NOT FOUND');
-    
-    // 1. tick: sadece buton dinleyicisi (setupLanguageSwitcher + attachDirectListeners ertelenir)
-    setupLanguageSwitcher();
-    // 2.–3. tick: setLanguage + updateLanguageSwitcher (initLanguage bir frame sonra, uzun görevi böler)
-    function runInitLanguage() {
-      log('=== RUNNING INITIAL TRANSLATION ===');
-      log('Language:', currentLang);
-      initLanguage();
-    }
-    if (typeof requestAnimationFrame !== 'undefined') {
-      requestAnimationFrame(function() { requestAnimationFrame(runInitLanguage); });
-    } else {
-      setTimeout(runInitLanguage, 0);
-    }
-  }
+  function scheduleCurrentLanguageRefresh() {
+    if (_scheduledLanguageRefresh) return;
 
-  function runInitialize() {
-    if (typeof requestIdleCallback !== 'undefined') {
-      requestIdleCallback(initialize, { timeout: 500 });
-    } else {
-      setTimeout(initialize, 150);
-    }
-  }
-  // Script yüklendiğinde hemen yield: uzun görev ilk tick'te bitmesin
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function() {
-      setTimeout(runInitialize, 0);
-    });
-  } else {
-    setTimeout(runInitialize, 0);
-  }
-
-  window.addEventListener('load', function() {
-    if (_languageInitialized) return;
-    if (typeof requestIdleCallback !== 'undefined') {
-      requestIdleCallback(function() {
-        const translationsObj = window.translations || (typeof translations !== 'undefined' ? translations : null);
-        if (translationsObj) initLanguage();
-        else err('❌ Translations still not loaded on window load!');
-      }, { timeout: 700 });
-    } else {
-      setTimeout(function() {
-        const translationsObj = window.translations || (typeof translations !== 'undefined' ? translations : null);
-        if (translationsObj) initLanguage();
-      }, 500);
-    }
-  });
-  
-  // Watch for dynamically added elements (like footer with animations)
-  if (typeof MutationObserver !== 'undefined') {
-    const observer = new MutationObserver(function(mutations) {
-      let shouldRetranslate = false;
-      let buttonAdded = false;
-      
-      mutations.forEach(function(mutation) {
-        if (mutation.addedNodes.length > 0) {
-          mutation.addedNodes.forEach(function(node) {
-            if (node.nodeType === 1) {
-              // Check if language button was added
-              if (node.id === 'languageSwitcher' || node.querySelector && node.querySelector('#languageSwitcher')) {
-                buttonAdded = true;
-              }
-              // Check if translatable elements were added
-              if (node.hasAttribute('data-i18n') || (node.querySelector && node.querySelector('[data-i18n]'))) {
-                shouldRetranslate = true;
-              }
-            }
-          });
-        }
+    _scheduledLanguageRefresh = setTimeout(function() {
+      _scheduledLanguageRefresh = null;
+      _translationBindingsDirty = true;
+      if (!_languageInitialized || currentLang !== 'tr') return;
+      setLanguage(currentLang, {
+        preserveScroll: false,
+        updateStorage: false,
+        refreshAuxiliary: false
       });
-      
-      // If button was added, set it up
-      if (buttonAdded) {
-        log('🔘 Language button detected in DOM, setting up...');
-        setupLanguageSwitcher();
-      }
-      
-      const translationsObj = window.translations || (typeof translations !== 'undefined' ? translations : null);
-      if (shouldRetranslate && translationsObj && currentLang === 'tr') {
-        setTimeout(function() {
-          log('🔄 Retranslating due to DOM changes');
-          setLanguage(currentLang);
-        }, 100);
-      }
+    }, 0);
+  }
+
+  function initialize() {
+    if (_languageInitialized) return;
+    initLanguage();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initialize);
+  } else {
+    initialize();
+  }
+  
+  if (typeof MutationObserver !== 'undefined') {
+    var observer = new MutationObserver(function(mutations) {
+      var shouldRefreshBindings = false;
+      var buttonAdded = false;
+
+      mutations.forEach(function(mutation) {
+        if (!mutation.addedNodes.length) return;
+        mutation.addedNodes.forEach(function(node) {
+          if (node.nodeType !== 1) return;
+          if (node.id === 'languageSwitcher' || node.id === 'languageSwitcherMobile' ||
+              (node.querySelector && (node.querySelector('#languageSwitcher') || node.querySelector('#languageSwitcherMobile')))) {
+            buttonAdded = true;
+          }
+          if (node.hasAttribute('data-i18n') ||
+              node.hasAttribute('data-i18n-placeholder') ||
+              node.hasAttribute('data-i18n-html') ||
+              node.hasAttribute('data-i18n-aria-label') ||
+              node.hasAttribute('data-i18n-title') ||
+              (node.querySelector && node.querySelector('[data-i18n], [data-i18n-placeholder], [data-i18n-html], [data-i18n-aria-label], [data-i18n-title]'))) {
+            shouldRefreshBindings = true;
+          }
+        });
+      });
+
+      if (buttonAdded) setupLanguageSwitcher();
+      if (shouldRefreshBindings) scheduleCurrentLanguageRefresh();
     });
-    
-    // Start observing after a delay
-    setTimeout(function() {
+
+    if (document.body) {
       observer.observe(document.body, {
         childList: true,
         subtree: true
       });
-    }, 1000);
+    } else {
+      document.addEventListener('DOMContentLoaded', function() {
+        observer.observe(document.body, {
+          childList: true,
+          subtree: true
+        });
+      });
+    }
   }
   
   // Expose other functions globally (toggleLanguage already exposed above)
