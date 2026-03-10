@@ -92,28 +92,28 @@ html[lang="tr"] {
 }
 
 /* TBT: Style & Layout azalt – below-fold bölümlerde layout/paint ertele */
-#partnerships {
+section[data-section-tr="ortakliklar"][data-section-en="partnerships"] {
   overflow-anchor: none;
 }
-#partnerships .partner-slider-container {
+section[data-section-tr="ortakliklar"][data-section-en="partnerships"] .partner-slider-container {
   overflow: hidden;
   cursor: default;
   min-height: 128px;
 }
 /* Partner slider: sonsuz döngü için flex düzeni */
-#partnerships .partner-slider {
+section[data-section-tr="ortakliklar"][data-section-en="partnerships"] .partner-slider {
   display: flex;
   flex-wrap: nowrap;
   will-change: transform;
 }
-#partnerships .partner-slider-set {
+section[data-section-tr="ortakliklar"][data-section-en="partnerships"] .partner-slider-set {
   display: flex;
   flex-shrink: 0;
   flex-wrap: nowrap;
   align-items: center;
   gap: 1.5rem;
 }
-#partnerships .partner-logo-card {
+section[data-section-tr="ortakliklar"][data-section-en="partnerships"] .partner-logo-card {
   flex-shrink: 0;
   display: flex;
   align-items: center;
@@ -122,11 +122,11 @@ html[lang="tr"] {
   opacity: 0.8;
   transition: opacity 0.2s;
 }
-#partnerships .partner-logo-card:hover {
+section[data-section-tr="ortakliklar"][data-section-en="partnerships"] .partner-logo-card:hover {
   opacity: 1;
 }
 /* Partner slider scrollbar */
-#partnerships .partner-scrollbar {
+section[data-section-tr="ortakliklar"][data-section-en="partnerships"] .partner-scrollbar {
   position: relative;
   width: 100%;
   height: 6px;
@@ -136,10 +136,10 @@ html[lang="tr"] {
   cursor: pointer;
   overflow: hidden; /* thumb sağdan çıkıp soldan girer */
 }
-#partnerships .partner-scrollbar:hover {
+section[data-section-tr="ortakliklar"][data-section-en="partnerships"] .partner-scrollbar:hover {
   background: rgba(255, 255, 255, 0.15);
 }
-#partnerships .partner-scrollbar-thumb {
+section[data-section-tr="ortakliklar"][data-section-en="partnerships"] .partner-scrollbar-thumb {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -152,12 +152,12 @@ html[lang="tr"] {
   transition: height 0.15s ease, box-shadow 0.15s ease;
   box-shadow: 0 0 6px rgba(52, 211, 153, 0.4);
 }
-#partnerships .partner-scrollbar-thumb:hover,
-#partnerships .partner-scrollbar-thumb.dragging {
+section[data-section-tr="ortakliklar"][data-section-en="partnerships"] .partner-scrollbar-thumb:hover,
+section[data-section-tr="ortakliklar"][data-section-en="partnerships"] .partner-scrollbar-thumb.dragging {
   height: 10px;
   box-shadow: 0 0 10px rgba(52, 211, 153, 0.6);
 }
-#partnerships .partner-scrollbar-thumb.dragging {
+section[data-section-tr="ortakliklar"][data-section-en="partnerships"] .partner-scrollbar-thumb.dragging {
   cursor: grabbing;
 }
 #services,
@@ -1478,37 +1478,32 @@ header.overflow-menu #mobileMenu ul li a:hover {
   }
 }
 
-/* 1440px ve uzeri: quick links goster (hizalı), dil butonu her zaman görünsün, taşma/kaybolma yok */
+@media (min-width: 1025px) {
+  .nav-cta-desktop {
+    width: clamp(18.5rem, 20vw, 22.5rem);
+    min-width: clamp(18.5rem, 20vw, 22.5rem);
+    max-width: clamp(18.5rem, 20vw, 22.5rem);
+    flex: 0 0 clamp(18.5rem, 20vw, 22.5rem);
+    white-space: nowrap;
+  }
+}
+
+/* 1440px ve uzeri: varsayilan olarak masaustu gorunsun.
+   Ancak header.overflow-menu olusursa, olculen tasma durumunda kompakt mod yine override edebilir. */
 @media (min-width: 1440px) {
-  .nav-desktop-scroll,
-  header.overflow-menu .nav-desktop-scroll {
+  .nav-desktop-scroll {
     display: flex !important;
     align-items: center !important;
     align-self: center !important;
   }
-  .nav-mobile-wrap,
-  header.overflow-menu .nav-mobile-wrap {
+  .nav-mobile-wrap {
     display: none !important;
   }
-  .nav-lang-btn,
-  header.overflow-menu .nav-lang-btn {
+  .nav-lang-btn {
     display: inline-flex !important;
   }
-  /* overflow-menu'de de masaüstü dil butonu görünsün (id seçicisi yüzünden ayrıca zorunlu) */
-  header.overflow-menu #languageSwitcher,
-  header.overflow-menu button#languageSwitcher {
-    display: inline-flex !important;
-  }
-  header.overflow-menu #languageSwitcherMobile,
-  header.overflow-menu button#languageSwitcherMobile {
-    display: none !important;
-  }
-  .nav-spacer,
-  header.overflow-menu .nav-spacer {
+  .nav-spacer {
     display: block !important;
-  }
-  header.overflow-menu .nav-cta-desktop {
-    display: inline-flex !important;
   }
 }
 
@@ -3593,5 +3588,3 @@ header.overflow-menu #mobileMenuBtn {
   padding-left: 0.35rem !important;
   padding-right: 0.35rem !important;
 }
-
-

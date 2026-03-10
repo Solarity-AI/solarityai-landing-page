@@ -84,8 +84,8 @@
     <link rel="stylesheet" href="assets/css/lineicons.css" media="print" onload="this.media='all'" />
     <noscript><link rel="stylesheet" href="assets/css/lineicons.css" /></noscript>
     <!-- Yayında main.min.css kullanılıyor -->
-    <link rel="preload" href="assets/css/main.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-    <noscript><link rel="stylesheet" href="assets/css/main.min.css" /></noscript>
+    <link rel="preload" href="assets/css/main.min.css?v=20260310-partners-header-fix" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="assets/css/main.min.css?v=20260310-partners-header-fix" /></noscript>
     <!-- Navbar: ana sayfa ile aynı (yükseklik, logo, CTA ortada) -->
     <style>
       header { display: flex; align-items: center; min-height: 6rem; }
@@ -308,14 +308,14 @@
                     <a href="careers.html" class="nav-page-btn nav-page-btn-careers inline-flex flex-shrink-0 items-center gap-2 px-5 py-2.5 text-sm font-semibold rounded-lg transition hover:shadow-lg whitespace-nowrap"><i class="lni lni-briefcase"></i><span data-i18n="navCareers">Careers</span></a>
                     </div>
                     </div>
-                    <button id="languageSwitcher" type="button" onclick="window.invokeToggleLanguage()" aria-label="Switch language"
+                    <button id="languageSwitcher" type="button" aria-label="Switch language"
                             class="nav-lang-btn inline-flex flex-shrink-0 items-center justify-center px-3 py-2 rounded-lg transition hover:scale-105"
                             style="background: rgba(16, 185, 129, 0.15); border: 2px solid rgba(16, 185, 129, 0.4); color: #10b981;">
                         <img id="flagIcon" src="assets/images/flags/flag-us.svg?v=2" alt="" width="56" height="40" style="object-fit:cover; border-radius:5px; box-shadow:0 1px 3px rgba(0,0,0,0.2);" />
                     </button>
                     <div class="nav-mobile-wrap flex items-center gap-3 flex-shrink-0">
                     <a href="careers.html" class="nav-careers-mobile inline-flex flex-shrink-0 items-center justify-center gap-1.5 px-3 py-2 rounded-lg text-sm font-semibold transition hover:shadow-lg whitespace-nowrap" style="background: linear-gradient(135deg, #10b981, #059669); color: #fff; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35);"><i class="lni lni-briefcase" aria-hidden="true"></i><span data-i18n="navCareers">Careers</span></a>
-                    <button id="languageSwitcherMobile" type="button" onclick="window.invokeToggleLanguage()" aria-label="Switch language"
+                    <button id="languageSwitcherMobile" type="button" aria-label="Switch language"
                             class="inline-flex items-center justify-center p-2 rounded-lg"
                             style="background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.3); color: #10b981;">
                         <img id="flagIconMobile" src="assets/images/flags/flag-us.svg?v=2" alt="" width="60" height="44" style="object-fit:cover; border-radius:4px; box-shadow:0 1px 2px rgba(0,0,0,0.2);" />
@@ -427,7 +427,7 @@
     </footer>
 
     <script src="assets/js/translations.min.js?v=2" defer></script>
-    <script src="assets/js/language.min.js" defer></script>
+    <script src="assets/js/language.min.js?v=20260310-scroll-anchor" defer></script>
     <script>
         function runChunks(fns) { var i = 0; function next() { if (i < fns.length) { fns[i++](); setTimeout(next, 0); } } next(); }
         function initDeferredChunk1() {
@@ -446,17 +446,40 @@
             function check() {
                 if (!header) return;
                 var w = window.innerWidth;
-                if (w >= 1440) { header.classList.remove('overflow-menu'); return; }
                 if (w <= 1024) { header.classList.add('overflow-menu'); return; }
                 header.classList.remove('overflow-menu');
                 requestAnimationFrame(function() {
                     requestAnimationFrame(function() {
                         var scrollEl = header.querySelector('.nav-desktop-scroll');
-                        if (scrollEl && scrollEl.scrollWidth > scrollEl.clientWidth) header.classList.add('overflow-menu');
+                        var rightWrap = header.querySelector('.nav-right-wrap');
+                        var brand = header.querySelector('nav > a:first-child');
+                        var cta = header.querySelector('.nav-cta-desktop');
+                        var careersBtn = header.querySelector('.nav-desktop-inner .nav-page-btn-careers');
+                        var langBtn = header.querySelector('#languageSwitcher');
+                        var needsOverflow = false;
+                        if (scrollEl) needsOverflow = (scrollEl.scrollWidth - scrollEl.clientWidth) > 4;
+                        if (!needsOverflow && rightWrap) needsOverflow = (rightWrap.scrollWidth - rightWrap.clientWidth) > 4;
+                        if (!needsOverflow && careersBtn && langBtn) {
+                            var careersRect = careersBtn.getBoundingClientRect();
+                            var langRect = langBtn.getBoundingClientRect();
+                            needsOverflow = careersRect.right > (langRect.left - 12);
+                        }
+                        if (!needsOverflow && brand && cta) {
+                            var brandRect = brand.getBoundingClientRect();
+                            var ctaRect = cta.getBoundingClientRect();
+                            needsOverflow = brandRect.right > (ctaRect.left - 16);
+                            if (!needsOverflow && rightWrap) {
+                                var rightRect = rightWrap.getBoundingClientRect();
+                                needsOverflow = ctaRect.right > (rightRect.left - 16);
+                            }
+                        }
+                        header.classList.toggle('overflow-menu', needsOverflow);
                     });
                 });
             }
             window.addEventListener('resize', check);
+            window.addEventListener('load', check, { once: true });
+            if (document.fonts && document.fonts.ready) document.fonts.ready.then(check).catch(function() {});
             if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', check);
             else check();
         }
