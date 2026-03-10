@@ -62,7 +62,7 @@ test.describe('Acceptance Criteria - static output and UI behaviors', () => {
 
     await expect(page.locator('html')).toHaveAttribute('lang', 'tr')
     await expect(page.locator('[data-i18n="navAboutUs"]').first()).toContainText('Hakkımızda')
-    await expect.poll(() => page.evaluate(() => localStorage.getItem('lang'))).toBe('tr')
+    await expect.poll(() => page.evaluate(() => localStorage.getItem('solarityai-lang'))).toBe('tr')
 
     for (const route of PAGE_PATHS) {
       await page.goto(route)
@@ -72,7 +72,7 @@ test.describe('Acceptance Criteria - static output and UI behaviors', () => {
 
     await clickVisibleLanguageToggle(page)
     await expect(page.locator('html')).toHaveAttribute('lang', 'en')
-    await expect.poll(() => page.evaluate(() => localStorage.getItem('lang'))).toBe('en')
+    await expect.poll(() => page.evaluate(() => localStorage.getItem('solarityai-lang'))).toBe('en')
   })
 
   test('AC03 desktop navbar scroll state and active section tracking work', async ({ page }, testInfo) => {

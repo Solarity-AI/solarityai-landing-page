@@ -402,16 +402,17 @@
         const isWindows = /Win/.test(navigator.userAgent || navigator.platform || '');
         window.USE_SVG_FLAGS = isWindows;
         
-        // Doğru bayrağı göster (mevcut dil hangi dil ise o dilin bayrağını göster)
+        // Buton geçilecek dili gösterir: TR'deyken EN, EN'deyken TR
         function setCorrectFlag() {
           const currentLang = localStorage.getItem('solarityai-lang') || document.documentElement.getAttribute('lang') || 'en';
+          const targetLang = currentLang === 'tr' ? 'en' : 'tr';
           
           const flagEl = document.getElementById('flagIcon');
           const flagElMobile = document.getElementById('flagIconMobile');
           
           if (isWindows) {
             // Windows: SVG kullan
-            const flagSvg = currentLang === 'tr' ? 'assets/images/flags/flag-tr.svg?v=2' : 'assets/images/flags/flag-us.svg?v=2';
+            const flagSvg = targetLang === 'tr' ? 'assets/images/flags/flag-tr.svg?v=2' : 'assets/images/flags/flag-us.svg?v=2';
             
             if (flagEl && flagEl.tagName === 'IMG') {
               flagEl.src = flagSvg;
@@ -421,7 +422,7 @@
             }
           } else {
             // Diğer cihazlar: Emoji kullan
-            const flagEmoji = currentLang === 'tr' ? '🇹🇷' : '🇺🇸';
+            const flagEmoji = targetLang === 'tr' ? '🇹🇷' : '🇺🇸';
             
             if (flagEl && flagEl.tagName === 'IMG') {
               // IMG ise span'a çevir – kutuyla orantılı (44x32)
@@ -1278,7 +1279,7 @@
             else console.warn('Language system not initialized yet.');
         };
     </script>
-    <script src="assets/js/translations.min.js" defer></script>
+    <script src="assets/js/translations.min.js?v=2" defer></script>
     <script src="assets/js/language.min.js" defer></script>
 
     <script>

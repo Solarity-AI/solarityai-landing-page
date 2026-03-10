@@ -64,7 +64,9 @@ async function installTurnstileMock(page, token = 'pw-turnstile-token') {
 
 async function clickVisibleLanguageToggle(page) {
   await page.evaluate(() => {
-    const buttons = Array.from(document.querySelectorAll('.js-lang-toggle'))
+    const buttons = Array.from(
+      document.querySelectorAll('#languageSwitcher, #languageSwitcherMobile')
+    )
     const visibleButton = buttons.find((button) => {
       const style = window.getComputedStyle(button)
       return style.display !== 'none' && style.visibility !== 'hidden' && style.opacity !== '0'

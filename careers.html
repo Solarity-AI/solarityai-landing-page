@@ -875,8 +875,13 @@
         }
         runChunks([initDeferredChunk1, initDeferredChunk2]);
 
-        // Language Switcher: window.toggleLanguage ve window.invokeToggleLanguage
-        // language.min.js tarafından global olarak sağlanır — burada tanımlamaya gerek yok.
+        // invokeToggleLanguage: language.min.js defer ile yüklendiğinden erken tıklamaya karşı güvenlik
+        if (typeof window.invokeToggleLanguage !== 'function') {
+            window.invokeToggleLanguage = function() {
+                if (typeof window.toggleLanguage === 'function') window.toggleLanguage();
+                else console.warn('Language system not initialized yet.');
+            };
+        }
 
         // File Upload Handling – sadece formda file alanı varsa çalışır (yoksa script devam eder, Gmail/LinkedIn validasyonu çalışır)
         const fileUploadArea = document.getElementById('fileUploadArea');

@@ -355,9 +355,7 @@
         } else if (tagName === 'BUTTON' || tagName === 'OPTION') {
           element.textContent = translation;
         } else if (tagName === 'A') {
-          element.innerHTML = translation;
           element.textContent = translation;
-          element.innerText = translation;
         } else if (tagName === 'LABEL') {
           var rs = element.querySelector('.required');
           if (rs) element.innerHTML = translation.replace('*', '').trim() + ' ' + rs.outerHTML;

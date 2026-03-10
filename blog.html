@@ -396,7 +396,12 @@
             else check();
         }
         runChunks([initDeferredChunk1, initDeferredChunk2]);
-        function toggleLanguage() { if (window && typeof window.toggleLanguage === 'function') return window.toggleLanguage(); }
+        if (typeof window.invokeToggleLanguage !== 'function') {
+            window.invokeToggleLanguage = function() {
+                if (typeof window.toggleLanguage === 'function') window.toggleLanguage();
+                else console.warn('Language system not initialized yet.');
+            };
+        }
     </script>
     <div id="cookie-consent-banner" role="dialog" aria-label="Cookie consent" aria-live="polite" class="hidden fixed bottom-0 left-0 right-0 z-[100] p-4 bg-slate-800/95 border-t border-slate-600 shadow-lg">
       <div class="container mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
