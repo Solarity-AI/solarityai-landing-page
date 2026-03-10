@@ -401,64 +401,98 @@
       (function() {
         const isWindows = /Win/.test(navigator.userAgent || navigator.platform || '');
         window.USE_SVG_FLAGS = isWindows;
-        
-        // Buton geçilecek dili gösterir: TR'deyken EN, EN'deyken TR
-        function setCorrectFlag() {
-          const currentLang = localStorage.getItem('solarityai-lang') || document.documentElement.getAttribute('lang') || 'en';
-          const targetLang = currentLang === 'tr' ? 'en' : 'tr';
-          
-          const flagEl = document.getElementById('flagIcon');
-          const flagElMobile = document.getElementById('flagIconMobile');
-          
-          if (isWindows) {
-            // Windows: SVG kullan
-            const flagSvg = targetLang === 'tr' ? 'assets/images/flags/flag-tr.svg?v=2' : 'assets/images/flags/flag-us.svg?v=2';
-            
-            if (flagEl && flagEl.tagName === 'IMG') {
-              flagEl.src = flagSvg;
-            }
-            if (flagElMobile && flagElMobile.tagName === 'IMG') {
-              flagElMobile.src = flagSvg;
-            }
-          } else {
-            // Diğer cihazlar: Emoji kullan
-            const flagEmoji = targetLang === 'tr' ? '🇹🇷' : '🇺🇸';
-            
-            if (flagEl && flagEl.tagName === 'IMG') {
-              // IMG ise span'a çevir – kutuyla orantılı (44x32)
-              const newSpan = document.createElement('span');
-              newSpan.id = 'flagIcon';
-              newSpan.style.display = 'inline-flex';
-              newSpan.style.alignItems = 'center';
-              newSpan.style.justifyContent = 'center';
-              newSpan.style.width = '56px';
-              newSpan.style.height = '40px';
-              newSpan.style.fontSize = '2.25rem';
-              newSpan.style.lineHeight = '1';
-              newSpan.textContent = flagEmoji;
-              flagEl.parentNode.replaceChild(newSpan, flagEl);
-            }
-            if (flagElMobile && flagElMobile.tagName === 'IMG') {
-              // IMG ise span'a çevir – kutuyla orantılı (48x34)
-              const newSpanMobile = document.createElement('span');
-              newSpanMobile.id = 'flagIconMobile';
-              newSpanMobile.style.display = 'inline-flex';
-              newSpanMobile.style.alignItems = 'center';
-              newSpanMobile.style.justifyContent = 'center';
-              newSpanMobile.style.width = '60px';
-              newSpanMobile.style.height = '44px';
-              newSpanMobile.style.fontSize = '2.5rem';
-              newSpanMobile.style.lineHeight = '1';
-              newSpanMobile.textContent = flagEmoji;
-              flagElMobile.parentNode.replaceChild(newSpanMobile, flagElMobile);
-            }
+
+        function getCurrentLang() {
+          try {
+            return localStorage.getItem('solarityai-lang') || document.documentElement.getAttribute('lang') || 'en';
+          } catch (e) {
+            return document.documentElement.getAttribute('lang') || 'en';
           }
         }
-        
-        // Hemen çalıştır
+
+        function getSwitcherLabel(currentLang) {
+          return currentLang === 'tr' ? 'Dili Ingilizceye cevir' : 'Switch language to Turkish';
+        }
+
+        function applyFlag(node, targetLang, isMobile) {
+          if (!node) return;
+
+          var width = isMobile ? 60 : 56;
+          var height = isMobile ? 44 : 40;
+          var radius = isMobile ? '4px' : '5px';
+          var shadow = isMobile ? '0 1px 2px rgba(0,0,0,0.2)' : '0 1px 3px rgba(0,0,0,0.2)';
+          var fontSize = isMobile ? '2.5rem' : '2.25rem';
+
+          if (isWindows) {
+            var flagSvg = targetLang === 'tr' ? 'assets/images/flags/flag-tr.svg?v=2' : 'assets/images/flags/flag-us.svg?v=2';
+            if (node.tagName === 'IMG') {
+              node.src = flagSvg;
+              node.alt = '';
+              node.setAttribute('aria-hidden', 'true');
+              return;
+            }
+            var img = document.createElement('img');
+            img.id = node.id;
+            img.src = flagSvg;
+            img.alt = '';
+            img.width = width;
+            img.height = height;
+            img.style.objectFit = 'cover';
+            img.style.borderRadius = radius;
+            img.style.boxShadow = shadow;
+            img.setAttribute('aria-hidden', 'true');
+            node.parentNode.replaceChild(img, node);
+            return;
+          }
+
+          var flagEmoji = targetLang === 'tr' ? '🇹🇷' : '🇺🇸';
+          if (node.tagName === 'IMG') {
+            var span = document.createElement('span');
+            span.id = node.id;
+            span.textContent = flagEmoji;
+            span.style.display = 'inline-flex';
+            span.style.alignItems = 'center';
+            span.style.justifyContent = 'center';
+            span.style.width = width + 'px';
+            span.style.height = height + 'px';
+            span.style.fontSize = fontSize;
+            span.style.lineHeight = '1';
+            span.setAttribute('aria-hidden', 'true');
+            node.parentNode.replaceChild(span, node);
+            return;
+          }
+          node.textContent = flagEmoji;
+          node.style.display = 'inline-flex';
+          node.style.alignItems = 'center';
+          node.style.justifyContent = 'center';
+          node.style.width = width + 'px';
+          node.style.height = height + 'px';
+          node.style.fontSize = fontSize;
+          node.style.lineHeight = '1';
+          node.setAttribute('aria-hidden', 'true');
+        }
+
+        function setCorrectFlag() {
+          const currentLang = getCurrentLang();
+          const targetLang = currentLang === 'tr' ? 'en' : 'tr';
+          const label = getSwitcherLabel(currentLang);
+          const switcher = document.getElementById('languageSwitcher');
+          const switcherMobile = document.getElementById('languageSwitcherMobile');
+
+          if (switcher) {
+            switcher.setAttribute('aria-label', label);
+            switcher.setAttribute('title', label);
+          }
+          if (switcherMobile) {
+            switcherMobile.setAttribute('aria-label', label);
+            switcherMobile.setAttribute('title', label);
+          }
+
+          applyFlag(document.getElementById('flagIcon'), targetLang, false);
+          applyFlag(document.getElementById('flagIconMobile'), targetLang, true);
+        }
+
         setCorrectFlag();
-        
-        // Güvenlik için tekrar çalıştır
         if (document.readyState === 'loading') {
           document.addEventListener('DOMContentLoaded', setCorrectFlag);
         }
