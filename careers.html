@@ -18,8 +18,13 @@
       (function(){
         try {
           var L = localStorage.getItem('solarityai-lang');
-          if (L === 'tr') document.documentElement.setAttribute('lang','tr');
-          else document.documentElement.setAttribute('lang','en');
+          if (L === 'tr') {
+            document.documentElement.setAttribute('lang','tr');
+            document.documentElement.classList.add('lang-loading');
+            setTimeout(function(){ document.documentElement.classList.remove('lang-loading'); }, 1500);
+          } else {
+            document.documentElement.setAttribute('lang','en');
+          }
         } catch(e){
           document.documentElement.setAttribute('lang','en');
         }
@@ -870,19 +875,8 @@
         }
         runChunks([initDeferredChunk1, initDeferredChunk2]);
 
-        // Language Switcher - BOTH DESKTOP & MOBILE (delegate to global)
-        function toggleLanguage() {
-            if (window && typeof window.toggleLanguage === 'function') {
-                return window.toggleLanguage();
-            }
-            console.warn('Language system not initialized yet.');
-        }
-
-        // Initialize language
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('🚀 CAREERS FLAG INIT - Version: 2026-01-28-FLAGS-UPDATED');
-            // language.js will initialize flags and texts
-        });
+        // Language Switcher: window.toggleLanguage ve window.invokeToggleLanguage
+        // language.min.js tarafından global olarak sağlanır — burada tanımlamaya gerek yok.
 
         // File Upload Handling – sadece formda file alanı varsa çalışır (yoksa script devam eder, Gmail/LinkedIn validasyonu çalışır)
         const fileUploadArea = document.getElementById('fileUploadArea');
