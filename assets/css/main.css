@@ -1993,18 +1993,19 @@ html[lang="tr"] .stat-satisfaction-tr {
    Team Section
    ============================= */
 
-/* Ekip kartı: border 2px (ceo/engineer vb.) ile uyumlu köşe yarıçapı */
 .ud-single-team {
   text-align: center;
-  background: linear-gradient(180deg, rgba(12, 20, 38, 0.98), rgba(9, 14, 26, 0.98));
-  border-radius: 18px;
+  background: linear-gradient(165deg, rgba(15, 23, 42, 0.65), rgba(15, 23, 42, 0.45));
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 20px;
   padding: 0;
-  transition: all var(--transition-base);
-  border: 1px solid rgba(59, 130, 246, 0.25);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  border: 1px solid rgba(148, 163, 184, 0.12);
   height: 100%;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 14px 42px rgba(0, 0, 0, 0.45), 0 6px 18px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.05);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), 0 2px 8px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
 }
@@ -2013,26 +2014,26 @@ html[lang="tr"] .stat-satisfaction-tr {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(59, 130, 246, 0.18), rgba(0, 0, 0, 0) 45%);
-  opacity: 0.6;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, transparent 50%);
+  opacity: 1;
   pointer-events: none;
   transition: opacity var(--transition-base);
 }
 
 .ud-single-team:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 18px 52px rgba(0, 0, 0, 0.55), 0 8px 22px rgba(0, 0, 0, 0.28), 0 0 0 1px rgba(255, 255, 255, 0.08);
+  transform: translateY(-8px);
+  border-color: rgba(148, 163, 184, 0.2);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.25), 0 8px 24px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.06);
 }
 
-/* Kart ve resim aynı köşe yarıçapı – boşluk olmasın (kart border 2px → iç yarıçap 16px) */
 .ud-team-image-wrapper {
   position: relative;
   margin: 0;
   flex: 1 1 auto;
   width: 100%;
   aspect-ratio: 4 / 5;
-  border-top-left-radius: 16px;
-  border-top-right-radius: 16px;
+  border-top-left-radius: 19px;
+  border-top-right-radius: 19px;
   overflow: hidden;
 }
 
@@ -2040,8 +2041,8 @@ html[lang="tr"] .stat-satisfaction-tr {
   width: 100%;
   height: 100%;
   margin: 0;
-  border-top-left-radius: 16px;
-  border-top-right-radius: 16px;
+  border-top-left-radius: 19px;
+  border-top-right-radius: 19px;
   overflow: hidden;
   border: 0;
   transition: all var(--transition-base);
@@ -2081,8 +2082,8 @@ html[lang="tr"] .stat-satisfaction-tr {
   left: 0;
   right: 0;
   bottom: 0;
-  height: 60%;
-  background: linear-gradient(180deg, rgba(9, 14, 26, 0) 0%, rgba(9, 14, 26, 0.25) 36%, rgba(9, 14, 26, 0.95) 100%);
+  height: 40%;
+  background: linear-gradient(180deg, transparent 0%, rgba(15, 23, 42, 0.4) 100%);
   pointer-events: none;
   z-index: 1;
 }
@@ -2093,40 +2094,41 @@ html[lang="tr"] .stat-satisfaction-tr {
   align-items: center;
   justify-content: flex-start;
   text-align: center;
-  padding: 0.5rem 0.35rem 0.35rem;
+  padding: 0.75rem 0.75rem 0.5rem;
   margin-top: 0;
   position: relative;
   z-index: 2;
-  gap: 0.25rem;
+  gap: 0.2rem;
+  background: transparent;
 }
 
-/* İsim ve unvan – tüm kartlarda aynı (TR font stili) */
 .ud-team-info h4 {
   font-family: var(--font-secondary);
-  font-size: 1.65rem;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  color: var(--color-text-primary);
+  font-size: 1.75rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: rgba(241, 245, 249, 0.95);
   text-align: center;
   width: 100%;
-  margin-bottom: 0.2rem;
-  line-height: 1.35;
+  margin-bottom: 0.15rem;
+  line-height: 1.3;
 }
 
 .ud-team-info .team-role {
   font-family: var(--font-secondary);
-  font-size: 1.6rem;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  color: var(--color-text-primary);
+  font-size: 1.35rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: rgba(148, 163, 184, 0.85);
   text-align: center;
-  margin-bottom: 0.2rem;
-  line-height: 1.35;
+  margin-bottom: 0.15rem;
+  line-height: 1.3;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   max-width: 100%;
   transition: color var(--transition-base);
+  text-transform: uppercase;
 }
 
 .ud-team-info .team-role::after {
@@ -2164,36 +2166,36 @@ html[lang="tr"] .stat-satisfaction-tr {
 .ud-team-socials {
   display: flex;
   justify-content: center;
-  gap: 0.35rem;
+  gap: 0.5rem;
   list-style: none;
   padding: 0;
-  margin: 0 0 0.05rem;
+  margin: 0.25rem 0 0;
   z-index: 4;
   position: relative;
 }
 /* EN/TR ayrımı yok – tüm ekip kartları özdeş */
 
 .ud-team-socials li a {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: rgba(13, 19, 35, 0.85);
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(148, 163, 184, 0.08);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--color-text-secondary);
-  transition: all var(--transition-base);
-  border: 1px solid rgba(59, 130, 246, 0.45);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
-  font-size: 1.5rem;
+  color: rgba(148, 163, 184, 0.7);
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  box-shadow: none;
+  font-size: 1.35rem;
 }
 
 .ud-team-socials li a:hover {
-  background: var(--gradient-blue);
-  color: var(--color-white);
+  background: rgba(59, 130, 246, 0.15);
+  color: #93c5fd;
   transform: translateY(-2px);
-  box-shadow: 0 10px 26px rgba(30, 64, 175, 0.45);
-  border-color: transparent;
+  box-shadow: 0 4px 16px rgba(59, 130, 246, 0.2);
+  border-color: rgba(59, 130, 246, 0.3);
 }
 
 /* =============================
@@ -2214,22 +2216,19 @@ html[lang="tr"] .stat-satisfaction-tr {
   display: none;
 }
 
-/* Kart: foto sabit, isim alanı min-height ile unvan/LinkedIn yan kartlarla hizalı */
 #team .ud-single-team.team-card,
 #ekip .ud-single-team.team-card {
-  min-height: 420px;
-  height: 100%;
+  min-height: unset;
+  height: auto;
   overflow: hidden;
-  display: grid;
-  grid-template-rows: 290px auto auto auto;
-  grid-template-columns: 1fr;
-  align-items: start;
+  display: flex;
+  flex-direction: column;
   width: 320px !important;
   min-width: 320px !important;
   max-width: 320px !important;
   margin-left: auto;
   margin-right: auto;
-  padding-bottom: 1rem;
+  padding-bottom: 0;
   box-sizing: border-box;
 }
 #team .team-grid-executives .ud-single-team.team-card,
@@ -2248,13 +2247,11 @@ html[lang="tr"] .stat-satisfaction-tr {
 }
 #team .ud-team-image-wrapper,
 #ekip .ud-team-image-wrapper {
-  grid-row: 1;
+  flex: 0 0 auto;
   width: 100%;
-  height: 290px !important;
-  min-height: 290px !important;
-  max-height: 290px !important;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
+  aspect-ratio: 4 / 5;
+  border-top-left-radius: 19px;
+  border-top-right-radius: 19px;
   overflow: hidden;
 }
 #team .ud-team-image-wrapper .ud-team-image,
@@ -2269,27 +2266,26 @@ html[lang="tr"] .stat-satisfaction-tr {
 }
 #team .ud-team-info,
 #ekip .ud-team-info {
-  grid-row: 2;
+  flex: 0 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   text-align: center;
-  min-height: 5rem;
-  height: auto;
-  max-height: none;
   width: 100%;
   margin: 0;
-  padding: 0.1rem 0.35rem 0.25rem;
-  gap: 0.15rem;
+  padding: 0.5rem 0.75rem 0.25rem;
+  gap: 0.1rem;
   overflow: visible;
   box-sizing: border-box;
+  background: transparent;
 }
 #team .ud-team-info h4,
 #ekip .ud-team-info h4 {
-  font-size: 1.75rem;
+  font-size: 1.4rem;
+  font-weight: 600;
   margin: 0;
-  line-height: 1.3;
+  line-height: 1.2;
   text-align: center;
   width: 100%;
   overflow-wrap: break-word;
@@ -2298,8 +2294,11 @@ html[lang="tr"] .stat-satisfaction-tr {
 }
 #team .ud-team-info .team-role,
 #ekip .ud-team-info .team-role {
-  font-size: 1.25rem;
-  line-height: 1.3;
+  font-size: 1.05rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.2;
   margin: 0;
   padding: 0;
   text-align: center;
@@ -2308,6 +2307,7 @@ html[lang="tr"] .stat-satisfaction-tr {
   overflow: visible;
   text-overflow: unset;
   flex: 0 0 auto;
+  color: rgba(148, 163, 184, 0.8);
 }
 #team .ud-team-info h6,
 #ekip .ud-team-info h6 {
@@ -2316,15 +2316,14 @@ html[lang="tr"] .stat-satisfaction-tr {
 }
 #team .ud-team-socials,
 #ekip .ud-team-socials {
-  grid-row: 3;
+  flex: 0 0 auto;
   width: 100%;
   margin: 0;
-  padding: 0.25rem 0 0;
-  flex-shrink: 0;
+  padding: 0.15rem 0 0.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 40px;
+  min-height: 0;
 }
 #team .team-grid-executives,
 #team .team-grid-managers,
@@ -2480,66 +2479,95 @@ html[lang="tr"] .stat-satisfaction-tr {
   }
 }
 
-/* Mobil: foto max büyük, isim/unvan/LinkedIn kartın içinde ve görünsün */
 @media (max-width: 767px) {
   #team .ud-single-team.team-card,
   #ekip .ud-single-team.team-card {
     overflow: hidden !important;
-    min-height: auto !important;
+    min-height: unset !important;
     height: auto !important;
-    aspect-ratio: unset !important;
-    padding-bottom: 1rem !important;
-    display: grid !important;
-    grid-template-rows: 255px auto auto !important;
-    grid-template-columns: 1fr !important;
-    align-items: start !important;
+    padding-bottom: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
     align-self: stretch !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
   }
-  /* Foto: biraz büyük */
+  #team .team-grid-executives,
+  #ekip .team-grid-executives,
+  #team .team-grid-managers,
+  #ekip .team-grid-managers {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.5rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 0.25rem !important;
+    box-sizing: border-box !important;
+  }
+  #team .team-grid-bdm,
+  #ekip .team-grid-bdm,
+  #team .team-grid-engineers-managers,
+  #ekip .team-grid-engineers-managers,
+  #team .team-grid-engineers-fs,
+  #ekip .team-grid-engineers-fs,
+  #team .team-grid-marketers,
+  #ekip .team-grid-marketers {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.5rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 0.25rem !important;
+    box-sizing: border-box !important;
+  }
   #team .ud-team-image-wrapper,
   #ekip .ud-team-image-wrapper {
-    grid-row: 1 !important;
-    height: 255px !important;
-    min-height: 255px !important;
-    max-height: 255px !important;
+    flex: 0 0 auto !important;
+    aspect-ratio: 3 / 4 !important;
+    height: auto !important;
+    max-height: none !important;
+    min-height: unset !important;
     width: 100% !important;
   }
-  /* İsim, unvan LinkedIn'e yakın */
   #team .ud-team-info,
   #ekip .ud-team-info {
-    grid-row: 2 !important;
-    align-self: stretch !important;
+    flex: 0 0 auto !important;
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
     justify-content: flex-start !important;
     width: 100% !important;
     margin: 0 !important;
-    padding: 0.1rem 0.35rem 0.35rem !important;
-    gap: 0.15rem !important;
-    min-height: 7rem !important;
+    padding: 0.4rem 0.5rem 0.15rem !important;
+    gap: 0.1rem !important;
+    min-height: unset !important;
     height: auto !important;
     overflow: visible !important;
     box-sizing: border-box !important;
     opacity: 1 !important;
     text-align: center !important;
+    background: transparent !important;
   }
   #team .ud-team-info h4,
   #ekip .ud-team-info h4 {
-    font-size: 1.6rem !important;
+    font-size: 1.15rem !important;
+    font-weight: 600 !important;
     margin: 0 !important;
-    line-height: 1.25 !important;
+    line-height: 1.2 !important;
     text-align: center !important;
     width: 100% !important;
-    min-height: 2rem !important;
+    min-height: unset !important;
     opacity: 1 !important;
-    color: var(--color-text-primary) !important;
+    color: rgba(241, 245, 249, 0.95) !important;
   }
   #team .ud-team-info .team-role,
   #ekip .ud-team-info .team-role {
-    font-size: 1.35rem !important;
+    font-size: 0.9rem !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.08em !important;
     margin: 0 !important;
-    line-height: 1.25 !important;
+    line-height: 1.2 !important;
     text-align: center !important;
     width: 100% !important;
     white-space: normal !important;
@@ -2548,36 +2576,69 @@ html[lang="tr"] .stat-satisfaction-tr {
     -webkit-line-clamp: unset !important;
     display: block !important;
     opacity: 1 !important;
-    color: var(--color-primary-light) !important;
+    color: rgba(148, 163, 184, 0.8) !important;
+    text-transform: uppercase !important;
   }
   #team .ud-team-socials,
   #ekip .ud-team-socials {
-    grid-row: 3 !important;
+    flex: 0 0 auto !important;
     width: 100% !important;
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
-    flex-shrink: 0 !important;
-    margin-top: 0.15rem !important;
-    margin-bottom: 0 !important;
-    min-height: 3rem !important;
+    margin: 0 !important;
+    padding: 0.1rem 0 0.35rem !important;
+    min-height: unset !important;
     opacity: 1 !important;
   }
   #team .ud-team-socials li a,
   #ekip .ud-team-socials li a {
     opacity: 1 !important;
+    width: 36px !important;
+    height: 36px !important;
+    font-size: 1.15rem !important;
+  }
+}
+
+@media (max-width: 380px) {
+  #team .team-grid-executives,
+  #ekip .team-grid-executives,
+  #team .team-grid-managers,
+  #ekip .team-grid-managers,
+  #team .team-grid-bdm,
+  #ekip .team-grid-bdm,
+  #team .team-grid-engineers-managers,
+  #ekip .team-grid-engineers-managers,
+  #team .team-grid-engineers-fs,
+  #ekip .team-grid-engineers-fs,
+  #team .team-grid-marketers,
+  #ekip .team-grid-marketers {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.35rem !important;
+  }
+  #team .ud-team-info h4,
+  #ekip .ud-team-info h4 {
+    font-size: 1.05rem !important;
+  }
+  #team .ud-team-info .team-role,
+  #ekip .ud-team-info .team-role {
+    font-size: 0.85rem !important;
+  }
+  #team .ud-team-socials li a,
+  #ekip .ud-team-socials li a {
+    width: 32px !important;
+    height: 32px !important;
+    font-size: 1.05rem !important;
+    border-radius: 8px !important;
   }
 }
 
 @media (max-width: 575px) {
-
   .ud-single-team {
-    min-height: 450px;
-    aspect-ratio: 2 / 3;
-    margin-bottom: 1rem;
+    min-height: unset;
+    aspect-ratio: unset;
+    margin-bottom: 0;
   }
-
-  /* #team / #ekip kartları: unvan ve LinkedIn görünsün, aspect-ratio kaldır */
   #team .ud-single-team.team-card,
   #ekip .ud-single-team.team-card {
     min-height: auto !important;
@@ -3136,15 +3197,12 @@ section[id] h2.font-display {
   }
 }
 
-/* Kartlar – hafif gölge ve kenar, daha kurumsal */
 .service-card,
-.bento-card,
-.ud-single-team.team-card {
+.bento-card {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15), 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
-.service-card:hover,
-.ud-single-team.team-card:hover {
+.service-card:hover {
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2), 0 4px 12px rgba(30, 64, 175, 0.12);
 }
 
