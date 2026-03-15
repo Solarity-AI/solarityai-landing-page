@@ -8,6 +8,8 @@
     Burak Hamuryen -- Chief Software Architect -- https://www.linkedin.com/in/burak-hamuryen-07b8b340/
     Gokberk Serin -- Business Development Manager
     Ali Yilmaz -- Business Development Manager -- https://www.linkedin.com/in/ali-yilmaz2/
+    Karaca Yorulmaz -- Marketing Specialist -- https://www.linkedin.com/in/karaca-ceylin-yorulmaz-440767330/
+    Beyza Demir -- Marketing Specialist -- https://linkedin.com
 
 # THANKS
 
@@ -23,4 +25,3 @@
     Components: Bootstrap 5, WOW.js, Animate.css
     Software: Visual Studio Code, Git
     Hosting: AWS EC2, Nginx
-
