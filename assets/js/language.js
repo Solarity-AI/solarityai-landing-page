@@ -362,10 +362,6 @@
     return !id ||
       id === 'languageSwitcher' ||
       id === 'languageSwitcherMobile' ||
-      id === 'flagIcon' ||
-      id === 'flagIconMobile' ||
-      id === 'currentLang' ||
-      id === 'currentLangMobile' ||
       id === 'mobileMenuBtn' ||
       id === 'cookie-consent-banner';
   }
@@ -631,14 +627,9 @@
   }
 
   function setLanguageSwitcherBusy(isBusy) {
-    ['languageSwitcher', 'languageSwitcherMobile'].forEach(function(id) {
-      var button = document.getElementById(id);
-      if (!button) return;
-      button.disabled = !!isBusy;
-      button.setAttribute('aria-disabled', isBusy ? 'true' : 'false');
-      button.setAttribute('aria-busy', isBusy ? 'true' : 'false');
-      if (isBusy) button.setAttribute('data-lang-loading', 'true');
-      else button.removeAttribute('data-lang-loading');
+    document.querySelectorAll('.ud-lang-btn').forEach(function(btn) {
+      btn.disabled = !!isBusy;
+      btn.setAttribute('aria-disabled', isBusy ? 'true' : 'false');
     });
   }
 
@@ -651,194 +642,53 @@
     window._langScrollBeforeSwitch = buildLanguageScrollState();
   }
 
-  function handleLanguageSwitcherClick(e) {
+  function handleLangBtnClick(e) {
     if (e) {
       e.preventDefault();
       e.stopPropagation();
-      if (e.currentTarget && e.currentTarget.blur) e.currentTarget.blur();
     }
+    var btn = e.currentTarget;
+    var lang = btn.getAttribute('data-lang');
+    if (!lang || lang === currentLang) return false;
+    if (btn.blur) btn.blur();
     if (document.activeElement && document.activeElement.blur) document.activeElement.blur();
-    toggleLanguage();
+    if (window._languageToggleInFlight) return false;
+    window._languageToggleInFlight = true;
+    setLanguageSwitcherBusy(true);
+    setLanguage(lang);
     return false;
   }
 
-  function bindLanguageSwitcherButton(button) {
-    if (!button || button.getAttribute('data-lang-bound') === 'true') return;
-    button.addEventListener('pointerdown', saveScrollBeforeLanguageSwitch, { passive: true });
-    button.addEventListener('click', handleLanguageSwitcherClick);
-    button.setAttribute('data-lang-bound', 'true');
+  function bindLangBtn(btn) {
+    if (!btn || btn.getAttribute('data-lang-bound') === 'true') return;
+    btn.addEventListener('pointerdown', saveScrollBeforeLanguageSwitch, { passive: true });
+    btn.addEventListener('click', handleLangBtnClick);
+    btn.setAttribute('data-lang-bound', 'true');
   }
 
-  // Setup language switcher button event listener
+  // Setup language switcher pill toggle event listeners
   function setupLanguageSwitcher() {
-    var switcher = document.getElementById('languageSwitcher');
-    var switcherMobile = document.getElementById('languageSwitcherMobile');
-
-    if (!switcher && !switcherMobile) {
-      warn('⚠️ Language switcher button not found! Will retry...');
+    var buttons = document.querySelectorAll('.ud-lang-btn[data-lang]');
+    if (!buttons.length) {
+      warn('⚠️ Language switcher buttons not found! Will retry...');
       return null;
     }
-
-    bindLanguageSwitcherButton(switcher);
-    bindLanguageSwitcherButton(switcherMobile);
-    return switcher || switcherMobile;
+    buttons.forEach(bindLangBtn);
+    return buttons[0];
   }
 
-  // Update language switcher button
-  
-  // SVG sadece Windows; macOS, Linux, iOS, Android vb. için emoji kullan
-  if (typeof window.USE_SVG_FLAGS === 'undefined') {
-    const isWindows = /Win/.test(navigator.userAgent || navigator.platform || '');
-    window.USE_SVG_FLAGS = isWindows;
-  }
-  const useEmojiFlags = !window.USE_SVG_FLAGS;
-  
+  // Update language switcher pill toggle – toggle is-active on correct buttons
   function updateLanguageSwitcher() {
-    const switcher = document.getElementById('languageSwitcher');
-    const switcherMobile = document.getElementById('languageSwitcherMobile');
-
-    // Compute the target language (the one the button should switch TO)
-    const targetLang = currentLang === 'tr' ? 'en' : 'tr';
-    const switcherLabel = getLanguageSwitcherLabel(currentLang, targetLang);
-    // Buton geçilecek dili gösterir: TR'deyken EN, EN'deyken TR
-    const langCodeForButton = targetLang === 'tr' ? 'TR' : 'EN';
-    const flagEmojiForButton = targetLang === 'tr' ? '🇹🇷' : '🇺🇸';
-    const flagSvgForButton = targetLang === 'tr' ? 'assets/images/flags/flag-tr.svg?v=2' : 'assets/images/flags/flag-us.svg?v=2';
-
-    if (switcher) {
-      const flagEl = document.getElementById('flagIcon');
-      const codeEl = document.getElementById('currentLang');
-
-      switcher.setAttribute('aria-label', switcherLabel);
-      switcher.setAttribute('title', switcherLabel);
-
-      if (flagEl) {
-        if (useEmojiFlags) {
-          // Emoji (iOS, macOS, Android) – kutuyla orantılı 44x32
-          if (flagEl.tagName === 'IMG') {
-            const newSpan = document.createElement('span');
-            newSpan.id = 'flagIcon';
-            newSpan.textContent = flagEmojiForButton;
-            newSpan.style.display = 'inline-flex';
-            newSpan.style.alignItems = 'center';
-            newSpan.style.justifyContent = 'center';
-            newSpan.style.width = '56px';
-            newSpan.style.height = '40px';
-            newSpan.style.fontSize = '2.25rem';
-            newSpan.style.lineHeight = '1';
-            newSpan.setAttribute('aria-hidden', 'true');
-            flagEl.parentNode.replaceChild(newSpan, flagEl);
-            log('✅ Desktop flag converted to emoji:', flagEmojiForButton);
-          } else {
-            flagEl.textContent = flagEmojiForButton;
-            flagEl.style.display = 'inline-flex';
-            flagEl.style.alignItems = 'center';
-            flagEl.style.justifyContent = 'center';
-            flagEl.style.width = '56px';
-            flagEl.style.height = '40px';
-            flagEl.style.fontSize = '2.25rem';
-            flagEl.style.lineHeight = '1';
-            flagEl.setAttribute('aria-hidden', 'true');
-            log('✅ Desktop flag emoji:', flagEmojiForButton);
-          }
-        } else {
-          // Windows: SVG fallback
-          if (flagEl.tagName === 'IMG') {
-            flagEl.src = flagSvgForButton;
-            flagEl.alt = '';
-            flagEl.setAttribute('aria-hidden', 'true');
-            log('✅ Desktop flag SVG (Windows):', flagSvgForButton);
-          } else {
-            // SPAN ise IMG'ye çevir
-            const newImg = document.createElement('img');
-            newImg.id = 'flagIcon';
-            newImg.src = flagSvgForButton;
-            newImg.alt = '';
-            newImg.width = 56;
-            newImg.height = 40;
-            newImg.style.objectFit = 'cover';
-            newImg.style.borderRadius = '5px';
-            newImg.style.boxShadow = '0 1px 3px rgba(0,0,0,0.2)';
-            newImg.setAttribute('aria-hidden', 'true');
-            flagEl.parentNode.replaceChild(newImg, flagEl);
-            log('✅ Desktop flag converted to SVG:', flagSvgForButton);
-          }
-        }
+    document.querySelectorAll('.ud-lang-btn[data-lang]').forEach(function(btn) {
+      var lang = btn.getAttribute('data-lang');
+      if (lang === currentLang) {
+        btn.classList.add('is-active');
+        btn.setAttribute('aria-pressed', 'true');
       } else {
-        warn('⚠️ flagIcon element not found (desktop)');
+        btn.classList.remove('is-active');
+        btn.setAttribute('aria-pressed', 'false');
       }
-
-      if (codeEl) codeEl.textContent = langCodeForButton;
-      // keep data attribute with current language for other logic, but expose target too
-      switcher.setAttribute('data-lang-current', currentLang);
-      switcher.setAttribute('data-lang-target', targetLang);
-    }
-
-    if (switcherMobile) {
-      const flagElMobile = document.getElementById('flagIconMobile');
-      const codeElMobile = document.getElementById('currentLangMobile');
-
-      switcherMobile.setAttribute('aria-label', switcherLabel);
-      switcherMobile.setAttribute('title', switcherLabel);
-
-      if (flagElMobile) {
-        if (useEmojiFlags) {
-          // Emoji (iOS, macOS, Android) – kutuyla orantılı 48x34
-          if (flagElMobile.tagName === 'IMG') {
-            const newSpan = document.createElement('span');
-            newSpan.id = 'flagIconMobile';
-            newSpan.textContent = flagEmojiForButton;
-            newSpan.style.display = 'inline-flex';
-            newSpan.style.alignItems = 'center';
-            newSpan.style.justifyContent = 'center';
-            newSpan.style.width = '60px';
-            newSpan.style.height = '44px';
-            newSpan.style.fontSize = '2.5rem';
-            newSpan.style.lineHeight = '1';
-            newSpan.setAttribute('aria-hidden', 'true');
-            flagElMobile.parentNode.replaceChild(newSpan, flagElMobile);
-            log('✅ Mobile flag converted to emoji:', flagEmojiForButton);
-          } else {
-            flagElMobile.textContent = flagEmojiForButton;
-            flagElMobile.style.display = 'inline-flex';
-            flagElMobile.style.alignItems = 'center';
-            flagElMobile.style.justifyContent = 'center';
-            flagElMobile.style.width = '60px';
-            flagElMobile.style.height = '44px';
-            flagElMobile.style.fontSize = '2.5rem';
-            flagElMobile.style.lineHeight = '1';
-            flagElMobile.setAttribute('aria-hidden', 'true');
-            log('✅ Mobile flag emoji:', flagEmojiForButton);
-          }
-        } else {
-          // Windows: SVG fallback
-          if (flagElMobile.tagName === 'IMG') {
-            flagElMobile.src = flagSvgForButton;
-            flagElMobile.alt = '';
-            flagElMobile.setAttribute('aria-hidden', 'true');
-            log('✅ Mobile flag SVG (Windows):', flagSvgForButton);
-          } else {
-            // SPAN ise IMG'ye çevir
-            const newImg = document.createElement('img');
-            newImg.id = 'flagIconMobile';
-            newImg.src = flagSvgForButton;
-            newImg.alt = '';
-            newImg.width = 60;
-            newImg.height = 44;
-            newImg.style.objectFit = 'cover';
-            newImg.style.borderRadius = '4px';
-            newImg.style.boxShadow = '0 1px 2px rgba(0,0,0,0.2)';
-            newImg.setAttribute('aria-hidden', 'true');
-            flagElMobile.parentNode.replaceChild(newImg, flagElMobile);
-            log('✅ Mobile flag converted to SVG:', flagSvgForButton);
-          }
-        }
-      }
-
-      if (codeElMobile) codeElMobile.textContent = langCodeForButton;
-      switcherMobile.setAttribute('data-lang-current', currentLang);
-      switcherMobile.setAttribute('data-lang-target', targetLang);
-    }
+    });
   }
 
   // Toggle language
@@ -898,8 +748,8 @@
         if (!mutation.addedNodes.length) return;
         mutation.addedNodes.forEach(function(node) {
           if (node.nodeType !== 1) return;
-          if (node.id === 'languageSwitcher' || node.id === 'languageSwitcherMobile' ||
-              (node.querySelector && (node.querySelector('#languageSwitcher') || node.querySelector('#languageSwitcherMobile')))) {
+          if (node.classList && node.classList.contains('ud-lang-btn') ||
+              (node.querySelector && node.querySelector('.ud-lang-btn'))) {
             buttonAdded = true;
           }
           if (node.hasAttribute('data-i18n') ||
