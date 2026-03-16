@@ -403,20 +403,7 @@
         line-height: 1;
       }
 
-      /* Language switcher button styling */
-      #languageSwitcher,
-      #languageSwitcherMobile {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        transition: all 0.3s ease;
-      }
-
-      #languageSwitcher:hover,
-      #languageSwitcherMobile:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
-      }
+      /* Language switcher pill toggle (shared CSS is in main.css) */
     </style>
     <style>
       @media (max-width: 1024px) {
@@ -442,107 +429,25 @@
     <a href="#main-content" class="skip-link" id="skip-link">Skip to main content</a>
     <script>(function(){function go(){document.body.classList.add('animations-ready');}if(typeof requestIdleCallback!=='undefined')requestIdleCallback(go,{timeout:600});else setTimeout(go,500);})();</script>
 
-    <!-- Bayrak: sadece Windows'ta SVG, diğer işletim sistemlerinde emoji (index ile aynı) -->
+    <!-- Pill toggle: sayfa yüklenirken doğru dili aktif yap -->
     <script>
       (function() {
-        const isWindows = /Win/.test(navigator.userAgent || navigator.platform || '');
-        window.USE_SVG_FLAGS = isWindows;
-
-        function getCurrentLang() {
-          try {
-            return localStorage.getItem('solarityai-lang') || document.documentElement.getAttribute('lang') || 'en';
-          } catch (e) {
-            return document.documentElement.getAttribute('lang') || 'en';
-          }
-        }
-
-        function getSwitcherLabel(currentLang) {
-          return currentLang === 'tr' ? 'Dili Ingilizceye cevir' : 'Switch language to Turkish';
-        }
-
-        function applyFlag(node, targetLang, isMobile) {
-          if (!node) return;
-
-          var width = isMobile ? 60 : 56;
-          var height = isMobile ? 44 : 40;
-          var radius = isMobile ? '4px' : '5px';
-          var shadow = isMobile ? '0 1px 2px rgba(0,0,0,0.2)' : '0 1px 3px rgba(0,0,0,0.2)';
-          var fontSize = isMobile ? '2.5rem' : '2.25rem';
-
-          if (isWindows) {
-            var flagSvg = targetLang === 'tr' ? 'assets/images/flags/flag-tr.svg?v=2' : 'assets/images/flags/flag-us.svg?v=2';
-            if (node.tagName === 'IMG') {
-              node.src = flagSvg;
-              node.alt = '';
-              node.setAttribute('aria-hidden', 'true');
-              return;
+        var lang;
+        try { lang = localStorage.getItem('solarityai-lang') || 'en'; } catch (e) { lang = 'en'; }
+        function syncPill() {
+          document.querySelectorAll('.ud-lang-btn[data-lang]').forEach(function(btn) {
+            if (btn.getAttribute('data-lang') === lang) {
+              btn.classList.add('is-active');
+              btn.setAttribute('aria-pressed', 'true');
+            } else {
+              btn.classList.remove('is-active');
+              btn.setAttribute('aria-pressed', 'false');
             }
-            var img = document.createElement('img');
-            img.id = node.id;
-            img.src = flagSvg;
-            img.alt = '';
-            img.width = width;
-            img.height = height;
-            img.style.objectFit = 'cover';
-            img.style.borderRadius = radius;
-            img.style.boxShadow = shadow;
-            img.setAttribute('aria-hidden', 'true');
-            node.parentNode.replaceChild(img, node);
-            return;
-          }
-
-          var flagEmoji = targetLang === 'tr' ? '🇹🇷' : '🇺🇸';
-          if (node.tagName === 'IMG') {
-            var span = document.createElement('span');
-            span.id = node.id;
-            span.textContent = flagEmoji;
-            span.style.display = 'inline-flex';
-            span.style.alignItems = 'center';
-            span.style.justifyContent = 'center';
-            span.style.width = width + 'px';
-            span.style.height = height + 'px';
-            span.style.fontSize = fontSize;
-            span.style.lineHeight = '1';
-            span.setAttribute('aria-hidden', 'true');
-            node.parentNode.replaceChild(span, node);
-            return;
-          }
-          node.textContent = flagEmoji;
-          node.style.display = 'inline-flex';
-          node.style.alignItems = 'center';
-          node.style.justifyContent = 'center';
-          node.style.width = width + 'px';
-          node.style.height = height + 'px';
-          node.style.fontSize = fontSize;
-          node.style.lineHeight = '1';
-          node.setAttribute('aria-hidden', 'true');
+          });
         }
-
-        function setCorrectFlag() {
-          const currentLang = getCurrentLang();
-          const targetLang = currentLang === 'tr' ? 'en' : 'tr';
-          const label = getSwitcherLabel(currentLang);
-          const switcher = document.getElementById('languageSwitcher');
-          const switcherMobile = document.getElementById('languageSwitcherMobile');
-
-          if (switcher) {
-            switcher.setAttribute('aria-label', label);
-            switcher.setAttribute('title', label);
-          }
-          if (switcherMobile) {
-            switcherMobile.setAttribute('aria-label', label);
-            switcherMobile.setAttribute('title', label);
-          }
-
-          applyFlag(document.getElementById('flagIcon'), targetLang, false);
-          applyFlag(document.getElementById('flagIconMobile'), targetLang, true);
-        }
-
-        setCorrectFlag();
-        if (document.readyState === 'loading') {
-          document.addEventListener('DOMContentLoaded', setCorrectFlag);
-        }
-        setTimeout(setCorrectFlag, 100);
+        syncPill();
+        if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', syncPill);
+        else setTimeout(syncPill, 50);
       })();
     </script>
 
@@ -571,18 +476,24 @@
                     <a href="careers.html" class="nav-page-btn nav-page-btn-careers inline-flex flex-shrink-0 items-center gap-2 px-5 py-2.5 text-sm font-semibold rounded-lg transition hover:shadow-lg whitespace-nowrap"><i class="lni lni-briefcase"></i><span data-i18n="navCareers">Careers</span></a>
                     </div>
                     </div>
-                    <button id="languageSwitcher" type="button" aria-label="Switch language"
-                            class="nav-lang-btn inline-flex flex-shrink-0 items-center justify-center px-3 py-2 rounded-lg transition hover:scale-105"
-                            style="background: rgba(16, 185, 129, 0.15); border: 2px solid rgba(16, 185, 129, 0.4); color: #10b981;">
-                        <img id="flagIcon" src="assets/images/flags/flag-us.svg?v=2" alt="" width="56" height="40" style="object-fit:cover; border-radius:5px; box-shadow:0 1px 3px rgba(0,0,0,0.2);" />
-                    </button>
+                    <div id="languageSwitcher" class="ud-lang-switch nav-lang-btn" role="group" aria-label="Language selector">
+                        <button type="button" class="ud-lang-btn is-active" data-lang="en" aria-pressed="true">
+                            <img src="assets/images/flags/flag-us.svg?v=2" alt="EN" width="24" height="16" class="ud-lang-flag" />
+                        </button>
+                        <button type="button" class="ud-lang-btn" data-lang="tr" aria-pressed="false">
+                            <img src="assets/images/flags/flag-tr.svg?v=2" alt="TR" width="24" height="16" class="ud-lang-flag" />
+                        </button>
+                    </div>
                     <div class="nav-mobile-wrap flex items-center gap-3 flex-shrink-0">
                     <a href="careers.html" class="nav-careers-mobile inline-flex flex-shrink-0 items-center justify-center gap-1.5 px-3 py-2 rounded-lg text-sm font-semibold transition hover:shadow-lg whitespace-nowrap" style="background: linear-gradient(135deg, #10b981, #059669); color: #fff; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35);"><i class="lni lni-briefcase" aria-hidden="true"></i><span data-i18n="navCareers">Careers</span></a>
-                    <button id="languageSwitcherMobile" type="button" aria-label="Switch language"
-                            class="inline-flex items-center justify-center p-2 rounded-lg"
-                            style="background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.3); color: #10b981;">
-                        <img id="flagIconMobile" src="assets/images/flags/flag-us.svg?v=2" alt="" width="60" height="44" style="object-fit:cover; border-radius:4px; box-shadow:0 1px 2px rgba(0,0,0,0.2);" />
-                    </button>
+                    <div id="languageSwitcherMobile" class="ud-lang-switch" role="group" aria-label="Language selector">
+                        <button type="button" class="ud-lang-btn is-active" data-lang="en" aria-pressed="true">
+                            <img src="assets/images/flags/flag-us.svg?v=2" alt="EN" width="24" height="16" class="ud-lang-flag" />
+                        </button>
+                        <button type="button" class="ud-lang-btn" data-lang="tr" aria-pressed="false">
+                            <img src="assets/images/flags/flag-tr.svg?v=2" alt="TR" width="24" height="16" class="ud-lang-flag" />
+                        </button>
+                    </div>
                     <button id="mobileMenuBtn" type="button" class="text-2xl text-emerald-400" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">☰</button>
                     </div>
                 </div>
