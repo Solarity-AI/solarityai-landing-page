@@ -2359,37 +2359,20 @@ html[lang="tr"] .stat-satisfaction-tr {
   #ekip .max-w-6xl {
     max-width: 100% !important;
   }
-  /* 3 sütun */
+  /* Tablet: tek sütun (mobil ile aynı) */
   #team .team-grid-executives,
   #ekip .team-grid-executives,
   #team .team-grid-managers,
-  #ekip .team-grid-managers {
-    display: grid !important;
-    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-    gap: 0.25rem !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    box-sizing: border-box !important;
-  }
-  /* 2 sütun: Cenk + Eren */
+  #ekip .team-grid-managers,
   #team .team-grid-engineers-fs,
-  #ekip .team-grid-engineers-fs {
-    display: grid !important;
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-    gap: 0.25rem !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    box-sizing: border-box !important;
-    justify-content: center !important;
-  }
-  /* 2 sütun: büyük kalsın */
+  #ekip .team-grid-engineers-fs,
   #team .team-grid-bdm,
   #ekip .team-grid-bdm,
   #team .team-grid-engineers-managers,
   #ekip .team-grid-engineers-managers {
     display: grid !important;
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-    gap: 0.25rem !important;
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
     width: 100% !important;
     max-width: 100% !important;
     box-sizing: border-box !important;
