@@ -1074,7 +1074,7 @@
                         <div class="ud-team-image-wrapper">
                             <div class="ud-team-image">
                                 <a href="https://www.linkedin.com/in/karaca-ceylin-yorulmaz-440767330/" target="_blank" rel="noopener noreferrer">
-                                    <img src="assets/images/team/KaracaYorulmaz.webp" alt="Karaca Yorulmaz" class="team-avatar" data-alt-en="Karaca Yorulmaz" data-alt-tr="Karaca Yorulmaz" width="176" height="224" loading="lazy" decoding="async" />
+                                    <img src="assets/images/team/KaracaYorulmaz.webp?v=2" alt="Karaca Yorulmaz" class="team-avatar" data-alt-en="Karaca Yorulmaz" data-alt-tr="Karaca Yorulmaz" width="176" height="224" loading="lazy" decoding="async" />
                                 </a>
                             </div>
                         </div>
@@ -1337,45 +1337,43 @@
         }
         function initDeferredChunk2() {
             var header = document.querySelector('header');
+            var _scrollEl, _rightWrap, _careersBtn, _langBtn;
+            function cacheEls() {
+                _scrollEl = header.querySelector('.nav-desktop-scroll');
+                _rightWrap = header.querySelector('.nav-right-wrap');
+                _careersBtn = header.querySelector('.nav-desktop-inner .nav-page-btn-careers');
+                _langBtn = header.querySelector('#languageSwitcher');
+            }
+            function isOverflowing() {
+                if (_scrollEl && (_scrollEl.scrollWidth - _scrollEl.clientWidth) > 4) return true;
+                if (_rightWrap && (_rightWrap.scrollWidth - _rightWrap.clientWidth) > 4) return true;
+                if (_careersBtn && _langBtn && _langBtn.offsetWidth > 0) {
+                    var cr = _careersBtn.getBoundingClientRect();
+                    var lr = _langBtn.getBoundingClientRect();
+                    if (cr.right > (lr.left - 8)) return true;
+                }
+                return false;
+            }
             function check() {
                 if (!header) return;
-                var w = window.innerWidth;
-                if (w <= 1024) { header.classList.add('overflow-menu'); return; }
+                if (window.innerWidth <= 1024) {
+                    header.classList.remove('overflow-compact');
+                    header.classList.add('overflow-menu');
+                    return;
+                }
+                if (!_scrollEl) cacheEls();
+                /* Phase 0: full desktop */
                 header.classList.remove('overflow-menu');
-                requestAnimationFrame(function() {
-                    requestAnimationFrame(function() {
-                        var scrollEl = header.querySelector('.nav-desktop-scroll');
-                        var rightWrap = header.querySelector('.nav-right-wrap');
-                        var brand = header.querySelector('nav > a:first-child');
-                        var cta = header.querySelector('.nav-cta-desktop');
-                        var careersBtn = header.querySelector('.nav-desktop-inner .nav-page-btn-careers');
-                        var langBtn = header.querySelector('#languageSwitcher');
-                        var needsOverflow = false;
-                        if (scrollEl) needsOverflow = (scrollEl.scrollWidth - scrollEl.clientWidth) > 2;
-                        if (!needsOverflow && rightWrap) needsOverflow = (rightWrap.scrollWidth - rightWrap.clientWidth) > 2;
-                        if (!needsOverflow && careersBtn && langBtn) {
-                            var careersRect = careersBtn.getBoundingClientRect();
-                            var langRect = langBtn.getBoundingClientRect();
-                            needsOverflow = careersRect.right > (langRect.left - 24);
-                        }
-                        /* Ek kontrol: careers butonu kırpılıyor mu? */
-                        if (!needsOverflow && careersBtn && scrollEl) {
-                            var scrollRect = scrollEl.getBoundingClientRect();
-                            var careersR = careersBtn.getBoundingClientRect();
-                            needsOverflow = careersR.right > (scrollRect.right + 2);
-                        }
-                        if (!needsOverflow && brand && cta) {
-                            var brandRect = brand.getBoundingClientRect();
-                            var ctaRect = cta.getBoundingClientRect();
-                            needsOverflow = brandRect.right > (ctaRect.left - 16);
-                            if (!needsOverflow && rightWrap) {
-                                var rightRect = rightWrap.getBoundingClientRect();
-                                needsOverflow = ctaRect.right > (rightRect.left - 16);
-                            }
-                        }
-                        header.classList.toggle('overflow-menu', needsOverflow);
-                    });
-                });
+                header.classList.remove('overflow-compact');
+                void header.offsetWidth;
+                if (!isOverflowing()) return;
+                /* Phase 1: compact – CTA ve spacer gizle, nav linklerini koru */
+                header.classList.add('overflow-compact');
+                void header.offsetWidth;
+                if (!isOverflowing()) return;
+                /* Phase 2: hamburger */
+                header.classList.remove('overflow-compact');
+                header.classList.add('overflow-menu');
             }
             window.addEventListener('resize', check);
             window.addEventListener('load', check, { once: true });
