@@ -1351,12 +1351,18 @@
                         var careersBtn = header.querySelector('.nav-desktop-inner .nav-page-btn-careers');
                         var langBtn = header.querySelector('#languageSwitcher');
                         var needsOverflow = false;
-                        if (scrollEl) needsOverflow = (scrollEl.scrollWidth - scrollEl.clientWidth) > 4;
-                        if (!needsOverflow && rightWrap) needsOverflow = (rightWrap.scrollWidth - rightWrap.clientWidth) > 4;
+                        if (scrollEl) needsOverflow = (scrollEl.scrollWidth - scrollEl.clientWidth) > 2;
+                        if (!needsOverflow && rightWrap) needsOverflow = (rightWrap.scrollWidth - rightWrap.clientWidth) > 2;
                         if (!needsOverflow && careersBtn && langBtn) {
                             var careersRect = careersBtn.getBoundingClientRect();
                             var langRect = langBtn.getBoundingClientRect();
-                            needsOverflow = careersRect.right > (langRect.left - 12);
+                            needsOverflow = careersRect.right > (langRect.left - 24);
+                        }
+                        /* Ek kontrol: careers butonu kırpılıyor mu? */
+                        if (!needsOverflow && careersBtn && scrollEl) {
+                            var scrollRect = scrollEl.getBoundingClientRect();
+                            var careersR = careersBtn.getBoundingClientRect();
+                            needsOverflow = careersR.right > (scrollRect.right + 2);
                         }
                         if (!needsOverflow && brand && cta) {
                             var brandRect = brand.getBoundingClientRect();

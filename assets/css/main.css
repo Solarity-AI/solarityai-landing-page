@@ -915,6 +915,7 @@ header nav > a:first-child .logo-standard {
   max-width: 100%;
   flex-shrink: 1;
   min-height: 0;
+  gap: 0.75rem;
 }
 /* Scroll kutusu: quick linkler – 1025px+ görünsün, 1440px’teki gibi hep hizalı */
 .nav-desktop-scroll {
