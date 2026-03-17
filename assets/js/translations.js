@@ -142,6 +142,7 @@ window.translations = {
     teamLeadFullStack: "Engineering Manager & Lead Full-Stack Engineer",
     teamSeniorFullStack: "Senior Full-Stack Engineer",
     teamMarketer: "Marketing Specialist",
+    teamMarketingManager: "Marketing Manager",
     // Contact Section
     contact: "Contact Us",
     contactSubtitle: "Let's Build Something Great Together 🚀",
@@ -442,6 +443,7 @@ window.translations = {
     teamLeadFullStack: "Mühendislik Müdürü & Kıdemli Full-Stack Mühendisi",
     teamSeniorFullStack: "Kıdemli Full-Stack Mühendisi",
     teamMarketer: "Pazarlama Uzmanı",
+    teamMarketingManager: "Pazarlama Müdürü",
     // Contact Section
     contact: "İletişim",
     contactSubtitle: "Birlikte Büyük İşler Başaralım 🚀",
