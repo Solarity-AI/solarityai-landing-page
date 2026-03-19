@@ -2286,58 +2286,20 @@ html[lang="tr"] .stat-satisfaction-tr {
   align-items: center;
   min-height: 0;
 }
-#team .team-grid-executives,
-#team .team-grid-managers,
-#team .team-grid-bdm,
-#team .team-grid-engineers,
-#team .team-grid-engineers-managers,
-#team .team-grid-engineers-fs,
-#team .team-grid-marketers,
-#team .grid[style*="gap"],
-#ekip .team-grid-executives,
-#ekip .team-grid-managers,
-#ekip .team-grid-bdm,
-#ekip .team-grid-engineers,
-#ekip .team-grid-engineers-managers,
-#ekip .team-grid-engineers-fs,
-#ekip .team-grid-marketers,
-#ekip .grid[style*="gap"] {
-  align-items: stretch;
-  justify-content: center;
-  justify-items: center;
-}
-#team .team-grid-executives,
-#ekip .team-grid-executives,
-#team .team-grid-managers,
-#ekip .team-grid-managers {
-  display: grid !important;
-  grid-template-columns: repeat(3, 320px) !important;
-}
-#team .team-grid-marketers,
-#ekip .team-grid-marketers {
-  display: grid !important;
-  grid-template-columns: repeat(2, 320px) !important;
-  gap: var(--team-gap, 1.5rem);
-}
-#team .team-grid-bdm,
-#ekip .team-grid-bdm {
-  grid-template-columns: repeat(2, 320px) !important;
-}
-/* Engineers: Hasan + Emrecan 2'li yan yana */
-#team .team-grid-engineers-managers,
-#ekip .team-grid-engineers-managers {
-  display: grid !important;
-  grid-template-columns: repeat(2, 320px) !important;
+/* Tüm ekip grid'leri flexbox — kaç kişi olursa olsun son satır da ortalanır */
+#team [class*="team-grid-"],
+#ekip [class*="team-grid-"] {
+  display: flex !important;
+  flex-wrap: wrap !important;
   justify-content: center !important;
   align-items: stretch !important;
 }
-/* Full-Stack Engineers: Cenk, Eren 2'li yan yana */
-#team .team-grid-engineers-fs,
-#ekip .team-grid-engineers-fs {
-  display: grid !important;
-  grid-template-columns: repeat(2, 320px) !important;
-  justify-content: center !important;
-  align-items: stretch !important;
+#team [class*="team-grid-"] > .ud-single-team,
+#ekip [class*="team-grid-"] > .ud-single-team {
+  flex: 0 0 320px !important;
+  max-width: 320px !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
 }
 
 /* Sadece tablet 768–991px: kartlar sığsın; 992px+ normal düzen */
@@ -2364,23 +2326,21 @@ html[lang="tr"] .stat-satisfaction-tr {
   #ekip .max-w-6xl {
     max-width: 100% !important;
   }
-  /* Tablet: tek sütun (mobil ile aynı) */
-  #team .team-grid-executives,
-  #ekip .team-grid-executives,
-  #team .team-grid-managers,
-  #ekip .team-grid-managers,
-  #team .team-grid-engineers-fs,
-  #ekip .team-grid-engineers-fs,
-  #team .team-grid-bdm,
-  #ekip .team-grid-bdm,
-  #team .team-grid-engineers-managers,
-  #ekip .team-grid-engineers-managers {
-    display: grid !important;
-    grid-template-columns: 1fr !important;
+  /* Tablet: tek sütun */
+  #team [class*="team-grid-"],
+  #ekip [class*="team-grid-"] {
+    flex-direction: column !important;
+    align-items: center !important;
     gap: 1rem !important;
     width: 100% !important;
     max-width: 100% !important;
     box-sizing: border-box !important;
+  }
+  #team [class*="team-grid-"] > .ud-single-team,
+  #ekip [class*="team-grid-"] > .ud-single-team {
+    flex: 0 0 auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
   }
   /* Kartlar hücreyi doldurur, taşmaz */
   #team .ud-single-team.team-card,
@@ -2394,23 +2354,10 @@ html[lang="tr"] .stat-satisfaction-tr {
 
 @media (max-width: 767px) {
   /* Mobilde ekip grid'leri tek sütun – kartlar alt alta görünsün */
-  #team .team-grid-executives,
-  #team .team-grid-managers,
-  #team .team-grid-bdm,
-  #team .team-grid-engineers,
-  #team .team-grid-engineers-managers,
-  #team .team-grid-engineers-fs,
-  #team .team-grid-marketers,
-  #ekip .team-grid-executives,
-  #ekip .team-grid-managers,
-  #ekip .team-grid-bdm,
-  #ekip .team-grid-engineers,
-  #ekip .team-grid-engineers-managers,
-  #ekip .team-grid-engineers-fs,
-  #ekip .team-grid-marketers {
-    grid-template-columns: 1fr !important;
-    display: grid !important;
-    justify-content: center !important;
+  #team [class*="team-grid-"],
+  #ekip [class*="team-grid-"] {
+    flex-direction: column !important;
+    align-items: center !important;
     gap: 1.5rem !important;
   }
   #team .ud-single-team.team-card,
@@ -2437,33 +2384,20 @@ html[lang="tr"] .stat-satisfaction-tr {
     min-width: 0 !important;
     max-width: 100% !important;
   }
-  #team .team-grid-executives,
-  #ekip .team-grid-executives,
-  #team .team-grid-managers,
-  #ekip .team-grid-managers {
-    display: grid !important;
-    grid-template-columns: 1fr !important;
+  #team [class*="team-grid-"],
+  #ekip [class*="team-grid-"] {
     gap: 1rem !important;
     width: 100% !important;
     max-width: 100% !important;
     padding: 0 0.25rem !important;
     box-sizing: border-box !important;
   }
-  #team .team-grid-bdm,
-  #ekip .team-grid-bdm,
-  #team .team-grid-engineers-managers,
-  #ekip .team-grid-engineers-managers,
-  #team .team-grid-engineers-fs,
-  #ekip .team-grid-engineers-fs,
-  #team .team-grid-marketers,
-  #ekip .team-grid-marketers {
-    display: grid !important;
-    grid-template-columns: 1fr !important;
-    gap: 1rem !important;
+  #team [class*="team-grid-"] > .ud-single-team,
+  #ekip [class*="team-grid-"] > .ud-single-team {
+    flex: 0 0 auto !important;
     width: 100% !important;
     max-width: 100% !important;
-    padding: 0 0.25rem !important;
-    box-sizing: border-box !important;
+    min-width: 0 !important;
   }
   #team .ud-team-image-wrapper,
   #ekip .ud-team-image-wrapper {
@@ -2545,19 +2479,8 @@ html[lang="tr"] .stat-satisfaction-tr {
 }
 
 @media (max-width: 380px) {
-  #team .team-grid-executives,
-  #ekip .team-grid-executives,
-  #team .team-grid-managers,
-  #ekip .team-grid-managers,
-  #team .team-grid-bdm,
-  #ekip .team-grid-bdm,
-  #team .team-grid-engineers-managers,
-  #ekip .team-grid-engineers-managers,
-  #team .team-grid-engineers-fs,
-  #ekip .team-grid-engineers-fs,
-  #team .team-grid-marketers,
-  #ekip .team-grid-marketers {
-    grid-template-columns: 1fr !important;
+  #team [class*="team-grid-"],
+  #ekip [class*="team-grid-"] {
     gap: 0.75rem !important;
   }
   #team .ud-team-info h4,
