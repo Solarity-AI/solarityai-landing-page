@@ -164,8 +164,8 @@
     <link rel="stylesheet" href="assets/css/lineicons.css" media="print" onload="this.media='all'" />
     <noscript><link rel="stylesheet" href="assets/css/lineicons.css" /></noscript>
     <!-- main.min.css: async, minified (~3–4 KiB smaller than main.css) -->
-    <link rel="preload" href="assets/css/main.min.css?v=20260319-team-no-automargin" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-    <noscript><link rel="stylesheet" href="assets/css/main.min.css?v=20260319-team-no-automargin" /></noscript>
+    <link rel="preload" href="assets/css/main.min.css?v=20260320-team-tablet-fix" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="assets/css/main.min.css?v=20260320-team-tablet-fix" /></noscript>
     <!-- Google Fonts: Poppins loaded after window.load (off critical path) -->
     <noscript><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" /></noscript>
     <script>
@@ -1856,6 +1856,8 @@
         #team .ud-single-team.team-card, #ekip .ud-single-team.team-card {
           width: 100% !important; min-width: 0 !important; max-width: 100% !important; box-sizing: border-box !important;
         }
+        /* Tek sütunda CEO en üstte görünsün */
+        .team-card-ceo { order: -1 !important; }
       }
     </style>
     

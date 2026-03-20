@@ -2342,6 +2342,8 @@ html[lang="tr"] .stat-satisfaction-tr {
     width: 100% !important;
     max-width: 100% !important;
   }
+  /* Tek sütunda CEO en üstte görünsün */
+  .team-card-ceo { order: -1 !important; }
   /* Kartlar hücreyi doldurur, taşmaz */
   #team .ud-single-team.team-card,
   #ekip .ud-single-team.team-card {
@@ -2368,6 +2370,8 @@ html[lang="tr"] .stat-satisfaction-tr {
     margin-left: auto;
     margin-right: auto;
   }
+  /* Tek sütunda CEO en üstte görünsün */
+  .team-card-ceo { order: -1 !important; }
 }
 
 @media (max-width: 767px) {
