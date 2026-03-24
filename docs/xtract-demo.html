@@ -1,0 +1,2003 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<title>Solarity AI - AI-Native Software 3.0 Company</title>
+<style>
+  /* ===== RESET & BASE ===== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+  :root {
+    --bg: #0f172a;
+    --bg-secondary: #1e293b;
+    --bg-tertiary: #334155;
+    --primary: #1e40af;
+    --primary-dark: #1e3a8a;
+    --primary-light: #3b82f6;
+    --secondary: #059669;
+    --secondary-dark: #047857;
+    --purple: #7c3aed;
+    --purple-dark: #6b21a8;
+    --orange: #c2410c;
+    --teal: #0d9488;
+    --text-1: #f8fafc;
+    --text-2: #cbd5e1;
+    --text-3: #94a3b8;
+    --emerald: #10b981;
+    --emerald-light: #34d399;
+    --blue-light: #60a5fa;
+    --border: rgba(255,255,255,0.08);
+    --surface: rgba(30,41,59,0.8);
+    --glass: rgba(15,23,42,0.85);
+  }
+
+  body {
+    font-family: 'Figtree', system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text-2);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; display: block; }
+  ul { list-style: none; }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  .navbar .container {
+    max-width: 100%;
+    padding: 0 32px 0 24px;
+  }
+
+  /* ===== NAVBAR ===== */
+  .navbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    backdrop-filter: blur(16px);
+    background: var(--glass);
+    border-bottom: 1px solid var(--border);
+  }
+  .navbar .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 84px;
+    position: relative;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+  }
+  .logo img {
+    height: 64px;
+    width: auto;
+  }
+  .nav-links {
+    display: flex;
+    gap: 16px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-3);
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: auto;
+  }
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 1;
+    margin-left: auto;
+  }
+  .logo { z-index: 1; }
+  .nav-links a:hover { color: var(--text-1); }
+  .nav-cta {
+    padding: 6px 12px;
+    background: var(--primary);
+    color: var(--text-1) !important;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 14px;
+    transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--primary-light); }
+  .mobile-toggle { display: none; background: none; border: none; color: var(--text-1); font-size: 24px; cursor: pointer; }
+
+  /* ===== HERO ===== */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0px 24px 280px;
+    position: relative;
+    overflow: hidden;
+  }
+  #stars-canvas {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.5;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    font-size: 13px;
+    color: var(--text-2);
+    margin-bottom: 32px;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-badge .new {
+    background: var(--primary);
+    color: #fff;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 700;
+  }
+  .hero h1 {
+    font-size: clamp(36px, 6vw, 72px);
+    font-weight: 700;
+    color: var(--text-1);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    max-width: 800px;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+  }
+  .hero h1 .gradient-text {
+    background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 50%, #ffffff 100%);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradientShift 4s ease infinite;
+  }
+  @keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+  .hero p {
+    font-size: clamp(16px, 2vw, 18px);
+    color: var(--text-3);
+    max-width: 600px;
+    margin-bottom: 16px;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-btns {
+    display: flex;
+    gap: 12px;
+    position: relative;
+    z-index: 1;
+  }
+  .btn {
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    border: 1px solid var(--border);
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .btn-primary {
+    background: var(--primary);
+    color: var(--text-1);
+    border-color: var(--primary);
+  }
+  .btn-primary:hover { background: var(--primary-light); border-color: var(--primary-light); }
+  .btn-secondary {
+    background: var(--surface);
+    color: var(--text-1);
+  }
+  .btn-secondary:hover { background: var(--bg-tertiary); }
+  .btn-arrow::after { content: '\2197'; font-size: 14px; }
+
+  /* ===== STATS BAR ===== */
+  .stats-section {
+    padding: 16px 0;
+    margin-top: -240px;
+    position: relative;
+    z-index: 2;
+    background: rgba(30,41,59,0.5);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .stats-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 48px;
+    flex-wrap: wrap;
+  }
+  .stat-item { text-align: center; }
+  .stat-number {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text-1);
+    letter-spacing: -0.02em;
+  }
+  .stat-label {
+    font-size: 13px;
+    color: var(--text-3);
+    margin-top: 4px;
+  }
+
+  /* ===== LOGOS ===== */
+  .logos-section {
+    padding: 20px 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    z-index: 2;
+  }
+  .partners-title {
+    text-align: center;
+    font-size: 14px;
+    color: var(--text-2);
+    margin: 0 0 20px 0;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .logos-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 48px;
+    flex-wrap: wrap;
+    opacity: 0.5;
+  }
+  .partner-logo {
+    height: 32px;
+    max-width: 100px;
+    width: auto;
+    object-fit: contain;
+    opacity: 0.85;
+    filter: brightness(0) invert(1);
+    transition: filter 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+  }
+  .partner-logo:hover {
+    filter: none;
+    opacity: 1;
+    transform: scale(1.1);
+  }
+  .partner-logo-swap {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+  }
+  .partner-logo-swap .partner-logo-default {
+    filter: none;
+  }
+  .partner-logo-swap .partner-logo-hover {
+    position: absolute;
+    top: 0; left: 0;
+    opacity: 0;
+    filter: none;
+  }
+  .partner-logo-swap:hover .partner-logo-default {
+    opacity: 0;
+  }
+  .partner-logo-swap:hover .partner-logo-hover {
+    opacity: 1;
+    transform: scale(1.1);
+    flex-shrink: 0;
+  }
+
+  /* ===== SECTION COMMON ===== */
+  .section {
+    padding: 100px 0;
+  }
+  .section-badge {
+    display: inline-flex;
+    padding: 4px 12px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-1);
+    margin-bottom: 16px;
+  }
+  .section-header {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+  .section-header h2 {
+    font-size: clamp(28px, 4vw, 48px);
+    font-weight: 600;
+    color: var(--text-1);
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    max-width: 650px;
+    margin: 0 auto 12px;
+  }
+  .section-header p {
+    font-size: 16px;
+    color: var(--text-3);
+    max-width: 550px;
+    margin: 0 auto;
+  }
+
+  /* ===== SERVICES (6-card grid) ===== */
+  .services-grid-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .service-card {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 28px;
+    background: radial-gradient(ellipse at 50% 100%, rgba(30,64,175,0.12) 0%, var(--surface) 100%);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+  }
+  .service-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(59,130,246,0.25);
+    box-shadow: 0 8px 30px rgba(30,64,175,0.12);
+  }
+  .service-card-icon {
+    font-size: 32px;
+    margin-bottom: 4px;
+  }
+  .service-card h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-1);
+    letter-spacing: -0.01em;
+  }
+  .service-card p {
+    font-size: 14px;
+    color: var(--text-3);
+    line-height: 1.6;
+  }
+  .service-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: auto; }
+  .service-tag {
+    padding: 6px 12px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 12px;
+    color: var(--text-2);
+  }
+
+  /* ===== PRODUCTS ===== */
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .product-card {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 28px;
+    background: radial-gradient(ellipse at 50% 100%, rgba(30,64,175,0.12) 0%, var(--surface) 100%);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+    color: inherit;
+  }
+  .product-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(59,130,246,0.25);
+    box-shadow: 0 8px 30px rgba(30,64,175,0.12);
+  }
+  .product-card-icon { font-size: 28px; }
+  .product-card h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-1);
+  }
+  .product-card p { font-size: 14px; color: var(--text-3); line-height: 1.7; }
+
+  /* ===== PROJECTS ===== */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+  .project-card {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px;
+    background: radial-gradient(ellipse at 50% 100%, rgba(30,64,175,0.12) 0%, var(--surface) 100%);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+    color: inherit;
+  }
+  .project-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(59,130,246,0.25);
+    box-shadow: 0 8px 30px rgba(30,64,175,0.12);
+  }
+  .project-card-icon { font-size: 24px; }
+  .project-card h3 {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text-1);
+  }
+  .project-card h4 {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--blue-light);
+    margin-top: -4px;
+  }
+  .project-card p { font-size: 13px; color: var(--text-3); line-height: 1.6; }
+
+  /* ===== TEAM ===== */
+  .team-group { margin-bottom: 56px; }
+  .team-group:last-child { margin-bottom: 0; }
+  .team-group-title {
+    font-size: 28px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 28px;
+    letter-spacing: -0.01em;
+  }
+  .team-group-title.executives { color: #facc15; }
+  .team-group-title.managers { color: var(--emerald); }
+  .team-group-title.engineers { color: var(--primary-light); }
+  .team-group-title.marketers { color: #f472b6; }
+  .team-grid {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .team-card {
+    background: rgba(15,23,42,0.4);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 240px;
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
+    color: inherit;
+    border: 3px solid rgba(148,163,184,0.12);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  }
+  .team-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(148,163,184,0.22);
+    box-shadow: 0 20px 48px rgba(0,0,0,0.22), 0 0 0 1px rgba(255,255,255,0.05);
+  }
+  /* Group-specific border colors */
+  .team-card.card-executive { border-color: rgba(251,191,36,0.35); }
+  .team-card.card-manager { border-color: rgba(16,185,129,0.35); }
+  .team-card.card-engineer { border-color: rgba(59,130,246,0.35); }
+  .team-card.card-marketer { border-color: rgba(236,72,153,0.35); }
+
+  .team-avatar {
+    width: 100%;
+    aspect-ratio: 4/5;
+    overflow: hidden;
+    background: linear-gradient(135deg, rgba(59,130,246,0.2), rgba(6,182,212,0.2));
+  }
+  .team-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+  .team-card:hover .team-avatar img {
+    transform: scale(1.05);
+  }
+  .team-card-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 12px 14px 4px;
+  }
+  .team-card h4 {
+    font-size: 17px;
+    font-weight: 600;
+    color: rgba(241,245,249,0.95);
+    line-height: 1.25;
+    letter-spacing: 0.01em;
+  }
+  .team-card .team-role {
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(148,163,184,0.8);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .team-card .team-social-wrap {
+    padding: 6px 0 14px;
+  }
+  .team-card .team-social {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: rgba(148,163,184,0.08);
+    border: 1px solid rgba(148,163,184,0.12);
+    color: rgba(148,163,184,0.65);
+    font-size: 14px;
+    transition: all 0.3s ease;
+  }
+  .team-card .team-social:hover {
+    background: rgba(59,130,246,0.12);
+    border-color: rgba(59,130,246,0.3);
+    color: #93c5fd;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(59,130,246,0.15);
+  }
+
+  /* ===== PROCESS ===== */
+  .process-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  .process-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .process-step {
+    display: inline-flex;
+    padding: 4px 10px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-2);
+    width: fit-content;
+  }
+  .process-card h3 {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text-1);
+    letter-spacing: -0.02em;
+  }
+  .process-card p { font-size: 14px; color: var(--text-3); }
+  .process-visual {
+    margin-top: 8px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+  }
+  .radar-ring {
+    width: 80px; height: 80px;
+    border: 1px solid rgba(59,130,246,0.15);
+    border-radius: 50%;
+    position: absolute;
+  }
+  .radar-ring:nth-child(2) { width: 55px; height: 55px; }
+  .radar-ring:nth-child(3) { width: 30px; height: 30px; }
+  .radar-sweep {
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    background: conic-gradient(from 0deg, transparent 320deg, rgba(59,130,246,0.3) 340deg, rgba(59,130,246,0.5) 360deg);
+    animation: sweep 3s linear infinite;
+  }
+  @keyframes sweep { to { transform: rotate(360deg); } }
+
+  .code-lines {
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    color: var(--text-3);
+    padding: 12px;
+    width: 100%;
+  }
+  .code-lines .kw { color: var(--primary-light); }
+  .code-lines .fn { color: var(--emerald-light); }
+  .code-lines .str { color: var(--blue-light); }
+
+  .integration-dots {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+  .int-dot {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+  }
+  .int-line {
+    width: 40px; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--primary-light), transparent);
+  }
+  .int-orb {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-light), var(--purple));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+  }
+
+  /* ===== BENEFITS ===== */
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .benefit-card {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 28px;
+    background: radial-gradient(ellipse at 50% 100%, rgba(30,64,175,0.15) 0%, transparent 70%);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .benefit-icon {
+    width: 40px; height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+  }
+  .benefit-card h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-1);
+    letter-spacing: -0.01em;
+  }
+  .benefit-card p { font-size: 14px; color: var(--text-3); }
+
+  /* ===== MOCK UI ===== */
+  .mock-tasks {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .mock-task {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 12px;
+  }
+  .mock-task-left { display: flex; align-items: center; gap: 10px; }
+  .mock-task-icon {
+    width: 28px; height: 28px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+  }
+  .mock-task-info span { display: block; }
+  .mock-task-info .title { color: var(--text-1); font-weight: 500; }
+  .mock-task-info .sub { color: var(--text-3); font-size: 10px; }
+
+  /* ===== CONTACT ===== */
+  .contact-section {
+    padding: 80px 0;
+  }
+  .contact-section h2 {
+    font-size: clamp(26px, 4vw, 44px);
+    font-weight: 600;
+    color: var(--text-1);
+    letter-spacing: -0.02em;
+    text-align: center;
+    margin-bottom: 48px;
+  }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    align-items: start;
+  }
+  .contact-info-box {
+    display: grid;
+    grid-template-columns: 3.5rem 1fr;
+    grid-template-rows: auto auto;
+    gap: 2px 12px;
+    align-items: start;
+    padding: 16px;
+    border-radius: 12px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    transition: border-color 0.3s ease;
+  }
+  .contact-info-box:hover {
+    border-color: rgba(59,130,246,0.3);
+  }
+  .contact-info-icon {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+  }
+  .contact-info-label {
+    grid-column: 2;
+    grid-row: 1;
+    font-size: 13px;
+    color: var(--text-3);
+    margin: 0;
+  }
+  .contact-info-value {
+    grid-column: 2;
+    grid-row: 2;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-1);
+    margin: 0;
+  }
+  a.contact-info-value:hover {
+    color: var(--primary-light);
+  }
+  .contact-left {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .contact-map {
+    width: 100%;
+    height: 220px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: var(--bg-secondary);
+    overflow: hidden;
+    margin-top: 4px;
+    position: relative;
+  }
+  .contact-form {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .contact-form label {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-2);
+    margin-bottom: 6px;
+  }
+  .contact-form input,
+  .contact-form textarea {
+    width: 100%;
+    padding: 10px 14px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text-1);
+    font-size: 14px;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.3s ease;
+  }
+  .contact-form input:focus,
+  .contact-form textarea:focus {
+    border-color: var(--primary-light);
+  }
+  .contact-form textarea {
+    resize: none;
+    min-height: 120px;
+  }
+  .contact-form .btn-submit {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+    font-family: inherit;
+  }
+  .contact-form .btn-submit:hover {
+    box-shadow: 0 8px 24px rgba(30,64,175,0.4);
+    transform: translateY(-2px);
+  }
+
+  /* ===== FOOTER ===== */
+  .footer {
+    border-top: 1px solid var(--border);
+    padding: 56px 0 32px;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 40px;
+  }
+  .footer-brand .logo { margin-bottom: 12px; display: inline-block; }
+  .footer-brand .logo img { height: 45px; width: auto; }
+  .footer-brand p { font-size: 14px; color: var(--text-3); max-width: 260px; }
+  .footer-col h4 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-1);
+    margin-bottom: 14px;
+  }
+  .footer-col a {
+    display: block;
+    font-size: 14px;
+    color: var(--text-3);
+    padding: 4px 0;
+    transition: color 0.2s;
+  }
+  .footer-col a:hover { color: var(--text-1); }
+  .footer-bottom {
+    border-top: 1px solid var(--border);
+    padding-top: 24px;
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-3);
+  }
+
+  /* ===== ANIMATIONS ===== */
+
+  /* --- Page-load appear --- */
+  .navbar {
+    transform: translateY(-100%);
+    transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  body.loaded .navbar { transform: translateY(0); }
+
+  .hero-badge, .hero h1, .hero > p, .hero-btns {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  body.loaded .hero-badge   { opacity: 1; transform: none; transition-delay: 0.4s; }
+  body.loaded .hero h1       { opacity: 1; transform: none; transition-delay: 0.6s; }
+  body.loaded .hero > p      { opacity: 1; transform: none; transition-delay: 0.8s; }
+  body.loaded .hero-btns     { opacity: 1; transform: none; transition-delay: 1.0s; }
+
+
+  /* --- Hero glowing semicircle (Waitlister style) --- */
+  .hero-glow-wrap {
+    position: absolute;
+    bottom: -40px;
+    left: 0; right: 0;
+    height: 800px;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+  .hero-glow-radial {
+    position: absolute;
+    bottom: 265px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 787px;
+    height: 111px;
+    background: radial-gradient(50% 50% at 50% 50%, rgba(251,191,36,0.5) 0%, rgba(245,158,11,0.2) 60%, transparent 100%);
+    filter: blur(57px);
+  }
+  .hero-glow-ellipse {
+    position: absolute;
+    bottom: -662px;
+    left: -443px;
+    right: -443px;
+    height: 955px;
+    border-radius: 100%;
+    background: linear-gradient(180deg, rgba(251,191,36,0.1) 0%, transparent 100%);
+  }
+  .hero-glow-base {
+    position: absolute;
+    bottom: -668px;
+    left: -521px;
+    right: -521px;
+    aspect-ratio: 2.35 / 1;
+    background-color: var(--bg);
+    border-radius: 100%;
+    box-shadow:
+      inset 0 3px 30px rgba(251,191,36,0.6),
+      inset 0 1px 2px rgba(255,255,255,0.8),
+      0 -10px 50px 1px rgba(251,191,36,0.25),
+      0 -40px 120px 20px rgba(245,158,11,0.2),
+      0 -60px 200px 40px rgba(251,191,36,0.1);
+  }
+  .hero-glow-fade-left,
+  .hero-glow-fade-right {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 600px;
+    z-index: 1;
+  }
+  .hero-glow-fade-left {
+    left: 0;
+    background: linear-gradient(90deg, var(--bg) 0%, transparent 100%);
+  }
+  .hero-glow-fade-right {
+    right: 0;
+    background: linear-gradient(270deg, var(--bg) 0%, transparent 100%);
+  }
+
+  /* --- Scroll reveal --- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(60px);
+    transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.reveal-up-lg { transform: translateY(120px); }
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+  .reveal-stagger > *:nth-child(1) { transition-delay: 0s; }
+  .reveal-stagger > *:nth-child(2) { transition-delay: 0.1s; }
+  .reveal-stagger > *:nth-child(3) { transition-delay: 0.2s; }
+  .reveal-stagger > *:nth-child(4) { transition-delay: 0.3s; }
+  .reveal-stagger > *:nth-child(5) { transition-delay: 0.4s; }
+  .reveal-stagger > *:nth-child(6) { transition-delay: 0.5s; }
+  .reveal-stagger.visible > * {
+    opacity: 1;
+    transform: none;
+  }
+  .reveal-stagger > * {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* --- Hover effects on cards --- */
+  .benefit-card, .process-card {
+    transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+  }
+  .benefit-card:hover, .process-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(59,130,246,0.25);
+    box-shadow: 0 8px 30px rgba(30,64,175,0.12);
+  }
+
+  /* --- Button hover slide effect --- */
+  .btn {
+    overflow: hidden;
+    position: relative;
+  }
+  .btn .btn-text-wrap {
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    line-height: 1;
+  }
+  .btn .btn-text-2 {
+    position: absolute;
+    top: 100%;
+  }
+  .btn:hover .btn-text-wrap {
+    transform: translateY(-100%);
+  }
+
+  /* --- Logo marquee --- */
+  .marquee-container {
+    overflow: hidden;
+    mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+  }
+  .marquee-track {
+    display: flex;
+    gap: 56px;
+    align-items: center;
+    width: max-content;
+    animation: marquee 25s linear infinite;
+    opacity: 0.45;
+  }
+  .marquee-container:hover .marquee-track {
+    animation-play-state: paused;
+  }
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* --- Blinking cursor --- */
+  .blink-cursor::after {
+    content: '|';
+    color: var(--primary-light);
+    animation: blink 1s step-end infinite;
+    margin-left: 1px;
+  }
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+
+  /* --- Integration line pulse --- */
+  .int-line {
+    position: relative;
+    overflow: hidden;
+  }
+  .int-line::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 50%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(59,130,246,0.8), transparent);
+    animation: linePulse 2s ease-in-out infinite;
+  }
+  @keyframes linePulse {
+    0%   { left: -50%; }
+    100% { left: 150%; }
+  }
+
+  /* --- Nav link underline hover --- */
+  .nav-links a {
+    transition: color 0.25s;
+    white-space: nowrap;
+  }
+
+  /* LinkedIn SVG icon */
+  .linkedin-svg {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+    display: block;
+  }
+
+  /* ===== LANGUAGE SWITCHER ===== */
+  .ud-lang-switch {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 999px;
+    gap: 3px;
+    padding: 3px;
+    border: 1px solid rgba(30, 64, 175, 0.3);
+    background: rgba(30, 64, 175, 0.1);
+    flex-shrink: 0;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+  }
+  .ud-lang-switch:hover {
+    border-color: rgba(59, 130, 246, 0.5);
+    background: rgba(30, 64, 175, 0.15);
+  }
+  .ud-lang-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    background: transparent;
+    padding: 5px 8px;
+    line-height: 1;
+    cursor: pointer;
+    border-radius: 999px;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-3);
+    letter-spacing: 0.03em;
+  }
+  .ud-lang-flag {
+    width: 22px;
+    height: 15px;
+    display: block;
+    border-radius: 2px;
+  }
+  .ud-lang-btn:hover:not(.is-active) {
+    background: rgba(30, 64, 175, 0.2);
+    color: var(--text-2);
+  }
+  .ud-lang-btn.is-active {
+    background: var(--primary);
+    box-shadow: 0 2px 8px rgba(30, 64, 175, 0.4);
+    color: #fff;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 900px) {
+    .nav-links { display: none; }
+    .nav-right { display: none; }
+    .mobile-toggle { display: block; }
+    #languageSwitcherMobile { display: inline-flex !important; }
+    .process-grid, .benefits-grid { grid-template-columns: 1fr; }
+    .services-grid-cards { grid-template-columns: 1fr; }
+    .products-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .projects-grid { grid-template-columns: 1fr 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .stats-bar { gap: 24px; }
+    .team-card { width: 200px; }
+  }
+  @media (max-width: 600px) {
+    .footer-grid { grid-template-columns: 1fr; }
+    .hero-btns { flex-direction: column; width: 100%; }
+    .hero-btns .btn { width: 100%; justify-content: center; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .stats-bar { gap: 16px; }
+    .stat-number { font-size: 22px; }
+    .team-card { width: 100%; max-width: 280px; }
+    .team-grid { gap: 12px; }
+    .nav-links .ud-lang-switch { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="container">
+    <a href="#hero" class="logo"><img src="../assets/images/logo/CompanyLogo-180w.webp" alt="Solarity AI" /></a>
+    <div class="nav-links">
+      <a href="#about" data-i18n="navAbout">About Us</a>
+      <a href="#partnerships" data-i18n="navPartnerships">Partnerships</a>
+      <a href="#services" data-i18n="navServices">Services</a>
+      <a href="#products" data-i18n="navProducts">Products</a>
+      <a href="#projects" data-i18n="navProjects">Projects</a>
+      <a href="#team" data-i18n="navTeam">Team</a>
+      <a href="#contact" data-i18n="navContact">Contact</a>
+    </div>
+    <div class="nav-right">
+      <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2qgXk0ZfBd6QJf7ef-306in7AI0Kzc-pL3NJFK1fU74vAUGiftVJPF3-DoXp9_RZoyqW_sjSpI" target="_blank" rel="noopener noreferrer" class="nav-cta" data-i18n="navBookCall">Book a Call</a>
+      <a href="../careers.html" class="nav-cta" data-i18n="navCareers">Careers</a>
+      <div id="languageSwitcher" class="ud-lang-switch" role="group" aria-label="Language selector">
+        <button type="button" class="ud-lang-btn is-active" data-lang="en" aria-pressed="true"><img src="../assets/images/flags/flag-us.svg" alt="EN" class="ud-lang-flag" /></button>
+        <button type="button" class="ud-lang-btn" data-lang="tr" aria-pressed="false"><img src="../assets/images/flags/flag-tr.svg" alt="TR" class="ud-lang-flag" /></button>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;">
+      <div id="languageSwitcherMobile" class="ud-lang-switch" role="group" aria-label="Language selector" style="display:none;">
+        <button type="button" class="ud-lang-btn is-active" data-lang="en" aria-pressed="true"><img src="../assets/images/flags/flag-us.svg" alt="EN" class="ud-lang-flag" /></button>
+        <button type="button" class="ud-lang-btn" data-lang="tr" aria-pressed="false"><img src="../assets/images/flags/flag-tr.svg" alt="TR" class="ud-lang-flag" /></button>
+      </div>
+      <button class="mobile-toggle">&#9776;</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <canvas id="stars-canvas"></canvas>
+  <div class="hero-glow-wrap">
+    <div class="hero-glow-radial"></div>
+    <div class="hero-glow-ellipse"></div>
+    <div class="hero-glow-base"></div>
+    <div class="hero-glow-fade-left"></div>
+    <div class="hero-glow-fade-right"></div>
+  </div>
+  <div class="hero-badge">
+    <span class="new">⚡</span>
+    <span data-i18n="heroMVPShort">Your MVP is Ready in 1 Week</span>
+  </div>
+  <h1><span class="gradient-text" data-i18n="aboutTitle">AI-Native Software 3.0 Company</span></h1>
+  <p data-i18n="aboutSubtitleClean">Creating the world's highest-quality B2B and B2C solutions for YOU.</p>
+  <div class="hero-btns">
+    <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2qgXk0ZfBd6QJf7ef-306in7AI0Kzc-pL3NJFK1fU74vAUGiftVJPF3-DoXp9_RZoyqW_sjSpI" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-arrow" data-i18n="bannerCTAShort">🚀 Book a call with our CEO</a>
+    <a href="#services" class="btn btn-secondary" data-i18n="viewServices">View services</a>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats-section">
+  <div class="container">
+    <div class="stats-bar">
+      <div class="stat-item">
+        <div class="stat-number">20+</div>
+        <div class="stat-label" data-i18n="statsProjects">Completed Projects</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">200%</div>
+        <div class="stat-label" data-i18n="statsSatisfaction">Client Satisfaction</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" data-i18n="statsSupportNumber">24/7</div>
+        <div class="stat-label" data-i18n="statsSupport">Support Service</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">100M+</div>
+        <div class="stat-label" data-i18n="statsRevenue">Client Revenue Impact</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">10+</div>
+        <div class="stat-label" data-i18n="statsGlobalPartners">Global Partners</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOGOS / PARTNERS -->
+<section class="logos-section">
+  <div class="container">
+    <h3 class="partners-title" data-i18n="partnershipsSubtitle">Strategic Collaborations and Trusted Partners</h3>
+    <div class="marquee-container">
+      <div class="marquee-track" id="marquee-track">
+        <img src="../assets/images/brands/Ticaret_Bakanligi_logo.svg" alt="Ticaret Bakanligi" class="partner-logo" />
+        <img src="../assets/images/brands/isis.webp" alt="ISIS" class="partner-logo" />
+        <img src="../assets/images/brands/Novartis-Logo.svg" alt="Novartis" class="partner-logo" />
+        <img src="../assets/images/brands/kpm-labs.webp" alt="KPM Labs" class="partner-logo" />
+        <img src="../assets/images/brands/everva.webp" alt="Everva" class="partner-logo" />
+        <img src="../assets/images/brands/Siemens_AG_logo.svg" alt="Siemens" class="partner-logo" />
+        <img src="../assets/images/brands/techsign.webp" alt="Techsign" class="partner-logo" />
+        <img src="../assets/images/brands/tubitak-horiz-logo.webp" alt="TUBITAK" class="partner-logo" />
+        <span class="partner-logo-swap">
+          <img src="../assets/images/brands/akuakare-white.webp" alt="Akuakare" class="partner-logo partner-logo-default" />
+          <img src="../assets/images/brands/akuakare.webp" alt="Akuakare" class="partner-logo partner-logo-hover" />
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section" id="services">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-badge" data-i18n="servicesTitle">Our Services</div>
+      <h2 data-i18n="servicesSectionTitle">AI Solutions That Take Your Business to the Next Level</h2>
+      <p data-i18n="servicesSectionDesc">We design, develop, and deliver cutting-edge software solutions across every domain.</p>
+    </div>
+
+    <div class="services-grid-cards reveal-stagger reveal">
+      <!-- Service 1: AI/ML -->
+      <div class="service-card">
+        <div class="service-card-icon">&#129302;</div>
+        <h3>AI &amp; ML</h3>
+        <p>AI and ML solutions with deep learning and computer vision.</p>
+        <div class="service-tags">
+          <span class="service-tag">Gen AI</span>
+          <span class="service-tag">LLM</span>
+          <span class="service-tag">RAG</span>
+          <span class="service-tag">Computer Vision</span>
+          <span class="service-tag">Multimodal AI</span>
+        </div>
+      </div>
+
+      <!-- Service 2: Enterprise Software -->
+      <div class="service-card">
+        <div class="service-card-icon">&#127970;</div>
+        <h3>Enterprise Software Solutions</h3>
+        <p>Custom-designed enterprise software solutions tailored to your business needs. ERP, CRM, and specialized business applications.</p>
+        <div class="service-tags">
+          <span class="service-tag">ERP</span>
+          <span class="service-tag">CRM</span>
+          <span class="service-tag">Custom Business Apps</span>
+          <span class="service-tag">Systems Integration</span>
+          <span class="service-tag">Workflow Automation</span>
+        </div>
+      </div>
+
+      <!-- Service 3: Cloud -->
+      <div class="service-card">
+        <div class="service-card-icon">&#9729;&#65039;</div>
+        <h3>Cloud-Based Applications</h3>
+        <p>Scalable cloud solutions built with modern architectural principles. AWS, Azure and Google Cloud platforms.</p>
+        <div class="service-tags">
+          <span class="service-tag">AWS</span>
+          <span class="service-tag">Azure</span>
+          <span class="service-tag">Google Cloud</span>
+          <span class="service-tag">Serverless</span>
+          <span class="service-tag">Kubernetes</span>
+        </div>
+      </div>
+
+      <!-- Service 4: Web Development -->
+      <div class="service-card">
+        <div class="service-card-icon">&#127760;</div>
+        <h3>Web Application Development</h3>
+        <p>Scalable and responsive web applications built with modern technologies. React, Vue, Angular and Next.js.</p>
+        <div class="service-tags">
+          <span class="service-tag">React</span>
+          <span class="service-tag">Vue.js</span>
+          <span class="service-tag">Next.js</span>
+          <span class="service-tag">TypeScript</span>
+          <span class="service-tag">Responsive Design</span>
+        </div>
+      </div>
+
+      <!-- Service 5: Mobile Development -->
+      <div class="service-card">
+        <div class="service-card-icon">&#128241;</div>
+        <h3>Mobile Application Development</h3>
+        <p>Native and cross-platform mobile applications for iOS and Android. React Native, Flutter and Swift.</p>
+        <div class="service-tags">
+          <span class="service-tag">React Native</span>
+          <span class="service-tag">Flutter</span>
+          <span class="service-tag">iOS</span>
+          <span class="service-tag">Android</span>
+          <span class="service-tag">Kotlin</span>
+        </div>
+      </div>
+
+      <!-- Service 6: Consulting -->
+      <div class="service-card">
+        <div class="service-card-icon">&#128188;</div>
+        <h3>Consulting</h3>
+        <p>Strategy, digital transformation, and process optimization for your business.</p>
+        <div class="service-tags">
+          <span class="service-tag">Strategy</span>
+          <span class="service-tag">Digital Transformation</span>
+          <span class="service-tag">Process Optimization</span>
+          <span class="service-tag">Advisory</span>
+          <span class="service-tag">Change Management</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="section" id="products" style="background: linear-gradient(180deg, var(--bg) 0%, rgba(30,64,175,0.04) 50%, var(--bg) 100%);">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-badge" data-i18n="products">Our Products</div>
+      <h2 data-i18n="productsSectionTitle">Products We've Built</h2>
+      <p data-i18n="productsSectionDesc">Innovative solutions designed to make a real impact in people's lives.</p>
+    </div>
+
+    <div class="products-grid reveal-stagger reveal">
+      <a href="https://chat-therapy-landing-page-navy.vercel.app/" target="_blank" rel="noopener noreferrer" class="product-card">
+        <div class="product-card-icon">&#128172;</div>
+        <h3>Chat Therapy</h3>
+        <p>Chat Therapy is an AI-powered mental wellness app that provides accessible, anonymous support. It helps users manage stress and emotional well-being anytime. The app works by connecting users with guided conversations and evidence-based coping tools.</p>
+      </a>
+      <a href="https://onlycampus-landing-page.vercel.app/" target="_blank" rel="noopener noreferrer" class="product-card">
+        <div class="product-card-icon">&#127891;</div>
+        <h3>Only Campus</h3>
+        <p>Only Campus is a campus-life and education platform that connects students, faculty, and institutions in one place. It simplifies communication, event discovery, and resource sharing by offering a unified hub for announcements, schedules, and campus services.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="section" id="projects">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-badge" data-i18n="projects">Our Projects</div>
+      <h2 data-i18n="projectsSubtitle">Selected Success Stories</h2>
+      <p data-i18n="projectsSectionDesc">Real-world solutions delivered for enterprise clients across industries.</p>
+    </div>
+
+    <div class="projects-grid reveal-stagger reveal">
+      <a href="https://eihale.gov.tr/" target="_blank" rel="noopener noreferrer" class="project-card">
+        <div class="project-card-icon">&#127963;&#65039;</div>
+        <h3>Ministry of Trade</h3>
+        <h4>E-Auction</h4>
+        <p>Built a robust electronic auction platform used for government procurement and customs-related sales. Automated high-volume auction operations with transparent bidding and compliant workflows.</p>
+      </a>
+
+      <a href="https://www.ticaret.gov.tr/" target="_blank" rel="noopener noreferrer" class="project-card">
+        <div class="project-card-icon">&#128203;</div>
+        <h3>Ministry of Trade</h3>
+        <h4>Customs Declaration System</h4>
+        <p>Developed the digital customs declaration system enabling secure submission, validation, and management of declarations with end-to-end digital workflow and government data standards integration.</p>
+      </a>
+
+      <a href="https://www.isisdanismanlik.com/" target="_blank" rel="noopener noreferrer" class="project-card">
+        <div class="project-card-icon">&#9881;&#65039;</div>
+        <h3>ISIS</h3>
+        <h4>Microservices Framework</h4>
+        <p>Developed a scalable and modular microservices framework to support distributed enterprise applications with fault-tolerant architecture and centralized observability.</p>
+      </a>
+
+      <a href="https://www.novartis.com/" target="_blank" rel="noopener noreferrer" class="project-card">
+        <div class="project-card-icon">&#128421;&#65039;</div>
+        <h3>Novartis</h3>
+        <h4>Corporate Screen Saver Platform</h4>
+        <p>Created a secure, enterprise-grade screen saver management system for global Novartis offices with remote configuration, corporate branding support, and device compatibility.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="section" id="team" style="background: linear-gradient(180deg, var(--bg) 0%, rgba(30,64,175,0.04) 50%, var(--bg) 100%);">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-badge" data-i18n="team">Our Team</div>
+      <h2 data-i18n="teamSubtitle">Meet Our World Class Team</h2>
+      <p data-i18n="teamSubtitleDesc">A diverse group of talented professionals driving innovation forward.</p>
+    </div>
+
+    <div class="reveal">
+      <!-- Executives -->
+      <div class="team-group">
+        <div class="team-group-title executives" data-i18n="teamExecutives">Executives</div>
+        <div class="team-grid">
+          <div class="team-card card-executive">
+            <div class="team-avatar"><img src="../assets/images/team/AtaTurhan.webp" alt="Ata Turhan" data-alt-en="Ata Turhan" data-alt-tr="Ata Turhan" /></div>
+            <div class="team-card-info">
+              <h4 class="team-member-name" data-name-en="Ata Turhan" data-name-tr="Ata Turhan">Ata Turhan</h4>
+              <div class="team-role" data-i18n="teamCEO">CEO</div>
+            </div>
+            <div class="team-social-wrap"><a href="https://www.linkedin.com/in/ataturhan/" target="_blank" rel="noopener noreferrer" class="team-social" aria-label="Ata Turhan LinkedIn"><svg class="linkedin-svg" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a></div>
+          </div>
+          <div class="team-card card-executive">
+            <div class="team-avatar"><img src="../assets/images/team/UmurInan.webp" alt="Umur Inan" data-alt-en="Umur Inan" data-alt-tr="Umur İnan" /></div>
+            <div class="team-card-info">
+              <h4 class="team-member-name" data-name-en="Umur Inan" data-name-tr="Umur İnan">Umur Inan</h4>
+              <div class="team-role" data-i18n="teamCTO">CTO</div>
+            </div>
+            <div class="team-social-wrap"><a href="https://www.linkedin.com/in/umurinan/" target="_blank" rel="noopener noreferrer" class="team-social" aria-label="Umur Inan LinkedIn"><svg class="linkedin-svg" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a></div>
+          </div>
+          <div class="team-card card-executive">
+            <div class="team-avatar"><img src="../assets/images/team/BurakHamuryen.webp" alt="Burak Hamuryen" data-alt-en="Burak Hamuryen" data-alt-tr="Burak Hamuryen" /></div>
+            <div class="team-card-info">
+              <h4 class="team-member-name" data-name-en="Burak Hamuryen" data-name-tr="Burak Hamuryen">Burak Hamuryen</h4>
+              <div class="team-role" data-i18n="teamCIO">CIO</div>
+            </div>
+            <div class="team-social-wrap"><a href="https://www.linkedin.com/in/burak-hamuryen-07b8b340/" target="_blank" rel="noopener noreferrer" class="team-social" aria-label="Burak Hamuryen LinkedIn"><svg class="linkedin-svg" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Business Development Managers -->
+      <div class="team-group">
+        <div class="team-group-title managers" data-i18n="teamManagers">Business Development Managers</div>
+        <div class="team-grid">
+          <div class="team-card card-manager">
+            <div class="team-avatar"><img src="../assets/images/team/GokberkSerin.webp" alt="Gokberk Serin" data-alt-en="Gokberk Serin" data-alt-tr="Gökberk Serin" /></div>
+            <div class="team-card-info">
+              <h4 class="team-member-name" data-name-en="Gokberk Serin" data-name-tr="Gökberk Serin">Gokberk Serin</h4>
+              <div class="team-role" data-i18n="teamBDM">BDM</div>
+            </div>
+            <div class="team-social-wrap"><a href="https://www.linkedin.com/in/gokberk-serin/" target="_blank" rel="noopener noreferrer" class="team-social" aria-label="Gokberk Serin LinkedIn"><svg class="linkedin-svg" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a></div>
+          </div>
+          <div class="team-card card-manager">
+            <div class="team-avatar"><img src="../assets/images/team/RamazanCinar.webp" alt="Ramazan Cinar" data-alt-en="Ramazan Cinar" data-alt-tr="Ramazan Çınar" /></div>
+            <div class="team-card-info">
+              <h4 class="team-member-name" data-name-en="Ramazan Cinar" data-name-tr="Ramazan Çınar">Ramazan Cinar</h4>
+              <div class="team-role" data-i18n="teamBDM">BDM</div>
+            </div>
+            <div class="team-social-wrap"><a href="https://www.linkedin.com/in/ramazancinar-/" target="_blank" rel="noopener noreferrer" class="team-social" aria-label="Ramazan Cinar LinkedIn"><svg class="linkedin-svg" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a></div>
+          </div>
+          <div class="team-card card-manager">
+            <div class="team-avatar"><img src="../assets/images/team/AliYilmaz.webp" alt="Ali Yilmaz" data-alt-en="Ali Yilmaz" data-alt-tr="Ali Yılmaz" /></div>
+            <div class="team-card-info">
+              <h4 class="team-member-name" data-name-en="Ali Yilmaz" data-name-tr="Ali Yılmaz">Ali Yilmaz</h4>
+              <div class="team-role" data-i18n="teamBDM">BDM</div>
+            </div>
+            <div class="team-social-wrap"><a href="https://www.linkedin.com/in/ali-yilmaz2/" target="_blank" rel="noopener noreferrer" class="team-social" aria-label="Ali Yilmaz LinkedIn"><svg class="linkedin-svg" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a></div>
+          </div>
+          <div class="team-card card-manager">
+            <div class="team-avatar"><img src="../assets/images/team/RemziMertTehneldere.webp" alt="Remzi Mert Tehneldere" data-alt-en="Remzi Mert Tehneldere" data-alt-tr="Remzi Mert Tehneldere" /></div>
+            <div class="team-card-info">
+              <h4 class="team-member-name" data-name-en="Remzi Mert Tehneldere" data-name-tr="Remzi Mert Tehneldere">Remzi Mert Tehneldere</h4>
+              <div class="team-role" data-i18n="teamBDM">BDM</div>
+            </div>
+            <div class="team-social-wrap"><a href="https://www.linkedin.com/in/remzi-mert-tehneldere-601505286/" target="_blank" rel="noopener noreferrer" class="team-social" aria-label="Remzi Mert Tehneldere LinkedIn"><svg class="linkedin-svg" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a></div>
+          </div>
+          <div class="team-card card-manager">
+            <div class="team-avatar"><img src="../assets/images/team/BatuhanKestek.webp" alt="Batuhan Kestek" data-alt-en="Batuhan Kestek" data-alt-tr="Batuhan Kestek" /></div>
+            <div class="team-card-info">
+              <h4 class="team-member-name" data-name-en="Batuhan Kestek" data-name-tr="Batuhan Kestek">Batuhan Kestek</h4>
+              <div class="team-role" data-i18n="teamBDM">BDM</div>
+            </div>
+            <div class="team-social-wrap"><a href="https://www.linkedin.com/in/batuhankestek/" target="_blank" rel="noopener noreferrer" class="team-social" aria-label="Batuhan Kestek LinkedIn"><svg class="linkedin-svg" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Engineers -->
+      <div class="team-group">
+        <div class="team-group-title engineers" data-i18n="teamEngineers">Engineers</div>
+        <div class="team-grid">
+          <div class="team-card card-engineer">
+            <div class="team-avatar"><img src="../assets/images/team/HasanErdemAk.webp" alt="Hasan Erdem Ak" data-alt-en="Hasan Erdem Ak" data-alt-tr="Hasan Erdem Ak" /></div>
+            <div class="team-card-info">
+              <h4 class="team-member-name" data-name-en="Hasan Erdem Ak" data-name-tr="Hasan Erdem Ak">Hasan Erdem Ak</h4>
+              <div class="team-role" data-i18n="teamLeadFullStack">Engineering Manager & Lead Full-Stack Engineer</div>
+            </div>
+            <div class="team-social-wrap"><a href="https://www.linkedin.com/in/hasan-erdem-ak" target="_blank" rel="noopener noreferrer" class="team-social" aria-label="Hasan Erdem Ak LinkedIn"><svg class="linkedin-svg" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a></div>
+          </div>
+          <div class="team-card card-engineer">
+            <div class="team-avatar"><img src="../assets/images/team/Emrecan.webp" alt="Emrecan Ozkan" data-alt-en="Emrecan Ozkan" data-alt-tr="Emrecan Özkan" /></div>
+            <div class="team-card-info">
+              <h4 class="team-member-name" data-name-en="Emrecan Ozkan" data-name-tr="Emrecan Özkan">Emrecan Ozkan</h4>
+              <div class="team-role" data-i18n="teamLeadFullStack">Engineering Manager & Lead Full-Stack Engineer</div>
+            </div>
+            <div class="team-social-wrap"><a href="https://www.linkedin.com/in/emrecan-ozkan" target="_blank" rel="noopener noreferrer" class="team-social" aria-label="Emrecan Ozkan LinkedIn"><svg class="linkedin-svg" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a></div>
+          </div>
+          <div class="team-card card-engineer">
+            <div class="team-avatar"><img src="../assets/images/team/Cenk.webp" alt="Cenk Eren Ozbek" data-alt-en="Cenk Eren Ozbek" data-alt-tr="Cenk Eren Özbek" /></div>
+            <div class="team-card-info">
+              <h4 class="team-member-name" data-name-en="Cenk Eren Ozbek" data-name-tr="Cenk Eren Özbek">Cenk Eren Ozbek</h4>
+              <div class="team-role" data-i18n="teamEngineer">Full-Stack Engineer</div>
+            </div>
+            <div class="team-social-wrap"><a href="https://www.linkedin.com/in/cenkerenozbek/" target="_blank" rel="noopener noreferrer" class="team-social" aria-label="Cenk Eren Ozbek LinkedIn"><svg class="linkedin-svg" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a></div>
+          </div>
+          <div class="team-card card-engineer">
+            <div class="team-avatar"><img src="../assets/images/team/ErenCanDonertas.webp" alt="Eren Can Donertas" data-alt-en="Eren Can Donertas" data-alt-tr="Eren Can Dönertaş" /></div>
+            <div class="team-card-info">
+              <h4 class="team-member-name" data-name-en="Eren Can Donertas" data-name-tr="Eren Can Dönertaş">Eren Can Donertas</h4>
+              <div class="team-role" data-i18n="teamEngineer">Full-Stack Engineer</div>
+            </div>
+            <div class="team-social-wrap"><a href="https://www.linkedin.com/in/eren-can-donertas/" target="_blank" rel="noopener noreferrer" class="team-social" aria-label="Eren Can Donertas LinkedIn"><svg class="linkedin-svg" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Marketing -->
+      <div class="team-group">
+        <div class="team-group-title marketers" data-i18n="teamMarketers">Marketing</div>
+        <div class="team-grid">
+          <div class="team-card card-marketer">
+            <div class="team-avatar"><img src="../assets/images/team/EvrimFindik.webp" alt="Evrim Findik" data-alt-en="Evrim Findik" data-alt-tr="Evrim Fındık" /></div>
+            <div class="team-card-info">
+              <h4 class="team-member-name" data-name-en="Evrim Findik" data-name-tr="Evrim Fındık">Evrim Findik</h4>
+              <div class="team-role" data-i18n="teamMarketingManager">Marketing Manager</div>
+            </div>
+            <div class="team-social-wrap"><a href="https://www.linkedin.com/in/evrim-findik" target="_blank" rel="noopener noreferrer" class="team-social" aria-label="Evrim Findik LinkedIn"><svg class="linkedin-svg" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a></div>
+          </div>
+        </div>
+        <div class="team-grid" style="margin-top: 16px;">
+          <div class="team-card card-marketer">
+            <div class="team-avatar"><img src="../assets/images/team/LaraSen.webp" alt="Lara Sen" data-alt-en="Lara Sen" data-alt-tr="Lara Şen" /></div>
+            <div class="team-card-info">
+              <h4 class="team-member-name" data-name-en="Lara Sen" data-name-tr="Lara Şen">Lara Sen</h4>
+              <div class="team-role" data-i18n="teamMarketer">Marketing Specialist</div>
+            </div>
+            <div class="team-social-wrap"><a href="https://www.linkedin.com/in/lara-%C5%9Fen-409b61353" target="_blank" rel="noopener noreferrer" class="team-social" aria-label="Lara Sen LinkedIn"><svg class="linkedin-svg" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a></div>
+          </div>
+          <div class="team-card card-marketer">
+            <div class="team-avatar"><img src="../assets/images/team/HilalGenc.webp" alt="Hilal Genc" data-alt-en="Hilal Genc" data-alt-tr="Hilal Genç" /></div>
+            <div class="team-card-info">
+              <h4 class="team-member-name" data-name-en="Hilal Genc" data-name-tr="Hilal Genç">Hilal Genc</h4>
+              <div class="team-role" data-i18n="teamMarketer">Marketing Specialist</div>
+            </div>
+            <div class="team-social-wrap"><a href="https://www.linkedin.com/in/hilal--genc/" target="_blank" rel="noopener noreferrer" class="team-social" aria-label="Hilal Genc LinkedIn"><svg class="linkedin-svg" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a></div>
+          </div>
+          <div class="team-card card-marketer">
+            <div class="team-avatar"><img src="../assets/images/team/KaracaYorulmaz.webp" alt="Karaca Yorulmaz" data-alt-en="Karaca Yorulmaz" data-alt-tr="Karaca Yorulmaz" /></div>
+            <div class="team-card-info">
+              <h4 class="team-member-name" data-name-en="Karaca Yorulmaz" data-name-tr="Karaca Yorulmaz">Karaca Yorulmaz</h4>
+              <div class="team-role" data-i18n="teamMarketer">Marketing Specialist</div>
+            </div>
+            <div class="team-social-wrap"><a href="https://www.linkedin.com/in/karaca-ceylin-yorulmaz-440767330/" target="_blank" rel="noopener noreferrer" class="team-social" aria-label="Karaca Yorulmaz LinkedIn"><svg class="linkedin-svg" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a></div>
+          </div>
+          <div class="team-card card-marketer">
+            <div class="team-avatar"><img src="../assets/images/team/BeyzaDemir.webp" alt="Beyza Demir" data-alt-en="Beyza Demir" data-alt-tr="Beyza Demir" /></div>
+            <div class="team-card-info">
+              <h4 class="team-member-name" data-name-en="Beyza Demir" data-name-tr="Beyza Demir">Beyza Demir</h4>
+              <div class="team-role" data-i18n="teamMarketer">Marketing Specialist</div>
+            </div>
+            <div class="team-social-wrap"><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="team-social" aria-label="Beyza Demir LinkedIn"><svg class="linkedin-svg" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- BENEFITS -->
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="container">
+    <h2 class="reveal" data-i18n="ctaTitle">Let's Build Something Great Together</h2>
+    <div class="contact-grid reveal">
+      <!-- Left: Info boxes + Map -->
+      <div class="contact-left">
+        <div class="contact-info-box">
+          <span class="contact-info-icon" style="background:rgba(59,130,246,0.12);color:#3b82f6;">&#9993;</span>
+          <p class="contact-info-label" data-i18n="contactEmail">Email us</p>
+          <a href="mailto:ata.turhan@solarityai.com" class="contact-info-value">ata.turhan@solarityai.com</a>
+        </div>
+        <div class="contact-info-box">
+          <span class="contact-info-icon" style="background:rgba(249,115,22,0.12);color:#f97316;">&#9906;</span>
+          <p class="contact-info-label" data-i18n="contactAddress">Headquarters</p>
+          <p class="contact-info-value" data-i18n="contactAddressValue">310 Gran Via, Irving, TX 75039, USA</p>
+        </div>
+        <div class="contact-info-box">
+          <span class="contact-info-icon" style="background:rgba(16,185,129,0.12);color:#10b981;">&#9202;</span>
+          <p class="contact-info-label" data-i18n="contactResponseTime">Response time</p>
+          <p class="contact-info-value" data-i18n="contactResponseTimeValue">Within 24 hours</p>
+        </div>
+        <div class="contact-map">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3350.0115985925604!2d-96.9414755!3d32.8978616!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864c2817e5e6c0e5%3A0xdb87e7baf2caaf2!2sAMLI%20on%20Riverside!5e0!3m2!1sen!2sus!4v1769627207920!5m2!1sen!2sus" width="100%" height="100%" style="border:0;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Solarity AI Office"></iframe>
+        </div>
+      </div>
+
+      <!-- Right: Contact Form -->
+      <form class="contact-form" action="https://formsubmit.co/info@solarityai.com" method="POST">
+        <input type="hidden" name="_captcha" value="true">
+        <input type="hidden" name="_next" value="https://solarityai.com/index.html?success=true#contact">
+        <div>
+          <label for="demoContactName" data-i18n="careersFormName">Full Name *</label>
+          <input type="text" id="demoContactName" name="name" required placeholder="Your full name" data-i18n-placeholder="careersFormNamePlaceholder" />
+        </div>
+        <div>
+          <label for="demoContactEmail" data-i18n="careersFormGmail">Gmail *</label>
+          <input type="email" id="demoContactEmail" name="email" required placeholder="example@gmail.com" data-i18n-placeholder="careersFormGmailPlaceholder" pattern="[a-zA-Z0-9._%+-]+@gmail\.com" />
+        </div>
+        <div>
+          <label for="demoContactLinkedIn" data-i18n="careersLinkedIn">LinkedIn Profile URL *</label>
+          <input type="url" id="demoContactLinkedIn" name="linkedin" required placeholder="https://www.linkedin.com/in/yourprofile" data-i18n-placeholder="careersLinkedInPlaceholder" pattern="^https?:\/\/([a-z0-9-]+\.)?linkedin\.com\/in\/.+" />
+        </div>
+        <div>
+          <label for="demoContactMessage" data-i18n="contactMessage">Message *</label>
+          <textarea id="demoContactMessage" name="message" rows="5" required placeholder="Tell us about your project or inquiry..." data-i18n-placeholder="contactMessagePlaceholder"></textarea>
+        </div>
+        <button type="submit" class="btn-submit" data-i18n="contactSend">Send Message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#hero" class="logo"><img src="../assets/images/logo/CompanyLogo-180w.webp" alt="Solarity AI" /></a>
+        <p>AI-Native Software 3.0 Company Creating High-Impact B2B and B2C Solutions with World-Class Quality.</p>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footerSections">Sections</h4>
+        <a href="#services">Services</a>
+        <a href="#products">Products</a>
+        <a href="#projects">Projects</a>
+        <a href="#team">Team</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footerCompany">Company</h4>
+        <a href="https://solarityai.com" target="_blank">Home</a>
+        <a href="https://solarityai.com/careers.html" target="_blank">Careers</a>
+        <a href="https://solarityai.com/blog.html" target="_blank">Blog</a>
+        <a href="https://solarityai.com/legal.html" target="_blank">Legal</a>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footerSocials">Socials</h4>
+        <a href="https://www.linkedin.com/company/solarity-ai-company/posts/?feedView=all" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://www.instagram.com/solarity_ai" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a href="https://x.com/solarity_ai" target="_blank" rel="noopener noreferrer">X (Twitter)</a>
+        <a href="https://github.com/Solarity-AI" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://www.youtube.com/@solarity_ai" target="_blank" rel="noopener noreferrer">YouTube</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 Solarity AI LLC. All rights reserved. &mdash; 310 Gran Via, Irving, TX 75039, USA
+    </div>
+  </div>
+</footer>
+
+<script>
+// 1. Page-load animations
+window.addEventListener('DOMContentLoaded', () => {
+  requestAnimationFrame(() => {
+    document.body.classList.add('loaded');
+  });
+});
+
+// 2. Scroll-triggered reveal animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// 3. Logo marquee - duplicate items for seamless loop
+const track = document.getElementById('marquee-track');
+if (track) {
+  const items = track.innerHTML;
+  track.innerHTML = items + items; // duplicate for seamless loop
+}
+
+// 4. Star particles
+(function() {
+  const canvas = document.getElementById('stars-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let stars = [];
+  const COUNT = 120;
+
+  function resize() {
+    canvas.width = canvas.offsetWidth * devicePixelRatio;
+    canvas.height = canvas.offsetHeight * devicePixelRatio;
+    ctx.scale(devicePixelRatio, devicePixelRatio);
+    init();
+  }
+
+  function init() {
+    stars = [];
+    const w = canvas.offsetWidth, h = canvas.offsetHeight;
+    for (let i = 0; i < COUNT; i++) {
+      stars.push({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        r: Math.random() * 1.2 + 0.3,
+        a: Math.random(),
+        da: (Math.random() - 0.5) * 0.008,
+        dy: Math.random() * 0.15 + 0.02
+      });
+    }
+  }
+
+  function draw() {
+    const w = canvas.offsetWidth, h = canvas.offsetHeight;
+    ctx.clearRect(0, 0, w, h);
+    for (const s of stars) {
+      s.a += s.da;
+      if (s.a <= 0 || s.a >= 1) s.da *= -1;
+      s.y += s.dy;
+      if (s.y > h) { s.y = 0; s.x = Math.random() * w; }
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255,255,255,${Math.max(0, Math.min(1, s.a))})`;
+      ctx.fill();
+    }
+    requestAnimationFrame(draw);
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+  draw();
+})();
+
+// ===== LANGUAGE SWITCHER =====
+(function() {
+  'use strict';
+
+  // Inline translations for this standalone page
+  var translations = {
+    en: {
+      navAbout: "About Us",
+      navPartnerships: "Partnerships",
+      navServices: "Services",
+      navProducts: "Products",
+      navProjects: "Projects",
+      navTeam: "Team",
+      navContact: "Contact",
+      navProcess: "Process",
+      navBenefits: "Benefits",
+      navBookCall: "Book a Call",
+      navCareers: "Careers",
+      heroMVPShort: "Your MVP is Ready in 1 Week",
+      aboutTitle: "AI-Native Software 3.0 Company",
+      aboutSubtitleClean: "Creating the world's highest-quality B2B and B2C solutions for YOU.",
+      statsProjects: "Completed Projects",
+      statsSatisfaction: "Client Satisfaction",
+      statsSupport: "Support Service",
+      statsSupportNumber: "24/7",
+      statsRevenue: "Client Revenue Impact",
+      statsGlobalPartners: "Global Partners",
+      partnershipsSubtitle: "Strategic Collaborations and Trusted Partners",
+      servicesTitle: "Our Services",
+      servicesSectionTitle: "AI Solutions That Take Your Business to the Next Level",
+      servicesSectionDesc: "We design, develop, and deliver cutting-edge software solutions across every domain.",
+      products: "Our Products",
+      productsSectionTitle: "Products We've Built",
+      productsSectionDesc: "Innovative solutions designed to make a real impact in people's lives.",
+      projects: "Our Projects",
+      projectsSubtitle: "Selected Success Stories",
+      projectsSectionDesc: "Real-world solutions delivered for enterprise clients across industries.",
+      team: "Our Team",
+      teamSubtitle: "Meet Our World Class Team",
+      teamSubtitleDesc: "A diverse group of talented professionals driving innovation forward.",
+      teamExecutives: "Executives",
+      teamManagers: "Business Development Managers",
+      teamEngineers: "Engineers",
+      teamMarketers: "Marketing",
+      teamCEO: "CEO",
+      teamCTO: "CTO",
+      teamCIO: "CIO",
+      teamBDM: "BDM",
+      teamLeadFullStack: "Engineering Manager & Lead Full-Stack Engineer",
+      teamEngineer: "Full-Stack Engineer",
+      teamMarketer: "Marketing Specialist",
+      teamMarketingManager: "Marketing Manager",
+      ctaTitle: "Let's Build Something Great Together",
+      ctaDesc: "Book a call today and let us transform your business with AI-native solutions.",
+      bannerCTAShort: "🚀 Book a call with our CEO",
+      contactEmail: "Email us",
+      contactAddress: "Headquarters",
+      contactAddressValue: "310 Gran Via, Irving, TX 75039, USA",
+      contactResponseTime: "Response time",
+      contactResponseTimeValue: "Within 24 hours",
+      showMap: "Show Map",
+      careersFormName: "Full Name *",
+      careersFormNamePlaceholder: "Your full name",
+      careersFormGmail: "Gmail *",
+      careersFormGmailPlaceholder: "example@gmail.com",
+      careersLinkedIn: "LinkedIn Profile URL *",
+      careersLinkedInPlaceholder: "https://www.linkedin.com/in/yourprofile",
+      contactMessage: "Message *",
+      contactMessagePlaceholder: "Tell us about your project or inquiry...",
+      contactSend: "Send Message",
+      footerSections: "Sections",
+      footerCompany: "Company",
+      footerSocials: "Socials",
+      viewServices: "View services"
+    },
+    tr: {
+      navAbout: "Hakkımızda",
+      navPartnerships: "Ortaklıklar",
+      navServices: "Hizmetler",
+      navProducts: "Ürünler",
+      navProjects: "Projeler",
+      navTeam: "Ekip",
+      navContact: "İletişim",
+      navProcess: "Süreç",
+      navBenefits: "Avantajlar",
+      navBookCall: "Görüşme Ayarla",
+      navCareers: "Kariyer",
+      heroMVPShort: "MVP'niz 1 Haftada Hazır",
+      aboutTitle: "Yapay Zeka Odaklı Yazılım 3.0 Şirketi",
+      aboutSubtitleClean: "Sizin için dünyanın en yüksek kaliteli B2B ve B2C çözümlerini yaratıyoruz.",
+      statsProjects: "Tamamlanan Projeler",
+      statsSatisfaction: "Müşteri Memnuniyeti",
+      statsSupport: "7/24 Destek Hizmeti",
+      statsSupportNumber: "7/24",
+      statsRevenue: "Müşteri Gelir Etkisi",
+      statsGlobalPartners: "Küresel Ortaklar",
+      partnershipsSubtitle: "Stratejik İş Birlikleri ve Güvenilir Ortaklar",
+      servicesTitle: "Hizmetlerimiz",
+      servicesSectionTitle: "İşinizi Bir Üst Seviyeye Taşıyan AI Çözümleri",
+      servicesSectionDesc: "Her alanda son teknoloji yazılım çözümleri tasarlıyor, geliştiriyor ve sunuyoruz.",
+      products: "Ürünlerimiz",
+      productsSectionTitle: "Geliştirdiğimiz Ürünler",
+      productsSectionDesc: "İnsanların hayatında gerçek bir etki yaratmak için tasarlanmış yenilikçi çözümler.",
+      projects: "Projelerimiz",
+      projectsSubtitle: "Seçili Başarı Hikayeleri",
+      projectsSectionDesc: "Farklı sektörlerdeki kurumsal müşteriler için sunulan gerçek dünya çözümleri.",
+      team: "Ekibimiz",
+      teamSubtitle: "Dünya Standartlarında Ekibimizle Tanışın",
+      teamSubtitleDesc: "Yeniliği ileri taşıyan, yetenekli ve çeşitli profesyonellerden oluşan bir ekip.",
+      teamExecutives: "Üst Yönetim",
+      teamManagers: "İş Geliştirme Yöneticileri",
+      teamEngineers: "Mühendisler",
+      teamMarketers: "Pazarlama",
+      teamCEO: "CEO",
+      teamCTO: "CTO",
+      teamCIO: "CIO",
+      teamBDM: "BDM",
+      teamLeadFullStack: "Mühendislik Müdürü & Kıdemli Full-Stack Mühendisi",
+      teamEngineer: "Full-Stack Mühendisi",
+      teamMarketer: "Pazarlama Uzmanı",
+      teamMarketingManager: "Pazarlama Müdürü",
+      ctaTitle: "Birlikte Büyük İşler Başaralım",
+      ctaDesc: "Hemen bir görüşme ayarlayın ve işinizi yapay zeka ile dönüştürelim.",
+      bannerCTAShort: "🚀 CEO'muzla görüşme ayarlayın",
+      contactEmail: "E-posta",
+      contactAddress: "Merkez Ofis",
+      contactAddressValue: "310 Gran Via, Irving, TX 75039, ABD",
+      contactResponseTime: "Yanıt süresi",
+      contactResponseTimeValue: "24 saat içinde",
+      showMap: "Haritayı Göster",
+      careersFormName: "Ad Soyad *",
+      careersFormNamePlaceholder: "Adınız ve soyadınız",
+      careersFormGmail: "Gmail *",
+      careersFormGmailPlaceholder: "ornek@gmail.com",
+      careersLinkedIn: "LinkedIn Profil URL *",
+      careersLinkedInPlaceholder: "https://www.linkedin.com/in/profiliniz",
+      contactMessage: "Mesaj *",
+      contactMessagePlaceholder: "Projenizi veya sorunuzu anlatın...",
+      contactSend: "Mesaj Gönder",
+      footerSections: "Bölümler",
+      footerCompany: "Şirket",
+      footerSocials: "Sosyal Medya",
+      viewServices: "Hizmetleri Gör"
+    }
+  };
+
+  var currentLang = 'en';
+  try { currentLang = localStorage.getItem('solarityai-lang') || 'en'; } catch (e) {}
+
+  function applyTranslations(lang) {
+    var locale = translations[lang];
+    if (!locale) return;
+
+    // data-i18n text content
+    document.querySelectorAll('[data-i18n]').forEach(function(el) {
+      var key = el.getAttribute('data-i18n');
+      if (key && locale[key]) el.textContent = locale[key];
+    });
+
+    // Team member names (Turkish characters)
+    document.querySelectorAll('.team-member-name[data-name-en][data-name-tr]').forEach(function(el) {
+      el.textContent = lang === 'en' ? el.getAttribute('data-name-en') : el.getAttribute('data-name-tr');
+    });
+
+    // Image alt text
+    document.querySelectorAll('img[data-alt-en][data-alt-tr]').forEach(function(img) {
+      img.alt = lang === 'en' ? img.getAttribute('data-alt-en') : img.getAttribute('data-alt-tr');
+    });
+
+    document.documentElement.lang = lang;
+  }
+
+  function updateSwitcherUI() {
+    document.querySelectorAll('.ud-lang-btn[data-lang]').forEach(function(btn) {
+      if (btn.getAttribute('data-lang') === currentLang) {
+        btn.classList.add('is-active');
+        btn.setAttribute('aria-pressed', 'true');
+      } else {
+        btn.classList.remove('is-active');
+        btn.setAttribute('aria-pressed', 'false');
+      }
+    });
+  }
+
+  function setLanguage(lang) {
+    currentLang = lang;
+    try { localStorage.setItem('solarityai-lang', lang); } catch (e) {}
+    applyTranslations(lang);
+    updateSwitcherUI();
+  }
+
+  // Bind click handlers
+  document.querySelectorAll('.ud-lang-btn[data-lang]').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      var lang = btn.getAttribute('data-lang');
+      if (lang && lang !== currentLang) setLanguage(lang);
+    });
+  });
+
+  // Apply stored language on load
+  if (currentLang === 'tr') {
+    applyTranslations('tr');
+  }
+  updateSwitcherUI();
+})();
+</script>
+</body>
+</html>
