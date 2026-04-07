@@ -48,11 +48,15 @@ window.addEventListener('DOMContentLoaded', function() {
 
 // 3. Scroll-triggered reveal animations
 (function() {
+  function showAll() {
+    document.querySelectorAll('.reveal').forEach(function(el) { el.classList.add('visible'); });
+  }
   function init() {
     if (!('IntersectionObserver' in window)) {
-      document.querySelectorAll('.reveal').forEach(function(el) { el.classList.add('visible'); });
+      showAll();
       return;
     }
+    // threshold: 0 + rootMargin -80px so any pixel entering viewport triggers reveal
     var observer = new IntersectionObserver(function(entries) {
       entries.forEach(function(entry) {
         if (entry.isIntersecting) {
@@ -60,8 +64,10 @@ window.addEventListener('DOMContentLoaded', function() {
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    }, { threshold: 0, rootMargin: '0px 0px -80px 0px' });
     document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
+    // Safety net: force-show anything still hidden after 3s
+    setTimeout(showAll, 3000);
   }
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);

@@ -587,6 +587,7 @@ body.menu-open {
   flex-shrink: 0;
   position: relative;
   padding-top: 125%; /* 5/4 aspect ratio fallback */
+  min-height: 240px;
   overflow: hidden;
   background: linear-gradient(135deg, rgba(59,130,246,0.2), rgba(6,182,212,0.2));
 }
