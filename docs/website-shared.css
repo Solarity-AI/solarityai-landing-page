@@ -1241,10 +1241,10 @@ body.loaded .hero-btns     { opacity: 1; transform: none; transition-delay: 1.0s
   .stats-bar { gap: 24px; }
   .team-card { width: 200px; }
   .hero {
-    padding: 110px 20px 80px;
-    min-height: 75vh;
-    min-height: 75svh;
-    --hero-glow-top: clamp(420px, calc(75svh - 160px), 540px);
+    padding: 110px 20px 140px;
+    min-height: 78vh;
+    min-height: 78svh;
+    --hero-glow-top: clamp(420px, calc(78svh - 200px), 540px);
   }
   .hero-glow-fade-left,
   .hero-glow-fade-right { width: 200px; }
@@ -1266,16 +1266,16 @@ body.loaded .hero-btns     { opacity: 1; transform: none; transition-delay: 1.0s
     width: calc(100vw + 600px);
     background: linear-gradient(180deg, rgba(251,191,36,0.15) 0%, rgba(245,158,11,0.05) 50%, transparent 100%);
   }
-  .stats-section { margin-top: -120px; }
+  .stats-section { margin-top: -20px; }
   .section { padding: 64px 0; }
 }
 @media (max-width: 600px) {
   .footer-grid { grid-template-columns: 1fr; }
   .hero {
-    padding: 100px 16px 60px;
-    min-height: 80vh;
-    min-height: 80svh;
-    --hero-glow-top: clamp(440px, calc(80svh - 120px), 540px);
+    padding: 100px 16px 120px;
+    min-height: 82vh;
+    min-height: 82svh;
+    --hero-glow-top: clamp(420px, calc(82svh - 160px), 540px);
   }
   .hero-glow-fade-left,
   .hero-glow-fade-right { width: 120px; }
@@ -1306,7 +1306,7 @@ body.loaded .hero-btns     { opacity: 1; transform: none; transition-delay: 1.0s
   .hero-btns { flex-direction: column; width: 100%; }
   .hero-btns .btn { width: 100%; justify-content: center; }
   .projects-grid { grid-template-columns: 1fr; }
-  .stats-section { margin-top: -100px; padding: 24px 0; }
+  .stats-section { margin-top: 0; padding: 24px 0; }
   .stats-bar { gap: 16px; }
   .stat-number { font-size: 22px; }
   .team-card { width: 100%; max-width: 280px; }
