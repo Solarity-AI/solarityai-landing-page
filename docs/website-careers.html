@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<title>Careers - Solarity AI</title>
+<link rel="stylesheet" href="website-shared.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="container">
+    <a href="website-demo.html#about" class="logo"><img src="../assets/images/logo/CompanyLogo-180w.webp" alt="Solarity AI" /></a>
+    <div class="nav-links">
+      <a href="website-demo.html#about" data-i18n="navAbout">About Us</a>
+      <a href="website-demo.html#partnerships" data-i18n="navPartnerships">Partnerships</a>
+      <a href="website-demo.html#services" data-i18n="navServices">Services</a>
+      <a href="website-demo.html#products" data-i18n="navProducts">Products</a>
+      <a href="website-demo.html#projects" data-i18n="navProjects">Projects</a>
+      <a href="website-demo.html#team" data-i18n="navTeam">Team</a>
+      <a href="website-demo.html#contact" data-i18n="navContact">Contact</a>
+    </div>
+    <div class="nav-right">
+      <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2qgXk0ZfBd6QJf7ef-306in7AI0Kzc-pL3NJFK1fU74vAUGiftVJPF3-DoXp9_RZoyqW_sjSpI" target="_blank" rel="noopener noreferrer" class="nav-cta" data-i18n="navBookCall">🚀 Book a Call with our CEO</a>
+      <a href="website-careers.html" class="nav-cta" data-i18n="navCareers">Careers</a>
+      <div id="languageSwitcher" class="ud-lang-switch" role="group" aria-label="Language selector">
+        <button type="button" class="ud-lang-btn is-active" data-lang="en" aria-pressed="true"><img src="../assets/images/flags/flag-us.svg" alt="EN" class="ud-lang-flag" /></button>
+        <button type="button" class="ud-lang-btn" data-lang="tr" aria-pressed="false"><img src="../assets/images/flags/flag-tr.svg" alt="TR" class="ud-lang-flag" /></button>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;">
+      <div id="languageSwitcherMobile" class="ud-lang-switch" role="group" aria-label="Language selector" style="display:none;">
+        <button type="button" class="ud-lang-btn is-active" data-lang="en" aria-pressed="true"><img src="../assets/images/flags/flag-us.svg" alt="EN" class="ud-lang-flag" /></button>
+        <button type="button" class="ud-lang-btn" data-lang="tr" aria-pressed="false"><img src="../assets/images/flags/flag-tr.svg" alt="TR" class="ud-lang-flag" /></button>
+      </div>
+      <button class="mobile-toggle" id="mobileToggle" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobileMenu">&#9776;</button>
+    </div>
+  </div>
+</nav>
+
+<!-- MOBILE MENU PANEL -->
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2qgXk0ZfBd6QJf7ef-306in7AI0Kzc-pL3NJFK1fU74vAUGiftVJPF3-DoXp9_RZoyqW_sjSpI" target="_blank" rel="noopener noreferrer" class="mobile-menu-cta" data-i18n="navBookCall">🚀 Book a Call with our CEO</a>
+  <ul class="mobile-menu-list">
+    <li><a href="website-demo.html#about" data-i18n="navAbout">About Us</a></li>
+    <li><a href="website-demo.html#partnerships" data-i18n="navPartnerships">Partnerships</a></li>
+    <li><a href="website-demo.html#services" data-i18n="navServices">Services</a></li>
+    <li><a href="website-demo.html#products" data-i18n="navProducts">Products</a></li>
+    <li><a href="website-demo.html#projects" data-i18n="navProjects">Projects</a></li>
+    <li><a href="website-demo.html#team" data-i18n="navTeam">Team</a></li>
+    <li><a href="website-demo.html#contact" data-i18n="navContact">Contact</a></li>
+  </ul>
+  <a href="website-careers.html" class="mobile-menu-careers" data-i18n="navCareers">Careers</a>
+</div>
+
+<!-- HERO -->
+<section class="hero subpage-hero">
+  <div class="hero-badge">
+    <span class="new">★</span>
+    <span data-i18n="careersHeroTag">Career Opportunities</span>
+  </div>
+  <h1><span class="gradient-text" data-i18n="careersHeroTitle">Let's Build the Future Together</span></h1>
+  <p data-i18n="careersHeroSubtitle">We're shaping the future of AI-powered software solutions. Join us to be part of innovative projects that make a real impact.</p>
+  <div class="hero-btns">
+    <a href="#positions" class="btn btn-primary" data-i18n="careersPositionsTitle">Open Positions</a>
+    <a href="#apply" class="btn btn-secondary" data-i18n="careersFormSubmit">Submit Application</a>
+  </div>
+</section>
+
+<!-- WHY SOLARITY -->
+<section class="section" id="why">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-badge" data-i18n="careersHeroTag">Career Opportunities</div>
+      <h2 data-i18n="careersWhyTitle">Why Solarity AI?</h2>
+      <p data-i18n="careersWhySubtitle">Create, market or sell world class mobile apps powered by AI for the coolest company on Earth.</p>
+    </div>
+    <div class="values-grid reveal-stagger reveal">
+      <div class="value-card">
+        <div class="value-icon">💰</div>
+        <h3 data-i18n="careersWhy1Title">Generous Profit Sharing</h3>
+        <p data-i18n="careersWhy1Desc">Get a real share of the value you create, not just a paycheck.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🌍</div>
+        <h3 data-i18n="careersWhy2Title">Fully Remote Work</h3>
+        <p data-i18n="careersWhy2Desc">Work from wherever you do your best work. No office. No borders. No compromises.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🤝</div>
+        <h3 data-i18n="careersWhy3Title">Respect for Your Talent</h3>
+        <p data-i18n="careersWhy3Desc">Your talent, judgment, and the value you create are genuinely respected.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OPEN POSITIONS -->
+<section class="section" id="positions" style="padding-top: 40px;">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-badge" data-i18n="careersPositionsTitle">Open Positions</div>
+      <h2 data-i18n="careersPositionsTitle">Open Positions</h2>
+      <p data-i18n="careersPositionsSubtitle">Apply for one of the following positions to join our team.</p>
+      <div style="margin-top: 24px;">
+        <a href="https://drive.google.com/drive/folders/1iOew815DHxi_TDBWtbpUp_433V-bamws" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="padding: 10px 20px; font-size: 14px;">
+          📁 <span data-i18n="careersDriveLink">Our Job Poster (Drive Folder)</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="positions-grid reveal-stagger reveal">
+      <!-- Position 1 -->
+      <div class="position-card">
+        <div class="position-icon">💻</div>
+        <h3 data-i18n="careersPos1Title">Full Stack Engineer</h3>
+        <div class="position-meta">
+          <span class="position-meta-tag" data-i18n="careersFullTime">Full-time</span>
+          <span class="position-meta-tag" data-i18n="careersPartTime">Part-time</span>
+        </div>
+        <p data-i18n="careersPos1Desc">Experience in building scalable applications with modern web technologies. Knowledge of React, Node.js, and cloud technologies.</p>
+        <a href="#apply" class="btn-apply" data-i18n="careersFormSubmit">Submit Application</a>
+      </div>
+
+      <!-- Position 2 -->
+      <div class="position-card">
+        <div class="position-icon">📱</div>
+        <h3 data-i18n="careersPos2Title">Marketing Specialist</h3>
+        <div class="position-meta">
+          <span class="position-meta-tag" data-i18n="careersFullTime">Full-time</span>
+          <span class="position-meta-tag" data-i18n="careersPartTime">Part-time</span>
+        </div>
+        <p data-i18n="careersPos2Desc">Develop and implement digital marketing strategies. Experience in SEO, SEM, social media management, and content marketing.</p>
+        <a href="#apply" class="btn-apply" data-i18n="careersFormSubmit">Submit Application</a>
+      </div>
+
+      <!-- Position 3 -->
+      <div class="position-card">
+        <div class="position-icon">🤝</div>
+        <h3 data-i18n="careersPos3Title">Business Development Manager</h3>
+        <div class="position-meta">
+          <span class="position-meta-tag" data-i18n="careersFullTime">Full-time</span>
+          <span class="position-meta-tag" data-i18n="careersPartTime">Part-time</span>
+        </div>
+        <p data-i18n="careersPos3Desc">Create new business opportunities and manage customer relationships. B2B sales experience and strong communication skills.</p>
+        <a href="#apply" class="btn-apply" data-i18n="careersFormSubmit">Submit Application</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APPLICATION FORM -->
+<section class="contact-section" id="apply">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-badge" data-i18n="careersFormTitle">Application Form</div>
+      <h2 data-i18n="careersFormTitle">Application Form</h2>
+      <p data-i18n="careersFormSubtitle">Fill out the form below to apply to join our team.</p>
+    </div>
+
+    <div style="max-width: 640px; margin: 0 auto;">
+      <form class="contact-form reveal" id="careerApplicationForm" action="https://formsubmit.co/info@solarityai.com" method="POST">
+        <input type="hidden" name="_captcha" value="true">
+        <input type="hidden" name="_next" value="https://solarityai.com/careers.html?success=true">
+        <input type="hidden" name="_subject" value="New Job Application - Solarity AI">
+        <input type="hidden" name="_template" value="box">
+        <!-- Honeypot -->
+        <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true"
+               style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none;" />
+
+        <div>
+          <label for="fullName" data-i18n="careersFormName">Full Name *</label>
+          <input type="text" id="fullName" name="fullName" required
+                 placeholder="Your full name"
+                 data-i18n-placeholder="careersFormNamePlaceholder" />
+        </div>
+
+        <div>
+          <label for="gmail" data-i18n="careersFormGmail">Gmail *</label>
+          <input type="email" id="gmail" name="email" required
+                 placeholder="example@gmail.com"
+                 data-i18n-placeholder="careersFormGmailPlaceholder"
+                 pattern="[a-zA-Z0-9._%+-]+@gmail\.com"
+                 title="Please enter a valid Gmail address (@gmail.com only)." />
+        </div>
+
+        <div>
+          <label for="careersLinkedIn" data-i18n="careersLinkedIn">LinkedIn Profile URL *</label>
+          <input type="url" id="careersLinkedIn" name="linkedin" required
+                 placeholder="https://www.linkedin.com/in/your-profile"
+                 data-i18n-placeholder="careersLinkedInPlaceholder"
+                 pattern="^https?:\/\/([a-z0-9-]+\.)?linkedin\.com\/in\/.+"
+                 title="Please enter a valid LinkedIn profile URL." />
+        </div>
+
+        <div>
+          <label for="careersPortfolio" data-i18n="careersPortfolio">Portfolio / Website *</label>
+          <input type="url" id="careersPortfolio" name="portfolio" required
+                 placeholder="https://github.com/your-username"
+                 data-i18n-placeholder="careersPortfolioPlaceholder"
+                 pattern="^https?:\/\/[^\s/$.?#][^\s]*$"
+                 title="Please enter a valid portfolio URL." />
+        </div>
+
+        <div>
+          <label for="position" data-i18n="careersFormPosition">Position *</label>
+          <select id="position" name="position" required
+                  style="width:100%; padding:10px 14px; background:var(--bg); border:1px solid var(--border); border-radius:8px; color:var(--text-1); font-size:14px; font-family:inherit; outline:none;">
+            <option value="" data-i18n="careersFormPositionSelect">Select a position</option>
+            <option value="full-stack-engineer" data-i18n="careersPos1Title">Full Stack Engineer</option>
+            <option value="marketing-specialist" data-i18n="careersPos2Title">Marketing Specialist</option>
+            <option value="business-development-manager" data-i18n="careersPos3Title">Business Development Manager</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="workType" data-i18n="careersFormWorkType">Work Type *</label>
+          <select id="workType" name="workType" required
+                  style="width:100%; padding:10px 14px; background:var(--bg); border:1px solid var(--border); border-radius:8px; color:var(--text-1); font-size:14px; font-family:inherit; outline:none;">
+            <option value="" data-i18n="careersFormWorkTypeSelect">Select work type</option>
+            <option value="full-time" data-i18n="careersFullTime">Full-time</option>
+            <option value="part-time" data-i18n="careersPartTime">Part-time</option>
+            <option value="intern" data-i18n="careersIntern">Intern</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn-submit" data-i18n="careersFormSubmit">Submit Application</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="website-demo.html#about" class="logo"><img src="../assets/images/logo/CompanyLogo-180w.webp" alt="Solarity AI" /></a>
+        <p data-i18n="footerDesc">AI-Native Software 3.0 Company Creating High-Impact B2B and B2C Solutions with World-Class Quality.</p>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footerSections">Sections</h4>
+        <a href="website-demo.html#about" data-i18n="navAbout">About Us</a>
+        <a href="website-demo.html#partnerships" data-i18n="navPartnerships">Partnerships</a>
+        <a href="website-demo.html#services" data-i18n="navServices">Services</a>
+        <a href="website-demo.html#products" data-i18n="navProducts">Products</a>
+        <a href="website-demo.html#projects" data-i18n="navProjects">Projects</a>
+        <a href="website-demo.html#team" data-i18n="navTeam">Team</a>
+        <a href="website-demo.html#contact" data-i18n="navContact">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footerCompany">Company</h4>
+        <a href="website-demo.html" data-i18n="footerHome">Home</a>
+        <a href="website-careers.html" data-i18n="navCareers">Careers</a>
+        <a href="website-blog.html" data-i18n="footerBlog">Blog</a>
+        <a href="website-legal.html" data-i18n="footerLegal">Legal</a>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footerSocials">Socials</h4>
+        <a href="https://www.linkedin.com/company/solarity-ai-company/posts/?feedView=all" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://www.instagram.com/solarity_ai" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a href="https://x.com/solarity_ai" target="_blank" rel="noopener noreferrer">X (Twitter)</a>
+        <a href="https://github.com/Solarity-AI" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://www.youtube.com/@solarity_ai" target="_blank" rel="noopener noreferrer">YouTube</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span data-i18n="footerCopyright">&copy; 2026 Solarity AI LLC. All rights reserved.</span> &mdash; 310 Gran Via, Irving, TX 75039, USA
+    </div>
+  </div>
+</footer>
+
+<script src="website-translations.js"></script>
+<script src="website-shared.js"></script>
+</body>
+</html>

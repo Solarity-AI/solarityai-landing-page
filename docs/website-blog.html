@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<title>Blog - Solarity AI</title>
+<link rel="stylesheet" href="website-shared.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="container">
+    <a href="website-demo.html#about" class="logo"><img src="../assets/images/logo/CompanyLogo-180w.webp" alt="Solarity AI" /></a>
+    <div class="nav-links">
+      <a href="website-demo.html#about" data-i18n="navAbout">About Us</a>
+      <a href="website-demo.html#partnerships" data-i18n="navPartnerships">Partnerships</a>
+      <a href="website-demo.html#services" data-i18n="navServices">Services</a>
+      <a href="website-demo.html#products" data-i18n="navProducts">Products</a>
+      <a href="website-demo.html#projects" data-i18n="navProjects">Projects</a>
+      <a href="website-demo.html#team" data-i18n="navTeam">Team</a>
+      <a href="website-demo.html#contact" data-i18n="navContact">Contact</a>
+    </div>
+    <div class="nav-right">
+      <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2qgXk0ZfBd6QJf7ef-306in7AI0Kzc-pL3NJFK1fU74vAUGiftVJPF3-DoXp9_RZoyqW_sjSpI" target="_blank" rel="noopener noreferrer" class="nav-cta" data-i18n="navBookCall">🚀 Book a Call with our CEO</a>
+      <a href="website-careers.html" class="nav-cta" data-i18n="navCareers">Careers</a>
+      <div id="languageSwitcher" class="ud-lang-switch" role="group" aria-label="Language selector">
+        <button type="button" class="ud-lang-btn is-active" data-lang="en" aria-pressed="true"><img src="../assets/images/flags/flag-us.svg" alt="EN" class="ud-lang-flag" /></button>
+        <button type="button" class="ud-lang-btn" data-lang="tr" aria-pressed="false"><img src="../assets/images/flags/flag-tr.svg" alt="TR" class="ud-lang-flag" /></button>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;">
+      <div id="languageSwitcherMobile" class="ud-lang-switch" role="group" aria-label="Language selector" style="display:none;">
+        <button type="button" class="ud-lang-btn is-active" data-lang="en" aria-pressed="true"><img src="../assets/images/flags/flag-us.svg" alt="EN" class="ud-lang-flag" /></button>
+        <button type="button" class="ud-lang-btn" data-lang="tr" aria-pressed="false"><img src="../assets/images/flags/flag-tr.svg" alt="TR" class="ud-lang-flag" /></button>
+      </div>
+      <button class="mobile-toggle" id="mobileToggle" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobileMenu">&#9776;</button>
+    </div>
+  </div>
+</nav>
+
+<!-- MOBILE MENU PANEL -->
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2qgXk0ZfBd6QJf7ef-306in7AI0Kzc-pL3NJFK1fU74vAUGiftVJPF3-DoXp9_RZoyqW_sjSpI" target="_blank" rel="noopener noreferrer" class="mobile-menu-cta" data-i18n="navBookCall">🚀 Book a Call with our CEO</a>
+  <ul class="mobile-menu-list">
+    <li><a href="website-demo.html#about" data-i18n="navAbout">About Us</a></li>
+    <li><a href="website-demo.html#partnerships" data-i18n="navPartnerships">Partnerships</a></li>
+    <li><a href="website-demo.html#services" data-i18n="navServices">Services</a></li>
+    <li><a href="website-demo.html#products" data-i18n="navProducts">Products</a></li>
+    <li><a href="website-demo.html#projects" data-i18n="navProjects">Projects</a></li>
+    <li><a href="website-demo.html#team" data-i18n="navTeam">Team</a></li>
+    <li><a href="website-demo.html#contact" data-i18n="navContact">Contact</a></li>
+  </ul>
+  <a href="website-careers.html" class="mobile-menu-careers" data-i18n="navCareers">Careers</a>
+</div>
+
+<!-- HERO -->
+<section class="hero subpage-hero">
+  <div class="hero-badge">
+    <span class="new">📝</span>
+    <span data-i18n="navBlog">Blog</span>
+  </div>
+  <h1><span class="gradient-text" data-i18n="navBlog">Blog</span></h1>
+  <p data-i18n="blogPageIntro">News, insights, and updates from Solarity AI. The articles below are placeholders; real content will be added later.</p>
+</section>
+
+<!-- BLOG POSTS -->
+<section class="section" id="posts" style="padding-top: 40px;">
+  <div class="container">
+    <div class="blog-grid reveal-stagger reveal">
+      <!-- Post 1 -->
+      <a href="#" class="blog-card">
+        <div class="blog-card-image">📰</div>
+        <div class="blog-card-body">
+          <div class="blog-card-meta">
+            <span class="blog-card-category">News</span>
+            <span data-i18n="blogPost1Date">January 2026</span>
+          </div>
+          <h3 data-i18n="blogPost1Title">Welcome to the Solarity AI Blog</h3>
+          <p data-i18n="blogPost1Excerpt">This is a placeholder for our first blog post. Here we will share company news, product updates, and thoughts on AI and software development.</p>
+          <div class="blog-card-readmore"><span data-i18n="blogReadMore">Read more</span> →</div>
+        </div>
+      </a>
+
+      <!-- Post 2 -->
+      <a href="#" class="blog-card">
+        <div class="blog-card-image">🤖</div>
+        <div class="blog-card-body">
+          <div class="blog-card-meta">
+            <span class="blog-card-category">Engineering</span>
+            <span data-i18n="blogPost2Date">January 2026</span>
+          </div>
+          <h3 data-i18n="blogPost2Title">Building AI-Native Solutions</h3>
+          <p data-i18n="blogPost2Excerpt">A short draft on how we approach AI-native software: from design to deployment. Full article coming soon.</p>
+          <div class="blog-card-readmore"><span data-i18n="blogReadMore">Read more</span> →</div>
+        </div>
+      </a>
+
+      <!-- Post 3 -->
+      <a href="#" class="blog-card">
+        <div class="blog-card-image">⭐</div>
+        <div class="blog-card-body">
+          <div class="blog-card-meta">
+            <span class="blog-card-category">Quality</span>
+            <span data-i18n="blogPost3Date">January 2026</span>
+          </div>
+          <h3 data-i18n="blogPost3Title">Why We Care About Quality</h3>
+          <p data-i18n="blogPost3Excerpt">Quality and security are at the core of what we do. This placeholder will be replaced with a real article on our engineering practices.</p>
+          <div class="blog-card-readmore"><span data-i18n="blogReadMore">Read more</span> →</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="website-demo.html#about" class="logo"><img src="../assets/images/logo/CompanyLogo-180w.webp" alt="Solarity AI" /></a>
+        <p data-i18n="footerDesc">AI-Native Software 3.0 Company Creating High-Impact B2B and B2C Solutions with World-Class Quality.</p>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footerSections">Sections</h4>
+        <a href="website-demo.html#about" data-i18n="navAbout">About Us</a>
+        <a href="website-demo.html#partnerships" data-i18n="navPartnerships">Partnerships</a>
+        <a href="website-demo.html#services" data-i18n="navServices">Services</a>
+        <a href="website-demo.html#products" data-i18n="navProducts">Products</a>
+        <a href="website-demo.html#projects" data-i18n="navProjects">Projects</a>
+        <a href="website-demo.html#team" data-i18n="navTeam">Team</a>
+        <a href="website-demo.html#contact" data-i18n="navContact">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footerCompany">Company</h4>
+        <a href="website-demo.html" data-i18n="footerHome">Home</a>
+        <a href="website-careers.html" data-i18n="navCareers">Careers</a>
+        <a href="website-blog.html" data-i18n="footerBlog">Blog</a>
+        <a href="website-legal.html" data-i18n="footerLegal">Legal</a>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footerSocials">Socials</h4>
+        <a href="https://www.linkedin.com/company/solarity-ai-company/posts/?feedView=all" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://www.instagram.com/solarity_ai" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a href="https://x.com/solarity_ai" target="_blank" rel="noopener noreferrer">X (Twitter)</a>
+        <a href="https://github.com/Solarity-AI" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://www.youtube.com/@solarity_ai" target="_blank" rel="noopener noreferrer">YouTube</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span data-i18n="footerCopyright">&copy; 2026 Solarity AI LLC. All rights reserved.</span> &mdash; 310 Gran Via, Irving, TX 75039, USA
+    </div>
+  </div>
+</footer>
+
+<script src="website-translations.js"></script>
+<script src="website-shared.js"></script>
+</body>
+</html>
