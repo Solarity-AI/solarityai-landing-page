@@ -1240,18 +1240,73 @@ body.loaded .hero-btns     { opacity: 1; transform: none; transition-delay: 1.0s
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .stats-bar { gap: 24px; }
   .team-card { width: 200px; }
-  .hero { padding: 110px 20px 140px; min-height: auto; }
-  .stats-section { margin-top: -80px; }
+  .hero {
+    padding: 110px 20px 80px;
+    min-height: 75vh;
+    min-height: 75svh;
+    --hero-glow-top: clamp(420px, calc(75svh - 160px), 540px);
+  }
+  .hero-glow-fade-left,
+  .hero-glow-fade-right { width: 200px; }
+  .hero-glow-base {
+    width: calc(100vw + 700px);
+    box-shadow:
+      inset 0 4px 50px rgba(251,191,36,0.65),
+      inset 0 2px 3px rgba(255,255,255,0.8),
+      0 -14px 70px 6px rgba(251,191,36,0.35),
+      0 -45px 140px 28px rgba(245,158,11,0.22),
+      0 -90px 240px 60px rgba(251,191,36,0.15);
+  }
+  .hero-glow-radial {
+    width: calc(100vw + 300px);
+    filter: blur(70px);
+    background: radial-gradient(50% 100% at 50% 100%, rgba(251,191,36,0.45) 0%, rgba(245,158,11,0.16) 50%, transparent 100%);
+  }
+  .hero-glow-ellipse {
+    width: calc(100vw + 600px);
+    background: linear-gradient(180deg, rgba(251,191,36,0.15) 0%, rgba(245,158,11,0.05) 50%, transparent 100%);
+  }
+  .stats-section { margin-top: -120px; }
   .section { padding: 64px 0; }
 }
 @media (max-width: 600px) {
   .footer-grid { grid-template-columns: 1fr; }
-  .hero { padding: 100px 16px 100px; }
+  .hero {
+    padding: 100px 16px 60px;
+    min-height: 80vh;
+    min-height: 80svh;
+    --hero-glow-top: clamp(440px, calc(80svh - 120px), 540px);
+  }
+  .hero-glow-fade-left,
+  .hero-glow-fade-right { width: 120px; }
+  .hero-glow-base {
+    width: calc(100vw + 600px);
+    max-width: none;
+    aspect-ratio: 2.35 / 1;
+    box-shadow:
+      inset 0 4px 50px rgba(251,191,36,0.7),
+      inset 0 2px 3px rgba(255,255,255,0.85),
+      0 -14px 70px 6px rgba(251,191,36,0.4),
+      0 -50px 160px 32px rgba(245,158,11,0.28),
+      0 -100px 280px 70px rgba(251,191,36,0.18),
+      0 -180px 420px 110px rgba(251,191,36,0.1);
+  }
+  .hero-glow-radial {
+    width: calc(100vw + 200px);
+    height: 200px;
+    filter: blur(70px);
+    background: radial-gradient(50% 100% at 50% 100%, rgba(251,191,36,0.5) 0%, rgba(245,158,11,0.18) 50%, transparent 100%);
+  }
+  .hero-glow-ellipse {
+    width: calc(100vw + 500px);
+    height: 1100px;
+    background: linear-gradient(180deg, rgba(251,191,36,0.18) 0%, rgba(245,158,11,0.08) 40%, rgba(251,191,36,0.03) 70%, transparent 100%);
+  }
   .hero h1 { font-size: clamp(28px, 8vw, 40px); }
   .hero-btns { flex-direction: column; width: 100%; }
   .hero-btns .btn { width: 100%; justify-content: center; }
   .projects-grid { grid-template-columns: 1fr; }
-  .stats-section { margin-top: -60px; padding: 24px 0; }
+  .stats-section { margin-top: -100px; padding: 24px 0; }
   .stats-bar { gap: 16px; }
   .stat-number { font-size: 22px; }
   .team-card { width: 100%; max-width: 280px; }
