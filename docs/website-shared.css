@@ -198,7 +198,7 @@ body.menu-open {
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 0px 24px 280px;
+  padding: 120px 24px 280px;
   position: relative;
   overflow: hidden;
 }
@@ -1240,17 +1240,29 @@ body.loaded .hero-btns     { opacity: 1; transform: none; transition-delay: 1.0s
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .stats-bar { gap: 24px; }
   .team-card { width: 200px; }
+  .hero { padding: 110px 20px 140px; min-height: auto; }
+  .stats-section { margin-top: -80px; }
+  .section { padding: 64px 0; }
 }
 @media (max-width: 600px) {
   .footer-grid { grid-template-columns: 1fr; }
+  .hero { padding: 100px 16px 100px; }
+  .hero h1 { font-size: clamp(28px, 8vw, 40px); }
   .hero-btns { flex-direction: column; width: 100%; }
   .hero-btns .btn { width: 100%; justify-content: center; }
   .projects-grid { grid-template-columns: 1fr; }
+  .stats-section { margin-top: -60px; padding: 24px 0; }
   .stats-bar { gap: 16px; }
   .stat-number { font-size: 22px; }
   .team-card { width: 100%; max-width: 280px; }
   .team-grid { gap: 12px; }
   .nav-links .ud-lang-switch { display: none; }
+  .subpage-hero { padding: 110px 16px 50px; }
+  .subpage-hero h1 { font-size: clamp(28px, 8vw, 40px); }
+  .section { padding: 48px 0; }
+  .container { padding: 0 16px; }
+  .contact-form { padding: 20px; }
+  .legal-content { padding: 24px 18px; }
 }
 
 /* ===== SUBPAGE HERO (smaller, no full viewport) ===== */
