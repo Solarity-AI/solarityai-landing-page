@@ -1,15 +1,8 @@
 {
-  "cleanUrls": true,
   "rewrites": [
     { "source": "/", "destination": "/docs/website-demo.html" },
     { "source": "/careers", "destination": "/docs/website-careers.html" },
     { "source": "/blog", "destination": "/docs/website-blog.html" },
     { "source": "/legal", "destination": "/docs/website-legal.html" }
-  ],
-  "redirects": [
-    { "source": "/index.html", "destination": "/", "permanent": false },
-    { "source": "/careers.html", "destination": "/careers", "permanent": false },
-    { "source": "/blog.html", "destination": "/blog", "permanent": false },
-    { "source": "/legal.html", "destination": "/legal", "permanent": false }
   ]
 }
