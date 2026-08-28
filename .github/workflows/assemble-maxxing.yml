@@ -1,0 +1,46 @@
+name: Assemble maxxing homepage
+
+on:
+  push:
+    branches:
+      - feat/maxxing-homepage-redesign
+    paths:
+      - .site-payload/assemble.trigger
+
+permissions:
+  contents: write
+
+jobs:
+  assemble:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Reconstruct and validate website
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat .site-payload/payload.part-* > /tmp/maxxing-site.tar.gz.b64
+          base64 --decode /tmp/maxxing-site.tar.gz.b64 > /tmp/maxxing-site.tar.gz
+          echo "ac2219e1a8ccfdd84d308abe6181a7a36a4f5d898f4d30a392ba152652c2decc  /tmp/maxxing-site.tar.gz" | sha256sum -c -
+          tar -xzf /tmp/maxxing-site.tar.gz -C .
+
+          test -s index.html
+          test -s assets/css/maxxing-home.css
+          test -s assets/css/maxxing-home-sections.css
+          test -s assets/js/maxxing-home.js
+          node --check assets/js/maxxing-home.js
+          grep -q "Become your" index.html
+          grep -q "THE SELF-MASTERY COMPANY" index.html
+
+          rm -rf .site-payload
+          rm -f .github/workflows/assemble-maxxing.yml
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "feat: redesign homepage for maxxing"
+          git push origin HEAD:feat/maxxing-homepage-redesign
