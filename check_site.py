@@ -87,6 +87,8 @@ for file,d in docs.items():
         else:assets_checked+=1
     text=file.read_text(encoding='utf-8')
     if '\u2014' in text:errors.append(f'{rel}: long dash')
+    # Cloudflare skips Email Address Obfuscation inside email_off, keeping mailto links intact.
+    if not re.search(r'<body\b[^>]*><!--email_off-->.*<!--/email_off--></body>',text,re.S):errors.append(f'{rel}: page body must be wrapped in email_off')
     if re.search(r'lorem ipsum|href=[\"\x27]#(?:[\"\x27])',text,re.I):errors.append(f'{rel}: placeholder content/link')
 
     # Static integration contracts for the progressively enhanced UX.
