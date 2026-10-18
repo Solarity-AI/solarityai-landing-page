@@ -49,6 +49,8 @@
   .nav-link-label{display:block;line-height:1.4}
   .nav-link-description{display:block;font-size:var(--text-2xs);line-height:1.6;color:var(--muted);margin-top:4px;letter-spacing:0}
   .nav-link-arrow{display:block;color:var(--accent);font-size:var(--text-xl)}
+  /* The open menu is the only scrolling surface; the page behind it stays put. */
+  body.nav-open{overflow:hidden}
   .nav-enhanced .menu-toggle{display:flex}
   .nav-enhanced #site-nav{display:none}
   .nav-enhanced #site-nav.is-open{display:flex}
