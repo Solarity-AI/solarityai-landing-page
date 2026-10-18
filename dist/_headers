@@ -1,0 +1,13 @@
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+/404
+  X-Robots-Tag: noindex, follow
+/404.html
+  X-Robots-Tag: noindex, follow
+/assets/optimized/*
+  Cache-Control: public, max-age=31536000, immutable
+/assets/runtime/*
+  Cache-Control: public, max-age=31536000, immutable
+/assets/fonts/manrope-latin-variable.cfa570d7c3ee.woff2
+  Cache-Control: public, max-age=31536000, immutable

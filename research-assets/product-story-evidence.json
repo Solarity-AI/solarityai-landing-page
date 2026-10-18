@@ -1,0 +1,128 @@
+{
+  "verified_date": "2026-10-13",
+  "verified_timezone": "UTC",
+  "scope": "Supplementary product detail imagery only. Official store description supports product functionality; no independent feature/efficacy test performed.",
+  "assets": [
+    {
+      "app": "looks-max",
+      "file": "looks-max-detail-screen-6.webp",
+      "source_url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/7b/97/b0/7b97b02f-274c-3c49-35f8-b3bb344b1b26/37.png/600x1300bb.webp",
+      "store_page": "https://apps.apple.com/us/app/looks-max-look-your-best/id6778990308",
+      "width": 600,
+      "height": 1298,
+      "bytes": 38938,
+      "sha256": "b1a7f0903987976bbc6f0d4254a3cca33b3a88d07476b66fc7f5c23222b6c70a",
+      "observed_content": "Overall evaluation and makeup/outfit suggestion cards; navigation for dashboard, history and progress.",
+      "classification": "Official App Store promotional imagery with sample app content",
+      "visual_inspection": "Viewed uncropped image using view_image. No unsupported awards, user counts, medical treatment or guaranteed result claim selected.",
+      "transformations": "None. Exact downloaded WebP bytes retained.",
+      "optimizer_role": "screen"
+    },
+    {
+      "app": "iq-max",
+      "file": "iq-max-detail-screen-4.webp",
+      "source_url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/3a/37/f0/3a37f084-1e5b-06d0-5578-ed0e87b4bda8/59.png/600x1300bb.webp",
+      "store_page": "https://apps.apple.com/us/app/iq-max-smarter-every-day/id6803826639",
+      "width": 600,
+      "height": 1298,
+      "bytes": 23856,
+      "sha256": "68462a9aba0110cbe0b24bbee0bd4b16cf658bcc4a610f2737fc680b0dbe1fd4",
+      "observed_content": "Focus selection: memory, processing speed, focus and overall thinking.",
+      "classification": "Official App Store promotional imagery with sample app content",
+      "visual_inspection": "Viewed uncropped image using view_image. No unsupported awards, user counts, medical treatment or guaranteed result claim selected.",
+      "transformations": "None. Exact downloaded WebP bytes retained.",
+      "optimizer_role": "screen"
+    },
+    {
+      "app": "iq-max",
+      "file": "iq-max-detail-screen-6.webp",
+      "source_url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/96/6d/3a/966d3a95-2a2c-4af1-36bc-1f8f7e1111dc/61.png/600x1300bb.webp",
+      "store_page": "https://apps.apple.com/us/app/iq-max-smarter-every-day/id6803826639",
+      "width": 600,
+      "height": 1298,
+      "bytes": 29482,
+      "sha256": "fea2b6ff399f7e3dd8f9904e8c36812c5ef49c8dd95c00c5eb43453919f76d42",
+      "observed_content": "Daily routine exercise choices with individual switches.",
+      "classification": "Official App Store promotional imagery with sample app content",
+      "visual_inspection": "Viewed uncropped image using view_image. No unsupported awards, user counts, medical treatment or guaranteed result claim selected.",
+      "transformations": "None. Exact downloaded WebP bytes retained.",
+      "optimizer_role": "screen"
+    },
+    {
+      "app": "sleep-max",
+      "file": "sleep-max-detail-screen-3.webp",
+      "source_url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/1d/44/fa/1d44fa1b-0710-540a-b038-0163369414da/profile_65.png/600x1300bb.webp",
+      "store_page": "https://apps.apple.com/us/app/sleep-max-rest-best/id6806709872",
+      "width": 600,
+      "height": 1298,
+      "bytes": 25754,
+      "sha256": "753a038b5a7fef30b214ba3ba28511af2ab403f427bcce65c0c5a14885fce4a4",
+      "observed_content": "Profile with streak, badges and nightly activity grid.",
+      "classification": "Official App Store promotional imagery with sample app content",
+      "visual_inspection": "Viewed uncropped image using view_image. No unsupported awards, user counts, medical treatment or guaranteed result claim selected.",
+      "transformations": "None. Exact downloaded WebP bytes retained.",
+      "optimizer_role": "screen"
+    },
+    {
+      "app": "fitness-max",
+      "file": "fitness-max-detail-screen-3.webp",
+      "source_url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/3a/dc/bd/3adcbda4-c4fd-ac30-de4d-460f611f1276/45.png/600x1300bb.webp",
+      "store_page": "https://apps.apple.com/us/app/only-fitness-ai-coach/id6789095658",
+      "width": 600,
+      "height": 1298,
+      "bytes": 22774,
+      "sha256": "e315ead091fdb0cbf1613af52592bbff3b029c008385155e917912f4a0a3b430",
+      "observed_content": "Meal nutrition estimate, detected items to review/adjust, and coaching note.",
+      "classification": "Official App Store promotional imagery with sample app content",
+      "visual_inspection": "Viewed uncropped image using view_image. No unsupported awards, user counts, medical treatment or guaranteed result claim selected.",
+      "transformations": "None. Exact downloaded WebP bytes retained.",
+      "optimizer_role": "screen"
+    },
+    {
+      "app": "fitness-max",
+      "file": "fitness-max-detail-screen-5.webp",
+      "source_url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/4d/63/1b/4d631b7a-3d54-834e-66c5-ef6643637826/47.png/600x1300bb.webp",
+      "store_page": "https://apps.apple.com/us/app/only-fitness-ai-coach/id6789095658",
+      "width": 600,
+      "height": 1298,
+      "bytes": 20800,
+      "sha256": "224e25c7913d4f0e3cb46fe84fb140b4700f2f13be618b261d69187a9c81e3cc",
+      "observed_content": "Illustrative streak celebration, with a sample 25-day value. Not a claim of actual user results.",
+      "classification": "Official App Store promotional imagery with sample app content",
+      "visual_inspection": "Viewed uncropped image using view_image. No unsupported awards, user counts, medical treatment or guaranteed result claim selected.",
+      "transformations": "None. Exact downloaded WebP bytes retained.",
+      "optimizer_role": "screen"
+    }
+  ],
+  "selection_limits": [
+    {
+      "app": "looks-max",
+      "reason": "Only screenshot 6 added. Screenshot 5 has the absolute slogan DATA DOESNT LIE; screenshot 7 shows dramatic sample three-day appearance-score changes. Previously rejected transformation/rating images remain excluded."
+    },
+    {
+      "app": "sleep-max",
+      "reason": "Only screenshot 3 added. Home and paywall screenshots contain clinically-proven/CBT-I treatment language without separate evidence. Existing sound-library screenshot remains in the hero."
+    }
+  ],
+  "copy_review": {
+    "looks-max": "Copy describes visible evaluation and styling navigation, not objective attractiveness or efficacy.",
+    "iq-max": "Copy describes user focus and routine selection, not IQ increases.",
+    "sleep-max": "Streaks/activity are explicitly participation records, not clinical sleep-quality measures.",
+    "fitness-max": "Nutrition data described as estimates; milestone explicitly sample. Existing naming disclosure retains Only Fitness."
+  },
+  "integration": {
+    "import": "from product_story import product_story",
+    "placement": "On app detail routes after feature_grid output and before product-note.",
+    "css": "design/product-stories.css",
+    "image_roles": {
+      "looks-max-detail-screen-6.webp": "screen",
+      "iq-max-detail-screen-4.webp": "screen",
+      "iq-max-detail-screen-6.webp": "screen",
+      "sleep-max-detail-screen-3.webp": "screen",
+      "fitness-max-detail-screen-3.webp": "screen",
+      "fitness-max-detail-screen-5.webp": "screen"
+    },
+    "javascript": "No new JavaScript. Existing screenshot-open gallery contract and native full-image fallback.",
+    "image_display": "Uncropped, width 232px desktop and 220px narrow mobile. Use responsive sizes (max-width: 620px) 220px, 232px."
+  }
+}

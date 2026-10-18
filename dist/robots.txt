@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://solarity-company.the-ata-turhan.chatgpt.site/sitemap.xml

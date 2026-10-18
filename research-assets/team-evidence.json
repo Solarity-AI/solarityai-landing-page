@@ -1,0 +1,136 @@
+{
+  "verified_date": "2026-10-13",
+  "membership_authority": "Founder explicitly requested these six additions on 2026-10-13. Membership is user-confirmed. No other people should be added.",
+  "official_source_url": "https://solarityai.com/",
+  "exact_html_source": "/workspace/scratch/9ea7f626ece6/solarity-primary-home.html",
+  "role_policy": "Titles are intentionally omitted; source site titles are recorded as historical/public source wording, not a current responsibility verification.",
+  "asset_policy": "The three portraits were downloaded once from the official source URLs, inspected visually, resized without cropping or generated edits, and encoded as WebP. Filenames include a SHA-256 prefix of the final asset bytes.",
+  "members": [
+    {
+      "slug": "emrecan-ozkan",
+      "requested_name": "Emrecan Ozkan",
+      "source_name": "Emrecan Ozkan",
+      "source_turkish_name": "Emrecan Özkan",
+      "membership_confirmed_by_user": true,
+      "source_portrait_url": "https://solarityai.com/assets/images/team/Emrecan.webp",
+      "source_dimensions": {
+        "width": 1856,
+        "height": 2119
+      },
+      "source_sha256": "3e07c53d907e37755d20f10f6845f77c144d98f566981ec40d40a3429ba499fa",
+      "source_role_not_published": "Engineering Manager & Lead Full-Stack Engineer",
+      "linkedin": "https://www.linkedin.com/in/emrecan-ozkan",
+      "inspection": "A single centered head-and-shoulders portrait, confirmed by adjacent official HTML name and URL.",
+      "variants": [
+        {
+          "src": "/assets/team/emrecan-ozkan-240-d1df701b3489.webp",
+          "width": 240,
+          "height": 274,
+          "bytes": 5628,
+          "sha256": "d1df701b3489a55ca1dc6a14686c4f89978090faabc9b1f2d58bc6c794b1d82e"
+        },
+        {
+          "src": "/assets/team/emrecan-ozkan-480-d117500c13c0.webp",
+          "width": 480,
+          "height": 548,
+          "bytes": 16466,
+          "sha256": "d117500c13c065a62677d37aac597e091add4cdcd0981e5ecd2539884b488837"
+        }
+      ]
+    },
+    {
+      "slug": "ali-yilmaz",
+      "requested_name": "Ali Yilmaz",
+      "source_name": "Ali Yilmaz",
+      "source_turkish_name": "Ali Yılmaz",
+      "membership_confirmed_by_user": true,
+      "source_portrait_url": "https://solarityai.com/assets/images/team/AliYilmaz.webp",
+      "source_dimensions": {
+        "width": 869,
+        "height": 1116
+      },
+      "source_sha256": "fba17fe1e9b89d6139515043da42e10ce143b2f40175763a775efe19431d5982",
+      "source_role_not_published": "BDM",
+      "linkedin": "https://www.linkedin.com/in/ali-yilmaz2/",
+      "inspection": "A single centered head-and-shoulders portrait, confirmed by adjacent official HTML name and URL.",
+      "variants": [
+        {
+          "src": "/assets/team/ali-yilmaz-240-6a90dfff30ac.webp",
+          "width": 240,
+          "height": 308,
+          "bytes": 4836,
+          "sha256": "6a90dfff30ace1f63025cad4ed8ec2bea3cd76402a9e08cb042937d474681979"
+        },
+        {
+          "src": "/assets/team/ali-yilmaz-480-65556168df49.webp",
+          "width": 480,
+          "height": 616,
+          "bytes": 11582,
+          "sha256": "65556168df491b4b1aca40b28d3ab787fab94c168e1f98f696e180c2c2390e95"
+        }
+      ]
+    },
+    {
+      "slug": "hasan-ak",
+      "requested_name": "Hasan Ak",
+      "source_name": "Hasan Erdem Ak",
+      "source_turkish_name": "Hasan Erdem Ak",
+      "membership_confirmed_by_user": true,
+      "source_portrait_url": "https://solarityai.com/assets/images/team/HasanErdemAk.webp",
+      "source_dimensions": {
+        "width": 869,
+        "height": 1116
+      },
+      "source_sha256": "346778a89047a121e5b041ebf6ef38bbff42ad153479c45de16c7aa7f70962c5",
+      "source_role_not_published": "Engineering Manager & Lead Full-Stack Engineer",
+      "linkedin": "https://www.linkedin.com/in/hasan-erdem-ak",
+      "inspection": "A single centered head-and-shoulders portrait, confirmed by adjacent official HTML name and URL.",
+      "variants": [
+        {
+          "src": "/assets/team/hasan-ak-240-d70bfaf3c656.webp",
+          "width": 240,
+          "height": 308,
+          "bytes": 4300,
+          "sha256": "d70bfaf3c6567572b607504027f5a013222b99fec1377eb9cb165174a4c92c95"
+        },
+        {
+          "src": "/assets/team/hasan-ak-480-866549c99e7b.webp",
+          "width": 480,
+          "height": 616,
+          "bytes": 10526,
+          "sha256": "866549c99e7ba541f268643d0aaedd684400796b90e17736c246fc37622477d7"
+        }
+      ]
+    },
+    {
+      "slug": "eren-oz",
+      "requested_name": "Eren Oz",
+      "membership_confirmed_by_user": true,
+      "source_match": null,
+      "portrait": null,
+      "linkedin": null,
+      "role_not_published": null,
+      "note": "No exact matching person in the official homepage team section; identity is user-confirmed. Use name/initials only until approved assets are provided."
+    },
+    {
+      "slug": "batuhan-yuceturk",
+      "requested_name": "Batuhan Yuceturk",
+      "membership_confirmed_by_user": true,
+      "source_match": null,
+      "portrait": null,
+      "linkedin": null,
+      "role_not_published": null,
+      "note": "No exact matching person in the official homepage team section; identity is user-confirmed. Use name/initials only until approved assets are provided."
+    },
+    {
+      "slug": "melik-kaplan",
+      "requested_name": "Melik Kaplan",
+      "membership_confirmed_by_user": true,
+      "source_match": null,
+      "portrait": null,
+      "linkedin": null,
+      "role_not_published": null,
+      "note": "No exact matching person in the official homepage team section; identity is user-confirmed. Use name/initials only until approved assets are provided."
+    }
+  ]
+}

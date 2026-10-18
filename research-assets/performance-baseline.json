@@ -1,0 +1,24 @@
+{
+  "measurement": "Static source bytes before optimizations, not Lighthouse scores",
+  "css_bytes": 161853,
+  "css_gzip_bytes": 32012,
+  "global_js_bytes": 20084,
+  "global_js_gzip_bytes": 5742,
+  "home_html_bytes": 13767,
+  "provided_psi_report": {
+    "audited_content": "ChatGPT sign-in page, confirmed in both provided screenshots",
+    "mobile": {
+      "performance": 89,
+      "accessibility": 100,
+      "best_practices": 96,
+      "seo": 82
+    },
+    "desktop": {
+      "performance": 100,
+      "accessibility": 100,
+      "best_practices": 96,
+      "seo": 82
+    }
+  },
+  "access": "owner-private; crawler exclusion intentional"
+}
