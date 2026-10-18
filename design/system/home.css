@@ -44,7 +44,7 @@
 .explorer-choice-copy{min-width:0}
 .explorer-choice-copy strong{display:block;font-size:var(--text-base);line-height:1.45;font-weight:500}
 .explorer-choice-copy small{display:block;color:var(--muted);font-size:var(--text-2xs);line-height:1.55;margin-top:5px}
-.explorer-choice-check{opacity:0;color:var(--product-accent);font-size:var(--text-sm);font-weight:700}
+.explorer-choice-check{opacity:0;color:var(--product-accent);font-size:var(--text-sm);font-weight:600}
 .explorer-choice:hover{border-bottom-color:var(--product-accent)}
 #explorer-looks-max:checked~.explorer-layout label[for="explorer-looks-max"],
 #explorer-iq-max:checked~.explorer-layout label[for="explorer-iq-max"],

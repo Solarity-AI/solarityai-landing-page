@@ -32,7 +32,7 @@
   .contact-topic { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 26px 0; border-block-end: 1px solid var(--line); min-height: 108px; }
   .contact-topic:first-child { padding-block-start: 0; }
   .contact-topic > span:first-child { display: grid; gap: 8px; min-width: 0; }
-  .contact-topic strong { color: var(--text); font-size: var(--text-base); font-weight: 550; line-height: 1.45; }
+  .contact-topic strong { color: var(--text); font-size: var(--text-base); font-weight: 500; line-height: 1.45; }
   .contact-topic > span > span { max-width: 48ch; color: var(--muted); font-size: var(--text-sm); line-height: 1.75; }
   .contact-topic-arrow { color: var(--accent); font-size: var(--text-xl); flex: none; transition: transform var(--motion-detail) var(--motion-ease); }
   .contact-data-note { padding-block: 0 32px; }
@@ -54,7 +54,7 @@
   .recovery-nav a + a { border-block-start: 1px solid var(--line); }
   .recovery-number { color: var(--accent); font-size: var(--text-2xs); font-variant-numeric: tabular-nums; }
   .recovery-destination { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: 24px; align-items: baseline; }
-  .recovery-destination strong { color: var(--text); font-weight: 550; font-size: var(--text-lg); line-height: 1.5; }
+  .recovery-destination strong { color: var(--text); font-weight: 500; font-size: var(--text-lg); line-height: 1.5; }
   .recovery-destination > span { color: var(--muted); font-size: var(--text-sm); line-height: 1.7; }
   .recovery-arrow { color: var(--accent); font-size: 1.4rem; text-align: end; }
   @media (hover: hover) { .contact-email:hover { border-color: var(--accent); } .contact-topic:hover strong { color: var(--accent); } .recovery-nav a:hover { background: var(--surface); } }

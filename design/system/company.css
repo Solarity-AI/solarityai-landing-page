@@ -30,7 +30,7 @@
   .selected-team-intro>p { max-width:39ch; margin:0; }
   .selected-team-list { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); column-gap:64px; padding:0; margin:0; list-style:none; }
   .selected-team-member { display:flex; align-items:center; min-width:0; border-top:1px solid var(--line); padding-block:30px; }
-  .selected-team-member h3 { font-size:clamp(1.6rem,2.6vw,2.65rem); line-height:1.3; font-weight:450; letter-spacing:-.045em; overflow-wrap:break-word; margin:0; }
+  .selected-team-member h3 { font-size:clamp(1.6rem,2.6vw,2.65rem); line-height:1.3; font-weight:400; letter-spacing:-.045em; overflow-wrap:break-word; margin:0; }
   .operating-principles { padding-block:var(--space-section); }
   .operating-principles-heading { margin-bottom:56px; }
   .operating-principles>ol { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:40px; padding:0; margin:0; list-style:none; }

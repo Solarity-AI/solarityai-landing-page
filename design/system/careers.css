@@ -12,7 +12,7 @@
   .careers-founder figcaption { margin-block-start: 26px; padding-inline-start: 8px; }
   .careers-founder .eyebrow { margin-block-end: 12px; }
   .careers-founder figcaption > p:not(.eyebrow) { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; }
-  .careers-founder strong { color: var(--text); font-size: var(--text-base); font-weight: 550; }
+  .careers-founder strong { color: var(--text); font-size: var(--text-base); font-weight: 500; }
   .careers-founder figcaption > p > span { color: var(--muted); font-size: var(--text-2xs); }
   .careers-founder .text-link { font-size: var(--text-xs); margin-block-start: 8px; }
   .career-benefits { padding-block: clamp(40px, 6vw, 76px); border-block: 1px solid var(--line); }
@@ -21,7 +21,7 @@
   .career-section-heading h2 br { display: none; }
   .career-section-heading .eyebrow { flex: none; margin: 0; }
   .career-benefit-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(24px, 5vw, 68px); margin: 0; }
-  .career-benefit-list dt { color: var(--text); font-size: var(--text-base); font-weight: 550; line-height: 1.5; margin-block-end: 13px; }
+  .career-benefit-list dt { color: var(--text); font-size: var(--text-base); font-weight: 500; line-height: 1.5; margin-block-end: 13px; }
   .career-benefit-list dd { margin: 0; color: var(--muted); font-size: var(--text-sm); line-height: 1.8; }
   .career-opportunities { padding-block: var(--space-section); }
   .career-opportunities-heading { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .75fr); align-items: end; gap: 36px; margin-block-end: 42px; }
