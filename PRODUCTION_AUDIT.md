@@ -1,44 +1,44 @@
-# Production audit, 2026-10-18
+# Production audit, solarityai.com, 2026-10-18
 
-Origin: `https://solarity-company.the-ata-turhan.chatgpt.site` (deployed Site version 24, unchanged by this work). This is a dated record of the GPT Sites deployment, measured before the move to solarityai.com. After the first deploy from this repository, run `python audit_production.py` (it now defaults to `https://solarityai.com`); `deploy/nginx.conf` addresses the header, caching, MIME and favicon findings below. Raw data: `research-assets/production-audit.json`. Re-run with `python audit_production.py`, adding `--lighthouse <path to lighthouse/cli/index.js>` for lab scores.
+Origin: `https://solarityai.com`, served by Cloudflare Pages (project `solarityai-landing-page`, production branch `develop`) since 2026-10-18. Raw data: `research-assets/production-audit.json`. Re-run with `python audit_production.py` and `python deploy/smoke_test.py`, adding `--lighthouse <path to lighthouse/cli/index.js>` to the audit for lab scores.
 
 ## Method
 
-- **HTTP checks**: read-only GET requests from `audit_production.py`, without following redirects. They covered all 11 sitemap routes, their no-slash forms, a missing path, `/404`, all 71 assets the pages reference, `/favicon.ico`, and the 45 legacy paths listed in `research-assets/deploy-separation.json`.
-- **Lighthouse**: 13.5.0 in headless Chrome 155 on the auditor's Windows machine (benchmark index 4414), one run per route and form factor, 22 runs in all. Mobile uses Lighthouse's default simulated throttling (150 ms RTT, ~1.6 Mbps, 4× CPU). Desktop uses `--preset=desktop`.
-- **Not used**: Google PageSpeed Insights. Its keyless API quota returned HTTP 429, so these are lab results from this machine, not Google-hosted runs or real-user field data.
+- **`deploy/smoke_test.py`**: 42 checks covering all 11 routes, slashless and legacy redirects, the custom 404, `_headers` rules, MIME types, caching, and byte-for-byte comparison with `dist/`.
+- **`audit_production.py`**: read-only GET requests to all 11 sitemap routes, 71 referenced assets, `/favicon.ico`, and the 45 paths that the previous host exposed.
+- **Lighthouse 13.5.0**: headless Chrome 155 on the auditor's Windows machine, one run per route and form factor (22 runs in all). Mobile uses default simulated throttling; desktop uses `--preset=desktop`. These are lab results from this machine, not Google PageSpeed Insights runs or real-user field data.
 
-## Lighthouse results (all 11 routes)
+## Results
 
-| Category | Mobile | Desktop |
+- **Smoke test: 42 of 42 pass.** Every page is byte-identical to `dist/` apart from two known Cloudflare edge changes: the `email_off` markers are stripped after being honored, and the Web Analytics beacon is injected.
+- **HTTP audit: no findings.**
+  - All routes return 200 with canonical URLs.
+  - Slashless routes redirect (308). The old `/careers.html`, `/blog.html`, `/legal.html` and `/docs/xtract-demo.html` URLs redirect with 301, and `/index.html` with 308.
+  - Missing pages return 404 with the custom page.
+  - Security headers (`nosniff`, Referrer-Policy, X-Frame-Options) and immutable caching for fingerprinted files are applied, and all MIME types are correct.
+  - `/favicon.ico` returns 200. None of the previous host's 45 legacy files are reachable.
+- **`www` and `http`** redirect to `https://solarityai.com` through Cloudflare edge rules.
+
+| Lighthouse (11 routes) | Mobile | Desktop |
 | --- | --- | --- |
-| Performance | 100 on every route | 100 on every route |
-| Accessibility | 100 on every route | 100 on every route |
-| Best Practices | 81 on every route | 81 on every route |
-| SEO | 100 on every route | 100 on every route |
+| Performance | 92–99 (home 92, six routes 99) | 99–100 |
+| Accessibility | 100 | 100 |
+| Best Practices | 100 | 100 |
+| SEO | 100 | 100 |
 
-Mobile ranges: FCP 0.9–1.1 s, LCP 0.9–1.7 s (home is slowest at 1.7 s), TBT 0–50 ms, CLS 0, Speed Index 0.9–2.2 s. Desktop ranges: FCP 0.2–0.4 s, LCP 0.2–0.4 s, TBT 0 ms, CLS 0.
+- **Mobile metrics:** FCP 1.6–1.9 s, LCP 1.8–3.2 s (home slowest), TBT 0 ms, CLS 0, Speed Index 1.7–3.0 s.
+- **Desktop metrics:** FCP 0.4–0.7 s, LCP 0.6–0.7 s, TBT 0 ms, CLS 0.
 
-- **Best Practices 81** comes entirely from the `deprecations` audit. It flags `/cdn-cgi/challenge-platform/scripts/jsd/main.js`, a Cloudflare bot-challenge script that the host injects (StorageType.persistent and the Protected Audience API). The Site's own code has no deprecated APIs and no console errors. Raising this score needs a host setting or a different host, not a Site change.
-- **`label-content-name-mismatch`** (weight 0, informational) was flagged on every page. The header wordmark's visible text was "SOLARITYAI" while its accessible name is "Solarity AI home". **Fixed locally**: `visual_chrome.py` now renders "SOLARITY AI" with pixel-identical layout. It takes effect on the next deploy.
-- **`image-delivery-insight`**: about 4 KiB could be saved on the 96 px header sun at its 30–34 px display size. Not changed.
+**Web Analytics trade-off.** The zone's Cloudflare Web Analytics beacon (`static.cloudflareinsights.com`, ~10 KiB) sits on the home page's network chain, and Lighthouse flags it as legacy JavaScript. In back-to-back home-page runs the identical site without the beacon (`pages.dev`) scored 96 and 99 on mobile, against 94 and 93 on solarityai.com. Run-to-run variance is large (LCP 1.7–3.1 s), so these are indicative only. Keeping the analytics is a product decision. It can be switched off under the zone's Web Analytics settings.
 
-## HTTP findings
+## Compared with the previous host (GPT Sites, measured earlier the same day)
 
-| Check | Result |
-| --- | --- |
-| 11 sitemap routes | All 200 `text/html`, canonical matches the URL |
-| No-slash routes (`/apps`, …) | All 307 to the slash URL |
-| Missing path | 404 status with the custom page and `noindex,follow` meta |
-| `/404` directly | 200 (custom page, `noindex` meta) |
-| `_headers` rules | **Not applied.** No `X-Content-Type-Options`, `Referrer-Policy` or `X-Robots-Tag` on any response, and `/_headers` itself downloads publicly |
-| Caching | **Every** page and asset is sent `public, max-age=0, must-revalidate`, including fingerprinted assets meant to be `immutable` (Cloudflare edge HITs still occur) |
-| MIME types | **62 of 71** referenced assets are served as `application/octet-stream`: all WebP images and the WOFF2 font. Pages render because browsers sniff images and fonts, but the screenshot "Enlarge" fallback (opening the image in a new tab) may download the file instead of showing it |
-| `/favicon.ico` | 404. **Fixed locally**: the build now publishes `/favicon.ico` |
-| Legacy files | 45 files outside the current publish set are public (retired artwork, old `site.js`, stale scripts, masters, `_headers`). **Fixed locally**: none of them are in `dist/` anymore. They disappear on the next deploy if the host replaces rather than merges files |
+- **Best Practices:** 81 → **100**. The host-injected Cloudflare bot-challenge script is gone.
+- **HTTP findings:** the previous host ignored `_headers` (no security headers, `max-age=0` on fingerprinted files), served 62 of 71 assets as `application/octet-stream`, returned 404 for `/favicon.ico`, and exposed 45 legacy files. **All are resolved on Cloudflare Pages.**
+- **Mobile Performance:** the previous host scored 100 on every route. Most of the difference is the Web Analytics beacon and lab variance, as shown above.
 
-## What needs the host or founder
+## Open items
 
-1. **Redeploy `dist/`**, then re-run `python audit_production.py`. It should show `/favicon.ico` 200 and no exposed legacy files except `/_headers` if the host keeps serving it.
-2. **Response headers, caching, MIME types**: this host ignores `_headers`. If its dashboard offers header or MIME settings, apply the rules in `dist/_headers` there. Otherwise those rules only take effect on a host that honors `_headers` (for example Cloudflare Pages or Netlify). Moving hosts is a founder decision, so nothing was changed here.
-3. **Cloudflare bot challenge**: disabling the injected challenge script (if the host allows) would lift Best Practices to 100.
+1. Careers: repeat the FormSubmit activation test once on `https://solarityai.com/careers/#apply` (see `CAREERS_DELIVERY.md`).
+2. Decide whether to keep Cloudflare Web Analytics on the zone.
+3. The old Woodpecker/Kubernetes server and the AWS resources no longer serve solarityai.com. Whoever runs them can shut them down.

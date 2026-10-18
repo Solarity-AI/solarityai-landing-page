@@ -1,5 +1,0 @@
-# The image needs only the publish set and the server configuration.
-*
-!dist/
-!deploy/nginx.conf
-!deploy/security-headers.conf
