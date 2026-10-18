@@ -263,7 +263,17 @@ for file in docs:
         if leaves and parts.scheme!='mailto' and '↗' not in label:errors.append(f'{rel}: external link lacks the external arrow: {parts.geturl()}')
 
 # dist/ is the publish set: every file must be a page, a host file, or referenced by a page.
-HOST_FILES={'_headers','robots.txt','sitemap.xml','favicon.ico','assets/fonts/OFL-Manrope.txt'}
+HOST_FILES={'_headers','_redirects','robots.txt','sitemap.xml','favicon.ico','assets/fonts/OFL-Manrope.txt'}
+# Legacy redirects: Cloudflare Pages reads dist/_redirects and deploy/nginx.conf mirrors it.
+nginx_conf=(ROOT/'deploy/nginx.conf').read_text(encoding='utf-8') if (ROOT/'deploy/nginx.conf').is_file() else ''
+page_routes={'/' if f==DIST/'index.html' else '/'+f.parent.relative_to(DIST).as_posix()+'/' for f in docs if f!=DIST/'404.html'}
+for line in (DIST/'_redirects').read_text(encoding='utf-8').splitlines() if (DIST/'_redirects').is_file() else ['missing']:
+    parts=line.split()
+    if len(parts)!=3 or parts[2]!='301':errors.append(f'_redirects: malformed rule {line!r}');continue
+    old,new,_=parts
+    if (DIST/old.lstrip('/')).exists():errors.append(f'_redirects: {old} shadows a published file')
+    if new not in page_routes:errors.append(f'_redirects: {old} points to {new}, which is not a page')
+    if nginx_conf and f'location = {old} {{ return 301 {new}; }}' not in nginx_conf:errors.append(f'deploy/nginx.conf does not mirror the redirect {old} -> {new}')
 referenced=set()
 for file in docs:
     referenced|={url.lstrip('/') for url in re.findall(r'(?:'+re.escape(ORIGIN)+r'|(?<![\w.-]))(/assets/[^"\'\s,)]+)',file.read_text(encoding='utf-8'))}
