@@ -125,6 +125,13 @@ for file,d in docs.items():
         errors.append(f'{rel}: navigation startup must execute synchronously without a network dependency')
     if startup_tags and startup_tags[0].get('data-source-sha256')!=sha256(navigation_source.encode()).hexdigest():
         errors.append(f'{rel}: stale navigation source hash')
+    # Intent-based prefetch speeds page-to-page moves; prerender would run analytics for unseen visits.
+    speculation=[m.group(2) for m in re.finditer(r'<script\b([^>]*)>(.*?)</script>',text,re.S) if re.search(r'\btype="speculationrules"',m.group(1))]
+    try:rules=json.loads(speculation[0]) if len(speculation)==1 else None
+    except ValueError:rules=None
+    if not isinstance(rules,dict) or set(rules)!={'prefetch'} or not rules['prefetch']:errors.append(f'{rel}: expected one prefetch-only speculation rules block')
+    elif any(rule.get('eagerness') not in ['moderate','conservative'] or {'not':{'href_matches':'/assets/*'}} not in rule.get('where',{}).get('and',[]) for rule in rules['prefetch']):
+        errors.append(f'{rel}: speculation rules must wait for visitor intent and skip asset files')
     expected_robots={'noindex','follow'} if rel=='404.html' else {'index','follow'}
     actual_robots={directive.strip().lower() for directive in meta.get('robots','').split(',')}
     if actual_robots!=expected_robots:errors.append(f'{rel}: incorrect public-site indexing directive {meta.get("robots", "")}')
@@ -283,7 +290,8 @@ for line in (DIST/'_redirects').read_text(encoding='utf-8').splitlines() if (DIS
     if new not in page_routes:errors.append(f'_redirects: {old} points to {new}, which is not a page')
 referenced=set()
 for file in docs:
-    referenced|={url.lstrip('/') for url in re.findall(r'(?:'+re.escape(ORIGIN)+r'|(?<![\w.-]))(/assets/[^"\'\s,)]+)',file.read_text(encoding='utf-8'))}
+    # A '*' marks a URL pattern (speculation rules), never a published file.
+    referenced|={url.lstrip('/') for url in re.findall(r'(?:'+re.escape(ORIGIN)+r'|(?<![\w.-]))(/assets/[^"\'\s,)*]+)',file.read_text(encoding='utf-8'))}
 for file in sorted(DIST.rglob('*')):
     rel=file.relative_to(DIST).as_posix()
     if file.is_file() and file.suffix!='.html' and rel not in HOST_FILES and rel not in referenced:errors.append(f'Unreferenced file is published: {rel}')

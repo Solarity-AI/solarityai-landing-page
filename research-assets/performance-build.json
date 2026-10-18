@@ -16,10 +16,11 @@
       "inline_scripts": [
         "navigation"
       ],
+      "speculation_rules": "Prefetch same-origin pages on intent (moderate); never prerender",
       "external_scripts": [],
       "javascript_bytes": 3381,
-      "html_bytes": 70165,
-      "html_gzip_bytes": 15940
+      "html_bytes": 70322,
+      "html_gzip_bytes": 16021
     },
     "/apps": {
       "source_bytes": 115191,
@@ -37,12 +38,13 @@
       "inline_scripts": [
         "navigation"
       ],
+      "speculation_rules": "Prefetch same-origin pages on intent (moderate); never prerender",
       "external_scripts": [
         "gallery"
       ],
       "javascript_bytes": 7117,
-      "html_bytes": 46445,
-      "html_gzip_bytes": 11142
+      "html_bytes": 46602,
+      "html_gzip_bytes": 11226
     },
     "/apps/looks-max": {
       "source_bytes": 115191,
@@ -60,12 +62,13 @@
       "inline_scripts": [
         "navigation"
       ],
+      "speculation_rules": "Prefetch same-origin pages on intent (moderate); never prerender",
       "external_scripts": [
         "gallery"
       ],
       "javascript_bytes": 7117,
-      "html_bytes": 57139,
-      "html_gzip_bytes": 13809
+      "html_bytes": 57296,
+      "html_gzip_bytes": 13889
     },
     "/apps/iq-max": {
       "source_bytes": 115191,
@@ -83,12 +86,13 @@
       "inline_scripts": [
         "navigation"
       ],
+      "speculation_rules": "Prefetch same-origin pages on intent (moderate); never prerender",
       "external_scripts": [
         "gallery"
       ],
       "javascript_bytes": 7117,
-      "html_bytes": 58717,
-      "html_gzip_bytes": 13899
+      "html_bytes": 58874,
+      "html_gzip_bytes": 13978
     },
     "/apps/sleep-max": {
       "source_bytes": 115191,
@@ -106,12 +110,13 @@
       "inline_scripts": [
         "navigation"
       ],
+      "speculation_rules": "Prefetch same-origin pages on intent (moderate); never prerender",
       "external_scripts": [
         "gallery"
       ],
       "javascript_bytes": 7117,
-      "html_bytes": 56834,
-      "html_gzip_bytes": 13744
+      "html_bytes": 56991,
+      "html_gzip_bytes": 13824
     },
     "/apps/fitness-max": {
       "source_bytes": 115191,
@@ -129,12 +134,13 @@
       "inline_scripts": [
         "navigation"
       ],
+      "speculation_rules": "Prefetch same-origin pages on intent (moderate); never prerender",
       "external_scripts": [
         "gallery"
       ],
       "javascript_bytes": 7117,
-      "html_bytes": 58936,
-      "html_gzip_bytes": 13972
+      "html_bytes": 59093,
+      "html_gzip_bytes": 14052
     },
     "/platform": {
       "source_bytes": 115191,
@@ -151,10 +157,11 @@
       "inline_scripts": [
         "navigation"
       ],
+      "speculation_rules": "Prefetch same-origin pages on intent (moderate); never prerender",
       "external_scripts": [],
       "javascript_bytes": 3381,
-      "html_bytes": 46699,
-      "html_gzip_bytes": 11947
+      "html_bytes": 46856,
+      "html_gzip_bytes": 12027
     },
     "/company": {
       "source_bytes": 115191,
@@ -171,10 +178,11 @@
       "inline_scripts": [
         "navigation"
       ],
+      "speculation_rules": "Prefetch same-origin pages on intent (moderate); never prerender",
       "external_scripts": [],
       "javascript_bytes": 3381,
-      "html_bytes": 39588,
-      "html_gzip_bytes": 10637
+      "html_bytes": 39745,
+      "html_gzip_bytes": 10719
     },
     "/investors-partners": {
       "source_bytes": 115191,
@@ -191,10 +199,11 @@
       "inline_scripts": [
         "navigation"
       ],
+      "speculation_rules": "Prefetch same-origin pages on intent (moderate); never prerender",
       "external_scripts": [],
       "javascript_bytes": 3381,
-      "html_bytes": 55099,
-      "html_gzip_bytes": 13391
+      "html_bytes": 55256,
+      "html_gzip_bytes": 13471
     },
     "/careers": {
       "source_bytes": 115191,
@@ -213,13 +222,14 @@
       "inline_scripts": [
         "navigation"
       ],
+      "speculation_rules": "Prefetch same-origin pages on intent (moderate); never prerender",
       "external_scripts": [
         "careers",
         "copy"
       ],
       "javascript_bytes": 14280,
-      "html_bytes": 51489,
-      "html_gzip_bytes": 13242
+      "html_bytes": 51646,
+      "html_gzip_bytes": 13324
     },
     "/contact": {
       "source_bytes": 115191,
@@ -238,13 +248,14 @@
       "inline_scripts": [
         "navigation"
       ],
+      "speculation_rules": "Prefetch same-origin pages on intent (moderate); never prerender",
       "external_scripts": [
         "contact",
         "copy"
       ],
       "javascript_bytes": 7452,
-      "html_bytes": 39227,
-      "html_gzip_bytes": 10517
+      "html_bytes": 39384,
+      "html_gzip_bytes": 10604
     },
     "/404": {
       "source_bytes": 115191,
@@ -261,10 +272,11 @@
       "inline_scripts": [
         "navigation"
       ],
+      "speculation_rules": "Prefetch same-origin pages on intent (moderate); never prerender",
       "external_scripts": [],
       "javascript_bytes": 3381,
-      "html_bytes": 32076,
-      "html_gzip_bytes": 8879
+      "html_bytes": 32233,
+      "html_gzip_bytes": 8963
     }
   }
 }
