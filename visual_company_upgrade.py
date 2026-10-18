@@ -23,7 +23,7 @@ def investor_opening(apps, btn, contact):
             + '" alt="" width="' + str(app.get('screen_width', 600))
             + '" height="' + str(app.get('screen_height', 1298))
             + '" sizes="(max-width: 560px) calc(50vw - 52px), (max-width: 850px) calc(50vw - 100px), (max-width: 1356px) 18vw, 216px" decoding="async"></span><span class="investor-opening-product-name">'
-            + escape(app['name']) + '<span aria-hidden="true">↗</span></span>'
+            + escape(app['name']) + '<span aria-hidden="true">→</span></span>'
             + alias + '</a></li>'
         )
     return (
@@ -55,7 +55,7 @@ def strategy_story(btn, contact):
 <ol class="strategy-story-steps">
 <li><span class="strategy-story-number" aria-hidden="true">01</span><div><h3>Start with a specific human need.</h3><p>Self-care, cognitive practice, sleep, and fitness each call for a focused experience. Product choices start with that distinct purpose.</p></div></li>
 <li><span class="strategy-story-number" aria-hidden="true">02</span><div><h3>Learn from the work behind it.</h3><p>Requirements, priorities, releases, and product storytelling are part of bringing an app to people. These disciplines inform the app factory direction.</p></div></li>
-<li><span class="strategy-story-number" aria-hidden="true">03</span><div><h3>Develop patterns worth reusing.</h3><p>The ambition is to carry useful workflows into future products while preserving the judgment each one needs.</p><div class="strategy-story-disciplines"><a href="#engineering-max">Build <span aria-hidden="true">↗</span></a><a href="#management-max">Operate <span aria-hidden="true">↗</span></a><a href="#marketing-max">Grow <span aria-hidden="true">↗</span></a></div></div></li>
+<li><span class="strategy-story-number" aria-hidden="true">03</span><div><h3>Develop patterns worth reusing.</h3><p>The ambition is to carry useful workflows into future products while preserving the judgment each one needs.</p><div class="strategy-story-disciplines"><a href="#engineering-max">Build <span aria-hidden="true">↓</span></a><a href="#management-max">Operate <span aria-hidden="true">↓</span></a><a href="#marketing-max">Grow <span aria-hidden="true">↓</span></a></div></div></li>
 </ol>
 <div class="strategy-story-bottom"><p><strong>People remain responsible for the decisions.</strong><span>Architecture, product priorities, and releases need deliberate judgment. Reusable systems should support that work.</span></p>''' + btn('Discuss the platform direction', contact('Strategic partner', 'App factory vision'), 'outline') + '''</div>
 </section>'''

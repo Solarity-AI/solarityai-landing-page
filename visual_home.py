@@ -7,7 +7,7 @@ def hero_section(apps, btn, contact):
         f'<a class="hero-product" data-product-accent="{e(a["color"])}" href="/apps/{e(a["slug"])}">'
         f'<img src="/assets/{e(a["slug"])}-icon.webp" alt="" width="48" height="48">'
         f'<span><strong>{e(a["name"])}</strong><small>{e(a["category"])}</small></span>'
-        '<span class="rail-arrow" aria-hidden="true">↗</span></a>'
+        '<span class="rail-arrow" aria-hidden="true">→</span></a>'
         for a in apps if a.get('apple')
     )
     return f'''<section class="vision-hero" aria-labelledby="hero-title">
@@ -22,7 +22,7 @@ def hero_section(apps, btn, contact):
           <p class="vision-description">AI-powered self-improvement apps, and the systems we are developing to build, operate, and grow them.</p>
         </div>
         <div class="vision-actions">
-          <div class="actions">{btn('Investor inquiries',contact('Investor'))}<a class="text-link vision-partnership" href="{e(contact('Strategic partner'))}">Discuss a partnership <span aria-hidden="true">↗</span></a></div>
+          <div class="actions">{btn('Investor inquiries',contact('Investor'))}<a class="text-link vision-partnership" href="{e(contact('Strategic partner'))}">Discuss a partnership <span aria-hidden="true">→</span></a></div>
           <a class="text-link vision-explore" href="#our-products">Explore our products <span aria-hidden="true">↓</span></a>
         </div>
       </div>
@@ -38,7 +38,7 @@ def company_strategy(apps, btn, contact):
     ]
     module_rows = ''.join(
         f'<a class="strategy-module" href="/platform#{slug}-max"><span class="strategy-step">{verb}</span>'
-        f'<span><strong>{title}</strong><small>{desc}</small></span><span aria-hidden="true">↗</span></a>'
+        f'<span><strong>{title}</strong><small>{desc}</small></span><span aria-hidden="true">→</span></a>'
         for slug, verb, title, desc in modules
     )
     return f'''<section class="company-strategy" aria-labelledby="strategy-title"><div class="strategy-layout wrap">

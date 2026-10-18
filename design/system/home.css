@@ -143,7 +143,7 @@
  .explorer-panel{transition:opacity 320ms var(--motion-ease)}.explorer-choice,.hero-product strong,.strategy-module strong{transition:border-color 220ms ease,color 220ms ease}.strategy-module>span:last-child{transition:transform 220ms var(--motion-ease)}.explorer-figure img{transition:transform 500ms var(--motion-ease)}
 }
 @media(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){
- .strategy-module:hover>span:last-child{transform:translate(3px,-3px)}.explorer-figure:hover img{transform:translateY(-4px)}
+ .strategy-module:hover>span:last-child{transform:translateX(3px)}.explorer-figure:hover img{transform:translateY(-4px)}
 }
 @media(forced-colors:active){
  .solar-hero-art,.company-strategy::before,.explorer-panel::before{display:none}.vision-hero,.company-strategy{background:Canvas;color:CanvasText}.vision-story{min-height:0;padding-block:140px 60px}.vision-copy h1>span,.vision-description,.vision-copy>.eyebrow,.vision-actions .vision-partnership,.vision-actions .vision-explore,.strategy-copy h2>span,.strategy-step,.strategy-label,.strategy-context,.explorer-panel h3,.explorer-category,.explorer-summary,.explorer-store-name,.explorer-availability,.explorer-figure figcaption,.explorer-feature-list li{color:CanvasText}.explorer-feature-list li::before{background:CanvasText}.explorer-choice,.strategy-module{border-color:ButtonText}.explorer-choice-check{color:Highlight}

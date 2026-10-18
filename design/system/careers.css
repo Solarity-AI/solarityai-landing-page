@@ -125,7 +125,7 @@
     .career-errors { padding: 15px; }
   }
   @media (max-width: 390px) { .careers-founder { grid-template-columns: 160px minmax(0, 1fr); gap: 20px; } }
-  @media (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) { .career-role-action > span[aria-hidden] { transition: transform var(--motion-fast) var(--motion-ease); } .career-role-action:hover > span[aria-hidden] { transform: translate(2px, -2px); } }
+  @media (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) { .career-role-action > span[aria-hidden] { transition: transform var(--motion-fast) var(--motion-ease); } .career-role-action:hover > span[aria-hidden] { transform: translateY(2px); } }
   @media (prefers-reduced-motion: reduce) { .career-role-action, .career-field input, .career-field select { transition: none; } }
   @media (forced-colors: active) { .career-apply, .career-role-action { border-color: CanvasText; } .career-form, .career-field input, .career-field select, .career-errors { background: Canvas; color: CanvasText; } .career-field-error { color: CanvasText; border-color: CanvasText; } .career-field [aria-invalid='true'] { border-style: double; border-width: 3px; } }
   @media print { .careers-opening, .career-benefits, .career-apply { display: block; padding-block: 20pt; } .careers-founder, .career-benefit-list, .career-form { margin-block-start: 22pt; } .career-opportunities { padding-block: 20pt; } .career-role { break-inside: avoid; } .career-form-handoff .button { display: none; } }

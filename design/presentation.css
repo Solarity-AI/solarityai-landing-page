@@ -302,7 +302,7 @@
  .explorer-panel{transition:opacity 320ms var(--motion-ease)}.explorer-choice,.hero-product strong,.strategy-module strong{transition:border-color 220ms ease,color 220ms ease}.strategy-module>span:last-child{transition:transform 220ms var(--motion-ease)}.explorer-figure img{transition:transform 500ms var(--motion-ease)}
 }
 @media(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){
- .strategy-module:hover>span:last-child{transform:translate(3px,-3px)}.explorer-figure:hover img{transform:translateY(-4px)}
+ .strategy-module:hover>span:last-child{transform:translateX(3px)}.explorer-figure:hover img{transform:translateY(-4px)}
 }
 @media(forced-colors:active){
  .solar-hero-art,.company-strategy::before,.explorer-panel::before{display:none}.vision-hero,.company-strategy{background:Canvas;color:CanvasText}.vision-story{min-height:0;padding-block:140px 60px}.vision-copy h1>span,.vision-description,.vision-copy>.eyebrow,.vision-actions .vision-partnership,.vision-actions .vision-explore,.strategy-copy h2>span,.strategy-step,.strategy-label,.strategy-context,.explorer-panel h3,.explorer-category,.explorer-summary,.explorer-store-name,.explorer-availability,.explorer-figure figcaption,.explorer-feature-list li{color:CanvasText}.explorer-feature-list li::before{background:CanvasText}.explorer-choice,.strategy-module{border-color:ButtonText}.explorer-choice-check{color:Highlight}
@@ -541,7 +541,7 @@
   .platform-discipline-arrow { display:inline-block; margin-top:12px; color:#785728; transition:transform var(--motion-fast) var(--motion-ease); }
   .platform-discipline:hover,.platform-discipline:focus-visible { background:#e2d7c4; }
   .platform-discipline:focus-visible { outline-color:var(--ink); }
-  .platform-discipline:hover .platform-discipline-arrow { transform:translate(2px,-2px); }
+  .platform-discipline:hover .platform-discipline-arrow { transform:translateY(2px); }
   .strategy-outcome { font-size:.76rem; color:#665641; text-align:center; padding-block:22px 8px; }
   .platform-opening-note { font-size:.75rem; line-height:1.75; color:#605747; margin-top:20px; padding-top:20px; border-top:1px solid #bfb29b; }
   .platform-opening-note strong { display:block; color:#443925; font-weight:600; margin-bottom:4px; }
@@ -1034,7 +1034,7 @@
     .career-errors { padding: 15px; }
   }
   @media (max-width: 390px) { .careers-founder { grid-template-columns: 160px minmax(0, 1fr); gap: 20px; } }
-  @media (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) { .career-role-action > span[aria-hidden] { transition: transform var(--motion-fast) var(--motion-ease); } .career-role-action:hover > span[aria-hidden] { transform: translate(2px, -2px); } }
+  @media (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) { .career-role-action > span[aria-hidden] { transition: transform var(--motion-fast) var(--motion-ease); } .career-role-action:hover > span[aria-hidden] { transform: translateY(2px); } }
   @media (prefers-reduced-motion: reduce) { .career-role-action, .career-field input, .career-field select { transition: none; } }
   @media (forced-colors: active) { .career-apply, .career-role-action { border-color: CanvasText; } .career-form, .career-field input, .career-field select, .career-errors { background: Canvas; color: CanvasText; } .career-field-error { color: CanvasText; border-color: CanvasText; } .career-field [aria-invalid='true'] { border-style: double; border-width: 3px; } }
   @media print { .careers-opening, .career-benefits, .career-apply { display: block; padding-block: 20pt; } .careers-founder, .career-benefit-list, .career-form { margin-block-start: 22pt; } .career-opportunities { padding-block: 20pt; } .career-role { break-inside: avoid; } .career-form-handoff .button { display: none; } }

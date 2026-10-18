@@ -18,7 +18,7 @@ def platform_opening(modules, btn, contact):
             + '<strong>' + stage + '</strong><span class="platform-discipline-name">'
             + escape(name) + '</span><span class="platform-discipline-caption">'
             + escape(caption) + '</span></span>'
-            + '<span class="platform-discipline-arrow" aria-hidden="true">↗</span></a></li>'
+            + '<span class="platform-discipline-arrow" aria-hidden="true">↓</span></a></li>'
         )
     return (
         '<section class="platform-opening wrap" aria-labelledby="platform-opening-title">'

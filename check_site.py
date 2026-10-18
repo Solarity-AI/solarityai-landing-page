@@ -252,6 +252,16 @@ for asset_path in ['/assets/optimized/*','/assets/runtime/*']+fingerprinted_font
 for path,headers in header_rules.items():
     if 'immutable' in headers.get('cache-control','') and path not in ['/assets/optimized/*','/assets/runtime/*']+fingerprinted_fonts:errors.append(f'{path}: immutable caching must be scoped to fingerprinted assets')
 
+# ↗ means the link leaves the site; same-site links use → or an in-page ↓.
+for file in docs:
+    rel=file.relative_to(DIST).as_posix()
+    for attrs,label in re.findall(r'<a\b([^>]*)>(.*?)</a>',file.read_text(encoding='utf-8'),re.S):
+        href=re.search(r'\shref="([^"]*)"',' '+attrs)
+        parts=urlsplit(href.group(1).replace('&amp;','&') if href else '')
+        leaves=parts.scheme in ('mailto','tel') or (parts.scheme in ('http','https') and f'{parts.scheme}://{parts.netloc}'!=ORIGIN)
+        if '↗' in label and not leaves:errors.append(f'{rel}: same-site link uses the external arrow: {parts.geturl()}')
+        if leaves and parts.scheme!='mailto' and '↗' not in label:errors.append(f'{rel}: external link lacks the external arrow: {parts.geturl()}')
+
 # dist/ is the publish set: every file must be a page, a host file, or referenced by a page.
 HOST_FILES={'_headers','robots.txt','sitemap.xml','favicon.ico','assets/fonts/OFL-Manrope.txt'}
 referenced=set()

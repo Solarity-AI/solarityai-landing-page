@@ -48,7 +48,7 @@ def careers_page(btn):
             '<a class="career-role-action" href="/careers?role=' + slug
             + '#apply" data-career-role="' + slug + '"><span>Apply<span '
             'class="sr-only"> for ' + escape(title) + '</span></span>'
-            '<span aria-hidden="true">↗</span></a></article>'
+            '<span aria-hidden="true">↓</span></a></article>'
         )
         options.append('<option value="' + slug + '">' + escape(title) + '</option>')
 
@@ -98,7 +98,7 @@ def careers_page(btn):
 <div class="career-field"><label for="career-linkedin">LinkedIn profile <span>Optional</span></label><input id="career-linkedin" name="linkedin" type="url" maxlength="500" autocomplete="url" spellcheck="false" autocapitalize="none" pattern="https://(www[.])?linkedin[.]com/in/.+" aria-describedby="career-linkedin-help career-linkedin-error"><p id="career-linkedin-help" class="career-field-help">Your personal LinkedIn profile URL, if useful.</p><p id="career-linkedin-error" class="career-field-error" hidden></p></div>
 <div class="career-field"><label for="career-portfolio">Portfolio or relevant work <span>Optional</span></label><input id="career-portfolio" name="portfolio" type="url" maxlength="500" autocomplete="url" spellcheck="false" autocapitalize="none" pattern="https?://.+" aria-describedby="career-portfolio-help career-portfolio-error"><p id="career-portfolio-help" class="career-field-help">A website, GitHub profile, or work sample. Include https:// or http://.</p><p id="career-portfolio-error" class="career-field-error" hidden></p></div>
 </div>
-<div class="career-form-handoff"><p id="career-disclosure">Your application is addressed to <a href="mailto:careers@solarityai.com">careers@solarityai.com</a>. The next step opens FormSubmit for verification and its submission confirmation. <a href="https://formsubmit.co/privacy.pdf" target="_blank" rel="noopener noreferrer">Read FormSubmit’s privacy policy<span class="sr-only">, opens in a new tab</span></a>.</p>
+<div class="career-form-handoff"><p id="career-disclosure">Your application is addressed to <a href="mailto:careers@solarityai.com">careers@solarityai.com</a>. The next step opens FormSubmit for verification and its submission confirmation. <a href="https://formsubmit.co/privacy.pdf" target="_blank" rel="noopener noreferrer">Read FormSubmit’s privacy policy <span aria-hidden="true">↗</span><span class="sr-only">, opens in a new tab</span></a>.</p>
 <button id="career-submit" class="button primary" type="submit">Continue application <span aria-hidden="true">↗</span></button>
 <p id="career-status" role="status" aria-live="polite" aria-atomic="true"></p></div>
 </form></section>'''

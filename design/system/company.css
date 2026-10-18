@@ -66,7 +66,7 @@
   .platform-discipline-arrow { display:inline-block; margin-top:12px; color:#785728; transition:transform var(--motion-fast) var(--motion-ease); }
   .platform-discipline:hover,.platform-discipline:focus-visible { background:#e2d7c4; }
   .platform-discipline:focus-visible { outline-color:var(--ink); }
-  .platform-discipline:hover .platform-discipline-arrow { transform:translate(2px,-2px); }
+  .platform-discipline:hover .platform-discipline-arrow { transform:translateY(2px); }
   .strategy-outcome { font-size:.76rem; color:#665641; text-align:center; padding-block:22px 8px; }
   .platform-opening-note { font-size:.75rem; line-height:1.75; color:#605747; margin-top:20px; padding-top:20px; border-top:1px solid #bfb29b; }
   .platform-opening-note strong { display:block; color:#443925; font-weight:600; margin-bottom:4px; }
