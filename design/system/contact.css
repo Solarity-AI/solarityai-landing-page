@@ -37,7 +37,7 @@
   .contact-topic-arrow { color: var(--accent); font-size: var(--text-xl); flex: none; transition: transform var(--motion-detail) var(--motion-ease); }
   .contact-data-note { padding-block: 0 32px; }
   .contact-data-note h2 { font-size: var(--text-xs); letter-spacing: 0; margin-block-end: 10px; }
-  .contact-data-note p { max-width: 85ch; color: var(--dim); font-size: var(--text-xs); line-height: 1.8; }
+  .contact-data-note p { max-width: var(--measure); color: var(--dim); font-size: var(--text-xs); line-height: 1.8; }
   .contact-data-note p + p { margin-block-start: 8px; }
   .contact-data-note a { text-decoration: underline; text-underline-offset: 3px; overflow-wrap: anywhere; }
   #prepare-inquiry, #data-note { scroll-margin-block-start: calc(var(--header-height, 88px) + 24px); }

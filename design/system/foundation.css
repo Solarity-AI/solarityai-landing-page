@@ -2,7 +2,7 @@
 @layer foundation, components, pages, accessibility;
 @layer foundation {
  @font-face{font-family:'Manrope';font-style:normal;font-weight:200 800;font-display:optional;src:url('/assets/fonts/manrope-latin-variable.cfa570d7c3ee.woff2') format('woff2')}
- :root{color-scheme:dark;--bg:#11120f;--surface:#1a1c17;--surface-raised:#252820;--text:#f5f1e8;--muted:#c4c3b9;--dim:#aaa99f;--accent:#edc78e;--line:#373b31;--paper:#f1ede3;--ink:#1c241c;--radius:5px;--radius-lg:12px;--gutter:clamp(22px,4.3vw,64px);--space-section:clamp(72px,8vw,132px);--font-body:'Manrope',Arial,sans-serif;--font-display:var(--font-body);--font-editorial:var(--font-body);--font-mono:ui-monospace,'SFMono-Regular',Consolas,monospace;--text-2xs:.75rem;--text-xs:.8125rem;--text-sm:.875rem;--text-md:.9375rem;--text-base:1rem;--text-lg:1.125rem;--text-xl:1.25rem;--type-display:clamp(3rem,1.8rem + 4vw,6rem);--type-heading:clamp(2.15rem,1.35rem + 2.6vw,4.1rem);--motion-fast:180ms;--motion-detail:320ms;--motion-ease:cubic-bezier(.22,.68,.2,1);--looks-accent:#dcc4e5;--iq-accent:#b5d3e6;--sleep-accent:#c8c9e9;--fitness-accent:#edc78e;--product-accent:var(--accent)}
+ :root{color-scheme:dark;--bg:#11120f;--surface:#1a1c17;--surface-raised:#252820;--text:#f5f1e8;--muted:#c4c3b9;--dim:#aaa99f;--accent:#edc78e;--line:#373b31;--paper:#f1ede3;--ink:#1c241c;--radius:5px;--radius-lg:12px;--gutter:clamp(22px,4.3vw,64px);--space-section:clamp(72px,8vw,132px);--font-body:'Manrope',Arial,sans-serif;--font-display:var(--font-body);--font-editorial:var(--font-body);--font-mono:ui-monospace,'SFMono-Regular',Consolas,monospace;--text-2xs:.75rem;--text-xs:.8125rem;--text-sm:.875rem;--text-md:.9375rem;--text-base:1rem;--text-lg:1.125rem;--text-xl:1.25rem;--measure:52ch;--type-display:clamp(3rem,1.8rem + 4vw,6rem);--type-heading:clamp(2.15rem,1.35rem + 2.6vw,4.1rem);--motion-fast:180ms;--motion-detail:320ms;--motion-ease:cubic-bezier(.22,.68,.2,1);--looks-accent:#dcc4e5;--iq-accent:#b5d3e6;--sleep-accent:#c8c9e9;--fitness-accent:#edc78e;--product-accent:var(--accent)}
  *,*::before,*::after{box-sizing:border-box}
  html{font-size:100%;scroll-padding-top:112px;-webkit-text-size-adjust:100%}
  body{margin:0;min-width:320px;font:400 var(--text-base)/1.65 var(--font-body);background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
@@ -15,6 +15,8 @@
  h2{font-size:var(--type-heading);line-height:1.1;letter-spacing:-.048em}
  h3{font-size:clamp(1.25rem,1rem + .65vw,1.6rem);line-height:1.3;letter-spacing:-.025em}
  p{color:var(--muted)}
+ /* About 75 characters per line in Manrope, whose 0 is wider than its average letter. */
+ main p{max-width:var(--measure)}
  a{color:inherit;text-decoration:none;text-underline-offset:.25em}
  button,input,select,textarea{font:inherit}
  button{cursor:pointer}
@@ -34,7 +36,7 @@
  .muted{color:var(--muted)}
  .mono{font-family:var(--font-mono);font-size:var(--text-2xs);letter-spacing:.04em}
  .eyebrow{font-size:var(--text-2xs);line-height:1.65;font-weight:600;letter-spacing:.1em;color:var(--accent);margin-bottom:22px}
- .lede{font-size:clamp(1.05rem,.96rem + .36vw,1.25rem);line-height:1.72;max-width:56ch}
+ .lede{font-size:clamp(1.05rem,.96rem + .36vw,1.25rem);line-height:1.72;max-width:var(--measure)}
  .fineprint{font-size:var(--text-xs);line-height:1.7;color:var(--dim)}
  .page-intro{padding-block:clamp(60px,7.5vw,118px) clamp(44px,5.5vw,82px)}
  .page-intro>.lede{margin-top:28px}
@@ -49,7 +51,7 @@
  body[data-page='/apps/iq-max'],[data-product-accent='blue'],.blue{--product-accent:var(--iq-accent)}
  body[data-page='/apps/sleep-max'],[data-product-accent='indigo'],.indigo{--product-accent:var(--sleep-accent)}
  body[data-page='/apps/fitness-max'],[data-product-accent='amber'],.amber{--product-accent:var(--fitness-accent)}
- @media(max-width:850px){.section-heading{align-items:start;flex-direction:column;gap:22px}.section-lede{max-width:60ch}}
+ @media(max-width:850px){.section-heading{align-items:start;flex-direction:column;gap:22px}.section-lede{max-width:var(--measure)}}
  @media(max-width:560px){.eyebrow{margin-bottom:16px}.two-col{grid-template-columns:1fr;gap:24px}.page-intro>.lede{margin-top:23px}}
 }
 @layer components {
@@ -71,7 +73,7 @@
  .status.vision{color:var(--accent)}
  .conversation-band{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:56px;margin-top:var(--space-section);padding-block:clamp(40px,6vw,84px);border-top:1px solid var(--line)}
  .conversation-band h2{font-size:clamp(2.15rem,1.1rem + 2.7vw,3.5rem);max-width:22ch}
- .conversation-band p:not(.eyebrow){max-width:58ch;margin-top:20px;font-size:var(--text-md);line-height:1.8}
+ .conversation-band p:not(.eyebrow){max-width:var(--measure);margin-top:20px;font-size:var(--text-md);line-height:1.8}
  .conversation-actions{display:grid;gap:12px;min-width:245px}
  .conversation-actions .button{justify-content:space-between}
  #image-dialog{width:min(760px,calc(100vw - 32px));max-height:calc(100vh - 32px);max-height:calc(100dvh - 32px);padding:0;border:1px solid #64695a;border-radius:var(--radius-lg);background:var(--surface);color:var(--text);box-shadow:0 28px 100px #0009;overflow:auto}

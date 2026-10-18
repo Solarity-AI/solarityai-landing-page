@@ -2,13 +2,13 @@
   "scope": "Build-time source byte counts, not measured Lighthouse scores or HTTP transfer results",
   "routes": {
     "/": {
-      "source_bytes": 111108,
+      "source_bytes": 111447,
       "html_classes": 86,
-      "selector_branches_examined": 1496,
+      "selector_branches_examined": 1497,
       "selector_branches_removed": 894,
-      "output_bytes": 42112,
-      "bytes_removed": 68996,
-      "css_gzip_bytes": 9171,
+      "output_bytes": 42219,
+      "bytes_removed": 69228,
+      "css_gzip_bytes": 9191,
       "css_delivery": "Inline route-specific CSS; no blocking stylesheet request",
       "scripts": [
         "navigation"
@@ -18,17 +18,17 @@
       ],
       "external_scripts": [],
       "javascript_bytes": 2798,
-      "html_bytes": 69239,
-      "html_gzip_bytes": 15660
+      "html_bytes": 69346,
+      "html_gzip_bytes": 15679
     },
     "/apps": {
-      "source_bytes": 111108,
+      "source_bytes": 111447,
       "html_classes": 55,
-      "selector_branches_examined": 1496,
+      "selector_branches_examined": 1497,
       "selector_branches_removed": 1149,
-      "output_bytes": 25079,
-      "bytes_removed": 86029,
-      "css_gzip_bytes": 6200,
+      "output_bytes": 25176,
+      "bytes_removed": 86271,
+      "css_gzip_bytes": 6219,
       "css_delivery": "Inline route-specific CSS; no blocking stylesheet request",
       "scripts": [
         "navigation",
@@ -41,85 +41,16 @@
         "gallery"
       ],
       "javascript_bytes": 5109,
-      "html_bytes": 43828,
-      "html_gzip_bytes": 10621
+      "html_bytes": 43925,
+      "html_gzip_bytes": 10641
     },
     "/apps/looks-max": {
-      "source_bytes": 111108,
+      "source_bytes": 111447,
       "html_classes": 80,
-      "selector_branches_examined": 1496,
+      "selector_branches_examined": 1497,
       "selector_branches_removed": 1002,
-      "output_bytes": 34726,
-      "bytes_removed": 76382,
-      "css_gzip_bytes": 7737,
-      "css_delivery": "Inline route-specific CSS; no blocking stylesheet request",
-      "scripts": [
-        "navigation",
-        "gallery"
-      ],
-      "inline_scripts": [
-        "navigation"
-      ],
-      "external_scripts": [
-        "gallery"
-      ],
-      "javascript_bytes": 5109,
-      "html_bytes": 54847,
-      "html_gzip_bytes": 13342
-    },
-    "/apps/iq-max": {
-      "source_bytes": 111108,
-      "html_classes": 80,
-      "selector_branches_examined": 1496,
-      "selector_branches_removed": 1002,
-      "output_bytes": 34722,
-      "bytes_removed": 76386,
-      "css_gzip_bytes": 7738,
-      "css_delivery": "Inline route-specific CSS; no blocking stylesheet request",
-      "scripts": [
-        "navigation",
-        "gallery"
-      ],
-      "inline_scripts": [
-        "navigation"
-      ],
-      "external_scripts": [
-        "gallery"
-      ],
-      "javascript_bytes": 5109,
-      "html_bytes": 56425,
-      "html_gzip_bytes": 13435
-    },
-    "/apps/sleep-max": {
-      "source_bytes": 111108,
-      "html_classes": 80,
-      "selector_branches_examined": 1496,
-      "selector_branches_removed": 1002,
-      "output_bytes": 34724,
-      "bytes_removed": 76384,
-      "css_gzip_bytes": 7737,
-      "css_delivery": "Inline route-specific CSS; no blocking stylesheet request",
-      "scripts": [
-        "navigation",
-        "gallery"
-      ],
-      "inline_scripts": [
-        "navigation"
-      ],
-      "external_scripts": [
-        "gallery"
-      ],
-      "javascript_bytes": 5109,
-      "html_bytes": 54542,
-      "html_gzip_bytes": 13281
-    },
-    "/apps/fitness-max": {
-      "source_bytes": 111108,
-      "html_classes": 81,
-      "selector_branches_examined": 1496,
-      "selector_branches_removed": 1001,
-      "output_bytes": 34819,
-      "bytes_removed": 76289,
+      "output_bytes": 34863,
+      "bytes_removed": 76584,
       "css_gzip_bytes": 7752,
       "css_delivery": "Inline route-specific CSS; no blocking stylesheet request",
       "scripts": [
@@ -133,17 +64,86 @@
         "gallery"
       ],
       "javascript_bytes": 5109,
-      "html_bytes": 56644,
-      "html_gzip_bytes": 13509
+      "html_bytes": 54984,
+      "html_gzip_bytes": 13355
+    },
+    "/apps/iq-max": {
+      "source_bytes": 111447,
+      "html_classes": 80,
+      "selector_branches_examined": 1497,
+      "selector_branches_removed": 1002,
+      "output_bytes": 34859,
+      "bytes_removed": 76588,
+      "css_gzip_bytes": 7751,
+      "css_delivery": "Inline route-specific CSS; no blocking stylesheet request",
+      "scripts": [
+        "navigation",
+        "gallery"
+      ],
+      "inline_scripts": [
+        "navigation"
+      ],
+      "external_scripts": [
+        "gallery"
+      ],
+      "javascript_bytes": 5109,
+      "html_bytes": 56562,
+      "html_gzip_bytes": 13449
+    },
+    "/apps/sleep-max": {
+      "source_bytes": 111447,
+      "html_classes": 80,
+      "selector_branches_examined": 1497,
+      "selector_branches_removed": 1002,
+      "output_bytes": 34861,
+      "bytes_removed": 76586,
+      "css_gzip_bytes": 7751,
+      "css_delivery": "Inline route-specific CSS; no blocking stylesheet request",
+      "scripts": [
+        "navigation",
+        "gallery"
+      ],
+      "inline_scripts": [
+        "navigation"
+      ],
+      "external_scripts": [
+        "gallery"
+      ],
+      "javascript_bytes": 5109,
+      "html_bytes": 54679,
+      "html_gzip_bytes": 13293
+    },
+    "/apps/fitness-max": {
+      "source_bytes": 111447,
+      "html_classes": 81,
+      "selector_branches_examined": 1497,
+      "selector_branches_removed": 1001,
+      "output_bytes": 34956,
+      "bytes_removed": 76491,
+      "css_gzip_bytes": 7765,
+      "css_delivery": "Inline route-specific CSS; no blocking stylesheet request",
+      "scripts": [
+        "navigation",
+        "gallery"
+      ],
+      "inline_scripts": [
+        "navigation"
+      ],
+      "external_scripts": [
+        "gallery"
+      ],
+      "javascript_bytes": 5109,
+      "html_bytes": 56781,
+      "html_gzip_bytes": 13523
     },
     "/platform": {
-      "source_bytes": 111108,
+      "source_bytes": 111447,
       "html_classes": 60,
-      "selector_branches_examined": 1496,
+      "selector_branches_examined": 1497,
       "selector_branches_removed": 1096,
-      "output_bytes": 29415,
-      "bytes_removed": 81693,
-      "css_gzip_bytes": 6967,
+      "output_bytes": 29561,
+      "bytes_removed": 81886,
+      "css_gzip_bytes": 6987,
       "css_delivery": "Inline route-specific CSS; no blocking stylesheet request",
       "scripts": [
         "navigation"
@@ -153,17 +153,17 @@
       ],
       "external_scripts": [],
       "javascript_bytes": 2798,
-      "html_bytes": 45195,
-      "html_gzip_bytes": 11661
+      "html_bytes": 45341,
+      "html_gzip_bytes": 11691
     },
     "/company": {
-      "source_bytes": 111108,
+      "source_bytes": 111447,
       "html_classes": 50,
-      "selector_branches_examined": 1496,
+      "selector_branches_examined": 1497,
       "selector_branches_removed": 1139,
-      "output_bytes": 25464,
-      "bytes_removed": 85644,
-      "css_gzip_bytes": 6289,
+      "output_bytes": 25591,
+      "bytes_removed": 85856,
+      "css_gzip_bytes": 6305,
       "css_delivery": "Inline route-specific CSS; no blocking stylesheet request",
       "scripts": [
         "navigation"
@@ -173,17 +173,17 @@
       ],
       "external_scripts": [],
       "javascript_bytes": 2798,
-      "html_bytes": 38188,
-      "html_gzip_bytes": 10340
+      "html_bytes": 38315,
+      "html_gzip_bytes": 10356
     },
     "/investors-partners": {
-      "source_bytes": 111108,
+      "source_bytes": 111447,
       "html_classes": 71,
-      "selector_branches_examined": 1496,
+      "selector_branches_examined": 1497,
       "selector_branches_removed": 1064,
-      "output_bytes": 31569,
-      "bytes_removed": 79539,
-      "css_gzip_bytes": 7127,
+      "output_bytes": 31706,
+      "bytes_removed": 79741,
+      "css_gzip_bytes": 7143,
       "css_delivery": "Inline route-specific CSS; no blocking stylesheet request",
       "scripts": [
         "navigation"
@@ -193,17 +193,17 @@
       ],
       "external_scripts": [],
       "javascript_bytes": 2798,
-      "html_bytes": 52662,
-      "html_gzip_bytes": 12904
+      "html_bytes": 52799,
+      "html_gzip_bytes": 12923
     },
     "/careers": {
-      "source_bytes": 111108,
+      "source_bytes": 111447,
       "html_classes": 56,
-      "selector_branches_examined": 1496,
+      "selector_branches_examined": 1497,
       "selector_branches_removed": 1090,
-      "output_bytes": 30320,
-      "bytes_removed": 80788,
-      "css_gzip_bytes": 7216,
+      "output_bytes": 30437,
+      "bytes_removed": 81010,
+      "css_gzip_bytes": 7235,
       "css_delivery": "Inline route-specific CSS; no blocking stylesheet request",
       "scripts": [
         "navigation",
@@ -216,17 +216,17 @@
         "careers"
       ],
       "javascript_bytes": 11570,
-      "html_bytes": 49115,
-      "html_gzip_bytes": 12698
+      "html_bytes": 49232,
+      "html_gzip_bytes": 12719
     },
     "/contact": {
-      "source_bytes": 111108,
+      "source_bytes": 111447,
       "html_classes": 44,
-      "selector_branches_examined": 1496,
+      "selector_branches_examined": 1497,
       "selector_branches_removed": 1164,
-      "output_bytes": 24566,
-      "bytes_removed": 86542,
-      "css_gzip_bytes": 6177,
+      "output_bytes": 24683,
+      "bytes_removed": 86764,
+      "css_gzip_bytes": 6193,
       "css_delivery": "Inline route-specific CSS; no blocking stylesheet request",
       "scripts": [
         "navigation",
@@ -239,17 +239,17 @@
         "contact"
       ],
       "javascript_bytes": 5503,
-      "html_bytes": 36528,
-      "html_gzip_bytes": 9901
+      "html_bytes": 36645,
+      "html_gzip_bytes": 9920
     },
     "/404": {
-      "source_bytes": 111108,
+      "source_bytes": 111447,
       "html_classes": 38,
-      "selector_branches_examined": 1496,
+      "selector_branches_examined": 1497,
       "selector_branches_removed": 1203,
-      "output_bytes": 21257,
-      "bytes_removed": 89851,
-      "css_gzip_bytes": 5621,
+      "output_bytes": 21364,
+      "bytes_removed": 90083,
+      "css_gzip_bytes": 5635,
       "css_delivery": "Inline route-specific CSS; no blocking stylesheet request",
       "scripts": [
         "navigation"
@@ -259,8 +259,8 @@
       ],
       "external_scripts": [],
       "javascript_bytes": 2798,
-      "html_bytes": 30741,
-      "html_gzip_bytes": 8554
+      "html_bytes": 30848,
+      "html_gzip_bytes": 8571
     }
   }
 }
