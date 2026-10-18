@@ -61,4 +61,4 @@ Suggested initial instruction:
 
 The repository's Git history, access tokens, machine caches, and local Python environments are intentionally excluded. `SOURCE_MANIFEST.json` records the exact exported source commit and original file checksums. If initializing a new Git repository, add `.venv/` and any local environment/secrets files to `.gitignore` first.
 
-The current live Site remains public at https://solarity-company.the-ata-turhan.chatgpt.site. No live changes were made for this export.
+Production is https://solarityai.com, deployed from the `develop` branch of `github.com/Solarity-AI/solarityai-landing-page` (see CLAUDE.md, "Repository, deployment, and commits"). The earlier GPT Sites deployment at https://solarity-company.the-ata-turhan.chatgpt.site is not updated from this repository.

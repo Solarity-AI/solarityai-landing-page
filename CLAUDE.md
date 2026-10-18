@@ -45,13 +45,20 @@ Use `python3` if that is the Python 3 command on the local machine. On Windows, 
 - App factory pages distinguish company strategy from verified deployed capabilities. Obtain current evidence before strengthening claims.
 - Current contact behavior is direct email/booking. It does not collect or submit contact messages. Keep query-derived subjects encoded and bounded.
 - Careers posts to `https://formsubmit.co/careers@solarityai.com` with native validation, CAPTCHA, honeypot, provider confirmation, and direct email fallback. Activation and actual inbox receipt remain unverified. See `CAREERS_DELIVERY.md` for the evidence and the one-application test. Never treat a URL query parameter as delivery proof.
-- Public access and the current deployment domain. `.openai/hosting.json` records the existing Site identity, but contains no deployment credential. Do not change solarityai.com or DNS as part of ordinary code work.
+- Public access and the production domain `https://solarityai.com` (canonical origin since the move into this repository). `.openai/hosting.json` records the earlier GPT Sites deployment identity, but contains no deployment credential. Do not change DNS, the domain, or the deployment pipelines as part of ordinary code work.
 - Native navigation, accessible focus and dialog behavior, reduced-motion support, explicit image dimensions, and matching hero preload.
 
-## Hosting and open dependencies
+## Repository, deployment, and commits
 
-Deploy `dist/` to a suitable static host. Preview locally using the command in START_HERE.md. A new domain requires coordinated changes to the origin in `build_site.py`, `check_site.py`, and the careers `_url` in `visual_careers.py`. Verify actual host routing, 404 behavior, security headers, and caching; the included `_headers` file alone is not proof that a host applies those rules.
+This project lives in `github.com/Solarity-AI/solarityai-landing-page`, which also holds the infrastructure for solarityai.com.
+
+- **A push or merge to `develop` deploys production.** `.woodpecker.yml` builds the `Dockerfile` image and rolls it out to the Kubernetes `production` namespace behind Caddy and Cloudflare. Work on feature branches and open a pull request; merge only what is ready to go live.
+- The image serves only `dist/` through `deploy/nginx.conf` and `deploy/security-headers.conf`. That config applies the `dist/_headers` rules (nginx does not read `_headers`), scopes immutable caching to fingerprinted files, serves the custom 404 with `noindex`, redirects slashless routes, and keeps the previous site's URLs (`/index.html`, `/careers.html`, `/blog.html`, `/legal.html`, `/docs/xtract-demo.html`) working with 301s.
+- `.github/workflows/site-checks.yml` runs on every pull request and on `develop`. It rebuilds the site and fails if the committed `dist/` differs, then runs the static audit and both test suites. It also builds the production image, runs `nginx -t`, and runs `deploy/smoke_test.py` against the container. Run the smoke test locally with Docker as described in its docstring.
+- `.github/workflows/deploy.yml` (AWS S3/CloudFront) deploys the committed `dist/` as-is, but its recent runs have failed on missing AWS configuration. `ansible/` holds the older EC2/nginx path. Leave both unless the founder asks.
+- Commits follow `Commit Rules.md` and `skills/git-conventional-commit`: one logical change per commit, with a single-line, lowercase, imperative Conventional Commit message of at most 50 characters (for example `fix: keep words apart at hidden line breaks`).
+- A domain change requires coordinated edits to the origin in `build_site.py`, `check_site.py`, `audit_production.py`, and the careers `_url` in `visual_careers.py`. Verify routing, 404 behavior, headers, and caching on the real host afterward with `python audit_production.py`.
 
 Missing optional source material: a matched set of clean app UI exports, approved team roles/additional portraits, and the upstream font TTF. The complete deployable font, license, provenance, and all build-required image files are included. Some historical provenance records reference scratch paths that are no longer available; those are not build dependencies.
 
-No production redeployment is needed to begin local coding from this ZIP.
+Local coding needs no deployment: build, check, and preview locally, then open a pull request.

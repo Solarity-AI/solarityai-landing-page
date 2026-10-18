@@ -25,9 +25,9 @@ The site uses a client-side email composer addressed to the publicly verified `a
 
 ## Access and publication
 
-Site origin: https://solarity-company.the-ata-turhan.chatgpt.site
+Site origin: https://solarityai.com (canonical since the move into `Solarity-AI/solarityai-landing-page`; the earlier GPT Sites origin was https://solarity-company.the-ata-turhan.chatgpt.site)
 
-The founder explicitly authorized all GPT Sites to remain public on October 12, 2026. This supersedes the original instruction to preserve private access. Solarity AI is public, and future deployments must preserve public access unless the founder changes that instruction. Valid content pages allow indexing; the 404 page remains accessible but requests no indexing. Robots allows crawling and advertises the sitemap at this deployment origin. This project does not modify solarityai.com or its DNS.
+The founder explicitly authorized all GPT Sites to remain public on October 12, 2026. This supersedes the original instruction to preserve private access. Solarity AI is public, and future deployments must preserve public access unless the founder changes that instruction. Valid content pages allow indexing; the 404 page remains accessible but requests no indexing. Robots allows search crawling, keeps solarityai.com's existing block on AI-training crawlers, and advertises the sitemap at the canonical origin. DNS is not managed by this project.
 
 ## Outstanding items
 

@@ -1,6 +1,6 @@
 # Production audit, 2026-10-18
 
-Origin: `https://solarity-company.the-ata-turhan.chatgpt.site` (deployed Site version 24, unchanged by this work). Raw data: `research-assets/production-audit.json`. Re-run with `python audit_production.py`, adding `--lighthouse <path to lighthouse/cli/index.js>` for lab scores.
+Origin: `https://solarity-company.the-ata-turhan.chatgpt.site` (deployed Site version 24, unchanged by this work). This is a dated record of the GPT Sites deployment, measured before the move to solarityai.com. After the first deploy from this repository, run `python audit_production.py` (it now defaults to `https://solarityai.com`); `deploy/nginx.conf` addresses the header, caching, MIME and favicon findings below. Raw data: `research-assets/production-audit.json`. Re-run with `python audit_production.py`, adding `--lighthouse <path to lighthouse/cli/index.js>` for lab scores.
 
 ## Method
 
