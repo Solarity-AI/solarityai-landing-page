@@ -106,7 +106,7 @@
   .investor-opening-copy h1 { grid-column:1; grid-row:2 / 5; font-size:clamp(3rem,5.8vw,5.8rem); line-height:1.04; }
   .investor-opening-copy>.lede { grid-column:2; max-width:44ch; font-size:var(--text-base); margin-top:6px; }
   .investor-opening-copy>.actions { grid-column:2; margin-top:28px; }
-  .investor-opening-copy .button { padding-inline:20px; gap:14px; font-size:var(--text-xs); }
+  .investor-opening-copy .button { padding-inline:20px; gap:14px; }
   .faq-shortcut { grid-column:2; justify-self:start; margin-top:18px; }
   .investor-opening-proof { margin-top:64px; padding:clamp(24px,3.5vw,48px); background:var(--surface); border-top:1px solid var(--line); }
   .investor-opening-proof-heading { display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap; gap:16px; margin-bottom:32px; }
@@ -279,7 +279,7 @@
     .module-detail { grid-template-columns:34px minmax(0,1fr); gap:18px; }
     .module-num { font-size:2rem; padding-top:2px; }
     .module-detail h2 { font-size:clamp(1.8rem,7vw,2.1rem); }
-    .strategy-story-bottom .button { width:100%; justify-content:space-between; font-size:var(--text-sm); }
+    .strategy-story-bottom .button { width:100%; justify-content:space-between; }
     .investor-opening-proof { margin-top:44px; padding:24px 16px; }
     .investor-opening-products { gap:30px 18px; }
     .investor-opening-product-name { font-size:var(--text-md); margin-top:16px; }

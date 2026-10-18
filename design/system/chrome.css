@@ -61,7 +61,7 @@
  }
  @media(max-width:560px){
   .wordmark{font-size:var(--text-base);gap:6px}.brand-wordmark b{gap:3px}
-  .header-actions .button{font-size:var(--text-xs);padding-inline:12px;gap:10px}
+  .header-actions .button{padding-inline:12px;gap:10px}
   .chrome-footer>.wrap{padding-block:38px 18px}.footer-introduction{flex-direction:column;align-items:start;gap:20px}.footer-positioning{padding:0}
   .footer-directory{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 20px}.footer-group:last-child{grid-column:1/-1}.footer-group:last-child ul{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 20px}
   .footer-group a{font-size:var(--text-sm)}.footer-signature{padding-block:24px}.footer-legal{flex-direction:column;align-items:start;gap:4px}

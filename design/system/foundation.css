@@ -57,7 +57,7 @@
 @layer components {
  .actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px}
  .button{display:inline-flex;align-items:center;justify-content:center;gap:22px;min-height:52px;padding:14px 24px;border:1px solid transparent;border-radius:999px;font-size:var(--text-sm);font-weight:600;line-height:1.45;text-align:left;text-decoration:none;transition:background-color var(--motion-fast),color var(--motion-fast),border-color var(--motion-fast),box-shadow var(--motion-detail)}
- .button>span[aria-hidden]{font-size:var(--text-xl);font-weight:400;flex:none}
+ .button>span[aria-hidden]{font-size:var(--text-xl);font-weight:400;line-height:1;flex:none}
  .button.primary,.button.small{background:var(--accent);color:var(--ink)}
  .button.primary:hover,.button.small:hover{background:#f7d9ab;box-shadow:0 4px 24px #edc78e14}
  .button.outline{border-color:#727469;background:transparent;color:var(--text)}
