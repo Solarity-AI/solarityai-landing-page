@@ -64,8 +64,8 @@
         "gallery"
       ],
       "javascript_bytes": 5109,
-      "html_bytes": 55526,
-      "html_gzip_bytes": 13492
+      "html_bytes": 55626,
+      "html_gzip_bytes": 13496
     },
     "/apps/iq-max": {
       "source_bytes": 111930,
@@ -87,8 +87,8 @@
         "gallery"
       ],
       "javascript_bytes": 5109,
-      "html_bytes": 57104,
-      "html_gzip_bytes": 13584
+      "html_bytes": 57204,
+      "html_gzip_bytes": 13587
     },
     "/apps/sleep-max": {
       "source_bytes": 111930,
@@ -110,8 +110,8 @@
         "gallery"
       ],
       "javascript_bytes": 5109,
-      "html_bytes": 55221,
-      "html_gzip_bytes": 13430
+      "html_bytes": 55321,
+      "html_gzip_bytes": 13433
     },
     "/apps/fitness-max": {
       "source_bytes": 111930,
@@ -133,8 +133,8 @@
         "gallery"
       ],
       "javascript_bytes": 5109,
-      "html_bytes": 57323,
-      "html_gzip_bytes": 13657
+      "html_bytes": 57423,
+      "html_gzip_bytes": 13660
     },
     "/platform": {
       "source_bytes": 111930,
@@ -193,8 +193,8 @@
       ],
       "external_scripts": [],
       "javascript_bytes": 2798,
-      "html_bytes": 53322,
-      "html_gzip_bytes": 13060
+      "html_bytes": 53372,
+      "html_gzip_bytes": 13072
     },
     "/careers": {
       "source_bytes": 111930,
@@ -239,8 +239,8 @@
         "contact"
       ],
       "javascript_bytes": 5503,
-      "html_bytes": 37149,
-      "html_gzip_bytes": 10058
+      "html_bytes": 37199,
+      "html_gzip_bytes": 10075
     },
     "/404": {
       "source_bytes": 111930,

@@ -254,6 +254,12 @@ for asset_path in ['/assets/optimized/*','/assets/runtime/*']+fingerprinted_font
 for path,headers in header_rules.items():
     if 'immutable' in headers.get('cache-control','') and path not in ['/assets/optimized/*','/assets/runtime/*']+fingerprinted_fonts:errors.append(f'{path}: immutable caching must be scoped to fingerprinted assets')
 
+# Links that open a new tab say so to assistive technology. Screenshot links open
+# the in-page viewer and only fall back to a tab without JavaScript.
+for file,d in docs.items():
+    for attrs,label in re.findall(r'<a\b([^>]*)>(.*?)</a>',file.read_text(encoding='utf-8'),re.S):
+        if 'target="_blank"' in attrs and 'screenshot-open' not in attrs and 'opens in a new tab' not in label:errors.append(f'{file.relative_to(DIST).as_posix()}: new-tab link does not announce it: {re.sub("<[^>]+>","",label).strip()[:40]}')
+
 # ↗ means the link leaves the site; same-site links use → or an in-page ↓.
 for file in docs:
     rel=file.relative_to(DIST).as_posix()

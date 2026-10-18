@@ -86,5 +86,5 @@ def contact_methods(email, booking):
         '<a class="contact-method" href="' + escape(booking) + '" target="_blank" rel="noopener noreferrer">'
         '<span class="method-icon">' + _method_icon('calendar') + '</span>'
         '<span class="method-copy"><strong>Book a conversation</strong><span>Choose a time on Google Calendar</span></span>'
-        '<span class="method-arrow" aria-hidden="true">↗</span></a></div>'
+        '<span class="method-arrow" aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a></div>'
     )

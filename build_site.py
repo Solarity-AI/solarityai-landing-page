@@ -42,7 +42,8 @@ def contact(kind='Other', product=None):
 
 def btn(label,href,style='primary',external=False):
     arrow = EXTERNAL_ARROW if external or href.startswith(('http','mailto:')) else ARROW
-    return f'<a class="button {style}" href="{e(href)}"'+(' target="_blank" rel="noopener noreferrer"' if external else '')+f'>{e(label)}{arrow}</a>'
+    new_tab = '<span class="sr-only"> (opens in a new tab)</span>' if external else ''
+    return f'<a class="button {style}" href="{e(href)}"'+(' target="_blank" rel="noopener noreferrer"' if external else '')+f'>{e(label)}{arrow}{new_tab}</a>'
 
 def product_status(a,full=False):
     return '<span class="status"><i aria-hidden="true"></i>'+('Available on iOS & Android' if full else 'iOS & Android')+'</span>' if a['apple'] else '<span class="status vision"><i aria-hidden="true"></i>Product vision</span>'
