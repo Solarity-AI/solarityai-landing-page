@@ -137,7 +137,11 @@ for path,(title,desc,body) in pages.items():
 AI_TRAINING_CRAWLERS=['GPTBot','Google-Extended','CCBot','anthropic-ai','Claude-Web','PerplexityBot']
 (DIST/'robots.txt').write_text('User-agent: *\nAllow: /\n'+''.join(f'\nUser-agent: {agent}\nDisallow: /\n' for agent in AI_TRAINING_CRAWLERS)+f'\nSitemap: {ORIGIN}/sitemap.xml\n', encoding='utf-8', newline='\n')
 (DIST/'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+''.join(f'<url><loc>{ORIGIN}{public_path(p)}</loc></url>' for p in pages if p!='/404')+'</urlset>', encoding='utf-8', newline='\n')
-(DIST/'_headers').write_text('/*\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n/404\n  X-Robots-Tag: noindex, follow\n/404.html\n  X-Robots-Tag: noindex, follow\n/assets/optimized/*\n  Cache-Control: public, max-age=31536000, immutable\n/assets/runtime/*\n  Cache-Control: public, max-age=31536000, immutable\n'+FONT_URL+'\n  Cache-Control: public, max-age=31536000, immutable\n', encoding='utf-8', newline='\n')
+# Previous solarityai.com URLs. Cloudflare Pages reads _redirects; deploy/nginx.conf
+# mirrors the same list (check_site.py keeps the two in agreement).
+LEGACY_REDIRECTS=[('/careers.html','/careers/'),('/blog.html','/'),('/legal.html','/contact/'),('/docs/xtract-demo.html','/')]
+(DIST/'_redirects').write_text(''.join(f'{old} {new} 301\n' for old,new in LEGACY_REDIRECTS), encoding='utf-8', newline='\n')
+(DIST/'_headers').write_text('/*\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n  X-Frame-Options: SAMEORIGIN\n/404\n  X-Robots-Tag: noindex, follow\n/404.html\n  X-Robots-Tag: noindex, follow\n/assets/optimized/*\n  Cache-Control: public, max-age=31536000, immutable\n/assets/runtime/*\n  Cache-Control: public, max-age=31536000, immutable\n'+FONT_URL+'\n  Cache-Control: public, max-age=31536000, immutable\n', encoding='utf-8', newline='\n')
 # dist/ holds exactly what pages reference. An unpublished approved file in
 # source-assets/ is published once a page references it; retired files never are.
 for url in sorted(referenced_assets):
