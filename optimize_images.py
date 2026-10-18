@@ -217,6 +217,31 @@ def avif_source_attrs(src: str, *, sizes: str | None = None) -> dict:
     }
 
 
+FAVICON_SOURCE = ASSETS / 'brand' / 'solarity-lockup-original.png'
+# The documented narrow crop of the official sun/lightning mark
+# (research-assets/brand-evidence.json, "solarity-sun").
+FAVICON_CROP = (186, 37, 1314, 1167)
+FAVICON_SIZES = (16, 32, 48)
+
+
+def write_favicon(target: Path) -> dict:
+    """Write a multi-size ICO of the official sun mark; resize only, never redraw."""
+    with Image.open(FAVICON_SOURCE) as image:
+        mark = image.convert('RGBA').crop(FAVICON_CROP)
+    # Pad the near-square crop with transparency instead of distorting it.
+    side = max(mark.size)
+    square = Image.new('RGBA', (side, side), (0, 0, 0, 0))
+    square.paste(mark, ((side - mark.width) // 2, (side - mark.height) // 2))
+    # Resample every frame from the full-resolution crop for the sharpest small sizes.
+    frames = [square.resize((size, size), Image.Resampling.LANCZOS) for size in FAVICON_SIZES]
+    output = BytesIO()
+    frames[-1].save(output, format='ICO', sizes=[frame.size for frame in frames], append_images=frames[:-1])
+    data = output.getvalue()
+    if not target.exists() or target.read_bytes() != data:
+        target.write_bytes(data)
+    return {'url': '/' + target.name, 'sizes': list(FAVICON_SIZES), 'bytes': len(data), 'sha256': _digest(data)}
+
+
 if __name__ == '__main__':
     manifest = ensure_optimized_images()
     for source, item in manifest['images'].items():

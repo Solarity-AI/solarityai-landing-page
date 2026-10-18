@@ -15,7 +15,7 @@ from product_explorer import product_explorer
 from product_story import product_story
 from visual_company_upgrade import strategy_story, investor_evidence, investor_opening, operating_principles, founder_booking
 from visual_strategy import platform_opening
-from optimize_images import ensure_optimized_images
+from optimize_images import ensure_optimized_images, write_favicon
 from performance_build import optimize_page
 from site_urls import public_path, normalize_page_links
 
@@ -75,7 +75,7 @@ def shell(path,title,desc,body):
     social_image = 'solar-ascent-social.jpg'
     data={'@context':'https://schema.org','@type':'Organization','name':'Solarity AI','legalName':'Solarity AI LLC','url':ORIGIN,'founder':{'@type':'Person','name':'Ata Turhan'},'email':EMAIL,'address':{'@type':'PostalAddress','addressLocality':'Irving','addressRegion':'Texas','addressCountry':'US'}}
     return f'''<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{e(title)} | Solarity AI</title><meta name="description" content="{e(desc)}"><meta name="robots" content="{robots}"><meta name="referrer" content="strict-origin-when-cross-origin"><meta name="theme-color" content="#11120f"><link rel="canonical" href="{ORIGIN}{public_path(path)}"><meta property="og:type" content="website"><meta property="og:title" content="{e(title)} | Solarity AI"><meta property="og:description" content="{e(desc)}"><meta property="og:url" content="{ORIGIN}{public_path(path)}"><meta property="og:image" content="{ORIGIN}/assets/{social_image}"><meta name="twitter:card" content="summary_large_image"><link rel="icon" href="/assets/brand/solarity-sun-48.9bc99afc73e8.webp" type="image/webp" sizes="48x48"><link rel="preload" href="{FONT_URL}" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="/assets/presentation.css"><script src="/assets/site.js" defer></script><script type="application/ld+json">{json.dumps(data)}</script></head>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{e(title)} | Solarity AI</title><meta name="description" content="{e(desc)}"><meta name="robots" content="{robots}"><meta name="referrer" content="strict-origin-when-cross-origin"><meta name="theme-color" content="#11120f"><link rel="canonical" href="{ORIGIN}{public_path(path)}"><meta property="og:type" content="website"><meta property="og:title" content="{e(title)} | Solarity AI"><meta property="og:description" content="{e(desc)}"><meta property="og:url" content="{ORIGIN}{public_path(path)}"><meta property="og:image" content="{ORIGIN}/assets/{social_image}"><meta name="twitter:card" content="summary_large_image"><link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48"><link rel="icon" href="/assets/brand/solarity-sun-48.9bc99afc73e8.webp" type="image/webp" sizes="48x48"><link rel="preload" href="{FONT_URL}" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="/assets/presentation.css"><script src="/assets/site.js" defer></script><script type="application/ld+json">{json.dumps(data)}</script></head>
 <body data-page="{path}"><a class="skip-link" href="#main">Skip to content</a>{site_header(path,NAV,btn)}
 <main id="main" tabindex="-1">{body}</main><dialog id="image-dialog" aria-labelledby="image-dialog-title"><div class="image-dialog-bar"><h2 id="image-dialog-title">App screenshot</h2><button type="button" id="image-dialog-close">Close preview <span aria-hidden="true">×</span></button></div><img id="image-dialog-image" alt="" width="600" height="1298"><p id="image-dialog-caption">Official app imagery. Sample content.</p></dialog>{site_footer(EMAIL,path)}</body></html>'''
 
@@ -114,6 +114,7 @@ style_sources=['design/system/foundation.css', 'design/system/chrome.css', 'desi
 source_css='\n'.join((ROOT/name).read_text(encoding='utf-8') for name in style_sources)
 (DIST/'assets/presentation.css').write_text(source_css, encoding='utf-8', newline='\n')
 ensure_optimized_images()
+write_favicon(DIST/'favicon.ico')
 performance_metrics={}
 # This explicit portfolio retirement must also apply to reused build directories.
 retired_product = DIST/'apps'/'voice-max'/'index.html'
@@ -131,7 +132,6 @@ for path,(title,desc,body) in pages.items():
 (DIST/'robots.txt').write_text(f'User-agent: *\nAllow: /\nSitemap: {ORIGIN}/sitemap.xml\n', encoding='utf-8', newline='\n')
 (DIST/'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+''.join(f'<url><loc>{ORIGIN}{public_path(p)}</loc></url>' for p in pages if p!='/404')+'</urlset>', encoding='utf-8', newline='\n')
 (DIST/'_headers').write_text('/*\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n/404\n  X-Robots-Tag: noindex, follow\n/404.html\n  X-Robots-Tag: noindex, follow\n/assets/optimized/*\n  Cache-Control: public, max-age=31536000, immutable\n/assets/runtime/*\n  Cache-Control: public, max-age=31536000, immutable\n'+FONT_URL+'\n  Cache-Control: public, max-age=31536000, immutable\n', encoding='utf-8', newline='\n')
-(DIST/'assets/favicon.svg').write_text('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#101110"/><text x="32" y="45" text-anchor="middle" font-family="Arial,sans-serif" font-size="42" fill="#e8cfa7">S</text></svg>', encoding='utf-8', newline='\n')
 (ROOT/'site-pages.json').write_text(json.dumps({p:{'title':v[0],'description':v[1]} for p,v in pages.items()},indent=2), encoding='utf-8', newline='\n')
 (ROOT/'research-assets/performance-build.json').write_text(json.dumps({'scope':'Build-time source byte counts, not measured Lighthouse scores or HTTP transfer results','routes':performance_metrics},indent=2), encoding='utf-8', newline='\n')
 print(f'Generated {len(pages)-1} content pages and 404.')

@@ -251,6 +251,11 @@ for asset_path in ['/assets/optimized/*','/assets/runtime/*']+fingerprinted_font
 for path,headers in header_rules.items():
     if 'immutable' in headers.get('cache-control','') and path not in ['/assets/optimized/*','/assets/runtime/*']+fingerprinted_fonts:errors.append(f'{path}: immutable caching must be scoped to fingerprinted assets')
 
+favicon=DIST/'favicon.ico'
+if not favicon.is_file() or favicon.read_bytes()[:4]!=b'\x00\x00\x01\x00':errors.append('Missing or invalid root favicon.ico')
+for file,d in docs.items():
+    if not any(t=='link' and a.get('rel')=='icon' and a.get('href')=='/favicon.ico' for t,a in d.tags):errors.append(f'{file.relative_to(DIST).as_posix()}: missing /favicon.ico icon link')
+
 for attr,values in [('title',[''.join(d.title) for d in docs.values()]),('description',[next((a.get('content','') for t,a in d.tags if t=='meta' and a.get('name')=='description'),'') for d in docs.values()])]:
     if len(values)!=len(set(values)):errors.append(f'Duplicate {attr}')
 bundle=DIST/'assets/presentation.css'
