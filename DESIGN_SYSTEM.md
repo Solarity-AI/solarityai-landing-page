@@ -44,15 +44,22 @@ The declared cascade is `foundation, components, pages, accessibility`. Modify t
 
 ## Design rules
 
-- Background `#111518`; quiet surface `#191e22`; raised surface `#222a30`.
-- Primary text `#f2f0e9`; secondary `#bdc4c8`; supporting `#a6b0b7`.
-- Solar accent `#e7c696`; paper `#eee9dd`; dark paper text `#1b272e`.
-- Product accent tokens apply to each corresponding route and its related content.
-- System sans-serif for reading and controls, Georgia for selective editorial contrast, system monospace for small indices. No downloaded fonts.
-- Fluid gutters from 20 to 56px; content maximum 1248px; fluid section spacing from 56 to 104px.
-- Base body text 16px with generous line height. Large titles and section headings use bounded `clamp()` scales. Keep long text in readable measures.
-- Standard radius 4px; larger image/dialog radius 8px. Borders define structure. Shadows are limited to product imagery and dialogs.
-- Primary actions use a restrained pill radius and have at least 52px height; compact navigation and secondary links use at least 44px where appropriate. Do not move entire controls on hover.
+All values below are tokens on `:root` in `design/system/foundation.css`. `check_site.py` fails the build when a stylesheet bypasses the type, weight, radius, or eyebrow rules.
+
+- **Color.**
+  - Dark surfaces: background `--bg` `#11120f`, `--surface`, `--surface-raised`.
+  - Text on dark: `--text`, `--muted`, `--dim`.
+  - Solar accent `--accent` `#edc78e`. Product accents `--looks-accent`, `--iq-accent`, `--sleep-accent`, `--fitness-accent` apply to their routes and related content.
+  - Light paper panels: `--paper` with `--ink`, `--paper-text` (body), `--paper-label` (labels and eyebrows), `--paper-accent` (bronze emphasis), `--paper-strong`, `--paper-line` and `--paper-line-strong`. Text on paper measures at least 5.6:1.
+- **Type.** One self-hosted Manrope variable font. Small and body text use only the scale `--text-2xs` 12px, `--text-xs` 13px, `--text-sm` 14px, `--text-md` 15px, `--text-base` 16px, `--text-lg` 18px and `--text-xl` 20px. Nothing renders below 12px. Headings use bounded `clamp()` sizes.
+- **Weights.** 400 for reading, 500 for headings and emphasis, 600 for labels, buttons and `strong`.
+- **Eyebrows.** One style: 12px, weight 600, `.1em` tracking, `--accent` on dark and `--paper-label` on paper. The hero uses a lighter gold for legibility over the artwork. The product-name label beside each app icon is 13px in its product accent.
+- **Measure.** Body paragraphs default to `--measure` (52ch, about 75 characters per line in Manrope, whose 0 is wider than its average letter). Wider containers must not stretch reading text past it.
+- **Headings.** `text-wrap: balance`. A span that follows a forced `<br>` becomes its own block, so it balances independently rather than stranding a word.
+- **Radii.** `--radius` 5px (controls, screenshots), `--radius-lg` 12px (cards, media, portraits), `--radius-pill` (buttons and pills), `--radius-icon` 24% (app icons, at every size), and `50%` only for true circles.
+- **Buttons.** One 14px label. Standard buttons are 52px high; `.small` is 44px. Store buttons grow only for their two-line content. Arrow glyphs use `line-height: 1` so they never change a button's height.
+- **Portraits.** Founder imagery uses `--radius-lg`. On dark surfaces it also gets `--shadow-portrait`, a warm hairline with soft depth.
+- **Spacing.** Fluid gutters (`--gutter`), content maximum 1264px, fluid section spacing (`--space-section`). Borders define structure. Shadows are limited to product imagery, portraits and dialogs.
 - Readable type, whitespace, and section composition provide hierarchy. Do not add continuous decoration, fake dashboards, redundant card shells, animated counters, or hidden-content entrances.
 
 ## CSS and browser support
