@@ -31,7 +31,7 @@
  .section{padding-block:var(--space-section)}
  .muted{color:var(--muted)}
  .mono{font-family:var(--font-mono);font-size:var(--text-2xs);letter-spacing:.04em}
- .eyebrow{font-size:var(--text-2xs);line-height:1.65;font-weight:600;letter-spacing:.11em;color:var(--accent);margin-bottom:22px}
+ .eyebrow{font-size:var(--text-2xs);line-height:1.65;font-weight:600;letter-spacing:.1em;color:var(--accent);margin-bottom:22px}
  .lede{font-size:clamp(1.05rem,.96rem + .36vw,1.25rem);line-height:1.72;max-width:56ch}
  .fineprint{font-size:var(--text-xs);line-height:1.7;color:var(--dim)}
  .page-intro{padding-block:clamp(60px,7.5vw,118px) clamp(44px,5.5vw,82px)}
@@ -48,7 +48,7 @@
  body[data-page='/apps/sleep-max'],[data-product-accent='indigo'],.indigo{--product-accent:var(--sleep-accent)}
  body[data-page='/apps/fitness-max'],[data-product-accent='amber'],.amber{--product-accent:var(--fitness-accent)}
  @media(max-width:850px){.section-heading{align-items:start;flex-direction:column;gap:22px}.section-lede{max-width:60ch}}
- @media(max-width:560px){.eyebrow{font-size:var(--text-2xs);letter-spacing:.07em;margin-bottom:16px}.two-col{grid-template-columns:1fr;gap:24px}.page-intro>.lede{margin-top:23px}}
+ @media(max-width:560px){.eyebrow{margin-bottom:16px}.two-col{grid-template-columns:1fr;gap:24px}.page-intro>.lede{margin-top:23px}}
 }
 @layer components {
  .actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px}
