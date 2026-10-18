@@ -12,7 +12,7 @@ from site_urls import public_path
 ROOT=Path(__file__).parent
 DIST=ROOT/'dist'
 BUNDLE=ROOT/'design/presentation.css'
-ORIGIN='https://solarity-company.the-ata-turhan.chatgpt.site'
+ORIGIN='https://solarityai.com'
 class Document(HTMLParser):
     def __init__(self):
         super().__init__();self.tags=[];self.ids=[];self.title=[];self.h1=[];self.headings=[];self.in_title=False;self.in_h1=False;self.label_depth=0;self.implicit_labeled_controls=set()

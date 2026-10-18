@@ -29,7 +29,7 @@ import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).parent
 DIST = ROOT / 'dist'
-ORIGIN = 'https://solarity-company.the-ata-turhan.chatgpt.site'
+ORIGIN = 'https://solarityai.com'
 REPORT = ROOT / 'research-assets' / 'production-audit.json'
 SEPARATION = ROOT / 'research-assets' / 'deploy-separation.json'
 USER_AGENT = 'Mozilla/5.0 (compatible; SolarityProductionAudit/1.0; read-only)'

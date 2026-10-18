@@ -87,7 +87,7 @@ def careers_page(btn):
 <input type="hidden" name="_subject" value="New Job Application - Solarity AI">
 <input type="hidden" name="_captcha" value="true">
 <input type="hidden" name="_template" value="box">
-<input type="hidden" name="_url" value="https://solarity-company.the-ata-turhan.chatgpt.site/careers/">
+<input type="hidden" name="_url" value="https://solarityai.com/careers/">
 <div hidden><label for="career-honey">Leave this field empty</label><input id="career-honey" type="text" name="_honey" tabindex="-1" autocomplete="off"></div>
 <div id="career-errors" class="career-errors" tabindex="-1" hidden><h3>Please check your application.</h3><ul id="career-error-list"></ul></div>
 <div class="career-fields">

@@ -22,7 +22,7 @@ from site_urls import public_path, normalize_page_links
 ROOT = Path(__file__).parent
 DIST = ROOT / 'dist'
 SOURCE_ASSETS = ROOT / 'source-assets'
-ORIGIN = 'https://solarity-company.the-ata-turhan.chatgpt.site'
+ORIGIN = 'https://solarityai.com'
 EMAIL = 'ata.turhan@solarityai.com'
 FONT_URL = '/assets/fonts/manrope-latin-variable.cfa570d7c3ee.woff2'
 BOOKING = 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ2qgXk0ZfBd6QJf7ef-306in7AI0Kzc-pL3NJFK1fU74vAUGiftVJPF3-DoXp9_RZoyqW_sjSpI'
