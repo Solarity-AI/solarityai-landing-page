@@ -92,6 +92,12 @@
  .image-dialog-bar h2{font-size:var(--text-base);line-height:1.4;letter-spacing:0}
  #image-dialog-close{flex-shrink:0;min-height:44px;padding:9px 13px;border:1px solid #74796d;border-radius:var(--radius);background:var(--surface-raised);color:var(--text);font-size:var(--text-sm)}
  #image-dialog-image{display:block;width:auto;max-width:calc(100% - 40px);height:auto;max-height:calc(100vh - 194px);max-height:calc(100dvh - 194px);margin:20px auto 14px;object-fit:contain;border-radius:var(--radius)}
+ /* Previous/next through the page's screenshots; shown only when there are several. */
+ .image-dialog-nav{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 20px 6px}
+ .image-dialog-nav button{min-height:44px;padding:9px 14px;border:1px solid #74796d;border-radius:var(--radius);background:var(--surface-raised);color:var(--text);font-size:var(--text-sm);transition:border-color var(--motion-fast)}
+ .image-dialog-nav button:hover{border-color:var(--accent)}
+ #image-dialog-count{font-size:var(--text-xs);color:var(--dim);font-variant-numeric:tabular-nums}
+ #image-dialog:has(.image-dialog-nav:not([hidden])) #image-dialog-image{max-height:calc(100vh - 250px);max-height:calc(100dvh - 250px)}
  #image-dialog-caption{text-align:center;font-size:var(--text-xs);padding:0 20px 20px}
  body.image-preview-open{overflow:hidden}
  @media(max-width:850px){.conversation-band{grid-template-columns:1fr;gap:28px}.conversation-actions{display:flex;flex-wrap:wrap;min-width:0}.conversation-actions .button{min-width:235px}}

@@ -9,13 +9,13 @@ const vm = require('node:vm');
 const source = fs.readFileSync(path.join(__dirname, 'scripts/gallery.js'), 'utf8');
 
 // A source-level event harness, not a browser or native-dialog rendering test.
-function harness({ supported = true, missingDialog = false, failOpen = false, href = '/assets/app-screen.webp' } = {}) {
+function harness({ supported = true, missingDialog = false, failOpen = false, href = '/assets/app-screen.webp', count = 1, nav = false } = {}) {
   const classes = new Set();
   const document = {
     activeElement: null,
     body: { classList: { add: (name) => classes.add(name), remove: (name) => classes.delete(name) } },
     getElementById(id) { return nodes[id] || null; },
-    querySelectorAll(selector) { return selector === 'a.screenshot-open' ? [link] : []; },
+    querySelectorAll(selector) { return selector === 'a.screenshot-open' ? links : []; },
   };
   function element() {
     const listeners = new Map();
@@ -40,6 +40,14 @@ function harness({ supported = true, missingDialog = false, failOpen = false, hr
     };
   }
   const link = { ...element(), href, dataset: { imageTitle: 'Looks Max screenshot', imageAlt: 'Official app preview' } };
+  const links = [link];
+  for (let index = 2; index <= count; index += 1) {
+    links.push({ ...element(), href: '/assets/app-screen-' + index + '.webp', dataset: { imageTitle: 'Screen ' + index, imageAlt: 'Preview ' + index } });
+  }
+  const navigation = { ...element(), hidden: true };
+  const previous = element();
+  const next = element();
+  const counter = element();
   const closeButton = element();
   const image = element();
   const title = element();
@@ -57,10 +65,11 @@ function harness({ supported = true, missingDialog = false, failOpen = false, hr
     'image-dialog-image': image,
     'image-dialog-title': title,
     'image-dialog-close': closeButton,
+    ...(nav ? { 'image-dialog-nav': navigation, 'image-dialog-prev': previous, 'image-dialog-next': next, 'image-dialog-count': counter } : {}),
   };
   const window = { location: { href: 'https://example.com/apps/looks-max', origin: 'https://example.com' } };
   vm.runInNewContext(source, { document, window, URL }, { filename: 'scripts/gallery.js' });
-  return { document, link, closeButton, image, title, dialog, classes };
+  return { document, link, links, closeButton, image, title, dialog, classes, navigation, previous, next, counter };
 }
 
 test('unmodified screenshot activation opens the preview and moves focus to Close', () => {
@@ -152,4 +161,51 @@ test('missing per-image descriptions use meaningful preview text', () => {
   view.link.emit('click');
   assert.equal(view.title.textContent, 'App preview');
   assert.equal(view.image.alt, 'Official app promotional screenshot with sample content');
+});
+
+test('a single screenshot keeps the sequence controls hidden', () => {
+  const view = harness({ nav: true });
+  view.link.emit('click');
+  assert.equal(view.dialog.open, true);
+  assert.equal(view.navigation.hidden, true);
+});
+
+test('several screenshots can be browsed with previous and next, wrapping at the ends', () => {
+  const view = harness({ nav: true, count: 3 });
+  view.links[1].emit('click');
+  assert.equal(view.navigation.hidden, false);
+  assert.equal(view.counter.textContent, '2 of 3');
+  assert.equal(view.title.textContent, 'Screen 2');
+  view.next.emit('click');
+  assert.equal(view.counter.textContent, '3 of 3');
+  assert.equal(view.image.src, 'https://example.com/assets/app-screen-3.webp');
+  assert.equal(view.image.alt, 'Preview 3');
+  view.next.emit('click');
+  assert.equal(view.counter.textContent, '1 of 3');
+  assert.equal(view.title.textContent, 'Looks Max screenshot');
+  view.previous.emit('click');
+  assert.equal(view.counter.textContent, '3 of 3');
+});
+
+test('arrow keys browse only while the preview is open, and closing returns to the opener', () => {
+  const view = harness({ nav: true, count: 2 });
+  const closed = view.dialog.emit('keydown', { key: 'ArrowRight' });
+  assert.equal(closed.defaultPrevented, false);
+  view.link.emit('click');
+  const forward = view.dialog.emit('keydown', { key: 'ArrowRight' });
+  assert.equal(forward.defaultPrevented, true);
+  assert.equal(view.counter.textContent, '2 of 2');
+  view.dialog.emit('keydown', { key: 'ArrowLeft' });
+  assert.equal(view.counter.textContent, '1 of 2');
+  assert.equal(view.dialog.emit('keydown', { key: 'ArrowRight', metaKey: true }).defaultPrevented, false);
+  view.closeButton.emit('click');
+  assert.equal(view.document.activeElement, view.link);
+});
+
+test('markup without sequence controls still previews each screenshot on its own', () => {
+  const view = harness({ count: 3 });
+  view.links[2].emit('click');
+  assert.equal(view.dialog.open, true);
+  assert.equal(view.title.textContent, 'Screen 3');
+  assert.equal(view.dialog.emit('keydown', { key: 'ArrowRight' }).defaultPrevented, false);
 });
