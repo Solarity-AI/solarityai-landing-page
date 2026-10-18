@@ -2,7 +2,7 @@
 
 Status on 2026-10-18: **unconfirmed, with evidence of risk.** No application has been confirmed as delivered from the current Site.
 
-**Before merging this site into `develop`:** the careers page it replaces on solarityai.com (`/careers.html`) posts to `https://formsubmit.co/info@solarityai.com`, which is activated and receiving applications. This site posts to `careers@solarityai.com`, which shows no activation. Merging as-is would move applicants from a working destination to an unverified one. Either activate and test `careers@` for the `https://solarityai.com` origin first, or have the founder choose `info@`.
+**Status after the move (2026-10-18):** the site is live on solarityai.com and posts to `careers@solarityai.com`, which the founder chose to keep. The founder confirmed activation and delivery from the GPT Sites origin. The same one-application test must be repeated on `https://solarityai.com`; until it passes, an applicant's first submission from solarityai.com may only trigger FormSubmit's activation email.
 
 ## What the form does
 
@@ -40,4 +40,5 @@ If `careers@` cannot receive mail, the founder should decide between creating th
 
 | Date | Tester | Activation email received | Activated | Test application received in careers@ | Notes |
 | --- | --- | --- | --- | --- | --- |
-| _pending_ | | | | | |
+| 2026-10-18 | Founder | Yes | Yes | Yes (reported by the founder) | Tested on the GPT Sites origin (`solarity-company.the-ata-turhan.chatgpt.site`) before the move. |
+| _pending_ | Founder | | | | Repeat once on `https://solarityai.com/careers/#apply` (live since 2026-10-18), because activation is per origin. |
