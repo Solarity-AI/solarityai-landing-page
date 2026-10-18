@@ -99,7 +99,7 @@ def optimize_page(document, path, css):
     # Navigation affects the initial mobile header height. Inline it before CSS
     # and body parsing so slow/failed runtime requests cannot collapse a painted
     # fallback menu. With JavaScript disabled, the expanded CSS fallback remains.
-    navigation = (ROOT / 'scripts/navigation.js').read_text()
+    navigation = (ROOT / 'scripts/navigation.js').read_text(encoding='utf-8')
     assert '</script' not in navigation.lower()
     navigation_hash = sha256(navigation.encode()).hexdigest()
     navigation_tag = f'<script id="navigation-startup" data-source-sha256="{navigation_hash}">{navigation}</script>'

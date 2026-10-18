@@ -33,9 +33,9 @@ class Document(HTMLParser):
 
 docs={};errors=[];warnings=[];links_checked=0;assets_checked=0
 for file in sorted(DIST.rglob('*.html')):
-    d=Document();d.feed(file.read_text());docs[file]=d
+    d=Document();d.feed(file.read_text(encoding='utf-8'));docs[file]=d
 for file,d in docs.items():
-    rel=str(file.relative_to(DIST))
+    rel=file.relative_to(DIST).as_posix()
     if len(d.h1)!=1:errors.append(f'{rel}: {len(d.h1)} H1 elements')
     for previous,current in zip(d.headings,d.headings[1:]):
         if current>previous+1:errors.append(f'{rel}: heading level skips from H{previous} to H{current}')
@@ -46,7 +46,7 @@ for file,d in docs.items():
     for name in ['description','viewport','og:title','og:description','og:url','og:image']:
         if not meta.get(name):errors.append(f'{rel}: missing {name}')
     canonical=[a.get('href','') for t,a in d.tags if t=='link' and a.get('rel')=='canonical']
-    route='/' if file==DIST/'index.html' else '/404' if file==DIST/'404.html' else '/'+str(file.parent.relative_to(DIST))
+    route='/' if file==DIST/'index.html' else '/404' if file==DIST/'404.html' else '/'+file.parent.relative_to(DIST).as_posix()
     expected_url=ORIGIN+public_path(route)
     if canonical!=[expected_url]:errors.append(f'{rel}: unexpected canonical {canonical}')
     if meta.get('og:url')!=expected_url:errors.append(f'{rel}: Open Graph URL must match the final canonical URL')
@@ -81,10 +81,10 @@ for file,d in docs.items():
             links_checked+=1
             if u.fragment and unquote(u.fragment) not in docs.get(target,Document()).ids:errors.append(f'{rel}: missing fragment {url}')
             if t=='a' and u.path.startswith('/'):
-                target_route='/' if target==DIST/'index.html' else '/404' if target==DIST/'404.html' else '/'+str(target.parent.relative_to(DIST))
+                target_route='/' if target==DIST/'index.html' else '/404' if target==DIST/'404.html' else '/'+target.parent.relative_to(DIST).as_posix()
                 if u.path!=public_path(target_route):errors.append(f'{rel}: internal link requires a host redirect: {url}')
         else:assets_checked+=1
-    text=file.read_text()
+    text=file.read_text(encoding='utf-8')
     if '\u2014' in text:errors.append(f'{rel}: long dash')
     if re.search(r'lorem ipsum|href=[\"\x27]#(?:[\"\x27])',text,re.I):errors.append(f'{rel}: placeholder content/link')
 
@@ -111,7 +111,7 @@ for file,d in docs.items():
         if script_file.is_file() and sha256(script_file.read_bytes()).hexdigest()[:12]!=match.group(2):errors.append(f'{rel}: script filename hash does not match its content')
     if actual_scripts!=expected_scripts:errors.append(f'{rel}: incorrect route-specific scripts {actual_scripts}')
     startup=re.search(r'<script\b[^>]*id="navigation-startup"[^>]*>(.*?)</script>',text,re.S)
-    navigation_source=(ROOT/'scripts/navigation.js').read_text()
+    navigation_source=(ROOT/'scripts/navigation.js').read_text(encoding='utf-8')
     startup_tags=[a for t,a in d.tags if t=='script' and a.get('id')=='navigation-startup']
     if len(startup_tags)!=1 or not startup or startup.group(1)!=navigation_source:
         errors.append(f'{rel}: missing or stale inline navigation startup')
@@ -218,7 +218,7 @@ for file,d in docs.items():
             if not any(t=='a' and a.get('href')==public_path(destination) for t,a in d.tags):errors.append(f'{rel}: missing recovery destination {destination}')
 
 # Public discoverability must cover every real page without indexing the error document.
-expected_public_urls={ORIGIN+public_path('/' if file==DIST/'index.html' else '/'+str(file.parent.relative_to(DIST))) for file in docs if file!=DIST/'404.html'}
+expected_public_urls={ORIGIN+public_path('/' if file==DIST/'index.html' else '/'+file.parent.relative_to(DIST).as_posix()) for file in docs if file!=DIST/'404.html'}
 try:
     sitemap=ET.parse(DIST/'sitemap.xml')
     sitemap_urls=[node.text for node in sitemap.findall('{http://www.sitemaps.org/schemas/sitemap/0.9}url/{http://www.sitemaps.org/schemas/sitemap/0.9}loc')]
@@ -227,14 +227,14 @@ try:
 except (OSError,ET.ParseError) as exc:
     errors.append(f'Invalid or missing sitemap: {exc}')
 try:
-    robots=RobotFileParser();robots.parse((DIST/'robots.txt').read_text().splitlines())
+    robots=RobotFileParser();robots.parse((DIST/'robots.txt').read_text(encoding='utf-8').splitlines())
     if robots.site_maps()!=[ORIGIN+'/sitemap.xml']:errors.append('Robots must advertise the deployment-origin sitemap')
     for agent in ['*','Googlebot','Googlebot-Mobile']:
         if any(not robots.can_fetch(agent,url) for url in expected_public_urls):errors.append(f'Robots blocks a public content page for {agent}')
 except OSError as exc:
     errors.append(f'Missing robots file: {exc}')
 header_rules={};current_rule=None
-for line in (DIST/'_headers').read_text().splitlines():
+for line in (DIST/'_headers').read_text(encoding='utf-8').splitlines():
     if line and not line[0].isspace():
         current_rule=line;header_rules[current_rule]={}
     elif line.strip() and current_rule:
@@ -254,19 +254,19 @@ for path,headers in header_rules.items():
 for attr,values in [('title',[''.join(d.title) for d in docs.values()]),('description',[next((a.get('content','') for t,a in d.tags if t=='meta' and a.get('name')=='description'),'') for d in docs.values()])]:
     if len(values)!=len(set(values)):errors.append(f'Duplicate {attr}')
 bundle=DIST/'assets/presentation.css'
-css=bundle.read_text() if bundle.is_file() else ''
+css=bundle.read_text(encoding='utf-8') if bundle.is_file() else ''
 # Read the maintained build list, so newer styles cannot silently escape QA.
-builder=ast.parse((ROOT/'build_site.py').read_text())
+builder=ast.parse((ROOT/'build_site.py').read_text(encoding='utf-8'))
 style_sources=next(ast.literal_eval(node.value) for node in builder.body if isinstance(node,ast.Assign) and any(isinstance(target,ast.Name) and target.id=='style_sources' for target in node.targets))
 for source in style_sources:
     maintained_source=ROOT/source
     if not maintained_source.is_file():errors.append(f'Missing maintained stylesheet {source}')
-    elif maintained_source.read_text() not in css:errors.append(f'Presentation bundle is missing or has stale content from {source}')
+    elif maintained_source.read_text(encoding='utf-8') not in css:errors.append(f'Presentation bundle is missing or has stale content from {source}')
 for breakpoint in [1150,850,560]:
     if f'max-width:{breakpoint}px' not in css:warnings.append(f'Missing expected CSS breakpoint {breakpoint}')
 if 'prefers-reduced-motion:reduce' not in css:errors.append('Missing reduced-motion rule')
 if ':focus-visible' not in css:errors.append('Missing explicit focus-visible rule')
 report={'pages':len(docs),'internal_links_and_fragments_checked':links_checked,'local_asset_references_checked':assets_checked,'errors':errors,'warnings':warnings,'scope':'Static HTML, generated routes/fragments/assets, metadata, labels and CSS source checks. No browser, measured layout, contact delivery, HTTP routing, or performance results.'}
 print(json.dumps(report,indent=2))
-(ROOT/'static-audit.json').write_text(json.dumps(report,indent=2))
+(ROOT/'static-audit.json').write_text(json.dumps(report,indent=2), encoding='utf-8', newline='\n')
 raise SystemExit(bool(errors))

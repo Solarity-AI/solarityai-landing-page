@@ -123,7 +123,7 @@ def ensure_optimized_images() -> dict:
         name = f'human-progress-{width}.webp'
         source_hashes[name] = _digest((ASSETS / name).read_bytes())
     if REPORT.exists():
-        previous = json.loads(REPORT.read_text())
+        previous = json.loads(REPORT.read_text(encoding='utf-8'))
         if _cache_valid(previous, source_hashes):
             _manifest = previous
             return previous
@@ -176,7 +176,7 @@ def ensure_optimized_images() -> dict:
                     record['avif'].append(_file_record(avif, stem, width, avif_height, 'AVIF'))
             report['images'][record['source']] = record
     REPORT.parent.mkdir(parents=True, exist_ok=True)
-    REPORT.write_text(json.dumps(report, indent=2) + '\n')
+    REPORT.write_text(json.dumps(report, indent=2) + '\n', encoding='utf-8', newline='\n')
     _manifest = report
     return report
 

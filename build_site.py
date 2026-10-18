@@ -111,8 +111,8 @@ pages['/contact']=('Start a conversation','Contact Solarity AI about investment,
 pages['/404']=('Page not found','Find your way back to Solarity AI.',f'<section class="page-intro wrap not-found"><div class="recovery-intro">{eyebrow("404 / A DIFFERENT PATH")}<h1>This page<br><span class="muted">is not here.</span></h1><p class="lede">Let’s get you back to the products, the platform, or the conversation.</p><div class="actions">{btn("Back to home","/")}{btn("Explore our apps","/apps","outline")}</div></div>{recovery_links()}</section>')
 
 style_sources=['design/system/foundation.css', 'design/system/chrome.css', 'design/system/home.css', 'design/system/products.css', 'design/system/company.css', 'design/system/contact.css', 'design/system/careers.css', 'design/system/accessibility.css']
-source_css='\n'.join((ROOT/name).read_text() for name in style_sources)
-(DIST/'assets/presentation.css').write_text(source_css)
+source_css='\n'.join((ROOT/name).read_text(encoding='utf-8') for name in style_sources)
+(DIST/'assets/presentation.css').write_text(source_css, encoding='utf-8', newline='\n')
 ensure_optimized_images()
 performance_metrics={}
 # This explicit portfolio retirement must also apply to reused build directories.
@@ -126,12 +126,12 @@ for path,(title,desc,body) in pages.items():
     dest.parent.mkdir(parents=True,exist_ok=True)
     document=normalize_page_links(shell(path,title,desc,body),pages)
     document,metrics=optimize_page(document,path,source_css)
-    dest.write_text(document)
+    dest.write_text(document, encoding='utf-8', newline='\n')
     performance_metrics[path]=metrics
-(DIST/'robots.txt').write_text(f'User-agent: *\nAllow: /\nSitemap: {ORIGIN}/sitemap.xml\n')
-(DIST/'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+''.join(f'<url><loc>{ORIGIN}{public_path(p)}</loc></url>' for p in pages if p!='/404')+'</urlset>')
-(DIST/'_headers').write_text('/*\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n/404\n  X-Robots-Tag: noindex, follow\n/404.html\n  X-Robots-Tag: noindex, follow\n/assets/optimized/*\n  Cache-Control: public, max-age=31536000, immutable\n/assets/runtime/*\n  Cache-Control: public, max-age=31536000, immutable\n'+FONT_URL+'\n  Cache-Control: public, max-age=31536000, immutable\n')
-(DIST/'assets/favicon.svg').write_text('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#101110"/><text x="32" y="45" text-anchor="middle" font-family="Arial,sans-serif" font-size="42" fill="#e8cfa7">S</text></svg>')
-(ROOT/'site-pages.json').write_text(json.dumps({p:{'title':v[0],'description':v[1]} for p,v in pages.items()},indent=2))
-(ROOT/'research-assets/performance-build.json').write_text(json.dumps({'scope':'Build-time source byte counts, not measured Lighthouse scores or HTTP transfer results','routes':performance_metrics},indent=2))
+(DIST/'robots.txt').write_text(f'User-agent: *\nAllow: /\nSitemap: {ORIGIN}/sitemap.xml\n', encoding='utf-8', newline='\n')
+(DIST/'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+''.join(f'<url><loc>{ORIGIN}{public_path(p)}</loc></url>' for p in pages if p!='/404')+'</urlset>', encoding='utf-8', newline='\n')
+(DIST/'_headers').write_text('/*\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n/404\n  X-Robots-Tag: noindex, follow\n/404.html\n  X-Robots-Tag: noindex, follow\n/assets/optimized/*\n  Cache-Control: public, max-age=31536000, immutable\n/assets/runtime/*\n  Cache-Control: public, max-age=31536000, immutable\n'+FONT_URL+'\n  Cache-Control: public, max-age=31536000, immutable\n', encoding='utf-8', newline='\n')
+(DIST/'assets/favicon.svg').write_text('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#101110"/><text x="32" y="45" text-anchor="middle" font-family="Arial,sans-serif" font-size="42" fill="#e8cfa7">S</text></svg>', encoding='utf-8', newline='\n')
+(ROOT/'site-pages.json').write_text(json.dumps({p:{'title':v[0],'description':v[1]} for p,v in pages.items()},indent=2), encoding='utf-8', newline='\n')
+(ROOT/'research-assets/performance-build.json').write_text(json.dumps({'scope':'Build-time source byte counts, not measured Lighthouse scores or HTTP transfer results','routes':performance_metrics},indent=2), encoding='utf-8', newline='\n')
 print(f'Generated {len(pages)-1} content pages and 404.')
