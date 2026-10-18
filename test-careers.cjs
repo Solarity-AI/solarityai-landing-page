@@ -1,6 +1,6 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
-const { readCareerRole, parseWebUrl, isLinkedInProfile, isEmailAddress, validateCareerApplication, isPlainActivation } = require('./scripts/careers.js');
+const { readCareerRole, parseWebUrl, isLinkedInProfile, isEmailAddress, validateCareerApplication, isPlainActivation, withScheme } = require('./scripts/careers.js');
 
 const application = {
   fullName: 'Çağrı O’Neil', email: 'person.name+careers@gmail.com',
@@ -76,4 +76,26 @@ test('role enhancement preserves modified clicks, other buttons, downloads, and 
   assert.equal(isPlainActivation({ button: 0 }, { ...link, target: '_blank' }), false);
   assert.equal(isPlainActivation({ button: 0 }, { ...link, target: '_self' }), true);
   assert.equal(isPlainActivation({ button: 0 }, { ...link, hasAttribute: (name) => name === 'download' }), false);
+});
+
+test('LinkedIn country subdomains are accepted while look-alike hosts stay rejected', () => {
+  for (const linkedin of ['https://tr.linkedin.com/in/eren-%C3%B6z-93aa94317', 'https://uk.linkedin.com/in/person-name/', 'https://DE.linkedin.com/in/person']) {
+    assert.equal(isLinkedInProfile(linkedin), true, linkedin);
+  }
+  for (const linkedin of ['https://abc.linkedin.com/in/person', 'https://tr.linkedin.com.evil.test/in/person', 'https://linkedin-com.tr/in/person', 'https://tr.linkedin.com/company/solarity']) {
+    assert.equal(isLinkedInProfile(linkedin), false, linkedin);
+  }
+});
+
+test('links pasted without a scheme gain https:// and other input is left for validation', () => {
+  assert.equal(withScheme('linkedin.com/in/person-name'), 'https://linkedin.com/in/person-name');
+  assert.equal(withScheme('  www.linkedin.com/in/person  '), 'https://www.linkedin.com/in/person');
+  assert.equal(withScheme('github.com/person'), 'https://github.com/person');
+  assert.equal(withScheme('example.org'), 'https://example.org');
+  assert.equal(withScheme('//example.org/work'), 'https://example.org/work');
+  for (const kept of ['https://example.com', 'http://example.com', 'mailto:person@example.com', 'javascript:alert(1)', 'not a link', 'invalid', '']) {
+    assert.equal(withScheme(kept), kept.trim(), kept);
+  }
+  // Completed links then pass the same validation as typed ones.
+  assert.deepEqual(validateCareerApplication({ ...application, linkedin: withScheme('tr.linkedin.com/in/person'), portfolio: withScheme('github.com/person') }), {});
 });
