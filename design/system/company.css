@@ -11,7 +11,7 @@
   .founder-section>div>h2 { max-width:16ch; font-size:clamp(2.4rem,4.1vw,4.2rem); line-height:1.08; }
   .founder-section>div>p:not(.eyebrow) { max-width:47ch; margin-block:26px; font-size:var(--text-base); }
   .founder-section>div>.button { margin-top:8px; }
-  .founder-panel { background:var(--paper); color:var(--ink); overflow:hidden; }
+  .founder-panel { background:var(--paper); color:var(--ink); overflow:hidden; border-radius:var(--radius-lg); }
   .founder-panel .founder-photo { display:block; width:100%; height:auto; aspect-ratio:1; object-fit:contain; }
   .founder-sheet { padding:clamp(24px,3vw,40px); }
   .founder-sheet>.eyebrow { margin-bottom:18px; }

@@ -8,7 +8,7 @@
   .careers-opening .actions { gap: 16px 28px; }
   .careers-founder { position: relative; justify-self: end; width: min(100%, 340px); padding-block: 18px 0; }
   .careers-founder::before { content: ''; pointer-events: none; position: absolute; inset: 0 0 16%; z-index: -1; background: radial-gradient(ellipse, #b8793322, transparent 68%); }
-  .careers-founder > img { width: 100%; height: auto; aspect-ratio: 1; border-radius: 50%; }
+  .careers-founder > img { width: 100%; height: auto; aspect-ratio: 1; border-radius: var(--radius-lg); box-shadow: var(--shadow-portrait); }
   .careers-founder figcaption { margin-block-start: 26px; padding-inline-start: 8px; }
   .careers-founder .eyebrow { margin-block-end: 12px; }
   .careers-founder figcaption > p:not(.eyebrow) { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; }
