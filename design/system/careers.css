@@ -74,7 +74,6 @@
   #career-submit:disabled { opacity: .7; cursor: wait; border-style: dashed; }
   #career-status:empty { display: none; }
   #career-status:not(:empty) { margin-block-start: 18px; padding: 14px; border-inline-start: 2px solid var(--accent); background: #292820; color: #f2dfbb; font-size: var(--text-xs); line-height: 1.75; overflow-wrap: anywhere; }
-  #apply, #opportunities, #career-errors { scroll-margin-block-start: 112px; }
   @media (hover: hover) { .career-role-action:hover { background: #e7c6960d; border-color: var(--accent); } .career-field input:hover, .career-field select:hover { border-color: var(--accent); } }
   @media (max-width: 1100px) { .career-fields { grid-template-columns: 1fr; } .career-role { grid-template-columns: 124px minmax(0, 1fr) auto; gap: 24px; } .career-form { padding: 28px; } }
   @media (max-width: 850px) {

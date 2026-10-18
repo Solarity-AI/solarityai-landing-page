@@ -21,6 +21,12 @@ function harness({ readyState = 'loading', mobile = true, header = true } = {}) 
         entries.push({ callback, once: Boolean(options && options.once) });
         listeners.set(type, entries);
       },
+      removeEventListener(type, callback) {
+        listeners.set(type, (listeners.get(type) || []).filter((entry) => entry.callback !== callback));
+      },
+      listenerCount(type) {
+        return (listeners.get(type) || []).length;
+      },
       emit(type, properties = {}) {
         const event = {
           type,
@@ -149,6 +155,19 @@ function assertOpenMobile(view) {
   assert.equal(view.nav.classList.contains('is-open'), true);
   assert.equal(view.body.classList.contains('nav-open'), true);
 }
+
+test('smooth in-page scrolling starts with the first interaction, never during load', () => {
+  for (const input of ['pointerdown', 'keydown']) {
+    const view = harness();
+    view.ready();
+    view.window.emit('load');
+    assert.equal(view.document.documentElement.classList.contains('smooth-scroll'), false);
+    view.window.emit(input);
+    assert.equal(view.document.documentElement.classList.contains('smooth-scroll'), true);
+    // Both one-time listeners are released after the first interaction.
+    assert.equal(view.window.listenerCount('pointerdown') + view.window.listenerCount('keydown'), 0);
+  }
+});
 
 test('head startup establishes mobile CSS before querying a not-yet-parsed header', () => {
   const view = harness();

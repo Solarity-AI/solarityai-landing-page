@@ -1,6 +1,5 @@
 /* Company, platform and investor compositions. Shared tokens, distinct visual chapters. */
 @layer pages {
-  .selected-team,.module-detail,.partnership-agenda,.investor-faq { scroll-margin-top:112px; }
   .company-intro { display:grid; grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr); gap:0 72px; align-items:start; }
   .company-intro>.eyebrow { grid-column:1 / -1; }
   .company-intro>h1 { grid-column:1; grid-row:2 / 5; font-size:clamp(3rem,5.8vw,5.6rem); line-height:1.02; }

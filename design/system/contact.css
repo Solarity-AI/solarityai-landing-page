@@ -40,7 +40,6 @@
   .contact-data-note p { max-width: var(--measure); color: var(--dim); font-size: var(--text-xs); line-height: 1.8; }
   .contact-data-note p + p { margin-block-start: 8px; }
   .contact-data-note a { text-decoration: underline; text-underline-offset: 3px; overflow-wrap: anywhere; }
-  #prepare-inquiry, #data-note { scroll-margin-block-start: calc(var(--header-height, 88px) + 24px); }
 
   /* Recovery remains a useful directory. */
   .not-found { max-width: 1040px; padding-block: var(--space-section); }

@@ -4,7 +4,11 @@
  @font-face{font-family:'Manrope';font-style:normal;font-weight:200 800;font-display:optional;src:url('/assets/fonts/manrope-latin-variable.cfa570d7c3ee.woff2') format('woff2')}
  :root{color-scheme:dark;--bg:#11120f;--surface:#1a1c17;--surface-raised:#252820;--text:#f5f1e8;--muted:#c4c3b9;--dim:#aaa99f;--accent:#edc78e;--line:#373b31;--paper:#f1ede3;--ink:#1c241c;--paper-text:#554d40;--paper-label:#635334;--paper-accent:#785728;--paper-strong:#332b1e;--paper-line:#b9b0a0;--paper-line-strong:#9a8869;--radius:5px;--radius-lg:12px;--radius-pill:999px;--radius-icon:24%;--shadow-portrait:0 0 0 1px #f5f1e81f,0 24px 60px #0007;--gutter:clamp(22px,4.3vw,64px);--space-section:clamp(72px,8vw,132px);--font-body:'Manrope',Arial,sans-serif;--font-display:var(--font-body);--font-editorial:var(--font-body);--font-mono:ui-monospace,'SFMono-Regular',Consolas,monospace;--text-2xs:.75rem;--text-xs:.8125rem;--text-sm:.875rem;--text-md:.9375rem;--text-base:1rem;--text-lg:1.125rem;--text-xl:1.25rem;--measure:52ch;--type-display:clamp(3rem,1.8rem + 4vw,6rem);--type-heading:clamp(2.15rem,1.35rem + 2.6vw,4.1rem);--motion-fast:180ms;--motion-detail:320ms;--motion-ease:cubic-bezier(.22,.68,.2,1);--looks-accent:#dcc4e5;--iq-accent:#b5d3e6;--sleep-accent:#c8c9e9;--fitness-accent:#edc78e;--product-accent:var(--accent)}
  *,*::before,*::after{box-sizing:border-box}
+ /* The one offset for every in-page jump: clears the sticky header with room to breathe. */
  html{font-size:100%;scroll-padding-top:112px;-webkit-text-size-adjust:100%}
+ /* In-page jumps glide so readers keep their place; reduced motion keeps them instant.
+    navigation.js adds .smooth-scroll after load so arriving deep links jump directly. */
+ @media(prefers-reduced-motion:no-preference){html.smooth-scroll{scroll-behavior:smooth}}
  body{margin:0;min-width:320px;font:400 var(--text-base)/1.65 var(--font-body);background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
  h1,h2,h3,h4,p,figure,blockquote{margin:0}
  h1,h2,h3,h4{font-family:var(--font-display);font-weight:500;color:var(--text);text-wrap:balance}
@@ -30,7 +34,6 @@
  :focus-visible{outline:2px solid var(--accent);outline-offset:4px}
  main:focus{outline:none}
  ::selection{background:var(--accent);color:var(--ink)}
- :target{scroll-margin-block-start:112px}
  .wrap{width:min(1264px,calc(100% - 2*var(--gutter)));margin-inline:auto}
  .section{padding-block:var(--space-section)}
  .muted{color:var(--muted)}
@@ -195,7 +198,7 @@
 
 /* Every panel occupies the same grid cell. Hidden panels reserve dimensions,
    while visibility removes their controls from focus and accessibility traversal. */
-.product-explorer{padding-block:clamp(60px,8vw,120px) clamp(76px,9vw,136px);scroll-margin-top:108px}
+.product-explorer{padding-block:clamp(60px,8vw,120px) clamp(76px,9vw,136px)}
 .explorer-heading{display:grid;grid-template-columns:1.2fr .8fr;gap:70px;align-items:end;margin-bottom:48px}
 .explorer-heading h2{max-width:22ch;font-size:clamp(2.6rem,4.4vw,4.4rem);line-height:1.08;letter-spacing:-.05em}
 .explorer-heading>p{max-width:38ch;font-size:var(--text-base);line-height:1.8}
@@ -326,7 +329,7 @@
 .catalog-anchor-nav>a span:last-child{color:var(--accent)}
 .catalog-anchor-nav>a:is(:hover,:focus-visible){color:var(--text)}
 .catalog-product-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:88px 64px;padding-block:64px 16px}
-.catalog-product-row{min-width:0;scroll-margin-top:116px}
+.catalog-product-row{min-width:0}
 .catalog-product-masthead{margin-bottom:28px}
 .catalog-category{font-size:var(--text-2xs);line-height:1.65;color:var(--product-accent);margin-bottom:12px;letter-spacing:.04em}
 .catalog-product-masthead h2{font-size:clamp(2.5rem,4.5vw,4rem);line-height:1.08;letter-spacing:-.045em}
@@ -479,7 +482,6 @@
 
 /* Company, platform and investor compositions. Shared tokens, distinct visual chapters. */
 @layer pages {
-  .selected-team,.module-detail,.partnership-agenda,.investor-faq { scroll-margin-top:112px; }
   .company-intro { display:grid; grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr); gap:0 72px; align-items:start; }
   .company-intro>.eyebrow { grid-column:1 / -1; }
   .company-intro>h1 { grid-column:1; grid-row:2 / 5; font-size:clamp(3rem,5.8vw,5.6rem); line-height:1.02; }
@@ -856,7 +858,6 @@
   .contact-data-note p { max-width: var(--measure); color: var(--dim); font-size: var(--text-xs); line-height: 1.8; }
   .contact-data-note p + p { margin-block-start: 8px; }
   .contact-data-note a { text-decoration: underline; text-underline-offset: 3px; overflow-wrap: anywhere; }
-  #prepare-inquiry, #data-note { scroll-margin-block-start: calc(var(--header-height, 88px) + 24px); }
 
   /* Recovery remains a useful directory. */
   .not-found { max-width: 1040px; padding-block: var(--space-section); }
@@ -985,7 +986,6 @@
   #career-submit:disabled { opacity: .7; cursor: wait; border-style: dashed; }
   #career-status:empty { display: none; }
   #career-status:not(:empty) { margin-block-start: 18px; padding: 14px; border-inline-start: 2px solid var(--accent); background: #292820; color: #f2dfbb; font-size: var(--text-xs); line-height: 1.75; overflow-wrap: anywhere; }
-  #apply, #opportunities, #career-errors { scroll-margin-block-start: 112px; }
   @media (hover: hover) { .career-role-action:hover { background: #e7c6960d; border-color: var(--accent); } .career-field input:hover, .career-field select:hover { border-color: var(--accent); } }
   @media (max-width: 1100px) { .career-fields { grid-template-columns: 1fr; } .career-role { grid-template-columns: 124px minmax(0, 1fr) auto; gap: 24px; } .career-form { padding: 28px; } }
   @media (max-width: 850px) {

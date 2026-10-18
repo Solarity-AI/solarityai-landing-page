@@ -8,7 +8,7 @@
 .catalog-anchor-nav>a span:last-child{color:var(--accent)}
 .catalog-anchor-nav>a:is(:hover,:focus-visible){color:var(--text)}
 .catalog-product-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:88px 64px;padding-block:64px 16px}
-.catalog-product-row{min-width:0;scroll-margin-top:116px}
+.catalog-product-row{min-width:0}
 .catalog-product-masthead{margin-bottom:28px}
 .catalog-category{font-size:var(--text-2xs);line-height:1.65;color:var(--product-accent);margin-bottom:12px;letter-spacing:.04em}
 .catalog-product-masthead h2{font-size:clamp(2.5rem,4.5vw,4rem);line-height:1.08;letter-spacing:-.045em}

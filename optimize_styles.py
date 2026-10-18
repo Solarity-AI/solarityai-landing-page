@@ -10,7 +10,7 @@ import re
 
 
 DYNAMIC_CLASSES = frozenset({
-    'nav-enhanced', 'is-open', 'nav-open', 'image-preview-open',
+    'nav-enhanced', 'is-open', 'nav-open', 'image-preview-open', 'smooth-scroll',
 })
 _IDENTIFIER = re.compile(r'-?[_a-zA-Z][_a-zA-Z0-9-]*')
 _CONDITIONAL_RULES = frozenset({'media', 'supports', 'container', 'layer'})
