@@ -33,7 +33,8 @@ SECURITY = {
     'x-frame-options': 'SAMEORIGIN',
 }
 # Equivalent registrations of the same format differ between servers.
-TYPE_ALIASES = {'application/javascript': 'text/javascript', 'text/xml': 'application/xml'}
+TYPE_ALIASES = {'application/javascript': 'text/javascript', 'text/xml': 'application/xml',
+                'image/vnd.microsoft.icon': 'image/x-icon'}
 
 
 class _NoRedirect(HTTPRedirectHandler):
