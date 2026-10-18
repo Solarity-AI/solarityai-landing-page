@@ -306,6 +306,19 @@ for file in docs:
         for match in re.finditer(r'class="(?:[^"]*\s)?'+re.escape(scope)+r'(?:\s[^"]*)?"[^>]*>(.*?)</h[1-6]>',text,re.S):
             words=re.sub(r'<[^>]+>','',re.sub(r'<br\b[^>]*>','\0',match.group(1)))
             for joined in re.findall(r'\S+\0\S+',words):errors.append(f'{rel}: hidden line break joins words in .{scope}: {joined.replace(chr(0)," / ")}')
+# Design tokens: small and body text use the type scale, three weights, and named radii.
+for source in style_sources:
+    rules=(ROOT/source).read_text(encoding='utf-8') if (ROOT/source).is_file() else ''
+    screen=re.split(r'@media\s+print',rules)[0]
+    for value in re.findall(r'font-size:\s*([^;}]+)',screen):
+        literal=re.fullmatch(r'(\d*\.?\d+)(rem|px|em)',value.strip())
+        if literal and (literal.group(2)!='rem' or float(literal.group(1))<1.33):errors.append(f'{source}: text size {value.strip()} must use a --text-* step')
+    for value in re.findall(r'(?<![\w-])font-weight:\s*([^;}]+)',screen):
+        if value.strip() not in ('400','500','600','inherit','200 800'):errors.append(f'{source}: font weight {value.strip()} is outside the 400/500/600 system')
+    for value in re.findall(r'border-radius:\s*([^;}]+)',screen):
+        if not re.fullmatch(r'var\(--radius(-lg|-pill|-icon)?\)|0|50%',value.strip()):errors.append(f'{source}: radius {value.strip()} must use a --radius token')
+    for selector,body in re.findall(r'([^{}]*\.eyebrow[^{}]*)\{([^}]*)\}',screen):
+        if selector.strip()!='.eyebrow' and '.product-identity' not in selector and ':not(.eyebrow)' not in selector and re.search(r'font-size|letter-spacing',body):errors.append(f'{source}: eyebrow size and tracking belong to the base .eyebrow style ({selector.strip()[:60]})')
 for breakpoint in [1150,850,560]:
     if f'max-width:{breakpoint}px' not in css:warnings.append(f'Missing expected CSS breakpoint {breakpoint}')
 if 'prefers-reduced-motion:reduce' not in css:errors.append('Missing reduced-motion rule')
