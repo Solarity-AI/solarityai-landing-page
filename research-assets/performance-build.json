@@ -18,8 +18,8 @@
       ],
       "external_scripts": [],
       "javascript_bytes": 2798,
-      "html_bytes": 68109,
-      "html_gzip_bytes": 15694
+      "html_bytes": 68142,
+      "html_gzip_bytes": 15712
     },
     "/apps": {
       "source_bytes": 108874,
@@ -41,8 +41,8 @@
         "gallery"
       ],
       "javascript_bytes": 5109,
-      "html_bytes": 43204,
-      "html_gzip_bytes": 10598
+      "html_bytes": 43237,
+      "html_gzip_bytes": 10618
     },
     "/apps/looks-max": {
       "source_bytes": 108874,
@@ -64,8 +64,8 @@
         "gallery"
       ],
       "javascript_bytes": 5109,
-      "html_bytes": 54018,
-      "html_gzip_bytes": 13335
+      "html_bytes": 54051,
+      "html_gzip_bytes": 13354
     },
     "/apps/iq-max": {
       "source_bytes": 108874,
@@ -87,8 +87,8 @@
         "gallery"
       ],
       "javascript_bytes": 5109,
-      "html_bytes": 55596,
-      "html_gzip_bytes": 13428
+      "html_bytes": 55629,
+      "html_gzip_bytes": 13447
     },
     "/apps/sleep-max": {
       "source_bytes": 108874,
@@ -110,8 +110,8 @@
         "gallery"
       ],
       "javascript_bytes": 5109,
-      "html_bytes": 53713,
-      "html_gzip_bytes": 13274
+      "html_bytes": 53746,
+      "html_gzip_bytes": 13292
     },
     "/apps/fitness-max": {
       "source_bytes": 108874,
@@ -133,8 +133,8 @@
         "gallery"
       ],
       "javascript_bytes": 5109,
-      "html_bytes": 55807,
-      "html_gzip_bytes": 13502
+      "html_bytes": 55840,
+      "html_gzip_bytes": 13524
     },
     "/platform": {
       "source_bytes": 108874,
@@ -153,8 +153,8 @@
       ],
       "external_scripts": [],
       "javascript_bytes": 2798,
-      "html_bytes": 44576,
-      "html_gzip_bytes": 11641
+      "html_bytes": 44609,
+      "html_gzip_bytes": 11660
     },
     "/company": {
       "source_bytes": 108874,
@@ -173,8 +173,8 @@
       ],
       "external_scripts": [],
       "javascript_bytes": 2798,
-      "html_bytes": 37590,
-      "html_gzip_bytes": 10307
+      "html_bytes": 37623,
+      "html_gzip_bytes": 10325
     },
     "/investors-partners": {
       "source_bytes": 108874,
@@ -193,8 +193,8 @@
       ],
       "external_scripts": [],
       "javascript_bytes": 2798,
-      "html_bytes": 51985,
-      "html_gzip_bytes": 12896
+      "html_bytes": 52018,
+      "html_gzip_bytes": 12914
     },
     "/careers": {
       "source_bytes": 108874,
@@ -216,8 +216,8 @@
         "careers"
       ],
       "javascript_bytes": 11570,
-      "html_bytes": 48368,
-      "html_gzip_bytes": 12698
+      "html_bytes": 48401,
+      "html_gzip_bytes": 12716
     },
     "/contact": {
       "source_bytes": 108874,
@@ -239,8 +239,8 @@
         "contact"
       ],
       "javascript_bytes": 5503,
-      "html_bytes": 35887,
-      "html_gzip_bytes": 9868
+      "html_bytes": 35920,
+      "html_gzip_bytes": 9886
     },
     "/404": {
       "source_bytes": 108874,
@@ -259,8 +259,8 @@
       ],
       "external_scripts": [],
       "javascript_bytes": 2798,
-      "html_bytes": 30182,
-      "html_gzip_bytes": 8519
+      "html_bytes": 30215,
+      "html_gzip_bytes": 8537
     }
   }
 }
