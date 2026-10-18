@@ -227,7 +227,10 @@ def write_favicon(target: Path) -> dict:
     # Resample every frame from the full-resolution crop for the sharpest small sizes.
     frames = [square.resize((size, size), Image.Resampling.LANCZOS) for size in FAVICON_SIZES]
     output = BytesIO()
-    frames[-1].save(output, format='ICO', sizes=[frame.size for frame in frames], append_images=frames[:-1])
+    # Uncompressed BMP frames: PNG frames depend on the platform's zlib build,
+    # which would make the committed file differ between machines.
+    frames[-1].save(output, format='ICO', sizes=[frame.size for frame in frames],
+                    append_images=frames[:-1], bitmap_format='bmp')
     data = output.getvalue()
     if not target.exists() or target.read_bytes() != data:
         target.write_bytes(data)
