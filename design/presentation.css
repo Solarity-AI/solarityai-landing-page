@@ -8,6 +8,8 @@
  body{margin:0;min-width:320px;font:400 var(--text-base)/1.65 var(--font-body);background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
  h1,h2,h3,h4,p,figure,blockquote{margin:0}
  h1,h2,h3,h4{font-family:var(--font-display);font-weight:500;color:var(--text);text-wrap:balance}
+ /* A line after a forced break balances on its own instead of against the line above. */
+ :is(h1,h2,h3) br+span{display:block}
  h1 em,h2 em{font-family:inherit;font-style:normal;font-weight:inherit;letter-spacing:inherit;color:var(--accent)}
  h1{font-size:var(--type-display);line-height:1.04;letter-spacing:-.062em}
  h2{font-size:var(--type-heading);line-height:1.1;letter-spacing:-.048em}
