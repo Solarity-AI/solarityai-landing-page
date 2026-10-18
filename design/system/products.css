@@ -12,6 +12,9 @@
 .catalog-product-masthead{margin-bottom:28px}
 .catalog-category{font-size:var(--text-2xs);line-height:1.65;color:var(--product-accent);margin-bottom:12px;letter-spacing:.04em}
 .catalog-product-masthead h2{font-size:clamp(2.5rem,4.5vw,4rem);line-height:1.08;letter-spacing:-.045em}
+/* The product name is the largest target in each entry, so it opens the product. */
+.catalog-product-link{color:inherit;text-decoration:underline;text-decoration-color:transparent;text-decoration-thickness:2px;text-underline-offset:.14em;transition:text-decoration-color var(--motion-fast)}
+.catalog-product-link:hover{text-decoration-color:var(--product-accent)}
 .catalog-product-art{min-width:0}
 .catalog-product-copy{padding-top:24px;max-width:49ch}
 .catalog-product-summary{font-size:var(--text-base);line-height:1.8}
