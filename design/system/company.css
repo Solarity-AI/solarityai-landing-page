@@ -116,7 +116,7 @@
   .investor-opening-products>li { min-width:0; }
   .investor-opening-product { display:block; text-decoration:none; }
   .investor-opening-screen { display:flex; align-items:center; justify-content:center; width:100%; max-width:216px; margin-inline:auto; aspect-ratio:600 / 1298; transition:transform var(--motion-detail) var(--motion-ease); }
-  .investor-opening-screen img { display:block; width:100%; height:auto; aspect-ratio:600 / 1298; border-radius:12px; }
+  .investor-opening-screen img { display:block; width:100%; height:auto; aspect-ratio:600 / 1298; border-radius:var(--radius-lg); }
   .investor-opening-product-name { display:flex; align-items:baseline; justify-content:space-between; gap:8px; font-size:clamp(.9rem,1.4vw,1.2rem); line-height:1.4; font-weight:500; margin-top:20px; }
   .investor-opening-product-name>span { color:var(--product-accent); }
   .investor-opening-alias { display:block; color:var(--dim); font-size:var(--text-xs); line-height:1.5; margin-top:7px; }
