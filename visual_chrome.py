@@ -9,7 +9,7 @@ def _wordmark():
             '<img class="brand-sun" src="/assets/brand/solarity-sun-48.9bc99afc73e8.webp" '
             'srcset="/assets/brand/solarity-sun-48.9bc99afc73e8.webp 48w, /assets/brand/solarity-sun-96.da9c18cba138.webp 96w" '
             'sizes="34px" width="48" height="48" alt="" decoding="async">'
-            '<b>SOLARITY<span>AI</span></b></a>')
+            '<b>SOLARITY <span>AI</span></b></a>')
 
 
 def site_header(path, nav_items, btn):
