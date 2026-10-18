@@ -10,7 +10,7 @@ Investor and strategic partner website, created October 12, 2026.
 - Maintain interactions in `scripts/navigation.js`, `scripts/gallery.js`, and `scripts/contact.js`. Navigation is inlined synchronously in the head before styles to select a stable mobile layout before first paint. Gallery and contact scripts use fingerprinted external files only on routes that need them. The earlier `dist/assets/site.js` is retained as historical source and is no longer loaded.
 - Shared control states live in `design/system/foundation.css`, navigation/footer in `chrome.css`, and alternate accessibility modes in `accessibility.css`. Page composition belongs in `home.css`, `products.css`, `company.css`, or `contact.css`.
 - `optimize_images.py` creates uncropped responsive image variants and content-hashed filenames. Edit the source images, then run the build. Do not edit generated optimized assets manually. Native screenshot enlargement links preserve the original full-size image.
-- Add authentic optimized assets to `dist/assets/` and record their provenance before publishing.
+- Add authentic assets to `dist/assets/` only when a page references them; keep build-only masters in `source-assets/` (see CLAUDE.md). Record provenance before publishing.
 - Run `python3 build_site.py` to regenerate the HTML. CSS, JS and image assets are retained.
 - Run `python3 check_site.py`, `python3 -m unittest test_optimize_styles.py test_site_urls.py`, and `node --test test-navigation.cjs test-contact.cjs test-gallery.cjs` for all available checks.
 - `site_urls.py` normalizes known page anchors, canonical/Open Graph URLs, and sitemap entries to the host's final trailing-slash URLs. Keep route keys and `data-page` attributes unchanged when editing components.

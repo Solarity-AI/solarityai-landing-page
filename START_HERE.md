@@ -51,6 +51,8 @@ python -m http.server 8000 --bind 127.0.0.1 --directory dist
 
 Open http://127.0.0.1:8000/ in your browser. Directory-index routes such as `/apps/looks-max/` work. This simple preview does not emulate production custom 404 responses, hosting headers, or access settings.
 
+To audit the live deployment (read-only GET requests), run `python audit_production.py`. See `PRODUCTION_AUDIT.md` for the latest results and `CAREERS_DELIVERY.md` for the careers delivery test.
+
 ## 4. Continue in Claude
 
 Suggested initial instruction:

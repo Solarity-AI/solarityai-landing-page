@@ -39,7 +39,7 @@ This pass addresses the approved 24-point cinematic audit as one design system. 
 - Platform, investor, and company composition: `visual_strategy.py`, `visual_company_upgrade.py`, `visual_sections.py`, and `visual_team.py`.
 - Contact destinations and native topics: `visual_contact.py`. Context enhancement: `scripts/contact.js`.
 - Careers content/form: `visual_careers.py`. Optional fields, validation, and role preselection: `scripts/careers.js`.
-- Font source, license, hash, and subset information: `dist/assets/fonts/font-sources.json` and `OFL-Manrope.txt`. The 26,292-byte WOFF2 is self-hosted, fingerprinted, preloaded, and uses `font-display: optional` to avoid late swaps. No third-party runtime font request is added.
+- Font source, license, hash, and subset information: `source-assets/fonts/font-sources.json` and `OFL-Manrope.txt`. The 26,292-byte WOFF2 is self-hosted, fingerprinted, preloaded, and uses `font-display: optional` to avoid late swaps. No third-party runtime font request is added.
 
 The existing image pipeline retains full images, responsive variants, intrinsic dimensions, and matching hero preload. The homepage keeps its existing 2,798-byte navigation script and has no external JavaScript request. The contact route's JavaScript falls from 17,566 to 5,503 source bytes, including navigation. These are artifact sizes, not measured HTTP transfer or Lighthouse results.
 
