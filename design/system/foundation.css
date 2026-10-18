@@ -4,7 +4,11 @@
  @font-face{font-family:'Manrope';font-style:normal;font-weight:200 800;font-display:optional;src:url('/assets/fonts/manrope-latin-variable.cfa570d7c3ee.woff2') format('woff2')}
  :root{color-scheme:dark;--bg:#11120f;--surface:#1a1c17;--surface-raised:#252820;--text:#f5f1e8;--muted:#c4c3b9;--dim:#aaa99f;--accent:#edc78e;--line:#373b31;--paper:#f1ede3;--ink:#1c241c;--paper-text:#554d40;--paper-label:#635334;--paper-accent:#785728;--paper-strong:#332b1e;--paper-line:#b9b0a0;--paper-line-strong:#9a8869;--radius:5px;--radius-lg:12px;--radius-pill:999px;--radius-icon:24%;--shadow-portrait:0 0 0 1px #f5f1e81f,0 24px 60px #0007;--gutter:clamp(22px,4.3vw,64px);--space-section:clamp(72px,8vw,132px);--font-body:'Manrope',Arial,sans-serif;--font-display:var(--font-body);--font-editorial:var(--font-body);--font-mono:ui-monospace,'SFMono-Regular',Consolas,monospace;--text-2xs:.75rem;--text-xs:.8125rem;--text-sm:.875rem;--text-md:.9375rem;--text-base:1rem;--text-lg:1.125rem;--text-xl:1.25rem;--measure:52ch;--type-display:clamp(3rem,1.8rem + 4vw,6rem);--type-heading:clamp(2.15rem,1.35rem + 2.6vw,4.1rem);--motion-fast:180ms;--motion-detail:320ms;--motion-ease:cubic-bezier(.22,.68,.2,1);--looks-accent:#dcc4e5;--iq-accent:#b5d3e6;--sleep-accent:#c8c9e9;--fitness-accent:#edc78e;--product-accent:var(--accent)}
  *,*::before,*::after{box-sizing:border-box}
+ /* The one offset for every in-page jump: clears the sticky header with room to breathe. */
  html{font-size:100%;scroll-padding-top:112px;-webkit-text-size-adjust:100%}
+ /* In-page jumps glide so readers keep their place; reduced motion keeps them instant.
+    navigation.js adds .smooth-scroll after load so arriving deep links jump directly. */
+ @media(prefers-reduced-motion:no-preference){html.smooth-scroll{scroll-behavior:smooth}}
  body{margin:0;min-width:320px;font:400 var(--text-base)/1.65 var(--font-body);background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
  h1,h2,h3,h4,p,figure,blockquote{margin:0}
  h1,h2,h3,h4{font-family:var(--font-display);font-weight:500;color:var(--text);text-wrap:balance}
@@ -30,7 +34,6 @@
  :focus-visible{outline:2px solid var(--accent);outline-offset:4px}
  main:focus{outline:none}
  ::selection{background:var(--accent);color:var(--ink)}
- :target{scroll-margin-block-start:112px}
  .wrap{width:min(1264px,calc(100% - 2*var(--gutter)));margin-inline:auto}
  .section{padding-block:var(--space-section)}
  .muted{color:var(--muted)}
@@ -68,6 +71,12 @@
  .text-link{display:inline-flex;align-items:center;gap:20px;min-height:44px;padding-block:6px;font-size:var(--text-sm);font-weight:500;line-height:1.5;color:var(--accent);text-decoration:none;border-bottom:1px solid transparent;transition:color var(--motion-fast),border-color var(--motion-fast)}
  .text-link:hover{color:var(--text);border-bottom-color:currentColor}
  .text-link>span[aria-hidden]{font-size:var(--text-lg);flex:none}
+ /* Copy-address fallback, revealed by scripts/copy.js only where the clipboard works. */
+ .copy-row{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px}
+ .copy-button{min-height:44px;margin-block-start:12px;padding:8px 16px;border:1px solid #727469;border-radius:var(--radius-pill);background:transparent;color:var(--text);font-size:var(--text-xs);font-weight:500;line-height:1.4;transition:border-color var(--motion-fast),color var(--motion-fast)}
+ .copy-button:hover{border-color:var(--accent)}
+ .copy-status{margin-block-start:12px;font-size:var(--text-xs);color:var(--accent)}
+ .copy-status:empty{display:none}
  .status{display:inline-flex;align-items:center;gap:8px;padding:4px 0;border:0;border-radius:0;font-size:var(--text-2xs);line-height:1.5;color:#c8dccd}
  .status i{width:5px;height:5px;border-radius:50%;background:currentColor}
  .status.vision{color:var(--accent)}
@@ -83,6 +92,12 @@
  .image-dialog-bar h2{font-size:var(--text-base);line-height:1.4;letter-spacing:0}
  #image-dialog-close{flex-shrink:0;min-height:44px;padding:9px 13px;border:1px solid #74796d;border-radius:var(--radius);background:var(--surface-raised);color:var(--text);font-size:var(--text-sm)}
  #image-dialog-image{display:block;width:auto;max-width:calc(100% - 40px);height:auto;max-height:calc(100vh - 194px);max-height:calc(100dvh - 194px);margin:20px auto 14px;object-fit:contain;border-radius:var(--radius)}
+ /* Previous/next through the page's screenshots; shown only when there are several. */
+ .image-dialog-nav{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 20px 6px}
+ .image-dialog-nav button{min-height:44px;padding:9px 14px;border:1px solid #74796d;border-radius:var(--radius);background:var(--surface-raised);color:var(--text);font-size:var(--text-sm);transition:border-color var(--motion-fast)}
+ .image-dialog-nav button:hover{border-color:var(--accent)}
+ #image-dialog-count{font-size:var(--text-xs);color:var(--dim);font-variant-numeric:tabular-nums}
+ #image-dialog:has(.image-dialog-nav:not([hidden])) #image-dialog-image{max-height:calc(100vh - 250px);max-height:calc(100dvh - 250px)}
  #image-dialog-caption{text-align:center;font-size:var(--text-xs);padding:0 20px 20px}
  body.image-preview-open{overflow:hidden}
  @media(max-width:850px){.conversation-band{grid-template-columns:1fr;gap:28px}.conversation-actions{display:flex;flex-wrap:wrap;min-width:0}.conversation-actions .button{min-width:235px}}

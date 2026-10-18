@@ -24,7 +24,8 @@
 
   function isLinkedInProfile(value) {
     const url = parseWebUrl(value);
-    if (!url || url.protocol !== 'https:' || url.port || !['linkedin.com', 'www.linkedin.com'].includes(url.hostname)) return false;
+    // Country subdomains such as tr.linkedin.com are standard profile links.
+    if (!url || url.protocol !== 'https:' || url.port || !/^(?:(?:www|[a-z]{2})\.)?linkedin\.com$/.test(url.hostname)) return false;
     const match = url.pathname.match(/^\/in\/([^/]+)\/?$/);
     if (!match) return false;
     try {
@@ -33,6 +34,15 @@
     } catch (_) {
       return false;
     }
+  }
+
+  // People often paste links without a scheme (linkedin.com/in/name). Add https://
+  // to anything that looks like a domain; leave other input for validation to explain.
+  function withScheme(value) {
+    const text = trim(value);
+    if (!text || /^[a-z][a-z0-9+.-]*:/i.test(text)) return text;
+    if (text.startsWith('//')) return 'https:' + text;
+    return /^[a-z0-9-]+(?:\.[a-z0-9-]+)+(?:[/?#]|$)/i.test(text) ? 'https://' + text : text;
   }
 
   function isEmailAddress(value) {
@@ -63,7 +73,7 @@
   }
 
   if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { readCareerRole, parseWebUrl, isLinkedInProfile, isEmailAddress, validateCareerApplication, isPlainActivation };
+    module.exports = { readCareerRole, parseWebUrl, isLinkedInProfile, isEmailAddress, validateCareerApplication, isPlainActivation, withScheme };
   }
   if (typeof document === 'undefined') return;
 
@@ -135,6 +145,7 @@
 
   Object.entries(fields).forEach(([key, field]) => {
     field.addEventListener('blur', () => {
+      if (key === 'linkedin' || key === 'portfolio') field.value = withScheme(field.value);
       touched.add(key);
       renderErrors(validateCareerApplication(values()));
     });
@@ -171,6 +182,8 @@
   form.addEventListener('submit', (event) => {
     attempted = true;
     resetHandoff();
+    fields.linkedin.value = withScheme(fields.linkedin.value);
+    fields.portfolio.value = withScheme(fields.portfolio.value);
     const errors = validateCareerApplication(values());
     renderErrors(errors);
     if (Object.keys(errors).length) {

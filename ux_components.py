@@ -80,3 +80,10 @@ def inquiry_panel(intent_picker, email):
       <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
       <div class="data-note" id="data-note"><h3>About this contact experience</h3><p>Your draft stays in this page while it is open. The website does not submit or save it. When you send the email, your email provider handles delivery. The booking link opens Google Calendar.</p></div>
     </div>'''
+
+
+def copy_button(address, status_id):
+    """Copy-to-clipboard fallback for an email address; scripts/copy.js reveals it."""
+    return ('<span class="copy-row"><button type="button" class="copy-button" data-copy="' + e(address, quote=True)
+            + '" data-copy-status="' + e(status_id, quote=True) + '" hidden>Copy address</button>'
+            + '<span class="copy-status" id="' + e(status_id, quote=True) + '" role="status" aria-live="polite"></span></span>')

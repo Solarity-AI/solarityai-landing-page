@@ -1,6 +1,5 @@
 /* Company, platform and investor compositions. Shared tokens, distinct visual chapters. */
 @layer pages {
-  .selected-team,.module-detail,.partnership-agenda,.investor-faq { scroll-margin-top:112px; }
   .company-intro { display:grid; grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr); gap:0 72px; align-items:start; }
   .company-intro>.eyebrow { grid-column:1 / -1; }
   .company-intro>h1 { grid-column:1; grid-row:2 / 5; font-size:clamp(3rem,5.8vw,5.6rem); line-height:1.02; }
@@ -107,7 +106,13 @@
   .investor-opening-copy>.lede { grid-column:2; max-width:44ch; font-size:var(--text-base); margin-top:6px; }
   .investor-opening-copy>.actions { grid-column:2; margin-top:28px; }
   .investor-opening-copy .button { padding-inline:20px; gap:14px; }
-  .faq-shortcut { grid-column:2; justify-self:start; margin-top:18px; }
+  /* "On this page" index: one quiet line of chapter links under the opening actions. */
+  .page-index { grid-column:2; margin-top:26px; }
+  .page-index-title { font-size:var(--text-2xs); line-height:1.6; color:var(--dim); margin-bottom:2px; }
+  .page-index ul { display:flex; flex-wrap:wrap; gap:0 22px; list-style:none; padding:0; margin:0; }
+  .page-index a { display:inline-flex; align-items:center; gap:8px; min-height:44px; color:var(--muted); font-size:var(--text-sm); text-decoration:underline; text-decoration-color:var(--line); text-underline-offset:5px; transition:color var(--motion-fast),text-decoration-color var(--motion-fast); }
+  .page-index a:hover { color:var(--text); text-decoration-color:var(--accent); }
+  .page-index a>span { display:inline-block; color:var(--accent); }
   .investor-opening-proof { margin-top:64px; padding:clamp(24px,3.5vw,48px); background:var(--surface); border-top:1px solid var(--line); }
   .investor-opening-proof-heading { display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap; gap:16px; margin-bottom:32px; }
   .investor-opening-proof-heading>.eyebrow { margin:0; }
@@ -203,7 +208,7 @@
   }
   @media (max-width:850px) {
     .company-intro,.investor-opening-copy { grid-template-columns:1fr; }
-    .company-intro>h1,.company-intro>.lede,.company-intro>.text-link,.investor-opening-copy>h1,.investor-opening-copy>.lede,.investor-opening-copy>.actions,.faq-shortcut { grid-column:1; grid-row:auto; }
+    .company-intro>h1,.company-intro>.lede,.company-intro>.text-link,.investor-opening-copy>h1,.investor-opening-copy>.lede,.investor-opening-copy>.actions,.page-index { grid-column:1; grid-row:auto; }
     .company-intro>h1,.investor-opening-copy h1 { font-size:clamp(3.2rem,7.5vw,5.2rem); }
     .company-intro>.lede,.investor-opening-copy>.lede { margin-top:28px; max-width:var(--measure); }
     .investor-opening-copy .actions { flex-direction:row; }

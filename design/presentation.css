@@ -4,7 +4,11 @@
  @font-face{font-family:'Manrope';font-style:normal;font-weight:200 800;font-display:optional;src:url('/assets/fonts/manrope-latin-variable.cfa570d7c3ee.woff2') format('woff2')}
  :root{color-scheme:dark;--bg:#11120f;--surface:#1a1c17;--surface-raised:#252820;--text:#f5f1e8;--muted:#c4c3b9;--dim:#aaa99f;--accent:#edc78e;--line:#373b31;--paper:#f1ede3;--ink:#1c241c;--paper-text:#554d40;--paper-label:#635334;--paper-accent:#785728;--paper-strong:#332b1e;--paper-line:#b9b0a0;--paper-line-strong:#9a8869;--radius:5px;--radius-lg:12px;--radius-pill:999px;--radius-icon:24%;--shadow-portrait:0 0 0 1px #f5f1e81f,0 24px 60px #0007;--gutter:clamp(22px,4.3vw,64px);--space-section:clamp(72px,8vw,132px);--font-body:'Manrope',Arial,sans-serif;--font-display:var(--font-body);--font-editorial:var(--font-body);--font-mono:ui-monospace,'SFMono-Regular',Consolas,monospace;--text-2xs:.75rem;--text-xs:.8125rem;--text-sm:.875rem;--text-md:.9375rem;--text-base:1rem;--text-lg:1.125rem;--text-xl:1.25rem;--measure:52ch;--type-display:clamp(3rem,1.8rem + 4vw,6rem);--type-heading:clamp(2.15rem,1.35rem + 2.6vw,4.1rem);--motion-fast:180ms;--motion-detail:320ms;--motion-ease:cubic-bezier(.22,.68,.2,1);--looks-accent:#dcc4e5;--iq-accent:#b5d3e6;--sleep-accent:#c8c9e9;--fitness-accent:#edc78e;--product-accent:var(--accent)}
  *,*::before,*::after{box-sizing:border-box}
+ /* The one offset for every in-page jump: clears the sticky header with room to breathe. */
  html{font-size:100%;scroll-padding-top:112px;-webkit-text-size-adjust:100%}
+ /* In-page jumps glide so readers keep their place; reduced motion keeps them instant.
+    navigation.js adds .smooth-scroll after load so arriving deep links jump directly. */
+ @media(prefers-reduced-motion:no-preference){html.smooth-scroll{scroll-behavior:smooth}}
  body{margin:0;min-width:320px;font:400 var(--text-base)/1.65 var(--font-body);background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
  h1,h2,h3,h4,p,figure,blockquote{margin:0}
  h1,h2,h3,h4{font-family:var(--font-display);font-weight:500;color:var(--text);text-wrap:balance}
@@ -30,7 +34,6 @@
  :focus-visible{outline:2px solid var(--accent);outline-offset:4px}
  main:focus{outline:none}
  ::selection{background:var(--accent);color:var(--ink)}
- :target{scroll-margin-block-start:112px}
  .wrap{width:min(1264px,calc(100% - 2*var(--gutter)));margin-inline:auto}
  .section{padding-block:var(--space-section)}
  .muted{color:var(--muted)}
@@ -68,6 +71,12 @@
  .text-link{display:inline-flex;align-items:center;gap:20px;min-height:44px;padding-block:6px;font-size:var(--text-sm);font-weight:500;line-height:1.5;color:var(--accent);text-decoration:none;border-bottom:1px solid transparent;transition:color var(--motion-fast),border-color var(--motion-fast)}
  .text-link:hover{color:var(--text);border-bottom-color:currentColor}
  .text-link>span[aria-hidden]{font-size:var(--text-lg);flex:none}
+ /* Copy-address fallback, revealed by scripts/copy.js only where the clipboard works. */
+ .copy-row{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px}
+ .copy-button{min-height:44px;margin-block-start:12px;padding:8px 16px;border:1px solid #727469;border-radius:var(--radius-pill);background:transparent;color:var(--text);font-size:var(--text-xs);font-weight:500;line-height:1.4;transition:border-color var(--motion-fast),color var(--motion-fast)}
+ .copy-button:hover{border-color:var(--accent)}
+ .copy-status{margin-block-start:12px;font-size:var(--text-xs);color:var(--accent)}
+ .copy-status:empty{display:none}
  .status{display:inline-flex;align-items:center;gap:8px;padding:4px 0;border:0;border-radius:0;font-size:var(--text-2xs);line-height:1.5;color:#c8dccd}
  .status i{width:5px;height:5px;border-radius:50%;background:currentColor}
  .status.vision{color:var(--accent)}
@@ -83,6 +92,12 @@
  .image-dialog-bar h2{font-size:var(--text-base);line-height:1.4;letter-spacing:0}
  #image-dialog-close{flex-shrink:0;min-height:44px;padding:9px 13px;border:1px solid #74796d;border-radius:var(--radius);background:var(--surface-raised);color:var(--text);font-size:var(--text-sm)}
  #image-dialog-image{display:block;width:auto;max-width:calc(100% - 40px);height:auto;max-height:calc(100vh - 194px);max-height:calc(100dvh - 194px);margin:20px auto 14px;object-fit:contain;border-radius:var(--radius)}
+ /* Previous/next through the page's screenshots; shown only when there are several. */
+ .image-dialog-nav{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 20px 6px}
+ .image-dialog-nav button{min-height:44px;padding:9px 14px;border:1px solid #74796d;border-radius:var(--radius);background:var(--surface-raised);color:var(--text);font-size:var(--text-sm);transition:border-color var(--motion-fast)}
+ .image-dialog-nav button:hover{border-color:var(--accent)}
+ #image-dialog-count{font-size:var(--text-xs);color:var(--dim);font-variant-numeric:tabular-nums}
+ #image-dialog:has(.image-dialog-nav:not([hidden])) #image-dialog-image{max-height:calc(100vh - 250px);max-height:calc(100dvh - 250px)}
  #image-dialog-caption{text-align:center;font-size:var(--text-xs);padding:0 20px 20px}
  body.image-preview-open{overflow:hidden}
  @media(max-width:850px){.conversation-band{grid-template-columns:1fr;gap:28px}.conversation-actions{display:flex;flex-wrap:wrap;min-width:0}.conversation-actions .button{min-width:235px}}
@@ -140,6 +155,8 @@
   .nav-link-label{display:block;line-height:1.4}
   .nav-link-description{display:block;font-size:var(--text-2xs);line-height:1.6;color:var(--muted);margin-top:4px;letter-spacing:0}
   .nav-link-arrow{display:block;color:var(--accent);font-size:var(--text-xl)}
+  /* The open menu is the only scrolling surface; the page behind it stays put. */
+  body.nav-open{overflow:hidden}
   .nav-enhanced .menu-toggle{display:flex}
   .nav-enhanced #site-nav{display:none}
   .nav-enhanced #site-nav.is-open{display:flex}
@@ -193,7 +210,7 @@
 
 /* Every panel occupies the same grid cell. Hidden panels reserve dimensions,
    while visibility removes their controls from focus and accessibility traversal. */
-.product-explorer{padding-block:clamp(60px,8vw,120px) clamp(76px,9vw,136px);scroll-margin-top:108px}
+.product-explorer{padding-block:clamp(60px,8vw,120px) clamp(76px,9vw,136px)}
 .explorer-heading{display:grid;grid-template-columns:1.2fr .8fr;gap:70px;align-items:end;margin-bottom:48px}
 .explorer-heading h2{max-width:22ch;font-size:clamp(2.6rem,4.4vw,4.4rem);line-height:1.08;letter-spacing:-.05em}
 .explorer-heading>p{max-width:38ch;font-size:var(--text-base);line-height:1.8}
@@ -324,10 +341,13 @@
 .catalog-anchor-nav>a span:last-child{color:var(--accent)}
 .catalog-anchor-nav>a:is(:hover,:focus-visible){color:var(--text)}
 .catalog-product-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:88px 64px;padding-block:64px 16px}
-.catalog-product-row{min-width:0;scroll-margin-top:116px}
+.catalog-product-row{min-width:0}
 .catalog-product-masthead{margin-bottom:28px}
 .catalog-category{font-size:var(--text-2xs);line-height:1.65;color:var(--product-accent);margin-bottom:12px;letter-spacing:.04em}
 .catalog-product-masthead h2{font-size:clamp(2.5rem,4.5vw,4rem);line-height:1.08;letter-spacing:-.045em}
+/* The product name is the largest target in each entry, so it opens the product. */
+.catalog-product-link{color:inherit;text-decoration:underline;text-decoration-color:transparent;text-decoration-thickness:2px;text-underline-offset:.14em;transition:text-decoration-color var(--motion-fast)}
+.catalog-product-link:hover{text-decoration-color:var(--product-accent)}
 .catalog-product-art{min-width:0}
 .catalog-product-copy{padding-top:24px;max-width:49ch}
 .catalog-product-summary{font-size:var(--text-base);line-height:1.8}
@@ -477,7 +497,6 @@
 
 /* Company, platform and investor compositions. Shared tokens, distinct visual chapters. */
 @layer pages {
-  .selected-team,.module-detail,.partnership-agenda,.investor-faq { scroll-margin-top:112px; }
   .company-intro { display:grid; grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr); gap:0 72px; align-items:start; }
   .company-intro>.eyebrow { grid-column:1 / -1; }
   .company-intro>h1 { grid-column:1; grid-row:2 / 5; font-size:clamp(3rem,5.8vw,5.6rem); line-height:1.02; }
@@ -584,7 +603,13 @@
   .investor-opening-copy>.lede { grid-column:2; max-width:44ch; font-size:var(--text-base); margin-top:6px; }
   .investor-opening-copy>.actions { grid-column:2; margin-top:28px; }
   .investor-opening-copy .button { padding-inline:20px; gap:14px; }
-  .faq-shortcut { grid-column:2; justify-self:start; margin-top:18px; }
+  /* "On this page" index: one quiet line of chapter links under the opening actions. */
+  .page-index { grid-column:2; margin-top:26px; }
+  .page-index-title { font-size:var(--text-2xs); line-height:1.6; color:var(--dim); margin-bottom:2px; }
+  .page-index ul { display:flex; flex-wrap:wrap; gap:0 22px; list-style:none; padding:0; margin:0; }
+  .page-index a { display:inline-flex; align-items:center; gap:8px; min-height:44px; color:var(--muted); font-size:var(--text-sm); text-decoration:underline; text-decoration-color:var(--line); text-underline-offset:5px; transition:color var(--motion-fast),text-decoration-color var(--motion-fast); }
+  .page-index a:hover { color:var(--text); text-decoration-color:var(--accent); }
+  .page-index a>span { display:inline-block; color:var(--accent); }
   .investor-opening-proof { margin-top:64px; padding:clamp(24px,3.5vw,48px); background:var(--surface); border-top:1px solid var(--line); }
   .investor-opening-proof-heading { display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap; gap:16px; margin-bottom:32px; }
   .investor-opening-proof-heading>.eyebrow { margin:0; }
@@ -680,7 +705,7 @@
   }
   @media (max-width:850px) {
     .company-intro,.investor-opening-copy { grid-template-columns:1fr; }
-    .company-intro>h1,.company-intro>.lede,.company-intro>.text-link,.investor-opening-copy>h1,.investor-opening-copy>.lede,.investor-opening-copy>.actions,.faq-shortcut { grid-column:1; grid-row:auto; }
+    .company-intro>h1,.company-intro>.lede,.company-intro>.text-link,.investor-opening-copy>h1,.investor-opening-copy>.lede,.investor-opening-copy>.actions,.page-index { grid-column:1; grid-row:auto; }
     .company-intro>h1,.investor-opening-copy h1 { font-size:clamp(3.2rem,7.5vw,5.2rem); }
     .company-intro>.lede,.investor-opening-copy>.lede { margin-top:28px; max-width:var(--measure); }
     .investor-opening-copy .actions { flex-direction:row; }
@@ -828,6 +853,10 @@
   }
   .contact-destination::before { content: ''; position: absolute; pointer-events: none; inset: 0 calc(-1 * var(--gutter)); z-index: -1; background: radial-gradient(ellipse at 72% 0, #bb814515, transparent 72%); }
   .contact-person, .contact-direct { min-width: 0; }
+  /* The actions come first in source order, so phones show them on arrival;
+     wide screens keep the person in the left column. */
+  .contact-person { grid-column: 1; grid-row: 1; }
+  .contact-direct { grid-column: 2; grid-row: 1; }
   .contact-person h2 { font-size: clamp(2rem, 1.6rem + 1vw, 2.6rem); }
   .contact-person-role { color: var(--text); margin-block: 10px 3px; }
   .contact-person > p:not(.eyebrow) { font-size: var(--text-sm); }
@@ -854,7 +883,6 @@
   .contact-data-note p { max-width: var(--measure); color: var(--dim); font-size: var(--text-xs); line-height: 1.8; }
   .contact-data-note p + p { margin-block-start: 8px; }
   .contact-data-note a { text-decoration: underline; text-underline-offset: 3px; overflow-wrap: anywhere; }
-  #prepare-inquiry, #data-note { scroll-margin-block-start: calc(var(--header-height, 88px) + 24px); }
 
   /* Recovery remains a useful directory. */
   .not-found { max-width: 1040px; padding-block: var(--space-section); }
@@ -875,6 +903,8 @@
   @media (prefers-reduced-motion: no-preference) and (hover: hover) { .contact-email:hover > span[aria-hidden], .contact-topic:hover .contact-topic-arrow { transform: translate(3px, -3px); } }
   @media (max-width: 850px) {
     .contact-destination, .contact-topics { grid-template-columns: minmax(0, 1fr); gap: 30px; }
+    .contact-person, .contact-direct { grid-column: auto; grid-row: auto; }
+    .contact-person { padding-block-start: 26px; border-block-start: 1px solid var(--line); }
     .contact-opening h1 { font-size: clamp(3rem, 7.5vw, 5rem); }
     .contact-person .eyebrow { margin-block-end: 13px; }
     .contact-person .text-link { margin-block-start: 8px; }
@@ -883,14 +913,19 @@
     .recovery-destination { grid-template-columns: minmax(0, 1fr); gap: 4px; }
   }
   @media (max-width: 560px) {
-    .contact-opening { padding-block-start: 44px; }
+    .contact-opening { padding-block: 44px 28px; }
     .contact-opening h1 { font-size: clamp(2.65rem, 10.7vw, 3.65rem); }
     .contact-opening .lede { margin-block-start: 23px; }
-    .contact-destination { padding-block: 30px; }
+    .contact-destination { padding-block: 22px 30px; }
+    .contact-direct .copy-button { margin-block-start: 8px; }
     .contact-person h2 { font-size: 2rem; }
     .contact-context { font-size: var(--text-xs); }
     .contact-email { gap: 12px; font-size: clamp(1rem, 4.5vw, 1.55rem); }
     .contact-booking { align-items: flex-start; flex-direction: column; gap: 12px; }
+    /* Both ways to reach Ata fit the first screen; the guidance follows them. */
+    .contact-direct { display: flex; flex-direction: column; }
+    .contact-booking { order: 1; margin-block-start: 16px; }
+    .contact-direct-help { order: 2; }
     .contact-booking .button { width: 100%; justify-content: space-between; }
     .contact-topic { padding-block: 23px; gap: 20px; }
     .contact-topic strong { font-size: var(--text-base); }
@@ -983,7 +1018,6 @@
   #career-submit:disabled { opacity: .7; cursor: wait; border-style: dashed; }
   #career-status:empty { display: none; }
   #career-status:not(:empty) { margin-block-start: 18px; padding: 14px; border-inline-start: 2px solid var(--accent); background: #292820; color: #f2dfbb; font-size: var(--text-xs); line-height: 1.75; overflow-wrap: anywhere; }
-  #apply, #opportunities, #career-errors { scroll-margin-block-start: 112px; }
   @media (hover: hover) { .career-role-action:hover { background: #e7c6960d; border-color: var(--accent); } .career-field input:hover, .career-field select:hover { border-color: var(--accent); } }
   @media (max-width: 1100px) { .career-fields { grid-template-columns: 1fr; } .career-role { grid-template-columns: 124px minmax(0, 1fr) auto; gap: 24px; } .career-form { padding: 28px; } }
   @media (max-width: 850px) {

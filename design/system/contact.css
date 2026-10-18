@@ -14,6 +14,10 @@
   }
   .contact-destination::before { content: ''; position: absolute; pointer-events: none; inset: 0 calc(-1 * var(--gutter)); z-index: -1; background: radial-gradient(ellipse at 72% 0, #bb814515, transparent 72%); }
   .contact-person, .contact-direct { min-width: 0; }
+  /* The actions come first in source order, so phones show them on arrival;
+     wide screens keep the person in the left column. */
+  .contact-person { grid-column: 1; grid-row: 1; }
+  .contact-direct { grid-column: 2; grid-row: 1; }
   .contact-person h2 { font-size: clamp(2rem, 1.6rem + 1vw, 2.6rem); }
   .contact-person-role { color: var(--text); margin-block: 10px 3px; }
   .contact-person > p:not(.eyebrow) { font-size: var(--text-sm); }
@@ -40,7 +44,6 @@
   .contact-data-note p { max-width: var(--measure); color: var(--dim); font-size: var(--text-xs); line-height: 1.8; }
   .contact-data-note p + p { margin-block-start: 8px; }
   .contact-data-note a { text-decoration: underline; text-underline-offset: 3px; overflow-wrap: anywhere; }
-  #prepare-inquiry, #data-note { scroll-margin-block-start: calc(var(--header-height, 88px) + 24px); }
 
   /* Recovery remains a useful directory. */
   .not-found { max-width: 1040px; padding-block: var(--space-section); }
@@ -61,6 +64,8 @@
   @media (prefers-reduced-motion: no-preference) and (hover: hover) { .contact-email:hover > span[aria-hidden], .contact-topic:hover .contact-topic-arrow { transform: translate(3px, -3px); } }
   @media (max-width: 850px) {
     .contact-destination, .contact-topics { grid-template-columns: minmax(0, 1fr); gap: 30px; }
+    .contact-person, .contact-direct { grid-column: auto; grid-row: auto; }
+    .contact-person { padding-block-start: 26px; border-block-start: 1px solid var(--line); }
     .contact-opening h1 { font-size: clamp(3rem, 7.5vw, 5rem); }
     .contact-person .eyebrow { margin-block-end: 13px; }
     .contact-person .text-link { margin-block-start: 8px; }
@@ -69,14 +74,19 @@
     .recovery-destination { grid-template-columns: minmax(0, 1fr); gap: 4px; }
   }
   @media (max-width: 560px) {
-    .contact-opening { padding-block-start: 44px; }
+    .contact-opening { padding-block: 44px 28px; }
     .contact-opening h1 { font-size: clamp(2.65rem, 10.7vw, 3.65rem); }
     .contact-opening .lede { margin-block-start: 23px; }
-    .contact-destination { padding-block: 30px; }
+    .contact-destination { padding-block: 22px 30px; }
+    .contact-direct .copy-button { margin-block-start: 8px; }
     .contact-person h2 { font-size: 2rem; }
     .contact-context { font-size: var(--text-xs); }
     .contact-email { gap: 12px; font-size: clamp(1rem, 4.5vw, 1.55rem); }
     .contact-booking { align-items: flex-start; flex-direction: column; gap: 12px; }
+    /* Both ways to reach Ata fit the first screen; the guidance follows them. */
+    .contact-direct { display: flex; flex-direction: column; }
+    .contact-booking { order: 1; margin-block-start: 16px; }
+    .contact-direct-help { order: 2; }
     .contact-booking .button { width: 100%; justify-content: space-between; }
     .contact-topic { padding-block: 23px; gap: 20px; }
     .contact-topic strong { font-size: var(--text-base); }

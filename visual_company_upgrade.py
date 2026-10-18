@@ -7,6 +7,14 @@ from html import escape
 from urllib.parse import urlencode
 
 
+def page_index(sections):
+    """An "On this page" index for long pages: one in-page link per chapter."""
+    links = ''.join('<li><a href="#' + escape(anchor, quote=True) + '">' + escape(label)
+                    + ' <span aria-hidden="true">↓</span></a></li>' for anchor, label in sections)
+    return ('<nav class="page-index" aria-labelledby="page-index-title">'
+            '<p class="page-index-title" id="page-index-title">On this page</p><ul>' + links + '</ul></nav>')
+
+
 def investor_opening(apps, btn, contact):
     """Place authentic, linked product evidence next to the company thesis."""
     products = []
@@ -34,9 +42,11 @@ def investor_opening(apps, btn, contact):
         'Explore the products, then the company direction.</p>'
         '<div class="actions">' + btn('Investor inquiries', contact('Investor'))
         + btn('Discuss a partnership', contact('Strategic partner'), 'outline')
-        + '</div><a class="text-link faq-shortcut" href="#investor-questions">'
-        'Read common questions <span aria-hidden="true">↓</span></a></div>'
-        '<div class="investor-opening-proof"><div class="investor-opening-proof-heading">'
+        + '</div>' + page_index((('portfolio', 'Portfolio'), ('thesis', 'Thesis'),
+                                 ('conversation-paths', 'Partnerships'),
+                                 ('investor-questions', 'Questions'),
+                                 ('booking', 'Talk with the founder'))) + '</div>'
+        '<div class="investor-opening-proof" id="portfolio"><div class="investor-opening-proof-heading">'
         '<p class="eyebrow">THE CONSUMER PORTFOLIO</p><span>' + str(len(products))
         + ' store-listed apps</span></div><ul class="investor-opening-products">'
         + ''.join(products) + '</ul><p class="investor-opening-caption">'
@@ -79,7 +89,7 @@ def investor_evidence(apps):
             + '</span></span><span class="partnership-topic-arrow" aria-hidden="true">→</span></a></li>'
         )
     count = sum(bool(app.get('apple') and app.get('google')) for app in apps)
-    return '''<section class="investor-evidence wrap" aria-labelledby="investor-evidence-title">
+    return '''<section class="investor-evidence wrap" id="thesis" aria-labelledby="investor-evidence-title">
 <div class="investor-evidence-heading"><div><p class="eyebrow">PRODUCT EVIDENCE. COMPANY DIRECTION.</p>
 <h2 id="investor-evidence-title">Build the product.<br>Learn from the work.</h2></div>
 <p>Develop focused consumer experiences while exploring more repeatable ways to build, operate, and grow mobile products.</p></div>
@@ -97,7 +107,7 @@ def investor_evidence(apps):
 
 def founder_booking(btn, booking):
     """A single, genuine external scheduling path after the investor FAQ."""
-    return '''<section class="founder-booking wrap" aria-labelledby="founder-booking-title"><div><p class="eyebrow">A DIRECT CONVERSATION</p><h2 id="founder-booking-title">Compare perspectives<br>with the founder.</h2><p>Speak with Ata Turhan about the portfolio, company direction, or a potential collaboration.</p></div><div class="founder-booking-action">''' + btn('View available times', booking, 'primary', True) + '''<p>Opens Ata’s booking page on Google Calendar in a new tab.</p></div></section>'''
+    return '''<section class="founder-booking wrap" id="booking" aria-labelledby="founder-booking-title"><div><p class="eyebrow">A DIRECT CONVERSATION</p><h2 id="founder-booking-title">Compare perspectives<br>with the founder.</h2><p>Speak with Ata Turhan about the portfolio, company direction, or a potential collaboration.</p></div><div class="founder-booking-action">''' + btn('View available times', booking, 'primary', True) + '''<p>Opens Ata’s booking page on Google Calendar in a new tab.</p></div></section>'''
 
 
 def operating_principles():

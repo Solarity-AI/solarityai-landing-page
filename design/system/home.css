@@ -30,7 +30,7 @@
 
 /* Every panel occupies the same grid cell. Hidden panels reserve dimensions,
    while visibility removes their controls from focus and accessibility traversal. */
-.product-explorer{padding-block:clamp(60px,8vw,120px) clamp(76px,9vw,136px);scroll-margin-top:108px}
+.product-explorer{padding-block:clamp(60px,8vw,120px) clamp(76px,9vw,136px)}
 .explorer-heading{display:grid;grid-template-columns:1.2fr .8fr;gap:70px;align-items:end;margin-bottom:48px}
 .explorer-heading h2{max-width:22ch;font-size:clamp(2.6rem,4.4vw,4.4rem);line-height:1.08;letter-spacing:-.05em}
 .explorer-heading>p{max-width:38ch;font-size:var(--text-base);line-height:1.8}

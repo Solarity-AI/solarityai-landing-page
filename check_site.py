@@ -105,9 +105,10 @@ for file,d in docs.items():
     if any(t=='a' and 'screenshot-open' in a.get('class','').split() for t,a in d.tags):expected_scripts.append('gallery')
     if rel=='contact/index.html':expected_scripts.append('contact')
     if rel=='careers/index.html':expected_scripts.append('careers')
+    if any('data-copy' in a for t,a in d.tags):expected_scripts.append('copy')
     actual_scripts=[]
     for script in runtime_scripts:
-        match=re.fullmatch(r'/assets/runtime/(gallery|contact|careers)\.([a-f0-9]{12})\.js',script)
+        match=re.fullmatch(r'/assets/runtime/(gallery|contact|careers|copy)\.([a-f0-9]{12})\.js',script)
         if not match:errors.append(f'{rel}: unexpected runtime script {script}');continue
         actual_scripts.append(match.group(1))
         script_file=DIST/script.lstrip('/')
@@ -124,6 +125,13 @@ for file,d in docs.items():
         errors.append(f'{rel}: navigation startup must execute synchronously without a network dependency')
     if startup_tags and startup_tags[0].get('data-source-sha256')!=sha256(navigation_source.encode()).hexdigest():
         errors.append(f'{rel}: stale navigation source hash')
+    # Intent-based prefetch speeds page-to-page moves; prerender would run analytics for unseen visits.
+    speculation=[m.group(2) for m in re.finditer(r'<script\b([^>]*)>(.*?)</script>',text,re.S) if re.search(r'\btype="speculationrules"',m.group(1))]
+    try:rules=json.loads(speculation[0]) if len(speculation)==1 else None
+    except ValueError:rules=None
+    if not isinstance(rules,dict) or set(rules)!={'prefetch'} or not rules['prefetch']:errors.append(f'{rel}: expected one prefetch-only speculation rules block')
+    elif any(rule.get('eagerness') not in ['moderate','conservative'] or {'not':{'href_matches':'/assets/*'}} not in rule.get('where',{}).get('and',[]) for rule in rules['prefetch']):
+        errors.append(f'{rel}: speculation rules must wait for visitor intent and skip asset files')
     expected_robots={'noindex','follow'} if rel=='404.html' else {'index','follow'}
     actual_robots={directive.strip().lower() for directive in meta.get('robots','').split(',')}
     if actual_robots!=expected_robots:errors.append(f'{rel}: incorrect public-site indexing directive {meta.get("robots", "")}')
@@ -254,6 +262,12 @@ for asset_path in ['/assets/optimized/*','/assets/runtime/*']+fingerprinted_font
 for path,headers in header_rules.items():
     if 'immutable' in headers.get('cache-control','') and path not in ['/assets/optimized/*','/assets/runtime/*']+fingerprinted_fonts:errors.append(f'{path}: immutable caching must be scoped to fingerprinted assets')
 
+# Links that open a new tab say so to assistive technology. Screenshot links open
+# the in-page viewer and only fall back to a tab without JavaScript.
+for file,d in docs.items():
+    for attrs,label in re.findall(r'<a\b([^>]*)>(.*?)</a>',file.read_text(encoding='utf-8'),re.S):
+        if 'target="_blank"' in attrs and 'screenshot-open' not in attrs and 'opens in a new tab' not in label:errors.append(f'{file.relative_to(DIST).as_posix()}: new-tab link does not announce it: {re.sub("<[^>]+>","",label).strip()[:40]}')
+
 # ↗ means the link leaves the site; same-site links use → or an in-page ↓.
 for file in docs:
     rel=file.relative_to(DIST).as_posix()
@@ -276,7 +290,8 @@ for line in (DIST/'_redirects').read_text(encoding='utf-8').splitlines() if (DIS
     if new not in page_routes:errors.append(f'_redirects: {old} points to {new}, which is not a page')
 referenced=set()
 for file in docs:
-    referenced|={url.lstrip('/') for url in re.findall(r'(?:'+re.escape(ORIGIN)+r'|(?<![\w.-]))(/assets/[^"\'\s,)]+)',file.read_text(encoding='utf-8'))}
+    # A '*' marks a URL pattern (speculation rules), never a published file.
+    referenced|={url.lstrip('/') for url in re.findall(r'(?:'+re.escape(ORIGIN)+r'|(?<![\w.-]))(/assets/[^"\'\s,)*]+)',file.read_text(encoding='utf-8'))}
 for file in sorted(DIST.rglob('*')):
     rel=file.relative_to(DIST).as_posix()
     if file.is_file() and file.suffix!='.html' and rel not in HOST_FILES and rel not in referenced:errors.append(f'Unreferenced file is published: {rel}')

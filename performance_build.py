@@ -4,6 +4,7 @@ from html import escape
 from html.parser import HTMLParser
 from pathlib import Path
 import gzip
+import json
 import re
 
 from optimize_images import responsive_image_attrs, avif_source_attrs
@@ -13,6 +14,14 @@ ROOT = Path(__file__).parent
 RUNTIME = ROOT / 'dist/assets/runtime'
 # Runtime files written by this build; anything else in RUNTIME is stale.
 WRITTEN_RUNTIME = set()
+# Chromium fetches a same-origin page once a visitor shows intent (hover or
+# pointer down on desktop, viewport heuristics on phones), so the next page
+# opens without a network wait. Prefetch only: no script runs, so analytics,
+# forms, and FormSubmit never see a speculative visit. Other browsers ignore it.
+SPECULATION_RULES = {'prefetch': [{
+    'where': {'and': [{'href_matches': '/*'}, {'not': {'href_matches': '/assets/*'}}]},
+    'eagerness': 'moderate',
+}]}
 
 
 class _ImageTag(HTMLParser):
@@ -113,6 +122,8 @@ def optimize_page(document, path, css):
         scripts.append('contact')
     if path == '/careers':
         scripts.append('careers')
+    if 'data-copy=' in document:
+        scripts.append('copy')
     script_tags, script_bytes = [], len(navigation.encode())
     for name in scripts:
         url, size = _script_asset(name)
@@ -132,12 +143,15 @@ def optimize_page(document, path, css):
     style = f'<style id="page-styles" data-source-sha256="{source_hash}">{compact}</style>'
     old_styles = '<link rel="stylesheet" href="/assets/presentation.css">'
     assert document.count(old_styles) == 1
-    document = document.replace(old_styles, navigation_tag + preload + style)
+    speculation = json.dumps(SPECULATION_RULES, separators=(',', ':'))
+    speculation_tag = f'<script type="speculationrules">{speculation}</script>'
+    document = document.replace(old_styles, navigation_tag + preload + style + speculation_tag)
     metrics.update({
         'css_gzip_bytes': len(gzip.compress(compact.encode(), mtime=0)),
         'css_delivery': 'Inline route-specific CSS; no blocking stylesheet request',
         'scripts': ['navigation'] + scripts,
         'inline_scripts': ['navigation'],
+        'speculation_rules': 'Prefetch same-origin pages on intent (moderate); never prerender',
         'external_scripts': scripts,
         'javascript_bytes': script_bytes,
         'html_bytes': len(document.encode()),

@@ -5,6 +5,16 @@
   // This script is inlined in <head>. Select the compact mobile layout before
   // any body content can paint, without waiting for a separate script request.
   document.documentElement.classList.add('nav-enhanced');
+  // In-page jumps glide once the visitor interacts. Arriving at a #fragment must
+  // land there directly: the browser repeats that jump while loading, and an
+  // animated repeat can cancel it.
+  function enableSmoothScroll() {
+    document.documentElement.classList.add('smooth-scroll');
+    window.removeEventListener('pointerdown', enableSmoothScroll);
+    window.removeEventListener('keydown', enableSmoothScroll);
+  }
+  window.addEventListener('pointerdown', enableSmoothScroll, { passive: true });
+  window.addEventListener('keydown', enableSmoothScroll, { passive: true });
 
   function initializeNavigation() {
     const toggle = document.querySelector('.menu-toggle');

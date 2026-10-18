@@ -5,6 +5,8 @@ The provider, rather than this page, confirms verification and acceptance.
 """
 from html import escape
 
+from ux_components import copy_button
+
 
 CAREER_ROLES = (
     (
@@ -80,7 +82,7 @@ def careers_page(btn):
 <div class="career-apply-copy"><p class="eyebrow">START A CONVERSATION</p><h2 id="career-apply-title">Tell us what<br><em>you bring.</em></h2>
 <p>Start with your name, email, and the opportunity you have in mind. A LinkedIn profile or a link to your work can add context, if you have one.</p>
 
-<div class="career-email-alternative"><p>Prefer to contact us directly?</p><a href="mailto:careers@solarityai.com?subject=Career%20inquiry%20-%20Solarity%20AI">careers@solarityai.com <span aria-hidden="true">↗</span></a></div></div>
+<div class="career-email-alternative"><p>Prefer to contact us directly?</p><a href="mailto:careers@solarityai.com?subject=Career%20inquiry%20-%20Solarity%20AI">careers@solarityai.com <span aria-hidden="true">↗</span></a>''' + copy_button('careers@solarityai.com', 'careers-email-copy-status') + '''</div></div>
 
 <form id="career-form" class="career-form" action="https://formsubmit.co/careers@solarityai.com" method="POST" aria-labelledby="career-form-title" aria-describedby="career-form-intro career-disclosure">
 <div class="career-form-heading"><p class="eyebrow">YOUR APPLICATION</p><h3 id="career-form-title">Introduce yourself.</h3><p id="career-form-intro">Four details to get started. Work links are optional.</p></div>
@@ -95,8 +97,8 @@ def careers_page(btn):
 <div class="career-field"><label for="career-email">Email address</label><input id="career-email" name="email" type="email" required maxlength="254" autocomplete="email" spellcheck="false" autocapitalize="none" aria-describedby="career-email-help career-email-error"><p id="career-email-help" class="career-field-help">Use the address where you would like to hear from us.</p><p id="career-email-error" class="career-field-error" hidden></p></div>
 <div class="career-field"><label for="career-position">Position</label><select id="career-position" name="position" required aria-describedby="career-position-help career-position-error">''' + ''.join(options) + '''</select><p id="career-position-help" class="career-field-help">Choose the role you would like to apply for.</p><p id="career-position-error" class="career-field-error" hidden></p></div>
 <div class="career-field"><label for="career-work-type">Work arrangement</label><select id="career-work-type" name="workType" required aria-describedby="career-work-type-help career-work-type-error"><option value="">Select an arrangement</option><option value="full-time">Full-time</option><option value="part-time">Part-time</option><option value="intern">Internship</option></select><p id="career-work-type-help" class="career-field-help">Indicate your preference to discuss with the team.</p><p id="career-work-type-error" class="career-field-error" hidden></p></div>
-<div class="career-field"><label for="career-linkedin">LinkedIn profile <span>Optional</span></label><input id="career-linkedin" name="linkedin" type="url" maxlength="500" autocomplete="url" spellcheck="false" autocapitalize="none" pattern="https://(www[.])?linkedin[.]com/in/.+" aria-describedby="career-linkedin-help career-linkedin-error"><p id="career-linkedin-help" class="career-field-help">Your personal LinkedIn profile URL, if useful.</p><p id="career-linkedin-error" class="career-field-error" hidden></p></div>
-<div class="career-field"><label for="career-portfolio">Portfolio or relevant work <span>Optional</span></label><input id="career-portfolio" name="portfolio" type="url" maxlength="500" autocomplete="url" spellcheck="false" autocapitalize="none" pattern="https?://.+" aria-describedby="career-portfolio-help career-portfolio-error"><p id="career-portfolio-help" class="career-field-help">A website, GitHub profile, or work sample. Include https:// or http://.</p><p id="career-portfolio-error" class="career-field-error" hidden></p></div>
+<div class="career-field"><label for="career-linkedin">LinkedIn profile <span>Optional</span></label><input id="career-linkedin" name="linkedin" type="url" maxlength="500" autocomplete="off" spellcheck="false" autocapitalize="none" placeholder="https://www.linkedin.com/in/your-name" pattern="https://((www|[a-z]{2})[.])?linkedin[.]com/in/.+" aria-describedby="career-linkedin-help career-linkedin-error"><p id="career-linkedin-help" class="career-field-help">Your personal LinkedIn profile URL, if useful.</p><p id="career-linkedin-error" class="career-field-error" hidden></p></div>
+<div class="career-field"><label for="career-portfolio">Portfolio or relevant work <span>Optional</span></label><input id="career-portfolio" name="portfolio" type="url" maxlength="500" autocomplete="url" spellcheck="false" autocapitalize="none" placeholder="https://" pattern="https?://.+" aria-describedby="career-portfolio-help career-portfolio-error"><p id="career-portfolio-help" class="career-field-help">A website, GitHub profile, or work sample. Include https:// or http://.</p><p id="career-portfolio-error" class="career-field-error" hidden></p></div>
 </div>
 <div class="career-form-handoff"><p id="career-disclosure">Your application is addressed to <a href="mailto:careers@solarityai.com">careers@solarityai.com</a>. The next step opens FormSubmit for verification and its submission confirmation. <a href="https://formsubmit.co/privacy.pdf" target="_blank" rel="noopener noreferrer">Read FormSubmit’s privacy policy <span aria-hidden="true">↗</span><span class="sr-only">, opens in a new tab</span></a>.</p>
 <button id="career-submit" class="button primary" type="submit">Continue application <span aria-hidden="true">↗</span></button>

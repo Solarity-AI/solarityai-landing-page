@@ -36,7 +36,7 @@ def portfolio_page(apps, btn, app_art, product_status):
         name = e(app['name'])
         links.append(f'<a href="#{slug}"><span>{name}</span><span aria-hidden="true">↓</span></a>')
         rows.append(f'''<article class="catalog-product-row" id="{slug}" data-product-accent="{e(app['color'])}" aria-labelledby="catalog-{slug}-title">
-          <header class="catalog-product-masthead"><p class="catalog-category">{e(app['category'])}</p><h2 id="catalog-{slug}-title">{name}</h2></header>
+          <header class="catalog-product-masthead"><p class="catalog-category">{e(app['category'])}</p><h2 id="catalog-{slug}-title"><a class="catalog-product-link" href="/apps/{slug}">{name}</a></h2></header>
           <div class="catalog-product-art">{app_art(app,True)}</div>
           <div class="catalog-product-copy"><p class="catalog-product-summary">{e(app['summary'])}</p>{store_name_note(app)}<div class="catalog-product-status">{product_status(app,True)}</div><div class="catalog-product-actions">{btn('Explore '+app['name'],'/apps/'+app['slug'],'text')}</div></div>
         </article>''')

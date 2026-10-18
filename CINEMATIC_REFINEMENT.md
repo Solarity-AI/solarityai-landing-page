@@ -37,7 +37,7 @@ This pass addresses the approved 24-point cinematic audit as one design system. 
 - Home composition and native product explorer: `visual_home.py`, `product_explorer.py`, and `design/system/home.css`.
 - Product data and store destinations: `build_site.py`, `APPS`. Product composition: `visual_products.py`, `visual_catalog.py`, and `product_story.py`.
 - Platform, investor, and company composition: `visual_strategy.py`, `visual_company_upgrade.py`, `visual_sections.py`, and `visual_team.py`.
-- Contact destinations and native topics: `visual_contact.py`. Context enhancement: `scripts/contact.js`.
+- Contact destinations and native topics: `visual_contact.py`. Context enhancement: `scripts/contact.js`. Copy-address button (also on Careers): `copy_button` in `ux_components.py` and `scripts/copy.js`.
 - Careers content/form: `visual_careers.py`. Optional fields, validation, and role preselection: `scripts/careers.js`.
 - Font source, license, hash, and subset information: `source-assets/fonts/font-sources.json` and `OFL-Manrope.txt`. The 26,292-byte WOFF2 is self-hosted, fingerprinted, preloaded, and uses `font-display: optional` to avoid late swaps. No third-party runtime font request is added.
 
