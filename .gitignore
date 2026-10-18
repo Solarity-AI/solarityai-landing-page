@@ -1,8 +1,32 @@
+# Python
 __pycache__/
 *.pyc
+.venv/
+venv/
+
+# Archives
 *.tar.gz
 *.tgz
-.DS_Store
-.venv/
+
+# Environment and secrets
 .env
 .env.*
+
+# Editors, local tools, OS files
+.idea/
+.vscode/
+.cursor/
+.claude/
+*.iml
+.DS_Store
+._*
+Thumbs.db
+
+# Logs and temporary files
+*.log
+*.tmp
+*.bak
+*~
+node_modules/
+
+# dist/ is the committed publish set; never ignore it.
