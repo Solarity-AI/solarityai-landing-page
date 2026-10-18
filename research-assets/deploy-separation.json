@@ -1,0 +1,268 @@
+{
+  "date": "2026-10-18",
+  "policy": "dist/ contains exactly the files the generated pages reference, plus host files (_headers, robots.txt, sitemap.xml, favicon.ico) and the published font license. Build-only masters, unpublished approved variants, and retired files live in source-assets/.",
+  "moved": [
+    {
+      "published_path": "/assets/looks-max-icon.webp",
+      "moved_to": "source-assets/looks-max-icon.webp",
+      "bytes": 8170,
+      "reason": "Build input: master for /assets/optimized icon variants"
+    },
+    {
+      "published_path": "/assets/iq-max-icon.webp",
+      "moved_to": "source-assets/iq-max-icon.webp",
+      "bytes": 14474,
+      "reason": "Build input: master for /assets/optimized icon variants"
+    },
+    {
+      "published_path": "/assets/sleep-max-icon.webp",
+      "moved_to": "source-assets/sleep-max-icon.webp",
+      "bytes": 5840,
+      "reason": "Build input: master for /assets/optimized icon variants"
+    },
+    {
+      "published_path": "/assets/fitness-max-icon.webp",
+      "moved_to": "source-assets/fitness-max-icon.webp",
+      "bytes": 17204,
+      "reason": "Build input: master for /assets/optimized icon variants"
+    },
+    {
+      "published_path": "/assets/solar-ascent.webp",
+      "moved_to": "source-assets/solar-ascent.webp",
+      "bytes": 219990,
+      "reason": "Build input: approved hero master for /assets/optimized variants"
+    },
+    {
+      "published_path": "/assets/brand/ata-turhan-original.webp",
+      "moved_to": "source-assets/brand/ata-turhan-original.webp",
+      "bytes": 74872,
+      "reason": "Original portrait; pages use the 320/640 WebP variants"
+    },
+    {
+      "published_path": "/assets/brand/solarity-lockup-original.png",
+      "moved_to": "source-assets/brand/solarity-lockup-original.png",
+      "bytes": 122745,
+      "reason": "Original company lockup; not used by current pages"
+    },
+    {
+      "published_path": "/assets/brand/ata-turhan-320.06acc14f678a.avif",
+      "moved_to": "source-assets/brand/ata-turhan-320.06acc14f678a.avif",
+      "bytes": 9526,
+      "reason": "Approved variant not referenced by current pages; republished automatically if referenced"
+    },
+    {
+      "published_path": "/assets/brand/ata-turhan-640.3ca06d5e1706.avif",
+      "moved_to": "source-assets/brand/ata-turhan-640.3ca06d5e1706.avif",
+      "bytes": 31199,
+      "reason": "Approved variant not referenced by current pages; republished automatically if referenced"
+    },
+    {
+      "published_path": "/assets/brand/solarity-lockup-180.fc3fa6e3059e.webp",
+      "moved_to": "source-assets/brand/solarity-lockup-180.fc3fa6e3059e.webp",
+      "bytes": 16818,
+      "reason": "Approved variant not referenced by current pages; republished automatically if referenced"
+    },
+    {
+      "published_path": "/assets/brand/solarity-lockup-360.a5215e7a9299.webp",
+      "moved_to": "source-assets/brand/solarity-lockup-360.a5215e7a9299.webp",
+      "bytes": 32778,
+      "reason": "Approved variant not referenced by current pages; republished automatically if referenced"
+    },
+    {
+      "published_path": "/assets/team/ali-yilmaz-240-6a90dfff30ac.webp",
+      "moved_to": "source-assets/team/ali-yilmaz-240-6a90dfff30ac.webp",
+      "bytes": 4836,
+      "reason": "Approved portrait; roster is intentionally typographic, republished automatically if referenced"
+    },
+    {
+      "published_path": "/assets/team/ali-yilmaz-480-65556168df49.webp",
+      "moved_to": "source-assets/team/ali-yilmaz-480-65556168df49.webp",
+      "bytes": 11582,
+      "reason": "Approved portrait; roster is intentionally typographic, republished automatically if referenced"
+    },
+    {
+      "published_path": "/assets/team/emrecan-ozkan-240-d1df701b3489.webp",
+      "moved_to": "source-assets/team/emrecan-ozkan-240-d1df701b3489.webp",
+      "bytes": 5628,
+      "reason": "Approved portrait; roster is intentionally typographic, republished automatically if referenced"
+    },
+    {
+      "published_path": "/assets/team/emrecan-ozkan-480-d117500c13c0.webp",
+      "moved_to": "source-assets/team/emrecan-ozkan-480-d117500c13c0.webp",
+      "bytes": 16466,
+      "reason": "Approved portrait; roster is intentionally typographic, republished automatically if referenced"
+    },
+    {
+      "published_path": "/assets/team/hasan-ak-240-d70bfaf3c656.webp",
+      "moved_to": "source-assets/team/hasan-ak-240-d70bfaf3c656.webp",
+      "bytes": 4300,
+      "reason": "Approved portrait; roster is intentionally typographic, republished automatically if referenced"
+    },
+    {
+      "published_path": "/assets/team/hasan-ak-480-866549c99e7b.webp",
+      "moved_to": "source-assets/team/hasan-ak-480-866549c99e7b.webp",
+      "bytes": 10526,
+      "reason": "Approved portrait; roster is intentionally typographic, republished automatically if referenced"
+    },
+    {
+      "published_path": "/assets/fonts/font-sources.json",
+      "moved_to": "source-assets/fonts/font-sources.json",
+      "bytes": 973,
+      "reason": "Font provenance record; the WOFF2 and OFL license stay published"
+    },
+    {
+      "published_path": "/assets/human-potential-1200.webp",
+      "moved_to": "source-assets/retired/human-potential-1200.webp",
+      "bytes": 64848,
+      "reason": "Retired artwork or superseded script; must not be republished"
+    },
+    {
+      "published_path": "/assets/human-potential-1536.webp",
+      "moved_to": "source-assets/retired/human-potential-1536.webp",
+      "bytes": 101094,
+      "reason": "Retired artwork or superseded script; must not be republished"
+    },
+    {
+      "published_path": "/assets/human-potential-768.webp",
+      "moved_to": "source-assets/retired/human-potential-768.webp",
+      "bytes": 31212,
+      "reason": "Retired artwork or superseded script; must not be republished"
+    },
+    {
+      "published_path": "/assets/human-potential-social.jpg",
+      "moved_to": "source-assets/retired/human-potential-social.jpg",
+      "bytes": 127856,
+      "reason": "Retired artwork or superseded script; must not be republished"
+    },
+    {
+      "published_path": "/assets/human-progress-1200.webp",
+      "moved_to": "source-assets/retired/human-progress-1200.webp",
+      "bytes": 70578,
+      "reason": "Retired artwork or superseded script; must not be republished"
+    },
+    {
+      "published_path": "/assets/human-progress-1672.webp",
+      "moved_to": "source-assets/retired/human-progress-1672.webp",
+      "bytes": 116324,
+      "reason": "Retired artwork or superseded script; must not be republished"
+    },
+    {
+      "published_path": "/assets/human-progress-768.webp",
+      "moved_to": "source-assets/retired/human-progress-768.webp",
+      "bytes": 32498,
+      "reason": "Retired artwork or superseded script; must not be republished"
+    },
+    {
+      "published_path": "/assets/human-progress-social.jpg",
+      "moved_to": "source-assets/retired/human-progress-social.jpg",
+      "bytes": 121742,
+      "reason": "Retired artwork or superseded script; must not be republished"
+    },
+    {
+      "published_path": "/assets/site.js",
+      "moved_to": "source-assets/retired/site.js",
+      "bytes": 20086,
+      "reason": "Retired artwork or superseded script; must not be republished"
+    },
+    {
+      "published_path": "/assets/social-cover.jpg",
+      "moved_to": "source-assets/retired/social-cover.jpg",
+      "bytes": 112777,
+      "reason": "Retired artwork or superseded script; must not be republished"
+    },
+    {
+      "published_path": "/assets/solar-stage-1200.webp",
+      "moved_to": "source-assets/retired/solar-stage-1200.webp",
+      "bytes": 68276,
+      "reason": "Retired artwork or superseded script; must not be republished"
+    },
+    {
+      "published_path": "/assets/solar-stage-1672.webp",
+      "moved_to": "source-assets/retired/solar-stage-1672.webp",
+      "bytes": 113806,
+      "reason": "Retired artwork or superseded script; must not be republished"
+    },
+    {
+      "published_path": "/assets/solar-stage-768.webp",
+      "moved_to": "source-assets/retired/solar-stage-768.webp",
+      "bytes": 32034,
+      "reason": "Retired artwork or superseded script; must not be republished"
+    },
+    {
+      "published_path": "/assets/solar-stage-social.jpg",
+      "moved_to": "source-assets/retired/solar-stage-social.jpg",
+      "bytes": 116471,
+      "reason": "Retired artwork or superseded script; must not be republished"
+    },
+    {
+      "published_path": "/assets/solar-vision.webp",
+      "moved_to": "source-assets/retired/solar-vision.webp",
+      "bytes": 94050,
+      "reason": "Retired artwork or superseded script; must not be republished"
+    },
+    {
+      "published_path": "/assets/optimized/human-progress-1200.cfc4d8e65dc5.webp",
+      "moved_to": "source-assets/retired/optimized/human-progress-1200.cfc4d8e65dc5.webp",
+      "bytes": 70578,
+      "reason": "Derivative of retired human-progress hero"
+    },
+    {
+      "published_path": "/assets/optimized/human-progress-1200.f2f81677ce51.avif",
+      "moved_to": "source-assets/retired/optimized/human-progress-1200.f2f81677ce51.avif",
+      "bytes": 49424,
+      "reason": "Derivative of retired human-progress hero"
+    },
+    {
+      "published_path": "/assets/optimized/human-progress-1672.603588268c01.webp",
+      "moved_to": "source-assets/retired/optimized/human-progress-1672.603588268c01.webp",
+      "bytes": 116324,
+      "reason": "Derivative of retired human-progress hero"
+    },
+    {
+      "published_path": "/assets/optimized/human-progress-1672.78a307eb93bf.avif",
+      "moved_to": "source-assets/retired/optimized/human-progress-1672.78a307eb93bf.avif",
+      "bytes": 82547,
+      "reason": "Derivative of retired human-progress hero"
+    },
+    {
+      "published_path": "/assets/optimized/human-progress-768.0695947f374f.avif",
+      "moved_to": "source-assets/retired/optimized/human-progress-768.0695947f374f.avif",
+      "bytes": 22465,
+      "reason": "Derivative of retired human-progress hero"
+    },
+    {
+      "published_path": "/assets/optimized/human-progress-768.f4edcf0016df.webp",
+      "moved_to": "source-assets/retired/optimized/human-progress-768.f4edcf0016df.webp",
+      "bytes": 32498,
+      "reason": "Derivative of retired human-progress hero"
+    }
+  ],
+  "removed_generated": [
+    {
+      "published_path": "/assets/presentation.css",
+      "now": "design/presentation.css",
+      "reason": "Generated CSS bundle used for build hashing; pages inline route CSS"
+    },
+    {
+      "published_path": "/assets/favicon.svg",
+      "now": null,
+      "reason": "Unreferenced generated placeholder; replaced by /favicon.ico from the official sun mark"
+    },
+    {
+      "published_path": "/assets/runtime/careers.c3b82f6bcc33.js",
+      "now": null,
+      "reason": "Stale content-addressed build output; pruned by build_site.py"
+    },
+    {
+      "published_path": "/assets/runtime/contact.be6d716325df.js",
+      "now": null,
+      "reason": "Stale content-addressed build output; pruned by build_site.py"
+    },
+    {
+      "published_path": "/assets/runtime/navigation.1a6b7eb0fce4.js",
+      "now": null,
+      "reason": "Stale build output; navigation is inlined"
+    }
+  ],
+  "moved_bytes": 2205415
+}

@@ -23,12 +23,14 @@ from PIL import Image
 
 ROOT = Path(__file__).resolve().parent
 ASSETS = ROOT / 'dist' / 'assets'
+# Build-only masters (icons, hero) are not deployed. Screenshots stay published
+# because native gallery links open them at their original URLs.
+SOURCE_ASSETS = ROOT / 'source-assets'
 DESTINATION = ASSETS / 'optimized'
 REPORT = ROOT / 'research-assets' / 'image-optimization.json'
 SETTINGS_VERSION = 2
 SCREEN_WIDTHS = (240, 400, 600)
 ICON_WIDTHS = (48, 96, 144)
-HERO_WIDTHS = (768, 1200, 1672)
 SUNRISE_WIDTHS = (480, 768, 1200, 1440, 1860)
 WEBP_QUALITY = 86
 AVIF_QUALITY = 70
@@ -48,7 +50,6 @@ SOURCE_ROLES = {
     'iq-max-icon.webp': 'icon',
     'sleep-max-icon.webp': 'icon',
     'fitness-max-icon.webp': 'icon',
-    'human-progress-1672.webp': 'hero',
     'solar-ascent.webp': 'hero',
 }
 
@@ -62,6 +63,11 @@ _manifest: dict | None = None
 
 def _digest(data: bytes) -> str:
     return sha256(data).hexdigest()
+
+
+def _source(filename: str) -> Path:
+    published = ASSETS / filename
+    return published if published.exists() else SOURCE_ASSETS / filename
 
 
 def _file_record(data: bytes, stem: str, width: int, height: int, fmt: str) -> dict:
@@ -116,12 +122,8 @@ def ensure_optimized_images() -> dict:
     if _manifest is not None:
         return _manifest
     source_hashes = {
-        name: _digest((ASSETS / name).read_bytes()) for name in SOURCE_ROLES
+        name: _digest(_source(name).read_bytes()) for name in SOURCE_ROLES
     }
-    # Existing hero fallback variants also participate in cache invalidation.
-    for width in HERO_WIDTHS[:-1]:
-        name = f'human-progress-{width}.webp'
-        source_hashes[name] = _digest((ASSETS / name).read_bytes())
     if REPORT.exists():
         previous = json.loads(REPORT.read_text(encoding='utf-8'))
         if _cache_valid(previous, source_hashes):
@@ -142,12 +144,12 @@ def ensure_optimized_images() -> dict:
         'images': {},
     }
     for filename, role in SOURCE_ROLES.items():
-        source = ASSETS / filename
+        source = _source(filename)
         original = source.read_bytes()
         with Image.open(source) as image:
             image.load()
-            widths = SUNRISE_WIDTHS if filename == 'solar-ascent.webp' else {'screen': SCREEN_WIDTHS, 'icon': ICON_WIDTHS, 'hero': HERO_WIDTHS}[role]
-            stem = source.stem.removesuffix('-1672') if role == 'hero' else source.stem
+            widths = {'screen': SCREEN_WIDTHS, 'icon': ICON_WIDTHS, 'hero': SUNRISE_WIDTHS}[role]
+            stem = source.stem
             record = {
                 'source': '/assets/' + filename,
                 'role': role,
@@ -160,16 +162,9 @@ def ensure_optimized_images() -> dict:
             for width in widths:
                 if width > image.width:
                     continue
-                if filename == 'human-progress-1672.webp':
-                    # Retain already optimized, visually reviewed WebP fallback
-                    # bytes rather than adding another lossy encode generation.
-                    webp = (ASSETS / f'human-progress-{width}.webp').read_bytes()
-                    with Image.open(BytesIO(webp)) as fallback:
-                        height = fallback.height
-                else:
-                    webp, height = _encode(image, width, 'WEBP')
-                    if width == image.width and len(webp) >= len(original):
-                        webp = original
+                webp, height = _encode(image, width, 'WEBP')
+                if width == image.width and len(webp) >= len(original):
+                    webp = original
                 record['webp'].append(_file_record(webp, stem, width, height, 'WEBP'))
                 if role == 'hero':
                     avif, avif_height = _encode(image, width, 'AVIF')
@@ -182,11 +177,8 @@ def ensure_optimized_images() -> dict:
 
 
 def image_record(src: str) -> dict | None:
-    """Find a supported local image; existing hero widths share one variant set."""
-    manifest = ensure_optimized_images()
-    if src in ('/assets/human-progress-768.webp', '/assets/human-progress-1200.webp'):
-        src = '/assets/human-progress-1672.webp'
-    return manifest['images'].get(src)
+    """Find the manifest record for a supported local image URL."""
+    return ensure_optimized_images()['images'].get(src)
 
 
 def responsive_image_attrs(src: str, *, sizes: str | None = None) -> dict:
@@ -217,7 +209,7 @@ def avif_source_attrs(src: str, *, sizes: str | None = None) -> dict:
     }
 
 
-FAVICON_SOURCE = ASSETS / 'brand' / 'solarity-lockup-original.png'
+FAVICON_SOURCE = SOURCE_ASSETS / 'brand' / 'solarity-lockup-original.png'
 # The documented narrow crop of the official sun/lightning mark
 # (research-assets/brand-evidence.json, "solarity-sun").
 FAVICON_CROP = (186, 37, 1314, 1167)

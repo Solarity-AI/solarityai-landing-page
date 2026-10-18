@@ -11,6 +11,7 @@ from site_urls import public_path
 
 ROOT=Path(__file__).parent
 DIST=ROOT/'dist'
+BUNDLE=ROOT/'design/presentation.css'
 ORIGIN='https://solarity-company.the-ata-turhan.chatgpt.site'
 class Document(HTMLParser):
     def __init__(self):
@@ -95,7 +96,7 @@ for file,d in docs.items():
     stylesheets=[a.get('href') for t,a in d.tags if t=='link' and a.get('rel')=='stylesheet']
     if stylesheets:errors.append(f'{rel}: unexpected render-blocking stylesheet request')
     inline_styles=[a for t,a in d.tags if t=='style' and a.get('id')=='page-styles']
-    css_source_hash=sha256((DIST/'assets/presentation.css').read_bytes()).hexdigest()
+    css_source_hash=sha256(BUNDLE.read_bytes()).hexdigest()
     if len(inline_styles)!=1 or inline_styles[0].get('data-source-sha256')!=css_source_hash:errors.append(f'{rel}: missing or stale route-specific inline CSS')
     runtime_scripts=[a.get('src','') for t,a in d.tags if t=='script' and a.get('src')]
     expected_scripts=[]
@@ -251,6 +252,16 @@ for asset_path in ['/assets/optimized/*','/assets/runtime/*']+fingerprinted_font
 for path,headers in header_rules.items():
     if 'immutable' in headers.get('cache-control','') and path not in ['/assets/optimized/*','/assets/runtime/*']+fingerprinted_fonts:errors.append(f'{path}: immutable caching must be scoped to fingerprinted assets')
 
+# dist/ is the publish set: every file must be a page, a host file, or referenced by a page.
+HOST_FILES={'_headers','robots.txt','sitemap.xml','favicon.ico','assets/fonts/OFL-Manrope.txt'}
+referenced=set()
+for file in docs:
+    referenced|={url.lstrip('/') for url in re.findall(r'(?:'+re.escape(ORIGIN)+r'|(?<![\w.-]))(/assets/[^"\'\s,)]+)',file.read_text(encoding='utf-8'))}
+for file in sorted(DIST.rglob('*')):
+    rel=file.relative_to(DIST).as_posix()
+    if file.is_file() and file.suffix!='.html' and rel not in HOST_FILES and rel not in referenced:errors.append(f'Unreferenced file is published: {rel}')
+for url in sorted(referenced):
+    if not (DIST/url).is_file():errors.append(f'Referenced asset is missing from dist: /{url}')
 favicon=DIST/'favicon.ico'
 if not favicon.is_file() or favicon.read_bytes()[:4]!=b'\x00\x00\x01\x00':errors.append('Missing or invalid root favicon.ico')
 for file,d in docs.items():
@@ -258,7 +269,7 @@ for file,d in docs.items():
 
 for attr,values in [('title',[''.join(d.title) for d in docs.values()]),('description',[next((a.get('content','') for t,a in d.tags if t=='meta' and a.get('name')=='description'),'') for d in docs.values()])]:
     if len(values)!=len(set(values)):errors.append(f'Duplicate {attr}')
-bundle=DIST/'assets/presentation.css'
+bundle=BUNDLE
 css=bundle.read_text(encoding='utf-8') if bundle.is_file() else ''
 # Read the maintained build list, so newer styles cannot silently escape QA.
 builder=ast.parse((ROOT/'build_site.py').read_text(encoding='utf-8'))

@@ -11,6 +11,8 @@ from optimize_styles import optimize_css
 
 ROOT = Path(__file__).parent
 RUNTIME = ROOT / 'dist/assets/runtime'
+# Runtime files written by this build; anything else in RUNTIME is stale.
+WRITTEN_RUNTIME = set()
 
 
 class _ImageTag(HTMLParser):
@@ -29,6 +31,7 @@ def _script_asset(name):
     target = RUNTIME / f'{name}.{digest}.js'
     RUNTIME.mkdir(parents=True, exist_ok=True)
     target.write_bytes(source)
+    WRITTEN_RUNTIME.add(target.name)
     return '/assets/runtime/' + target.name, len(source)
 
 

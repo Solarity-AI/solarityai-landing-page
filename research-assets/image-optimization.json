@@ -15,10 +15,7 @@
     "iq-max-icon.webp": "ca765c2fc4c1907475c4542e42cafcc0e302452ecf8e5786689adff761484f01",
     "sleep-max-icon.webp": "291d2db282087249bd6ba1fee24325de7cc7abc6030b2a8e3a73523e6ec29d11",
     "fitness-max-icon.webp": "7122f8246316b4a446fd4fe166e9dfb816b35f9e932968e629da461daa3e47e0",
-    "human-progress-1672.webp": "603588268c01699ab51cc7ee80f7da29b9a72cb8c38a5990f086a188c306ca48",
-    "solar-ascent.webp": "fee06b897b31710a10c7d15ab2d93e552671a3e734708b2d1ddc73eb38cd219a",
-    "human-progress-768.webp": "f4edcf0016df04dc696f75b634adfe6cb495e20f1a6a41448131f160bbab2913",
-    "human-progress-1200.webp": "cfc4d8e65dc5c77f5ede23b6b1d6968826e9d521f1e39fc879cf1b29d5f88b3a"
+    "solar-ascent.webp": "fee06b897b31710a10c7d15ab2d93e552671a3e734708b2d1ddc73eb38cd219a"
   },
   "encoding": {
     "webp_quality": 86,
@@ -503,65 +500,6 @@
         }
       ],
       "avif": []
-    },
-    "/assets/human-progress-1672.webp": {
-      "source": "/assets/human-progress-1672.webp",
-      "role": "hero",
-      "width": 1672,
-      "height": 941,
-      "original_bytes": 116324,
-      "webp": [
-        {
-          "url": "/assets/optimized/human-progress-768.f4edcf0016df.webp",
-          "width": 768,
-          "height": 432,
-          "bytes": 32498,
-          "sha256": "f4edcf0016df04dc696f75b634adfe6cb495e20f1a6a41448131f160bbab2913",
-          "mime": "image/webp"
-        },
-        {
-          "url": "/assets/optimized/human-progress-1200.cfc4d8e65dc5.webp",
-          "width": 1200,
-          "height": 675,
-          "bytes": 70578,
-          "sha256": "cfc4d8e65dc5c77f5ede23b6b1d6968826e9d521f1e39fc879cf1b29d5f88b3a",
-          "mime": "image/webp"
-        },
-        {
-          "url": "/assets/optimized/human-progress-1672.603588268c01.webp",
-          "width": 1672,
-          "height": 941,
-          "bytes": 116324,
-          "sha256": "603588268c01699ab51cc7ee80f7da29b9a72cb8c38a5990f086a188c306ca48",
-          "mime": "image/webp"
-        }
-      ],
-      "avif": [
-        {
-          "url": "/assets/optimized/human-progress-768.0695947f374f.avif",
-          "width": 768,
-          "height": 432,
-          "bytes": 22465,
-          "sha256": "0695947f374f8a06b29feab6c82f8cc1c092521cfd94ba6592ec37dfb4e51278",
-          "mime": "image/avif"
-        },
-        {
-          "url": "/assets/optimized/human-progress-1200.f2f81677ce51.avif",
-          "width": 1200,
-          "height": 675,
-          "bytes": 49424,
-          "sha256": "f2f81677ce51a30cdba76238319a57b9f99ebab7e86fd64e81791a3831c92590",
-          "mime": "image/avif"
-        },
-        {
-          "url": "/assets/optimized/human-progress-1672.78a307eb93bf.avif",
-          "width": 1672,
-          "height": 941,
-          "bytes": 82547,
-          "sha256": "78a307eb93bf564f17a93aebe116a9b715053ae18b8bd11a56609373736cbe3e",
-          "mime": "image/avif"
-        }
-      ]
     },
     "/assets/solar-ascent.webp": {
       "source": "/assets/solar-ascent.webp",
