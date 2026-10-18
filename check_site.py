@@ -105,9 +105,10 @@ for file,d in docs.items():
     if any(t=='a' and 'screenshot-open' in a.get('class','').split() for t,a in d.tags):expected_scripts.append('gallery')
     if rel=='contact/index.html':expected_scripts.append('contact')
     if rel=='careers/index.html':expected_scripts.append('careers')
+    if any('data-copy' in a for t,a in d.tags):expected_scripts.append('copy')
     actual_scripts=[]
     for script in runtime_scripts:
-        match=re.fullmatch(r'/assets/runtime/(gallery|contact|careers)\.([a-f0-9]{12})\.js',script)
+        match=re.fullmatch(r'/assets/runtime/(gallery|contact|careers|copy)\.([a-f0-9]{12})\.js',script)
         if not match:errors.append(f'{rel}: unexpected runtime script {script}');continue
         actual_scripts.append(match.group(1))
         script_file=DIST/script.lstrip('/')

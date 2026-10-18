@@ -74,10 +74,11 @@
     .recovery-destination { grid-template-columns: minmax(0, 1fr); gap: 4px; }
   }
   @media (max-width: 560px) {
-    .contact-opening { padding-block-start: 44px; }
+    .contact-opening { padding-block: 44px 28px; }
     .contact-opening h1 { font-size: clamp(2.65rem, 10.7vw, 3.65rem); }
     .contact-opening .lede { margin-block-start: 23px; }
-    .contact-destination { padding-block: 30px; }
+    .contact-destination { padding-block: 22px 30px; }
+    .contact-direct .copy-button { margin-block-start: 8px; }
     .contact-person h2 { font-size: 2rem; }
     .contact-context { font-size: var(--text-xs); }
     .contact-email { gap: 12px; font-size: clamp(1rem, 4.5vw, 1.55rem); }

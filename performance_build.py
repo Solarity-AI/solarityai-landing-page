@@ -113,6 +113,8 @@ def optimize_page(document, path, css):
         scripts.append('contact')
     if path == '/careers':
         scripts.append('careers')
+    if 'data-copy=' in document:
+        scripts.append('copy')
     script_tags, script_bytes = [], len(navigation.encode())
     for name in scripts:
         url, size = _script_asset(name)

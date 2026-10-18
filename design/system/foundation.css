@@ -71,6 +71,12 @@
  .text-link{display:inline-flex;align-items:center;gap:20px;min-height:44px;padding-block:6px;font-size:var(--text-sm);font-weight:500;line-height:1.5;color:var(--accent);text-decoration:none;border-bottom:1px solid transparent;transition:color var(--motion-fast),border-color var(--motion-fast)}
  .text-link:hover{color:var(--text);border-bottom-color:currentColor}
  .text-link>span[aria-hidden]{font-size:var(--text-lg);flex:none}
+ /* Copy-address fallback, revealed by scripts/copy.js only where the clipboard works. */
+ .copy-row{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px}
+ .copy-button{min-height:44px;margin-block-start:12px;padding:8px 16px;border:1px solid #727469;border-radius:var(--radius-pill);background:transparent;color:var(--text);font-size:var(--text-xs);font-weight:500;line-height:1.4;transition:border-color var(--motion-fast),color var(--motion-fast)}
+ .copy-button:hover{border-color:var(--accent)}
+ .copy-status{margin-block-start:12px;font-size:var(--text-xs);color:var(--accent)}
+ .copy-status:empty{display:none}
  .status{display:inline-flex;align-items:center;gap:8px;padding:4px 0;border:0;border-radius:0;font-size:var(--text-2xs);line-height:1.5;color:#c8dccd}
  .status i{width:5px;height:5px;border-radius:50%;background:currentColor}
  .status.vision{color:var(--accent)}

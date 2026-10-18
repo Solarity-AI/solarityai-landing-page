@@ -5,6 +5,8 @@ The provider, rather than this page, confirms verification and acceptance.
 """
 from html import escape
 
+from ux_components import copy_button
+
 
 CAREER_ROLES = (
     (
@@ -80,7 +82,7 @@ def careers_page(btn):
 <div class="career-apply-copy"><p class="eyebrow">START A CONVERSATION</p><h2 id="career-apply-title">Tell us what<br><em>you bring.</em></h2>
 <p>Start with your name, email, and the opportunity you have in mind. A LinkedIn profile or a link to your work can add context, if you have one.</p>
 
-<div class="career-email-alternative"><p>Prefer to contact us directly?</p><a href="mailto:careers@solarityai.com?subject=Career%20inquiry%20-%20Solarity%20AI">careers@solarityai.com <span aria-hidden="true">↗</span></a></div></div>
+<div class="career-email-alternative"><p>Prefer to contact us directly?</p><a href="mailto:careers@solarityai.com?subject=Career%20inquiry%20-%20Solarity%20AI">careers@solarityai.com <span aria-hidden="true">↗</span></a>''' + copy_button('careers@solarityai.com', 'careers-email-copy-status') + '''</div></div>
 
 <form id="career-form" class="career-form" action="https://formsubmit.co/careers@solarityai.com" method="POST" aria-labelledby="career-form-title" aria-describedby="career-form-intro career-disclosure">
 <div class="career-form-heading"><p class="eyebrow">YOUR APPLICATION</p><h3 id="career-form-title">Introduce yourself.</h3><p id="career-form-intro">Four details to get started. Work links are optional.</p></div>
