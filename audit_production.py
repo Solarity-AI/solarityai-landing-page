@@ -304,7 +304,8 @@ def main() -> int:
         report['lighthouse'] = run_lighthouse(args.lighthouse, routes)
     elif REPORT.exists():
         previous = json.loads(REPORT.read_text(encoding='utf-8'))
-        if 'lighthouse' in previous:
+        # Lab results describe one host; never attribute them to another origin.
+        if 'lighthouse' in previous and previous.get('origin') == origin:
             report['lighthouse'] = previous['lighthouse']
             report['lighthouse_note'] = 'Carried over from measured_at ' + previous.get('lighthouse_measured_at', previous['measured_at'])
     if args.lighthouse:
