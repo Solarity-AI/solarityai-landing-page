@@ -1,0 +1,14 @@
+{
+  "approved_source": "research-assets/solar-ascent-approved.png",
+  "source_sha256": "90b2c7f071fd906510bbb92c6b4809ad13cc0315f2df4cd4e19f9b4fe2ec4a31",
+  "dimensions": [
+    1860,
+    845
+  ],
+  "classification": "Illustrative brand artwork, approved by founder on October 13, 2026",
+  "source_prompt": "A person ascending mountain steps toward a natural atmospheric sunrise. Charcoal and gold palette, dark left space for headline. The corrected sun has no plasma or exposed solar texture.",
+  "approval": "User: nice, now add it website perfectly",
+  "asset": "/assets/solar-ascent.webp",
+  "social_asset": "/assets/solar-ascent-social.jpg",
+  "transforms": "Format conversion and proportional resizing only; no crop or content modification."
+}

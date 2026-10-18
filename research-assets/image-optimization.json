@@ -1,0 +1,596 @@
+{
+  "settings_version": 2,
+  "source_hashes": {
+    "looks-max-screen-4.webp": "ef767bc4e4e05c7b54a0a87f722b1f71d890b71378b517c0e0ae690c2c5b4ae6",
+    "looks-max-detail-screen-6.webp": "b1a7f0903987976bbc6f0d4254a3cca33b3a88d07476b66fc7f5c23222b6c70a",
+    "iq-max-detail-screen-4.webp": "68462a9aba0110cbe0b24bbee0bd4b16cf658bcc4a610f2737fc680b0dbe1fd4",
+    "iq-max-detail-screen-6.webp": "fea2b6ff399f7e3dd8f9904e8c36812c5ef49c8dd95c00c5eb43453919f76d42",
+    "sleep-max-detail-screen-3.webp": "753a038b5a7fef30b214ba3ba28511af2ab403f427bcce65c0c5a14885fce4a4",
+    "fitness-max-detail-screen-3.webp": "e315ead091fdb0cbf1613af52592bbff3b029c008385155e917912f4a0a3b430",
+    "fitness-max-detail-screen-5.webp": "224e25c7913d4f0e3cb46fe84fb140b4700f2f13be618b261d69187a9c81e3cc",
+    "iq-max-screen-1.webp": "db6e5efb5b03793e5a8d8f0f247fb77fd3dfed92a3700ba585fa69baf3cb666e",
+    "sleep-max-screen-4.webp": "d1c9519695cfed08e7024ee07dea32cb8f860b0757a9edbe828fd74833c4ae15",
+    "fitness-max-screen-2.webp": "ae6006967ff342bfc49945881492fd4dc36dad40cf7fd517e76ce864755e8fc5",
+    "looks-max-icon.webp": "0a873e6c30a21ff2f2ac45895a52f20546c4fe43c68c0ec93956635cd9d77f7e",
+    "iq-max-icon.webp": "ca765c2fc4c1907475c4542e42cafcc0e302452ecf8e5786689adff761484f01",
+    "sleep-max-icon.webp": "291d2db282087249bd6ba1fee24325de7cc7abc6030b2a8e3a73523e6ec29d11",
+    "fitness-max-icon.webp": "7122f8246316b4a446fd4fe166e9dfb816b35f9e932968e629da461daa3e47e0",
+    "solar-ascent.webp": "fee06b897b31710a10c7d15ab2d93e552671a3e734708b2d1ddc73eb38cd219a"
+  },
+  "encoding": {
+    "webp_quality": 86,
+    "avif_quality": 70,
+    "resize": "Lanczos, preserve complete image and aspect ratio",
+    "original_full_size_screenshots": "Preserved at their original URLs",
+    "fallback_policy": "Never enlarge the original full-width WebP by re-encoding"
+  },
+  "images": {
+    "/assets/looks-max-screen-4.webp": {
+      "source": "/assets/looks-max-screen-4.webp",
+      "role": "screen",
+      "width": 600,
+      "height": 1298,
+      "original_bytes": 29916,
+      "webp": [
+        {
+          "url": "/assets/optimized/looks-max-screen-4-240.0e9637efba23.webp",
+          "width": 240,
+          "height": 519,
+          "bytes": 13946,
+          "sha256": "0e9637efba2391b502d2ac5bf1b2266eb8539f5dda301a0fdb5722b5574ea44d",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/looks-max-screen-4-400.ac470416f280.webp",
+          "width": 400,
+          "height": 865,
+          "bytes": 24448,
+          "sha256": "ac470416f280d016f868595dcda2921b463ab32630ea6c4d37f9731bfea928a4",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/looks-max-screen-4-600.ef767bc4e4e0.webp",
+          "width": 600,
+          "height": 1298,
+          "bytes": 29916,
+          "sha256": "ef767bc4e4e05c7b54a0a87f722b1f71d890b71378b517c0e0ae690c2c5b4ae6",
+          "mime": "image/webp"
+        }
+      ],
+      "avif": []
+    },
+    "/assets/looks-max-detail-screen-6.webp": {
+      "source": "/assets/looks-max-detail-screen-6.webp",
+      "role": "screen",
+      "width": 600,
+      "height": 1298,
+      "original_bytes": 38938,
+      "webp": [
+        {
+          "url": "/assets/optimized/looks-max-detail-screen-6-240.e5e4484af0a0.webp",
+          "width": 240,
+          "height": 519,
+          "bytes": 17036,
+          "sha256": "e5e4484af0a0f347ba55983bf14d7972d5f11e32e9e06129aa3ff8510ab9ccee",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/looks-max-detail-screen-6-400.44437ff99fca.webp",
+          "width": 400,
+          "height": 865,
+          "bytes": 31492,
+          "sha256": "44437ff99fca8b32b120f6b0652de55c1eb6cd2fd9875f3fbdbb318ad2bdb794",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/looks-max-detail-screen-6-600.b1a7f0903987.webp",
+          "width": 600,
+          "height": 1298,
+          "bytes": 38938,
+          "sha256": "b1a7f0903987976bbc6f0d4254a3cca33b3a88d07476b66fc7f5c23222b6c70a",
+          "mime": "image/webp"
+        }
+      ],
+      "avif": []
+    },
+    "/assets/iq-max-detail-screen-4.webp": {
+      "source": "/assets/iq-max-detail-screen-4.webp",
+      "role": "screen",
+      "width": 600,
+      "height": 1298,
+      "original_bytes": 23856,
+      "webp": [
+        {
+          "url": "/assets/optimized/iq-max-detail-screen-4-240.508361c167aa.webp",
+          "width": 240,
+          "height": 519,
+          "bytes": 11384,
+          "sha256": "508361c167aaf980d1c6d73c2123c72ab5c6850e2ad95b37180d695e040a50c9",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/iq-max-detail-screen-4-400.33d86bd1213e.webp",
+          "width": 400,
+          "height": 865,
+          "bytes": 19818,
+          "sha256": "33d86bd1213e428ee9a9b6e53debceb801c26e497fba29ee578d081733c125ec",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/iq-max-detail-screen-4-600.c63d05f57448.webp",
+          "width": 600,
+          "height": 1298,
+          "bytes": 23794,
+          "sha256": "c63d05f57448eba956cd5f6e788f81e9b7b331512ca661ba506801a9cbdef4de",
+          "mime": "image/webp"
+        }
+      ],
+      "avif": []
+    },
+    "/assets/iq-max-detail-screen-6.webp": {
+      "source": "/assets/iq-max-detail-screen-6.webp",
+      "role": "screen",
+      "width": 600,
+      "height": 1298,
+      "original_bytes": 29482,
+      "webp": [
+        {
+          "url": "/assets/optimized/iq-max-detail-screen-6-240.c565106bbf80.webp",
+          "width": 240,
+          "height": 519,
+          "bytes": 14972,
+          "sha256": "c565106bbf80f261acbba1240b886e70a9d5f5c4104f27c0a86c2d0715b5d623",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/iq-max-detail-screen-6-400.1dbf8ff94e83.webp",
+          "width": 400,
+          "height": 865,
+          "bytes": 25484,
+          "sha256": "1dbf8ff94e8318d773e7debdb0588f5b95837f452df0cd51c985e1dc2d5108d4",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/iq-max-detail-screen-6-600.fea2b6ff399f.webp",
+          "width": 600,
+          "height": 1298,
+          "bytes": 29482,
+          "sha256": "fea2b6ff399f7e3dd8f9904e8c36812c5ef49c8dd95c00c5eb43453919f76d42",
+          "mime": "image/webp"
+        }
+      ],
+      "avif": []
+    },
+    "/assets/sleep-max-detail-screen-3.webp": {
+      "source": "/assets/sleep-max-detail-screen-3.webp",
+      "role": "screen",
+      "width": 600,
+      "height": 1298,
+      "original_bytes": 25754,
+      "webp": [
+        {
+          "url": "/assets/optimized/sleep-max-detail-screen-3-240.be403817a19d.webp",
+          "width": 240,
+          "height": 519,
+          "bytes": 10018,
+          "sha256": "be403817a19d6058e5caaf63326ad1551d0882732a3ef0a16fe762d86b0dce99",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/sleep-max-detail-screen-3-400.7a0d626069e4.webp",
+          "width": 400,
+          "height": 865,
+          "bytes": 18844,
+          "sha256": "7a0d626069e450eda70d2523d9625aa7e776db30b7c074b0d03d39ba4445d686",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/sleep-max-detail-screen-3-600.753a038b5a7f.webp",
+          "width": 600,
+          "height": 1298,
+          "bytes": 25754,
+          "sha256": "753a038b5a7fef30b214ba3ba28511af2ab403f427bcce65c0c5a14885fce4a4",
+          "mime": "image/webp"
+        }
+      ],
+      "avif": []
+    },
+    "/assets/fitness-max-detail-screen-3.webp": {
+      "source": "/assets/fitness-max-detail-screen-3.webp",
+      "role": "screen",
+      "width": 600,
+      "height": 1298,
+      "original_bytes": 22774,
+      "webp": [
+        {
+          "url": "/assets/optimized/fitness-max-detail-screen-3-240.66b0d3eb9979.webp",
+          "width": 240,
+          "height": 519,
+          "bytes": 11404,
+          "sha256": "66b0d3eb99798ac6c21d46f9c4f60d2b5a01e33ce1cb3a4529747f57281a5484",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/fitness-max-detail-screen-3-400.93e3398c9d97.webp",
+          "width": 400,
+          "height": 865,
+          "bytes": 18346,
+          "sha256": "93e3398c9d971afc5ca29f480dd2c2b4cdfb5a054222b16281d4288d2d027409",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/fitness-max-detail-screen-3-600.2821c00ea2ae.webp",
+          "width": 600,
+          "height": 1298,
+          "bytes": 21968,
+          "sha256": "2821c00ea2aeabbac042ed38ad5397b76121ab27dd4535af7416556ed30a154e",
+          "mime": "image/webp"
+        }
+      ],
+      "avif": []
+    },
+    "/assets/fitness-max-detail-screen-5.webp": {
+      "source": "/assets/fitness-max-detail-screen-5.webp",
+      "role": "screen",
+      "width": 600,
+      "height": 1298,
+      "original_bytes": 20800,
+      "webp": [
+        {
+          "url": "/assets/optimized/fitness-max-detail-screen-5-240.cb43b860246c.webp",
+          "width": 240,
+          "height": 519,
+          "bytes": 9602,
+          "sha256": "cb43b860246c57e5b3c026b3c577aa643d7b0705d60502b29091eb2c556d2800",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/fitness-max-detail-screen-5-400.c8a08c9359ca.webp",
+          "width": 400,
+          "height": 865,
+          "bytes": 15698,
+          "sha256": "c8a08c9359caf909309d73f7968e5e35552b075ad404b7f6ef0b4f33ea6154c0",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/fitness-max-detail-screen-5-600.2d103bb3d1b5.webp",
+          "width": 600,
+          "height": 1298,
+          "bytes": 20316,
+          "sha256": "2d103bb3d1b55abbfb4d275c912cd4aa6f8a004c17e9108845525b69c259ee02",
+          "mime": "image/webp"
+        }
+      ],
+      "avif": []
+    },
+    "/assets/iq-max-screen-1.webp": {
+      "source": "/assets/iq-max-screen-1.webp",
+      "role": "screen",
+      "width": 600,
+      "height": 1298,
+      "original_bytes": 38160,
+      "webp": [
+        {
+          "url": "/assets/optimized/iq-max-screen-1-240.cdf6176f5c59.webp",
+          "width": 240,
+          "height": 519,
+          "bytes": 17264,
+          "sha256": "cdf6176f5c598cb26958a7e8aa4643fab9831be018b2966c0892107013a0f6b5",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/iq-max-screen-1-400.c81ff3fd7665.webp",
+          "width": 400,
+          "height": 865,
+          "bytes": 30508,
+          "sha256": "c81ff3fd7665d4c501dd4eae8df6a221208821b049e0b284cee3ef19142ec4d2",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/iq-max-screen-1-600.db6e5efb5b03.webp",
+          "width": 600,
+          "height": 1298,
+          "bytes": 38160,
+          "sha256": "db6e5efb5b03793e5a8d8f0f247fb77fd3dfed92a3700ba585fa69baf3cb666e",
+          "mime": "image/webp"
+        }
+      ],
+      "avif": []
+    },
+    "/assets/sleep-max-screen-4.webp": {
+      "source": "/assets/sleep-max-screen-4.webp",
+      "role": "screen",
+      "width": 600,
+      "height": 1298,
+      "original_bytes": 26890,
+      "webp": [
+        {
+          "url": "/assets/optimized/sleep-max-screen-4-240.579a6bc17c83.webp",
+          "width": 240,
+          "height": 519,
+          "bytes": 10220,
+          "sha256": "579a6bc17c8356da3071c985073b05b5b73adc6b059550f0b92d984d4ba1a9ab",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/sleep-max-screen-4-400.f4bfa9583de5.webp",
+          "width": 400,
+          "height": 865,
+          "bytes": 19246,
+          "sha256": "f4bfa9583de5378f30fd6de0c9b7d2d9293220a798c17898d60b656c2b9796d5",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/sleep-max-screen-4-600.d1c9519695cf.webp",
+          "width": 600,
+          "height": 1298,
+          "bytes": 26890,
+          "sha256": "d1c9519695cfed08e7024ee07dea32cb8f860b0757a9edbe828fd74833c4ae15",
+          "mime": "image/webp"
+        }
+      ],
+      "avif": []
+    },
+    "/assets/fitness-max-screen-2.webp": {
+      "source": "/assets/fitness-max-screen-2.webp",
+      "role": "screen",
+      "width": 600,
+      "height": 1298,
+      "original_bytes": 22398,
+      "webp": [
+        {
+          "url": "/assets/optimized/fitness-max-screen-2-240.cc5fc26901d6.webp",
+          "width": 240,
+          "height": 519,
+          "bytes": 11062,
+          "sha256": "cc5fc26901d6d65942204412ddadce0ad53a5cea5ee75a501c59150e97142079",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/fitness-max-screen-2-400.abeb6bd9c34a.webp",
+          "width": 400,
+          "height": 865,
+          "bytes": 18020,
+          "sha256": "abeb6bd9c34a9ae700d524e0764281a4412c1bcb387584226529d84783b09d51",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/fitness-max-screen-2-600.3f33f1ca97a2.webp",
+          "width": 600,
+          "height": 1298,
+          "bytes": 22254,
+          "sha256": "3f33f1ca97a2ff7a0118553aa02e04149003d004baa80407eb2ab283b9074b7a",
+          "mime": "image/webp"
+        }
+      ],
+      "avif": []
+    },
+    "/assets/looks-max-icon.webp": {
+      "source": "/assets/looks-max-icon.webp",
+      "role": "icon",
+      "width": 400,
+      "height": 400,
+      "original_bytes": 8170,
+      "webp": [
+        {
+          "url": "/assets/optimized/looks-max-icon-48.c4acd53f50ca.webp",
+          "width": 48,
+          "height": 48,
+          "bytes": 682,
+          "sha256": "c4acd53f50ca2add4c3554f0f917c5b9389f187570540ec96803efad53156397",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/looks-max-icon-96.b5d76428edc0.webp",
+          "width": 96,
+          "height": 96,
+          "bytes": 1516,
+          "sha256": "b5d76428edc0d7642cb8fb930610a9db31720975a4e2e07975bf23d05474e4c7",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/looks-max-icon-144.6e029fa80180.webp",
+          "width": 144,
+          "height": 144,
+          "bytes": 2338,
+          "sha256": "6e029fa8018076c9021c687ef3c4069b0790e8a6cfda7071458c5dfa4b39fc67",
+          "mime": "image/webp"
+        }
+      ],
+      "avif": []
+    },
+    "/assets/iq-max-icon.webp": {
+      "source": "/assets/iq-max-icon.webp",
+      "role": "icon",
+      "width": 400,
+      "height": 400,
+      "original_bytes": 14474,
+      "webp": [
+        {
+          "url": "/assets/optimized/iq-max-icon-48.180c846c135e.webp",
+          "width": 48,
+          "height": 48,
+          "bytes": 1126,
+          "sha256": "180c846c135e397c4ab87edb4c4a5315107451cef0f6a83707c1b9455ae4ac25",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/iq-max-icon-96.aac6e5022f6b.webp",
+          "width": 96,
+          "height": 96,
+          "bytes": 2638,
+          "sha256": "aac6e5022f6b8392d3835949c5cc5a456a744055d04170022d83d04c5373a416",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/iq-max-icon-144.c76f356ba199.webp",
+          "width": 144,
+          "height": 144,
+          "bytes": 4476,
+          "sha256": "c76f356ba1991a1fa7ebecf61ae9e2ed3e2872d243d999e0ff7836c2b876efdd",
+          "mime": "image/webp"
+        }
+      ],
+      "avif": []
+    },
+    "/assets/sleep-max-icon.webp": {
+      "source": "/assets/sleep-max-icon.webp",
+      "role": "icon",
+      "width": 400,
+      "height": 400,
+      "original_bytes": 5840,
+      "webp": [
+        {
+          "url": "/assets/optimized/sleep-max-icon-48.b11fcaf98bce.webp",
+          "width": 48,
+          "height": 48,
+          "bytes": 428,
+          "sha256": "b11fcaf98bcee8010cc8ad16a59b9b1b4d407e6a84d0b77970b38e6142bc881b",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/sleep-max-icon-96.6e0de30b5905.webp",
+          "width": 96,
+          "height": 96,
+          "bytes": 790,
+          "sha256": "6e0de30b590549c5050a4856ece88b8e481b25acdd03df6155330a40324d1729",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/sleep-max-icon-144.ae97748b1e77.webp",
+          "width": 144,
+          "height": 144,
+          "bytes": 1228,
+          "sha256": "ae97748b1e77a6fda5f9d4c9badc7deb90a0699f885edabde496e645f116277b",
+          "mime": "image/webp"
+        }
+      ],
+      "avif": []
+    },
+    "/assets/fitness-max-icon.webp": {
+      "source": "/assets/fitness-max-icon.webp",
+      "role": "icon",
+      "width": 400,
+      "height": 400,
+      "original_bytes": 17204,
+      "webp": [
+        {
+          "url": "/assets/optimized/fitness-max-icon-48.87bd57d8e532.webp",
+          "width": 48,
+          "height": 48,
+          "bytes": 1234,
+          "sha256": "87bd57d8e5324d5891222c256aa49bffada408bbf704aec742d1af7ac6f07695",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/fitness-max-icon-96.7e9493fe73f9.webp",
+          "width": 96,
+          "height": 96,
+          "bytes": 2956,
+          "sha256": "7e9493fe73f9bf1675cc962d2f00fb2c65f6a7a3ad3a95e88df941cf412da225",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/fitness-max-icon-144.e637a846d707.webp",
+          "width": 144,
+          "height": 144,
+          "bytes": 4928,
+          "sha256": "e637a846d707b04e40d10df71702cbfc40763ffb458271e0074438cb07a821d9",
+          "mime": "image/webp"
+        }
+      ],
+      "avif": []
+    },
+    "/assets/solar-ascent.webp": {
+      "source": "/assets/solar-ascent.webp",
+      "role": "hero",
+      "width": 1860,
+      "height": 845,
+      "original_bytes": 219990,
+      "webp": [
+        {
+          "url": "/assets/optimized/solar-ascent-480.ac7a79e81d7d.webp",
+          "width": 480,
+          "height": 218,
+          "bytes": 20196,
+          "sha256": "ac7a79e81d7d788ea1c72af3e041f9bc8517a99e07b93ff481a5cc0262c22143",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/solar-ascent-768.a2934ffc2e78.webp",
+          "width": 768,
+          "height": 349,
+          "bytes": 41874,
+          "sha256": "a2934ffc2e78a90e4875ce791d002e57e1ff4be85c20ac5327fc6fcda3af2b48",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/solar-ascent-1200.15de939dc709.webp",
+          "width": 1200,
+          "height": 545,
+          "bytes": 83448,
+          "sha256": "15de939dc70912570312542fa1b8441ae7ca7dfad5a66bce03c1b934e2b2222c",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/solar-ascent-1440.4630e36e4141.webp",
+          "width": 1440,
+          "height": 654,
+          "bytes": 104716,
+          "sha256": "4630e36e4141425698b06d3f22765df38c4ad5f619f7c119c8a0c2be1f04cfe1",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/solar-ascent-1860.4ab107438b1a.webp",
+          "width": 1860,
+          "height": 845,
+          "bytes": 155274,
+          "sha256": "4ab107438b1ad99207f04a0955178000bd9878e6c41cdc949d5e4134d46b7e6d",
+          "mime": "image/webp"
+        }
+      ],
+      "avif": [
+        {
+          "url": "/assets/optimized/solar-ascent-480.e83c42387514.avif",
+          "width": 480,
+          "height": 218,
+          "bytes": 16429,
+          "sha256": "e83c42387514892617047cefa6cdaa69d7a4df57dd42e389587621df030eef66",
+          "mime": "image/avif"
+        },
+        {
+          "url": "/assets/optimized/solar-ascent-768.c3a09a25e15c.avif",
+          "width": 768,
+          "height": 349,
+          "bytes": 34543,
+          "sha256": "c3a09a25e15c4771306d92f5666f94f2016dbd79b28302473a03845d706b9f00",
+          "mime": "image/avif"
+        },
+        {
+          "url": "/assets/optimized/solar-ascent-1200.2dfd1527d27d.avif",
+          "width": 1200,
+          "height": 545,
+          "bytes": 69470,
+          "sha256": "2dfd1527d27d00a79e5fa65e7d428d608479acd255a45b5562e5b03665f884f5",
+          "mime": "image/avif"
+        },
+        {
+          "url": "/assets/optimized/solar-ascent-1440.5f9efc614f94.avif",
+          "width": 1440,
+          "height": 654,
+          "bytes": 90890,
+          "sha256": "5f9efc614f940658e1596d5d5a59b90a57d09a2609ed646c1bfa45507dcae11e",
+          "mime": "image/avif"
+        },
+        {
+          "url": "/assets/optimized/solar-ascent-1860.ab965179a93b.avif",
+          "width": 1860,
+          "height": 845,
+          "bytes": 128441,
+          "sha256": "ab965179a93b2e0d0ad3d3800843811bd1e4dacf14f6dc4c81a6e46a06b62e19",
+          "mime": "image/avif"
+        }
+      ]
+    }
+  }
+}

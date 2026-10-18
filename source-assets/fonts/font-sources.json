@@ -1,0 +1,20 @@
+{
+  "family": "Manrope",
+  "weights": "200 800",
+  "source": "https://raw.githubusercontent.com/google/fonts/main/ofl/manrope/Manrope%5Bwght%5D.ttf",
+  "source_sha256": "3ae11c49db0455a3cc33e37d380f20fdb8c7f8b41dc07625c177e3d87a9d6ae6",
+  "license": "SIL Open Font License 1.1",
+  "license_source": "https://raw.githubusercontent.com/google/fonts/main/ofl/manrope/OFL.txt",
+  "processed": "fontTools subset, Latin and Latin Extended-A, punctuation and navigation arrows; WOFF2 variable",
+  "font_file": "manrope-latin-variable.cfa570d7c3ee.woff2",
+  "bytes": 26292,
+  "units_per_em": 2000,
+  "metrics": {
+    "sTypoAscender": 2132,
+    "sTypoDescender": -600,
+    "sTypoLineGap": 0,
+    "sxHeight": 1080
+  },
+  "loaded": "self-hosted, display optional; one cross-origin anonymous preload in document head",
+  "design_notes": "One family for body and display. No runtime third-party font request. Optional display prevents a delayed face swap from causing layout shifts."
+}

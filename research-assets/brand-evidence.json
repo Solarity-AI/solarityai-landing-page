@@ -1,0 +1,128 @@
+{
+  "review_date": "2026-10-12",
+  "timezone": "America/Chicago",
+  "scope": "Authentic existing company mark and publicly displayed founder portrait. No team roster, biography, or capability claims imported.",
+  "source_context": {
+    "company_page": "https://solarityai.com/",
+    "logo": "CompanyLogo.png is referenced by the company homepage favicon, social image, and logo metadata. Its true aspect ratio is 1574:1779, despite incorrect 180x45 attributes in the original page.",
+    "founder": "The homepage team card pairs AtaTurhan.webp with Ata Turhan, CEO, and https://www.linkedin.com/in/ataturhan/.",
+    "viewed_assets": [
+      "Official full logo, displayed with original colors and text.",
+      "Founder portrait, square studio headshot with full head and shoulders."
+    ],
+    "processing": "Company lockup and portrait: resize and encode only, with complete image and aspect ratio preserved. Header mark: narrowly crop the existing sun/lightning symbol from the official lockup, preserving original colors and proportions. No generated content, retouching, or recoloring."
+  },
+  "assets": {
+    "solarity-lockup": {
+      "source_url": "https://solarityai.com/assets/images/logo/CompanyLogo.png",
+      "source": {
+        "url": "/assets/brand/solarity-lockup-original.png",
+        "width": 1574,
+        "height": 1779,
+        "bytes": 122745,
+        "sha256": "fe4491e1a120f224ada99c7b5edf55b28ce89396581c681c0cfd63caae4b9a51",
+        "mime": "image/png"
+      },
+      "variants": [
+        {
+          "url": "/assets/brand/solarity-lockup-180.fc3fa6e3059e.webp",
+          "width": 180,
+          "height": 203,
+          "bytes": 16818,
+          "sha256": "fc3fa6e3059e28459bf53efffb464d3b773088de3343f0d2a5123e26cae8f543",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/brand/solarity-lockup-360.a5215e7a9299.webp",
+          "width": 360,
+          "height": 407,
+          "bytes": 32778,
+          "sha256": "a5215e7a9299bbaa6d94f7e127aeb6c0c10beaad3289dc6bcc33c9a9f4ebda43",
+          "mime": "image/webp"
+        }
+      ]
+    },
+    "ata-turhan": {
+      "source_url": "https://solarityai.com/assets/images/team/AtaTurhan.webp",
+      "source": {
+        "url": "/assets/brand/ata-turhan-original.webp",
+        "width": 800,
+        "height": 800,
+        "bytes": 74872,
+        "sha256": "3e465a8c2bae39f8a83ad6a5c415fea6d586f49870709a66576b325fb7ae810d",
+        "mime": "image/webp"
+      },
+      "variants": [
+        {
+          "url": "/assets/brand/ata-turhan-320.db6d27d9b9b3.webp",
+          "width": 320,
+          "height": 320,
+          "bytes": 10784,
+          "sha256": "db6d27d9b9b33e96237f63847f8ab9a97e834688ac96a449e89f387608300e2e",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/brand/ata-turhan-320.06acc14f678a.avif",
+          "width": 320,
+          "height": 320,
+          "bytes": 9526,
+          "sha256": "06acc14f678a18d494b982c03ba6ce8984257283b871aca539501ba94f98297b",
+          "mime": "image/avif"
+        },
+        {
+          "url": "/assets/brand/ata-turhan-640.742556487789.webp",
+          "width": 640,
+          "height": 640,
+          "bytes": 32560,
+          "sha256": "742556487789a31948f880706edfb4b0b5763608744f55165bf96738056dab4d",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/brand/ata-turhan-640.3ca06d5e1706.avif",
+          "width": 640,
+          "height": 640,
+          "bytes": 31199,
+          "sha256": "3ca06d5e170621a2cc9fe7d7e2b5350b3181ffe0367a3b7e597f906ee57f832e",
+          "mime": "image/avif"
+        }
+      ]
+    },
+    "solarity-sun": {
+      "source_url": "https://solarityai.com/assets/images/logo/CompanyLogo.png",
+      "source_asset": "/assets/brand/solarity-lockup-original.png",
+      "processing": "Narrow crop isolates the existing sun/lightning symbol without redrawing, recoloring, or distortion, followed by proportional Lanczos resizing and lossless WebP encoding.",
+      "source_crop_box": [
+        186,
+        37,
+        1314,
+        1167
+      ],
+      "source_crop_width": 1128,
+      "source_crop_height": 1130,
+      "variants": [
+        {
+          "url": "/assets/brand/solarity-sun-48.9bc99afc73e8.webp",
+          "width": 48,
+          "height": 48,
+          "bytes": 2302,
+          "sha256": "9bc99afc73e8ee9cf2f598ef96e83d362ce2891a95c25285a58a7938d6b3c627",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/brand/solarity-sun-96.da9c18cba138.webp",
+          "width": 96,
+          "height": 96,
+          "bytes": 5802,
+          "sha256": "da9c18cba1383fc96ba981a1778ace61e2606129fb13a07ac5487b888a605b5e",
+          "mime": "image/webp"
+        }
+      ]
+    }
+  },
+  "demo_comparison": {
+    "sun_url": "https://demosolarity.drubleat.dev/brand/sun-gold.svg",
+    "wordmark_url": "https://demosolarity.drubleat.dev/brand/wordmark-gold.svg",
+    "inspection": "Both demo assets were downloaded and rendered for visual comparison. The sun/lightning silhouette and wordmark shapes correspond to the original, but use a pale-gold, yellow, and orange gradient absent from the original. Original-source colors retained in all deployed asset variants.",
+    "demo_assets_deployed": false
+  }
+}

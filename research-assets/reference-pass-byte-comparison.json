@@ -1,0 +1,302 @@
+{
+  "scope": "Build source bytes, not measured network transfer or Lighthouse results",
+  "routes": {
+    "/": {
+      "html_bytes": {
+        "before": 63184,
+        "after": 71099,
+        "change": 7915
+      },
+      "html_gzip_bytes": {
+        "before": 14492,
+        "after": 15601,
+        "change": 1109
+      },
+      "output_bytes": {
+        "before": 37343,
+        "after": 42321,
+        "change": 4978
+      },
+      "css_gzip_bytes": {
+        "before": 8461,
+        "after": 9252,
+        "change": 791
+      },
+      "javascript_bytes": {
+        "before": 2798,
+        "after": 2798,
+        "change": 0
+      }
+    },
+    "/apps": {
+      "html_bytes": {
+        "before": 50526,
+        "after": 53101,
+        "change": 2575
+      },
+      "html_gzip_bytes": {
+        "before": 11816,
+        "after": 12135,
+        "change": 319
+      },
+      "output_bytes": {
+        "before": 27308,
+        "after": 28784,
+        "change": 1476
+      },
+      "css_gzip_bytes": {
+        "before": 6657,
+        "after": 6886,
+        "change": 229
+      },
+      "javascript_bytes": {
+        "before": 5109,
+        "after": 5109,
+        "change": 0
+      }
+    },
+    "/apps/looks-max": {
+      "html_bytes": {
+        "before": 55368,
+        "after": 58362,
+        "change": 2994
+      },
+      "html_gzip_bytes": {
+        "before": 13510,
+        "after": 13927,
+        "change": 417
+      },
+      "output_bytes": {
+        "before": 35216,
+        "after": 38118,
+        "change": 2902
+      },
+      "css_gzip_bytes": {
+        "before": 7925,
+        "after": 8331,
+        "change": 406
+      },
+      "javascript_bytes": {
+        "before": 5109,
+        "after": 5109,
+        "change": 0
+      }
+    },
+    "/apps/iq-max": {
+      "html_bytes": {
+        "before": 55699,
+        "after": 58703,
+        "change": 3004
+      },
+      "html_gzip_bytes": {
+        "before": 13393,
+        "after": 13857,
+        "change": 464
+      },
+      "output_bytes": {
+        "before": 34044,
+        "after": 36914,
+        "change": 2870
+      },
+      "css_gzip_bytes": {
+        "before": 7762,
+        "after": 8174,
+        "change": 412
+      },
+      "javascript_bytes": {
+        "before": 5109,
+        "after": 5109,
+        "change": 0
+      }
+    },
+    "/apps/sleep-max": {
+      "html_bytes": {
+        "before": 55095,
+        "after": 58069,
+        "change": 2974
+      },
+      "html_gzip_bytes": {
+        "before": 13447,
+        "after": 13859,
+        "change": 412
+      },
+      "output_bytes": {
+        "before": 35214,
+        "after": 38116,
+        "change": 2902
+      },
+      "css_gzip_bytes": {
+        "before": 7923,
+        "after": 8329,
+        "change": 406
+      },
+      "javascript_bytes": {
+        "before": 5109,
+        "after": 5109,
+        "change": 0
+      }
+    },
+    "/apps/fitness-max": {
+      "html_bytes": {
+        "before": 55889,
+        "after": 58918,
+        "change": 3029
+      },
+      "html_gzip_bytes": {
+        "before": 13472,
+        "after": 13943,
+        "change": 471
+      },
+      "output_bytes": {
+        "before": 34136,
+        "after": 37006,
+        "change": 2870
+      },
+      "css_gzip_bytes": {
+        "before": 7780,
+        "after": 8192,
+        "change": 412
+      },
+      "javascript_bytes": {
+        "before": 5109,
+        "after": 5109,
+        "change": 0
+      }
+    },
+    "/platform": {
+      "html_bytes": {
+        "before": 41002,
+        "after": 44168,
+        "change": 3166
+      },
+      "html_gzip_bytes": {
+        "before": 10595,
+        "after": 11097,
+        "change": 502
+      },
+      "output_bytes": {
+        "before": 25384,
+        "after": 28357,
+        "change": 2973
+      },
+      "css_gzip_bytes": {
+        "before": 6246,
+        "after": 6700,
+        "change": 454
+      },
+      "javascript_bytes": {
+        "before": 2798,
+        "after": 2798,
+        "change": 0
+      }
+    },
+    "/company": {
+      "html_bytes": {
+        "before": 41008,
+        "after": 42781,
+        "change": 1773
+      },
+      "html_gzip_bytes": {
+        "before": 10872,
+        "after": 11265,
+        "change": 393
+      },
+      "output_bytes": {
+        "before": 25584,
+        "after": 27292,
+        "change": 1708
+      },
+      "css_gzip_bytes": {
+        "before": 6349,
+        "after": 6703,
+        "change": 354
+      },
+      "javascript_bytes": {
+        "before": 2798,
+        "after": 2798,
+        "change": 0
+      }
+    },
+    "/investors-partners": {
+      "html_bytes": {
+        "before": 48838,
+        "after": 53545,
+        "change": 4707
+      },
+      "html_gzip_bytes": {
+        "before": 12136,
+        "after": 13029,
+        "change": 893
+      },
+      "output_bytes": {
+        "before": 28008,
+        "after": 32104,
+        "change": 4096
+      },
+      "css_gzip_bytes": {
+        "before": 6651,
+        "after": 7254,
+        "change": 603
+      },
+      "javascript_bytes": {
+        "before": 2798,
+        "after": 2798,
+        "change": 0
+      }
+    },
+    "/contact": {
+      "html_bytes": {
+        "before": 49671,
+        "after": 51188,
+        "change": 1517
+      },
+      "html_gzip_bytes": {
+        "before": 12942,
+        "after": 13243,
+        "change": 301
+      },
+      "output_bytes": {
+        "before": 31507,
+        "after": 33024,
+        "change": 1517
+      },
+      "css_gzip_bytes": {
+        "before": 7641,
+        "after": 7930,
+        "change": 289
+      },
+      "javascript_bytes": {
+        "before": 17566,
+        "after": 17566,
+        "change": 0
+      }
+    },
+    "/404": {
+      "html_bytes": {
+        "before": 29470,
+        "after": 30798,
+        "change": 1328
+      },
+      "html_gzip_bytes": {
+        "before": 8276,
+        "after": 8535,
+        "change": 259
+      },
+      "output_bytes": {
+        "before": 19571,
+        "after": 20899,
+        "change": 1328
+      },
+      "css_gzip_bytes": {
+        "before": 5402,
+        "after": 5651,
+        "change": 249
+      },
+      "javascript_bytes": {
+        "before": 2798,
+        "after": 2798,
+        "change": 0
+      }
+    }
+  }
+}

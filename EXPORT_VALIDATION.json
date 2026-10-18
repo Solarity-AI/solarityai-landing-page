@@ -1,0 +1,27 @@
+{
+  "date": "2026-10-18",
+  "site_version": 24,
+  "source_commit": "27e009b87c931d61e0464bc6460041e80417db95",
+  "source_files_verified": 200,
+  "all_original_source_hashes_match_after_rebuild": true,
+  "build": "passed in exported copy",
+  "static_audit": {
+    "pages": 12,
+    "internal_links_and_fragments_checked": 370,
+    "local_asset_references_checked": 285,
+    "errors": [],
+    "warnings": [],
+    "scope": "Static HTML, generated routes/fragments/assets, metadata, labels and CSS source checks. No browser, measured layout, contact delivery, HTTP routing, or performance results."
+  },
+  "python_tests": {
+    "passed": 19,
+    "failed": 0
+  },
+  "node_tests": {
+    "passed": 34,
+    "failed": 0
+  },
+  "browser_or_pagespeed_run": false,
+  "careers_email_submitted": false,
+  "live_site_modified": false
+}

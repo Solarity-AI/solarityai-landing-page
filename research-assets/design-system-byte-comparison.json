@@ -1,0 +1,97 @@
+{
+  "scope": "Build-time source and gzip-compressed artifact byte counts, not measured HTTP transfer sizes or Lighthouse results. Baseline is deployed version 18.",
+  "old_source_css_files": 34,
+  "old_source_css_bytes": 341546,
+  "new_source_css_files": 7,
+  "new_source_css_bytes": 105625,
+  "routes": [
+    {
+      "route": "/",
+      "old_css": 75308,
+      "new_css": 37343,
+      "old_gzip_html": 20854,
+      "new_gzip_html": 14492,
+      "js_bytes": 2798
+    },
+    {
+      "route": "/apps",
+      "old_css": 62867,
+      "new_css": 27308,
+      "old_gzip_html": 17763,
+      "new_gzip_html": 11816,
+      "js_bytes": 5109
+    },
+    {
+      "route": "/apps/looks-max",
+      "old_css": 81301,
+      "new_css": 35216,
+      "old_gzip_html": 20825,
+      "new_gzip_html": 13510,
+      "js_bytes": 5109
+    },
+    {
+      "route": "/apps/iq-max",
+      "old_css": 80382,
+      "new_css": 34044,
+      "old_gzip_html": 20729,
+      "new_gzip_html": 13393,
+      "js_bytes": 5109
+    },
+    {
+      "route": "/apps/sleep-max",
+      "old_css": 81297,
+      "new_css": 35214,
+      "old_gzip_html": 20763,
+      "new_gzip_html": 13447,
+      "js_bytes": 5109
+    },
+    {
+      "route": "/apps/fitness-max",
+      "old_css": 80443,
+      "new_css": 34136,
+      "old_gzip_html": 20801,
+      "new_gzip_html": 13472,
+      "js_bytes": 5109
+    },
+    {
+      "route": "/platform",
+      "old_css": 64682,
+      "new_css": 25384,
+      "old_gzip_html": 17254,
+      "new_gzip_html": 10595,
+      "js_bytes": 2798
+    },
+    {
+      "route": "/company",
+      "old_css": 67985,
+      "new_css": 25584,
+      "old_gzip_html": 17812,
+      "new_gzip_html": 10872,
+      "js_bytes": 2798
+    },
+    {
+      "route": "/investors-partners",
+      "old_css": 64673,
+      "new_css": 28008,
+      "old_gzip_html": 18507,
+      "new_gzip_html": 12136,
+      "js_bytes": 2798
+    },
+    {
+      "route": "/contact",
+      "old_css": 79188,
+      "new_css": 31507,
+      "old_gzip_html": 20726,
+      "new_gzip_html": 12942,
+      "js_bytes": 17566
+    },
+    {
+      "route": "/404",
+      "old_css": 45472,
+      "new_css": 19571,
+      "old_gzip_html": 12713,
+      "new_gzip_html": 8276,
+      "js_bytes": 2798
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "created": "2026-10-12",
+  "classification": "Decorative cinematic brand backdrop. Real product imagery is composed separately in HTML, not generated.",
+  "source_reference": "Original solar-vision.webp used as visual style reference",
+  "files": [
+    {
+      "file": "solar-stage-768.webp",
+      "width": 768,
+      "height": 432,
+      "bytes": 32034
+    },
+    {
+      "file": "solar-stage-1200.webp",
+      "width": 1200,
+      "height": 675,
+      "bytes": 68276
+    },
+    {
+      "file": "solar-stage-1672.webp",
+      "width": 1672,
+      "height": 941,
+      "bytes": 113806
+    },
+    {
+      "file": "solar-stage-social.jpg",
+      "width": 1200,
+      "height": 675,
+      "bytes": 116471
+    }
+  ]
+}

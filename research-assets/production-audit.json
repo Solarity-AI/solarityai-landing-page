@@ -1,0 +1,1559 @@
+{
+  "measured_at": "2026-10-18T15:55:00+00:00",
+  "origin": "https://solarity-company.the-ata-turhan.chatgpt.site",
+  "scope": "Read-only GET requests against the public origin. Lab Lighthouse runs, when present, come from the auditing machine, not Google PageSpeed Insights field data.",
+  "pages": {
+    "/": {
+      "status": 200,
+      "content_type": "text/html",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "bytes": 69104,
+      "canonical_ok": true,
+      "robots": "index,follow",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\""
+      ]
+    },
+    "/apps/": {
+      "status": 200,
+      "content_type": "text/html",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "bytes": 44198,
+      "canonical_ok": true,
+      "robots": "index,follow",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\""
+      ]
+    },
+    "/apps/looks-max/": {
+      "status": 200,
+      "content_type": "text/html",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "bytes": 55012,
+      "canonical_ok": true,
+      "robots": "index,follow",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\""
+      ]
+    },
+    "/apps/iq-max/": {
+      "status": 200,
+      "content_type": "text/html",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "bytes": 56590,
+      "canonical_ok": true,
+      "robots": "index,follow",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\""
+      ]
+    },
+    "/apps/sleep-max/": {
+      "status": 200,
+      "content_type": "text/html",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "bytes": 54707,
+      "canonical_ok": true,
+      "robots": "index,follow",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\""
+      ]
+    },
+    "/apps/fitness-max/": {
+      "status": 200,
+      "content_type": "text/html",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "bytes": 56801,
+      "canonical_ok": true,
+      "robots": "index,follow",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\""
+      ]
+    },
+    "/platform/": {
+      "status": 200,
+      "content_type": "text/html",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "bytes": 45574,
+      "canonical_ok": true,
+      "robots": "index,follow",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\""
+      ]
+    },
+    "/company/": {
+      "status": 200,
+      "content_type": "text/html",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "bytes": 38584,
+      "canonical_ok": true,
+      "robots": "index,follow",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\""
+      ]
+    },
+    "/investors-partners/": {
+      "status": 200,
+      "content_type": "text/html",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "bytes": 52979,
+      "canonical_ok": true,
+      "robots": "index,follow",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\""
+      ]
+    },
+    "/careers/": {
+      "status": 200,
+      "content_type": "text/html",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "bytes": 49360,
+      "canonical_ok": true,
+      "robots": "index,follow",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\""
+      ]
+    },
+    "/contact/": {
+      "status": 200,
+      "content_type": "text/html",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "bytes": 36880,
+      "canonical_ok": true,
+      "robots": "index,follow",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\""
+      ]
+    }
+  },
+  "trailing_slash_redirects": {
+    "/apps": {
+      "status": 307,
+      "location": "https://solarity-company.the-ata-turhan.chatgpt.site/apps/"
+    },
+    "/apps/looks-max": {
+      "status": 307,
+      "location": "https://solarity-company.the-ata-turhan.chatgpt.site/apps/looks-max/"
+    },
+    "/apps/iq-max": {
+      "status": 307,
+      "location": "https://solarity-company.the-ata-turhan.chatgpt.site/apps/iq-max/"
+    },
+    "/apps/sleep-max": {
+      "status": 307,
+      "location": "https://solarity-company.the-ata-turhan.chatgpt.site/apps/sleep-max/"
+    },
+    "/apps/fitness-max": {
+      "status": 307,
+      "location": "https://solarity-company.the-ata-turhan.chatgpt.site/apps/fitness-max/"
+    },
+    "/platform": {
+      "status": 307,
+      "location": "https://solarity-company.the-ata-turhan.chatgpt.site/platform/"
+    },
+    "/company": {
+      "status": 307,
+      "location": "https://solarity-company.the-ata-turhan.chatgpt.site/company/"
+    },
+    "/investors-partners": {
+      "status": 307,
+      "location": "https://solarity-company.the-ata-turhan.chatgpt.site/investors-partners/"
+    },
+    "/careers": {
+      "status": 307,
+      "location": "https://solarity-company.the-ata-turhan.chatgpt.site/careers/"
+    },
+    "/contact": {
+      "status": 307,
+      "location": "https://solarity-company.the-ata-turhan.chatgpt.site/contact/"
+    }
+  },
+  "not_found": {
+    "status": 404,
+    "custom_page": true,
+    "meta_robots": "noindex,follow",
+    "x_robots_tag": null,
+    "missing_expected_headers": [
+      "x-content-type-options: expected \"nosniff\", got \"\"",
+      "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\"",
+      "x-robots-tag: expected \"noindex, follow\", got \"\""
+    ],
+    "direct_404_status": 200,
+    "direct_404_missing_expected_headers": [
+      "x-content-type-options: expected \"nosniff\", got \"\"",
+      "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\"",
+      "x-robots-tag: expected \"noindex, follow\", got \"\""
+    ]
+  },
+  "assets": {
+    "/assets/brand/ata-turhan-320.db6d27d9b9b3.webp": {
+      "status": 200,
+      "content_type": "application/octet-stream",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\""
+      ],
+      "content_type_ok": false
+    },
+    "/assets/brand/ata-turhan-640.742556487789.webp": {
+      "status": 200,
+      "content_type": "application/octet-stream",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\""
+      ],
+      "content_type_ok": false
+    },
+    "/assets/brand/solarity-sun-48.9bc99afc73e8.webp": {
+      "status": 200,
+      "content_type": "application/octet-stream",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\""
+      ],
+      "content_type_ok": false
+    },
+    "/assets/brand/solarity-sun-96.da9c18cba138.webp": {
+      "status": 200,
+      "content_type": "application/octet-stream",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\""
+      ],
+      "content_type_ok": false
+    },
+    "/assets/fitness-max-detail-screen-3.webp": {
+      "status": 200,
+      "content_type": "application/octet-stream",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\""
+      ],
+      "content_type_ok": false
+    },
+    "/assets/fitness-max-detail-screen-5.webp": {
+      "status": 200,
+      "content_type": "application/octet-stream",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\""
+      ],
+      "content_type_ok": false
+    },
+    "/assets/fitness-max-screen-2.webp": {
+      "status": 200,
+      "content_type": "application/octet-stream",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\""
+      ],
+      "content_type_ok": false
+    },
+    "/assets/fonts/manrope-latin-variable.cfa570d7c3ee.woff2": {
+      "status": 200,
+      "content_type": "application/octet-stream",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\"",
+        "cache-control: expected \"public, max-age=31536000, immutable\", got \"public, max-age=0, must-revalidate\""
+      ],
+      "content_type_ok": false
+    },
+    "/assets/iq-max-detail-screen-4.webp": {
+      "status": 200,
+      "content_type": "application/octet-stream",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\""
+      ],
+      "content_type_ok": false
+    },
+    "/assets/iq-max-detail-screen-6.webp": {
+      "status": 200,
+      "content_type": "application/octet-stream",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\""
+      ],
+      "content_type_ok": false
+    },
+    "/assets/iq-max-screen-1.webp": {
+      "status": 200,
+      "content_type": "application/octet-stream",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\""
+      ],
+      "content_type_ok": false
+    },
+    "/assets/looks-max-detail-screen-6.webp": {
+      "status": 200,
+      "content_type": "application/octet-stream",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\""
+      ],
+      "content_type_ok": false
+    },
+    "/assets/looks-max-screen-4.webp": {
+      "status": 200,
+      "content_type": "application/octet-stream",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\""
+      ],
+      "content_type_ok": false
+    },
+    "/assets/optimized/fitness-max-detail-screen-3-240.66b0d3eb9979.webp": {
+      "status": 200,
+      "content_type": "application/octet-stream",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\"",
+        "cache-control: expected \"public, max-age=31536000, immutable\", got \"public, max-age=0, must-revalidate\""
+      ],
+      "content_type_ok": false
+    },
+    "/assets/optimized/fitness-max-detail-screen-3-400.93e3398c9d97.webp": {
+      "status": 200,
+      "content_type": "application/octet-stream",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\"",
+        "cache-control: expected \"public, max-age=31536000, immutable\", got \"public, max-age=0, must-revalidate\""
+      ],
+      "content_type_ok": false
+    },
+    "/assets/optimized/fitness-max-detail-screen-3-600.2821c00ea2ae.webp": {
+      "status": 200,
+      "content_type": "application/octet-stream",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\"",
+        "cache-control: expected \"public, max-age=31536000, immutable\", got \"public, max-age=0, must-revalidate\""
+      ],
+      "content_type_ok": false
+    },
+    "/assets/optimized/fitness-max-detail-screen-5-240.cb43b860246c.webp": {
+      "status": 200,
+      "content_type": "application/octet-stream",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\"",
+        "cache-control: expected \"public, max-age=31536000, immutable\", got \"public, max-age=0, must-revalidate\""
+      ],
+      "content_type_ok": false
+    },
+    "/assets/optimized/fitness-max-detail-screen-5-400.c8a08c9359ca.webp": {
+      "status": 200,
+      "content_type": "application/octet-stream",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\"",
+        "cache-control: expected \"public, max-age=31536000, immutable\", got \"public, max-age=0, must-revalidate\""
+      ],
+      "content_type_ok": false
+    },
+    "/assets/optimized/fitness-max-detail-screen-5-600.2d103bb3d1b5.webp": {
+      "status": 200,
+      "content_type": "application/octet-stream",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\"",
+        "cache-control: expected \"public, max-age=31536000, immutable\", got \"public, max-age=0, must-revalidate\""
+      ],
+      "content_type_ok": false
+    },
+    "/assets/optimized/fitness-max-icon-144.e637a846d707.webp": {
+      "status": 200,
+      "content_type": "application/octet-stream",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\"",
+        "cache-control: expected \"public, max-age=31536000, immutable\", got \"public, max-age=0, must-revalidate\""
+      ],
+      "content_type_ok": false
+    },
+    "/assets/optimized/fitness-max-icon-48.87bd57d8e532.webp": {
+      "status": 200,
+      "content_type": "application/octet-stream",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\"",
+        "cache-control: expected \"public, max-age=31536000, immutable\", got \"public, max-age=0, must-revalidate\""
+      ],
+      "content_type_ok": false
+    },
+    "/assets/optimized/fitness-max-icon-96.7e9493fe73f9.webp": {
+      "status": 200,
+      "content_type": "application/octet-stream",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\"",
+        "cache-control: expected \"public, max-age=31536000, immutable\", got \"public, max-age=0, must-revalidate\""
+      ],
+      "content_type_ok": false
+    },
+    "/assets/optimized/fitness-max-screen-2-240.cc5fc26901d6.webp": {
+      "status": 200,
+      "content_type": "application/octet-stream",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\"",
+        "cache-control: expected \"public, max-age=31536000, immutable\", got \"public, max-age=0, must-revalidate\""
+      ],
+      "content_type_ok": false
+    },
+    "/assets/optimized/fitness-max-screen-2-400.abeb6bd9c34a.webp": {
+      "status": 200,
+      "content_type": "application/octet-stream",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\"",
+        "cache-control: expected \"public, max-age=31536000, immutable\", got \"public, max-age=0, must-revalidate\""
+      ],
+      "content_type_ok": false
+    },
+    "/assets/optimized/fitness-max-screen-2-600.3f33f1ca97a2.webp": {
+      "status": 200,
+      "content_type": "application/octet-stream",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\"",
+        "cache-control: expected \"public, max-age=31536000, immutable\", got \"public, max-age=0, must-revalidate\""
+      ],
+      "content_type_ok": false
+    },
+    "/assets/optimized/iq-max-detail-screen-4-240.508361c167aa.webp": {
+      "status": 200,
+      "content_type": "application/octet-stream",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\"",
+        "cache-control: expected \"public, max-age=31536000, immutable\", got \"public, max-age=0, must-revalidate\""
+      ],
+      "content_type_ok": false
+    },
+    "/assets/optimized/iq-max-detail-screen-4-400.33d86bd1213e.webp": {
+      "status": 200,
+      "content_type": "application/octet-stream",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\"",
+        "cache-control: expected \"public, max-age=31536000, immutable\", got \"public, max-age=0, must-revalidate\""
+      ],
+      "content_type_ok": false
+    },
+    "/assets/optimized/iq-max-detail-screen-4-600.c63d05f57448.webp": {
+      "status": 200,
+      "content_type": "application/octet-stream",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\"",
+        "cache-control: expected \"public, max-age=31536000, immutable\", got \"public, max-age=0, must-revalidate\""
+      ],
+      "content_type_ok": false
+    },
+    "/assets/optimized/iq-max-detail-screen-6-240.c565106bbf80.webp": {
+      "status": 200,
+      "content_type": "application/octet-stream",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\"",
+        "cache-control: expected \"public, max-age=31536000, immutable\", got \"public, max-age=0, must-revalidate\""
+      ],
+      "content_type_ok": false
+    },
+    "/assets/optimized/iq-max-detail-screen-6-400.1dbf8ff94e83.webp": {
+      "status": 200,
+      "content_type": "application/octet-stream",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\"",
+        "cache-control: expected \"public, max-age=31536000, immutable\", got \"public, max-age=0, must-revalidate\""
+      ],
+      "content_type_ok": false
+    },
+    "/assets/optimized/iq-max-detail-screen-6-600.fea2b6ff399f.webp": {
+      "status": 200,
+      "content_type": "application/octet-stream",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\"",
+        "cache-control: expected \"public, max-age=31536000, immutable\", got \"public, max-age=0, must-revalidate\""
+      ],
+      "content_type_ok": false
+    },
+    "/assets/optimized/iq-max-icon-144.c76f356ba199.webp": {
+      "status": 200,
+      "content_type": "application/octet-stream",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\"",
+        "cache-control: expected \"public, max-age=31536000, immutable\", got \"public, max-age=0, must-revalidate\""
+      ],
+      "content_type_ok": false
+    },
+    "/assets/optimized/iq-max-icon-48.180c846c135e.webp": {
+      "status": 200,
+      "content_type": "application/octet-stream",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\"",
+        "cache-control: expected \"public, max-age=31536000, immutable\", got \"public, max-age=0, must-revalidate\""
+      ],
+      "content_type_ok": false
+    },
+    "/assets/optimized/iq-max-icon-96.aac6e5022f6b.webp": {
+      "status": 200,
+      "content_type": "application/octet-stream",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\"",
+        "cache-control: expected \"public, max-age=31536000, immutable\", got \"public, max-age=0, must-revalidate\""
+      ],
+      "content_type_ok": false
+    },
+    "/assets/optimized/iq-max-screen-1-240.cdf6176f5c59.webp": {
+      "status": 200,
+      "content_type": "application/octet-stream",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\"",
+        "cache-control: expected \"public, max-age=31536000, immutable\", got \"public, max-age=0, must-revalidate\""
+      ],
+      "content_type_ok": false
+    },
+    "/assets/optimized/iq-max-screen-1-400.c81ff3fd7665.webp": {
+      "status": 200,
+      "content_type": "application/octet-stream",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\"",
+        "cache-control: expected \"public, max-age=31536000, immutable\", got \"public, max-age=0, must-revalidate\""
+      ],
+      "content_type_ok": false
+    },
+    "/assets/optimized/iq-max-screen-1-600.db6e5efb5b03.webp": {
+      "status": 200,
+      "content_type": "application/octet-stream",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\"",
+        "cache-control: expected \"public, max-age=31536000, immutable\", got \"public, max-age=0, must-revalidate\""
+      ],
+      "content_type_ok": false
+    },
+    "/assets/optimized/looks-max-detail-screen-6-240.e5e4484af0a0.webp": {
+      "status": 200,
+      "content_type": "application/octet-stream",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\"",
+        "cache-control: expected \"public, max-age=31536000, immutable\", got \"public, max-age=0, must-revalidate\""
+      ],
+      "content_type_ok": false
+    },
+    "/assets/optimized/looks-max-detail-screen-6-400.44437ff99fca.webp": {
+      "status": 200,
+      "content_type": "application/octet-stream",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\"",
+        "cache-control: expected \"public, max-age=31536000, immutable\", got \"public, max-age=0, must-revalidate\""
+      ],
+      "content_type_ok": false
+    },
+    "/assets/optimized/looks-max-detail-screen-6-600.b1a7f0903987.webp": {
+      "status": 200,
+      "content_type": "application/octet-stream",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\"",
+        "cache-control: expected \"public, max-age=31536000, immutable\", got \"public, max-age=0, must-revalidate\""
+      ],
+      "content_type_ok": false
+    },
+    "/assets/optimized/looks-max-icon-144.6e029fa80180.webp": {
+      "status": 200,
+      "content_type": "application/octet-stream",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\"",
+        "cache-control: expected \"public, max-age=31536000, immutable\", got \"public, max-age=0, must-revalidate\""
+      ],
+      "content_type_ok": false
+    },
+    "/assets/optimized/looks-max-icon-48.c4acd53f50ca.webp": {
+      "status": 200,
+      "content_type": "application/octet-stream",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\"",
+        "cache-control: expected \"public, max-age=31536000, immutable\", got \"public, max-age=0, must-revalidate\""
+      ],
+      "content_type_ok": false
+    },
+    "/assets/optimized/looks-max-icon-96.b5d76428edc0.webp": {
+      "status": 200,
+      "content_type": "application/octet-stream",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\"",
+        "cache-control: expected \"public, max-age=31536000, immutable\", got \"public, max-age=0, must-revalidate\""
+      ],
+      "content_type_ok": false
+    },
+    "/assets/optimized/looks-max-screen-4-240.0e9637efba23.webp": {
+      "status": 200,
+      "content_type": "application/octet-stream",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\"",
+        "cache-control: expected \"public, max-age=31536000, immutable\", got \"public, max-age=0, must-revalidate\""
+      ],
+      "content_type_ok": false
+    },
+    "/assets/optimized/looks-max-screen-4-400.ac470416f280.webp": {
+      "status": 200,
+      "content_type": "application/octet-stream",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\"",
+        "cache-control: expected \"public, max-age=31536000, immutable\", got \"public, max-age=0, must-revalidate\""
+      ],
+      "content_type_ok": false
+    },
+    "/assets/optimized/looks-max-screen-4-600.ef767bc4e4e0.webp": {
+      "status": 200,
+      "content_type": "application/octet-stream",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\"",
+        "cache-control: expected \"public, max-age=31536000, immutable\", got \"public, max-age=0, must-revalidate\""
+      ],
+      "content_type_ok": false
+    },
+    "/assets/optimized/sleep-max-detail-screen-3-240.be403817a19d.webp": {
+      "status": 200,
+      "content_type": "application/octet-stream",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\"",
+        "cache-control: expected \"public, max-age=31536000, immutable\", got \"public, max-age=0, must-revalidate\""
+      ],
+      "content_type_ok": false
+    },
+    "/assets/optimized/sleep-max-detail-screen-3-400.7a0d626069e4.webp": {
+      "status": 200,
+      "content_type": "application/octet-stream",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\"",
+        "cache-control: expected \"public, max-age=31536000, immutable\", got \"public, max-age=0, must-revalidate\""
+      ],
+      "content_type_ok": false
+    },
+    "/assets/optimized/sleep-max-detail-screen-3-600.753a038b5a7f.webp": {
+      "status": 200,
+      "content_type": "application/octet-stream",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\"",
+        "cache-control: expected \"public, max-age=31536000, immutable\", got \"public, max-age=0, must-revalidate\""
+      ],
+      "content_type_ok": false
+    },
+    "/assets/optimized/sleep-max-icon-144.ae97748b1e77.webp": {
+      "status": 200,
+      "content_type": "application/octet-stream",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\"",
+        "cache-control: expected \"public, max-age=31536000, immutable\", got \"public, max-age=0, must-revalidate\""
+      ],
+      "content_type_ok": false
+    },
+    "/assets/optimized/sleep-max-icon-48.b11fcaf98bce.webp": {
+      "status": 200,
+      "content_type": "application/octet-stream",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\"",
+        "cache-control: expected \"public, max-age=31536000, immutable\", got \"public, max-age=0, must-revalidate\""
+      ],
+      "content_type_ok": false
+    },
+    "/assets/optimized/sleep-max-icon-96.6e0de30b5905.webp": {
+      "status": 200,
+      "content_type": "application/octet-stream",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\"",
+        "cache-control: expected \"public, max-age=31536000, immutable\", got \"public, max-age=0, must-revalidate\""
+      ],
+      "content_type_ok": false
+    },
+    "/assets/optimized/sleep-max-screen-4-240.579a6bc17c83.webp": {
+      "status": 200,
+      "content_type": "application/octet-stream",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\"",
+        "cache-control: expected \"public, max-age=31536000, immutable\", got \"public, max-age=0, must-revalidate\""
+      ],
+      "content_type_ok": false
+    },
+    "/assets/optimized/sleep-max-screen-4-400.f4bfa9583de5.webp": {
+      "status": 200,
+      "content_type": "application/octet-stream",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\"",
+        "cache-control: expected \"public, max-age=31536000, immutable\", got \"public, max-age=0, must-revalidate\""
+      ],
+      "content_type_ok": false
+    },
+    "/assets/optimized/sleep-max-screen-4-600.d1c9519695cf.webp": {
+      "status": 200,
+      "content_type": "application/octet-stream",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\"",
+        "cache-control: expected \"public, max-age=31536000, immutable\", got \"public, max-age=0, must-revalidate\""
+      ],
+      "content_type_ok": false
+    },
+    "/assets/optimized/solar-ascent-1200.15de939dc709.webp": {
+      "status": 200,
+      "content_type": "application/octet-stream",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\"",
+        "cache-control: expected \"public, max-age=31536000, immutable\", got \"public, max-age=0, must-revalidate\""
+      ],
+      "content_type_ok": false
+    },
+    "/assets/optimized/solar-ascent-1200.2dfd1527d27d.avif": {
+      "status": 200,
+      "content_type": "image/avif",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\"",
+        "cache-control: expected \"public, max-age=31536000, immutable\", got \"public, max-age=0, must-revalidate\""
+      ],
+      "content_type_ok": true
+    },
+    "/assets/optimized/solar-ascent-1440.4630e36e4141.webp": {
+      "status": 200,
+      "content_type": "application/octet-stream",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\"",
+        "cache-control: expected \"public, max-age=31536000, immutable\", got \"public, max-age=0, must-revalidate\""
+      ],
+      "content_type_ok": false
+    },
+    "/assets/optimized/solar-ascent-1440.5f9efc614f94.avif": {
+      "status": 200,
+      "content_type": "image/avif",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\"",
+        "cache-control: expected \"public, max-age=31536000, immutable\", got \"public, max-age=0, must-revalidate\""
+      ],
+      "content_type_ok": true
+    },
+    "/assets/optimized/solar-ascent-1860.4ab107438b1a.webp": {
+      "status": 200,
+      "content_type": "application/octet-stream",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\"",
+        "cache-control: expected \"public, max-age=31536000, immutable\", got \"public, max-age=0, must-revalidate\""
+      ],
+      "content_type_ok": false
+    },
+    "/assets/optimized/solar-ascent-1860.ab965179a93b.avif": {
+      "status": 200,
+      "content_type": "image/avif",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\"",
+        "cache-control: expected \"public, max-age=31536000, immutable\", got \"public, max-age=0, must-revalidate\""
+      ],
+      "content_type_ok": true
+    },
+    "/assets/optimized/solar-ascent-480.ac7a79e81d7d.webp": {
+      "status": 200,
+      "content_type": "application/octet-stream",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\"",
+        "cache-control: expected \"public, max-age=31536000, immutable\", got \"public, max-age=0, must-revalidate\""
+      ],
+      "content_type_ok": false
+    },
+    "/assets/optimized/solar-ascent-480.e83c42387514.avif": {
+      "status": 200,
+      "content_type": "image/avif",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\"",
+        "cache-control: expected \"public, max-age=31536000, immutable\", got \"public, max-age=0, must-revalidate\""
+      ],
+      "content_type_ok": true
+    },
+    "/assets/optimized/solar-ascent-768.a2934ffc2e78.webp": {
+      "status": 200,
+      "content_type": "application/octet-stream",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\"",
+        "cache-control: expected \"public, max-age=31536000, immutable\", got \"public, max-age=0, must-revalidate\""
+      ],
+      "content_type_ok": false
+    },
+    "/assets/optimized/solar-ascent-768.c3a09a25e15c.avif": {
+      "status": 200,
+      "content_type": "image/avif",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\"",
+        "cache-control: expected \"public, max-age=31536000, immutable\", got \"public, max-age=0, must-revalidate\""
+      ],
+      "content_type_ok": true
+    },
+    "/assets/runtime/careers.fd4f26fdf0bf.js": {
+      "status": 200,
+      "content_type": "text/javascript",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\"",
+        "cache-control: expected \"public, max-age=31536000, immutable\", got \"public, max-age=0, must-revalidate\""
+      ],
+      "content_type_ok": true
+    },
+    "/assets/runtime/contact.6a7377d6c62b.js": {
+      "status": 200,
+      "content_type": "text/javascript",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\"",
+        "cache-control: expected \"public, max-age=31536000, immutable\", got \"public, max-age=0, must-revalidate\""
+      ],
+      "content_type_ok": true
+    },
+    "/assets/runtime/gallery.3871249b1316.js": {
+      "status": 200,
+      "content_type": "text/javascript",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\"",
+        "cache-control: expected \"public, max-age=31536000, immutable\", got \"public, max-age=0, must-revalidate\""
+      ],
+      "content_type_ok": true
+    },
+    "/assets/sleep-max-detail-screen-3.webp": {
+      "status": 200,
+      "content_type": "application/octet-stream",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\""
+      ],
+      "content_type_ok": false
+    },
+    "/assets/sleep-max-screen-4.webp": {
+      "status": 200,
+      "content_type": "application/octet-stream",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\""
+      ],
+      "content_type_ok": false
+    },
+    "/assets/solar-ascent-social.jpg": {
+      "status": 200,
+      "content_type": "image/jpeg",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "missing_expected_headers": [
+        "x-content-type-options: expected \"nosniff\", got \"\"",
+        "referrer-policy: expected \"strict-origin-when-cross-origin\", got \"\""
+      ],
+      "content_type_ok": true
+    }
+  },
+  "favicon_ico": {
+    "status": 404,
+    "content_type": "text/html"
+  },
+  "publicly_reachable_unpublished_files": {
+    "/_headers": "application/octet-stream",
+    "/assets/looks-max-icon.webp": "application/octet-stream",
+    "/assets/iq-max-icon.webp": "application/octet-stream",
+    "/assets/sleep-max-icon.webp": "application/octet-stream",
+    "/assets/fitness-max-icon.webp": "application/octet-stream",
+    "/assets/solar-ascent.webp": "application/octet-stream",
+    "/assets/brand/ata-turhan-original.webp": "application/octet-stream",
+    "/assets/brand/solarity-lockup-original.png": "image/png",
+    "/assets/brand/ata-turhan-320.06acc14f678a.avif": "image/avif",
+    "/assets/brand/ata-turhan-640.3ca06d5e1706.avif": "image/avif",
+    "/assets/brand/solarity-lockup-180.fc3fa6e3059e.webp": "application/octet-stream",
+    "/assets/brand/solarity-lockup-360.a5215e7a9299.webp": "application/octet-stream",
+    "/assets/team/ali-yilmaz-240-6a90dfff30ac.webp": "application/octet-stream",
+    "/assets/team/ali-yilmaz-480-65556168df49.webp": "application/octet-stream",
+    "/assets/team/emrecan-ozkan-240-d1df701b3489.webp": "application/octet-stream",
+    "/assets/team/emrecan-ozkan-480-d117500c13c0.webp": "application/octet-stream",
+    "/assets/team/hasan-ak-240-d70bfaf3c656.webp": "application/octet-stream",
+    "/assets/team/hasan-ak-480-866549c99e7b.webp": "application/octet-stream",
+    "/assets/fonts/font-sources.json": "application/json",
+    "/assets/human-potential-1200.webp": "application/octet-stream",
+    "/assets/human-potential-1536.webp": "application/octet-stream",
+    "/assets/human-potential-768.webp": "application/octet-stream",
+    "/assets/human-potential-social.jpg": "image/jpeg",
+    "/assets/human-progress-1200.webp": "application/octet-stream",
+    "/assets/human-progress-1672.webp": "application/octet-stream",
+    "/assets/human-progress-768.webp": "application/octet-stream",
+    "/assets/human-progress-social.jpg": "image/jpeg",
+    "/assets/site.js": "text/javascript",
+    "/assets/social-cover.jpg": "image/jpeg",
+    "/assets/solar-stage-1200.webp": "application/octet-stream",
+    "/assets/solar-stage-1672.webp": "application/octet-stream",
+    "/assets/solar-stage-768.webp": "application/octet-stream",
+    "/assets/solar-stage-social.jpg": "image/jpeg",
+    "/assets/solar-vision.webp": "application/octet-stream",
+    "/assets/optimized/human-progress-1200.cfc4d8e65dc5.webp": "application/octet-stream",
+    "/assets/optimized/human-progress-1200.f2f81677ce51.avif": "image/avif",
+    "/assets/optimized/human-progress-1672.603588268c01.webp": "application/octet-stream",
+    "/assets/optimized/human-progress-1672.78a307eb93bf.avif": "image/avif",
+    "/assets/optimized/human-progress-768.0695947f374f.avif": "image/avif",
+    "/assets/optimized/human-progress-768.f4edcf0016df.webp": "application/octet-stream",
+    "/assets/presentation.css": "text/css",
+    "/assets/favicon.svg": "image/svg+xml",
+    "/assets/runtime/careers.c3b82f6bcc33.js": "text/javascript",
+    "/assets/runtime/contact.be6d716325df.js": "text/javascript",
+    "/assets/runtime/navigation.1a6b7eb0fce4.js": "text/javascript"
+  },
+  "lighthouse": {
+    "https://solarity-company.the-ata-turhan.chatgpt.site/": {
+      "mobile": {
+        "lighthouse_version": "13.5.0",
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 81,
+          "seo": 100
+        },
+        "metrics": {
+          "first-contentful-paint": "1.1 s",
+          "largest-contentful-paint": "1.7 s",
+          "total-blocking-time": "20 ms",
+          "cumulative-layout-shift": "0",
+          "speed-index": "1.5 s"
+        },
+        "failed_audits": [
+          "cache-insight",
+          "deprecations",
+          "image-delivery-insight",
+          "label-content-name-mismatch"
+        ],
+        "run_warnings": []
+      },
+      "desktop": {
+        "lighthouse_version": "13.5.0",
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 81,
+          "seo": 100
+        },
+        "metrics": {
+          "first-contentful-paint": "0.4 s",
+          "largest-contentful-paint": "0.4 s",
+          "total-blocking-time": "0 ms",
+          "cumulative-layout-shift": "0",
+          "speed-index": "0.7 s"
+        },
+        "failed_audits": [
+          "cache-insight",
+          "deprecations",
+          "label-content-name-mismatch"
+        ],
+        "run_warnings": []
+      }
+    },
+    "https://solarity-company.the-ata-turhan.chatgpt.site/apps/": {
+      "mobile": {
+        "lighthouse_version": "13.5.0",
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 81,
+          "seo": 100
+        },
+        "metrics": {
+          "first-contentful-paint": "1.0 s",
+          "largest-contentful-paint": "1.2 s",
+          "total-blocking-time": "10 ms",
+          "cumulative-layout-shift": "0",
+          "speed-index": "1.7 s"
+        },
+        "failed_audits": [
+          "cache-insight",
+          "deprecations",
+          "document-latency-insight",
+          "image-delivery-insight",
+          "label-content-name-mismatch",
+          "lcp-discovery-insight",
+          "server-response-time"
+        ],
+        "run_warnings": []
+      },
+      "desktop": {
+        "lighthouse_version": "13.5.0",
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 81,
+          "seo": 100
+        },
+        "metrics": {
+          "first-contentful-paint": "0.3 s",
+          "largest-contentful-paint": "0.3 s",
+          "total-blocking-time": "0 ms",
+          "cumulative-layout-shift": "0",
+          "speed-index": "0.5 s"
+        },
+        "failed_audits": [
+          "cache-insight",
+          "deprecations",
+          "label-content-name-mismatch"
+        ],
+        "run_warnings": []
+      }
+    },
+    "https://solarity-company.the-ata-turhan.chatgpt.site/apps/looks-max/": {
+      "mobile": {
+        "lighthouse_version": "13.5.0",
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 81,
+          "seo": 100
+        },
+        "metrics": {
+          "first-contentful-paint": "0.9 s",
+          "largest-contentful-paint": "1.2 s",
+          "total-blocking-time": "10 ms",
+          "cumulative-layout-shift": "0",
+          "speed-index": "1.6 s"
+        },
+        "failed_audits": [
+          "cache-insight",
+          "deprecations",
+          "image-delivery-insight",
+          "label-content-name-mismatch"
+        ],
+        "run_warnings": []
+      },
+      "desktop": {
+        "lighthouse_version": "13.5.0",
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 81,
+          "seo": 100
+        },
+        "metrics": {
+          "first-contentful-paint": "0.2 s",
+          "largest-contentful-paint": "0.3 s",
+          "total-blocking-time": "0 ms",
+          "cumulative-layout-shift": "0",
+          "speed-index": "0.5 s"
+        },
+        "failed_audits": [
+          "cache-insight",
+          "deprecations",
+          "label-content-name-mismatch"
+        ],
+        "run_warnings": []
+      }
+    },
+    "https://solarity-company.the-ata-turhan.chatgpt.site/apps/iq-max/": {
+      "mobile": {
+        "lighthouse_version": "13.5.0",
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 81,
+          "seo": 100
+        },
+        "metrics": {
+          "first-contentful-paint": "1.0 s",
+          "largest-contentful-paint": "1.3 s",
+          "total-blocking-time": "10 ms",
+          "cumulative-layout-shift": "0",
+          "speed-index": "1.5 s"
+        },
+        "failed_audits": [
+          "cache-insight",
+          "deprecations",
+          "image-delivery-insight",
+          "label-content-name-mismatch"
+        ],
+        "run_warnings": []
+      },
+      "desktop": {
+        "lighthouse_version": "13.5.0",
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 81,
+          "seo": 100
+        },
+        "metrics": {
+          "first-contentful-paint": "0.3 s",
+          "largest-contentful-paint": "0.3 s",
+          "total-blocking-time": "0 ms",
+          "cumulative-layout-shift": "0",
+          "speed-index": "0.8 s"
+        },
+        "failed_audits": [
+          "cache-insight",
+          "deprecations",
+          "document-latency-insight",
+          "label-content-name-mismatch",
+          "server-response-time"
+        ],
+        "run_warnings": []
+      }
+    },
+    "https://solarity-company.the-ata-turhan.chatgpt.site/apps/sleep-max/": {
+      "mobile": {
+        "lighthouse_version": "13.5.0",
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 81,
+          "seo": 100
+        },
+        "metrics": {
+          "first-contentful-paint": "1.0 s",
+          "largest-contentful-paint": "1.3 s",
+          "total-blocking-time": "10 ms",
+          "cumulative-layout-shift": "0",
+          "speed-index": "1.6 s"
+        },
+        "failed_audits": [
+          "cache-insight",
+          "deprecations",
+          "image-delivery-insight",
+          "label-content-name-mismatch"
+        ],
+        "run_warnings": []
+      },
+      "desktop": {
+        "lighthouse_version": "13.5.0",
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 81,
+          "seo": 100
+        },
+        "metrics": {
+          "first-contentful-paint": "0.3 s",
+          "largest-contentful-paint": "0.3 s",
+          "total-blocking-time": "0 ms",
+          "cumulative-layout-shift": "0",
+          "speed-index": "0.5 s"
+        },
+        "failed_audits": [
+          "cache-insight",
+          "deprecations",
+          "label-content-name-mismatch"
+        ],
+        "run_warnings": []
+      }
+    },
+    "https://solarity-company.the-ata-turhan.chatgpt.site/apps/fitness-max/": {
+      "mobile": {
+        "lighthouse_version": "13.5.0",
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 81,
+          "seo": 100
+        },
+        "metrics": {
+          "first-contentful-paint": "0.9 s",
+          "largest-contentful-paint": "1.2 s",
+          "total-blocking-time": "10 ms",
+          "cumulative-layout-shift": "0",
+          "speed-index": "1.6 s"
+        },
+        "failed_audits": [
+          "cache-insight",
+          "deprecations",
+          "image-delivery-insight",
+          "label-content-name-mismatch"
+        ],
+        "run_warnings": []
+      },
+      "desktop": {
+        "lighthouse_version": "13.5.0",
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 81,
+          "seo": 100
+        },
+        "metrics": {
+          "first-contentful-paint": "0.3 s",
+          "largest-contentful-paint": "0.4 s",
+          "total-blocking-time": "0 ms",
+          "cumulative-layout-shift": "0",
+          "speed-index": "0.6 s"
+        },
+        "failed_audits": [
+          "cache-insight",
+          "deprecations",
+          "label-content-name-mismatch"
+        ],
+        "run_warnings": []
+      }
+    },
+    "https://solarity-company.the-ata-turhan.chatgpt.site/platform/": {
+      "mobile": {
+        "lighthouse_version": "13.5.0",
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 81,
+          "seo": 100
+        },
+        "metrics": {
+          "first-contentful-paint": "0.9 s",
+          "largest-contentful-paint": "0.9 s",
+          "total-blocking-time": "50 ms",
+          "cumulative-layout-shift": "0",
+          "speed-index": "2.2 s"
+        },
+        "failed_audits": [
+          "cache-insight",
+          "deprecations",
+          "document-latency-insight",
+          "image-delivery-insight",
+          "label-content-name-mismatch",
+          "server-response-time"
+        ],
+        "run_warnings": []
+      },
+      "desktop": {
+        "lighthouse_version": "13.5.0",
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 81,
+          "seo": 100
+        },
+        "metrics": {
+          "first-contentful-paint": "0.3 s",
+          "largest-contentful-paint": "0.3 s",
+          "total-blocking-time": "0 ms",
+          "cumulative-layout-shift": "0",
+          "speed-index": "0.6 s"
+        },
+        "failed_audits": [
+          "cache-insight",
+          "deprecations",
+          "label-content-name-mismatch"
+        ],
+        "run_warnings": []
+      }
+    },
+    "https://solarity-company.the-ata-turhan.chatgpt.site/company/": {
+      "mobile": {
+        "lighthouse_version": "13.5.0",
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 81,
+          "seo": 100
+        },
+        "metrics": {
+          "first-contentful-paint": "0.9 s",
+          "largest-contentful-paint": "1.3 s",
+          "total-blocking-time": "0 ms",
+          "cumulative-layout-shift": "0",
+          "speed-index": "1.3 s"
+        },
+        "failed_audits": [
+          "cache-insight",
+          "deprecations",
+          "image-delivery-insight",
+          "label-content-name-mismatch",
+          "lcp-discovery-insight"
+        ],
+        "run_warnings": []
+      },
+      "desktop": {
+        "lighthouse_version": "13.5.0",
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 81,
+          "seo": 100
+        },
+        "metrics": {
+          "first-contentful-paint": "0.3 s",
+          "largest-contentful-paint": "0.3 s",
+          "total-blocking-time": "0 ms",
+          "cumulative-layout-shift": "0",
+          "speed-index": "0.5 s"
+        },
+        "failed_audits": [
+          "cache-insight",
+          "deprecations",
+          "label-content-name-mismatch",
+          "lcp-discovery-insight"
+        ],
+        "run_warnings": []
+      }
+    },
+    "https://solarity-company.the-ata-turhan.chatgpt.site/investors-partners/": {
+      "mobile": {
+        "lighthouse_version": "13.5.0",
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 81,
+          "seo": 100
+        },
+        "metrics": {
+          "first-contentful-paint": "0.9 s",
+          "largest-contentful-paint": "0.9 s",
+          "total-blocking-time": "20 ms",
+          "cumulative-layout-shift": "0",
+          "speed-index": "1.9 s"
+        },
+        "failed_audits": [
+          "cache-insight",
+          "deprecations",
+          "image-delivery-insight",
+          "label-content-name-mismatch"
+        ],
+        "run_warnings": []
+      },
+      "desktop": {
+        "lighthouse_version": "13.5.0",
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 81,
+          "seo": 100
+        },
+        "metrics": {
+          "first-contentful-paint": "0.3 s",
+          "largest-contentful-paint": "0.3 s",
+          "total-blocking-time": "0 ms",
+          "cumulative-layout-shift": "0",
+          "speed-index": "0.9 s"
+        },
+        "failed_audits": [
+          "cache-insight",
+          "deprecations",
+          "document-latency-insight",
+          "image-delivery-insight",
+          "label-content-name-mismatch",
+          "server-response-time"
+        ],
+        "run_warnings": []
+      }
+    },
+    "https://solarity-company.the-ata-turhan.chatgpt.site/careers/": {
+      "mobile": {
+        "lighthouse_version": "13.5.0",
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 81,
+          "seo": 100
+        },
+        "metrics": {
+          "first-contentful-paint": "0.9 s",
+          "largest-contentful-paint": "1.2 s",
+          "total-blocking-time": "10 ms",
+          "cumulative-layout-shift": "0",
+          "speed-index": "1.1 s"
+        },
+        "failed_audits": [
+          "cache-insight",
+          "deprecations",
+          "image-delivery-insight",
+          "label-content-name-mismatch",
+          "lcp-discovery-insight"
+        ],
+        "run_warnings": []
+      },
+      "desktop": {
+        "lighthouse_version": "13.5.0",
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 81,
+          "seo": 100
+        },
+        "metrics": {
+          "first-contentful-paint": "0.3 s",
+          "largest-contentful-paint": "0.3 s",
+          "total-blocking-time": "0 ms",
+          "cumulative-layout-shift": "0",
+          "speed-index": "0.6 s"
+        },
+        "failed_audits": [
+          "cache-insight",
+          "deprecations",
+          "document-latency-insight",
+          "image-delivery-insight",
+          "label-content-name-mismatch",
+          "server-response-time"
+        ],
+        "run_warnings": []
+      }
+    },
+    "https://solarity-company.the-ata-turhan.chatgpt.site/contact/": {
+      "mobile": {
+        "lighthouse_version": "13.5.0",
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 81,
+          "seo": 100
+        },
+        "metrics": {
+          "first-contentful-paint": "0.9 s",
+          "largest-contentful-paint": "0.9 s",
+          "total-blocking-time": "10 ms",
+          "cumulative-layout-shift": "0",
+          "speed-index": "0.9 s"
+        },
+        "failed_audits": [
+          "cache-insight",
+          "deprecations",
+          "image-delivery-insight",
+          "label-content-name-mismatch"
+        ],
+        "run_warnings": []
+      },
+      "desktop": {
+        "lighthouse_version": "13.5.0",
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 81,
+          "seo": 100
+        },
+        "metrics": {
+          "first-contentful-paint": "0.2 s",
+          "largest-contentful-paint": "0.2 s",
+          "total-blocking-time": "0 ms",
+          "cumulative-layout-shift": "0",
+          "speed-index": "0.5 s"
+        },
+        "failed_audits": [
+          "cache-insight",
+          "deprecations",
+          "label-content-name-mismatch"
+        ],
+        "run_warnings": []
+      }
+    }
+  },
+  "lighthouse_note": "Carried over from measured_at 2026-10-18T15:47:42+00:00",
+  "findings": [
+    "62 referenced assets have an unexpected Content-Type, e.g. /assets/brand/ata-turhan-320.db6d27d9b9b3.webp -> application/octet-stream",
+    "/favicon.ico: status 404",
+    "45 files outside the current publish set are publicly reachable",
+    "Host does not apply _headers rules for: cache-control, referrer-policy, x-content-type-options"
+  ]
+}

@@ -1,42 +1,32 @@
-# IDE
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Archives
+*.tar.gz
+*.tgz
+
+# Environment and secrets
+.env
+.env.*
+
+# Editors, local tools, OS files
 .idea/
 .vscode/
 .cursor/
+.claude/
 *.iml
-
-# OS
 .DS_Store
 ._*
 Thumbs.db
 
-# Temp / backup
-*.bak
-*.backup
-*.tmp
-*~
-
-# Logs
+# Logs and temporary files
 *.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# Env
-.env
-.env.local
-.env.*.local
-
-# Node
+*.tmp
+*.bak
+*~
 node_modules/
 
-# Build output (eğer generate edilen dist klasörü varsa)
-dist/
-build/
-
-# Python (varsa)
-__pycache__/
-venv/
-env/
-
-# Vercel
-.vercel
+# dist/ is the committed publish set; never ignore it.

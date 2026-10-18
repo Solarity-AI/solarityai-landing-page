@@ -1,0 +1,32 @@
+{
+  "created": "2026-10-12",
+  "source": "Original image-generation artwork created for this Site",
+  "purpose": "Symbols of self-care, cognitive practice, sleep and communication on a shared platform foundation",
+  "classification": "Conceptual brand artwork; not an app screenshot, deployed architecture or evidence",
+  "files": [
+    {
+      "file": "human-potential-768.webp",
+      "width": 768,
+      "height": 512,
+      "bytes": 31212
+    },
+    {
+      "file": "human-potential-1200.webp",
+      "width": 1200,
+      "height": 800,
+      "bytes": 64848
+    },
+    {
+      "file": "human-potential-1536.webp",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 101094
+    },
+    {
+      "file": "human-potential-social.jpg",
+      "width": 1200,
+      "height": 800,
+      "bytes": 127856
+    }
+  ]
+}

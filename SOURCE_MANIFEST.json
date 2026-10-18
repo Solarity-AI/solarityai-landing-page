@@ -1,0 +1,1010 @@
+{
+  "exported_at": "2026-10-18",
+  "site_version": 24,
+  "source_commit": "27e009b87c931d61e0464bc6460041e80417db95",
+  "site_url": "https://solarity-company.the-ata-turhan.chatgpt.site",
+  "tracked_file_count": 200,
+  "tracked_files": [
+    {
+      "path": ".gitignore",
+      "bytes": 44,
+      "sha256": "e15cc81fdc380717b486f90eab409bd51ad120e5bab7b302d54ea1893ce0427a"
+    },
+    {
+      "path": ".openai/hosting.json",
+      "bytes": 106,
+      "sha256": "e62ef68e70dff94b68d3a483302b73b5ff14a926fa9eb4f9afaa03fd472bc262"
+    },
+    {
+      "path": "CINEMATIC_REFINEMENT.md",
+      "bytes": 7405,
+      "sha256": "36d4766ac898bf8bb5caf6c9b08fd9cc449c3fdd86ad1fa6a12ced85790db293"
+    },
+    {
+      "path": "CONTENT_REGISTER.md",
+      "bytes": 17893,
+      "sha256": "8125828ef90793f087fd9e87795359b35cff52705d0ea5af81f106e306333fd7"
+    },
+    {
+      "path": "DESIGN_DETAILS.md",
+      "bytes": 5451,
+      "sha256": "bc9c529b46391c8cbf113d1ca605315870450987612a2e2690cccfd0acce85fb"
+    },
+    {
+      "path": "DESIGN_REFINEMENTS.md",
+      "bytes": 7159,
+      "sha256": "9f739e9226b51415cca642602bde2924f7b8eb6c7e633508ed3575164a362526"
+    },
+    {
+      "path": "DESIGN_SYSTEM.md",
+      "bytes": 10410,
+      "sha256": "5a9505f154609615696c5122f1149a2a2ab7da54647e09d9b094fb1495bd7414"
+    },
+    {
+      "path": "README.md",
+      "bytes": 35926,
+      "sha256": "56375fdfee087d3d3edb6b9b6a82f805098c3d365279fd2c2af32b1bae251736"
+    },
+    {
+      "path": "REFERENCE_DESIGN_PASS.md",
+      "bytes": 6683,
+      "sha256": "39d211cdbc2449a0c6cacee2e8b3d70241b81ba8aa6b3456abe64574168493b6"
+    },
+    {
+      "path": "REFERENCE_IMPLEMENTATION.md",
+      "bytes": 6499,
+      "sha256": "eb147310dce6c0ac208ad6f9276662ba31ecc68a7cf1f9acd64fe04552114e54"
+    },
+    {
+      "path": "REFERENCE_SITE_REVIEW.md",
+      "bytes": 31644,
+      "sha256": "621d74e6ac1c21f6247f8288dd2ee4711c4b6bc9cb42acef6b28425f74dba7b3"
+    },
+    {
+      "path": "UI_REFINEMENTS.md",
+      "bytes": 6084,
+      "sha256": "01eb653092ad4beb11d7805cf44294929fe22495004932e1d6bdcec58a507d0d"
+    },
+    {
+      "path": "asset-sources.json",
+      "bytes": 2615,
+      "sha256": "72f613643bf5010207be98c6519b7b219dd536a264256914bec984e96f84b011"
+    },
+    {
+      "path": "build_site.py",
+      "bytes": 19713,
+      "sha256": "e482e8175147b5fc023406212081babf5864c6f0db835ded0eab4faaa86fe14f"
+    },
+    {
+      "path": "check_site.py",
+      "bytes": 24848,
+      "sha256": "32a74de6dbdd7c9b31e187409ea97b46af00956a91843abe51cc48ae957df51f"
+    },
+    {
+      "path": "design/system/accessibility.css",
+      "bytes": 2983,
+      "sha256": "6108edb00808caa8cfe68347cb95ad683ac0a933e51dc84458c4826759d11a82"
+    },
+    {
+      "path": "design/system/careers.css",
+      "bytes": 13077,
+      "sha256": "7e120558e4669606581f44686abdd60eb0f399de8b524cea8ace99a07473dc4c"
+    },
+    {
+      "path": "design/system/chrome.css",
+      "bytes": 6863,
+      "sha256": "9e2a399c7873ed2788060437aa699db47e0117fa663b290f0b5761ac29b66c80"
+    },
+    {
+      "path": "design/system/company.css",
+      "bytes": 28591,
+      "sha256": "828dcae3e84e3cfcb3e57fd39857e57b17e7f4cbfae16f506c78953ed6b94ebc"
+    },
+    {
+      "path": "design/system/contact.css",
+      "bytes": 7758,
+      "sha256": "c4ac4846eb8d632db5e923bd25db89010ae658d1929ac00524abc71b0ecf9083"
+    },
+    {
+      "path": "design/system/foundation.css",
+      "bytes": 8320,
+      "sha256": "73e208cae0b76c5e1fb2f20ac2e7b6f161858331da1639516fd9f1fa2ff89a9e"
+    },
+    {
+      "path": "design/system/home.css",
+      "bytes": 22271,
+      "sha256": "90bbf4196eedd2ac01e950068f8bdece073b2edd81387a581bc428eac2b9731d"
+    },
+    {
+      "path": "design/system/products.css",
+      "bytes": 19017,
+      "sha256": "2fbd1c67673ce0aba846ef1c68e88bcf962149c9eeee07589807985629054aa4"
+    },
+    {
+      "path": "dist/404.html",
+      "bytes": 30238,
+      "sha256": "bda0c5eddde6e21a07aaadbf2db0e585c42a640fead04393c854048c58761414"
+    },
+    {
+      "path": "dist/_headers",
+      "bytes": 420,
+      "sha256": "20be23656c33cbfa5fd2aa4006cdb043f64ab8b6974fedcb2a2e748117402606"
+    },
+    {
+      "path": "dist/apps/fitness-max/index.html",
+      "bytes": 55863,
+      "sha256": "c515f2606c3e1c62e28822ad8815a8e42ac1d969289c405ae14f742eca33e9c1"
+    },
+    {
+      "path": "dist/apps/index.html",
+      "bytes": 43260,
+      "sha256": "503311c548adecf83859392b11e8e6647e9dd56850cbe5558c9d9f9a355d2936"
+    },
+    {
+      "path": "dist/apps/iq-max/index.html",
+      "bytes": 55652,
+      "sha256": "9029f3474f82b65d248cb77738f73569c1ea6d8d5c2082de5d082665d747864c"
+    },
+    {
+      "path": "dist/apps/looks-max/index.html",
+      "bytes": 54074,
+      "sha256": "415d12e2bda94e07f769e5719823cd55d834660ab7962a0092595aa10dba51e9"
+    },
+    {
+      "path": "dist/apps/sleep-max/index.html",
+      "bytes": 53769,
+      "sha256": "8e0658b861fb5f72c66e7e4c5d778912aa29f2e533d2eb4f7ae04772a80496df"
+    },
+    {
+      "path": "dist/assets/brand/ata-turhan-320.06acc14f678a.avif",
+      "bytes": 9526,
+      "sha256": "06acc14f678a18d494b982c03ba6ce8984257283b871aca539501ba94f98297b"
+    },
+    {
+      "path": "dist/assets/brand/ata-turhan-320.db6d27d9b9b3.webp",
+      "bytes": 10784,
+      "sha256": "db6d27d9b9b33e96237f63847f8ab9a97e834688ac96a449e89f387608300e2e"
+    },
+    {
+      "path": "dist/assets/brand/ata-turhan-640.3ca06d5e1706.avif",
+      "bytes": 31199,
+      "sha256": "3ca06d5e170621a2cc9fe7d7e2b5350b3181ffe0367a3b7e597f906ee57f832e"
+    },
+    {
+      "path": "dist/assets/brand/ata-turhan-640.742556487789.webp",
+      "bytes": 32560,
+      "sha256": "742556487789a31948f880706edfb4b0b5763608744f55165bf96738056dab4d"
+    },
+    {
+      "path": "dist/assets/brand/ata-turhan-original.webp",
+      "bytes": 74872,
+      "sha256": "3e465a8c2bae39f8a83ad6a5c415fea6d586f49870709a66576b325fb7ae810d"
+    },
+    {
+      "path": "dist/assets/brand/solarity-lockup-180.fc3fa6e3059e.webp",
+      "bytes": 16818,
+      "sha256": "fc3fa6e3059e28459bf53efffb464d3b773088de3343f0d2a5123e26cae8f543"
+    },
+    {
+      "path": "dist/assets/brand/solarity-lockup-360.a5215e7a9299.webp",
+      "bytes": 32778,
+      "sha256": "a5215e7a9299bbaa6d94f7e127aeb6c0c10beaad3289dc6bcc33c9a9f4ebda43"
+    },
+    {
+      "path": "dist/assets/brand/solarity-lockup-original.png",
+      "bytes": 122745,
+      "sha256": "fe4491e1a120f224ada99c7b5edf55b28ce89396581c681c0cfd63caae4b9a51"
+    },
+    {
+      "path": "dist/assets/brand/solarity-sun-48.9bc99afc73e8.webp",
+      "bytes": 2302,
+      "sha256": "9bc99afc73e8ee9cf2f598ef96e83d362ce2891a95c25285a58a7938d6b3c627"
+    },
+    {
+      "path": "dist/assets/brand/solarity-sun-96.da9c18cba138.webp",
+      "bytes": 5802,
+      "sha256": "da9c18cba1383fc96ba981a1778ace61e2606129fb13a07ac5487b888a605b5e"
+    },
+    {
+      "path": "dist/assets/favicon.svg",
+      "bytes": 229,
+      "sha256": "769581ddeed069f51537e433f51090326b614c0312a168c5d9562cc18fc42212"
+    },
+    {
+      "path": "dist/assets/fitness-max-detail-screen-3.webp",
+      "bytes": 22774,
+      "sha256": "e315ead091fdb0cbf1613af52592bbff3b029c008385155e917912f4a0a3b430"
+    },
+    {
+      "path": "dist/assets/fitness-max-detail-screen-5.webp",
+      "bytes": 20800,
+      "sha256": "224e25c7913d4f0e3cb46fe84fb140b4700f2f13be618b261d69187a9c81e3cc"
+    },
+    {
+      "path": "dist/assets/fitness-max-icon.webp",
+      "bytes": 17204,
+      "sha256": "7122f8246316b4a446fd4fe166e9dfb816b35f9e932968e629da461daa3e47e0"
+    },
+    {
+      "path": "dist/assets/fitness-max-screen-2.webp",
+      "bytes": 22398,
+      "sha256": "ae6006967ff342bfc49945881492fd4dc36dad40cf7fd517e76ce864755e8fc5"
+    },
+    {
+      "path": "dist/assets/fonts/OFL-Manrope.txt",
+      "bytes": 4387,
+      "sha256": "58172e0c0fac2cda8a37b348164bb55e44b0e69051e557e92b1d3f6910141f7b"
+    },
+    {
+      "path": "dist/assets/fonts/font-sources.json",
+      "bytes": 973,
+      "sha256": "c8798a558178c0406477e975414afec3355f1e79ad4938a7be581ac461ed276b"
+    },
+    {
+      "path": "dist/assets/fonts/manrope-latin-variable.cfa570d7c3ee.woff2",
+      "bytes": 26292,
+      "sha256": "cfa570d7c3eed60037cfcfdf23929ceeda67b6bfe6f63c8f4f01660df5c433a4"
+    },
+    {
+      "path": "dist/assets/human-potential-1200.webp",
+      "bytes": 64848,
+      "sha256": "d56406dc49167f3765601d7f4b4210063e3270c3c8e6f460ff92d00aea621c5c"
+    },
+    {
+      "path": "dist/assets/human-potential-1536.webp",
+      "bytes": 101094,
+      "sha256": "8b5711bbbd3c4f502bf9ad2cc07877265dbcab57cbbcb5c762de28be1329b961"
+    },
+    {
+      "path": "dist/assets/human-potential-768.webp",
+      "bytes": 31212,
+      "sha256": "33a70efc651714ed8c856ffc02f2282540ef4b01b29ff12c5b74c84853cc9d4f"
+    },
+    {
+      "path": "dist/assets/human-potential-social.jpg",
+      "bytes": 127856,
+      "sha256": "2b06cccc81f231b2f912eecad99451cdfb81c40e703fab3782f07e273bf8b50d"
+    },
+    {
+      "path": "dist/assets/human-progress-1200.webp",
+      "bytes": 70578,
+      "sha256": "cfc4d8e65dc5c77f5ede23b6b1d6968826e9d521f1e39fc879cf1b29d5f88b3a"
+    },
+    {
+      "path": "dist/assets/human-progress-1672.webp",
+      "bytes": 116324,
+      "sha256": "603588268c01699ab51cc7ee80f7da29b9a72cb8c38a5990f086a188c306ca48"
+    },
+    {
+      "path": "dist/assets/human-progress-768.webp",
+      "bytes": 32498,
+      "sha256": "f4edcf0016df04dc696f75b634adfe6cb495e20f1a6a41448131f160bbab2913"
+    },
+    {
+      "path": "dist/assets/human-progress-social.jpg",
+      "bytes": 121742,
+      "sha256": "9c4814bf3b931b7d07ccb0e836f96c31b1a65077aad64f33513160f7fb381152"
+    },
+    {
+      "path": "dist/assets/iq-max-detail-screen-4.webp",
+      "bytes": 23856,
+      "sha256": "68462a9aba0110cbe0b24bbee0bd4b16cf658bcc4a610f2737fc680b0dbe1fd4"
+    },
+    {
+      "path": "dist/assets/iq-max-detail-screen-6.webp",
+      "bytes": 29482,
+      "sha256": "fea2b6ff399f7e3dd8f9904e8c36812c5ef49c8dd95c00c5eb43453919f76d42"
+    },
+    {
+      "path": "dist/assets/iq-max-icon.webp",
+      "bytes": 14474,
+      "sha256": "ca765c2fc4c1907475c4542e42cafcc0e302452ecf8e5786689adff761484f01"
+    },
+    {
+      "path": "dist/assets/iq-max-screen-1.webp",
+      "bytes": 38160,
+      "sha256": "db6e5efb5b03793e5a8d8f0f247fb77fd3dfed92a3700ba585fa69baf3cb666e"
+    },
+    {
+      "path": "dist/assets/looks-max-detail-screen-6.webp",
+      "bytes": 38938,
+      "sha256": "b1a7f0903987976bbc6f0d4254a3cca33b3a88d07476b66fc7f5c23222b6c70a"
+    },
+    {
+      "path": "dist/assets/looks-max-icon.webp",
+      "bytes": 8170,
+      "sha256": "0a873e6c30a21ff2f2ac45895a52f20546c4fe43c68c0ec93956635cd9d77f7e"
+    },
+    {
+      "path": "dist/assets/looks-max-screen-4.webp",
+      "bytes": 29916,
+      "sha256": "ef767bc4e4e05c7b54a0a87f722b1f71d890b71378b517c0e0ae690c2c5b4ae6"
+    },
+    {
+      "path": "dist/assets/optimized/fitness-max-detail-screen-3-240.66b0d3eb9979.webp",
+      "bytes": 11404,
+      "sha256": "66b0d3eb99798ac6c21d46f9c4f60d2b5a01e33ce1cb3a4529747f57281a5484"
+    },
+    {
+      "path": "dist/assets/optimized/fitness-max-detail-screen-3-400.93e3398c9d97.webp",
+      "bytes": 18346,
+      "sha256": "93e3398c9d971afc5ca29f480dd2c2b4cdfb5a054222b16281d4288d2d027409"
+    },
+    {
+      "path": "dist/assets/optimized/fitness-max-detail-screen-3-600.2821c00ea2ae.webp",
+      "bytes": 21968,
+      "sha256": "2821c00ea2aeabbac042ed38ad5397b76121ab27dd4535af7416556ed30a154e"
+    },
+    {
+      "path": "dist/assets/optimized/fitness-max-detail-screen-5-240.cb43b860246c.webp",
+      "bytes": 9602,
+      "sha256": "cb43b860246c57e5b3c026b3c577aa643d7b0705d60502b29091eb2c556d2800"
+    },
+    {
+      "path": "dist/assets/optimized/fitness-max-detail-screen-5-400.c8a08c9359ca.webp",
+      "bytes": 15698,
+      "sha256": "c8a08c9359caf909309d73f7968e5e35552b075ad404b7f6ef0b4f33ea6154c0"
+    },
+    {
+      "path": "dist/assets/optimized/fitness-max-detail-screen-5-600.2d103bb3d1b5.webp",
+      "bytes": 20316,
+      "sha256": "2d103bb3d1b55abbfb4d275c912cd4aa6f8a004c17e9108845525b69c259ee02"
+    },
+    {
+      "path": "dist/assets/optimized/fitness-max-icon-144.e637a846d707.webp",
+      "bytes": 4928,
+      "sha256": "e637a846d707b04e40d10df71702cbfc40763ffb458271e0074438cb07a821d9"
+    },
+    {
+      "path": "dist/assets/optimized/fitness-max-icon-48.87bd57d8e532.webp",
+      "bytes": 1234,
+      "sha256": "87bd57d8e5324d5891222c256aa49bffada408bbf704aec742d1af7ac6f07695"
+    },
+    {
+      "path": "dist/assets/optimized/fitness-max-icon-96.7e9493fe73f9.webp",
+      "bytes": 2956,
+      "sha256": "7e9493fe73f9bf1675cc962d2f00fb2c65f6a7a3ad3a95e88df941cf412da225"
+    },
+    {
+      "path": "dist/assets/optimized/fitness-max-screen-2-240.cc5fc26901d6.webp",
+      "bytes": 11062,
+      "sha256": "cc5fc26901d6d65942204412ddadce0ad53a5cea5ee75a501c59150e97142079"
+    },
+    {
+      "path": "dist/assets/optimized/fitness-max-screen-2-400.abeb6bd9c34a.webp",
+      "bytes": 18020,
+      "sha256": "abeb6bd9c34a9ae700d524e0764281a4412c1bcb387584226529d84783b09d51"
+    },
+    {
+      "path": "dist/assets/optimized/fitness-max-screen-2-600.3f33f1ca97a2.webp",
+      "bytes": 22254,
+      "sha256": "3f33f1ca97a2ff7a0118553aa02e04149003d004baa80407eb2ab283b9074b7a"
+    },
+    {
+      "path": "dist/assets/optimized/human-progress-1200.cfc4d8e65dc5.webp",
+      "bytes": 70578,
+      "sha256": "cfc4d8e65dc5c77f5ede23b6b1d6968826e9d521f1e39fc879cf1b29d5f88b3a"
+    },
+    {
+      "path": "dist/assets/optimized/human-progress-1200.f2f81677ce51.avif",
+      "bytes": 49424,
+      "sha256": "f2f81677ce51a30cdba76238319a57b9f99ebab7e86fd64e81791a3831c92590"
+    },
+    {
+      "path": "dist/assets/optimized/human-progress-1672.603588268c01.webp",
+      "bytes": 116324,
+      "sha256": "603588268c01699ab51cc7ee80f7da29b9a72cb8c38a5990f086a188c306ca48"
+    },
+    {
+      "path": "dist/assets/optimized/human-progress-1672.78a307eb93bf.avif",
+      "bytes": 82547,
+      "sha256": "78a307eb93bf564f17a93aebe116a9b715053ae18b8bd11a56609373736cbe3e"
+    },
+    {
+      "path": "dist/assets/optimized/human-progress-768.0695947f374f.avif",
+      "bytes": 22465,
+      "sha256": "0695947f374f8a06b29feab6c82f8cc1c092521cfd94ba6592ec37dfb4e51278"
+    },
+    {
+      "path": "dist/assets/optimized/human-progress-768.f4edcf0016df.webp",
+      "bytes": 32498,
+      "sha256": "f4edcf0016df04dc696f75b634adfe6cb495e20f1a6a41448131f160bbab2913"
+    },
+    {
+      "path": "dist/assets/optimized/iq-max-detail-screen-4-240.508361c167aa.webp",
+      "bytes": 11384,
+      "sha256": "508361c167aaf980d1c6d73c2123c72ab5c6850e2ad95b37180d695e040a50c9"
+    },
+    {
+      "path": "dist/assets/optimized/iq-max-detail-screen-4-400.33d86bd1213e.webp",
+      "bytes": 19818,
+      "sha256": "33d86bd1213e428ee9a9b6e53debceb801c26e497fba29ee578d081733c125ec"
+    },
+    {
+      "path": "dist/assets/optimized/iq-max-detail-screen-4-600.c63d05f57448.webp",
+      "bytes": 23794,
+      "sha256": "c63d05f57448eba956cd5f6e788f81e9b7b331512ca661ba506801a9cbdef4de"
+    },
+    {
+      "path": "dist/assets/optimized/iq-max-detail-screen-6-240.c565106bbf80.webp",
+      "bytes": 14972,
+      "sha256": "c565106bbf80f261acbba1240b886e70a9d5f5c4104f27c0a86c2d0715b5d623"
+    },
+    {
+      "path": "dist/assets/optimized/iq-max-detail-screen-6-400.1dbf8ff94e83.webp",
+      "bytes": 25484,
+      "sha256": "1dbf8ff94e8318d773e7debdb0588f5b95837f452df0cd51c985e1dc2d5108d4"
+    },
+    {
+      "path": "dist/assets/optimized/iq-max-detail-screen-6-600.fea2b6ff399f.webp",
+      "bytes": 29482,
+      "sha256": "fea2b6ff399f7e3dd8f9904e8c36812c5ef49c8dd95c00c5eb43453919f76d42"
+    },
+    {
+      "path": "dist/assets/optimized/iq-max-icon-144.c76f356ba199.webp",
+      "bytes": 4476,
+      "sha256": "c76f356ba1991a1fa7ebecf61ae9e2ed3e2872d243d999e0ff7836c2b876efdd"
+    },
+    {
+      "path": "dist/assets/optimized/iq-max-icon-48.180c846c135e.webp",
+      "bytes": 1126,
+      "sha256": "180c846c135e397c4ab87edb4c4a5315107451cef0f6a83707c1b9455ae4ac25"
+    },
+    {
+      "path": "dist/assets/optimized/iq-max-icon-96.aac6e5022f6b.webp",
+      "bytes": 2638,
+      "sha256": "aac6e5022f6b8392d3835949c5cc5a456a744055d04170022d83d04c5373a416"
+    },
+    {
+      "path": "dist/assets/optimized/iq-max-screen-1-240.cdf6176f5c59.webp",
+      "bytes": 17264,
+      "sha256": "cdf6176f5c598cb26958a7e8aa4643fab9831be018b2966c0892107013a0f6b5"
+    },
+    {
+      "path": "dist/assets/optimized/iq-max-screen-1-400.c81ff3fd7665.webp",
+      "bytes": 30508,
+      "sha256": "c81ff3fd7665d4c501dd4eae8df6a221208821b049e0b284cee3ef19142ec4d2"
+    },
+    {
+      "path": "dist/assets/optimized/iq-max-screen-1-600.db6e5efb5b03.webp",
+      "bytes": 38160,
+      "sha256": "db6e5efb5b03793e5a8d8f0f247fb77fd3dfed92a3700ba585fa69baf3cb666e"
+    },
+    {
+      "path": "dist/assets/optimized/looks-max-detail-screen-6-240.e5e4484af0a0.webp",
+      "bytes": 17036,
+      "sha256": "e5e4484af0a0f347ba55983bf14d7972d5f11e32e9e06129aa3ff8510ab9ccee"
+    },
+    {
+      "path": "dist/assets/optimized/looks-max-detail-screen-6-400.44437ff99fca.webp",
+      "bytes": 31492,
+      "sha256": "44437ff99fca8b32b120f6b0652de55c1eb6cd2fd9875f3fbdbb318ad2bdb794"
+    },
+    {
+      "path": "dist/assets/optimized/looks-max-detail-screen-6-600.b1a7f0903987.webp",
+      "bytes": 38938,
+      "sha256": "b1a7f0903987976bbc6f0d4254a3cca33b3a88d07476b66fc7f5c23222b6c70a"
+    },
+    {
+      "path": "dist/assets/optimized/looks-max-icon-144.6e029fa80180.webp",
+      "bytes": 2338,
+      "sha256": "6e029fa8018076c9021c687ef3c4069b0790e8a6cfda7071458c5dfa4b39fc67"
+    },
+    {
+      "path": "dist/assets/optimized/looks-max-icon-48.c4acd53f50ca.webp",
+      "bytes": 682,
+      "sha256": "c4acd53f50ca2add4c3554f0f917c5b9389f187570540ec96803efad53156397"
+    },
+    {
+      "path": "dist/assets/optimized/looks-max-icon-96.b5d76428edc0.webp",
+      "bytes": 1516,
+      "sha256": "b5d76428edc0d7642cb8fb930610a9db31720975a4e2e07975bf23d05474e4c7"
+    },
+    {
+      "path": "dist/assets/optimized/looks-max-screen-4-240.0e9637efba23.webp",
+      "bytes": 13946,
+      "sha256": "0e9637efba2391b502d2ac5bf1b2266eb8539f5dda301a0fdb5722b5574ea44d"
+    },
+    {
+      "path": "dist/assets/optimized/looks-max-screen-4-400.ac470416f280.webp",
+      "bytes": 24448,
+      "sha256": "ac470416f280d016f868595dcda2921b463ab32630ea6c4d37f9731bfea928a4"
+    },
+    {
+      "path": "dist/assets/optimized/looks-max-screen-4-600.ef767bc4e4e0.webp",
+      "bytes": 29916,
+      "sha256": "ef767bc4e4e05c7b54a0a87f722b1f71d890b71378b517c0e0ae690c2c5b4ae6"
+    },
+    {
+      "path": "dist/assets/optimized/sleep-max-detail-screen-3-240.be403817a19d.webp",
+      "bytes": 10018,
+      "sha256": "be403817a19d6058e5caaf63326ad1551d0882732a3ef0a16fe762d86b0dce99"
+    },
+    {
+      "path": "dist/assets/optimized/sleep-max-detail-screen-3-400.7a0d626069e4.webp",
+      "bytes": 18844,
+      "sha256": "7a0d626069e450eda70d2523d9625aa7e776db30b7c074b0d03d39ba4445d686"
+    },
+    {
+      "path": "dist/assets/optimized/sleep-max-detail-screen-3-600.753a038b5a7f.webp",
+      "bytes": 25754,
+      "sha256": "753a038b5a7fef30b214ba3ba28511af2ab403f427bcce65c0c5a14885fce4a4"
+    },
+    {
+      "path": "dist/assets/optimized/sleep-max-icon-144.ae97748b1e77.webp",
+      "bytes": 1228,
+      "sha256": "ae97748b1e77a6fda5f9d4c9badc7deb90a0699f885edabde496e645f116277b"
+    },
+    {
+      "path": "dist/assets/optimized/sleep-max-icon-48.b11fcaf98bce.webp",
+      "bytes": 428,
+      "sha256": "b11fcaf98bcee8010cc8ad16a59b9b1b4d407e6a84d0b77970b38e6142bc881b"
+    },
+    {
+      "path": "dist/assets/optimized/sleep-max-icon-96.6e0de30b5905.webp",
+      "bytes": 790,
+      "sha256": "6e0de30b590549c5050a4856ece88b8e481b25acdd03df6155330a40324d1729"
+    },
+    {
+      "path": "dist/assets/optimized/sleep-max-screen-4-240.579a6bc17c83.webp",
+      "bytes": 10220,
+      "sha256": "579a6bc17c8356da3071c985073b05b5b73adc6b059550f0b92d984d4ba1a9ab"
+    },
+    {
+      "path": "dist/assets/optimized/sleep-max-screen-4-400.f4bfa9583de5.webp",
+      "bytes": 19246,
+      "sha256": "f4bfa9583de5378f30fd6de0c9b7d2d9293220a798c17898d60b656c2b9796d5"
+    },
+    {
+      "path": "dist/assets/optimized/sleep-max-screen-4-600.d1c9519695cf.webp",
+      "bytes": 26890,
+      "sha256": "d1c9519695cfed08e7024ee07dea32cb8f860b0757a9edbe828fd74833c4ae15"
+    },
+    {
+      "path": "dist/assets/optimized/solar-ascent-1200.15de939dc709.webp",
+      "bytes": 83448,
+      "sha256": "15de939dc70912570312542fa1b8441ae7ca7dfad5a66bce03c1b934e2b2222c"
+    },
+    {
+      "path": "dist/assets/optimized/solar-ascent-1200.2dfd1527d27d.avif",
+      "bytes": 69470,
+      "sha256": "2dfd1527d27d00a79e5fa65e7d428d608479acd255a45b5562e5b03665f884f5"
+    },
+    {
+      "path": "dist/assets/optimized/solar-ascent-1440.4630e36e4141.webp",
+      "bytes": 104716,
+      "sha256": "4630e36e4141425698b06d3f22765df38c4ad5f619f7c119c8a0c2be1f04cfe1"
+    },
+    {
+      "path": "dist/assets/optimized/solar-ascent-1440.5f9efc614f94.avif",
+      "bytes": 90890,
+      "sha256": "5f9efc614f940658e1596d5d5a59b90a57d09a2609ed646c1bfa45507dcae11e"
+    },
+    {
+      "path": "dist/assets/optimized/solar-ascent-1860.4ab107438b1a.webp",
+      "bytes": 155274,
+      "sha256": "4ab107438b1ad99207f04a0955178000bd9878e6c41cdc949d5e4134d46b7e6d"
+    },
+    {
+      "path": "dist/assets/optimized/solar-ascent-1860.ab965179a93b.avif",
+      "bytes": 128441,
+      "sha256": "ab965179a93b2e0d0ad3d3800843811bd1e4dacf14f6dc4c81a6e46a06b62e19"
+    },
+    {
+      "path": "dist/assets/optimized/solar-ascent-480.ac7a79e81d7d.webp",
+      "bytes": 20196,
+      "sha256": "ac7a79e81d7d788ea1c72af3e041f9bc8517a99e07b93ff481a5cc0262c22143"
+    },
+    {
+      "path": "dist/assets/optimized/solar-ascent-480.e83c42387514.avif",
+      "bytes": 16429,
+      "sha256": "e83c42387514892617047cefa6cdaa69d7a4df57dd42e389587621df030eef66"
+    },
+    {
+      "path": "dist/assets/optimized/solar-ascent-768.a2934ffc2e78.webp",
+      "bytes": 41874,
+      "sha256": "a2934ffc2e78a90e4875ce791d002e57e1ff4be85c20ac5327fc6fcda3af2b48"
+    },
+    {
+      "path": "dist/assets/optimized/solar-ascent-768.c3a09a25e15c.avif",
+      "bytes": 34543,
+      "sha256": "c3a09a25e15c4771306d92f5666f94f2016dbd79b28302473a03845d706b9f00"
+    },
+    {
+      "path": "dist/assets/presentation.css",
+      "bytes": 108887,
+      "sha256": "7025fd1e7dbcb2ebfea9d62537350dbcd627782e71630d38488270cac3caac14"
+    },
+    {
+      "path": "dist/assets/runtime/careers.c3b82f6bcc33.js",
+      "bytes": 8737,
+      "sha256": "c3b82f6bcc3363aeb60c749f3e8d90086dd959bf43a8c77d8846b82880888ad8"
+    },
+    {
+      "path": "dist/assets/runtime/careers.fd4f26fdf0bf.js",
+      "bytes": 8772,
+      "sha256": "fd4f26fdf0bf0632db3648d972b314179f9fc574d7dc731146c7b3de97d4f59e"
+    },
+    {
+      "path": "dist/assets/runtime/contact.6a7377d6c62b.js",
+      "bytes": 2705,
+      "sha256": "6a7377d6c62b352f5c9d483cf664ac5e673e0b4b9192edcdbfa8264ae32d20f1"
+    },
+    {
+      "path": "dist/assets/runtime/contact.be6d716325df.js",
+      "bytes": 14768,
+      "sha256": "be6d716325df3beb295e3f65f278b02cbf3bdb250649a73aad3ee769d1c0f4b4"
+    },
+    {
+      "path": "dist/assets/runtime/gallery.3871249b1316.js",
+      "bytes": 2311,
+      "sha256": "3871249b13160e908de9003aa5f6c369dff5c87112209fe58ccd5c93dbd03187"
+    },
+    {
+      "path": "dist/assets/runtime/navigation.1a6b7eb0fce4.js",
+      "bytes": 2335,
+      "sha256": "1a6b7eb0fce41deade32eb198c3234d27a3bdb092300bb17324fb88ee285b08a"
+    },
+    {
+      "path": "dist/assets/site.js",
+      "bytes": 20086,
+      "sha256": "6f5a564858b6e3ad7ef120e2f72d7a70d1f8a22a84582603ccdba58e25aed3a5"
+    },
+    {
+      "path": "dist/assets/sleep-max-detail-screen-3.webp",
+      "bytes": 25754,
+      "sha256": "753a038b5a7fef30b214ba3ba28511af2ab403f427bcce65c0c5a14885fce4a4"
+    },
+    {
+      "path": "dist/assets/sleep-max-icon.webp",
+      "bytes": 5840,
+      "sha256": "291d2db282087249bd6ba1fee24325de7cc7abc6030b2a8e3a73523e6ec29d11"
+    },
+    {
+      "path": "dist/assets/sleep-max-screen-4.webp",
+      "bytes": 26890,
+      "sha256": "d1c9519695cfed08e7024ee07dea32cb8f860b0757a9edbe828fd74833c4ae15"
+    },
+    {
+      "path": "dist/assets/social-cover.jpg",
+      "bytes": 112777,
+      "sha256": "a36282698565a01167025c17736f29e2a8eb544e0751fd28c364e288ed970c95"
+    },
+    {
+      "path": "dist/assets/solar-ascent-social.jpg",
+      "bytes": 123949,
+      "sha256": "9bb895418d04b1e2e48644792cdce3bd71bb2346ba26ccbb513773797af89080"
+    },
+    {
+      "path": "dist/assets/solar-ascent.webp",
+      "bytes": 219990,
+      "sha256": "fee06b897b31710a10c7d15ab2d93e552671a3e734708b2d1ddc73eb38cd219a"
+    },
+    {
+      "path": "dist/assets/solar-stage-1200.webp",
+      "bytes": 68276,
+      "sha256": "be56833f56aba290fdbfd8b72510a6cdab2b8655457915de87361d385860ef4e"
+    },
+    {
+      "path": "dist/assets/solar-stage-1672.webp",
+      "bytes": 113806,
+      "sha256": "f549435459f777748d14d02bdc14e5550e9c8ad839d5cc854badc309e7e642e7"
+    },
+    {
+      "path": "dist/assets/solar-stage-768.webp",
+      "bytes": 32034,
+      "sha256": "af1b417f851a6baa9aea325fbbbf9a0b13845b5e5142b00cca8cca4151ff8912"
+    },
+    {
+      "path": "dist/assets/solar-stage-social.jpg",
+      "bytes": 116471,
+      "sha256": "be24d000da72cace0488e88a3b5d3fca7943434bdf25e45af7f98541e4d6fd83"
+    },
+    {
+      "path": "dist/assets/solar-vision.webp",
+      "bytes": 94050,
+      "sha256": "5badd8aa48c44cb275f71c17901df1088e8e2a0782f149b073c1b1e45bba375c"
+    },
+    {
+      "path": "dist/assets/team/ali-yilmaz-240-6a90dfff30ac.webp",
+      "bytes": 4836,
+      "sha256": "6a90dfff30ace1f63025cad4ed8ec2bea3cd76402a9e08cb042937d474681979"
+    },
+    {
+      "path": "dist/assets/team/ali-yilmaz-480-65556168df49.webp",
+      "bytes": 11582,
+      "sha256": "65556168df491b4b1aca40b28d3ab787fab94c168e1f98f696e180c2c2390e95"
+    },
+    {
+      "path": "dist/assets/team/emrecan-ozkan-240-d1df701b3489.webp",
+      "bytes": 5628,
+      "sha256": "d1df701b3489a55ca1dc6a14686c4f89978090faabc9b1f2d58bc6c794b1d82e"
+    },
+    {
+      "path": "dist/assets/team/emrecan-ozkan-480-d117500c13c0.webp",
+      "bytes": 16466,
+      "sha256": "d117500c13c065a62677d37aac597e091add4cdcd0981e5ecd2539884b488837"
+    },
+    {
+      "path": "dist/assets/team/hasan-ak-240-d70bfaf3c656.webp",
+      "bytes": 4300,
+      "sha256": "d70bfaf3c6567572b607504027f5a013222b99fec1377eb9cb165174a4c92c95"
+    },
+    {
+      "path": "dist/assets/team/hasan-ak-480-866549c99e7b.webp",
+      "bytes": 10526,
+      "sha256": "866549c99e7ba541f268643d0aaedd684400796b90e17736c246fc37622477d7"
+    },
+    {
+      "path": "dist/careers/index.html",
+      "bytes": 48422,
+      "sha256": "759258277a56262f3dda8fbc85cee5c9b8696590d936eca86e79aa1e09c18648"
+    },
+    {
+      "path": "dist/company/index.html",
+      "bytes": 37646,
+      "sha256": "3dd889d56002ca1692723be57dd813f644ac967c418c37b53fbb4fc642a1eb2b"
+    },
+    {
+      "path": "dist/contact/index.html",
+      "bytes": 35942,
+      "sha256": "ffeac07e993d32fd0cc913618a46a2e8710dba1d421d0a468115a862674f7921"
+    },
+    {
+      "path": "dist/index.html",
+      "bytes": 68166,
+      "sha256": "db13eb72a948abf602a70d5f1dbe2a4bf096b6769e635b179b53d4761e786876"
+    },
+    {
+      "path": "dist/investors-partners/index.html",
+      "bytes": 52041,
+      "sha256": "cece79b882c470a3ee3a09d413575596eb8ea34ecd66f7a631331a4ab8dbe8c2"
+    },
+    {
+      "path": "dist/platform/index.html",
+      "bytes": 44636,
+      "sha256": "f267de8c8c4d8876e7997a6de5dbca77e40d2f73c6a928024c56b370460766ff"
+    },
+    {
+      "path": "dist/robots.txt",
+      "bytes": 97,
+      "sha256": "731a61aff6c6b479964363c1c4acc186ac1c9beb764e5a365d7c6935f8fc3282"
+    },
+    {
+      "path": "dist/sitemap.xml",
+      "bytes": 1048,
+      "sha256": "b6fedbb4a6b1a202d5e6be428f022690218047f7894785df3969072667f581c0"
+    },
+    {
+      "path": "optimize_images.py",
+      "bytes": 8691,
+      "sha256": "8467a4b29befa930092d580216a59c990c9d890f157ae26290a012481088aa62"
+    },
+    {
+      "path": "optimize_styles.py",
+      "bytes": 8229,
+      "sha256": "6e0e71fb29bccef98a1aefc4dfcc45f2e0bf0e6071f2b56f0791e924befa68b2"
+    },
+    {
+      "path": "performance_build.py",
+      "bytes": 6499,
+      "sha256": "92a3b26041c44b1503cab3eb8e3923c670a202a3f1d243303dcfcf18aaed2039"
+    },
+    {
+      "path": "product_explorer.py",
+      "bytes": 3393,
+      "sha256": "b3255773b328f730b0b32c6774ae50ab673cd22cddca9dfc2ea0c56cbc694c90"
+    },
+    {
+      "path": "product_story.py",
+      "bytes": 7161,
+      "sha256": "4ce99ec9cdeae7af3493363d00110dd4e6a90c58d8dcfe3cdbc0a74fd7f3a92d"
+    },
+    {
+      "path": "research-assets/brand-evidence.json",
+      "bytes": 5268,
+      "sha256": "abe4f040371774e44b8d3f15e2bcd9565cc6f9d3b2fe4e509828d0795e8c01b6"
+    },
+    {
+      "path": "research-assets/design-system-byte-comparison.json",
+      "bytes": 2216,
+      "sha256": "c266b1f867f002caee382214f1a825ce1003e9ff66f0ab96f456f12a388bef0c"
+    },
+    {
+      "path": "research-assets/downloaded-assets.json",
+      "bytes": 4516,
+      "sha256": "16f5cbb6e27a26b924fd87e6ced43a0352c48055a4fa0e40fedfc468bd91b842"
+    },
+    {
+      "path": "research-assets/hero-artwork.json",
+      "bytes": 815,
+      "sha256": "bde9ce414509596f64714e675ae0d0e44ce3e670e145d472a71f4a19a6d3c10f"
+    },
+    {
+      "path": "research-assets/hero-human-progress.json",
+      "bytes": 802,
+      "sha256": "3f365480dc897336872a3353754937c657c0de6d463412b5c7eeeea6a1e5c78f"
+    },
+    {
+      "path": "research-assets/hero-stage-artwork.json",
+      "bytes": 718,
+      "sha256": "822d0044ab7b2bb8c44fa4143a682caef0c69746e770983d14c0b638a81af8ba"
+    },
+    {
+      "path": "research-assets/image-optimization.json",
+      "bytes": 23014,
+      "sha256": "4f359eb61f325e184af8801be4d6daad09bc1609b863e0d8fb38fe7f63af4d05"
+    },
+    {
+      "path": "research-assets/performance-baseline.json",
+      "bytes": 644,
+      "sha256": "2cc58c43651e7d76ebbc30ca6191995a1a4cc9127e44dc62dcc35c4964ce6529"
+    },
+    {
+      "path": "research-assets/performance-build.json",
+      "bytes": 7184,
+      "sha256": "0f7f7743c5359135b518856a89ed48be0d70919014a9da2f357591849f7ee0d9"
+    },
+    {
+      "path": "research-assets/product-evidence.md",
+      "bytes": 4249,
+      "sha256": "1eab25f75d02a9a50e79d57a70f94bd642dab92509dac6d0ad0f0c60addf6152"
+    },
+    {
+      "path": "research-assets/product-story-evidence.json",
+      "bytes": 7694,
+      "sha256": "663999ed60a7616437e18efffc45a9de6d329454c578c15788c20c68157ef71e"
+    },
+    {
+      "path": "research-assets/reference-pass-baseline.json",
+      "bytes": 6576,
+      "sha256": "ba08c1c89d26c4aef316e236d8bcabfeb768393cccf3e85b8e2a252cd97ea244"
+    },
+    {
+      "path": "research-assets/reference-pass-byte-comparison.json",
+      "bytes": 6150,
+      "sha256": "06a43444ae6a5f4a33486b1fd1ccd7cc812ffaf9272915741271c05bd5b74ea5"
+    },
+    {
+      "path": "research-assets/solar-ascent-approved.png",
+      "bytes": 2016783,
+      "sha256": "90b2c7f071fd906510bbb92c6b4809ad13cc0315f2df4cd4e19f9b4fe2ec4a31"
+    },
+    {
+      "path": "research-assets/solar-ascent-artwork.json",
+      "bytes": 750,
+      "sha256": "315ebad8539f5e0f8a49cd28bc8a1326d1b3d8ac2fb5b23dd9244159e3ae4845"
+    },
+    {
+      "path": "research-assets/team-evidence.json",
+      "bytes": 5711,
+      "sha256": "db49b37d794356216da814aeb4b9394c5793f2cbd049aab4c06a3afaea4c926d"
+    },
+    {
+      "path": "scripts/careers.js",
+      "bytes": 8772,
+      "sha256": "fd4f26fdf0bf0632db3648d972b314179f9fc574d7dc731146c7b3de97d4f59e"
+    },
+    {
+      "path": "scripts/contact.js",
+      "bytes": 2705,
+      "sha256": "6a7377d6c62b352f5c9d483cf664ac5e673e0b4b9192edcdbfa8264ae32d20f1"
+    },
+    {
+      "path": "scripts/gallery.js",
+      "bytes": 2311,
+      "sha256": "3871249b13160e908de9003aa5f6c369dff5c87112209fe58ccd5c93dbd03187"
+    },
+    {
+      "path": "scripts/navigation.js",
+      "bytes": 2798,
+      "sha256": "0f6074cd011a86f5713534fa53cc035506547ed5f0af8f202aeb1c6670785c39"
+    },
+    {
+      "path": "site-pages.json",
+      "bytes": 2241,
+      "sha256": "2b7ae4c38a85a0636706e9e0cb45070ee74c8d0a3b126a94f8ad006b673d2865"
+    },
+    {
+      "path": "site_urls.py",
+      "bytes": 1255,
+      "sha256": "cce24826ce30ab3986878e878b10d33afa713630e4076057e9c0c39106c433c7"
+    },
+    {
+      "path": "static-audit.json",
+      "bytes": 326,
+      "sha256": "3e8d62ee1ec5fcc54e87770338e370f00ab599f0d2b5ff9433defbe65100ba5f"
+    },
+    {
+      "path": "test-careers.cjs",
+      "bytes": 6376,
+      "sha256": "988759242b732ef3558523c9236e15b854bfe95aedc82acb459f813397063272"
+    },
+    {
+      "path": "test-contact.cjs",
+      "bytes": 3314,
+      "sha256": "ad74ea6a7abe67afbe55b203500f4ae9db2bf78118a96d9a2d0e30697bbf57de"
+    },
+    {
+      "path": "test-gallery.cjs",
+      "bytes": 6435,
+      "sha256": "76d9d5e53c2099d9d5dc2e5208df93882458a29fbc4bc307c524c9a0bb4ba1f9"
+    },
+    {
+      "path": "test-navigation.cjs",
+      "bytes": 8994,
+      "sha256": "b7a9527e4de64b267e1cff57d948cddd07891c66bb4b0dd4172e271ed2ea4dfe"
+    },
+    {
+      "path": "test_optimize_styles.py",
+      "bytes": 4109,
+      "sha256": "92d80964a7aefa954561f93286087d2cab4a045050e82159db261be99f2aa7a8"
+    },
+    {
+      "path": "test_site_urls.py",
+      "bytes": 2308,
+      "sha256": "d181998baad206d04567ae23a959a5fea3b87551c62185b5c39e92f5781dc475"
+    },
+    {
+      "path": "ux_components.py",
+      "bytes": 9454,
+      "sha256": "01e96d08cb35477decbe7735419218711d78b780030bb896004f35f9ba194837"
+    },
+    {
+      "path": "ux_content.py",
+      "bytes": 6154,
+      "sha256": "5525692d38110cca1042fe1e94945c74ed3c68b4441c17cb079023c9775cc524"
+    },
+    {
+      "path": "visual_careers.py",
+      "bytes": 10116,
+      "sha256": "b330ad5abb1a3f7a27df06751cd165a79f2b288feabd15e04f09daf8c8a233af"
+    },
+    {
+      "path": "visual_catalog.py",
+      "bytes": 4418,
+      "sha256": "1334701c2e00b69f59e394f6b3e5356d9e031303dc03d7a08cae25a47821e59f"
+    },
+    {
+      "path": "visual_chrome.py",
+      "bytes": 5670,
+      "sha256": "dd1fe642e89c556ea5b35a259cce1c9d4c719a3145a487d55c07bd527fa5c4a3"
+    },
+    {
+      "path": "visual_company_upgrade.py",
+      "bytes": 10739,
+      "sha256": "09292b7ed0686712cea3fa221333becb07439c0016abb3eb40f85ce33be03a60"
+    },
+    {
+      "path": "visual_contact.py",
+      "bytes": 3352,
+      "sha256": "ad0884d7e766d99f41a791b19f70b76d54d7621ca4fadf150c952a3bfad912c0"
+    },
+    {
+      "path": "visual_home.py",
+      "bytes": 5163,
+      "sha256": "dd1292ca51d96e7b16dfc382e7ec54e5f543363dd6ef71723f5dca7fc94e361a"
+    },
+    {
+      "path": "visual_products.py",
+      "bytes": 5240,
+      "sha256": "12b712998640d6399205a7916cbeb376a2284b839500a07808aa594ef00d8127"
+    },
+    {
+      "path": "visual_sections.py",
+      "bytes": 7120,
+      "sha256": "704aceb451ebfc1895ff20efba1c144b48b9820132956a5b7d9bf09139ae5888"
+    },
+    {
+      "path": "visual_strategy.py",
+      "bytes": 3089,
+      "sha256": "85e149c86be692b18f68e1034c3a08491bf63dcc6f7e3290a3e6f37ec86fb0ce"
+    },
+    {
+      "path": "visual_team.py",
+      "bytes": 2231,
+      "sha256": "0730d20880f100788deba1e61363d20dbfca2b071acb9036a23eb7aff087e054"
+    }
+  ],
+  "excluded": "Git internals, machine caches, environment directories, and repository credentials are not project source and are not included."
+}

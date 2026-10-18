@@ -1,0 +1,33 @@
+/* Final, intentional alternate-mode rules. Page composition remains in domain files. */
+@layer accessibility {
+ @media(prefers-reduced-motion:no-preference){
+  .button>span[aria-hidden],.text-link>span[aria-hidden]{transition:transform var(--motion-detail) var(--motion-ease)}
+  .button:focus-visible>span[aria-hidden],.text-link:focus-visible>span[aria-hidden]{transform:translateX(3px)}
+  @media(hover:hover) and (pointer:fine){.button:hover>span[aria-hidden],.text-link:hover>span[aria-hidden]{transform:translateX(3px)}}
+  .footer-group a>span,.contact-method .method-arrow,.recovery-arrow{transition:transform var(--motion-fast) var(--motion-ease)}
+  .footer-group a:focus-visible>span,.contact-method:focus-visible .method-arrow{transform:translateX(3px)}
+  @media(hover:hover) and (pointer:fine){.footer-group a:hover>span,.contact-method:hover .method-arrow{transform:translateX(3px)}}
+  #image-dialog[open]{animation:surface-arrive 180ms var(--motion-ease)}
+  @keyframes surface-arrive{from{opacity:.7;transform:translateY(5px)}to{opacity:1;transform:none}}
+ }
+ @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+ @media(forced-colors:active){
+  :root{--bg:Canvas;--surface:Canvas;--surface-raised:Canvas;--text:CanvasText;--muted:CanvasText;--dim:CanvasText;--accent:LinkText;--line:CanvasText;--paper:Canvas;--ink:CanvasText;--product-accent:LinkText}
+  .button,.menu-toggle,input,select,textarea{border:1px solid ButtonText!important;box-shadow:none!important}
+  :focus-visible{outline:3px solid Highlight!important;outline-offset:3px}
+  #site-nav>a[aria-current],.footer-group a[aria-current]{text-decoration:underline!important;color:LinkText}
+  .footer-signature,.footer-signature>span{color:CanvasText}
+ }
+ @media print{
+  @page{margin:16mm}
+  :root{color-scheme:light;--bg:#fff;--surface:#fff;--surface-raised:#fff;--text:#111;--muted:#333;--dim:#444;--accent:#333;--line:#aaa;--paper:#fff;--ink:#111;--product-accent:#333;--space-section:20pt}
+  *,*::before,*::after{background:transparent!important;color:#111!important;box-shadow:none!important;text-shadow:none!important;animation:none!important;transition:none!important;backdrop-filter:none!important}
+  html,body,body.image-preview-open{overflow:visible!important}body{font-size:10pt;line-height:1.6}
+  .wrap{width:100%!important;max-width:none!important}
+  .site-header{position:static;border-bottom:1px solid #999}.header-inner{min-height:0;padding-block:0 12pt}
+  .site-header #site-nav,.site-header .menu-toggle,.header-actions,.skip-link,.chrome-footer,.conversation-band,#image-dialog{display:none!important}
+  h1{font-size:30pt}h2{font-size:24pt}h3{font-size:15pt}.lede{font-size:12pt}
+  .page-intro{padding-block:22pt}.button,.text-link{min-height:0;padding:6pt 0;border:0;text-decoration:underline}
+  .actions{gap:12pt}a{overflow-wrap:anywhere}figure,img{break-inside:avoid}h1,h2,h3{break-after:avoid}
+ }
+}

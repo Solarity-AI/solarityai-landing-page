@@ -1,0 +1,31 @@
+{
+  "created": "2026-10-12",
+  "classification": "Conceptual brand artwork: a human moving up deliberate steps toward light, supported by precise architecture. Not a founder portrait, real company facility, app UI or deployed platform architecture.",
+  "reference": "Original solar-vision.webp visual language",
+  "files": [
+    {
+      "file": "human-progress-768.webp",
+      "width": 768,
+      "height": 432,
+      "bytes": 32498
+    },
+    {
+      "file": "human-progress-1200.webp",
+      "width": 1200,
+      "height": 675,
+      "bytes": 70578
+    },
+    {
+      "file": "human-progress-1672.webp",
+      "width": 1672,
+      "height": 941,
+      "bytes": 116324
+    },
+    {
+      "file": "human-progress-social.jpg",
+      "width": 1200,
+      "height": 675,
+      "bytes": 121742
+    }
+  ]
+}
