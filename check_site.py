@@ -262,6 +262,14 @@ for source in style_sources:
     maintained_source=ROOT/source
     if not maintained_source.is_file():errors.append(f'Missing maintained stylesheet {source}')
     elif maintained_source.read_text(encoding='utf-8') not in css:errors.append(f'Presentation bundle is missing or has stale content from {source}')
+# A line break that CSS hides at some widths must not join the adjacent words.
+hidden_break_scopes=set(re.findall(r'\.([\w-]+)[^{}]*?\sbr(?::[\w-]+(?:\([^)]*\))?)?\s*\{\s*display\s*:\s*none',css))
+for file in docs:
+    rel=file.relative_to(DIST).as_posix();text=file.read_text(encoding='utf-8')
+    for scope in sorted(hidden_break_scopes):
+        for match in re.finditer(r'class="(?:[^"]*\s)?'+re.escape(scope)+r'(?:\s[^"]*)?"[^>]*>(.*?)</h[1-6]>',text,re.S):
+            words=re.sub(r'<[^>]+>','',re.sub(r'<br\b[^>]*>','\0',match.group(1)))
+            for joined in re.findall(r'\S+\0\S+',words):errors.append(f'{rel}: hidden line break joins words in .{scope}: {joined.replace(chr(0)," / ")}')
 for breakpoint in [1150,850,560]:
     if f'max-width:{breakpoint}px' not in css:warnings.append(f'Missing expected CSS breakpoint {breakpoint}')
 if 'prefers-reduced-motion:reduce' not in css:errors.append('Missing reduced-motion rule')

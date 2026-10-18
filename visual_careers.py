@@ -62,7 +62,7 @@ def careers_page(btn):
 </section>
 
 <section class="career-benefits wrap" aria-labelledby="career-benefits-title">
-<div class="career-section-heading"><p class="eyebrow">WHY SOLARITY AI</p><h2 id="career-benefits-title">A place for<br><em>your contribution.</em></h2></div>
+<div class="career-section-heading"><p class="eyebrow">WHY SOLARITY AI</p><h2 id="career-benefits-title">A place for <br><em>your contribution.</em></h2></div>
 <dl class="career-benefit-list">
 <div><dt>Generous profit sharing</dt><dd>Share in the value you help create. Discuss the arrangement for your role during the hiring process.</dd></div>
 <div><dt>Fully remote</dt><dd>Contribute remotely, with the work and your collaboration at the center of the conversation.</dd></div>

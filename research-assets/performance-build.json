@@ -18,7 +18,7 @@
       ],
       "external_scripts": [],
       "javascript_bytes": 2798,
-      "html_bytes": 68166,
+      "html_bytes": 68169,
       "html_gzip_bytes": 15713
     },
     "/apps": {
@@ -216,7 +216,7 @@
         "careers"
       ],
       "javascript_bytes": 11570,
-      "html_bytes": 48422,
+      "html_bytes": 48423,
       "html_gzip_bytes": 12707
     },
     "/contact": {
@@ -239,8 +239,8 @@
         "contact"
       ],
       "javascript_bytes": 5503,
-      "html_bytes": 35942,
-      "html_gzip_bytes": 9859
+      "html_bytes": 35943,
+      "html_gzip_bytes": 9860
     },
     "/404": {
       "source_bytes": 108887,

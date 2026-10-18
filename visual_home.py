@@ -26,7 +26,7 @@ def hero_section(apps, btn, contact):
           <a class="text-link vision-explore" href="#our-products">Explore our products <span aria-hidden="true">↓</span></a>
         </div>
       </div>
-    </section><section class="hero-evidence wrap" aria-labelledby="hero-evidence-title"><div class="hero-evidence-heading"><h2 id="hero-evidence-title">From ambition<br>to everyday practice.</h2><p>Four apps. iOS &amp; Android.</p></div><nav class="hero-evidence-products" aria-label="Store-listed Solarity AI apps">{products}</nav></section>'''
+    </section><section class="hero-evidence wrap" aria-labelledby="hero-evidence-title"><div class="hero-evidence-heading"><h2 id="hero-evidence-title">From ambition <br>to everyday practice.</h2><p>Four apps. iOS &amp; Android.</p></div><nav class="hero-evidence-products" aria-label="Store-listed Solarity AI apps">{products}</nav></section>'''
 
 
 def company_strategy(apps, btn, contact):
@@ -42,7 +42,7 @@ def company_strategy(apps, btn, contact):
         for slug, verb, title, desc in modules
     )
     return f'''<section class="company-strategy" aria-labelledby="strategy-title"><div class="strategy-layout wrap">
-      <div class="strategy-copy"><p class="eyebrow">THE SYSTEMS BEHIND THE APPS</p><h2 id="strategy-title">Build the product.<br><span>Improve the way<br>it gets built.</span></h2><p>Each app starts with a distinct human ambition. Building these products also informs the workflows we want to make more repeatable.</p><p>Our app factory vision connects this experience with a longer-term focus on engineering, operations, and marketing.</p><a class="text-link" href="/investors-partners">Explore the company thesis <span aria-hidden="true">→</span></a></div>
+      <div class="strategy-copy"><p class="eyebrow">THE SYSTEMS BEHIND THE APPS</p><h2 id="strategy-title">Build the product. <br><span>Improve the way <br>it gets built.</span></h2><p>Each app starts with a distinct human ambition. Building these products also informs the workflows we want to make more repeatable.</p><p>Our app factory vision connects this experience with a longer-term focus on engineering, operations, and marketing.</p><a class="text-link" href="/investors-partners">Explore the company thesis <span aria-hidden="true">→</span></a></div>
       <div class="strategy-relationship"><div class="strategy-portfolio"><p class="strategy-label">THE STARTING POINT</p><h3>Real product experience.</h3><p>What we learn from creating focused consumer apps informs the systems we develop next.</p></div>
         <p class="strategy-connection"><span aria-hidden="true">↓</span> Experience informs workflow design</p>
         <div class="strategy-workflows"><p class="strategy-label">THE APP FACTORY VISION</p>{module_rows}</div>

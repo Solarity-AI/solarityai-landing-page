@@ -31,7 +31,7 @@ python -m unittest test_optimize_styles.py test_site_urls.py
 node --test test-navigation.cjs test-contact.cjs test-gallery.cjs test-careers.cjs
 ```
 
-Use `python3` if that is the Python 3 command on the local machine. The export was checked with Python 3.12.14, Pillow 12.3.0, and Node 24.19.0. Pillow is the only third-party Python dependency. Browser testing and fresh Lighthouse results are separate from these static and behavior checks. Never claim measurements that were not run.
+Use `python3` if that is the Python 3 command on the local machine. On Windows, run the same commands with `.venv\Scripts\python.exe`. Build and audit scripts read and write text as explicit UTF-8 with LF newlines, and `.gitattributes` keeps LF in checkouts, because script fingerprints and inline-script hashes use raw bytes. Keep `encoding='utf-8'` (and `newline='\n'` on writes) in any new file I/O. `check_site.py` also fails when a `<br>` that CSS hides at some widths would join two words. Put a space before such breaks. The export was checked with Python 3.12.14, Pillow 12.3.0, and Node 24.19.0. Pillow is the only third-party Python dependency. Browser testing and fresh Lighthouse results are separate from these static and behavior checks. Never claim measurements that were not run.
 
 ## Preserve unless the founder requests a change
 
