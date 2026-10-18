@@ -1,13 +1,8 @@
-"""HTTP checks for a deployed copy of dist/: routes, redirects, 404, headers, MIME.
+"""HTTP checks for a Cloudflare Pages deployment of dist/: routes, redirects,
+404, headers, MIME types, caching, and byte-identical files.
 
-Production image (nginx), for example in CI:
-
-    docker build -t solarityai-site . && docker run -d -p 8080:80 solarityai-site
-    python deploy/smoke_test.py http://localhost:8080
-
-Cloudflare Pages (a *.pages.dev deployment or https://solarityai.com):
-
-    python deploy/smoke_test.py https://<project>.pages.dev --platform pages
+    python deploy/smoke_test.py                      # https://solarityai.com
+    python deploy/smoke_test.py https://<branch>.solarityai-landing-page.pages.dev
 
 Expectations come from dist/ itself (sitemap routes, _headers and _redirects
 rules, published assets), so the test follows the site without separate
@@ -15,9 +10,10 @@ maintenance. Only GET requests are sent.
 """
 from __future__ import annotations
 
-import argparse
 import gzip
 from pathlib import Path
+import re
+import sys
 from urllib.error import HTTPError
 from urllib.parse import urlsplit
 from urllib.request import HTTPRedirectHandler, Request, build_opener
@@ -106,15 +102,30 @@ def first(pattern: str) -> str:
     return '/' + match.relative_to(DIST).as_posix()
 
 
+ANALYTICS_BEACON = re.compile(rb'<script\b[^>]*static\.cloudflareinsights\.com/beacon[^>]*></script>\n?')
+edge_notes: set[str] = set()
+
+
+def without_email_markers(html: bytes) -> bytes:
+    """Undo known solarityai.com edge changes before comparing with dist/.
+
+    Cloudflare honors and then strips the email_off comments, and the zone's
+    Web Analytics setting injects its beacon for browser user agents.
+    """
+    if ANALYTICS_BEACON.search(html):
+        edge_notes.add('Cloudflare Web Analytics beacon injected by the zone (not part of dist/)')
+    html = ANALYTICS_BEACON.sub(b'', html)
+    return html.replace(b'<!--email_off-->', b'').replace(b'<!--/email_off-->', b'')
+
+
 def revalidates(cache: str) -> bool:
     return 'no-cache' in cache or 'max-age=0' in cache
 
 
-def main(base: str, platform: str) -> int:
+def main(base: str) -> int:
     base = base.rstrip('/')
-    nginx = platform == 'nginx'
-    # Pages normalizes slashes and /index.html itself, with 308.
-    moved = {301} if nginx else {301, 308}
+    # _redirects rules answer 301; Pages normalizes slashes and /index.html with 308.
+    moved = {301, 308}
     rules = header_rules()
     namespace = '{http://www.sitemaps.org/schemas/sitemap/0.9}'
     routes = [urlsplit(node.text).path for node in ET.parse(DIST / 'sitemap.xml').iter(namespace + 'loc')]
@@ -126,10 +137,11 @@ def main(base: str, platform: str) -> int:
         expect(status == 200, f'{path}: status {status}')
         expect(mime(headers) == 'text/html', f'{path}: content-type {headers.get("content-type")}')
         cache = headers.get('cache-control', '')
-        expect(cache == 'no-cache' if nginx else revalidates(cache), f'{path}: cache-control {cache!r}')
+        expect(revalidates(cache), f'{path}: cache-control {cache!r}')
         for name, value in {**SECURITY, **declared(path, rules)}.items():
             expect(headers.get(name) == value, f'{path}: {name} is {headers.get(name)!r}, expected {value!r}')
-        expect(body == (DIST / path.lstrip('/') / 'index.html').read_bytes(), f'{path}: served page differs from dist')
+        expect(without_email_markers(body) == without_email_markers((DIST / path.lstrip('/') / 'index.html').read_bytes()),
+               f'{path}: served page differs from dist')
         if path != '/':
             status, headers, _ = get(base, path.rstrip('/'))
             checked += 1
@@ -148,61 +160,52 @@ def main(base: str, platform: str) -> int:
         expect(status == 404, f'{path}: status {status}, expected 404')
         expect(b'is not here' in body and b'noindex' in body, f'{path}: custom noindex 404 page not served')
         expect(headers.get('x-content-type-options') == 'nosniff', f'{path}: missing nosniff on 404')
-        if nginx:
-            expect(headers.get('x-robots-tag') == 'noindex, follow', f'{path}: X-Robots-Tag {headers.get("x-robots-tag")!r}')
 
     status, headers, _ = get(base, '/404')
     checked += 1
-    expect(status == (404 if nginx else status) and headers.get('x-robots-tag') == 'noindex, follow',
+    expect(headers.get('x-robots-tag') == 'noindex, follow',
            f'/404: status {status}, X-Robots-Tag {headers.get("x-robots-tag")!r}')
 
     status, headers, body = get(base, '/', **{'Accept-Encoding': 'gzip'})
     checked += 1
     expect(headers.get('content-encoding') == 'gzip' and b'<html' in gzip.decompress(body), '/: response is not gzip-compressed')
 
-    day = 'public, max-age=86400'
+    # (content type, whether _headers marks the file immutable)
     assets = {
-        first('assets/optimized/*.webp'): ('image/webp', IMMUTABLE),
-        first('assets/optimized/*.avif'): ('image/avif', IMMUTABLE),
-        first('assets/runtime/*.js'): ('text/javascript', IMMUTABLE),
-        first('assets/fonts/*.woff2'): ('font/woff2', IMMUTABLE),
-        '/assets/fonts/OFL-Manrope.txt': ('text/plain', day),
-        first('assets/*-screen-*.webp'): ('image/webp', day),
-        first('assets/*-social.jpg'): ('image/jpeg', day),
-        '/favicon.ico': ('image/x-icon', 'public, max-age=604800'),
-        '/robots.txt': ('text/plain', day),
-        '/sitemap.xml': ('application/xml', day),
+        first('assets/optimized/*.webp'): ('image/webp', True),
+        first('assets/optimized/*.avif'): ('image/avif', True),
+        first('assets/runtime/*.js'): ('text/javascript', True),
+        first('assets/fonts/*.woff2'): ('font/woff2', True),
+        '/assets/fonts/OFL-Manrope.txt': ('text/plain', False),
+        first('assets/*-screen-*.webp'): ('image/webp', False),
+        first('assets/*-social.jpg'): ('image/jpeg', False),
+        '/favicon.ico': ('image/x-icon', False),
+        '/robots.txt': ('text/plain', False),
+        '/sitemap.xml': ('application/xml', False),
     }
-    for path, (content_type, cache) in assets.items():
+    for path, (content_type, immutable) in assets.items():
         status, headers, body = get(base, path)
         checked += 1
         actual = headers.get('cache-control', '')
         expect(status == 200, f'{path}: status {status}')
         expect(mime(headers) == content_type, f'{path}: content-type {headers.get("content-type")!r}, expected {content_type}')
-        if nginx or cache == IMMUTABLE:
-            expect(actual == cache, f'{path}: cache-control {actual!r}, expected {cache!r}')
+        if immutable:
+            expect(actual == IMMUTABLE, f'{path}: cache-control {actual!r}, expected {IMMUTABLE!r}')
         else:
             expect('immutable' not in actual, f'{path}: unfingerprinted file is cached as immutable')
         expect(body == (DIST / path.lstrip('/')).read_bytes(), f'{path}: served bytes differ from dist')
         for name, value in {**SECURITY, **declared(path, rules)}.items():
             expect(headers.get(name) == value, f'{path}: {name} is {headers.get(name)!r}, expected {value!r}')
 
-    if nginx:
-        status, _, body = get(base, '/health')
-        checked += 1
-        expect(status == 200 and body.strip() == b'healthy', '/health: not healthy')
-
     if failures:
-        print(f'{len(failures)} problems in {checked} {platform} server checks:')
+        print(f'{len(failures)} problems in {checked} server checks:')
         print('\n'.join('  - ' + failure for failure in failures))
         return 1
-    print(f'All {checked} {platform} server checks passed for {base}')
+    print(f'All {checked} server checks passed for {base}')
+    for note in sorted(edge_notes):
+        print('  note: ' + note)
     return 0
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description=__doc__.split('\n')[0])
-    parser.add_argument('base', nargs='?', default='http://localhost:8080')
-    parser.add_argument('--platform', choices=('nginx', 'pages'), default='nginx')
-    args = parser.parse_args()
-    raise SystemExit(main(args.base, args.platform))
+    raise SystemExit(main(sys.argv[1] if len(sys.argv) > 1 else 'https://solarityai.com'))
