@@ -1,7 +1,7 @@
 {
   "/": {
     "title": "Building for human potential",
-    "description": "AI-powered self-improvement apps and an app factory vision. Explore Solarity AI and connect with our founder."
+    "description": "AI-powered self-improvement apps, and three web apps for engineering, managing and marketing mobile products. Explore Solarity AI and connect with our founder."
   },
   "/apps": {
     "title": "Apps for everyday ambition",
@@ -24,8 +24,8 @@
     "description": "Meal insights, training logs, and AI coaching to help you follow your fitness routine."
   },
   "/platform": {
-    "title": "The app factory vision",
-    "description": "Engineering Max, Management Max and Marketing Max: the Solarity AI platform vision for building, operating and growing mobile products."
+    "title": "The app factory",
+    "description": "Engineering Max, Management Max and Marketing Max: three Solarity AI web apps for engineering, managing and marketing mobile products."
   },
   "/company": {
     "title": "The company",
