@@ -1,0 +1,157 @@
+{
+  "purpose": "Native-resolution re-fetch of the published App Store screenshots (P5a)",
+  "status": "Awaiting founder confirmation. The site still publishes the 600px files.",
+  "match_rule": "downscaled native vs published: mean <= 4.0 and 99th percentile <= 40 levels",
+  "assets": [
+    {
+      "published_file": "fitness-max-detail-screen-3.webp",
+      "published_sha256": "e315ead091fdb0cbf1613af52592bbff3b029c008385155e917912f4a0a3b430",
+      "native_url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/3a/dc/bd/3adcbda4-c4fd-ac30-de4d-460f611f1276/45.png/4000x4000bb.png",
+      "native_file": "source-assets/native/fitness-max-detail-screen-3.png",
+      "native_size": [
+        1284,
+        2778
+      ],
+      "native_bytes": 953341,
+      "native_sha256": "9cdabf95a9d05d480211cdbe9fb71b590eabe2e4e96b4483e966fe0ea1b8d4a1",
+      "mean_difference": 1.78,
+      "p99_difference": 16,
+      "matches_published": true
+    },
+    {
+      "published_file": "fitness-max-detail-screen-5.webp",
+      "published_sha256": "224e25c7913d4f0e3cb46fe84fb140b4700f2f13be618b261d69187a9c81e3cc",
+      "native_url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/4d/63/1b/4d631b7a-3d54-834e-66c5-ef6643637826/47.png/4000x4000bb.png",
+      "native_file": "source-assets/native/fitness-max-detail-screen-5.png",
+      "native_size": [
+        1284,
+        2778
+      ],
+      "native_bytes": 1144990,
+      "native_sha256": "ed5e3ab43f9c2c1a66d68e210d70604a5a54bb39b64dbeddbb91dfef7e0f82e6",
+      "mean_difference": 1.7,
+      "p99_difference": 14,
+      "matches_published": true
+    },
+    {
+      "published_file": "fitness-max-screen-2.webp",
+      "published_sha256": "ae6006967ff342bfc49945881492fd4dc36dad40cf7fd517e76ce864755e8fc5",
+      "native_url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/fc/c3/67/fcc367cb-80a9-ecc0-242f-c6f25c291ab0/44.png/4000x4000bb.png",
+      "native_file": "source-assets/native/fitness-max-screen-2.png",
+      "native_size": [
+        1284,
+        2778
+      ],
+      "native_bytes": 1102551,
+      "native_sha256": "81728bae2da2c86f6536f567c88f1d26823f1e138cf48dd9b1b85e68a9977593",
+      "mean_difference": 1.76,
+      "p99_difference": 15,
+      "matches_published": true
+    },
+    {
+      "published_file": "iq-max-detail-screen-4.webp",
+      "published_sha256": "68462a9aba0110cbe0b24bbee0bd4b16cf658bcc4a610f2737fc680b0dbe1fd4",
+      "native_url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/3a/37/f0/3a37f084-1e5b-06d0-5578-ed0e87b4bda8/59.png/4000x4000bb.png",
+      "native_file": "source-assets/native/iq-max-detail-screen-4.png",
+      "native_size": [
+        1284,
+        2778
+      ],
+      "native_bytes": 877623,
+      "native_sha256": "8ce8fbaa4e61fdabf7e1e81d61f59e8bf44c576de5a00fe253ce32d000f1141b",
+      "mean_difference": 1.66,
+      "p99_difference": 17,
+      "matches_published": true
+    },
+    {
+      "published_file": "iq-max-detail-screen-6.webp",
+      "published_sha256": "fea2b6ff399f7e3dd8f9904e8c36812c5ef49c8dd95c00c5eb43453919f76d42",
+      "native_url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/96/6d/3a/966d3a95-2a2c-4af1-36bc-1f8f7e1111dc/61.png/4000x4000bb.png",
+      "native_file": "source-assets/native/iq-max-detail-screen-6.png",
+      "native_size": [
+        1284,
+        2778
+      ],
+      "native_bytes": 929962,
+      "native_sha256": "1ce69021bd2aca1cad92ce7ab153804e5a7823e76acde041769278f8c06a8c5f",
+      "mean_difference": 1.81,
+      "p99_difference": 18,
+      "matches_published": true
+    },
+    {
+      "published_file": "iq-max-screen-1.webp",
+      "published_sha256": "db6e5efb5b03793e5a8d8f0f247fb77fd3dfed92a3700ba585fa69baf3cb666e",
+      "native_url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/65/e6/42/65e64287-97e6-7c88-d0ac-949181782deb/IQ_MAX.png/4000x4000bb.png",
+      "native_file": "source-assets/native/iq-max-screen-1.png",
+      "native_size": [
+        1284,
+        2778
+      ],
+      "native_bytes": 1253749,
+      "native_sha256": "dfaa621853c40b71b8593751ee4e591a4a0520d2ec8ea314c69ba2c85eefedb2",
+      "mean_difference": 1.48,
+      "p99_difference": 16,
+      "matches_published": true
+    },
+    {
+      "published_file": "looks-max-detail-screen-6.webp",
+      "published_sha256": "b1a7f0903987976bbc6f0d4254a3cca33b3a88d07476b66fc7f5c23222b6c70a",
+      "native_url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/7b/97/b0/7b97b02f-274c-3c49-35f8-b3bb344b1b26/37.png/4000x4000bb.png",
+      "native_file": "source-assets/native/looks-max-detail-screen-6.png",
+      "native_size": [
+        1284,
+        2778
+      ],
+      "native_bytes": 1462652,
+      "native_sha256": "03c18fb7822c04902ada24dba5ea9ac1af9e8b687285848f557fb343bd1d3c8c",
+      "mean_difference": 2.2,
+      "p99_difference": 22,
+      "matches_published": true
+    },
+    {
+      "published_file": "looks-max-screen-4.webp",
+      "published_sha256": "ef767bc4e4e05c7b54a0a87f722b1f71d890b71378b517c0e0ae690c2c5b4ae6",
+      "native_url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/df/a1/02/dfa10295-1896-7642-fe31-e21244c5c8f5/35.png/4000x4000bb.png",
+      "native_file": "source-assets/native/looks-max-screen-4.png",
+      "native_size": [
+        1284,
+        2778
+      ],
+      "native_bytes": 1254833,
+      "native_sha256": "f42a14da8f15a0e6a193718f9b5912e2083759f8eaaa5f750e9e0ac27d80ccc1",
+      "mean_difference": 2.02,
+      "p99_difference": 20,
+      "matches_published": true
+    },
+    {
+      "published_file": "sleep-max-detail-screen-3.webp",
+      "published_sha256": "753a038b5a7fef30b214ba3ba28511af2ab403f427bcce65c0c5a14885fce4a4",
+      "native_url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/1d/44/fa/1d44fa1b-0710-540a-b038-0163369414da/profile_65.png/4000x4000bb.png",
+      "native_file": "source-assets/native/sleep-max-detail-screen-3.png",
+      "native_size": [
+        1284,
+        2778
+      ],
+      "native_bytes": 2224868,
+      "native_sha256": "2bdda5dbd796bb6bec6719b0f234e786c31510a307c8c9bf6631df12d7b27c33",
+      "mean_difference": 1.32,
+      "p99_difference": 17,
+      "matches_published": true
+    },
+    {
+      "published_file": "sleep-max-screen-4.webp",
+      "published_sha256": "d1c9519695cfed08e7024ee07dea32cb8f860b0757a9edbe828fd74833c4ae15",
+      "native_url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/44/60/56/446056a9-192b-7e73-be08-e20e16c74ed7/sounds_65.png/4000x4000bb.png",
+      "native_file": "source-assets/native/sleep-max-screen-4.png",
+      "native_size": [
+        1284,
+        2778
+      ],
+      "native_bytes": 2253271,
+      "native_sha256": "b3cfe75b160589eea894775d812c29024c1ed5b6cf173c70baee04e1ce608297",
+      "mean_difference": 1.37,
+      "p99_difference": 19,
+      "matches_published": true
+    }
+  ]
+}
