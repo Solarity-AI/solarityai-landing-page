@@ -331,9 +331,58 @@ for source in style_sources:
     for value in re.findall(r'(?<![\w-])font-weight:\s*([^;}]+)',screen):
         if value.strip() not in ('400','500','600','inherit','200 800'):errors.append(f'{source}: font weight {value.strip()} is outside the 400/500/600 system')
     for value in re.findall(r'border-radius:\s*([^;}]+)',screen):
-        if not re.fullmatch(r'var\(--radius(-lg|-pill|-icon)?\)|0|50%',value.strip()):errors.append(f'{source}: radius {value.strip()} must use a --radius token')
+        if not re.fullmatch(r'var\(--radius-(control|plate|panel|pill|icon)\)|0|50%',value.strip()):errors.append(f'{source}: radius {value.strip()} must use a --radius-control/plate/panel/pill/icon token')
+    # Colors live in foundation.css tokens; borders, outlines and shadows never hard-code a hex value.
+    if source!='design/system/foundation.css':
+        for prop,value in re.findall(r'(?<![\w-])((?:border|outline|box-shadow)[\w-]*)\s*:\s*([^;}]+)',screen):
+            if re.search(r'#[0-9a-fA-F]{3,8}\b',value):errors.append(f'{source}: {prop} uses a literal color ({value.strip()[:40]}); use a foundation token')
     for selector,body in re.findall(r'([^{}]*\.eyebrow[^{}]*)\{([^}]*)\}',screen):
         if selector.strip()!='.eyebrow' and '.product-identity' not in selector and ':not(.eyebrow)' not in selector and re.search(r'font-size|letter-spacing',body):errors.append(f'{source}: eyebrow size and tracking belong to the base .eyebrow style ({selector.strip()[:60]})')
+# Contrast matrix over the declared tokens (CINEMATIC_PREMIUM_PLAN.md §3.2 and correction 6).
+foundation_css=(ROOT/'design/system/foundation.css').read_text(encoding='utf-8')
+root_match=re.search(r':root\{(.*?)\}',foundation_css,re.S)
+tokens=dict(re.findall(r'--([\w-]+):([^;]+)',root_match.group(1))) if root_match else {}
+def token_hex(name,seen=()):
+    value=tokens.get(name,'').strip()
+    ref=re.fullmatch(r'var\(--([\w-]+)\)',value)
+    if ref and ref.group(1) not in seen:return token_hex(ref.group(1),seen+(name,))
+    return value.lower() if re.fullmatch(r'#[0-9a-fA-F]{6}',value) else None
+def rgb(hex_value):return tuple(int(hex_value[i:i+2],16) for i in (1,3,5))
+def luminance(color):
+    channels=[c/255 for c in color]
+    channels=[c/12.92 if c<=.03928 else ((c+.055)/1.055)**2.4 for c in channels]
+    return .2126*channels[0]+.7152*channels[1]+.0722*channels[2]
+def contrast(a,b):
+    la,lb=sorted((luminance(a),luminance(b)),reverse=True)
+    return (la+.05)/(lb+.05)
+def blend(top,bottom,alpha):return tuple(round(top[i]*alpha+bottom[i]*(1-alpha)) for i in range(3))
+CONTRAST_PAIRS=[(fg,bg,4.5) for fg in ['text','muted','dim'] for bg in ['bg','surface','raised','tone-blue','tone-first','tone-golden','tone-footer']]
+CONTRAST_PAIRS+=[(fg,bg,4.5) for fg in ['sun-core','gold','sand'] for bg in ['bg','surface','raised','tone-golden']]
+CONTRAST_PAIRS+=[('ink','sun-core',4.5),('ink','haze',4.5),('bronze','bg',3),('bronze','surface',3),('danger-text','danger-surface',4.5),('danger-ink','danger-surface',4.5),('notice-text','notice-surface',4.5)]
+for fg,bg,minimum in CONTRAST_PAIRS:
+    a,b=token_hex(fg),token_hex(bg)
+    if not a or not b:errors.append(f'Contrast matrix: --{fg} or --{bg} is not a six-digit hex token');continue
+    ratio=contrast(rgb(a),rgb(b))
+    if ratio<minimum:errors.append(f'Contrast matrix: --{fg} on --{bg} is {ratio:.2f}:1, below {minimum}:1')
+# Text inside a product world sits on its deep stage or on at most 35% world light over it, never on the vivid hue.
+for product in ['looks','iq','sleep','fitness']:
+    deep,world,tint=(token_hex(f'{product}-{part}') for part in ('deep','world','tint'))
+    if not (deep and world and tint):errors.append(f'Contrast matrix: --{product}-deep/world/tint must be hex tokens');continue
+    for surface_name,surface in [('deep',rgb(deep)),('35% world',blend(rgb(world),rgb(deep),.35))]:
+        # --dim is never used inside a lit world stage; it is checked only on the deep surface.
+        for fg in ['text','muted']+(['dim'] if surface_name=='deep' else []):
+            ratio=contrast(rgb(token_hex(fg)),surface)
+            if ratio<4.5:errors.append(f'Contrast matrix: --{fg} on {product} {surface_name} is {ratio:.2f}:1, below 4.5:1')
+        ratio=contrast(rgb(tint),surface)
+        if ratio<4.5:errors.append(f'Contrast matrix: --{product}-tint on {product} {surface_name} is {ratio:.2f}:1, below 4.5:1')
+# Warm neutrals stay on the ember axis (R >= G >= B); cool scene tones stay blue (B >= G >= R), never olive.
+for name in ['bg','surface','raised','line','line-soft','ink','tone-base','tone-first','tone-golden','tone-footer']:
+    value=token_hex(name)
+    if value and not rgb(value)[0]>=rgb(value)[1]>=rgb(value)[2]:errors.append(f'Color axis: --{name} {value} must satisfy R >= G >= B')
+for name in ['tone-night','tone-blue']:
+    value=token_hex(name)
+    if value and not rgb(value)[2]>=rgb(value)[1]>=rgb(value)[0]:errors.append(f'Color axis: --{name} {value} must satisfy B >= G >= R')
+if re.search(r'--paper',css):errors.append('Paper surfaces are retired; use the lit panel or outline register')
 for breakpoint in [1150,850,560]:
     if f'max-width:{breakpoint}px' not in css:warnings.append(f'Missing expected CSS breakpoint {breakpoint}')
 if 'prefers-reduced-motion:reduce' not in css:errors.append('Missing reduced-motion rule')
