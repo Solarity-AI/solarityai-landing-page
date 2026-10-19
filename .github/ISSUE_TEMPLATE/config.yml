@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Report a security issue privately
+    url: https://github.com/Solarity-AI/solarityai-landing-page/security/advisories/new
+    about: Please don't open a public issue for vulnerabilities.
+  - name: Investor or partnership inquiry
+    url: https://solarityai.com/contact
+    about: Reach the founder directly.

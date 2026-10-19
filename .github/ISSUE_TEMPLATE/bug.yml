@@ -1,0 +1,27 @@
+name: Site problem
+description: Something on solarityai.com looks or works wrong.
+labels: [bug]
+body:
+  - type: input
+    id: page
+    attributes:
+      label: Page
+      placeholder: https://solarityai.com/platform/
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What happens, and what you expected
+    validations:
+      required: true
+  - type: input
+    id: device
+    attributes:
+      label: Device and browser
+      placeholder: iPhone 15, Safari · Windows, Chrome 141
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Screenshot or steps
+      description: Drag a screenshot here, or list the steps.
