@@ -312,7 +312,7 @@ test('the header turns solid once the hero passes under it, and floats again at 
   const view = harness({ pathname: '/' });
   view.ready();
   assert.equal(view.observers.length, 1);
-  assert.equal(view.observers[0].options.rootMargin, '-88px 0px 0px 0px');
+  assert.equal(view.observers[0].options.rootMargin, '-220px 0px 0px 0px');
   view.observers[0].report(false);
   assert.equal(view.document.documentElement.classList.contains('header-over-hero'), false);
   view.observers[0].report(true);

@@ -213,4 +213,41 @@
  .store-badges{gap:10px 20px}
  .store-badge img{height:44px}.store-badge--google img{height:64px;margin-block:-10px;margin-inline:-8px}
 }
+/* P5b. Apps: a lineup of the four icons is the page's own navigation. */
+.app-lineup{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;padding-block:8px 24px}
+.lineup-app{position:relative;display:grid;justify-items:center;gap:14px;padding:18px 8px 12px;text-align:center;color:var(--text);text-decoration:none}
+.lineup-app img{width:112px;height:112px;border-radius:var(--radius-icon);box-shadow:0 0 0 1px rgb(255 255 255/.08),0 24px 70px color-mix(in oklab,var(--world) 55%,transparent)}
+.lineup-app strong{display:block;font-family:var(--font-display);font-weight:400;font-size:var(--type-sub);line-height:1.15}
+.lineup-app small{display:block;margin-top:4px;font-size:var(--type-meta);color:var(--muted)}
+.lineup-arrow{color:var(--gold);min-height:24px}
+.lineup-app:is(:hover,:focus-visible) strong{color:var(--product-accent)}
+/* One world band per app, alternating sides; the copy and the window share the world light. */
+.world-band{position:relative;isolation:isolate;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;gap:40px 72px;width:min(1264px,calc(100% - 2*var(--gutter)));margin-inline:auto;padding-block:clamp(56px,7vw,104px)}
+.world-band::before{content:"";position:absolute;z-index:-1;pointer-events:none;inset:0 -100vmax;background:var(--grain),radial-gradient(40% 46% at 72% 50%,color-mix(in oklab,var(--world) 22%,transparent),transparent),linear-gradient(var(--bg),color-mix(in oklab,var(--world-deep) 70%,var(--bg)) 50%,var(--bg))}
+.world-band--flip::before{background:var(--grain),radial-gradient(40% 46% at 28% 50%,color-mix(in oklab,var(--world) 22%,transparent),transparent),linear-gradient(var(--bg),color-mix(in oklab,var(--world-deep) 70%,var(--bg)) 50%,var(--bg))}
+.world-band--flip .world-band-copy{order:2}
+.world-band-copy{min-width:0;max-width:52ch}
+.world-band-icon{width:64px;height:64px;border-radius:var(--radius-icon);margin-bottom:22px}
+.world-band h2{margin-bottom:18px}
+.world-band-summary{font-size:var(--type-deck);line-height:1.5;color:var(--text);max-width:34ch}
+.world-band-stores{margin-top:28px}
+.world-band-stores .product-store-name{margin-top:12px}
+.world-band-explore{display:inline-flex;align-items:center;gap:16px;min-height:44px;margin-top:20px;color:var(--gold);font-size:var(--text-sm);font-weight:500}
+.world-band-explore:is(:hover,:focus-visible){color:var(--text)}
+.world-band-art{display:grid;justify-items:center;min-width:0}
+.world-band-art .store-screen{width:340px;aspect-ratio:3/4;object-fit:cover}
+@media(max-width:850px){
+ .app-lineup{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .world-band,.world-band--flip{grid-template-columns:minmax(0,1fr);gap:28px}
+ .world-band--flip .world-band-copy{order:0}
+}
+/* Phones: compact bands with a window capped at 55svh and a one-line summary. */
+@media(max-width:560px){
+ .app-lineup{gap:4px 8px}
+ .lineup-app{gap:10px;padding-block:12px 6px}
+ .lineup-app img{width:72px;height:72px}
+ .world-band{padding-block:44px}
+ .world-band-summary{overflow:hidden;white-space:nowrap;text-overflow:ellipsis;max-width:100%}
+ .world-band-art .store-screen{width:min(260px,70vw);max-height:55svh}
+}
 }

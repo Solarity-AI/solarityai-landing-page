@@ -31,10 +31,10 @@
       root.classList.remove('header-over-hero');
       return;
     }
-    // Solid once the hero has passed under the 88px header.
+    // Solid before the hero's bottom credits row (about 130px) slides under the 88px bar.
     const observer = new window.IntersectionObserver((entries) => {
       entries.forEach((entry) => root.classList.toggle('header-over-hero', entry.isIntersecting));
-    }, { rootMargin: '-88px 0px 0px 0px' });
+    }, { rootMargin: '-220px 0px 0px 0px' });
     observer.observe(hero);
   }
 
