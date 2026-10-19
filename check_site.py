@@ -293,7 +293,9 @@ for page in DIST.rglob('*.html'):
         if 'src=' in attrs or 'application/ld+json' in attrs:continue
         digest="'sha256-"+_b64.b64encode(sha256(body.encode('utf-8')).digest()).decode()+"'"
         if digest not in script_sources:errors.append(f'{page.relative_to(DIST).as_posix()}: inline script is not allowed by the CSP hash list')
-for name,expected in (('strict-transport-security','max-age=31536000'),('cross-origin-opener-policy','same-origin')):
+# COOP stays off: it breaks Lighthouse and PageSpeed Insights traces (NO_NAVSTART) and the site opens no cross-origin popups.
+if 'cross-origin-opener-policy' in global_headers:errors.append('_headers: Cross-Origin-Opener-Policy breaks PageSpeed Insights measurement; leave it off')
+for name,expected in (('strict-transport-security','max-age=31536000'),):
     if global_headers.get(name)!=expected:errors.append(f'_headers: {name} must be {expected}')
 if 'camera=()' not in global_headers.get('permissions-policy',''):errors.append('_headers: Permissions-Policy must disable unused device features')
 fingerprinted_fonts=['/assets/fonts/'+font.name for font in (DIST/'assets/fonts').glob('*.woff2')]

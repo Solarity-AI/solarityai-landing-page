@@ -56,6 +56,9 @@
  /* Full-bleed scene light extends past .wrap. Clip it at main, not body: body overflow would
     propagate to the viewport, and clip (unlike hidden) creates no scroll container. */
  main{overflow-x:clip}
+ /* Sections after the opening skip style and layout until they near the viewport, so first paint only lays out the first screen. The remembered size keeps scrolling stable. */
+ /* Not the closing scene: content-visibility clips paint to the box, and its glow spills past it by design. */
+ main>section:not(:first-child):not(.conversation-band),main>div:not(:first-child),.site-footer{content-visibility:auto;contain-intrinsic-size:auto 900px}
  ::selection{background:var(--sun-core);color:var(--ink)}
  .wrap{width:min(1264px,calc(100% - 2*var(--gutter)));margin-inline:auto}
  .section{padding-block:var(--space-section)}

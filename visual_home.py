@@ -12,7 +12,7 @@ def hero_section(apps, btn, contact):
     )
     return f'''<section class="vision-hero" aria-labelledby="hero-title">
       <div class="solar-hero-art">
-        <img class="progress-hero-image" src="/assets/solar-ascent.webp" alt="A person climbing mountain steps toward a golden sunrise above the clouds" width="3720" height="1690" sizes="(max-width: 560px) 853px, 2113px" fetchpriority="high" loading="eager">
+        <img class="progress-hero-image" src="/assets/solar-ascent.webp" alt="A person climbing mountain steps toward a golden sunrise above the clouds" width="3720" height="1690" sizes="(max-width: 560px) 680px, 2113px" fetchpriority="high" loading="eager">
       </div>
       <div class="vision-story wrap">
         <div class="vision-copy">
