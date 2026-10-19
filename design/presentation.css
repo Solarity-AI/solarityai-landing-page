@@ -3,8 +3,9 @@
 @layer foundation {
  @font-face{font-family:'Manrope';font-style:normal;font-weight:200 800;font-display:optional;src:url('/assets/fonts/manrope-latin-variable.cfa570d7c3ee.woff2') format('woff2')}
  /* Display voice (founder choice A1): Newsreader at its display optical size, one 400 roman. Metric-matched
-    fallbacks keep the swap from shifting lines; arrows, absent from the subset, come from Manrope. */
- @font-face{font-family:'Newsreader';font-style:normal;font-weight:400;font-display:swap;src:url('/assets/fonts/newsreader-display-latin.16985410e5b5.woff2') format('woff2');unicode-range:U+0020-007E,U+00A0-00FF,U+0100-0131,U+0134-0148,U+014A-017E,U+2010-2027,U+2030-203A}
+    fallbacks match its lines; arrows, absent from the subset, come from Manrope. Like Manrope it is optional:
+    a title that is the page's LCP never waits for, or re-renders on, a late font (measured in P2). */
+ @font-face{font-family:'Newsreader';font-style:normal;font-weight:400;font-display:optional;src:url('/assets/fonts/newsreader-display-latin.16985410e5b5.woff2') format('woff2');unicode-range:U+0020-007E,U+00A0-00FF,U+0100-0131,U+0134-0148,U+014A-017E,U+2010-2027,U+2030-203A}
  @font-face{font-family:'Display Arrows';font-style:normal;font-weight:200 800;font-display:optional;src:url('/assets/fonts/manrope-latin-variable.cfa570d7c3ee.woff2') format('woff2');unicode-range:U+2190-2193,U+2197}
  @font-face{font-family:'Display Fallback';src:local('Georgia');size-adjust:101.5%;ascent-override:72.41%;descent-override:26.11%;line-gap-override:0%}
  @font-face{font-family:'Manrope Fallback';src:local('Arial');size-adjust:103.94%;ascent-override:102.56%;descent-override:28.86%;line-gap-override:0%}
