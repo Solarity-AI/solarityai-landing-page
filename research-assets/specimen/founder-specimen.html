@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en" data-face="a1">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Founder specimen | Solarity AI redesign P0</title>
+<!-- Review-only page, never deployed. Candidate display faces load from Google Fonts here;
+     production would self-host a measured subset (plan §3.1, P2). Manrope is the site's own file. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Newsreader:opsz,wght@6..72,400&display=swap">
+<style>
+@font-face{font-family:'Manrope';font-weight:200 800;font-display:swap;src:url('../../dist/assets/fonts/manrope-latin-variable.cfa570d7c3ee.woff2') format('woff2')}
+:root{
+  color-scheme:dark;
+  --bg:#0f0d0b;--surface:#18140f;--raised:#221c16;--line:#3a3027;--line-soft:#2a231c;
+  --text:#f5f1e8;--muted:#c9c0b2;--dim:#a99f91;--ink:#1a140e;
+  --sun-core:#ffcf7a;--gold:#e9b56a;--sand:#d6bf9a;--bronze:#9c7446;--ember:#d9782f;--haze:#f5dfbb;
+  --glow-sun:rgb(255 190 110/.28);--glow-ember:rgb(217 120 47/.18);
+  --tone-night:#0d1014;--tone-blue:#12161b;--tone-first:#17110c;--tone-golden:#24170c;--tone-footer:#0b0907;
+  --looks-deep:#1e0f30;--looks-world:#7a35c9;--looks-tint:#e3c8ff;
+  --iq-deep:#0c1838;--iq-world:#2a4fd0;--iq-tint:#c3f2ee;
+  --sleep-deep:#0f1230;--sleep-world:#3a42b0;--sleep-tint:#ccd0fb;
+  --fitness-deep:#160b06;--fitness-world:#ff5a1f;--fitness-tint:#ffc4a6;
+  --font-body:'Manrope',Arial,sans-serif;
+  --font-display:'Newsreader',Georgia,serif;
+  --display-weight:400;--display-track:-.015em;
+  --type-title:clamp(3.25rem,1.9rem + 5.6vw,7.5rem);
+  --type-chapter:clamp(2.5rem,1.6rem + 3.6vw,4.75rem);
+  --type-deck:clamp(1.1875rem,1.05rem + .45vw,1.4375rem);
+}
+html[data-face="a2"]{--font-display:'Instrument Serif',Georgia,serif;--display-track:-.01em}
+html[data-face="b"]{--font-display:'Manrope',Arial,sans-serif;--display-weight:300;--display-track:-.02em}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:400 1.0625rem/1.6 var(--font-body)}
+.wrap{width:min(1264px,100% - 48px);margin-inline:auto}
+.label{font:600 .75rem/1.5 var(--font-body);letter-spacing:.12em;text-transform:uppercase;color:var(--sand)}
+.meta{font:500 .875rem/1.5 var(--font-body);color:var(--dim)}
+.display{font-family:var(--font-display);font-weight:var(--display-weight);letter-spacing:var(--display-track);word-spacing:.03em;font-optical-sizing:auto}
+.title{font-size:var(--type-title);line-height:.98;margin:0}
+.chapter{font-size:var(--type-chapter);line-height:1.02;margin:0}
+.deck{font-size:var(--type-deck);line-height:1.42;color:var(--text);max-width:34ch;margin:0}
+.em{color:var(--sun-core)}
+h2.section{font:500 clamp(2rem,1.45rem + 1.9vw,3.25rem)/1.08 var(--font-body);letter-spacing:-.015em;margin:0 0 12px}
+section.block{padding-block:88px;border-top:1px solid var(--line-soft)}
+.intro{padding-block:56px 40px}
+.intro p{color:var(--muted);max-width:68ch}
+.picker{position:sticky;top:0;z-index:20;background:rgb(15 13 11/.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.picker .wrap{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;padding-block:12px}
+.picker button{font:600 .875rem var(--font-body);color:var(--text);background:transparent;border:1px solid var(--bronze);border-radius:999px;min-height:44px;padding:0 18px;cursor:pointer}
+.picker button[aria-pressed="true"]{background:var(--sun-core);color:var(--ink);border-color:var(--sun-core)}
+.picker button:focus-visible,a:focus-visible{outline:2px solid var(--sun-core);outline-offset:3px}
+.frame{position:relative;border:1px solid var(--line);border-radius:20px;overflow:hidden;margin-top:32px}
+.frame-tag{position:absolute;right:16px;top:12px;z-index:5}
+/* Frame 1: Home hero */
+.hero{min-height:760px;display:flex;align-items:flex-end;background:#1b120b url('../../dist/assets/optimized/solar-ascent-1860.4ab107438b1a.webp') 68% 50%/cover}
+.hero::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgb(12 9 6/.55),transparent 160px),linear-gradient(90deg,rgb(12 9 6/.72) 0,rgb(12 9 6/.25) 46%,transparent 70%),linear-gradient(0deg,var(--bg) 0,transparent 26%)}
+.hero-copy{position:relative;padding:0 56px 72px;max-width:760px}
+.hero-copy .deck{margin-top:28px}
+.actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:36px}
+.btn{display:inline-flex;align-items:center;gap:12px;min-height:52px;padding:0 26px;border-radius:999px;font:600 .9375rem var(--font-body);text-decoration:none}
+.btn-primary{background:var(--sun-core);color:var(--ink);box-shadow:inset 0 1px 0 rgb(255 255 255/.45),0 8px 30px rgb(236 160 80/.30)}
+.btn-ghost{border:1px solid var(--bronze);color:var(--text)}
+/* Frame 2: Investors opener (interior page at blue hour) */
+.opener{padding:120px 56px 96px;background:radial-gradient(60% 70% at 85% 0,rgb(255 190 110/.16),transparent 70%),linear-gradient(var(--tone-blue),var(--bg))}
+.opener .deck{margin-top:28px}
+.ledger{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin-top:64px;border-top:1px solid var(--line)}
+.ledger div{padding:20px 20px 0 0}
+.ledger strong{display:block;font-family:var(--font-display);font-weight:var(--display-weight);font-size:2.4rem;line-height:1.1;margin-top:6px}
+/* Frame 3: product hero in its world */
+.product-hero{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:48px;align-items:center;padding:96px 56px;background:radial-gradient(55% 65% at 85% 12%,color-mix(in oklab,var(--world) 45%,transparent),transparent 70%),linear-gradient(var(--deep),var(--bg))}
+.product-hero .deck{margin-top:24px}
+.product-name{display:flex;align-items:center;gap:12px;margin-bottom:24px}
+.product-name img{width:48px;height:48px;border-radius:24%}
+/* Product worlds */
+.worlds{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin-top:32px}
+.stage{position:relative;border-radius:20px;overflow:hidden;padding:36px 32px 0;min-height:620px;display:flex;flex-direction:column;background:linear-gradient(#1f1913,#120f0c);box-shadow:inset 0 1px 0 rgb(255 220 170/.10),0 0 0 1px rgb(214 191 154/.10)}
+.stage::before{content:'';position:absolute;inset:-20%;background:radial-gradient(40% 45% at 78% 18%,color-mix(in oklab,var(--world) 42%,transparent),transparent 70%),radial-gradient(60% 18% at 50% 100%,color-mix(in oklab,var(--world) 30%,transparent),transparent 70%),linear-gradient(var(--deep),var(--deep));z-index:0}
+.stage > *{position:relative;z-index:1}
+.stage h3{font-size:2rem;margin:10px 0 6px}
+.stage .tint{color:var(--tint);font:500 .875rem var(--font-body)}
+.stage .plate{margin:28px auto 0;width:min(300px,78%);border-radius:14px 14px 0 0;box-shadow:0 0 0 1px rgb(255 255 255/.08),1px -1px 0 color-mix(in oklab,var(--tint) 35%,transparent),0 30px 60px -24px rgb(0 0 0/.85)}
+.contrast{margin-top:8px;font:500 .8125rem var(--font-body);color:var(--muted)}
+.contrast b{font-weight:600}
+.bad{color:#ffb4a0}
+[data-product="looks-max"]{--deep:var(--looks-deep);--world:var(--looks-world);--tint:var(--looks-tint)}
+[data-product="iq-max"]{--deep:var(--iq-deep);--world:var(--iq-world);--tint:var(--iq-tint)}
+[data-product="sleep-max"]{--deep:var(--sleep-deep);--world:var(--sleep-world);--tint:var(--sleep-tint)}
+[data-product="fitness-max"]{--deep:var(--fitness-deep);--world:var(--fitness-world);--tint:var(--fitness-tint)}
+/* Header mockups */
+.header-demo{min-height:520px;background:#1b120b url('../../dist/assets/optimized/solar-ascent-1860.4ab107438b1a.webp') 68% 40%/cover}
+.header-demo::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgb(12 9 6/.55),transparent 160px)}
+.bar{position:relative;z-index:2;display:flex;align-items:center;gap:28px;height:88px;padding:0 40px}
+.bar.solid{background:#161713;box-shadow:0 1px 0 var(--line-soft)}
+.bar .mark{display:flex;align-items:center;gap:10px;font:600 1rem var(--font-body);letter-spacing:.06em;color:var(--text);margin-right:auto}
+.bar .mark img{width:32px;height:32px}
+.bar .mark span{color:var(--sand)}
+.bar nav{display:flex;gap:26px;font:500 .875rem var(--font-body);color:var(--muted)}
+.bar nav a{color:inherit;text-decoration:none;padding-block:6px}
+.bar nav a[aria-current]{color:var(--text);box-shadow:inset 0 -1px 0 var(--sun-core)}
+.bar .contact{min-height:44px;display:inline-flex;align-items:center;padding:0 18px;border-radius:999px;font:600 .875rem var(--font-body);color:var(--text);background:rgb(12 9 6/.35);border:1px solid var(--bronze);text-decoration:none}
+.bar.solid .contact{background:var(--sun-core);color:var(--ink);border-color:var(--sun-core)}
+.phone{width:390px;max-width:100%;margin-top:24px;border-radius:28px}
+.phone .bar{height:76px;padding:0 18px;gap:12px}
+.phone .bar nav{display:none}
+.phone .bar .menu{width:44px;height:44px;display:grid;place-content:center;gap:6px}
+.phone .bar .menu i{display:block;width:22px;height:1.5px;background:var(--text)}
+.phone .bar .contact{background:none;border:0;padding:0 6px;color:var(--text)}
+.split{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.split .frame{margin-top:0}
+.tones{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));border-radius:14px;overflow:hidden;margin-top:28px;border:1px solid var(--line)}
+.tones div{height:120px;padding:12px;font:500 .75rem var(--font-body);color:var(--muted);display:flex;align-items:flex-end}
+.swatches{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px}
+.swatches div{width:150px;border:1px solid var(--line);border-radius:10px;overflow:hidden;font:500 .75rem/1.4 var(--font-body);color:var(--muted)}
+.swatches i{display:block;height:64px}
+.swatches span{display:block;padding:8px 10px}
+.decision{border-left:2px solid var(--sun-core);padding:4px 0 4px 18px;color:var(--muted);max-width:72ch;margin-top:20px}
+@media (max-width:900px){.worlds,.split,.product-hero{grid-template-columns:minmax(0,1fr)}.ledger{grid-template-columns:minmax(0,1fr)}.tones{grid-template-columns:repeat(3,minmax(0,1fr))}.hero-copy,.opener,.product-hero{padding-inline:24px}.bar nav{display:none}}
+</style>
+</head>
+<body>
+<header class="intro wrap">
+  <p class="label">Solarity AI redesign · Phase P0 · founder specimen</p>
+  <h1 class="display chapter" style="margin-top:12px">Choose the voice and the light.</h1>
+  <p>This page is for review only and is never deployed. It shows the decisions Phase P0 needs from you before any site change: the display typeface, the four product color worlds, and the header floating over the sunrise. Every word comes from the current site and every image is an existing authentic asset. Switch the typeface with the buttons below; the whole page updates.</p>
+</header>
+
+<div class="picker" role="group" aria-label="Display typeface">
+  <div class="wrap">
+    <span class="label">Display face</span>
+    <button type="button" data-face="a1" aria-pressed="true">A1 · Newsreader (recommended)</button>
+    <button type="button" data-face="a2" aria-pressed="false">A2 · Instrument Serif</button>
+    <button type="button" data-face="b" aria-pressed="false">B · Manrope 300 only</button>
+    <span class="meta" id="face-note">Newsreader display optical size, weight 400. Estimated 22–32 KB once subset.</span>
+  </div>
+</div>
+
+<main>
+<section class="block wrap" aria-labelledby="type-title">
+  <p class="label">1 · Typography on three key frames</p>
+  <h2 class="section" id="type-title">The display face carries titles; Manrope does the work.</h2>
+  <p class="meta">Titles use the display face at the planned <code>--type-title</code> and <code>--type-chapter</code> sizes. Decks, labels and buttons stay Manrope.</p>
+
+  <div class="frame hero" aria-label="Home hero frame">
+    <span class="frame-tag label">Home · hero</span>
+    <div class="hero-copy">
+      <p class="label">Solarity AI · Built around you</p>
+      <h3 class="display title" style="margin-top:18px">Building for<br><span class="em">human</span> potential.</h3>
+      <p class="deck">AI-powered self-improvement apps, and the systems we are developing to build, operate, and grow them.</p>
+      <div class="actions"><a class="btn btn-primary" href="#type-title">Investor inquiries <span aria-hidden="true">→</span></a><a class="btn btn-ghost" href="#type-title">Partnership inquiries <span aria-hidden="true">→</span></a></div>
+    </div>
+  </div>
+
+  <div class="frame opener" aria-label="Investors opener frame">
+    <span class="frame-tag label">Investors &amp; Partners · opener</span>
+    <p class="label">Investors &amp; strategic partners</p>
+    <h3 class="display title" style="margin-top:18px">Products today.<br><span class="em">Possibility</span> ahead.</h3>
+    <p class="deck">Focused consumer apps. A vision for the systems behind them. Explore the products, then the company direction.</p>
+    <div class="ledger" aria-label="Facts already on the site">
+      <div><span class="label">Consumer apps</span><strong>4</strong><span class="meta">Looks Max, IQ Max, Sleep Max, Fitness Max</span></div>
+      <div><span class="label">Platform vision</span><strong>3 modules</strong><span class="meta">Engineering, Management, Marketing Max</span></div>
+      <div><span class="label">Founder</span><strong>Ata&nbsp;Turhan</strong><span class="meta">Irving, Texas</span></div>
+    </div>
+  </div>
+
+  <div class="frame product-hero" data-product="looks-max" aria-label="Looks Max product hero frame">
+    <span class="frame-tag label">Looks Max · product opening</span>
+    <div>
+      <div class="product-name"><img src="../../dist/assets/optimized/looks-max-icon-96.b5d76428edc0.webp" alt="" width="48" height="48"><span style="font:500 1rem var(--font-body)">Looks Max</span></div>
+      <h3 class="display chapter">A more considered approach to self-care.</h3>
+      <p class="deck">For people making grooming and self-care part of their daily routine. Looks Max brings facial analysis and personalized guidance into a single app.</p>
+    </div>
+    <img class="plate" style="margin:0 auto;width:min(300px,100%);border-radius:14px;box-shadow:0 0 0 1px rgb(255 255 255/.08),0 30px 60px -24px rgb(0 0 0/.85)" src="../../dist/assets/looks-max-screen-4.webp" alt="Looks Max official App Store imagery with sample app content">
+  </div>
+  <p class="decision"><strong>Decision 1:</strong> which display face? A1 Newsreader gives real title contrast at 112px and still reads at 40px. A2 Instrument Serif is lighter and more fashion, but common on startup sites. B adds no font file but keeps the site in one voice, which is part of why it reads as average today.</p>
+</section>
+
+<section class="block wrap" aria-labelledby="worlds-title">
+  <p class="label">2 · Product color worlds</p>
+  <h2 class="section" id="worlds-title">Each app stands in its own light.</h2>
+  <p class="meta">Vivid hues appear only in the stage, glow, rim and rules. Body text stays ivory; the tint is for small accents. Contrast is measured live below.</p>
+  <div class="worlds">
+    <article class="stage" data-product="looks-max"><img src="../../dist/assets/optimized/looks-max-icon-96.b5d76428edc0.webp" alt="" width="56" height="56" style="border-radius:24%"><h3 class="display">Looks Max</h3><span class="tint">Appearance &amp; self-care</span><p class="contrast" data-check></p><img class="plate" src="../../dist/assets/looks-max-screen-4.webp" alt="Looks Max official App Store imagery with sample app content"></article>
+    <article class="stage" data-product="iq-max"><img src="../../dist/assets/optimized/iq-max-icon-96.aac6e5022f6b.webp" alt="" width="56" height="56" style="border-radius:24%"><h3 class="display">IQ Max</h3><span class="tint">Cognitive practice</span><p class="contrast" data-check></p><img class="plate" src="../../dist/assets/iq-max-screen-1.webp" alt="IQ Max official App Store imagery with sample app content"></article>
+    <article class="stage" data-product="sleep-max"><img src="../../dist/assets/optimized/sleep-max-icon-96.6e0de30b5905.webp" alt="" width="56" height="56" style="border-radius:24%"><h3 class="display">Sleep Max</h3><span class="tint">Sleep &amp; daily routines</span><p class="contrast" data-check></p><img class="plate" src="../../dist/assets/sleep-max-screen-4.webp" alt="Sleep Max official App Store imagery with sample app content"></article>
+    <article class="stage" data-product="fitness-max"><img src="../../dist/assets/optimized/fitness-max-icon-96.7e9493fe73f9.webp" alt="" width="56" height="56" style="border-radius:24%"><h3 class="display">Fitness Max</h3><span class="tint">Fitness &amp; nutrition</span><p class="contrast" data-check></p><img class="plate" src="../../dist/assets/fitness-max-screen-2.webp" alt="Fitness Max official App Store imagery with sample app content"></article>
+  </div>
+  <p class="decision"><strong>Decision 2:</strong> do these four hues match how you see each product? They are sampled to sit beside each app's own icon and store art. Ivory text is never set on the vivid world color itself; for example, ivory on the Fitness ember is only 2.8:1.</p>
+</section>
+
+<section class="block wrap" aria-labelledby="header-title">
+  <p class="label">3 · Header over the sunrise</p>
+  <h2 class="section" id="header-title">The sky reaches the top of the screen.</h2>
+  <div class="split">
+    <div class="frame header-demo" aria-label="Current solid header"><div class="bar solid"><span class="mark"><img src="../../dist/assets/brand/solarity-sun-96.da9c18cba138.webp" alt="">SOLARITY&nbsp;<span>AI</span></span><nav aria-label="Mockup"><a href="#header-title">Apps</a><a href="#header-title">Platform</a><a href="#header-title">Company</a><a href="#header-title">Investors &amp; Partners</a></nav><a class="contact" href="#header-title">Contact</a></div><span class="frame-tag label" style="top:auto;bottom:12px">Today · solid bar</span></div>
+    <div class="frame header-demo" aria-label="Proposed floating header"><div class="bar"><span class="mark"><img src="../../dist/assets/brand/solarity-sun-96.da9c18cba138.webp" alt="">SOLARITY&nbsp;<span>AI</span></span><nav aria-label="Mockup"><a href="#header-title" aria-current="page">Apps</a><a href="#header-title">Platform</a><a href="#header-title">Company</a><a href="#header-title">Investors &amp; Partners</a></nav><a class="contact" href="#header-title">Contact</a></div><span class="frame-tag label" style="top:auto;bottom:12px">Proposed · floating over the sky</span></div>
+  </div>
+  <div class="frame header-demo phone" aria-label="Proposed floating header on a phone"><div class="bar"><span class="mark"><img src="../../dist/assets/brand/solarity-sun-96.da9c18cba138.webp" alt="">SOLARITY&nbsp;<span>AI</span></span><span class="menu" aria-hidden="true"><i></i><i></i></span><a class="contact" href="#header-title">Contact</a></div><span class="frame-tag label" style="top:auto;bottom:12px">390px · proposed</span></div>
+  <p class="decision"><strong>Decision 3:</strong> float the header over the hero on Home only? Interior pages keep a solid bar. Once the hero scrolls away, the Home bar turns solid too. Without JavaScript it stays solid.</p>
+</section>
+
+<section class="block wrap" aria-labelledby="light-title">
+  <p class="label">4 · One day of light</p>
+  <h2 class="section" id="light-title">Pages move from blue hour to golden hour.</h2>
+  <div class="tones" aria-label="Scene tones">
+    <div style="background:var(--tone-night)">night #0d1014</div><div style="background:var(--tone-blue)">blue hour #12161b</div><div style="background:var(--bg)">base #0f0d0b</div><div style="background:var(--tone-first)">first light #17110c</div><div style="background:var(--tone-golden)">golden #24170c</div><div style="background:var(--tone-footer)">footer #0b0907</div>
+  </div>
+  <div class="swatches" aria-label="Solar ramp">
+    <div><i style="background:var(--sun-core)"></i><span>sun-core #ffcf7a<br>primary action, one word</span></div>
+    <div><i style="background:var(--gold)"></i><span>gold #e9b56a<br>active and current</span></div>
+    <div><i style="background:var(--sand)"></i><span>sand #d6bf9a<br>labels, folios</span></div>
+    <div><i style="background:var(--bronze)"></i><span>bronze #9c7446<br>rules, borders only</span></div>
+    <div><i style="background:var(--ember)"></i><span>ember #d9782f<br>glow only</span></div>
+  </div>
+  <p class="decision">No decision needed here; this shows how the light tokens behave. Final values are tuned in rendered review during Phase P1.</p>
+</section>
+</main>
+
+<script>
+(function () {
+  var notes = { a1: 'Newsreader display optical size, weight 400. Estimated 22–32 KB once subset.', a2: 'Instrument Serif Regular. Estimated 18–26 KB once subset.', b: 'No new font file. Manrope at weight 300 for display sizes.' };
+  document.querySelectorAll('.picker button').forEach(function (button) {
+    button.addEventListener('click', function () {
+      var face = button.getAttribute('data-face');
+      document.documentElement.setAttribute('data-face', face);
+      document.querySelectorAll('.picker button').forEach(function (b) { b.setAttribute('aria-pressed', String(b === button)); });
+      document.getElementById('face-note').textContent = notes[face];
+    });
+  });
+  function lum(hex) {
+    var c = [1, 3, 5].map(function (i) { var v = parseInt(hex.substr(i, 2), 16) / 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); });
+    return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2];
+  }
+  function ratio(a, b) { var x = lum(a), y = lum(b); return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05); }
+  var root = getComputedStyle(document.documentElement);
+  document.querySelectorAll('.stage').forEach(function (stage) {
+    var slug = stage.getAttribute('data-product').split('-')[0];
+    var deep = root.getPropertyValue('--' + slug + '-deep').trim(), world = root.getPropertyValue('--' + slug + '-world').trim(), tint = root.getPropertyValue('--' + slug + '-tint').trim(), text = '#f5f1e8';
+    var onWorld = ratio(text, world);
+    stage.querySelector('[data-check]').innerHTML = 'Ivory on stage <b>' + ratio(text, deep).toFixed(1) + ':1</b> · tint on stage <b>' + ratio(tint, deep).toFixed(1) + ':1</b> · ivory on world color <b class="' + (onWorld < 4.5 ? 'bad' : '') + '">' + onWorld.toFixed(1) + ':1</b>';
+  });
+})();
+</script>
+</body>
+</html>

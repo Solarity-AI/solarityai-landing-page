@@ -30,3 +30,6 @@ Thumbs.db
 node_modules/
 
 # dist/ is the committed publish set; never ignore it.
+
+# Redesign baseline renders (large; regenerate locally)
+research-assets/baseline-*/*.jpg

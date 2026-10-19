@@ -62,6 +62,22 @@ All values below are tokens on `:root` in `design/system/foundation.css`. `check
 - **Spacing.** Fluid gutters (`--gutter`), content maximum 1264px, fluid section spacing (`--space-section`). Borders define structure. Shadows are limited to product imagery, portraits and dialogs.
 - Readable type, whitespace, and section composition provide hierarchy. Do not add continuous decoration, fake dashboards, redundant card shells, animated counters, or hidden-content entrances.
 
+## Cinematic redesign: Phase P0 status (October 18, 2026)
+
+`CINEMATIC_PREMIUM_PLAN.md` is the approved-for-review plan; its "Required corrections" section overrides the plan text. Until the founder decides the items below, the design rules above stay in force and no page changes.
+
+- **Founder specimen:** `research-assets/specimen/founder-specimen.html`. It is local and never deployed. Open it from the file system in a desktop browser. It shows the three display-face options (A1 Newsreader, A2 Instrument Serif, B Manrope 300) on the Home hero, the Investors opener and a product opening; the four product color worlds on real screenshots with live contrast figures; and the header floating over the sunrise at 1440 and 390. The candidate faces load from Google Fonts for review only. Production would self-host a measured subset (plan §3.1 and corrections 3 to 5).
+- **Pending decisions:**
+  1. Display face A1, A2 or B, which reverses the October 13 one-family rule if A1 or A2 is chosen.
+  2. The four product world hues.
+  3. Floating the Home header over the hero.
+  4. Retiring "borders define structure" and the no-decoration rule in favor of motivated light (plan §3.2 to §3.6).
+  5. The motion contract (plan §5).
+  6. The portfolio wall replacing the Home explorer.
+- **Founder material:** plan §9 lists every asset and content item needed. None of it is invented in the meantime.
+- **Baseline renders:** `research-assets/baseline-2026-10-18/` holds full-page captures of https://solarityai.com (develop `b0eff9b`). It covers all 12 pages at 360, 390, 768, 1024 and 1440, plus Home and Investors at 1280x800 and 1920x1080, and a reduced-motion pass at 390 and 1440. `index.json` records each page height; none overflows horizontally. The JPEGs (about 21 MB) are kept out of git; only `index.json` is committed. Regenerate them with `node research-assets/baseline-2026-10-18/capture.mjs https://solarityai.com <folder>`.
+- **Lighthouse baseline:** recorded in `PRODUCTION_AUDIT.md`.
+
 ## CSS and browser support
 
 Current official MDN guidance was consulted on October 13, 2026:
