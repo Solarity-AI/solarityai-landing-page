@@ -81,7 +81,16 @@ All values below are tokens on `:root` in `design/system/foundation.css`. `check
     - 61,440 font bytes or fewer per route (now 53,708);
     - every heading character inside the display subset.
 - **Weights.** 400 for reading, 500 for headings and emphasis, 600 for labels, buttons and `strong`.
-- **Eyebrows.** One style: 12px, weight 600, `.1em` tracking, `--sand` on every surface. The hero uses a lighter gold for legibility over the artwork. The product-name label beside each app icon is 13px in its product accent.
+- **Eyebrows, now folios (P2 follow-up).**
+  - One style: a 32px `--bronze` rule plus a 12px, weight-600, `.12em` caps label in `--sand`.
+  - Strings are written in sentence case. CSS applies the capitals.
+  - Use at most one per chapter, at four words or fewer, and never repeating the heading or the brand. The site went from 50 to 18.
+  - Product names beside their icons are identity, not folios: no capitals, tracking or rule.
+- **Numbers.** Only real sequences are numbered: the Platform's Build, Operate, Grow modules, set as display numerals. The FAQ, partnership topics, principles and 404 list have no numbers.
+- **Captions.** Every screenshot attribution comes from `provenance()` in `image_provenance.py` ("Official App Store imagery with sample content.") and uses the `.caption` style (12px, `--dim`).
+  - Use it once per gallery, wall or viewer.
+  - Per-image detail lives in the alt text and in short step captions ("Focus selection").
+  - The hero keeps "Conceptual brand artwork". The hero uses a lighter gold for legibility over the artwork. The product-name label beside each app icon is 13px in its product accent.
 - **Measure.** Body paragraphs default to `--measure` (52ch, about 75 characters per line in Manrope, whose 0 is wider than its average letter). Wider containers must not stretch reading text past it.
 - **Headings.** `text-wrap: balance`. A span that follows a forced `<br>` becomes its own block, so it balances independently rather than stranding a word.
 - **Radii.** `--radius-control` 10px (inputs, dialog controls, chips), `--radius-plate` 14px (screenshots), `--radius-panel` 20px (lit panels, stages, portraits, the dialog), `--radius-pill` (buttons), `--radius-icon` 24% (app icons, at every size), and `50%` only for true circles.
@@ -103,6 +112,7 @@ All values below are tokens on `:root` in `design/system/foundation.css`. `check
   - Home header: **approved to float over the hero** (Phase P3). Interior pages keep a solid bar.
   - Phase P1 (light, color and materials) is implemented: see the rules above and the P1 pull request.
   - Phase P2 (type system) is implemented: see the Type rule above.
+  - The P2 follow-up (folios, numbering, captions) is implemented: see the rules above.
 - **Still open:** the motion contract (plan §5, Phase P9), and the portfolio wall replacing the Home explorer (Phase P5b).
 - **Founder material:** plan §9 lists every asset and content item needed. None of it is invented in the meantime.
 - **Baseline renders:** `research-assets/baseline-2026-10-18/` holds full-page captures of https://solarityai.com (develop `b0eff9b`). It covers all 12 pages at 360, 390, 768, 1024 and 1440, plus Home and Investors at 1280x800 and 1920x1080, and a reduced-motion pass at 390 and 1440. `index.json` records each page height; none overflows horizontally. The JPEGs (about 21 MB) are kept out of git; only `index.json` is committed. Regenerate them with `node research-assets/baseline-2026-10-18/capture.mjs https://solarityai.com <folder>`.
