@@ -9,6 +9,14 @@
   @media(hover:hover) and (pointer:fine){.footer-group a:hover>span,.contact-method:hover .method-arrow{transform:translateX(3px)}}
   #image-dialog[open]{animation:surface-arrive 180ms var(--motion-ease)}
   @keyframes surface-arrive{from{opacity:.7;transform:translateY(5px)}to{opacity:1;transform:none}}
+  /* Scroll reveals: content below the fold rises in as it enters. Progress follows the scroll, so anything
+     already on screen is complete, nothing waits on a timer, and the hero is never animated. Browsers
+     without scroll-driven animations show the static page. */
+  @supports (animation-timeline:view()){
+   /* Movement only: text keeps full contrast in every state, including content not yet scrolled to. */
+   @keyframes rise-in{from{transform:translateY(36px)}to{transform:none}}
+   .wall-card,.saas-card,.world-band,.saas-chapter-copy,.saas-chapter-art,.today-card,.ahead-card,.ledger,.partnership-topic,.pmap-stage,.strategy-story-steps>li,.selected-team-member,.feature-card,.closing-scene .wrap{animation:rise-in linear both;animation-timeline:view();animation-range:entry 5% entry 55%}
+  }
  }
  @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
  @media(forced-colors:active){

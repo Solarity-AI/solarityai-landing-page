@@ -178,7 +178,7 @@ def main(base: str) -> int:
         first('assets/fonts/*.woff2'): ('font/woff2', True),
         '/assets/fonts/OFL-Manrope.txt': ('text/plain', False),
         first('assets/*-screen-*.webp'): ('image/webp', False),
-        first('assets/*-social.jpg'): ('image/jpeg', False),
+        first('assets/social/*.jpg'): ('image/jpeg', False),
         '/favicon.ico': ('image/x-icon', False),
         '/robots.txt': ('text/plain', False),
         '/sitemap.xml': ('application/xml', False),

@@ -47,7 +47,9 @@
   .contact-data-note a { text-decoration: underline; text-underline-offset: 3px; overflow-wrap: anywhere; }
 
   /* Recovery remains a useful directory. */
-  .not-found { max-width: 1040px; padding-block: var(--space-section); }
+  /* The page keeps the site grid; only the list is narrowed, so the title starts at the gutter like every route. */
+  .not-found { padding-block: var(--space-section); }
+  .not-found .recovery-nav { max-width: 1040px; }
   .recovery-intro { max-width: 720px; }
   .not-found h1 { margin-block: 0 24px; }
   .not-found h1 .muted { color: var(--accent); }

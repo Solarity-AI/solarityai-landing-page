@@ -7,8 +7,8 @@ from ux_components import copy_button
 
 CONTACT_TOPICS = (
     ('Investor', 'Investment conversations', 'The portfolio, company strategy, and future priorities.'),
-    ('Strategic partner', 'Strategic partnerships', 'Distribution, technology, and the app factory direction.'),
-    ('Product inquiry', 'Product questions', 'Looks Max, IQ Max, Sleep Max, or Fitness Max.'),
+    ('Strategic partner', 'Strategic partnerships', 'Distribution, technology, and the web apps for your team.'),
+    ('Product inquiry', 'Product questions', 'The four mobile apps, or Engineering Max, Management Max, and Marketing Max.'),
     ('Other', 'Something else in mind?', 'A clear introduction is a good place to start.'),
 )
 

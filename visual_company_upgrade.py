@@ -8,6 +8,7 @@ from urllib.parse import urlencode
 
 from image_provenance import provenance
 from saas_products import SAAS
+from visual_saas import showroom_web
 
 
 def page_index(sections):
@@ -53,7 +54,7 @@ def investor_opening(apps, btn, contact):
                                  ('booking', 'Founder'))) + '</div></div>'
         '<div class="showroom" id="portfolio"><ul class="showroom-frames" tabindex="0" aria-label="Consumer portfolio: '
         + str(len(frames)) + ' store-listed apps">' + ''.join(frames) + '</ul>'
-        '<p class="caption showroom-caption">' + provenance() + '</p></div></section>'
+        '<p class="caption showroom-caption">' + provenance() + '</p>' + showroom_web(SAAS) + '</div></section>'
     )
 
 

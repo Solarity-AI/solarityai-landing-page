@@ -9,7 +9,7 @@ const vm = require('node:vm');
 const source = fs.readFileSync(path.join(__dirname, 'scripts/gallery.js'), 'utf8');
 
 // A source-level event harness, not a browser or native-dialog rendering test.
-function harness({ supported = true, missingDialog = false, failOpen = false, href = '/assets/app-screen.webp', count = 1, nav = false } = {}) {
+function harness({ supported = true, missingDialog = false, failOpen = false, href = '/assets/app-screen.webp', count = 1, nav = false, caption = false, linkCaption } = {}) {
   const classes = new Set();
   const document = {
     activeElement: null,
@@ -39,7 +39,7 @@ function harness({ supported = true, missingDialog = false, failOpen = false, hr
       focus() { document.activeElement = this; },
     };
   }
-  const link = { ...element(), href, dataset: { imageTitle: 'Looks Max screenshot', imageAlt: 'Official app preview' } };
+  const link = { ...element(), href, dataset: { imageTitle: 'Looks Max screenshot', imageAlt: 'Official app preview', ...(linkCaption ? { imageCaption: linkCaption } : {}) } };
   const links = [link];
   for (let index = 2; index <= count; index += 1) {
     links.push({ ...element(), href: '/assets/app-screen-' + index + '.webp', dataset: { imageTitle: 'Screen ' + index, imageAlt: 'Preview ' + index } });
@@ -51,6 +51,7 @@ function harness({ supported = true, missingDialog = false, failOpen = false, hr
   const closeButton = element();
   const image = element();
   const title = element();
+  const captionNode = { ...element(), textContent: 'Official App Store imagery with sample content.' };
   const dialog = {
     ...element(), open: false, closeCalls: 0,
     getBoundingClientRect() { return { left: 100, right: 700, top: 50, bottom: 700 }; },
@@ -65,11 +66,12 @@ function harness({ supported = true, missingDialog = false, failOpen = false, hr
     'image-dialog-image': image,
     'image-dialog-title': title,
     'image-dialog-close': closeButton,
+    ...(caption ? { 'image-dialog-caption': captionNode } : {}),
     ...(nav ? { 'image-dialog-nav': navigation, 'image-dialog-prev': previous, 'image-dialog-next': next, 'image-dialog-count': counter } : {}),
   };
   const window = { location: { href: 'https://example.com/apps/looks-max', origin: 'https://example.com' } };
   vm.runInNewContext(source, { document, window, URL }, { filename: 'scripts/gallery.js' });
-  return { document, link, links, closeButton, image, title, dialog, classes, navigation, previous, next, counter };
+  return { document, link, links, closeButton, image, title, dialog, classes, navigation, previous, next, counter, captionNode };
 }
 
 test('unmodified screenshot activation opens the preview and moves focus to Close', () => {
@@ -208,4 +210,13 @@ test('markup without sequence controls still previews each screenshot on its own
   assert.equal(view.dialog.open, true);
   assert.equal(view.title.textContent, 'Screen 3');
   assert.equal(view.dialog.emit('keydown', { key: 'ArrowRight' }).defaultPrevented, false);
+});
+
+test('a link with its own caption shows it; others keep the default caption', () => {
+  const sourced = harness({ caption: true, linkCaption: 'From managementmax.solarityai.com, with sample apps and figures.' });
+  sourced.link.emit('click');
+  assert.equal(sourced.captionNode.textContent, 'From managementmax.solarityai.com, with sample apps and figures.');
+  const plain = harness({ caption: true });
+  plain.link.emit('click');
+  assert.equal(plain.captionNode.textContent, 'Official App Store imagery with sample content.');
 });

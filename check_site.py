@@ -277,6 +277,25 @@ for line in (DIST/'_headers').read_text(encoding='utf-8').splitlines():
 if 'x-robots-tag' in header_rules.get('/*',{}):errors.append('Global crawler exclusion must not apply to public content')
 for error_path in ['/404','/404.html']:
     if header_rules.get(error_path,{}).get('x-robots-tag')!='noindex, follow':errors.append(f'{error_path}: missing error-page noindex header')
+# Security headers: a CSP that allows every inline script that runs by its hash, and no script wildcards.
+global_headers=header_rules.get('/*',{})
+csp=global_headers.get('content-security-policy','')
+directives={part.split()[0]:part.split()[1:] for part in csp.split(';') if part.strip()}
+if not csp:errors.append('_headers: missing Content-Security-Policy')
+script_sources=directives.get('script-src',[])
+if any(source in script_sources for source in ("'unsafe-inline'","'unsafe-eval'",'*','https:')):errors.append('CSP script-src must not allow inline, eval or wildcard scripts')
+for directive,expected in (('object-src',["'none'"]),('base-uri',["'self'"]),('frame-ancestors',["'self'"])):
+    if directives.get(directive)!=expected:errors.append(f'CSP must set {directive} {" ".join(expected)}')
+if 'https://formsubmit.co' not in directives.get('form-action',[]):errors.append('CSP form-action must allow the careers form provider')
+import base64 as _b64
+for page in DIST.rglob('*.html'):
+    for attrs,body in re.findall(r'<script([^>]*)>(.*?)</script>',page.read_text(encoding='utf-8'),re.S):
+        if 'src=' in attrs or 'application/ld+json' in attrs:continue
+        digest="'sha256-"+_b64.b64encode(sha256(body.encode('utf-8')).digest()).decode()+"'"
+        if digest not in script_sources:errors.append(f'{page.relative_to(DIST).as_posix()}: inline script is not allowed by the CSP hash list')
+for name,expected in (('strict-transport-security','max-age=31536000'),('cross-origin-opener-policy','same-origin')):
+    if global_headers.get(name)!=expected:errors.append(f'_headers: {name} must be {expected}')
+if 'camera=()' not in global_headers.get('permissions-policy',''):errors.append('_headers: Permissions-Policy must disable unused device features')
 fingerprinted_fonts=['/assets/fonts/'+font.name for font in (DIST/'assets/fonts').glob('*.woff2')]
 for font_url in fingerprinted_fonts:
     font_file=DIST/font_url.lstrip('/')
@@ -410,6 +429,21 @@ for name in ['tone-night','tone-blue']:
     value=token_hex(name)
     if value and not rgb(value)[2]>=rgb(value)[1]>=rgb(value)[0]:errors.append(f'Color axis: --{name} {value} must satisfy B >= G >= R')
 if re.search(r'--paper',css):errors.append('Paper surfaces are retired; use the lit panel or outline register')
+# Motion is opt-in: keyframes and scroll-driven animations live only under prefers-reduced-motion: no-preference,
+# and the hero artwork is never animated.
+for css_file in sorted((ROOT/'design/system').glob('*.css')):
+    css_text=re.sub(r'/\*.*?\*/','',css_file.read_text(encoding='utf-8'),flags=re.S)
+    stack=[];prelude_start=0
+    for index,char in enumerate(css_text):
+        if char=='{':stack.append(css_text[prelude_start:index].strip());prelude_start=index+1
+        elif char=='}':
+            if stack:stack.pop()
+            prelude_start=index+1
+        elif char==';':prelude_start=index+1
+        if css_text.startswith('@keyframes',index) or css_text.startswith('animation-timeline',index):
+            guarded=any(re.search(r'prefers-reduced-motion:\s*no-preference',p) for p in stack)
+            if not guarded:errors.append(f'{css_file.name}: animation outside the prefers-reduced-motion: no-preference guard')
+    if re.search(r'(solar-hero-art|progress-hero-image)[^{}]*\{[^}]*animation',css_text):errors.append(f'{css_file.name}: the hero artwork must not be animated')
 # Fonts: every route stays within the 60 KiB budget, and display headings only use glyphs the subset carries.
 font_sources=json.loads((ROOT/'source-assets/fonts/font-sources.json').read_text(encoding='utf-8'))
 FONT_BUDGET=font_sources.get('route_budget_bytes',61440)
