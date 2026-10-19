@@ -1,7 +1,7 @@
 /* Direct contact: one person, two dependable destinations, no draft-composer detour. */
 @layer pages {
   .contact-opening { padding-block: var(--space-section) clamp(48px, 6vw, 80px); }
-  .contact-opening h1 { max-width: 18ch; font-size: clamp(3rem, 1.8rem + 4.5vw, 6rem); line-height: 1.04; }
+  .contact-opening h1 { max-width: 18ch; }
   .contact-opening h1 em { color: var(--accent); }
   .contact-opening .lede { max-width: 52ch; margin-block-start: 30px; }
   .contact-destination {
@@ -20,19 +20,18 @@
      wide screens keep the person in the left column. */
   .contact-person { grid-column: 1; grid-row: 1; }
   .contact-direct { grid-column: 2; grid-row: 1; }
-  .contact-person h2 { font-size: clamp(2rem, 1.6rem + 1vw, 2.6rem); }
   .contact-person-role { color: var(--text); margin-block: 10px 3px; }
   .contact-person > p:not(.eyebrow) { font-size: var(--text-sm); }
   .contact-person .text-link { margin-block-start: 17px; font-size: var(--text-xs); }
   .contact-context { color: var(--accent); font-size: var(--text-sm); line-height: 1.7; height: 3.4em; overflow-wrap: anywhere; max-width: 56ch; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
-  .contact-email { display: flex; align-items: center; justify-content: space-between; gap: 22px; padding-block: 8px 15px; border-block-end: 1px solid var(--control-border); color: var(--text); font-size: clamp(1.25rem, 1rem + 1.2vw, 2rem); letter-spacing: -.035em; line-height: 1.45; }
+  .contact-email { display: flex; align-items: center; justify-content: space-between; gap: 22px; padding-block: 8px 15px; border-block-end: 1px solid var(--control-border); color: var(--text); font-size: var(--type-sub); letter-spacing: -.02em; line-height: 1.45; }
   .contact-email > span:first-child { overflow-wrap: anywhere; min-width: 0; }
   .contact-email > span[aria-hidden] { color: var(--accent); flex: none; transition: transform var(--motion-detail) var(--motion-ease); }
   .contact-direct-help { max-width: 52ch; margin-block-start: 18px; font-size: var(--text-sm); line-height: 1.8; }
   .contact-booking { display: flex; flex-wrap: wrap; align-items: center; gap: 18px 22px; margin-block-start: 28px; }
   .contact-booking > span { font-size: var(--text-2xs); color: var(--dim); }
   .contact-topics { display: grid; grid-template-columns: minmax(0, .75fr) minmax(0, 1.25fr); gap: clamp(32px, 6vw, 88px); padding-block: var(--space-section); }
-  .contact-topics-heading h2 { font-size: clamp(2rem, 1.4rem + 1.8vw, 3rem); max-width: 18ch; }
+  .contact-topics-heading h2 { max-width: 18ch; }
   .contact-topics-heading p { max-width: 28ch; margin-top: 20px; font-size: var(--text-sm); line-height: 1.8; }
   .contact-topic-list { min-width: 0; }
   .contact-topic { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 26px 0; border-block-end: 1px solid var(--line); min-height: 108px; }
@@ -50,7 +49,7 @@
   /* Recovery remains a useful directory. */
   .not-found { max-width: 1040px; padding-block: var(--space-section); }
   .recovery-intro { max-width: 720px; }
-  .not-found h1 { font-size: clamp(3rem, 6.2vw, 5.7rem); line-height: 1.02; letter-spacing: -.06em; margin-block: 0 24px; }
+  .not-found h1 { margin-block: 0 24px; }
   .not-found h1 .muted { color: var(--accent); }
   .not-found .lede { max-width: 43ch; margin-block: 0 28px; }
   .recovery-art { display: none; }
@@ -68,7 +67,6 @@
     .contact-destination, .contact-topics { grid-template-columns: minmax(0, 1fr); gap: 30px; }
     .contact-person, .contact-direct { grid-column: auto; grid-row: auto; }
     .contact-person { padding-block-start: 26px; border-block-start: 1px solid var(--line); }
-    .contact-opening h1 { font-size: clamp(3rem, 7.5vw, 5rem); }
     .contact-person .eyebrow { margin-block-end: 13px; }
     .contact-person .text-link { margin-block-start: 8px; }
     .contact-topics-heading p { max-width: 50ch; margin-top: 18px; }
@@ -76,14 +74,14 @@
     .recovery-destination { grid-template-columns: minmax(0, 1fr); gap: 4px; }
   }
   @media (max-width: 560px) {
-    .contact-opening { padding-block: 44px 28px; }
-    .contact-opening h1 { font-size: clamp(2.65rem, 10.7vw, 3.65rem); }
-    .contact-opening .lede { margin-block-start: 23px; }
+    /* Contact is an action page: on phones a chapter-size title keeps both ways to reach Ata on the first screen. */
+    .contact-opening { padding-block: 32px 24px; }
+    .contact-opening h1 { font-size: var(--type-chapter); }
+    .contact-opening .lede { margin-block-start: 16px; font-size: var(--type-body); }
     .contact-destination { padding-block: 22px 30px; }
     .contact-direct .copy-button { margin-block-start: 8px; }
-    .contact-person h2 { font-size: 2rem; }
     .contact-context { font-size: var(--text-xs); }
-    .contact-email { gap: 12px; font-size: clamp(1rem, 4.5vw, 1.55rem); }
+    .contact-email { gap: 12px; font-size: var(--type-deck); }
     .contact-booking { align-items: flex-start; flex-direction: column; gap: 12px; }
     /* Both ways to reach Ata fit the first screen; the guidance follows them. */
     .contact-direct { display: flex; flex-direction: column; }

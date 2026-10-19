@@ -14,7 +14,7 @@ def home_portfolio(apps, btn):
         if not app.get('screen') or not app.get('apple'):
             continue
         cards.append(f'''<a class="catalog-card" data-product-accent="{e(app['color'])}" href="/apps/{e(app['slug'])}">
-          <div class="catalog-card-copy"><div class="catalog-card-heading"><img src="/assets/{e(app['slug'])}-icon.webp" width="40" height="40" alt="" loading="lazy"><div class="catalog-card-identity"><p class="catalog-category">{e(app['category'])}</p><h3>{e(app['name'])}</h3></div></div><span class="catalog-availability">iOS &amp; Android</span><p class="catalog-card-summary">{e(app['summary'])}</p>{store_name_note(app)}</div>
+          <div class="catalog-card-copy"><div class="catalog-card-heading"><img src="/assets/{e(app['slug'])}-icon.webp" width="40" height="40" alt="" loading="lazy"><div class="catalog-card-identity"><p class="catalog-category">{e(app['category'])}</p><h3>{e(app['name'])}</h3></div></div><span class="catalog-availability">iOS&nbsp;&amp;&nbsp;Android</span><p class="catalog-card-summary">{e(app['summary'])}</p>{store_name_note(app)}</div>
           <div class="catalog-image-stage"><img src="/assets/{e(app['screen'])}" alt="{e(app['name'])} official promotional screenshot with sample app content" width="{app.get('screen_width',600)}" height="{app.get('screen_height',1298)}" loading="lazy"></div>
           <span class="catalog-card-action">Explore {e(app['name'])}<span aria-hidden="true">→</span></span>
         </a>''')

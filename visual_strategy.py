@@ -23,7 +23,7 @@ def platform_opening(modules, btn, contact):
     return (
         '<section class="platform-opening wrap" aria-labelledby="platform-opening-title">'
         '<div class="platform-opening-copy"><p class="eyebrow">THE APP FACTORY / PLATFORM VISION</p>'
-        '<h1 id="platform-opening-title">The work behind<br><span>what comes next.</span></h1>'
+        '<h1 id="platform-opening-title">The work behind <span>what comes next.</span></h1>'
         '<p class="lede">A vision for the engineering, management, and marketing work '
         'behind focused mobile products.</p><div class="actions">'
         + btn('Discuss a partnership', contact('Strategic partner', 'App factory vision'))

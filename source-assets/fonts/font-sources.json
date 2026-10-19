@@ -1,20 +1,48 @@
 {
-  "family": "Manrope",
-  "weights": "200 800",
-  "source": "https://raw.githubusercontent.com/google/fonts/main/ofl/manrope/Manrope%5Bwght%5D.ttf",
-  "source_sha256": "3ae11c49db0455a3cc33e37d380f20fdb8c7f8b41dc07625c177e3d87a9d6ae6",
-  "license": "SIL Open Font License 1.1",
-  "license_source": "https://raw.githubusercontent.com/google/fonts/main/ofl/manrope/OFL.txt",
-  "processed": "fontTools subset, Latin and Latin Extended-A, punctuation and navigation arrows; WOFF2 variable",
-  "font_file": "manrope-latin-variable.cfa570d7c3ee.woff2",
-  "bytes": 26292,
-  "units_per_em": 2000,
-  "metrics": {
-    "sTypoAscender": 2132,
-    "sTypoDescender": -600,
-    "sTypoLineGap": 0,
-    "sxHeight": 1080
+  "manrope": {
+    "family": "Manrope",
+    "weights": "200 800",
+    "source": "https://raw.githubusercontent.com/google/fonts/main/ofl/manrope/Manrope%5Bwght%5D.ttf",
+    "source_sha256": "3ae11c49db0455a3cc33e37d380f20fdb8c7f8b41dc07625c177e3d87a9d6ae6",
+    "license": "SIL Open Font License 1.1",
+    "license_source": "https://raw.githubusercontent.com/google/fonts/main/ofl/manrope/OFL.txt",
+    "processed": "fontTools subset, Latin and Latin Extended-A, punctuation and navigation arrows; WOFF2 variable",
+    "font_file": "manrope-latin-variable.cfa570d7c3ee.woff2",
+    "bytes": 26292,
+    "units_per_em": 2000,
+    "metrics": {
+      "sTypoAscender": 2132,
+      "sTypoDescender": -600,
+      "sTypoLineGap": 0,
+      "sxHeight": 1080
+    },
+    "loaded": "self-hosted, display optional; one cross-origin anonymous preload in document head",
+    "design_notes": "One family for body and display. No runtime third-party font request. Optional display prevents a delayed face swap from causing layout shifts."
   },
-  "loaded": "self-hosted, display optional; one cross-origin anonymous preload in document head",
-  "design_notes": "One family for body and display. No runtime third-party font request. Optional display prevents a delayed face swap from causing layout shifts."
+  "display": {
+    "family": "Newsreader",
+    "role": "Display voice: titles, chapters, display numerals (founder choice A1, October 18, 2026)",
+    "source": "https://raw.githubusercontent.com/google/fonts/main/ofl/newsreader/Newsreader%5Bopsz%2Cwght%5D.ttf",
+    "source_sha256": "8a08d13f8a6c0d51be379a60af84f945f65369a67e509ee3c3bdcc421254d7c1",
+    "license": "SIL Open Font License 1.1",
+    "license_source": "https://raw.githubusercontent.com/google/fonts/main/ofl/newsreader/OFL.txt",
+    "reserved_font_name": "None declared (copyright line: \"Copyright 2020 The Newsreader Project Authors\"), so the modified instance keeps the family name",
+    "processed": "fontTools 4.60.1: varLib.instancer opsz=72 wght=400, then subset to WOFF2 with features kern liga calt lnum tnum pnum case, no hinting",
+    "unicode_ranges": "U+0020-007E,U+00A0-00FF,U+0100-0131,U+0134-0148,U+014A-017E,U+2010-2027,U+2030-203A",
+    "not_in_font": "U+0132-0133, U+0149, U+017F and the arrows U+2190-2193, U+2197 (served by the Manrope \"Display Arrows\" face)",
+    "font_file": "newsreader-display-latin.16985410e5b5.woff2",
+    "bytes": 27416,
+    "units_per_em": 2000,
+    "metrics": {
+      "sTypoAscender": 1470,
+      "sTypoDescender": -530,
+      "sTypoLineGap": 0,
+      "sxHeight": 852,
+      "sCapHeight": 1340
+    },
+    "fallback": "local('Georgia') with size-adjust 101.5%, ascent-override 72.41%, descent-override 26.11% (advance widths measured on heading text)",
+    "loaded": "self-hosted, display swap, preloaded on every route"
+  },
+  "manrope_fallback": "local('Arial') with size-adjust 103.94%, ascent-override 102.56%, descent-override 28.86%",
+  "route_budget_bytes": 61440
 }

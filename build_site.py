@@ -25,6 +25,7 @@ SOURCE_ASSETS = ROOT / 'source-assets'
 ORIGIN = 'https://solarityai.com'
 EMAIL = 'ata.turhan@solarityai.com'
 FONT_URL = '/assets/fonts/manrope-latin-variable.cfa570d7c3ee.woff2'
+DISPLAY_FONT_URL = '/assets/fonts/newsreader-display-latin.16985410e5b5.woff2'
 BOOKING = 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ2qgXk0ZfBd6QJf7ef-306in7AI0Kzc-pL3NJFK1fU74vAUGiftVJPF3-DoXp9_RZoyqW_sjSpI'
 e = html.escape
 ARROW = '<span aria-hidden="true">→</span>'
@@ -46,7 +47,7 @@ def btn(label,href,style='primary',external=False):
     return f'<a class="button {style}" href="{e(href)}"'+(' target="_blank" rel="noopener noreferrer"' if external else '')+f'>{e(label)}{arrow}{new_tab}</a>'
 
 def product_status(a,full=False):
-    return '<span class="status"><i aria-hidden="true"></i>'+('Available on iOS & Android' if full else 'iOS & Android')+'</span>' if a['apple'] else '<span class="status vision"><i aria-hidden="true"></i>Product vision</span>'
+    return '<span class="status"><i aria-hidden="true"></i>'+('Available on iOS & Android' if full else 'iOS & Android')+'</span>' if a['apple'] else '<span class="status vision"><i aria-hidden="true"></i>Product vision</span>'
 
 def jump_nav(items,label):
     return '<nav class="section-jump" aria-label="'+label+'"><div class="wrap"><span class="jump-label">'+label+'</span><div>'+''.join(f'<a href="#{slug}">{name}</a>' for slug,name in items)+'</div></div></nav>'
@@ -79,7 +80,7 @@ def shell(path,title,desc,body):
     social_image = 'solar-ascent-social.jpg'
     data={'@context':'https://schema.org','@type':'Organization','name':'Solarity AI','legalName':'Solarity AI LLC','url':ORIGIN,'founder':{'@type':'Person','name':'Ata Turhan'},'email':EMAIL,'address':{'@type':'PostalAddress','addressLocality':'Irving','addressRegion':'Texas','addressCountry':'US'}}
     return f'''<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{e(title)} | Solarity AI</title><meta name="description" content="{e(desc)}"><meta name="robots" content="{robots}"><meta name="referrer" content="strict-origin-when-cross-origin"><meta name="theme-color" content="#0f0d0b"><link rel="canonical" href="{ORIGIN}{public_path(path)}"><meta property="og:type" content="website"><meta property="og:title" content="{e(title)} | Solarity AI"><meta property="og:description" content="{e(desc)}"><meta property="og:url" content="{ORIGIN}{public_path(path)}"><meta property="og:image" content="{ORIGIN}/assets/{social_image}"><meta name="twitter:card" content="summary_large_image"><link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48"><link rel="icon" href="/assets/brand/solarity-sun-48.9bc99afc73e8.webp" type="image/webp" sizes="48x48"><link rel="preload" href="{FONT_URL}" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="/assets/presentation.css"><script src="/assets/site.js" defer></script><script type="application/ld+json">{json.dumps(data)}</script></head>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{e(title)} | Solarity AI</title><meta name="description" content="{e(desc)}"><meta name="robots" content="{robots}"><meta name="referrer" content="strict-origin-when-cross-origin"><meta name="theme-color" content="#0f0d0b"><link rel="canonical" href="{ORIGIN}{public_path(path)}"><meta property="og:type" content="website"><meta property="og:title" content="{e(title)} | Solarity AI"><meta property="og:description" content="{e(desc)}"><meta property="og:url" content="{ORIGIN}{public_path(path)}"><meta property="og:image" content="{ORIGIN}/assets/{social_image}"><meta name="twitter:card" content="summary_large_image"><link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48"><link rel="icon" href="/assets/brand/solarity-sun-48.9bc99afc73e8.webp" type="image/webp" sizes="48x48"><link rel="preload" href="{FONT_URL}" as="font" type="font/woff2" crossorigin><link rel="preload" href="{DISPLAY_FONT_URL}" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="/assets/presentation.css"><script src="/assets/site.js" defer></script><script type="application/ld+json">{json.dumps(data)}</script></head>
 <body data-page="{path}"><!--email_off--><a class="skip-link" href="#main">Skip to content</a>{site_header(path,NAV,btn)}
 <main id="main" tabindex="-1">{body}</main><dialog id="image-dialog" aria-labelledby="image-dialog-title"><div class="image-dialog-bar"><h2 id="image-dialog-title">App screenshot</h2><button type="button" id="image-dialog-close">Close preview <span aria-hidden="true">×</span></button></div><img id="image-dialog-image" alt="" width="600" height="1298"><div class="image-dialog-nav" id="image-dialog-nav" hidden><button type="button" id="image-dialog-prev"><span aria-hidden="true">←</span> Previous<span class="sr-only"> screenshot</span></button><span id="image-dialog-count" aria-live="polite"></span><button type="button" id="image-dialog-next">Next<span class="sr-only"> screenshot</span> <span aria-hidden="true">→</span></button></div><p id="image-dialog-caption">Official app imagery. Sample content.</p></dialog>{site_footer(EMAIL,path)}<!--/email_off--></body></html>'''
 
@@ -112,7 +113,7 @@ pages['/investors-partners']=('Investors & strategic partners','Explore the Sola
 pages['/careers']=('Careers: Build with us','Explore engineering, marketing and business development opportunities at Solarity AI. Apply to help build focused AI-powered mobile products.',careers_page(btn))
 
 pages['/contact']=('Start a conversation','Contact Solarity AI about investment, strategic partnerships or its consumer apps. Reach founder Ata Turhan directly.',contact_page(EMAIL,BOOKING,btn))
-pages['/404']=('Page not found','Find your way back to Solarity AI.',f'<section class="page-intro wrap not-found"><div class="recovery-intro">{eyebrow("404 / A DIFFERENT PATH")}<h1>This page<br><span class="muted">is not here.</span></h1><p class="lede">Let’s get you back to the products, the platform, or the conversation.</p><div class="actions">{btn("Back to home","/")}{btn("Explore our apps","/apps","outline")}</div></div>{recovery_links()}</section>')
+pages['/404']=('Page not found','Find your way back to Solarity AI.',f'<section class="page-intro wrap not-found"><div class="recovery-intro">{eyebrow("404 / A DIFFERENT PATH")}<h1>This page <span class="muted">is not here.</span></h1><p class="lede">Let’s get you back to the products, the platform, or the conversation.</p><div class="actions">{btn("Back to home","/")}{btn("Explore our apps","/apps","outline")}</div></div>{recovery_links()}</section>')
 
 style_sources=['design/system/foundation.css', 'design/system/chrome.css', 'design/system/home.css', 'design/system/products.css', 'design/system/company.css', 'design/system/contact.css', 'design/system/careers.css', 'design/system/accessibility.css']
 source_css='\n'.join((ROOT/name).read_text(encoding='utf-8') for name in style_sources)
@@ -143,7 +144,7 @@ AI_TRAINING_CRAWLERS=['GPTBot','Google-Extended','CCBot','anthropic-ai','Claude-
 # Previous solarityai.com URLs, redirected by Cloudflare Pages from _redirects.
 LEGACY_REDIRECTS=[('/careers.html','/careers/'),('/blog.html','/'),('/legal.html','/contact/'),('/docs/xtract-demo.html','/')]
 (DIST/'_redirects').write_text(''.join(f'{old} {new} 301\n' for old,new in LEGACY_REDIRECTS), encoding='utf-8', newline='\n')
-(DIST/'_headers').write_text('/*\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n  X-Frame-Options: SAMEORIGIN\n/404\n  X-Robots-Tag: noindex, follow\n/404.html\n  X-Robots-Tag: noindex, follow\n/assets/optimized/*\n  Cache-Control: public, max-age=31536000, immutable\n/assets/runtime/*\n  Cache-Control: public, max-age=31536000, immutable\n'+FONT_URL+'\n  Cache-Control: public, max-age=31536000, immutable\n', encoding='utf-8', newline='\n')
+(DIST/'_headers').write_text('/*\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n  X-Frame-Options: SAMEORIGIN\n/404\n  X-Robots-Tag: noindex, follow\n/404.html\n  X-Robots-Tag: noindex, follow\n/assets/optimized/*\n  Cache-Control: public, max-age=31536000, immutable\n/assets/runtime/*\n  Cache-Control: public, max-age=31536000, immutable\n'+FONT_URL+'\n  Cache-Control: public, max-age=31536000, immutable\n'+DISPLAY_FONT_URL+'\n  Cache-Control: public, max-age=31536000, immutable\n', encoding='utf-8', newline='\n')
 # dist/ holds exactly what pages reference. An unpublished approved file in
 # source-assets/ is published once a page references it; retired files never are.
 for url in sorted(referenced_assets):

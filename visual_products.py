@@ -61,7 +61,7 @@ def evidence_band(apps, btn):
             continue
         links.append(f'''<a class="evidence-product" href="/apps/{e(app['slug'])}" data-product-accent="{e(app['color'])}">
           <img src="/assets/{e(app['slug'])}-icon.webp" alt="" width="48" height="48" loading="lazy">
-          <span><strong>{e(app['name'])}</strong><small>{e(app['category'])}</small><span class="evidence-product-status">iOS &amp; Android</span></span>
+          <span><strong>{e(app['name'])}</strong><small>{e(app['category'])}</small><span class="evidence-product-status">iOS&nbsp;&amp;&nbsp;Android</span></span>
           <span class="evidence-product-arrow" aria-hidden="true">→</span>
         </a>''')
     return f'''<section class="proof-strip product-evidence-band wrap" aria-labelledby="product-evidence-title">

@@ -14,7 +14,7 @@ def app_chooser(apps):
     goals = ['Build a self-care routine', 'Practice cognitive exercises', 'Reflect on sleep habits', 'Build a fitness routine']
     rows = []
     for app, goal in zip(apps, goals):
-        availability = 'iOS & Android' if app['apple'] else 'Product vision · inquire for details'
+        availability = 'iOS & Android' if app['apple'] else 'Product vision · inquire for details'
         rows.append(f'<a href="/apps/{app["slug"]}" class="goal-choice" data-product-accent="{e(app["color"])}">{discovery_symbol(app)}<span class="goal-purpose">{goal}</span><strong>{app["name"]}</strong><span class="goal-availability">{availability}</span><span class="goal-action">Explore this app <span aria-hidden="true">→</span></span></a>')
     return '<section class="app-chooser wrap" aria-labelledby="chooser-title"><div class="chooser-heading"><h2 id="chooser-title">Find your starting point.</h2><p>Compare the focus of each app, then explore the one that fits your interest.</p></div><div class="goal-grid">'+''.join(rows)+'</div></section>'
 
@@ -24,7 +24,7 @@ def app_breadcrumbs(app):
 
 
 def related_apps(current, apps):
-    links = ''.join(f'<a href="/apps/{e(a["slug"])}" data-product-accent="{e(a["color"])}">{discovery_symbol(a)}<span class="related-identity"><strong>{e(a["name"])}</strong><span class="related-category">{e(a["category"])}</span></span><small class="related-availability">{"iOS &amp; Android" if a["apple"] else "Product vision"}</small><span aria-hidden="true" class="related-arrow">→</span></a>' for a in apps if a['slug'] != current['slug'])
+    links = ''.join(f'<a href="/apps/{e(a["slug"])}" data-product-accent="{e(a["color"])}">{discovery_symbol(a)}<span class="related-identity"><strong>{e(a["name"])}</strong><span class="related-category">{e(a["category"])}</span></span><small class="related-availability">{"iOS&nbsp;&amp;&nbsp;Android" if a["apple"] else "Product vision"}</small><span aria-hidden="true" class="related-arrow">→</span></a>' for a in apps if a['slug'] != current['slug'])
     return '<section class="related-apps wrap" aria-labelledby="related-title"><div class="related-intro"><h2 id="related-title">Another ambition in mind?</h2><p>Explore the other products in the Solarity AI portfolio.</p></div><nav aria-label="Other Solarity AI apps">'+links+'</nav></section>'
 
 
