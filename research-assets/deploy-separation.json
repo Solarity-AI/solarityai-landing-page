@@ -241,6 +241,12 @@
       "moved_to": "source-assets/sleep-max-detail-screen-3.webp",
       "bytes": 118876,
       "reason": "Retired from the Sleep Max story in P5b (empty sample profile, T5-06); kept as an approved source"
+    },
+    {
+      "published_path": "/assets/iq-max-screen-1.webp",
+      "moved_to": "source-assets/iq-max-screen-1.webp",
+      "bytes": 191644,
+      "reason": "P5b: no page links the full-size IQ poster any more (IQ opens on its focus frame; Apps and Home link to product pages). Kept as the master for its optimized variants and for the planned P7 filmstrip."
     }
   ],
   "removed_generated": [

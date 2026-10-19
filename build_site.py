@@ -12,8 +12,7 @@ from visual_contact import contact_page
 from visual_chrome import site_header, site_footer, contact_methods
 from visual_stage import store_badges
 from visual_products import product_art, product_page, voice_symbol
-from visual_catalog import portfolio_page
-from product_explorer import product_explorer
+from visual_catalog import portfolio_page, portfolio_wall
 from product_story import product_story
 from visual_company_upgrade import strategy_story, investor_evidence, investor_opening, operating_principles, founder_booking
 from visual_strategy import platform_opening
@@ -90,7 +89,7 @@ def shell(path,title,desc,body):
 
 pages={}
 hero=hero_section(APPS,btn,contact)
-products=product_explorer(APPS,btn)
+products=portfolio_wall(APPS)
 founder_strip=f'''<section class="founder-strip wrap">{founder_portrait(compact=True)}<div><h2>Ata Turhan</h2><p>Building Solarity AI from Irving, Texas, with a focus on consumer products and the systems behind them.</p></div><a class="text-link" href="/company">Meet the company {ARROW}</a></section>'''
 pages['/']=('Building for human potential','AI-powered self-improvement apps and an app factory vision. Explore Solarity AI and connect with our founder.',hero+products+company_strategy(APPS,btn,contact)+founder_strip+cta('Build on a shared ambition.','Explore the portfolio, discuss a partnership, or speak with the founder about the company’s direction.'))
 

@@ -156,14 +156,14 @@ for file,d in docs.items():
             if not a.get('data-image-title') or not a.get('data-image-alt'):errors.append(f'{rel}: screenshot enlargement is missing descriptive dialog data')
             if not a.get('href','').startswith('/assets/') or a.get('target')!='_blank':errors.append(f'{rel}: screenshot enlargement lost its native direct-image fallback')
     if rel=='index.html':
-        previews=[a for t,a in d.tags if t=='input' and a.get('name')=='portfolio-preview']
-        if len(previews)!=4 or any(a.get('type')!='radio' for a in previews):errors.append(f'{rel}: portfolio preview must use four native radios')
-        if [a.get('value') for a in previews if 'checked' in a]!=['looks-max']:errors.append(f'{rel}: native product preview must have one initial selection')
-        for control in previews:
-            target=by_id.get(control.get('aria-controls'),('',{}))
-            if target[0]!='article' or 'explorer-panel' not in target[1].get('class','').split():errors.append(f'{rel}: product preview must control its own semantic panel')
-            if sum(t=='label' and a.get('for')==control.get('id') for t,a in d.tags)!=1:errors.append(f'{rel}: product preview must have exactly one associated label')
-            if '#'+control.get('id','')+':checked~.explorer-layout' not in text:errors.append(f'{rel}: product selector lost its CSS-only behavior during optimization')
+        # The portfolio wall: the four apps in APPS order, each with its icon and both store links.
+        wall=re.search(r'<ul class="wall-grid"[^>]*>(.*?)</ul>',text,re.S)
+        cards=re.findall(r'<li class="wall-card"[^>]*>(.*?)</li>',wall.group(1),re.S) if wall else []
+        expected=['looks-max','iq-max','sleep-max','fitness-max']
+        if [re.search(r'class="wall-link" href="/apps/([\w-]+)/"',c).group(1) if re.search(r'class="wall-link" href="/apps/([\w-]+)/"',c) else None for c in cards]!=expected:errors.append(f'{rel}: portfolio wall must link the four apps in order')
+        for card in cards:
+            if not re.search(r'<img [^>]*src="/assets/optimized/[\w-]+-icon-',card):errors.append(f'{rel}: each portfolio card needs its app icon')
+            if 'https://apps.apple.com/' not in card or 'https://play.google.com/' not in card:errors.append(f'{rel}: each portfolio card needs its App Store and Google Play links')
         hero_links=[a.get('href') for t,a in d.tags if t=='a' and 'hero-product' in a.get('class','').split()]
         if hero_links!=['/apps/looks-max/','/apps/iq-max/','/apps/sleep-max/','/apps/fitness-max/']:errors.append(f'{rel}: hero must feature only the four verified store-listed apps')
         primary_images=[a for t,a in d.tags if t=='img' and 'progress-hero-image' in a.get('class','').split()]

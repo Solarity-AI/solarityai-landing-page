@@ -8,37 +8,60 @@ def store_name_note(app):
     return ('<p class="product-store-name">Listed in app stores as '+e(app['store_name'])+'.</p>') if app.get('store_name') else ''
 
 
-def home_portfolio(apps, btn):
-    """A store-listed product gallery with optional product-vision entries."""
+def _store_pair(app):
+    """Compact text links to both stores; the product pages carry the official badges."""
+    note = '<span class="sr-only"> (opens in a new tab)</span>'
+    return (f'<a href="{e(app["apple"])}" target="_blank" rel="noopener noreferrer">App Store <span aria-hidden="true">↗</span>{note}</a>'
+            f'<a href="{e(app["google"])}" target="_blank" rel="noopener noreferrer">Google Play <span aria-hidden="true">↗</span>{note}</a>')
+
+
+def _window(app, sizes):
+    focus = (' style="object-position:' + e(app['crop_focus']) + '"') if app.get('crop_focus') else ''
+    return (f'<img class="store-screen plate--window"{focus} src="/assets/{e(app["screen"])}" '
+            f'alt="{e(app["name"])} official App Store imagery with sample app content" '
+            f'width="{app.get("screen_width", 600)}" height="{app.get("screen_height", 1298)}" sizes="{sizes}" loading="lazy" decoding="async">')
+
+
+def portfolio_wall(apps):
+    """Home: all four apps at once, each in its own world, each a single link to its page."""
     cards = []
     for app in apps:
         if not app.get('screen') or not app.get('apple'):
             continue
-        cards.append(f'''<a class="catalog-card" data-product-accent="{e(app['color'])}" href="/apps/{e(app['slug'])}">
-          <div class="catalog-card-copy"><div class="catalog-card-heading"><img src="/assets/{e(app['slug'])}-icon.webp" width="40" height="40" alt="" loading="lazy"><div class="catalog-card-identity"><p class="catalog-category">{e(app['category'])}</p><h3>{e(app['name'])}</h3></div></div><span class="catalog-availability">iOS&nbsp;&amp;&nbsp;Android</span><p class="catalog-card-summary">{e(app['summary'])}</p>{store_name_note(app)}</div>
-          <div class="catalog-image-stage"><img src="/assets/{e(app['screen'])}" alt="{e(app['name'])} official promotional screenshot with sample app content" width="{app.get('screen_width',600)}" height="{app.get('screen_height',1298)}" loading="lazy"></div>
-          <span class="catalog-card-action">Explore {e(app['name'])}<span aria-hidden="true">→</span></span>
-        </a>''')
-    visions = []
-    for app in apps:
-        if app.get('screen') and app.get('apple'):
-            continue
-        visions.append(f'''<a class="catalog-vision-link" data-product-accent="{e(app['color'])}" href="/apps/{e(app['slug'])}"><span class="catalog-vision-symbol">{voice_symbol(52)}</span><div><span class="catalog-vision-label">PRODUCT VISION</span><h3>{e(app['name'])}</h3><p>{e(app['summary'])}</p></div><span class="catalog-vision-action">Explore the direction <span aria-hidden="true">→</span></span></a>''')
-    vision_markup = '<div class="catalog-vision-list">'+''.join(visions)+'</div>' if visions else ''
-    return f'''<section class="catalog-home wrap" id="our-products" aria-labelledby="catalog-home-title"><div class="catalog-section-heading"><div><p class="eyebrow">The app portfolio</p><h2 id="catalog-home-title">Everyday ambitions.<br><span class="muted">Focused experiences.</span></h2></div><p>From self-care to cognitive practice, sleep, and fitness, explore the products behind our company strategy.</p></div><div class="catalog-gallery">{''.join(cards)}</div><p class="catalog-image-note caption">{provenance()}</p>{vision_markup}<div class="catalog-section-footer"><span>Individual products. A shared ambition.</span>{btn('View the full portfolio','/apps','text')}</div></section>'''
+        slug, name = e(app['slug']), e(app['name'])
+        cards.append(f'''<li class="wall-card" data-product-accent="{e(app['color'])}">
+          <a class="wall-link" href="/apps/{slug}"><span class="wall-window screenshot-stage">{_window(app, '(max-width: 560px) 44vw, (max-width: 1100px) 22vw, 270px')}</span>
+            <span class="wall-identity"><img src="/assets/{slug}-icon.webp" width="56" height="56" alt="" loading="lazy" decoding="async"><span><strong>{name}</strong><small>{e(app['category'])}</small></span></span></a>
+          <p class="wall-stores">{_store_pair(app)}</p>
+        </li>''')
+    return f'''<section class="portfolio-wall wrap" id="our-products" aria-labelledby="wall-title">
+      <div class="wall-heading"><div><p class="eyebrow">The app portfolio</p><h2 id="wall-title">Your ambition.<br><span class="muted">Your daily practice.</span></h2></div><p>Self-care, cognitive practice, sleep, and fitness. Four focused products, each built around a different part of everyday life.</p></div>
+      <ul class="wall-grid" aria-label="Solarity AI apps">{''.join(cards)}</ul>
+      <p class="caption wall-caption">{provenance()}</p>
+    </section>'''
 
 
 def portfolio_page(apps, btn, app_art, product_status):
-    """A concise image-led collection. The detail pages own the full stories."""
-    links = []
-    rows = []
-    for app in apps:
+    """Apps: a lineup of the four icons, then one world band per app. The detail pages own the stories."""
+    from visual_stage import store_badges
+    lineup = []
+    bands = []
+    for index, app in enumerate(apps):
         slug = e(app['slug'])
         name = e(app['name'])
-        links.append(f'<a href="#{slug}"><span>{name}</span><span aria-hidden="true">↓</span></a>')
-        rows.append(f'''<article class="catalog-product-row" id="{slug}" data-product-accent="{e(app['color'])}" aria-labelledby="catalog-{slug}-title">
-          <header class="catalog-product-masthead"><p class="catalog-category">{e(app['category'])}</p><h2 id="catalog-{slug}-title"><a class="catalog-product-link" href="/apps/{slug}">{name}</a></h2></header>
-          <div class="catalog-product-art">{app_art(app,True)}</div>
-          <div class="catalog-product-copy"><p class="catalog-product-summary">{e(app['summary'])}</p>{store_name_note(app)}<div class="catalog-product-status">{product_status(app,True)}</div><div class="catalog-product-actions">{btn('Explore '+app['name'],'/apps/'+app['slug'],'text')}</div></div>
+        lineup.append(f'<a class="lineup-app" href="#{slug}" data-product-accent="{e(app["color"])}"><img src="/assets/{slug}-icon.webp" width="112" height="112" alt="" decoding="async"><span><strong>{name}</strong><small>{e(app["category"])}</small></span><span class="lineup-arrow" aria-hidden="true">↓</span></a>')
+        disclosure = ('<p class="product-store-name">On the App Store and Google Play as ' + e(app['store_name']) + '.</p>') if app.get('store_name') else ''
+        bands.append(f'''<article class="world-band{' world-band--flip' if index % 2 else ''}" id="{slug}" data-product-accent="{e(app['color'])}" aria-labelledby="catalog-{slug}-title">
+          <div class="world-band-copy">
+            <img class="world-band-icon" src="/assets/{slug}-icon.webp" width="64" height="64" alt="" loading="lazy" decoding="async">
+            <p class="catalog-category">{e(app['category'])}</p>
+            <h2 id="catalog-{slug}-title"><a class="catalog-product-link" href="/apps/{slug}">{name}</a></h2>
+            <p class="world-band-summary">{e(app['summary'])}</p>
+            <div class="world-band-stores">{store_badges(app)}{disclosure}</div>
+            <a class="world-band-explore" href="/apps/{slug}">Explore {name} <span aria-hidden="true">→</span></a>
+          </div>
+          <div class="world-band-art"><span class="screenshot-stage">{_window(app, '(max-width: 560px) 70vw, 340px')}</span></div>
         </article>''')
-    return f'''<section class="catalog-page-intro wrap"><div class="catalog-intro-heading"><p class="eyebrow">Consumer portfolio</p><h1>One ambition.<br><span class="muted">Your next step.</span></h1></div><p class="catalog-intro-description">Self-care, cognitive practice, sleep, and fitness. Four focused apps for the routines you choose to build.</p></section><nav class="catalog-anchor-nav wrap" aria-label="Explore the apps">{''.join(links)}</nav><section class="catalog-product-list wrap" aria-label="Solarity AI apps">{''.join(rows)}</section>'''
+    return f'''<section class="catalog-page-intro wrap"><div class="catalog-intro-heading"><p class="eyebrow">Consumer portfolio</p><h1>One ambition.<br><span class="muted">Your next step.</span></h1></div><p class="catalog-intro-description">Self-care, cognitive practice, sleep, and fitness. Four focused apps for the routines you choose to build.</p></section>
+    <nav class="app-lineup wrap" aria-label="Explore the apps">{''.join(lineup)}</nav>
+    <section class="world-bands" aria-label="Solarity AI apps">{''.join(bands)}</section>'''
