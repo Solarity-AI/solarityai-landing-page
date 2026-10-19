@@ -39,7 +39,7 @@ Use `python3` if that is the Python 3 command on the local machine. On Windows, 
 ## Preserve unless the founder requests a change
 
 - Investor and strategic partner objective; broad company self-improvement positioning.
-- The approved natural-sunrise hero: `research-assets/solar-ascent-approved.png`, with build master `source-assets/solar-ascent.webp` (published only as `/assets/optimized/solar-ascent-*` variants). Do not restore retired artwork merely because older files remain.
+- The approved natural-sunrise hero: `research-assets/solar-ascent-approved.png`, with build master `source-assets/solar-ascent.webp`: the approved image upscaled 2× to 3720×1690 with Real-ESRGAN, approved by the founder on 2026-10-19 (`research-assets/solar-ascent-artwork.json`). It is published only as `/assets/optimized/solar-ascent-*` variants. Regenerate the master only from the approved PNG. Do not restore retired artwork merely because older files remain.
 - 4 consumer app names: Looks Max, IQ Max, Sleep Max, Fitness Max. Fitness Max's store-name disclosure is Only Fitness. Voice Max is retired from this Site.
 - Approved company team: Ata Turhan plus Emrecan Özkan, Ali Yılmaz, Hasan Ak, Eren Öz, Batuhan Yücetürk, Melik Kaplan. Do not invent roles, portraits, credentials, or traction.
 - Three web apps: Engineering Max (private testing), Management Max (free plan) and Marketing Max (internal V1, early access), described only from their own sites (`saas_products.py`, `research-assets/saas-evidence.json`). Re-read those sites before changing a status, plan or capability. Mobile versions are a founder-stated plan and stay labeled as planned. No customer, usage or revenue claims.
