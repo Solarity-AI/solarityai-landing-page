@@ -42,3 +42,26 @@ Origin: `https://solarityai.com`, served by Cloudflare Pages (project `solaritya
 1. Careers: repeat the FormSubmit activation test once on `https://solarityai.com/careers/#apply` (see `CAREERS_DELIVERY.md`).
 2. Decide whether to keep Cloudflare Web Analytics on the zone.
 3. The old Woodpecker/Kubernetes server and the AWS resources no longer serve solarityai.com. Whoever runs them can shut them down.
+
+## Redesign baseline (Phase P0, 2026-10-18)
+
+This is the before measurement for the cinematic redesign (`CINEMATIC_PREMIUM_PLAN.md`). It was taken at develop `b0eff9b` on https://solarityai-landing-page.pages.dev, which serves the same files as solarityai.com without the analytics beacon.
+
+Method: Lighthouse 13.5.0 in headless Chrome 155 on this Windows machine. It ran 3 times per route and form factor (36 runs), and the table shows the median. Mobile uses default simulated throttling; desktop uses `--preset=desktop`. These are lab results, not field data. Raw medians are in `research-assets/baseline-2026-10-18/lighthouse-medians.json`.
+
+| Route | Form factor | Perf | A11y | Best practices | SEO | LCP median (range) | FCP | CLS | TBT |
+|---|---|---|---|---|---|---|---|---|---|
+| `/` | mobile | 100 | 100 | 100 | 100 | 1.72 s (1692–1723 ms) | 1.10 s | 0.000 | 0 ms |
+| `/investors-partners/` | mobile | 100 | 100 | 100 | 100 | 1.13 s (1115–1253 ms) | 0.88 s | 0.000 | 0 ms |
+| `/apps/looks-max/` | mobile | 100 | 100 | 100 | 100 | 1.27 s (1264–1909 ms) | 1.02 s | 0.000 | 0 ms |
+| `/apps/iq-max/` | mobile | 100 | 100 | 100 | 100 | 1.27 s (1270–1317 ms) | 1.04 s | 0.000 | 0 ms |
+| `/platform/` | mobile | 100 | 100 | 100 | 100 | 1.12 s (1099–1147 ms) | 0.87 s | 0.000 | 0 ms |
+| `/company/` | mobile | 100 | 100 | 100 | 100 | 1.26 s (1258–1311 ms) | 0.86 s | 0.000 | 0 ms |
+| `/` | desktop | 100 | 100 | 100 | 100 | 0.48 s (427–587 ms) | 0.35 s | 0.000 | 0 ms |
+| `/investors-partners/` | desktop | 100 | 100 | 100 | 100 | 0.39 s (390–392 ms) | 0.29 s | 0.000 | 0 ms |
+| `/apps/looks-max/` | desktop | 100 | 100 | 100 | 100 | 0.37 s (342–400 ms) | 0.33 s | 0.000 | 0 ms |
+| `/apps/iq-max/` | desktop | 100 | 100 | 100 | 100 | 0.40 s (343–486 ms) | 0.32 s | 0.000 | 0 ms |
+| `/platform/` | desktop | 100 | 100 | 100 | 100 | 0.35 s (342–370 ms) | 0.28 s | 0.000 | 0 ms |
+| `/company/` | desktop | 100 | 100 | 100 | 100 | 0.44 s (337–504 ms) | 0.27 s | 0.000 | 0 ms |
+
+All 36 runs scored 100 in all four categories, with CLS 0 and TBT 0. The redesign must hold these numbers. The mobile home LCP, 1.72 s, is the figure most at risk from new fonts and larger imagery. Plan §10 sets the budgets.

@@ -1,0 +1,798 @@
+{
+  "source": "https://solarityai.com",
+  "captured": "2026-10-18, develop b0eff9b",
+  "renders": [
+    {
+      "route": "/",
+      "width": 360,
+      "viewportHeight": 800,
+      "reducedMotion": false,
+      "pageHeight": 6249,
+      "horizontalOverflow": false,
+      "file": "home-360x800.jpg"
+    },
+    {
+      "route": "/apps/",
+      "width": 360,
+      "viewportHeight": 800,
+      "reducedMotion": false,
+      "pageHeight": 6280,
+      "horizontalOverflow": false,
+      "file": "apps-360x800.jpg"
+    },
+    {
+      "route": "/apps/looks-max/",
+      "width": 360,
+      "viewportHeight": 800,
+      "reducedMotion": false,
+      "pageHeight": 5880,
+      "horizontalOverflow": false,
+      "file": "apps-looks-max-360x800.jpg"
+    },
+    {
+      "route": "/apps/iq-max/",
+      "width": 360,
+      "viewportHeight": 800,
+      "reducedMotion": false,
+      "pageHeight": 6828,
+      "horizontalOverflow": false,
+      "file": "apps-iq-max-360x800.jpg"
+    },
+    {
+      "route": "/apps/sleep-max/",
+      "width": 360,
+      "viewportHeight": 800,
+      "reducedMotion": false,
+      "pageHeight": 5769,
+      "horizontalOverflow": false,
+      "file": "apps-sleep-max-360x800.jpg"
+    },
+    {
+      "route": "/apps/fitness-max/",
+      "width": 360,
+      "viewportHeight": 800,
+      "reducedMotion": false,
+      "pageHeight": 6857,
+      "horizontalOverflow": false,
+      "file": "apps-fitness-max-360x800.jpg"
+    },
+    {
+      "route": "/platform/",
+      "width": 360,
+      "viewportHeight": 800,
+      "reducedMotion": false,
+      "pageHeight": 6096,
+      "horizontalOverflow": false,
+      "file": "platform-360x800.jpg"
+    },
+    {
+      "route": "/company/",
+      "width": 360,
+      "viewportHeight": 800,
+      "reducedMotion": false,
+      "pageHeight": 5204,
+      "horizontalOverflow": false,
+      "file": "company-360x800.jpg"
+    },
+    {
+      "route": "/investors-partners/",
+      "width": 360,
+      "viewportHeight": 800,
+      "reducedMotion": false,
+      "pageHeight": 6896,
+      "horizontalOverflow": false,
+      "file": "investors-partners-360x800.jpg"
+    },
+    {
+      "route": "/careers/",
+      "width": 360,
+      "viewportHeight": 800,
+      "reducedMotion": false,
+      "pageHeight": 5600,
+      "horizontalOverflow": false,
+      "file": "careers-360x800.jpg"
+    },
+    {
+      "route": "/contact/",
+      "width": 360,
+      "viewportHeight": 800,
+      "reducedMotion": false,
+      "pageHeight": 2998,
+      "horizontalOverflow": false,
+      "file": "contact-360x800.jpg"
+    },
+    {
+      "route": "/404.html",
+      "width": 360,
+      "viewportHeight": 800,
+      "reducedMotion": false,
+      "pageHeight": 1886,
+      "horizontalOverflow": false,
+      "file": "404-360x800.jpg"
+    },
+    {
+      "route": "/",
+      "width": 390,
+      "viewportHeight": 800,
+      "reducedMotion": false,
+      "pageHeight": 6252,
+      "horizontalOverflow": false,
+      "file": "home-390x800.jpg"
+    },
+    {
+      "route": "/apps/",
+      "width": 390,
+      "viewportHeight": 800,
+      "reducedMotion": false,
+      "pageHeight": 6476,
+      "horizontalOverflow": false,
+      "file": "apps-390x800.jpg"
+    },
+    {
+      "route": "/apps/looks-max/",
+      "width": 390,
+      "viewportHeight": 800,
+      "reducedMotion": false,
+      "pageHeight": 5831,
+      "horizontalOverflow": false,
+      "file": "apps-looks-max-390x800.jpg"
+    },
+    {
+      "route": "/apps/iq-max/",
+      "width": 390,
+      "viewportHeight": 800,
+      "reducedMotion": false,
+      "pageHeight": 6869,
+      "horizontalOverflow": false,
+      "file": "apps-iq-max-390x800.jpg"
+    },
+    {
+      "route": "/apps/sleep-max/",
+      "width": 390,
+      "viewportHeight": 800,
+      "reducedMotion": false,
+      "pageHeight": 5765,
+      "horizontalOverflow": false,
+      "file": "apps-sleep-max-390x800.jpg"
+    },
+    {
+      "route": "/apps/fitness-max/",
+      "width": 390,
+      "viewportHeight": 800,
+      "reducedMotion": false,
+      "pageHeight": 6894,
+      "horizontalOverflow": false,
+      "file": "apps-fitness-max-390x800.jpg"
+    },
+    {
+      "route": "/platform/",
+      "width": 390,
+      "viewportHeight": 800,
+      "reducedMotion": false,
+      "pageHeight": 5817,
+      "horizontalOverflow": false,
+      "file": "platform-390x800.jpg"
+    },
+    {
+      "route": "/company/",
+      "width": 390,
+      "viewportHeight": 800,
+      "reducedMotion": false,
+      "pageHeight": 5061,
+      "horizontalOverflow": false,
+      "file": "company-390x800.jpg"
+    },
+    {
+      "route": "/investors-partners/",
+      "width": 390,
+      "viewportHeight": 800,
+      "reducedMotion": false,
+      "pageHeight": 6549,
+      "horizontalOverflow": false,
+      "file": "investors-partners-390x800.jpg"
+    },
+    {
+      "route": "/careers/",
+      "width": 390,
+      "viewportHeight": 800,
+      "reducedMotion": false,
+      "pageHeight": 5404,
+      "horizontalOverflow": false,
+      "file": "careers-390x800.jpg"
+    },
+    {
+      "route": "/contact/",
+      "width": 390,
+      "viewportHeight": 800,
+      "reducedMotion": false,
+      "pageHeight": 2866,
+      "horizontalOverflow": false,
+      "file": "contact-390x800.jpg"
+    },
+    {
+      "route": "/404.html",
+      "width": 390,
+      "viewportHeight": 800,
+      "reducedMotion": false,
+      "pageHeight": 1844,
+      "horizontalOverflow": false,
+      "file": "404-390x800.jpg"
+    },
+    {
+      "route": "/",
+      "width": 768,
+      "viewportHeight": 900,
+      "reducedMotion": false,
+      "pageHeight": 5299,
+      "horizontalOverflow": false,
+      "file": "home-768x900.jpg"
+    },
+    {
+      "route": "/apps/",
+      "width": 768,
+      "viewportHeight": 900,
+      "reducedMotion": false,
+      "pageHeight": 3903,
+      "horizontalOverflow": false,
+      "file": "apps-768x900.jpg"
+    },
+    {
+      "route": "/apps/looks-max/",
+      "width": 768,
+      "viewportHeight": 900,
+      "reducedMotion": false,
+      "pageHeight": 5146,
+      "horizontalOverflow": false,
+      "file": "apps-looks-max-768x900.jpg"
+    },
+    {
+      "route": "/apps/iq-max/",
+      "width": 768,
+      "viewportHeight": 900,
+      "reducedMotion": false,
+      "pageHeight": 5883,
+      "horizontalOverflow": false,
+      "file": "apps-iq-max-768x900.jpg"
+    },
+    {
+      "route": "/apps/sleep-max/",
+      "width": 768,
+      "viewportHeight": 900,
+      "reducedMotion": false,
+      "pageHeight": 5022,
+      "horizontalOverflow": false,
+      "file": "apps-sleep-max-768x900.jpg"
+    },
+    {
+      "route": "/apps/fitness-max/",
+      "width": 768,
+      "viewportHeight": 900,
+      "reducedMotion": false,
+      "pageHeight": 5382,
+      "horizontalOverflow": false,
+      "file": "apps-fitness-max-768x900.jpg"
+    },
+    {
+      "route": "/platform/",
+      "width": 768,
+      "viewportHeight": 900,
+      "reducedMotion": false,
+      "pageHeight": 4674,
+      "horizontalOverflow": false,
+      "file": "platform-768x900.jpg"
+    },
+    {
+      "route": "/company/",
+      "width": 768,
+      "viewportHeight": 900,
+      "reducedMotion": false,
+      "pageHeight": 3687,
+      "horizontalOverflow": false,
+      "file": "company-768x900.jpg"
+    },
+    {
+      "route": "/investors-partners/",
+      "width": 768,
+      "viewportHeight": 900,
+      "reducedMotion": false,
+      "pageHeight": 6200,
+      "horizontalOverflow": false,
+      "file": "investors-partners-768x900.jpg"
+    },
+    {
+      "route": "/careers/",
+      "width": 768,
+      "viewportHeight": 900,
+      "reducedMotion": false,
+      "pageHeight": 4461,
+      "horizontalOverflow": false,
+      "file": "careers-768x900.jpg"
+    },
+    {
+      "route": "/contact/",
+      "width": 768,
+      "viewportHeight": 900,
+      "reducedMotion": false,
+      "pageHeight": 2718,
+      "horizontalOverflow": false,
+      "file": "contact-768x900.jpg"
+    },
+    {
+      "route": "/404.html",
+      "width": 768,
+      "viewportHeight": 900,
+      "reducedMotion": false,
+      "pageHeight": 1645,
+      "horizontalOverflow": false,
+      "file": "404-768x900.jpg"
+    },
+    {
+      "route": "/",
+      "width": 1024,
+      "viewportHeight": 900,
+      "reducedMotion": false,
+      "pageHeight": 4940,
+      "horizontalOverflow": false,
+      "file": "home-1024x900.jpg"
+    },
+    {
+      "route": "/apps/",
+      "width": 1024,
+      "viewportHeight": 900,
+      "reducedMotion": false,
+      "pageHeight": 3958,
+      "horizontalOverflow": false,
+      "file": "apps-1024x900.jpg"
+    },
+    {
+      "route": "/apps/looks-max/",
+      "width": 1024,
+      "viewportHeight": 900,
+      "reducedMotion": false,
+      "pageHeight": 4493,
+      "horizontalOverflow": false,
+      "file": "apps-looks-max-1024x900.jpg"
+    },
+    {
+      "route": "/apps/iq-max/",
+      "width": 1024,
+      "viewportHeight": 900,
+      "reducedMotion": false,
+      "pageHeight": 5292,
+      "horizontalOverflow": false,
+      "file": "apps-iq-max-1024x900.jpg"
+    },
+    {
+      "route": "/apps/sleep-max/",
+      "width": 1024,
+      "viewportHeight": 900,
+      "reducedMotion": false,
+      "pageHeight": 4684,
+      "horizontalOverflow": false,
+      "file": "apps-sleep-max-1024x900.jpg"
+    },
+    {
+      "route": "/apps/fitness-max/",
+      "width": 1024,
+      "viewportHeight": 900,
+      "reducedMotion": false,
+      "pageHeight": 4809,
+      "horizontalOverflow": false,
+      "file": "apps-fitness-max-1024x900.jpg"
+    },
+    {
+      "route": "/platform/",
+      "width": 1024,
+      "viewportHeight": 900,
+      "reducedMotion": false,
+      "pageHeight": 4626,
+      "horizontalOverflow": false,
+      "file": "platform-1024x900.jpg"
+    },
+    {
+      "route": "/company/",
+      "width": 1024,
+      "viewportHeight": 900,
+      "reducedMotion": false,
+      "pageHeight": 3819,
+      "horizontalOverflow": false,
+      "file": "company-1024x900.jpg"
+    },
+    {
+      "route": "/investors-partners/",
+      "width": 1024,
+      "viewportHeight": 900,
+      "reducedMotion": false,
+      "pageHeight": 4670,
+      "horizontalOverflow": false,
+      "file": "investors-partners-1024x900.jpg"
+    },
+    {
+      "route": "/careers/",
+      "width": 1024,
+      "viewportHeight": 900,
+      "reducedMotion": false,
+      "pageHeight": 4252,
+      "horizontalOverflow": false,
+      "file": "careers-1024x900.jpg"
+    },
+    {
+      "route": "/contact/",
+      "width": 1024,
+      "viewportHeight": 900,
+      "reducedMotion": false,
+      "pageHeight": 2534,
+      "horizontalOverflow": false,
+      "file": "contact-1024x900.jpg"
+    },
+    {
+      "route": "/404.html",
+      "width": 1024,
+      "viewportHeight": 900,
+      "reducedMotion": false,
+      "pageHeight": 1765,
+      "horizontalOverflow": false,
+      "file": "404-1024x900.jpg"
+    },
+    {
+      "route": "/",
+      "width": 1440,
+      "viewportHeight": 900,
+      "reducedMotion": false,
+      "pageHeight": 5384,
+      "horizontalOverflow": false,
+      "file": "home-1440x900.jpg"
+    },
+    {
+      "route": "/apps/",
+      "width": 1440,
+      "viewportHeight": 900,
+      "reducedMotion": false,
+      "pageHeight": 4435,
+      "horizontalOverflow": false,
+      "file": "apps-1440x900.jpg"
+    },
+    {
+      "route": "/apps/looks-max/",
+      "width": 1440,
+      "viewportHeight": 900,
+      "reducedMotion": false,
+      "pageHeight": 4892,
+      "horizontalOverflow": false,
+      "file": "apps-looks-max-1440x900.jpg"
+    },
+    {
+      "route": "/apps/iq-max/",
+      "width": 1440,
+      "viewportHeight": 900,
+      "reducedMotion": false,
+      "pageHeight": 5784,
+      "horizontalOverflow": false,
+      "file": "apps-iq-max-1440x900.jpg"
+    },
+    {
+      "route": "/apps/sleep-max/",
+      "width": 1440,
+      "viewportHeight": 900,
+      "reducedMotion": false,
+      "pageHeight": 5139,
+      "horizontalOverflow": false,
+      "file": "apps-sleep-max-1440x900.jpg"
+    },
+    {
+      "route": "/apps/fitness-max/",
+      "width": 1440,
+      "viewportHeight": 900,
+      "reducedMotion": false,
+      "pageHeight": 5220,
+      "horizontalOverflow": false,
+      "file": "apps-fitness-max-1440x900.jpg"
+    },
+    {
+      "route": "/platform/",
+      "width": 1440,
+      "viewportHeight": 900,
+      "reducedMotion": false,
+      "pageHeight": 4562,
+      "horizontalOverflow": false,
+      "file": "platform-1440x900.jpg"
+    },
+    {
+      "route": "/company/",
+      "width": 1440,
+      "viewportHeight": 900,
+      "reducedMotion": false,
+      "pageHeight": 4434,
+      "horizontalOverflow": false,
+      "file": "company-1440x900.jpg"
+    },
+    {
+      "route": "/investors-partners/",
+      "width": 1440,
+      "viewportHeight": 900,
+      "reducedMotion": false,
+      "pageHeight": 5073,
+      "horizontalOverflow": false,
+      "file": "investors-partners-1440x900.jpg"
+    },
+    {
+      "route": "/careers/",
+      "width": 1440,
+      "viewportHeight": 900,
+      "reducedMotion": false,
+      "pageHeight": 4250,
+      "horizontalOverflow": false,
+      "file": "careers-1440x900.jpg"
+    },
+    {
+      "route": "/contact/",
+      "width": 1440,
+      "viewportHeight": 900,
+      "reducedMotion": false,
+      "pageHeight": 2838,
+      "horizontalOverflow": false,
+      "file": "contact-1440x900.jpg"
+    },
+    {
+      "route": "/404.html",
+      "width": 1440,
+      "viewportHeight": 900,
+      "reducedMotion": false,
+      "pageHeight": 1992,
+      "horizontalOverflow": false,
+      "file": "404-1440x900.jpg"
+    },
+    {
+      "route": "/",
+      "width": 1280,
+      "viewportHeight": 800,
+      "reducedMotion": false,
+      "pageHeight": 5232,
+      "horizontalOverflow": false,
+      "file": "home-1280x800.jpg"
+    },
+    {
+      "route": "/investors-partners/",
+      "width": 1280,
+      "viewportHeight": 800,
+      "reducedMotion": false,
+      "pageHeight": 4906,
+      "horizontalOverflow": false,
+      "file": "investors-partners-1280x800.jpg"
+    },
+    {
+      "route": "/",
+      "width": 1920,
+      "viewportHeight": 1080,
+      "reducedMotion": false,
+      "pageHeight": 5478,
+      "horizontalOverflow": false,
+      "file": "home-1920x1080.jpg"
+    },
+    {
+      "route": "/investors-partners/",
+      "width": 1920,
+      "viewportHeight": 1080,
+      "reducedMotion": false,
+      "pageHeight": 5201,
+      "horizontalOverflow": false,
+      "file": "investors-partners-1920x1080.jpg"
+    },
+    {
+      "route": "/",
+      "width": 390,
+      "viewportHeight": 800,
+      "reducedMotion": true,
+      "pageHeight": 6252,
+      "horizontalOverflow": false,
+      "file": "home-390x800-reduced-motion.jpg"
+    },
+    {
+      "route": "/apps/",
+      "width": 390,
+      "viewportHeight": 800,
+      "reducedMotion": true,
+      "pageHeight": 6476,
+      "horizontalOverflow": false,
+      "file": "apps-390x800-reduced-motion.jpg"
+    },
+    {
+      "route": "/apps/looks-max/",
+      "width": 390,
+      "viewportHeight": 800,
+      "reducedMotion": true,
+      "pageHeight": 5831,
+      "horizontalOverflow": false,
+      "file": "apps-looks-max-390x800-reduced-motion.jpg"
+    },
+    {
+      "route": "/apps/iq-max/",
+      "width": 390,
+      "viewportHeight": 800,
+      "reducedMotion": true,
+      "pageHeight": 6869,
+      "horizontalOverflow": false,
+      "file": "apps-iq-max-390x800-reduced-motion.jpg"
+    },
+    {
+      "route": "/apps/sleep-max/",
+      "width": 390,
+      "viewportHeight": 800,
+      "reducedMotion": true,
+      "pageHeight": 5765,
+      "horizontalOverflow": false,
+      "file": "apps-sleep-max-390x800-reduced-motion.jpg"
+    },
+    {
+      "route": "/apps/fitness-max/",
+      "width": 390,
+      "viewportHeight": 800,
+      "reducedMotion": true,
+      "pageHeight": 6894,
+      "horizontalOverflow": false,
+      "file": "apps-fitness-max-390x800-reduced-motion.jpg"
+    },
+    {
+      "route": "/platform/",
+      "width": 390,
+      "viewportHeight": 800,
+      "reducedMotion": true,
+      "pageHeight": 5817,
+      "horizontalOverflow": false,
+      "file": "platform-390x800-reduced-motion.jpg"
+    },
+    {
+      "route": "/company/",
+      "width": 390,
+      "viewportHeight": 800,
+      "reducedMotion": true,
+      "pageHeight": 5061,
+      "horizontalOverflow": false,
+      "file": "company-390x800-reduced-motion.jpg"
+    },
+    {
+      "route": "/investors-partners/",
+      "width": 390,
+      "viewportHeight": 800,
+      "reducedMotion": true,
+      "pageHeight": 6549,
+      "horizontalOverflow": false,
+      "file": "investors-partners-390x800-reduced-motion.jpg"
+    },
+    {
+      "route": "/careers/",
+      "width": 390,
+      "viewportHeight": 800,
+      "reducedMotion": true,
+      "pageHeight": 5404,
+      "horizontalOverflow": false,
+      "file": "careers-390x800-reduced-motion.jpg"
+    },
+    {
+      "route": "/contact/",
+      "width": 390,
+      "viewportHeight": 800,
+      "reducedMotion": true,
+      "pageHeight": 2866,
+      "horizontalOverflow": false,
+      "file": "contact-390x800-reduced-motion.jpg"
+    },
+    {
+      "route": "/404.html",
+      "width": 390,
+      "viewportHeight": 800,
+      "reducedMotion": true,
+      "pageHeight": 1844,
+      "horizontalOverflow": false,
+      "file": "404-390x800-reduced-motion.jpg"
+    },
+    {
+      "route": "/",
+      "width": 1440,
+      "viewportHeight": 900,
+      "reducedMotion": true,
+      "pageHeight": 5384,
+      "horizontalOverflow": false,
+      "file": "home-1440x900-reduced-motion.jpg"
+    },
+    {
+      "route": "/apps/",
+      "width": 1440,
+      "viewportHeight": 900,
+      "reducedMotion": true,
+      "pageHeight": 4435,
+      "horizontalOverflow": false,
+      "file": "apps-1440x900-reduced-motion.jpg"
+    },
+    {
+      "route": "/apps/looks-max/",
+      "width": 1440,
+      "viewportHeight": 900,
+      "reducedMotion": true,
+      "pageHeight": 4892,
+      "horizontalOverflow": false,
+      "file": "apps-looks-max-1440x900-reduced-motion.jpg"
+    },
+    {
+      "route": "/apps/iq-max/",
+      "width": 1440,
+      "viewportHeight": 900,
+      "reducedMotion": true,
+      "pageHeight": 5784,
+      "horizontalOverflow": false,
+      "file": "apps-iq-max-1440x900-reduced-motion.jpg"
+    },
+    {
+      "route": "/apps/sleep-max/",
+      "width": 1440,
+      "viewportHeight": 900,
+      "reducedMotion": true,
+      "pageHeight": 5139,
+      "horizontalOverflow": false,
+      "file": "apps-sleep-max-1440x900-reduced-motion.jpg"
+    },
+    {
+      "route": "/apps/fitness-max/",
+      "width": 1440,
+      "viewportHeight": 900,
+      "reducedMotion": true,
+      "pageHeight": 5220,
+      "horizontalOverflow": false,
+      "file": "apps-fitness-max-1440x900-reduced-motion.jpg"
+    },
+    {
+      "route": "/platform/",
+      "width": 1440,
+      "viewportHeight": 900,
+      "reducedMotion": true,
+      "pageHeight": 4562,
+      "horizontalOverflow": false,
+      "file": "platform-1440x900-reduced-motion.jpg"
+    },
+    {
+      "route": "/company/",
+      "width": 1440,
+      "viewportHeight": 900,
+      "reducedMotion": true,
+      "pageHeight": 4434,
+      "horizontalOverflow": false,
+      "file": "company-1440x900-reduced-motion.jpg"
+    },
+    {
+      "route": "/investors-partners/",
+      "width": 1440,
+      "viewportHeight": 900,
+      "reducedMotion": true,
+      "pageHeight": 5073,
+      "horizontalOverflow": false,
+      "file": "investors-partners-1440x900-reduced-motion.jpg"
+    },
+    {
+      "route": "/careers/",
+      "width": 1440,
+      "viewportHeight": 900,
+      "reducedMotion": true,
+      "pageHeight": 4250,
+      "horizontalOverflow": false,
+      "file": "careers-1440x900-reduced-motion.jpg"
+    },
+    {
+      "route": "/contact/",
+      "width": 1440,
+      "viewportHeight": 900,
+      "reducedMotion": true,
+      "pageHeight": 2838,
+      "horizontalOverflow": false,
+      "file": "contact-1440x900-reduced-motion.jpg"
+    },
+    {
+      "route": "/404.html",
+      "width": 1440,
+      "viewportHeight": 900,
+      "reducedMotion": true,
+      "pageHeight": 1992,
+      "horizontalOverflow": false,
+      "file": "404-1440x900-reduced-motion.jpg"
+    }
+  ]
+}

@@ -41,4 +41,9 @@ Implemented October 18, 2026. This pass makes the Site faster to act on and easi
   - Hovering the Company link sent one `/company/` request with `Sec-Purpose: prefetch`.
   - The click was served from that prefetch (`deliveryType: navigational-prefetch`).
   - Hovering a screenshot link prefetched nothing.
-  - Phone viewport heuristics were not tested.
+  - After the merge, the same test passed on https://solarityai.com, and the hover sent no analytics beacon.
+  - On phones, a separate headless Chrome emulated an Android device at 390x844 with touch input:
+    - Touching Investor inquiries prefetched the contact page before the finger lifted.
+    - The navigation used that prefetch.
+    - No analytics or form request was sent.
+  - Chrome for Android (138 and later) also prefetches after a 500 ms scroll pause. Desktop Chrome does not implement that heuristic, so it needs a real Android device to observe.
