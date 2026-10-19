@@ -19,8 +19,8 @@
       "speculation_rules": "Prefetch same-origin pages on intent (moderate); never prerender",
       "external_scripts": [],
       "javascript_bytes": 4555,
-      "html_bytes": 72169,
-      "html_gzip_bytes": 17309
+      "html_bytes": 72935,
+      "html_gzip_bytes": 17471
     },
     "/apps": {
       "source_bytes": 128062,
@@ -199,8 +199,8 @@
       "speculation_rules": "Prefetch same-origin pages on intent (moderate); never prerender",
       "external_scripts": [],
       "javascript_bytes": 4555,
-      "html_bytes": 72782,
-      "html_gzip_bytes": 17314
+      "html_bytes": 72966,
+      "html_gzip_bytes": 17368
     },
     "/careers": {
       "source_bytes": 128062,

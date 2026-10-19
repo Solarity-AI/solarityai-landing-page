@@ -16,9 +16,9 @@ def site_link(product, label=None, cls='text-link saas-site'):
             f'{e(label or product["domain"])} <span aria-hidden="true">↗</span>{NEW_TAB}</a>')
 
 
-def web_window(product, screen, sizes, eager=False):
+def web_window(product, screen, sizes, eager=False, low=False):
     """A real screenshot in a quiet browser frame that names the product's own address."""
-    loading = '' if eager else ' loading="lazy"'
+    loading = ('' if eager else ' loading="lazy"') + (' fetchpriority="low"' if low else '')
     focus = f' style="object-position:{e(screen["focus"])}"' if screen.get('focus') else ''
     tall = ' web-window--tall' if screen['height'] > screen['width'] * 0.9 else ''
     return (f'<span class="web-window{tall}"><span class="web-bar" aria-hidden="true"><i></i><i></i><i></i>'
@@ -35,7 +35,7 @@ def saas_wall(saas):
         cards.append(
             f'<li class="saas-card" id="home-{slug}">'
             f'<a class="saas-card-link" href="/platform#{slug}">'
-            f'{web_window(product, product["screens"][0], "(max-width: 850px) 92vw, 400px")}'
+            f'{web_window(product, product["screens"][0], "(max-width: 560px) calc(100vw - 72px), (max-width: 850px) calc(100vw - 96px), 400px", low=True)}'
             f'<span class="saas-card-copy"><span class="saas-stage">{e(product["stage"])}</span>'
             f'<strong>{name}</strong><small>{e(product["category"])}</small></span></a>'
             f'<p class="saas-card-tagline">{e(product["tagline"])}</p>'

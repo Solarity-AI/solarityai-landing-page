@@ -14,7 +14,7 @@
     "iq-max-icon.webp": "ca765c2fc4c1907475c4542e42cafcc0e302452ecf8e5786689adff761484f01",
     "sleep-max-icon.webp": "291d2db282087249bd6ba1fee24325de7cc7abc6030b2a8e3a73523e6ec29d11",
     "fitness-max-icon.webp": "7122f8246316b4a446fd4fe166e9dfb816b35f9e932968e629da461daa3e47e0",
-    "solar-ascent.webp": "fee06b897b31710a10c7d15ab2d93e552671a3e734708b2d1ddc73eb38cd219a",
+    "solar-ascent.webp": "51c5646c2913a004394f142f16c3f1b5ae32b14cdae148c505f5cae768709b83",
     "engineering-max-overview.webp": "dde4cecd3baebca07aac38dfa44f2fc94baec52e6e0f17bc975810911f47b051",
     "management-max-overview.webp": "4e2ce57bd248a9b7cf19ce6ad4d3c2f02fa1aec944081c24355731a4a11790de",
     "management-max-sources.webp": "a18dbeb66c1d53e3440689f05eb289a4e03a9c1c2c1ed2406f704f0edeb11866",
@@ -619,93 +619,141 @@
     "/assets/solar-ascent.webp": {
       "source": "/assets/solar-ascent.webp",
       "role": "hero",
-      "width": 1860,
-      "height": 845,
-      "original_bytes": 219990,
+      "width": 3720,
+      "height": 1690,
+      "original_bytes": 536066,
       "crop": null,
-      "derivative_width": 1860,
-      "derivative_height": 845,
+      "derivative_width": 3720,
+      "derivative_height": 1690,
       "webp": [
         {
-          "url": "/assets/optimized/solar-ascent-480.ac7a79e81d7d.webp",
+          "url": "/assets/optimized/solar-ascent-480.7bea5284cad7.webp",
           "width": 480,
           "height": 218,
-          "bytes": 20196,
-          "sha256": "ac7a79e81d7d788ea1c72af3e041f9bc8517a99e07b93ff481a5cc0262c22143",
+          "bytes": 19576,
+          "sha256": "7bea5284cad791eb13919934b34d1057cc1beefd19e14a06b6c0a965343e5915",
           "mime": "image/webp"
         },
         {
-          "url": "/assets/optimized/solar-ascent-768.a2934ffc2e78.webp",
+          "url": "/assets/optimized/solar-ascent-768.387666968778.webp",
           "width": 768,
           "height": 349,
-          "bytes": 41874,
-          "sha256": "a2934ffc2e78a90e4875ce791d002e57e1ff4be85c20ac5327fc6fcda3af2b48",
+          "bytes": 40772,
+          "sha256": "3876669687783b81bc4fc8217edd60bfaa8ac7888d92cf88fecfa15759758b50",
           "mime": "image/webp"
         },
         {
-          "url": "/assets/optimized/solar-ascent-1200.15de939dc709.webp",
+          "url": "/assets/optimized/solar-ascent-1200.6219e36c7cb0.webp",
           "width": 1200,
           "height": 545,
-          "bytes": 83448,
-          "sha256": "15de939dc70912570312542fa1b8441ae7ca7dfad5a66bce03c1b934e2b2222c",
+          "bytes": 81916,
+          "sha256": "6219e36c7cb04cf41da79ec461853b9192716523394382d05a1fdba8f1ed18b3",
           "mime": "image/webp"
         },
         {
-          "url": "/assets/optimized/solar-ascent-1440.4630e36e4141.webp",
+          "url": "/assets/optimized/solar-ascent-1440.6b5e4bf976b4.webp",
           "width": 1440,
           "height": 654,
-          "bytes": 104716,
-          "sha256": "4630e36e4141425698b06d3f22765df38c4ad5f619f7c119c8a0c2be1f04cfe1",
+          "bytes": 106840,
+          "sha256": "6b5e4bf976b430253f0e78a166e53c79021e7589ef27cb6eb196fecfa7239cad",
           "mime": "image/webp"
         },
         {
-          "url": "/assets/optimized/solar-ascent-1860.4ab107438b1a.webp",
+          "url": "/assets/optimized/solar-ascent-1860.eb3b49d31268.webp",
           "width": 1860,
           "height": 845,
-          "bytes": 155274,
-          "sha256": "4ab107438b1ad99207f04a0955178000bd9878e6c41cdc949d5e4134d46b7e6d",
+          "bytes": 153978,
+          "sha256": "eb3b49d31268d5b1a9f6fed380ab9469ba2e5d188d5701066c25d74b1c491488",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/solar-ascent-2560.5a1169020a4b.webp",
+          "width": 2560,
+          "height": 1163,
+          "bytes": 230824,
+          "sha256": "5a1169020a4b8dc585f51966b28be241b033dfb2f3b1d9c990d39ff048235c90",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/solar-ascent-3200.14297afcd9e8.webp",
+          "width": 3200,
+          "height": 1454,
+          "bytes": 298096,
+          "sha256": "14297afcd9e8a4975d7ab364699f282f3500165cb612e1e2c2cf0e7bc400dafd",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/solar-ascent-3720.57774824d9a4.webp",
+          "width": 3720,
+          "height": 1690,
+          "bytes": 366750,
+          "sha256": "57774824d9a41734efe471bb644fd7634201e558d6f6314759060f48fed3852c",
           "mime": "image/webp"
         }
       ],
       "avif": [
         {
-          "url": "/assets/optimized/solar-ascent-480.e83c42387514.avif",
+          "url": "/assets/optimized/solar-ascent-480.e2631c9bf565.avif",
           "width": 480,
           "height": 218,
-          "bytes": 16429,
-          "sha256": "e83c42387514892617047cefa6cdaa69d7a4df57dd42e389587621df030eef66",
+          "bytes": 15865,
+          "sha256": "e2631c9bf565f011fe717617714e563187e2f08a22060640fea613a144f26117",
           "mime": "image/avif"
         },
         {
-          "url": "/assets/optimized/solar-ascent-768.c3a09a25e15c.avif",
+          "url": "/assets/optimized/solar-ascent-768.661501130655.avif",
           "width": 768,
           "height": 349,
-          "bytes": 34543,
-          "sha256": "c3a09a25e15c4771306d92f5666f94f2016dbd79b28302473a03845d706b9f00",
+          "bytes": 33425,
+          "sha256": "6615011306554ce0635ca8ea6fce5fa80d5914415d98b531996344e19db0056e",
           "mime": "image/avif"
         },
         {
-          "url": "/assets/optimized/solar-ascent-1200.2dfd1527d27d.avif",
+          "url": "/assets/optimized/solar-ascent-1200.2b7184542934.avif",
           "width": 1200,
           "height": 545,
-          "bytes": 69470,
-          "sha256": "2dfd1527d27d00a79e5fa65e7d428d608479acd255a45b5562e5b03665f884f5",
+          "bytes": 68238,
+          "sha256": "2b71845429342a5565396a3208a65e9166e4c48f672295352240cb2c65648a05",
           "mime": "image/avif"
         },
         {
-          "url": "/assets/optimized/solar-ascent-1440.5f9efc614f94.avif",
+          "url": "/assets/optimized/solar-ascent-1440.c5eb08cd32b4.avif",
           "width": 1440,
           "height": 654,
-          "bytes": 90890,
-          "sha256": "5f9efc614f940658e1596d5d5a59b90a57d09a2609ed646c1bfa45507dcae11e",
+          "bytes": 89429,
+          "sha256": "c5eb08cd32b43f077c8437cb33752306a1eaebe6681cb9c57cea09effe5d9e45",
           "mime": "image/avif"
         },
         {
-          "url": "/assets/optimized/solar-ascent-1860.ab965179a93b.avif",
+          "url": "/assets/optimized/solar-ascent-1860.cf4f62e35efe.avif",
           "width": 1860,
           "height": 845,
-          "bytes": 128441,
-          "sha256": "ab965179a93b2e0d0ad3d3800843811bd1e4dacf14f6dc4c81a6e46a06b62e19",
+          "bytes": 128239,
+          "sha256": "cf4f62e35efe5068de96702b08b036372c31765aeec5075a9627c1d3be444383",
+          "mime": "image/avif"
+        },
+        {
+          "url": "/assets/optimized/solar-ascent-2560.4d2155714e65.avif",
+          "width": 2560,
+          "height": 1163,
+          "bytes": 191995,
+          "sha256": "4d2155714e65a024651642e7807c9ab2c913ee1dbaf1999171c0a7ff0f96c036",
+          "mime": "image/avif"
+        },
+        {
+          "url": "/assets/optimized/solar-ascent-3200.bc3debe95634.avif",
+          "width": 3200,
+          "height": 1454,
+          "bytes": 252677,
+          "sha256": "bc3debe956345915daa22468e359b42ba657563960616430bfdc208492c816ce",
+          "mime": "image/avif"
+        },
+        {
+          "url": "/assets/optimized/solar-ascent-3720.cac5c09da129.avif",
+          "width": 3720,
+          "height": 1690,
+          "bytes": 307668,
+          "sha256": "cac5c09da12975ffe01cc2cdcb59e9ea18111fa961a4da7a45b2b0cefc97eddd",
           "mime": "image/avif"
         }
       ]

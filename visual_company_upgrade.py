@@ -121,7 +121,7 @@ def founder_booking(btn, booking, email='ata.turhan@solarityai.com'):
             '<div class="founder-booking-action">' + btn('View available times', booking, 'primary', True)
             + btn('Email Ata', 'mailto:' + email, 'outline') + '</div></div>'
             '<figure class="booking-reprise"><img src="/assets/solar-ascent.webp" alt="A person climbing mountain steps toward a golden sunrise above the clouds" '
-            'width="1860" height="845" sizes="(max-width: 850px) 92vw, 600px" loading="lazy" decoding="async">'
+            'width="3720" height="1690" sizes="(max-width: 850px) 92vw, 600px" loading="lazy" decoding="async">'
             '<figcaption>Conceptual brand artwork</figcaption></figure></section>')
 
 

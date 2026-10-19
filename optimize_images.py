@@ -41,7 +41,8 @@ EDGE_LIMIT = 40
 # Trim against a stricter limit so resampled derivatives still pass the 40-level check.
 EDGE_TRIM_LIMIT = 30
 EDGE_MAX_INSET = 32
-SUNRISE_WIDTHS = (480, 768, 1200, 1440, 1860)
+# The hero master is the approved artwork upscaled 2x (research-assets/solar-ascent-artwork.json).
+SUNRISE_WIDTHS = (480, 768, 1200, 1440, 1860, 2560, 3200, 3720)
 # Web app screenshots from the products' own sites (research-assets/saas-evidence.json).
 WEB_WIDTHS = (640, 960, 1440, 1920, 2560)
 WEBP_QUALITY = 86

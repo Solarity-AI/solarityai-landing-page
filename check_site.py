@@ -192,7 +192,7 @@ for file,d in docs.items():
         primary_images=[a for t,a in d.tags if t=='img' and 'progress-hero-image' in a.get('class','').split()]
         hero_sources=[a for t,a in d.tags if t=='source' and a.get('type')=='image/avif' and 'solar-ascent-' in a.get('srcset','')]
         if len(primary_images)!=1 or 'solar-ascent-' not in primary_images[0].get('src',''):errors.append(f'{rel}: hero must use the founder-approved atmospheric sunrise artwork')
-        if primary_images and (primary_images[0].get('width')!='1860' or primary_images[0].get('height')!='845'):errors.append(f'{rel}: hero must reserve the correct intrinsic dimensions')
+        if primary_images and (primary_images[0].get('width')!='3720' or primary_images[0].get('height')!='1690'):errors.append(f'{rel}: hero must reserve the correct intrinsic dimensions')
         if len(primary_images)!=1 or primary_images[0].get('loading')!='eager' or primary_images[0].get('fetchpriority')!='high':errors.append(f'{rel}: hero artwork must load eagerly at high priority')
         if len(hero_sources)!=1 or not primary_images or hero_sources[0].get('sizes')!=primary_images[0].get('sizes'):errors.append(f'{rel}: hero AVIF and WebP must share the rendered image-size contract')
         # The founder removed the hero caption on 2026-10-19; the artwork keeps its descriptive alt text.
