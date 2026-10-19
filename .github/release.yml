@@ -1,0 +1,17 @@
+changelog:
+  exclude:
+    labels: [skip-changelog]
+    authors: [dependabot]
+  categories:
+    - title: Content
+      labels: [content]
+    - title: Design
+      labels: [design, assets]
+    - title: Build and delivery
+      labels: [build, scripts]
+    - title: Checks and CI
+      labels: [checks, ci]
+    - title: Documentation
+      labels: [documentation]
+    - title: Other changes
+      labels: ['*']

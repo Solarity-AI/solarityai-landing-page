@@ -2,6 +2,7 @@ name: Site checks
 
 on:
   pull_request:
+  merge_group:
   push:
     branches:
       - develop
@@ -9,6 +10,11 @@ on:
 
 permissions:
   contents: read
+
+# A newer push to the same pull request replaces the run in progress; develop runs always finish.
+concurrency:
+  group: site-checks-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   build:
@@ -18,11 +24,15 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+          cache: pip
+          cache-dependency-path: requirements.txt
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -36,14 +46,29 @@ jobs:
         run: python build_site.py
 
       - name: Committed dist matches its sources
-        run: git diff --exit-code --stat -- dist
+        run: |
+          if ! git diff --exit-code --stat -- dist site-pages.json; then
+            echo "::error title=Stale build output::Run python build_site.py and commit dist/ and site-pages.json."
+            exit 1
+          fi
 
       - name: Static audit
-        run: python check_site.py
+        run: |
+          status=0
+          python check_site.py > static-audit-ci.json || status=$?
+          python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import json
+          audit = json.load(open('static-audit-ci.json', encoding='utf-8'))
+          errors, warnings = audit.get('errors', []), audit.get('warnings', [])
+          print('### Static audit')
+          print(f'{len(errors)} errors · {len(warnings)} warnings')
+          for item in errors:
+              print(f'- {item}')
+          PY
+          exit "$status"
 
       - name: Python tests
         run: python -m unittest test_optimize_styles.py test_site_urls.py
 
       - name: Node tests
         run: node --test test-navigation.cjs test-contact.cjs test-gallery.cjs test-careers.cjs test-copy.cjs
-

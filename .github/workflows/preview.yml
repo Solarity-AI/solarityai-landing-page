@@ -1,0 +1,99 @@
+name: Preview
+
+# Every branch gets a Cloudflare Pages preview. This waits until the pull request's preview serves its
+# committed dist/, smoke-tests it, and records Lighthouse reports (informational: lab scores vary by runner).
+on:
+  pull_request:
+    branches:
+      - develop
+
+permissions:
+  contents: read
+
+concurrency:
+  group: preview-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  preview:
+    name: Smoke test and Lighthouse
+    # Pull requests from forks have no preview deployment.
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    environment:
+      name: preview
+      url: ${{ steps.url.outputs.url }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Preview address
+        id: url
+        env:
+          BRANCH: ${{ github.head_ref }}
+        run: |
+          # Cloudflare's branch alias: lowercase, runs of other characters become "-", at most 28 characters.
+          alias=$(python -c "import os,re;a=re.sub(r'[^a-z0-9]+','-',os.environ['BRANCH'].lower()).strip('-');print(a[:28].strip('-'))")
+          echo "url=https://${alias}.solarityai-landing-page.pages.dev" >> "$GITHUB_OUTPUT"
+
+      - name: Wait for the preview, then smoke-test it
+        env:
+          PREVIEW: ${{ steps.url.outputs.url }}
+        run: |
+          for attempt in $(seq 1 24); do
+            if python deploy/smoke_test.py "$PREVIEW" > smoke.txt 2>&1; then
+              cat smoke.txt
+              { echo "### Preview: $PREVIEW"; echo; tail -n 2 smoke.txt; } >> "$GITHUB_STEP_SUMMARY"
+              exit 0
+            fi
+            echo "Attempt $attempt: preview not ready or not matching yet"
+            sleep 30
+          done
+          cat smoke.txt
+          { echo "### Preview failed the smoke test: $PREVIEW"; echo; echo '```'; tail -n 40 smoke.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+          exit 1
+
+      - name: Lighthouse (mobile)
+        env:
+          PREVIEW: ${{ steps.url.outputs.url }}
+        run: |
+          mkdir -p lighthouse
+          for route in / /platform/ /investors-partners/; do
+            name=$(echo "$route" | tr -c 'a-z0-9\n' '-' | sed 's/^-*//;s/-*$//'); name=${name:-home}
+            npx --yes lighthouse@13.5.0 "$PREVIEW$route" --quiet --output=json --output=html \
+              --output-path="lighthouse/$name" --chrome-flags="--headless=new --no-sandbox" || true
+          done
+          python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import glob, json
+          print('### Lighthouse, mobile (informational)')
+          print('| Page | Performance | Accessibility | Best practices | SEO | LCP |')
+          print('|---|---|---|---|---|---|')
+          for path in sorted(glob.glob('lighthouse/*.report.json')):
+              report = json.load(open(path, encoding='utf-8'))
+              score = lambda key: round((report['categories'][key]['score'] or 0) * 100)
+              lcp = report['audits']['largest-contentful-paint']['displayValue']
+              page = report['finalDisplayedUrl'].split('.dev', 1)[-1] or '/'
+              print(f"| {page} | {score('performance')} | {score('accessibility')} | {score('best-practices')} | {score('seo')} | {lcp} |")
+          PY
+
+      - name: Keep the Lighthouse reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-pr-${{ github.event.pull_request.number }}
+          path: lighthouse/
+          retention-days: 14
+          if-no-files-found: ignore

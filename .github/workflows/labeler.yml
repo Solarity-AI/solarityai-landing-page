@@ -1,0 +1,21 @@
+name: Labeler
+
+# Labels pull requests by the area they change (.github/labeler.yml). pull_request_target lets this run for
+# forks too; it never checks out or runs the pull request's code.
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  label:
+    name: Label by area
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/labeler@v5
+        with:
+          sync-labels: true
