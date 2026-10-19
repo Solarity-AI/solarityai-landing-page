@@ -165,4 +165,52 @@
 @media print{
  .catalog-anchor-nav,.breadcrumbs,.screenshot-enlarge{display:none}.catalog-page-intro{display:block;padding-block:16pt}.catalog-intro-description{margin-top:12pt}.catalog-product-list{gap:20pt;padding-block:20pt}.catalog-product-row{break-inside:avoid}.screenshot-stage,.product-story-image{background:none;padding:10pt}.store-screen,.catalog-product-art .store-screen,.product-story-image img{width:100px;box-shadow:none}.product-hero,.product-world[data-product="iq-max"] .product-hero,.product-world[data-product="sleep-max"] .product-hero{grid-template-columns:1.3fr 1fr;grid-template-areas:"title art" "copy art";gap:18pt;padding-block:20pt}.product-hero-heading,.product-world[data-product="sleep-max"] .product-hero-heading{text-align:left}.product-story{padding-block:20pt}.product-story-heading{margin-bottom:18pt}.product-story-step{break-inside:avoid;gap:20pt}.product-story-copy h3{font-size:20pt}.product-story[data-story-layout="asymmetric"] .product-story-step:nth-child(2){margin-top:0}.product-story-grid{gap:24pt}.product-features{padding-block:20pt}.illustrated-features{grid-template-columns:repeat(3,minmax(0,1fr));gap:20pt}.feature-tile{break-inside:avoid}.product-note{padding-block:12pt}.product-connect,.related-apps{padding-block:20pt}.product-connect h2,.related-intro h2{font-size:24pt}.related-apps nav a{break-inside:avoid;padding-block:12pt}
 }
+/* P5b. The stage: a pool of world light around the real image, feathered so no box edge shows. */
+.screenshot-stage,.product-story-image{position:relative;isolation:isolate;overflow:visible;padding:48px 24px;border-radius:0;background:none;box-shadow:none}
+.screenshot-stage::before,.product-story-image::before{content:"";position:absolute;z-index:-1;inset:-4% -12%;pointer-events:none;background:var(--world-deep);background:radial-gradient(55% 48% at 68% 26%,color-mix(in oklab,var(--world) 44%,transparent),transparent 72%),radial-gradient(62% 22% at 50% 94%,color-mix(in oklab,var(--world) 28%,transparent),transparent 70%),var(--world-deep);-webkit-mask-image:radial-gradient(closest-side,#000 56%,transparent);mask-image:radial-gradient(closest-side,#000 56%,transparent)}
+/* Product opening: the name is the title, the slogan the deck, badges directly under the copy. */
+.product-hero{grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);row-gap:24px;align-items:center}
+.product-identity{flex-direction:column;align-items:flex-start;gap:18px;margin-bottom:22px}
+.product-identity .detail-icon{width:104px;height:104px;box-shadow:0 0 0 1px rgb(255 255 255/.08),0 22px 64px color-mix(in oklab,var(--world) 55%,transparent)}
+.product-hero h1{max-width:none}
+@media(min-width:851px){.product-hero h1{white-space:nowrap}}
+.product-deck{margin-top:18px;max-width:24ch;font-family:var(--font-display);font-size:var(--type-sub);line-height:1.25;color:var(--text)}
+.product-hero .lede{max-width:44ch;font-size:var(--type-body);line-height:1.7;color:var(--muted)}
+/* The opening shows a 3:4 window on the UI below each poster's headline; Enlarge opens the full image. */
+.product-hero-art .store-screen.plate--window{width:420px;aspect-ratio:3/4;object-fit:cover}
+.product-get .store-badges{margin-top:28px}
+.store-badges{display:flex;flex-wrap:wrap;align-items:center;gap:12px 28px}
+.store-badge{display:inline-flex;align-items:center;gap:10px;min-height:48px;color:var(--gold);text-decoration:none}
+.store-badge img{display:block;height:48px;width:auto}
+/* Google's official artwork carries its own padding; this sets both badges to the same visual height. */
+.store-badge--google img{height:70px;margin-block:-11px;margin-inline:-9px}
+.store-badge-arrow{font-size:var(--text-sm);line-height:1}
+.store-badge:focus-visible{outline-offset:6px}
+.product-hero .product-store-name{margin-top:16px}
+/* Sleep Max opens as one centered night scene; its badges sit within the first screen. */
+.product-world[data-product="sleep-max"] .product-hero{grid-template-columns:minmax(0,1fr);grid-template-areas:"title" "copy" "art";justify-items:center;text-align:center;row-gap:20px}
+.product-world[data-product="sleep-max"] .product-hero-heading{max-width:880px;text-align:center;padding:0}
+.product-world[data-product="sleep-max"] .product-identity{align-items:center}
+.product-world[data-product="sleep-max"] .product-deck{margin-inline:auto}
+.product-world[data-product="sleep-max"] .product-hero-copy{max-width:52ch;align-self:start}
+.product-world[data-product="sleep-max"] .product-hero .lede{margin-inline:auto}
+.product-world[data-product="sleep-max"] .store-badges{justify-content:center}
+/* The product close: its own world, with the badges and one inquiry path. */
+.product-close{position:relative;isolation:isolate;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:40px 64px;padding-block:clamp(88px,9vw,140px)}
+.product-close::before{content:"";position:absolute;z-index:-1;pointer-events:none;inset:0 -100vmax;background:var(--world-deep);background:var(--grain),radial-gradient(48% 30% at 50% 68%,color-mix(in oklab,var(--world) 30%,transparent),transparent),linear-gradient(var(--bg),var(--world-deep) 45%,var(--bg))}
+.product-close-icon{width:64px;height:64px;border-radius:var(--radius-icon);margin-bottom:24px}
+.product-close h2{max-width:20ch;margin-bottom:16px}
+.product-close p{font-size:var(--text-md);line-height:1.8;max-width:50ch}
+.product-close-actions{display:grid;gap:18px;justify-items:start}
+@media(max-width:1024px){.product-hero-art .store-screen.plate--window{width:340px}}
+@media(max-width:850px){
+ .product-hero,.product-world[data-product="iq-max"] .product-hero{grid-template-columns:minmax(0,1fr);grid-template-areas:"title" "copy" "art"}
+ .product-close{grid-template-columns:minmax(0,1fr)}
+}
+@media(max-width:640px){
+ .product-hero-art .store-screen.plate--window{width:min(318px,78vw)}
+ .product-identity .detail-icon{width:80px;height:80px}
+ .store-badges{gap:10px 20px}
+ .store-badge img{height:44px}.store-badge--google img{height:64px;margin-block:-10px;margin-inline:-8px}
+}
 }
