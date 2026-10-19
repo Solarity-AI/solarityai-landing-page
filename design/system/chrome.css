@@ -89,6 +89,44 @@
   /* Phones: the directory sits in two columns and Contact pairs its four links, so the footer stays under 0.75 viewport. */
   .footer-group h2{margin-bottom:6px}.footer-directory{padding-block:0 20px}
  }
+ /* The app factory map (Platform and Home): the store-listed apps are the lit source on a horizon, and the three
+    directions are outlined vision nodes. Connectors are dashed: they read as informing the direction, never as integrations. */
+ .pmap{min-width:0;margin:0}
+ .pmap-stage{position:relative;isolation:isolate;padding:clamp(28px,3.5vw,44px) clamp(18px,2.6vw,36px) clamp(22px,2.8vw,32px);border-radius:var(--radius-panel);background:var(--grain),radial-gradient(56% 42% at 50% 20%,rgb(255 190 110/.17),rgb(255 190 110/0)),linear-gradient(var(--tone-night),var(--tone-blue));box-shadow:inset 0 0 0 1px var(--line-soft)}
+ .pmap-source{position:relative;display:grid;justify-items:center;gap:16px}
+ .pmap-source::before{content:"";position:absolute;z-index:-1;left:4%;right:4%;top:28px;height:1px;background:var(--horizon);opacity:.75}
+ .pmap-apps{display:flex;justify-content:center;gap:clamp(12px,2vw,22px);list-style:none;padding:0;margin:0}
+ .pmap-apps a{display:block;border-radius:var(--radius-icon)}
+ .pmap-apps img{display:block;width:56px;height:56px;border-radius:var(--radius-icon);box-shadow:0 0 0 1px rgb(255 255 255/.12),0 0 30px -2px var(--world)}
+ .pmap-source .status{color:var(--text)}
+ .pmap-arcs{display:block;width:100%;height:64px;margin-top:6px;color:var(--bronze)}
+ .pmap-nodes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;list-style:none;padding:0;margin:0}
+ .pmap-nodes>li{display:flex;min-width:0}
+ .pmap-node{display:flex;flex-direction:column;align-items:center;gap:4px;width:100%;padding:16px 12px 12px;border:1px dashed var(--bronze);border-radius:var(--radius-plate);text-align:center;color:var(--text);text-decoration:none}
+ .pmap-word{font-family:var(--font-display);font-size:var(--type-sub);line-height:1.1;color:var(--sand)}
+ .pmap-node strong{font-size:var(--type-meta);font-weight:600;line-height:1.4}
+ .pmap-caption{font-size:var(--type-label);line-height:1.5;color:var(--muted)}
+ .pmap-node .status{margin-top:auto;padding-top:8px}
+ a.pmap-node:hover,a.pmap-node:focus-visible{border-color:var(--sand);background:rgb(255 207 122/.05)}
+ .pmap-legend{display:grid;gap:8px;margin-top:16px;font-size:var(--type-label);line-height:1.65;color:var(--muted)}
+ .pmap-keys{display:flex;flex-wrap:wrap;gap:0 20px}
+ .pmap-keys .status{padding:0}
+ .pmap-note strong{color:var(--text);font-weight:600}
+ /* Phones: a compact vertical map, with the icons above a glowing line that runs past three outlined nodes. */
+ @media(max-width:560px){
+  .pmap-stage{padding:24px 16px 18px}
+  .pmap-apps img{width:48px;height:48px}
+  .pmap-source::before{top:24px}
+  .pmap-arcs{display:none}
+  .pmap-nodes{position:relative;grid-template-columns:minmax(0,1fr);gap:8px;margin-top:18px;padding-left:22px}
+  .pmap-nodes::before{content:"";position:absolute;left:6px;top:-12px;bottom:18px;width:1px;background:linear-gradient(var(--sun-core),var(--bronze) 45%,rgb(156 116 70/0))}
+  .pmap-node{display:grid;grid-template-columns:5.5em minmax(0,1fr);align-items:center;gap:0 12px;padding:10px 14px;text-align:left}
+  .pmap-word{grid-row:1 / 3;font-size:var(--text-xl)}
+  .pmap-caption{display:none}
+  .pmap-node .status{grid-column:2;margin:0;padding:0}
+ }
+ @media(forced-colors:active){.pmap-stage{background:Canvas;box-shadow:none;border:1px solid CanvasText}.pmap-source::before,.pmap-nodes::before{background:CanvasText}.pmap-node{border-color:CanvasText}.pmap-arcs{color:CanvasText}}
+ @media print{.pmap-stage{background:none;box-shadow:none;border:1px solid currentColor}.pmap-arcs{display:none}}
  @media(max-width:390px){.header-inner{gap:8px}.brand-sun{width:26px;height:26px}.header-actions .button{padding-inline:10px;gap:8px}}
  @media print{body[data-page='/'] .site-header{margin-bottom:0}}
 }

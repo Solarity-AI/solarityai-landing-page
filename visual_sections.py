@@ -17,9 +17,6 @@ _ICONS = {
     'diary': '<path d="M5 3h13a1 1 0 0 1 1 1v17H6a3 3 0 0 1-3-3V5a2 2 0 0 1 2-2ZM6 3v14M3 18a2 2 0 0 1 2-2h14M10 7h5M10 11h4"/>',
     'routine': '<circle cx="12" cy="12" r="8"/><path d="M12 7v5l3 2M5 3 3 5M19 3l2 2M8 21l-1 1M16 21l1 1"/>',
     'wind-down': '<path d="M15 3a7 7 0 0 0 6 10 8 8 0 1 1-6-10Z"/><path d="M4 19c2-1 3-1 5 0s3 1 5 0 3-1 5 0"/>',
-    'build': '<path d="m8 7-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/>',
-    'operate': '<rect x="3" y="3" width="6" height="6" rx="1.5"/><rect x="15" y="3" width="6" height="6" rx="1.5"/><rect x="9" y="15" width="6" height="6" rx="1.5"/><path d="M6 9v3h12V9M12 12v3"/>',
-    'grow': '<path d="M4 20V4M4 20h16M8 16l4-5 4 2 5-8M16 5h5v5"/>',
     'training': '<path d="M3 8v8M6 6v12M18 6v12M21 8v8M6 12h12M3 12h3M18 12h3"/>',
     'nutrition': '<path d="M12 7c-5-4-10 1-8 7 2 6 5 7 8 5 3 2 6 1 8-5 2-6-3-11-8-7ZM12 7c-1-3 1-5 4-5"/>',
 }
@@ -64,37 +61,53 @@ def feature_grid(app):
     )
 
 
-def platform_map(modules):
-    """Return a conceptual lifecycle with ordinary links to module sections."""
-    stages = {
-        'engineering-max': ('Build', 'From requirements to review', 'build'),
-        'management-max': ('Operate', 'Priorities, ownership & delivery', 'operate'),
-        'marketing-max': ('Grow', 'Planning, storytelling & learning', 'grow'),
-    }
-    items = []
-    for slug, number, name, _title, _label, _description, _detail in modules:
-        stage, caption, icon = stages[slug]
-        items.append(
-            '<li><a class="lifecycle-stage" href="#' + escape(slug, quote=True)
-            + '"><span class="stage-top"><span class="stage-symbol">'
-            + _symbol(icon) + '</span><span class="stage-number">'
-            + escape(number) + '</span></span><span class="stage-action">'
-            + stage + '</span><strong>' + escape(name)
-            + '</strong><span class="stage-caption">' + escape(caption)
-            + '</span><span class="stage-link">Explore the direction '
-            '<span aria-hidden="true">↓</span></span></a></li>'
-        )
-    return (
-        '<section class="platform-map lifecycle-map wrap" '
-        'aria-labelledby="platform-map-heading"><div class="lifecycle-heading">'
-        '<div><p class="eyebrow">OUR INTENDED PRODUCT LIFECYCLE</p>'
-        '<h2 id="platform-map-heading">A connected direction.</h2></div>'
-        '<span class="lifecycle-badge">Platform vision</span></div>'
-        '<ol class="lifecycle-steps">' + ''.join(items) + '</ol>'
-        '<p class="lifecycle-note">Conceptual company strategy, not a depiction '
-        'of deployed architecture. Specific capabilities and integrations are '
-        'discussed with prospective partners.</p></section>'
-    )
+MAP_NODES = (
+    ('engineering-max', 'Build', 'Engineering Max', 'Requirements, implementation, review'),
+    ('management-max', 'Operate', 'Management Max', 'Priorities, ownership, delivery'),
+    ('marketing-max', 'Grow', 'Marketing Max', 'Planning, storytelling, learning'),
+)
+
+MAP_NOTE = ('Consumer product work informs the intended platform direction. '
+            'Connections shown do not represent deployed integrations.')
+
+
+def platform_map(apps, variant='platform'):
+    """The app factory as light: the store-listed apps are the lit source, the three directions are outlined vision.
+
+    The connectors read as "informs" (dashed, decorative) and never as deployed integrations. On Platform the
+    icons link to the apps and the nodes to the module sections; on Home the map is illustrative, and the
+    section's one "Explore the app factory" link leads on.
+    """
+    linked = variant == 'platform'
+    listed = [app for app in apps if app.get('apple') and app.get('google')]
+    icons = []
+    for app in listed:
+        slug, name = escape(app['slug'], quote=True), escape(app['name'])
+        img = ('<img src="/assets/' + slug + '-icon.webp" width="56" height="56" alt="' + name
+               + '" loading="lazy" decoding="async">')
+        icons.append('<li data-product-accent="' + escape(app['color'], quote=True) + '">'
+                     + ('<a href="/apps/' + slug + '">' + img + '</a>' if linked else img) + '</li>')
+    nodes = []
+    for slug, stage, name, caption in MAP_NODES:
+        body = ('<span class="pmap-word">' + stage + '</span><strong>' + escape(name) + '</strong>'
+                '<span class="pmap-caption">' + escape(caption) + '</span>'
+                '<span class="status vision"><i aria-hidden="true"></i>Vision</span>')
+        nodes.append('<li>' + ('<a class="pmap-node" href="#' + slug + '">' + body + '</a>' if linked
+                               else '<span class="pmap-node">' + body + '</span>') + '</li>')
+    names = ', '.join(escape(app['name']) for app in listed)
+    directions = '; '.join(stage + ', ' + escape(name) for _slug, stage, name, _caption in MAP_NODES)
+    return ('<figure class="pmap pmap--' + variant + '">'
+            '<div class="pmap-stage"><div class="pmap-source"><ul class="pmap-apps" aria-label="Consumer portfolio">'
+            + ''.join(icons) + '</ul><span class="status"><i aria-hidden="true"></i>Available on iOS&nbsp;&amp;&nbsp;Android</span></div>'
+            '<svg class="pmap-arcs" viewBox="0 0 600 80" width="600" height="80" fill="none" preserveAspectRatio="none" aria-hidden="true" focusable="false">'
+            '<path d="M300 0C300 44 100 36 100 80M300 0V80M300 0C300 44 500 36 500 80" stroke="currentColor" stroke-width="1.5" '
+            'stroke-dasharray="2 7" stroke-linecap="round" vector-effect="non-scaling-stroke"/></svg>'
+            '<ol class="pmap-nodes" aria-label="App factory vision">' + ''.join(nodes) + '</ol></div>'
+            '<figcaption class="pmap-legend"><span class="pmap-keys" aria-hidden="true">'
+            '<span class="status"><i></i>Live products</span><span class="status vision"><i></i>Vision</span></span>'
+            '<span class="pmap-note"><strong>Conceptual company strategy.</strong> ' + MAP_NOTE + '</span>'
+            '<span class="sr-only"> The diagram shows ' + str(len(listed)) + ' store-listed apps (' + names
+            + ') informing three vision directions: ' + directions + '.</span></figcaption></figure>')
 
 
 def founder_portrait(compact=False):

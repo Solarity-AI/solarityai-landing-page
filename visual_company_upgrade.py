@@ -64,9 +64,9 @@ def strategy_story(btn, contact):
 <p>Focused apps give the company a practical context for exploring better ways to build, operate, and grow mobile products.</p>
 <a class="text-link" href="/apps">Meet the consumer portfolio <span aria-hidden="true">→</span></a></div>
 <ol class="strategy-story-steps">
-<li><span class="strategy-story-number" aria-hidden="true">01</span><div><h3>Start with a specific human need.</h3><p>Self-care, cognitive practice, sleep, and fitness each call for a focused experience. Product choices start with that distinct purpose.</p></div></li>
-<li><span class="strategy-story-number" aria-hidden="true">02</span><div><h3>Learn from the work behind it.</h3><p>Requirements, priorities, releases, and product storytelling are part of bringing an app to people. These disciplines inform the app factory direction.</p></div></li>
-<li><span class="strategy-story-number" aria-hidden="true">03</span><div><h3>Develop patterns worth reusing.</h3><p>The ambition is to carry useful workflows into future products while preserving the judgment each one needs.</p><div class="strategy-story-disciplines"><a href="#engineering-max">Build <span aria-hidden="true">↓</span></a><a href="#management-max">Operate <span aria-hidden="true">↓</span></a><a href="#marketing-max">Grow <span aria-hidden="true">↓</span></a></div></div></li>
+<li><div><h3>Start with a specific human need.</h3><p>Self-care, cognitive practice, sleep, and fitness each call for a focused experience. Product choices start with that distinct purpose.</p></div></li>
+<li><div><h3>Learn from the work behind it.</h3><p>Requirements, priorities, releases, and product storytelling are part of bringing an app to people. These disciplines inform the app factory direction.</p></div></li>
+<li><div><h3>Develop patterns worth reusing.</h3><p>The ambition is to carry useful workflows into future products while preserving the judgment each one needs.</p></div></li>
 </ol>
 <div class="strategy-story-bottom"><p><strong>People remain responsible for the decisions.</strong><span>Architecture, product priorities, and releases need deliberate judgment. Reusable systems should support that work.</span></p></div>
 </section>'''
