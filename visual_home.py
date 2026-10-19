@@ -12,20 +12,23 @@ def hero_section(apps, btn, contact):
     )
     return f'''<section class="vision-hero" aria-labelledby="hero-title">
       <figure class="solar-hero-art" aria-labelledby="hero-image-caption">
-        <img class="progress-hero-image" src="/assets/solar-ascent.webp" alt="A person climbing mountain steps toward a golden sunrise above the clouds" width="1860" height="845" sizes="(max-width: 560px) 1013px, (max-width: 850px) 1431px, (max-width: 1805px) 1805px, 100vw" fetchpriority="high" loading="eager">
+        <img class="progress-hero-image" src="/assets/solar-ascent.webp" alt="A person climbing mountain steps toward a golden sunrise above the clouds" width="1860" height="845" sizes="(max-width: 560px) 1233px, 2113px" fetchpriority="high" loading="eager">
         <figcaption id="hero-image-caption">Conceptual brand artwork</figcaption>
       </figure>
       <div class="vision-story wrap">
         <div class="vision-copy">
-          <h1 id="hero-title">Building for<br><span>human<br class="hero-desktop-break"> potential.</span></h1>
+          <h1 id="hero-title">Building for<br>human <em>potential.</em></h1>
           <p class="vision-description">AI-powered self-improvement apps, and the systems we are developing to build, operate, and grow them.</p>
         </div>
         <div class="vision-actions">
-          <div class="actions">{btn('Investor inquiries',contact('Investor'))}<a class="text-link vision-partnership" href="{e(contact('Strategic partner'))}">Discuss a partnership <span aria-hidden="true">→</span></a></div>
-          <a class="text-link vision-explore" href="#our-products">Explore our products <span aria-hidden="true">↓</span></a>
+          <div class="actions">{btn('Investor inquiries',contact('Investor'))}{btn('Partnership inquiries',contact('Strategic partner'),'outline')}</div>
         </div>
       </div>
-    </section><section class="hero-evidence wrap" aria-labelledby="hero-evidence-title"><div class="hero-evidence-heading"><h2 id="hero-evidence-title">From ambition to everyday practice.</h2><p>Four apps. iOS&nbsp;&amp;&nbsp;Android.</p></div><nav class="hero-evidence-products" aria-label="Store-listed Solarity AI apps">{products}</nav></section>'''
+      <div class="hero-credits wrap">
+        <nav class="hero-evidence-products" aria-label="Store-listed Solarity AI apps">{products}</nav>
+        <div class="hero-credits-aside"><p class="hero-credits-meta">Four apps · iOS&nbsp;&amp;&nbsp;Android</p><a class="text-link vision-explore" href="#our-products">Explore the portfolio <span aria-hidden="true">↓</span></a></div>
+      </div>
+    </section>'''
 
 
 def company_strategy(apps, btn, contact):
