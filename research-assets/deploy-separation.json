@@ -247,6 +247,12 @@
       "moved_to": "source-assets/iq-max-screen-1.webp",
       "bytes": 191644,
       "reason": "P5b: no page links the full-size IQ poster any more (IQ opens on its focus frame; Apps and Home link to product pages). Kept as the master for its optimized variants and for the planned P7 filmstrip."
+    },
+    {
+      "published_path": "/assets/solar-ascent-social.jpg",
+      "moved_to": "source-assets/solar-ascent-social.jpg",
+      "bytes": 123949,
+      "reason": "Replaced on 2026-10-19 by 1200x630 route images in /assets/social/ (make_social_images.py); no page references it"
     }
   ],
   "removed_generated": [

@@ -1,11 +1,11 @@
 from pathlib import Path
-import json, html, re, shutil
+import base64, hashlib, json, html, re, shutil
 from urllib.parse import urlencode
 from ux_components import app_breadcrumbs, related_apps, inquiry_panel
 from image_provenance import provenance
 from ux_content import investor_faq, recovery_links
 from visual_home import hero_section, closing_scene
-from visual_saas import saas_wall, saas_chapters
+from visual_saas import saas_wall, saas_chapters, apps_web_band
 from saas_products import SAAS
 from visual_sections import feature_grid, founder_card, founder_portrait
 from visual_team import selected_team
@@ -75,17 +75,51 @@ def intent_picker():
     options=[('Investor','Company & investment'),('Strategic partner','Build something together'),('Product inquiry','Talk about an app'),('Other','Start a conversation')]
     return '<fieldset class="intent-picker" id="intent-picker" hidden><legend>I’m reaching out about</legend><div>'+''.join(f'<label><input type="radio" name="inquiry-choice" value="{label}"><span><strong>{label}</strong><small>{desc}</small></span></label>' for label,desc in options)+'</div></fieldset>'
 
+def social_for(path):
+    """The link-preview image for a route (make_social_images.py), and its alt text."""
+    by_slug={a['slug']:a for a in APPS}
+    if path.startswith('/apps/') and path[6:] in by_slug:
+        a=by_slug[path[6:]]
+        return f'social/{a["slug"]}.jpg', f'{a["name"]}, {a["category"]}: the app icon beside official App Store imagery'
+    return {'/apps':('social/apps.jpg','The four Solarity AI app icons'),
+            '/platform':('social/platform.jpg','Engineering Max, Management Max and Marketing Max product screens'),
+            '/investors-partners':('social/investors.jpg','The four Solarity AI app icons')}.get(
+            path,('social/default.jpg','A person climbing mountain steps toward a golden sunrise above the clouds'))
+
+ORGANIZATION={'@type':'Organization','@id':ORIGIN+'/#organization','name':'Solarity AI','legalName':'Solarity AI LLC','url':ORIGIN+'/','logo':ORIGIN+'/assets/brand/solarity-sun-320.2513ba060440.webp','founder':{'@type':'Person','name':'Ata Turhan'},'email':EMAIL,'address':{'@type':'PostalAddress','addressLocality':'Irving','addressRegion':'Texas','addressCountry':'US'}}
+
+def structured_data(path,title,desc):
+    """schema.org data for a route: the organization everywhere, plus the products the page presents.
+    Only facts already on the page; no ratings, prices or categories the stores have not confirmed."""
+    url=ORIGIN+public_path(path)
+    graph=[ORGANIZATION]
+    publisher={'@id':ORIGIN+'/#organization'}
+    def mobile(a):
+        return {'@type':'MobileApplication','name':a['name'],'url':ORIGIN+public_path('/apps/'+a['slug']),'description':a['summary'],
+                'operatingSystem':'iOS, Android','image':ORIGIN+'/assets/'+a['slug']+'-icon.webp','sameAs':[a['apple'],a['google']],'publisher':publisher}
+    if path=='/':
+        graph.append({'@type':'WebSite','@id':ORIGIN+'/#website','name':'Solarity AI','url':ORIGIN+'/','publisher':publisher})
+    elif path=='/apps':
+        graph.append({'@type':'ItemList','name':title,'itemListElement':[{'@type':'ListItem','position':i+1,'item':mobile(a)} for i,a in enumerate(a for a in APPS if a.get('apple'))]})
+    elif path.startswith('/apps/'):
+        a=next(a for a in APPS if '/apps/'+a['slug']==path)
+        graph.append(mobile(a))
+        graph.append({'@type':'BreadcrumbList','itemListElement':[{'@type':'ListItem','position':1,'name':'Home','item':ORIGIN+'/'},{'@type':'ListItem','position':2,'name':'Apps','item':ORIGIN+public_path('/apps')},{'@type':'ListItem','position':3,'name':a['name'],'item':url}]})
+    elif path=='/platform':
+        graph.append({'@type':'ItemList','name':title,'itemListElement':[{'@type':'ListItem','position':i+1,'item':{'@type':'WebApplication','name':p['name'],'url':p['url'],'description':p['tagline'],'applicationCategory':'BusinessApplication','operatingSystem':'Web','publisher':publisher}} for i,p in enumerate(SAAS)]})
+    return {'@context':'https://schema.org','@graph':graph}
+
 NAV=[('/apps','Apps'),('/platform','Platform'),('/company','Company'),('/investors-partners','Investors & Partners'),('/careers','Careers')]
 def shell(path,title,desc,body):
     # email_off keeps Cloudflare Email Address Obfuscation from rewriting mailto links
     # and visible addresses, so the domain serves exactly what dist/ contains.
     robots = "noindex,follow" if path == "/404" else "index,follow"
-    social_image = 'solar-ascent-social.jpg'
+    social_image, social_alt = social_for(path)
     # Preloaded everywhere: with font-display optional it adds no Home LCP cost (2855 vs 2857 ms measured in P2).
     display_preload = f'<link rel="preload" href="{DISPLAY_FONT_URL}" as="font" type="font/woff2" crossorigin>'
-    data={'@context':'https://schema.org','@type':'Organization','name':'Solarity AI','legalName':'Solarity AI LLC','url':ORIGIN,'founder':{'@type':'Person','name':'Ata Turhan'},'email':EMAIL,'address':{'@type':'PostalAddress','addressLocality':'Irving','addressRegion':'Texas','addressCountry':'US'}}
+    data=structured_data(path,title,desc)
     return f'''<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{e(title)} | Solarity AI</title><meta name="description" content="{e(desc)}"><meta name="robots" content="{robots}"><meta name="referrer" content="strict-origin-when-cross-origin"><meta name="theme-color" content="#0f0d0b"><link rel="canonical" href="{ORIGIN}{public_path(path)}"><meta property="og:type" content="website"><meta property="og:title" content="{e(title)} | Solarity AI"><meta property="og:description" content="{e(desc)}"><meta property="og:url" content="{ORIGIN}{public_path(path)}"><meta property="og:image" content="{ORIGIN}/assets/{social_image}"><meta name="twitter:card" content="summary_large_image"><link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48"><link rel="icon" href="/assets/brand/solarity-sun-48.9bc99afc73e8.webp" type="image/webp" sizes="48x48"><link rel="preload" href="{FONT_URL}" as="font" type="font/woff2" crossorigin>{display_preload}<link rel="stylesheet" href="/assets/presentation.css"><script src="/assets/site.js" defer></script><script type="application/ld+json">{json.dumps(data)}</script></head>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{e(title)} | Solarity AI</title><meta name="description" content="{e(desc)}"><meta name="robots" content="{robots}"><meta name="referrer" content="strict-origin-when-cross-origin"><meta name="theme-color" content="#0f0d0b"><link rel="canonical" href="{ORIGIN}{public_path(path)}"><meta property="og:type" content="website"><meta property="og:title" content="{e(title)} | Solarity AI"><meta property="og:description" content="{e(desc)}"><meta property="og:url" content="{ORIGIN}{public_path(path)}"><meta property="og:image" content="{ORIGIN}/assets/{social_image}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="{e(social_alt)}"><meta property="og:site_name" content="Solarity AI"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="{ORIGIN}/assets/{social_image}"><link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48"><link rel="icon" href="/assets/brand/solarity-sun-48.9bc99afc73e8.webp" type="image/webp" sizes="48x48"><link rel="preload" href="{FONT_URL}" as="font" type="font/woff2" crossorigin>{display_preload}<link rel="stylesheet" href="/assets/presentation.css"><script src="/assets/site.js" defer></script><script type="application/ld+json">{json.dumps(data)}</script></head>
 <body data-page="{path}"><!--email_off--><a class="skip-link" href="#main">Skip to content</a>{site_header(path,NAV,btn)}
 <main id="main" tabindex="-1">{body}</main><dialog id="image-dialog" aria-labelledby="image-dialog-title"><div class="image-dialog-bar"><h2 id="image-dialog-title">App screenshot</h2><button type="button" id="image-dialog-close">Close preview <span aria-hidden="true">×</span></button></div><img id="image-dialog-image" alt="" width="600" height="1298"><div class="image-dialog-nav" id="image-dialog-nav" hidden><button type="button" id="image-dialog-prev"><span aria-hidden="true">←</span> Previous<span class="sr-only"> screenshot</span></button><span id="image-dialog-count" aria-live="polite"></span><button type="button" id="image-dialog-next">Next<span class="sr-only"> screenshot</span> <span aria-hidden="true">→</span></button></div><p id="image-dialog-caption" class="caption">{provenance()}</p></dialog>{site_footer(EMAIL,path,BOOKING)}<!--/email_off--></body></html>'''
 
@@ -95,7 +129,7 @@ products=portfolio_wall(APPS)
 founder_strip=f'''<section class="founder-strip wrap">{founder_portrait(compact=True)}<div><h2>Ata Turhan</h2><p>Building Solarity AI from Irving, Texas, with a focus on consumer products and the systems behind them.</p></div><a class="text-link" href="/company">Meet the company {ARROW}</a></section>'''
 pages['/']=('Building for human potential','AI-powered self-improvement apps, and three web apps for engineering, managing and marketing mobile products. Explore Solarity AI and connect with our founder.',hero+products+saas_wall(SAAS)+founder_strip+cta('Build on a shared ambition.','Explore the portfolio, discuss a partnership, or speak with the founder about the company’s direction.'))
 
-pages['/apps']=('Apps for everyday ambition','Discover Looks Max, IQ Max, Sleep Max and Fitness Max from Solarity AI.',portfolio_page(APPS,btn,app_art,product_status)+cta('Products with purpose.','Interested in distribution, product collaboration, or the wider Solarity AI story? Let’s start a conversation.'))
+pages['/apps']=('Apps for everyday ambition','Discover Looks Max, IQ Max, Sleep Max and Fitness Max, and the Engineering Max, Management Max and Marketing Max web apps from Solarity AI.',portfolio_page(APPS,btn,app_art,product_status)+apps_web_band(SAAS)+cta('Products with purpose.','Interested in distribution, product collaboration, or the wider Solarity AI story? Let’s start a conversation.'))
 
 for a in APPS:
     status=product_status(a,True)
@@ -147,7 +181,34 @@ AI_TRAINING_CRAWLERS=['GPTBot','Google-Extended','CCBot','anthropic-ai','Claude-
 # Previous solarityai.com URLs, redirected by Cloudflare Pages from _redirects.
 LEGACY_REDIRECTS=[('/careers.html','/careers/'),('/blog.html','/'),('/legal.html','/contact/'),('/docs/xtract-demo.html','/')]
 (DIST/'_redirects').write_text(''.join(f'{old} {new} 301\n' for old,new in LEGACY_REDIRECTS), encoding='utf-8', newline='\n')
-(DIST/'_headers').write_text('/*\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n  X-Frame-Options: SAMEORIGIN\n/404\n  X-Robots-Tag: noindex, follow\n/404.html\n  X-Robots-Tag: noindex, follow\n/assets/optimized/*\n  Cache-Control: public, max-age=31536000, immutable\n/assets/runtime/*\n  Cache-Control: public, max-age=31536000, immutable\n'+FONT_URL+'\n  Cache-Control: public, max-age=31536000, immutable\n'+DISPLAY_FONT_URL+'\n  Cache-Control: public, max-age=31536000, immutable\n', encoding='utf-8', newline='\n')
+def content_security_policy():
+    """A strict policy built from the pages just written: every inline script that runs is allowed by its
+    hash, so the policy can never go stale. JSON-LD is data and is not executed. Styles stay inline: each
+    route inlines its own CSS and a few images set their focus with a style attribute."""
+    hashes=set()
+    for page in DIST.rglob('*.html'):
+        for attrs,body in re.findall(r'<script([^>]*)>(.*?)</script>',page.read_text(encoding='utf-8'),re.S):
+            if 'src=' in attrs or 'application/ld+json' in attrs: continue
+            hashes.add("'sha256-"+base64.b64encode(hashlib.sha256(body.encode('utf-8')).digest()).decode()+"'")
+    return '; '.join([
+        "default-src 'self'",
+        "script-src 'self' "+' '.join(sorted(hashes))+" https://static.cloudflareinsights.com",
+        "style-src 'self' 'unsafe-inline'",
+        "img-src 'self' data:",
+        "font-src 'self'",
+        "connect-src 'self' https://cloudflareinsights.com",
+        "form-action 'self' https://formsubmit.co",
+        "frame-ancestors 'self'",
+        "base-uri 'self'",
+        "object-src 'none'",
+        "upgrade-insecure-requests",
+    ])
+
+SECURITY_HEADERS=('  Content-Security-Policy: '+content_security_policy()+'\n'
+                  '  Strict-Transport-Security: max-age=31536000\n'
+                  '  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), browsing-topics=()\n'
+                  '  Cross-Origin-Opener-Policy: same-origin\n')
+(DIST/'_headers').write_text('/*\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n  X-Frame-Options: SAMEORIGIN\n'+SECURITY_HEADERS+'/404\n  X-Robots-Tag: noindex, follow\n/404.html\n  X-Robots-Tag: noindex, follow\n/assets/optimized/*\n  Cache-Control: public, max-age=31536000, immutable\n/assets/runtime/*\n  Cache-Control: public, max-age=31536000, immutable\n'+FONT_URL+'\n  Cache-Control: public, max-age=31536000, immutable\n'+DISPLAY_FONT_URL+'\n  Cache-Control: public, max-age=31536000, immutable\n', encoding='utf-8', newline='\n')
 # dist/ holds exactly what pages reference. An unpublished approved file in
 # source-assets/ is published once a page references it; retired files never are.
 for url in sorted(referenced_assets):

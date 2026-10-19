@@ -9,7 +9,7 @@
   "source_prompt": "A person ascending mountain steps toward a natural atmospheric sunrise. Charcoal and gold palette, dark left space for headline. The corrected sun has no plasma or exposed solar texture.",
   "approval": "User: nice, now add it website perfectly",
   "asset": "/assets/solar-ascent.webp",
-  "social_asset": "/assets/solar-ascent-social.jpg",
+  "social_asset": "/assets/social/default.jpg (1200x630, from the build master; make_social_images.py). The earlier 1200x545 file is kept in source-assets/.",
   "transforms": "Build master: AI upscale 2x as described in build_master. Published variants: format conversion and proportional resizing only; no crop or content modification.",
   "build_master": {
     "file": "source-assets/solar-ascent.webp",

@@ -1,0 +1,41 @@
+{
+  "size": [
+    1200,
+    630
+  ],
+  "note": "Write the 1200x630 link-preview images into source-assets/social/ (run by hand, then commit).",
+  "files": {
+    "/assets/social/default.jpg": {
+      "bytes": 125614,
+      "sha256": "58796408e2e00152985ce5455ef7ae0664262bf49cb57e5addb61549650a0b0c"
+    },
+    "/assets/social/platform.jpg": {
+      "bytes": 78864,
+      "sha256": "f449196a568f21c0e1f9be858a1167041361c335bf6245a934739ae81a03ff8f"
+    },
+    "/assets/social/apps.jpg": {
+      "bytes": 58190,
+      "sha256": "08991fbbd2fe3829ca3a417b480b0f18746380cf5457aa661f25b9fd051d79a6"
+    },
+    "/assets/social/investors.jpg": {
+      "bytes": 60840,
+      "sha256": "8c39d77df33916815c4579640dbb967fe4b8cea43fef7ed57ebe033da1ea24e0"
+    },
+    "/assets/social/looks-max.jpg": {
+      "bytes": 54982,
+      "sha256": "e518d55c93a30a429c8a2a767506ac3b2f80ab40d23019863398009da71195d8"
+    },
+    "/assets/social/iq-max.jpg": {
+      "bytes": 51938,
+      "sha256": "4af54804498d413df6bdfbb3bd219b463c9b496359a1a5d09eefc142edd81142"
+    },
+    "/assets/social/sleep-max.jpg": {
+      "bytes": 51440,
+      "sha256": "f83cd6f6228b169c9899e4a239acec578d0d5b9cbdeaebebe8b22f50aed374f7"
+    },
+    "/assets/social/fitness-max.jpg": {
+      "bytes": 53175,
+      "sha256": "fee560c83f502b6072a8d96ff931571dbb31efd46c40ce1fd6cd68d1d4e4626d"
+    }
+  }
+}
