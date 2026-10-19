@@ -41,7 +41,7 @@
       "sCapHeight": 1340
     },
     "fallback": "local('Georgia') with size-adjust 101.5%, ascent-override 72.41%, descent-override 26.11% (advance widths measured on heading text)",
-    "loaded": "self-hosted, display swap, preloaded on every route"
+    "loaded": "self-hosted, display optional, preloaded on every route (swap moved text LCP by 600-850 ms in P2 measurement)"
   },
   "manrope_fallback": "local('Arial') with size-adjust 103.94%, ascent-override 102.56%, descent-override 28.86%",
   "route_budget_bytes": 61440
