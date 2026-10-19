@@ -116,6 +116,17 @@ All values below are tokens on `:root` in `design/system/foundation.css`. `check
   - Warm umber scrims clear by half the width, and a soft shadow carries the title over bright sky.
   - Phones: a 560px art strip, the title on its lower fade, and the caption on a chip.
   - The hero `sizes` (`(max-width: 560px) 1233px, 2113px`) matches the AVIF preload exactly.
+- **Close (P4).**
+  - Every corporate page ends once, with `closing_scene()` in `visual_home.py`: a chapter-scale statement and two standard actions, Investor inquiries and Partnership inquiries. Platform leads with Partnership inquiries.
+  - The scene supplies its own padding: 108–112px or less before the statement at 1440 and above. The dawn glow (`--light-field`) fades out before the scene's edge, so it dissolves into the footer with no step.
+  - Contact links in `main`: Home has 4 and Platform 3.
+  - These repeats were removed: the strategy closing row, the three per-module "Discuss X Max" links and the "Discuss the platform direction" pill.
+- **Action labels.** Investor inquiries, Partnership inquiries, Book a conversation, Email Ata.
+- **Footer (P4).**
+  - No slogan. Three directories under caps labels: Portfolio (the four apps), Company and Contact (Investor and Partnership inquiries, Email Ata ↗, Book a conversation ↗ opening in a new tab).
+  - Signature: the sun mark (192/320px lossless crops of the official lockup, made with the favicon crop and committed under `dist/assets/brand/`) and SOLARITY AI, sized in container units. It spans 99.9% of the wrap at 1024, 1440 and 1920 and sits on an ember glow.
+  - One legal line, plus the App Store and Google Play trademark notices.
+  - On phones the footer is 631px (0.75 of an 844px viewport is 633), and every target is 44px or taller.
 - **Buttons (P1).** The primary is `--sun-core` with an inner highlight and a warm bloom on hover and focus. The outline button is a `--control-border` hairline whose hover fill is `rgb(255 207 122 / .08)`.
 - **Status chips.** `.status` has a filled sun dot for evidence; `.status.vision` has a hollow ring for vision. Both always carry text.
 
@@ -132,6 +143,7 @@ All values below are tokens on `:root` in `design/system/foundation.css`. `check
   - Phase P2 (type system) is implemented: see the Type rule above.
   - The P2 follow-up (folios, numbering, captions) is implemented: see the rules above.
   - Phase P3 (opening frame and header) is implemented: see Header and Home opening below.
+  - Phase P4 (closing frame, footer and CTA hierarchy) is implemented: see Close and Footer below.
 - **Still open:** the motion contract (plan §5, Phase P9), and the portfolio wall replacing the Home explorer (Phase P5b).
 - **Founder material:** plan §9 lists every asset and content item needed. None of it is invented in the meantime.
 - **Baseline renders:** `research-assets/baseline-2026-10-18/` holds full-page captures of https://solarityai.com (develop `b0eff9b`). It covers all 12 pages at 360, 390, 768, 1024 and 1440, plus Home and Investors at 1280x800 and 1920x1080, and a reduced-motion pass at 390 and 1440. `index.json` records each page height; none overflows horizontally. The JPEGs (about 21 MB) are kept out of git; only `index.json` is committed. Regenerate them with `node research-assets/baseline-2026-10-18/capture.mjs https://solarityai.com <folder>`.
