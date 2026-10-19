@@ -11,6 +11,9 @@
   const previewPrev = document.getElementById('image-dialog-prev');
   const previewNext = document.getElementById('image-dialog-next');
   const previewCount = document.getElementById('image-dialog-count');
+  // Optional caption: a link may name its own source; others keep the dialog's default line.
+  const previewCaption = document.getElementById('image-dialog-caption');
+  const defaultCaption = previewCaption ? previewCaption.textContent : '';
   if (imageDialog && previewImage && previewTitle && previewClose && typeof imageDialog.showModal === 'function') {
     let previewTrigger = null;
     let current = -1;
@@ -25,6 +28,7 @@
       previewTitle.textContent = link.dataset.imageTitle || 'App preview';
       previewImage.alt = link.dataset.imageAlt || 'Official app promotional screenshot with sample content';
       previewImage.src = new URL(link.href, window.location.href).href;
+      if (previewCaption) previewCaption.textContent = link.dataset.imageCaption || defaultCaption;
       if (browsable) previewCount.textContent = (current + 1) + ' of ' + links.length;
     }
 

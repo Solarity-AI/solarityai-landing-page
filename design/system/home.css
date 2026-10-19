@@ -61,6 +61,12 @@
 .saas-heading-copy p+p{margin-top:14px}
 .saas-heading-copy .saas-plan{font-size:var(--text-sm);color:var(--sand)}
 .saas-heading-copy .text-link{margin-top:22px}
+.apps-web{padding-block:var(--space-section) clamp(24px,3vw,48px);border-top:1px solid var(--line-soft)}
+.showroom-web{margin-top:clamp(36px,4vw,56px)}
+.showroom-web>.eyebrow{margin-bottom:18px}
+.saas-grid--compact .saas-card{padding:10px 10px 12px}
+.saas-grid--compact .saas-card-copy strong{font-size:var(--type-deck)}
+.saas-grid--compact .saas-card-meta{padding-top:8px}
 .saas-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2vw,28px);list-style:none;padding:0;margin:0}
 .saas-card{display:flex;flex-direction:column;min-width:0;padding:14px 14px 16px;border-radius:var(--radius-panel);background:var(--elev-panel);box-shadow:var(--elev-panel-edge)}
 .saas-card-link{display:grid;gap:18px;color:var(--text);text-decoration:none}
