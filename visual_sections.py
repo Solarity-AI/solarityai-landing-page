@@ -58,8 +58,7 @@ def feature_grid(app):
         '<section class="section wrap product-features '
         + escape(app.get('color', ''), quote=True)
         + '" aria-label="' + escape(app['name'], quote=True) + ' features">'
-        '<div class="feature-section-heading"><p class="eyebrow">INSIDE '
-        + escape(app['name'].upper()) + '</p><h2>The product experience.</h2></div>'
+        '<div class="feature-section-heading"><h2>The product experience.</h2></div>'
         '<div class="feature-grid illustrated-features">' + ''.join(cards)
         + '</div></section>'
     )
@@ -112,7 +111,7 @@ def founder_card():
     return (
         '<aside class="founder-panel founder-editorial portrait-editorial" aria-labelledby="founder-card-name">'
         + founder_portrait() + '<div class="founder-sheet">'
-        '<p class="eyebrow">THE PERSON BEHIND THE COMPANY</p>'
+        '<p class="eyebrow">Founder</p>'
         '<div class="founder-identity"><h2 id="founder-card-name">Ata Turhan<span>.</span></h2>'
         '<p>Founder of Solarity AI</p></div>'
         '<div class="founder-card-footer"><p><span>BASED IN</span>Irving, Texas</p>'

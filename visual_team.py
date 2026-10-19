@@ -38,7 +38,7 @@ def selected_team():
         entries.append('<li class="selected-team-member" data-member="' + member['slug']
                        + '"><h3>' + escape(member['name']) + '</h3></li>')
     return ('<section class="selected-team wrap" id="team" aria-labelledby="selected-team-heading">'
-            '<div class="selected-team-intro"><div><p class="eyebrow">THE SOLARITY AI TEAM</p>'
+            '<div class="selected-team-intro"><div><p class="eyebrow">The team</p>'
             '<h2 id="selected-team-heading">Individual talent.<br>Shared ambition.</h2></div>'
             '<p>Meet the team helping bring Solarity AI’s products and company vision to life.</p></div>'
             '<ul class="selected-team-list">' + ''.join(entries) + '</ul></section>')

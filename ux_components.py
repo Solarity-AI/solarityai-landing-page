@@ -31,7 +31,7 @@ def related_apps(current, apps):
 def inquiry_panel(intent_picker, email):
     return f'''<div class="contact-panel" id="prepare-inquiry" tabindex="-1">
       <div class="composer-intro">
-      <p class="eyebrow inquiry-kicker">EMAIL THE FOUNDER</p>
+      <p class="eyebrow inquiry-kicker">Email the founder</p>
       <h2 id="inquiry-heading">What brings you here?</h2>
       <p class="muted" id="inquiry-description">Prepare an email to the founder.</p>
       <p class="handoff-note composer-handoff">Review here, then send from your email app. This website does not send messages.</p>

@@ -3,6 +3,7 @@
 Each record explains visible functionality, not an independently tested outcome.
 Keep provenance and exclusions in research-assets/product-story-evidence.json.
 """
+from image_provenance import provenance
 from html import escape as e
 
 
@@ -19,7 +20,7 @@ PRODUCT_STORIES = {
             'screen_width': 600,
             'screen_height': 1298,
             'alt': 'Looks Max official App Store imagery showing the overall evaluation and makeup and outfit suggestion cards, with sample app content.',
-            'caption': 'Evaluation and suggestions · sample app content',
+            'caption': 'Evaluation and suggestions',
         }],
     },
     'iq-max': {
@@ -34,7 +35,7 @@ PRODUCT_STORIES = {
             'screen_width': 600,
             'screen_height': 1298,
             'alt': 'IQ Max official App Store imagery showing the focus selection with memory, processing speed, focus, and overall thinking options.',
-            'caption': 'Focus selection · sample app content',
+            'caption': 'Focus selection',
         }, {
             'phase': 'Shape your routine',
             'title': 'Make the routine your own.',
@@ -43,7 +44,7 @@ PRODUCT_STORIES = {
             'screen_width': 600,
             'screen_height': 1298,
             'alt': 'IQ Max official App Store imagery showing exercise selection switches for a daily routine, with sample app content.',
-            'caption': 'Daily routine selection · sample app content',
+            'caption': 'Daily routine selection',
         }],
     },
     'sleep-max': {
@@ -58,7 +59,7 @@ PRODUCT_STORIES = {
             'screen_width': 600,
             'screen_height': 1298,
             'alt': 'Sleep Max official App Store screenshot showing a sample profile, streak count, badges, and nightly activity grid.',
-            'caption': 'Profile and activity · sample app content',
+            'caption': 'Profile and activity',
         }],
     },
     'fitness-max': {
@@ -73,7 +74,7 @@ PRODUCT_STORIES = {
             'screen_width': 600,
             'screen_height': 1298,
             'alt': 'Only Fitness official App Store imagery showing a sample meal nutrition estimate, detected items, and a coaching note.',
-            'caption': 'Meal analysis · estimates and sample content',
+            'caption': 'Meal analysis · nutrition estimates',
         }, {
             'phase': 'Follow your consistency',
             'title': 'Make consistency visible.',
@@ -82,7 +83,7 @@ PRODUCT_STORIES = {
             'screen_width': 600,
             'screen_height': 1298,
             'alt': 'Only Fitness official App Store imagery showing an illustrative streak celebration with a sample 25-day milestone.',
-            'caption': 'Streak celebration · sample app content',
+            'caption': 'Streak celebration',
         }],
     },
 }
@@ -109,7 +110,7 @@ def product_story(app):
           </figure>
         </article>''')
     return f'''<section class="product-story wrap" data-story-layout="{e(story['layout'])}" data-product-accent="{e(app['color'])}" aria-labelledby="product-story-title">
-      <header class="product-story-heading"><p class="eyebrow">INSIDE {e(app['name'].upper())}</p><h2 id="product-story-title">{e(story['title'])}</h2><p>{e(story['intro'])}</p></header>
+      <header class="product-story-heading"><h2 id="product-story-title">{e(story['title'])}</h2><p>{e(story['intro'])}</p></header>
       <div class="product-story-grid">{''.join(cards)}</div>
-      <p class="product-story-source">Official App Store imagery. <a href="{e(app['apple'])}" target="_blank" rel="noopener">View the listing <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a></p>
+      <p class="product-story-source caption">{provenance()} <a href="{e(app['apple'])}" target="_blank" rel="noopener">View listing <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a></p>
     </section>'''

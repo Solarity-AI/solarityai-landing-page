@@ -1,4 +1,5 @@
 """Product presentation built around authentic assets, without synthetic app screens."""
+from image_provenance import provenance
 from html import escape as e
 
 
@@ -26,7 +27,7 @@ def product_art(app, small=False):
         <span class="screenshot-stage"><img class="store-screen" src="{image}" alt="{alt}" width="{app.get('screen_width',600)}" height="{app.get('screen_height',1298)}" sizes="{sizes}" loading="lazy" decoding="async"></span>
         <span class="screenshot-enlarge">{_EXPAND_ICON}<span>Enlarge<span class="sr-only"> {e(app['name'])} screenshot</span></span></span>
       </a>
-      <figcaption class="asset-caption">Official app imagery · sample content</figcaption>
+      <figcaption class="asset-caption caption">{provenance()}</figcaption>
     </figure>'''
 
 
@@ -48,7 +49,7 @@ def product_page(app, apps, btn, contact, stores, status, feature_markup, breadc
       {product_story(app)}
       {feature_markup}
       <aside class="product-note wrap" aria-label="Product context"><p><strong>Product context.</strong> {e(app['note'])}</p></aside>
-      <section class="product-connect wrap"><div><p class="eyebrow">PART OF SOLARITY AI</p><h2>Let’s talk about {name}.</h2><p>For product questions, distribution opportunities, or a potential collaboration.</p></div><div class="actions">{btn('Ask about '+app['name'],contact('Product inquiry',app['name']),'outline')}{btn('All apps','/apps#'+app['slug'],'text')}</div></section>
+      <section class="product-connect wrap"><div><h2>Let’s talk about {name}.</h2><p>For product questions, distribution opportunities, or a potential collaboration.</p></div><div class="actions">{btn('Ask about '+app['name'],contact('Product inquiry',app['name']),'outline')}{btn('All apps','/apps#'+app['slug'],'text')}</div></section>
       {related_markup}
     </div>'''
 
