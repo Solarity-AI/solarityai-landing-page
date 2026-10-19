@@ -44,15 +44,20 @@ def company_strategy(apps, btn, contact):
         for slug, verb, title, desc in modules
     )
     return f'''<section class="company-strategy" aria-labelledby="strategy-title"><div class="strategy-layout wrap">
-      <div class="strategy-copy"><p class="eyebrow">The app factory</p><h2 id="strategy-title">Build the product. <br><span>Improve the way it gets built.</span></h2><p>Each app starts with a distinct human ambition. Building these products also informs the workflows we want to make more repeatable.</p><p>Our app factory vision connects this experience with a longer-term focus on engineering, operations, and marketing.</p><a class="text-link" href="/investors-partners">Explore the company thesis <span aria-hidden="true">→</span></a></div>
+      <div class="strategy-copy"><p class="eyebrow">The app factory</p><h2 id="strategy-title">Build the product. <br><span>Improve the way it gets built.</span></h2><p>Each app starts with a distinct human ambition. Building these products also informs the workflows we want to make more repeatable.</p><p>Our app factory vision connects this experience with a longer-term focus on engineering, operations, and marketing.</p><a class="text-link" href="/platform">Explore the app factory <span aria-hidden="true">→</span></a></div>
       <div class="strategy-relationship"><div class="strategy-portfolio"><p class="strategy-label">THE STARTING POINT</p><h3>Real product experience.</h3><p>What we learn from creating focused consumer apps informs the systems we develop next.</p></div>
         <p class="strategy-connection"><span aria-hidden="true">↓</span> Experience informs workflow design</p>
         <div class="strategy-workflows"><p class="strategy-label">THE APP FACTORY VISION</p>{module_rows}</div>
         <p class="strategy-context">Conceptual strategy. These relationships do not represent a deployed, integrated platform.</p>
       </div>
-      <div class="strategy-closing"><p>Help shape the systems behind the next generation of apps.</p>{btn('Explore the app factory','/platform','text')}<a class="text-link" href="{e(contact('Strategic partner'))}">Discuss a partnership <span aria-hidden="true">→</span></a></div>
     </div></section>'''
 
 
-def conversation_invitation(title, desc, contact):
-    return f'''<section class="conversation-band wrap" aria-label="Connect with Solarity AI"><div><h2>{title}</h2><p>{desc}</p></div><nav class="conversation-actions" aria-label="Inquiry paths"><a class="button primary" href="{e(contact('Investor'))}">Investor inquiries <span aria-hidden="true">→</span></a><a class="button outline" href="{e(contact('Strategic partner'))}">Discuss a partnership <span aria-hidden="true">→</span></a></nav></section>'''
+def closing_scene(statement, desc, contact, lead='investor'):
+    """The one close per page: a statement and two inquiry paths in golden light."""
+    def action(label, kind, style):
+        return f'<a class="button {style}" href="{e(contact(kind))}">{label} <span aria-hidden="true">→</span></a>'
+    investor, partner = ('Investor inquiries', 'Investor'), ('Partnership inquiries', 'Strategic partner')
+    first, second = (partner, investor) if lead == 'partner' else (investor, partner)
+    actions = action(*first, 'primary') + action(*second, 'outline')
+    return f'''<section class="conversation-band wrap" aria-label="Connect with Solarity AI"><div><h2>{statement}</h2><p>{desc}</p></div><nav class="conversation-actions" aria-label="Inquiry paths">{actions}</nav></section>'''

@@ -36,34 +36,38 @@ def site_header(path, nav_items, btn):
     )
 
 
-def site_footer(email, path='/'):
+def site_footer(email, path='/', booking=''):
     """Footer directory with complete core-app routes and approved company context."""
     groups = [
-        ('The portfolio', [('/apps/looks-max', 'Looks Max'), ('/apps/iq-max', 'IQ Max'),
+        ('Portfolio', [('/apps/looks-max', 'Looks Max'), ('/apps/iq-max', 'IQ Max'),
                            ('/apps/sleep-max', 'Sleep Max'), ('/apps/fitness-max', 'Fitness Max')]),
-        ('The company', [('/apps', 'App portfolio'), ('/platform', 'App factory vision'),
-                         ('/company', 'About Solarity AI'), ('/investors-partners', 'Investors & partners'), ('/careers', 'Careers')]),
-        ('Start a conversation', [('/contact?type=Investor#prepare-inquiry', 'Investor inquiries'),
-                                  ('/contact?type=Strategic+partner#prepare-inquiry', 'Partnership inquiries'),
-                                  ('/contact', 'Contact'), ('mailto:' + email, 'Email Ata')]),
+        ('Company', [('/apps', 'Apps'), ('/platform', 'Platform'),
+                     ('/company', 'Company'), ('/investors-partners', 'Investors & partners'), ('/careers', 'Careers')]),
+        ('Contact', [('/contact?type=Investor#prepare-inquiry', 'Investor inquiries'),
+                     ('/contact?type=Strategic+partner#prepare-inquiry', 'Partnership inquiries'),
+                     ('mailto:' + email, 'Email Ata')] + ([(booking, 'Book a conversation')] if booking else [])),
     ]
     directory = []
     for heading, links in groups:
         directory.append('<div class="footer-group"><h2>' + escape(heading) + '</h2><ul>')
         for href, label in links:
-            arrow = '<span aria-hidden="true">↗</span>' if href.startswith('mailto:') else ''
+            leaves = href.startswith(('mailto:', 'https:'))
+            arrow = '<span aria-hidden="true">↗</span>' if leaves else ''
+            new_tab = ' target="_blank" rel="noopener noreferrer"' if href.startswith('https:') else ''
+            note = '<span class="sr-only"> (opens in a new tab)</span>' if new_tab else ''
             current = ' aria-current="page"' if href == path else ''
-            directory.append(f'<li><a href="{escape(href)}"{current}>{escape(label)}{arrow}</a></li>')
+            directory.append(f'<li><a href="{escape(href)}"{current}{new_tab}>{escape(label)}{arrow}{note}</a></li>')
         directory.append('</ul></div>')
     return (
         '<footer class="site-footer chrome-footer"><div class="wrap">'
-        '<div class="footer-introduction"><div><p>Human potential.<br>Thoughtfully built.</p></div>'
-          '<p class="footer-positioning">Focused consumer apps.<br>Systems for what comes next.</p></div>'
-          '<nav class="footer-directory" aria-label="Footer navigation">' + ''.join(directory) + '</nav>'
-          '<div class="footer-signature" aria-hidden="true">SOLARITY<span>AI</span></div>'
-          '<div class="footer-legal"><span>© 2026 Solarity AI LLC</span>'
-          '<span>Irving, Texas, United States</span>'
-          '<a href="/contact#data-note">About this contact experience</a></div></div></footer>'
+        '<nav class="footer-directory" aria-label="Footer navigation">' + ''.join(directory) + '</nav>'
+          '<div class="footer-signature" aria-hidden="true"><img class="footer-sun" src="/assets/brand/solarity-sun-320.2513ba060440.webp" '
+          'srcset="/assets/brand/solarity-sun-192.91c59bec3b73.webp 192w, /assets/brand/solarity-sun-320.2513ba060440.webp 320w" '
+          'sizes="(max-width: 560px) 56px, 13cqi" width="320" height="320" alt="" loading="lazy" decoding="async">'
+          '<span class="footer-signature-word">SOLARITY<span>AI</span></span></div>'
+          '<div class="footer-legal"><p>© 2026 Solarity AI LLC · Irving, Texas, United States · '
+          '<a href="/contact#data-note">About this contact experience</a></p>'
+          '<p>App Store is a trademark of Apple Inc. Google Play is a trademark of Google LLC.</p></div></div></footer>'
     )
 
 
