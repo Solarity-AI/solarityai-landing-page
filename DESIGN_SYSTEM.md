@@ -44,36 +44,48 @@ The declared cascade is `foundation, components, pages, accessibility`. Modify t
 
 ## Design rules
 
-All values below are tokens on `:root` in `design/system/foundation.css`. `check_site.py` fails the build when a stylesheet bypasses the type, weight, radius, or eyebrow rules.
+All values below are tokens on `:root` in `design/system/foundation.css`. `check_site.py` fails the build when a stylesheet bypasses the type, weight, radius, or eyebrow rules, hard-codes a color in a border, outline or shadow, breaks the contrast matrix, or moves a neutral off its color axis.
 
-- **Color.**
-  - Dark surfaces: background `--bg` `#11120f`, `--surface`, `--surface-raised`.
-  - Text on dark: `--text`, `--muted`, `--dim`.
-  - Solar accent `--accent` `#edc78e`. Product accents `--looks-accent`, `--iq-accent`, `--sleep-accent`, `--fitness-accent` apply to their routes and related content.
-  - Light paper panels: `--paper` with `--ink`, `--paper-text` (body), `--paper-label` (labels and eyebrows), `--paper-accent` (bronze emphasis), `--paper-strong`, `--paper-line` and `--paper-line-strong`. Text on paper measures at least 5.6:1.
+- **Color (Phase P1, October 18, 2026).**
+  - Warm ember neutrals (R ≥ G ≥ B): `--bg` `#0f0d0b`, `--surface`, `--raised`, `--line`, `--line-soft`, `--ink`. Text: `--text`, `--muted`, `--dim`.
+  - Solar ramp, each with one job:
+    - `--sun-core` is the primary action, the one emphasized word, and focus.
+    - `--gold` is links and current state.
+    - `--sand` is labels and eyebrows.
+    - `--bronze` is rules and control borders, never small text.
+    - `--ember` and `--haze` are light only.
+    - `--accent` is a legacy alias of `--gold`.
+  - Scene tones, "one day of light". Interior pages open at `--tone-blue` under a key light from the upper right (`--key-x`, `--key-y`). Closing bands end in `--light-field` golden light, introduced by the `--horizon` rule. The footer is a dusk bridge into `--tone-footer`.
+  - Product worlds (founder-approved): `--{looks,iq,sleep,fitness}-{deep,world,tint}`. Product routes, `[data-product-accent]` and the matching classes set `--world-deep`, `--world` and `--world-tint`.
+    - `--world` is only a glow (45% or less), a rim or a stroke, never a fill behind text.
+    - Text in a world sits on `--world-deep` or on at most 35% world light. It uses ivory, `--muted` or the tint, never `--dim`.
+  - Paper is retired. Evidence uses lit panels (`--elev-panel` with `--elev-panel-edge`). Vision is drawn in outline: transparent, with a dashed `--bronze` border and dashed inner rules.
+  - Grain (`--grain`) is an inline SVG noise tile at about 3% opacity, used on the page and on closing scenes. It needs no file and no request.
+  - Glows sit on a pseudo-element larger than their box and fade at `closest-side`, so they never show an edge.
 - **Type.** One self-hosted Manrope variable font. Small and body text use only the scale `--text-2xs` 12px, `--text-xs` 13px, `--text-sm` 14px, `--text-md` 15px, `--text-base` 16px, `--text-lg` 18px and `--text-xl` 20px. Nothing renders below 12px. Headings use bounded `clamp()` sizes.
 - **Weights.** 400 for reading, 500 for headings and emphasis, 600 for labels, buttons and `strong`.
-- **Eyebrows.** One style: 12px, weight 600, `.1em` tracking, `--accent` on dark and `--paper-label` on paper. The hero uses a lighter gold for legibility over the artwork. The product-name label beside each app icon is 13px in its product accent.
+- **Eyebrows.** One style: 12px, weight 600, `.1em` tracking, `--sand` on every surface. The hero uses a lighter gold for legibility over the artwork. The product-name label beside each app icon is 13px in its product accent.
 - **Measure.** Body paragraphs default to `--measure` (52ch, about 75 characters per line in Manrope, whose 0 is wider than its average letter). Wider containers must not stretch reading text past it.
 - **Headings.** `text-wrap: balance`. A span that follows a forced `<br>` becomes its own block, so it balances independently rather than stranding a word.
-- **Radii.** `--radius` 5px (controls, screenshots), `--radius-lg` 12px (cards, media, portraits), `--radius-pill` (buttons and pills), `--radius-icon` 24% (app icons, at every size), and `50%` only for true circles.
+- **Radii.** `--radius-control` 10px (inputs, dialog controls, chips), `--radius-plate` 14px (screenshots), `--radius-panel` 20px (lit panels, stages, portraits, the dialog), `--radius-pill` (buttons), `--radius-icon` 24% (app icons, at every size), and `50%` only for true circles.
 - **Buttons.** One 14px label. Standard buttons are 52px high; `.small` is 44px. Store buttons grow only for their two-line content. Arrow glyphs use `line-height: 1` so they never change a button's height.
-- **Portraits.** Founder imagery uses `--radius-lg`. On dark surfaces it also gets `--shadow-portrait`, a warm hairline with soft depth.
-- **Spacing.** Fluid gutters (`--gutter`), content maximum 1264px, fluid section spacing (`--space-section`). Borders define structure. Shadows are limited to product imagery, portraits and dialogs.
-- Readable type, whitespace, and section composition provide hierarchy. Do not add continuous decoration, fake dashboards, redundant card shells, animated counters, or hidden-content entrances.
+- **Portraits.** Founder imagery uses `--radius-panel` and `--shadow-portrait` (an alias of `--elev-object`), and stands in a warm key light.
+- **Spacing.** Fluid gutters (`--gutter`), content maximum 1264px, fluid section spacing (`--space-section`).
+- **Light, not borders, gives structure** (this replaces the October 13 "borders define structure" rule, with founder approval). Elevation is expressed as light: `--elev-panel` for lit panels, `--elev-object` for screenshots and portraits, `--elev-overlay` for the dialog backdrop. Glows must be motivated: behind a focal object, from the one key light. Fake dashboards, animated counters and hidden-content entrances remain out.
+- **Buttons (P1).** The primary is `--sun-core` with an inner highlight and a warm bloom on hover and focus. The outline button is a `--control-border` hairline whose hover fill is `rgb(255 207 122 / .08)`.
+- **Status chips.** `.status` has a filled sun dot for evidence; `.status.vision` has a hollow ring for vision. Both always carry text.
 
 ## Cinematic redesign: Phase P0 status (October 18, 2026)
 
 `CINEMATIC_PREMIUM_PLAN.md` is the approved-for-review plan; its "Required corrections" section overrides the plan text. Until the founder decides the items below, the design rules above stay in force and no page changes.
 
 - **Founder specimen:** `research-assets/specimen/founder-specimen.html`. It is local and never deployed. Open it from the file system in a desktop browser. It shows the three display-face options (A1 Newsreader, A2 Instrument Serif, B Manrope 300) on the Home hero, the Investors opener and a product opening; the four product color worlds on real screenshots with live contrast figures; and the header floating over the sunrise at 1440 and 390. The candidate faces load from Google Fonts for review only. Production would self-host a measured subset (plan §3.1 and corrections 3 to 5).
-- **Pending decisions:**
-  1. Display face A1, A2 or B, which reverses the October 13 one-family rule if A1 or A2 is chosen.
-  2. The four product world hues.
-  3. Floating the Home header over the hero.
-  4. Retiring "borders define structure" and the no-decoration rule in favor of motivated light (plan §3.2 to §3.6).
-  5. The motion contract (plan §5).
-  6. The portfolio wall replacing the Home explorer.
+- **Founder decisions (October 18, 2026):**
+  - Display face: **A1 Newsreader**. This reverses the October 13 one-family rule. Phase P2 subsets and self-hosts it under the plan's corrections 3 to 5 (KiB budget, Latin Extended-A and arrows, Reserved Font Name check).
+  - Product world hues: **approved as shown** in the specimen. Looks Max violet, IQ Max blue, Sleep Max indigo, Fitness Max ember.
+  - Home header: **approved to float over the hero** (Phase P3). Interior pages keep a solid bar.
+  - Phase P1 (light, color and materials) is implemented: see the rules above and the P1 pull request.
+- **Still open:** the motion contract (plan §5, Phase P9), and the portfolio wall replacing the Home explorer (Phase P5b).
 - **Founder material:** plan §9 lists every asset and content item needed. None of it is invented in the meantime.
 - **Baseline renders:** `research-assets/baseline-2026-10-18/` holds full-page captures of https://solarityai.com (develop `b0eff9b`). It covers all 12 pages at 360, 390, 768, 1024 and 1440, plus Home and Investors at 1280x800 and 1920x1080, and a reduced-motion pass at 390 and 1440. `index.json` records each page height; none overflows horizontally. The JPEGs (about 21 MB) are kept out of git; only `index.json` is committed. Regenerate them with `node research-assets/baseline-2026-10-18/capture.mjs https://solarityai.com <folder>`.
 - **Lighthouse baseline:** recorded in `PRODUCTION_AUDIT.md`.
