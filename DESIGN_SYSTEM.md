@@ -127,6 +127,16 @@ All values below are tokens on `:root` in `design/system/foundation.css`. `check
   - Signature: the sun mark (192/320px lossless crops of the official lockup, made with the favicon crop and committed under `dist/assets/brand/`) and SOLARITY AI, sized in container units. It spans 99.9% of the wrap at 1024, 1440 and 1920 and sits on an ember glow.
   - One legal line, plus the App Store and Google Play trademark notices.
   - On phones the footer is 631px (0.75 of an 844px viewport is 633), and every target is 44px or taller.
+- **Product assets (P5a).**
+  - Screenshot derivatives trim baked-in listing hairlines: per side, the smallest inset (16px at most) whose outer 8px lines match the interior within 30 levels. The crops are recorded in `research-assets/image-optimization.json`. The originals in `dist/assets/` are unchanged.
+  - `check_site.py` rejects any derivative whose outer band (8px at source scale) differs from the interior by more than 40 levels.
+  - Screens stay WebP: at matched size AVIF measured softer on UI text.
+  - Icons gain 224w and 320w.
+  - Official store badges sit in `source-assets/badges/`, with provenance in `research-assets/store-badges.json`. They are published once P5b references them.
+  - **Native re-fetch:** `refetch_native_screens.py` fetched all ten published screenshots at 1284×2778 from the same official listing URLs into `source-assets/native/`, which is git-ignored and never published.
+    - All ten match the published files (mean difference 1.3–2.2 levels; 99th percentile 22 or less).
+    - Checksums are in `research-assets/native-refetch.json`.
+    - Until the founder confirms, the site keeps the 600px files and the 340px display cap.
 - **Buttons (P1).** The primary is `--sun-core` with an inner highlight and a warm bloom on hover and focus. The outline button is a `--control-border` hairline whose hover fill is `rgb(255 207 122 / .08)`.
 - **Status chips.** `.status` has a filled sun dot for evidence; `.status.vision` has a hollow ring for vision. Both always carry text.
 
@@ -144,6 +154,7 @@ All values below are tokens on `:root` in `design/system/foundation.css`. `check
   - The P2 follow-up (folios, numbering, captions) is implemented: see the rules above.
   - Phase P3 (opening frame and header) is implemented: see Header and Home opening below.
   - Phase P4 (closing frame, footer and CTA hierarchy) is implemented: see Close and Footer below.
+  - Phase P5a (product asset pipeline) is implemented. Native-resolution screenshots are fetched and verified, and wait for founder confirmation (see Product assets below).
 - **Still open:** the motion contract (plan §5, Phase P9), and the portfolio wall replacing the Home explorer (Phase P5b).
 - **Founder material:** plan §9 lists every asset and content item needed. None of it is invented in the meantime.
 - **Baseline renders:** `research-assets/baseline-2026-10-18/` holds full-page captures of https://solarityai.com (develop `b0eff9b`). It covers all 12 pages at 360, 390, 768, 1024 and 1440, plus Home and Investors at 1280x800 and 1920x1080, and a reduced-motion pass at 390 and 1440. `index.json` records each page height; none overflows horizontally. The JPEGs (about 21 MB) are kept out of git; only `index.json` is committed. Regenerate them with `node research-assets/baseline-2026-10-18/capture.mjs https://solarityai.com <folder>`.

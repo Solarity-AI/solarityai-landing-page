@@ -404,6 +404,23 @@ for file,d in docs.items():
     for heading in re.findall(r'<h[12]\b[^>]*>(.*?)</h[12]>',text,re.S):
         for char in set(html.unescape(re.sub(r'<[^>]+>','',heading))):
             if ord(char)>32 and not any(low<=ord(char)<=high for low,high in display_ranges):errors.append(f'{rel}: heading character {char!r} (U+{ord(char):04X}) is outside the display subset')
+# Screenshot derivatives carry no baked-in listing hairlines (CINEMATIC_PREMIUM_PLAN.md P5a).
+try:
+    from PIL import Image as _Image
+    import optimize_images as _oi
+    _manifest=json.loads((ROOT/'research-assets/image-optimization.json').read_text(encoding='utf-8'))
+    for _source,_record in _manifest['images'].items():
+        if _record.get('role')!='screen':continue
+        if 'crop' not in _record:errors.append(f'{_source}: image manifest is missing its edge-crop record')
+        for _variant in _record['webp']+_record.get('avif',[]):
+            _file=DIST/_variant['url'].lstrip('/')
+            if not _file.is_file():continue
+            with _Image.open(_file) as _image:
+                _rgb=_image.convert('RGB');_band=_oi.derivative_edge_band(_rgb.width,_record['derivative_width'])
+                _worst=max(_oi.edge_difference(_rgb,_side,band=_band) for _side in ('left','top','right','bottom'))
+            if _worst>_oi.EDGE_LIMIT:errors.append(f'{_variant["url"]}: outer edge differs from the interior by {_worst:.0f} levels (limit {_oi.EDGE_LIMIT})')
+except ImportError:
+    warnings.append('Pillow is unavailable; screenshot edge check skipped')
 for breakpoint in [1150,850,560]:
     if f'max-width:{breakpoint}px' not in css:warnings.append(f'Missing expected CSS breakpoint {breakpoint}')
 if 'prefers-reduced-motion:reduce' not in css:errors.append('Missing reduced-motion rule')

@@ -33,3 +33,6 @@ node_modules/
 
 # Redesign baseline renders (large; regenerate locally)
 research-assets/baseline-*/*.jpg
+
+# Native-resolution listing screenshots, pending founder confirmation (P5a)
+source-assets/native/

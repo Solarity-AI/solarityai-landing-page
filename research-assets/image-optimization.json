@@ -1,5 +1,5 @@
 {
-  "settings_version": 2,
+  "settings_version": 6,
   "source_hashes": {
     "looks-max-screen-4.webp": "ef767bc4e4e05c7b54a0a87f722b1f71d890b71378b517c0e0ae690c2c5b4ae6",
     "looks-max-detail-screen-6.webp": "b1a7f0903987976bbc6f0d4254a3cca33b3a88d07476b66fc7f5c23222b6c70a",
@@ -22,38 +22,48 @@
     "avif_quality": 70,
     "resize": "Lanczos, preserve complete image and aspect ratio",
     "original_full_size_screenshots": "Preserved at their original URLs",
-    "fallback_policy": "Never enlarge the original full-width WebP by re-encoding"
+    "fallback_policy": "Never enlarge the original full-width WebP by re-encoding",
+    "screen_formats": "WebP only. Measured on the 10 screens at 400w (P5a): WebP q86 221,202 B at mean error 1.02; AVIF q70 231,545 B at 1.22; AVIF q60 191,949 B at 1.41. AVIF is larger or softer for UI text.",
+    "edge_trim": "Screens: smallest inset (max 16px per side) whose outer 8px band matches the next band within 40 levels; derivatives only"
   },
   "images": {
     "/assets/looks-max-screen-4.webp": {
       "source": "/assets/looks-max-screen-4.webp",
       "role": "screen",
-      "width": 600,
-      "height": 1298,
+      "width": 592,
+      "height": 1275,
       "original_bytes": 29916,
+      "crop": {
+        "left": 4,
+        "top": 8,
+        "right": 4,
+        "bottom": 15
+      },
+      "derivative_width": 592,
+      "derivative_height": 1275,
       "webp": [
         {
-          "url": "/assets/optimized/looks-max-screen-4-240.0e9637efba23.webp",
+          "url": "/assets/optimized/looks-max-screen-4-240.cad225a412d0.webp",
           "width": 240,
-          "height": 519,
-          "bytes": 13946,
-          "sha256": "0e9637efba2391b502d2ac5bf1b2266eb8539f5dda301a0fdb5722b5574ea44d",
+          "height": 517,
+          "bytes": 13390,
+          "sha256": "cad225a412d0a01b143bafc89e4bfb7445748d051f6da3dfc5673bd6b2fff4b1",
           "mime": "image/webp"
         },
         {
-          "url": "/assets/optimized/looks-max-screen-4-400.ac470416f280.webp",
+          "url": "/assets/optimized/looks-max-screen-4-400.be5bd6b34edd.webp",
           "width": 400,
-          "height": 865,
-          "bytes": 24448,
-          "sha256": "ac470416f280d016f868595dcda2921b463ab32630ea6c4d37f9731bfea928a4",
+          "height": 861,
+          "bytes": 24206,
+          "sha256": "be5bd6b34eddb67004db7ca229c5d3084847bd790a48ef9661395973c940efaf",
           "mime": "image/webp"
         },
         {
-          "url": "/assets/optimized/looks-max-screen-4-600.ef767bc4e4e0.webp",
-          "width": 600,
-          "height": 1298,
-          "bytes": 29916,
-          "sha256": "ef767bc4e4e05c7b54a0a87f722b1f71d890b71378b517c0e0ae690c2c5b4ae6",
+          "url": "/assets/optimized/looks-max-screen-4-592.70e2c43bc3b0.webp",
+          "width": 592,
+          "height": 1275,
+          "bytes": 31818,
+          "sha256": "70e2c43bc3b0d48c9a4888661999f118d5c0acc2228547732a809e8e7b0d975f",
           "mime": "image/webp"
         }
       ],
@@ -62,32 +72,40 @@
     "/assets/looks-max-detail-screen-6.webp": {
       "source": "/assets/looks-max-detail-screen-6.webp",
       "role": "screen",
-      "width": 600,
-      "height": 1298,
+      "width": 592,
+      "height": 1284,
       "original_bytes": 38938,
+      "crop": {
+        "left": 2,
+        "top": 8,
+        "right": 6,
+        "bottom": 6
+      },
+      "derivative_width": 592,
+      "derivative_height": 1284,
       "webp": [
         {
-          "url": "/assets/optimized/looks-max-detail-screen-6-240.e5e4484af0a0.webp",
+          "url": "/assets/optimized/looks-max-detail-screen-6-240.306672e2aa11.webp",
           "width": 240,
-          "height": 519,
-          "bytes": 17036,
-          "sha256": "e5e4484af0a0f347ba55983bf14d7972d5f11e32e9e06129aa3ff8510ab9ccee",
+          "height": 521,
+          "bytes": 16304,
+          "sha256": "306672e2aa11dbb59839437c319b47bc50297aa2ba42c47c7b9f89e40344904e",
           "mime": "image/webp"
         },
         {
-          "url": "/assets/optimized/looks-max-detail-screen-6-400.44437ff99fca.webp",
+          "url": "/assets/optimized/looks-max-detail-screen-6-400.685d311fa94d.webp",
           "width": 400,
-          "height": 865,
-          "bytes": 31492,
-          "sha256": "44437ff99fca8b32b120f6b0652de55c1eb6cd2fd9875f3fbdbb318ad2bdb794",
+          "height": 868,
+          "bytes": 31090,
+          "sha256": "685d311fa94d9922150587cfb3c2aac4f100465ad544c40d7d82601a77f8d7a4",
           "mime": "image/webp"
         },
         {
-          "url": "/assets/optimized/looks-max-detail-screen-6-600.b1a7f0903987.webp",
-          "width": 600,
-          "height": 1298,
-          "bytes": 38938,
-          "sha256": "b1a7f0903987976bbc6f0d4254a3cca33b3a88d07476b66fc7f5c23222b6c70a",
+          "url": "/assets/optimized/looks-max-detail-screen-6-592.ce7e86c1b3b3.webp",
+          "width": 592,
+          "height": 1284,
+          "bytes": 49104,
+          "sha256": "ce7e86c1b3b33e5e16334a925a0232d8d6b7eb33be1c15a6b3c121f6e8ddcd01",
           "mime": "image/webp"
         }
       ],
@@ -96,32 +114,40 @@
     "/assets/iq-max-detail-screen-4.webp": {
       "source": "/assets/iq-max-detail-screen-4.webp",
       "role": "screen",
-      "width": 600,
+      "width": 596,
       "height": 1298,
       "original_bytes": 23856,
+      "crop": {
+        "left": 1,
+        "top": 0,
+        "right": 3,
+        "bottom": 0
+      },
+      "derivative_width": 596,
+      "derivative_height": 1298,
       "webp": [
         {
-          "url": "/assets/optimized/iq-max-detail-screen-4-240.508361c167aa.webp",
+          "url": "/assets/optimized/iq-max-detail-screen-4-240.f8480c011cf8.webp",
           "width": 240,
-          "height": 519,
-          "bytes": 11384,
-          "sha256": "508361c167aaf980d1c6d73c2123c72ab5c6850e2ad95b37180d695e040a50c9",
+          "height": 523,
+          "bytes": 11854,
+          "sha256": "f8480c011cf85139598ba234ec624835693548092ccb722dde637a1afab96c7e",
           "mime": "image/webp"
         },
         {
-          "url": "/assets/optimized/iq-max-detail-screen-4-400.33d86bd1213e.webp",
+          "url": "/assets/optimized/iq-max-detail-screen-4-400.e7c2b7b46480.webp",
           "width": 400,
-          "height": 865,
-          "bytes": 19818,
-          "sha256": "33d86bd1213e428ee9a9b6e53debceb801c26e497fba29ee578d081733c125ec",
+          "height": 871,
+          "bytes": 20056,
+          "sha256": "e7c2b7b46480ed449d403aec9900fbaf6c8c4717bbcc51452f3772e40c1c6cca",
           "mime": "image/webp"
         },
         {
-          "url": "/assets/optimized/iq-max-detail-screen-4-600.c63d05f57448.webp",
-          "width": 600,
+          "url": "/assets/optimized/iq-max-detail-screen-4-596.3e833e14ff15.webp",
+          "width": 596,
           "height": 1298,
-          "bytes": 23794,
-          "sha256": "c63d05f57448eba956cd5f6e788f81e9b7b331512ca661ba506801a9cbdef4de",
+          "bytes": 28546,
+          "sha256": "3e833e14ff155d79ddce448bc56bc0aed37442b884369b7ff746174483e72ba4",
           "mime": "image/webp"
         }
       ],
@@ -130,32 +156,40 @@
     "/assets/iq-max-detail-screen-6.webp": {
       "source": "/assets/iq-max-detail-screen-6.webp",
       "role": "screen",
-      "width": 600,
-      "height": 1298,
+      "width": 595,
+      "height": 1292,
       "original_bytes": 29482,
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "right": 5,
+        "bottom": 6
+      },
+      "derivative_width": 595,
+      "derivative_height": 1292,
       "webp": [
         {
-          "url": "/assets/optimized/iq-max-detail-screen-6-240.c565106bbf80.webp",
+          "url": "/assets/optimized/iq-max-detail-screen-6-240.b53712b4de13.webp",
           "width": 240,
-          "height": 519,
-          "bytes": 14972,
-          "sha256": "c565106bbf80f261acbba1240b886e70a9d5f5c4104f27c0a86c2d0715b5d623",
+          "height": 521,
+          "bytes": 14564,
+          "sha256": "b53712b4de130606a39c64b107469dfecd23cdebe876b19251c7854b435feaa7",
           "mime": "image/webp"
         },
         {
-          "url": "/assets/optimized/iq-max-detail-screen-6-400.1dbf8ff94e83.webp",
+          "url": "/assets/optimized/iq-max-detail-screen-6-400.432881c92bb3.webp",
           "width": 400,
-          "height": 865,
-          "bytes": 25484,
-          "sha256": "1dbf8ff94e8318d773e7debdb0588f5b95837f452df0cd51c985e1dc2d5108d4",
+          "height": 869,
+          "bytes": 25378,
+          "sha256": "432881c92bb3e677a3f94ab8659ba43595c24dc6be8169458c9108bcc7eb27da",
           "mime": "image/webp"
         },
         {
-          "url": "/assets/optimized/iq-max-detail-screen-6-600.fea2b6ff399f.webp",
-          "width": 600,
-          "height": 1298,
-          "bytes": 29482,
-          "sha256": "fea2b6ff399f7e3dd8f9904e8c36812c5ef49c8dd95c00c5eb43453919f76d42",
+          "url": "/assets/optimized/iq-max-detail-screen-6-595.e11cc8c10c72.webp",
+          "width": 595,
+          "height": 1292,
+          "bytes": 30264,
+          "sha256": "e11cc8c10c729bbab6fdcba9686734b4910a39b94d146d4e8bcf469d375778ec",
           "mime": "image/webp"
         }
       ],
@@ -167,6 +201,9 @@
       "width": 600,
       "height": 1298,
       "original_bytes": 25754,
+      "crop": null,
+      "derivative_width": 600,
+      "derivative_height": 1298,
       "webp": [
         {
           "url": "/assets/optimized/sleep-max-detail-screen-3-240.be403817a19d.webp",
@@ -198,32 +235,40 @@
     "/assets/fitness-max-detail-screen-3.webp": {
       "source": "/assets/fitness-max-detail-screen-3.webp",
       "role": "screen",
-      "width": 600,
-      "height": 1298,
+      "width": 595,
+      "height": 1290,
       "original_bytes": 22774,
+      "crop": {
+        "left": 0,
+        "top": 7,
+        "right": 5,
+        "bottom": 1
+      },
+      "derivative_width": 595,
+      "derivative_height": 1290,
       "webp": [
         {
-          "url": "/assets/optimized/fitness-max-detail-screen-3-240.66b0d3eb9979.webp",
+          "url": "/assets/optimized/fitness-max-detail-screen-3-240.f1a4e0a76e70.webp",
           "width": 240,
-          "height": 519,
-          "bytes": 11404,
-          "sha256": "66b0d3eb99798ac6c21d46f9c4f60d2b5a01e33ce1cb3a4529747f57281a5484",
+          "height": 520,
+          "bytes": 11270,
+          "sha256": "f1a4e0a76e70191324108ced27bb82caec5823d31bfcd2170529225229c061d2",
           "mime": "image/webp"
         },
         {
-          "url": "/assets/optimized/fitness-max-detail-screen-3-400.93e3398c9d97.webp",
+          "url": "/assets/optimized/fitness-max-detail-screen-3-400.c385c4ef710b.webp",
           "width": 400,
-          "height": 865,
-          "bytes": 18346,
-          "sha256": "93e3398c9d971afc5ca29f480dd2c2b4cdfb5a054222b16281d4288d2d027409",
+          "height": 867,
+          "bytes": 18134,
+          "sha256": "c385c4ef710bbd36ead192e7647cb7b3d0de9185b46f6541777335887909aaee",
           "mime": "image/webp"
         },
         {
-          "url": "/assets/optimized/fitness-max-detail-screen-3-600.2821c00ea2ae.webp",
-          "width": 600,
-          "height": 1298,
-          "bytes": 21968,
-          "sha256": "2821c00ea2aeabbac042ed38ad5397b76121ab27dd4535af7416556ed30a154e",
+          "url": "/assets/optimized/fitness-max-detail-screen-3-595.03680ddeb6bc.webp",
+          "width": 595,
+          "height": 1290,
+          "bytes": 27016,
+          "sha256": "03680ddeb6bcc6e6384bc9f605ef9387d5ead69a8c778ed00c0726f9b796f024",
           "mime": "image/webp"
         }
       ],
@@ -232,32 +277,40 @@
     "/assets/fitness-max-detail-screen-5.webp": {
       "source": "/assets/fitness-max-detail-screen-5.webp",
       "role": "screen",
-      "width": 600,
+      "width": 598,
       "height": 1298,
       "original_bytes": 20800,
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "right": 2,
+        "bottom": 0
+      },
+      "derivative_width": 598,
+      "derivative_height": 1298,
       "webp": [
         {
-          "url": "/assets/optimized/fitness-max-detail-screen-5-240.cb43b860246c.webp",
+          "url": "/assets/optimized/fitness-max-detail-screen-5-240.4a481c6155ec.webp",
           "width": 240,
-          "height": 519,
-          "bytes": 9602,
-          "sha256": "cb43b860246c57e5b3c026b3c577aa643d7b0705d60502b29091eb2c556d2800",
+          "height": 521,
+          "bytes": 9720,
+          "sha256": "4a481c6155ece68a58e2d5afc1d6ba4a4f0f8ecfe41008bd514a11728eb8ba70",
           "mime": "image/webp"
         },
         {
-          "url": "/assets/optimized/fitness-max-detail-screen-5-400.c8a08c9359ca.webp",
+          "url": "/assets/optimized/fitness-max-detail-screen-5-400.3e126c576025.webp",
           "width": 400,
-          "height": 865,
-          "bytes": 15698,
-          "sha256": "c8a08c9359caf909309d73f7968e5e35552b075ad404b7f6ef0b4f33ea6154c0",
+          "height": 868,
+          "bytes": 15362,
+          "sha256": "3e126c5760256e826a42062a47aa04c30dc988af9b3b9475919f40760d0d1e08",
           "mime": "image/webp"
         },
         {
-          "url": "/assets/optimized/fitness-max-detail-screen-5-600.2d103bb3d1b5.webp",
-          "width": 600,
+          "url": "/assets/optimized/fitness-max-detail-screen-5-598.120a84b97947.webp",
+          "width": 598,
           "height": 1298,
-          "bytes": 20316,
-          "sha256": "2d103bb3d1b55abbfb4d275c912cd4aa6f8a004c17e9108845525b69c259ee02",
+          "bytes": 20246,
+          "sha256": "120a84b9794773abb29e0fd153523043dac008f6e2bf7d620c57f999a1e8d865",
           "mime": "image/webp"
         }
       ],
@@ -266,32 +319,40 @@
     "/assets/iq-max-screen-1.webp": {
       "source": "/assets/iq-max-screen-1.webp",
       "role": "screen",
-      "width": 600,
-      "height": 1298,
+      "width": 598,
+      "height": 1294,
       "original_bytes": 38160,
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "right": 2,
+        "bottom": 4
+      },
+      "derivative_width": 598,
+      "derivative_height": 1294,
       "webp": [
         {
-          "url": "/assets/optimized/iq-max-screen-1-240.cdf6176f5c59.webp",
+          "url": "/assets/optimized/iq-max-screen-1-240.9b7d4d520d7b.webp",
           "width": 240,
           "height": 519,
-          "bytes": 17264,
-          "sha256": "cdf6176f5c598cb26958a7e8aa4643fab9831be018b2966c0892107013a0f6b5",
+          "bytes": 16938,
+          "sha256": "9b7d4d520d7b95cd1fd41df006b5b61e024cdce1b0451ce403af6c1116bcc03a",
           "mime": "image/webp"
         },
         {
-          "url": "/assets/optimized/iq-max-screen-1-400.c81ff3fd7665.webp",
+          "url": "/assets/optimized/iq-max-screen-1-400.441bc670d07b.webp",
           "width": 400,
-          "height": 865,
-          "bytes": 30508,
-          "sha256": "c81ff3fd7665d4c501dd4eae8df6a221208821b049e0b284cee3ef19142ec4d2",
+          "height": 866,
+          "bytes": 30460,
+          "sha256": "441bc670d07b638cc6392975172134650b2e301d02946871b9082c4f6f9b8a19",
           "mime": "image/webp"
         },
         {
-          "url": "/assets/optimized/iq-max-screen-1-600.db6e5efb5b03.webp",
-          "width": 600,
-          "height": 1298,
-          "bytes": 38160,
-          "sha256": "db6e5efb5b03793e5a8d8f0f247fb77fd3dfed92a3700ba585fa69baf3cb666e",
+          "url": "/assets/optimized/iq-max-screen-1-598.8871da63a228.webp",
+          "width": 598,
+          "height": 1294,
+          "bytes": 40022,
+          "sha256": "8871da63a2289c0a2216e49668528dda39fe766bac6d92ff51d8db107705187c",
           "mime": "image/webp"
         }
       ],
@@ -303,6 +364,9 @@
       "width": 600,
       "height": 1298,
       "original_bytes": 26890,
+      "crop": null,
+      "derivative_width": 600,
+      "derivative_height": 1298,
       "webp": [
         {
           "url": "/assets/optimized/sleep-max-screen-4-240.579a6bc17c83.webp",
@@ -334,32 +398,40 @@
     "/assets/fitness-max-screen-2.webp": {
       "source": "/assets/fitness-max-screen-2.webp",
       "role": "screen",
-      "width": 600,
-      "height": 1298,
+      "width": 597,
+      "height": 1296,
       "original_bytes": 22398,
+      "crop": {
+        "left": 0,
+        "top": 2,
+        "right": 3,
+        "bottom": 0
+      },
+      "derivative_width": 597,
+      "derivative_height": 1296,
       "webp": [
         {
-          "url": "/assets/optimized/fitness-max-screen-2-240.cc5fc26901d6.webp",
+          "url": "/assets/optimized/fitness-max-screen-2-240.b27692c8103a.webp",
           "width": 240,
-          "height": 519,
-          "bytes": 11062,
-          "sha256": "cc5fc26901d6d65942204412ddadce0ad53a5cea5ee75a501c59150e97142079",
+          "height": 521,
+          "bytes": 10832,
+          "sha256": "b27692c8103a94ef16ebfa5cc7ea2b15649e882eb37434d7de7ed8fbe3f0a86d",
           "mime": "image/webp"
         },
         {
-          "url": "/assets/optimized/fitness-max-screen-2-400.abeb6bd9c34a.webp",
+          "url": "/assets/optimized/fitness-max-screen-2-400.a751c62e9eed.webp",
           "width": 400,
-          "height": 865,
-          "bytes": 18020,
-          "sha256": "abeb6bd9c34a9ae700d524e0764281a4412c1bcb387584226529d84783b09d51",
+          "height": 868,
+          "bytes": 18950,
+          "sha256": "a751c62e9eed2799fe86dacf4160dc19d7c11e8364a9be1600236b1d135b3bc1",
           "mime": "image/webp"
         },
         {
-          "url": "/assets/optimized/fitness-max-screen-2-600.3f33f1ca97a2.webp",
-          "width": 600,
-          "height": 1298,
-          "bytes": 22254,
-          "sha256": "3f33f1ca97a2ff7a0118553aa02e04149003d004baa80407eb2ab283b9074b7a",
+          "url": "/assets/optimized/fitness-max-screen-2-597.e11d56b1b69b.webp",
+          "width": 597,
+          "height": 1296,
+          "bytes": 26970,
+          "sha256": "e11d56b1b69b074593c371b4c546c5505d222c5479dff88151b0258bff68cde7",
           "mime": "image/webp"
         }
       ],
@@ -371,6 +443,9 @@
       "width": 400,
       "height": 400,
       "original_bytes": 8170,
+      "crop": null,
+      "derivative_width": 400,
+      "derivative_height": 400,
       "webp": [
         {
           "url": "/assets/optimized/looks-max-icon-48.c4acd53f50ca.webp",
@@ -395,6 +470,22 @@
           "bytes": 2338,
           "sha256": "6e029fa8018076c9021c687ef3c4069b0790e8a6cfda7071458c5dfa4b39fc67",
           "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/looks-max-icon-224.0a90d793e4d5.webp",
+          "width": 224,
+          "height": 224,
+          "bytes": 3676,
+          "sha256": "0a90d793e4d5fe78dd16fa952a59aa2328b979f2e1dd61cffa8c01aa3a4ac474",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/looks-max-icon-320.32f68b46806d.webp",
+          "width": 320,
+          "height": 320,
+          "bytes": 5232,
+          "sha256": "32f68b46806d31d3707b172d08604506418a878bf7cdab1b24f6c1c317ee811e",
+          "mime": "image/webp"
         }
       ],
       "avif": []
@@ -405,6 +496,9 @@
       "width": 400,
       "height": 400,
       "original_bytes": 14474,
+      "crop": null,
+      "derivative_width": 400,
+      "derivative_height": 400,
       "webp": [
         {
           "url": "/assets/optimized/iq-max-icon-48.180c846c135e.webp",
@@ -429,6 +523,22 @@
           "bytes": 4476,
           "sha256": "c76f356ba1991a1fa7ebecf61ae9e2ed3e2872d243d999e0ff7836c2b876efdd",
           "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/iq-max-icon-224.2dd39d8c7a1d.webp",
+          "width": 224,
+          "height": 224,
+          "bytes": 7956,
+          "sha256": "2dd39d8c7a1df5a4e3e0b48efd11ac36618a4bb14f6c89d4072c35245cf11964",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/iq-max-icon-320.789d4f7ee8e2.webp",
+          "width": 320,
+          "height": 320,
+          "bytes": 12432,
+          "sha256": "789d4f7ee8e2f378a793bc3cfef53dbdef9d5791ff4ae9a347c2cac4c4f45b00",
+          "mime": "image/webp"
         }
       ],
       "avif": []
@@ -439,6 +549,9 @@
       "width": 400,
       "height": 400,
       "original_bytes": 5840,
+      "crop": null,
+      "derivative_width": 400,
+      "derivative_height": 400,
       "webp": [
         {
           "url": "/assets/optimized/sleep-max-icon-48.b11fcaf98bce.webp",
@@ -463,6 +576,22 @@
           "bytes": 1228,
           "sha256": "ae97748b1e77a6fda5f9d4c9badc7deb90a0699f885edabde496e645f116277b",
           "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/sleep-max-icon-224.cb77a132d4cb.webp",
+          "width": 224,
+          "height": 224,
+          "bytes": 1914,
+          "sha256": "cb77a132d4cb9d3e326c324c15495a846553503157f93319c4dc78634e002969",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/sleep-max-icon-320.9069b7496fbb.webp",
+          "width": 320,
+          "height": 320,
+          "bytes": 2722,
+          "sha256": "9069b7496fbb594ee2e3639e4102d19b9a3f338e7f18a2ef54a9de6168d4b57e",
+          "mime": "image/webp"
         }
       ],
       "avif": []
@@ -473,6 +602,9 @@
       "width": 400,
       "height": 400,
       "original_bytes": 17204,
+      "crop": null,
+      "derivative_width": 400,
+      "derivative_height": 400,
       "webp": [
         {
           "url": "/assets/optimized/fitness-max-icon-48.87bd57d8e532.webp",
@@ -497,6 +629,22 @@
           "bytes": 4928,
           "sha256": "e637a846d707b04e40d10df71702cbfc40763ffb458271e0074438cb07a821d9",
           "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/fitness-max-icon-224.beaaf2071e1a.webp",
+          "width": 224,
+          "height": 224,
+          "bytes": 8374,
+          "sha256": "beaaf2071e1aa07a9b989f61948e02ad33c34b974eebbf9a19a88f10a182ae94",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/fitness-max-icon-320.f16c5d369210.webp",
+          "width": 320,
+          "height": 320,
+          "bytes": 12422,
+          "sha256": "f16c5d36921053e69f0968bdedd85678d6e521b6ec799363d062b7a8ea88941a",
+          "mime": "image/webp"
         }
       ],
       "avif": []
@@ -507,6 +655,9 @@
       "width": 1860,
       "height": 845,
       "original_bytes": 219990,
+      "crop": null,
+      "derivative_width": 1860,
+      "derivative_height": 845,
       "webp": [
         {
           "url": "/assets/optimized/solar-ascent-480.ac7a79e81d7d.webp",
