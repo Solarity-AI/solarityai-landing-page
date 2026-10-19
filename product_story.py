@@ -28,15 +28,6 @@ PRODUCT_STORIES = {
         'layout': 'sequence',
         'intro': 'Choose the areas you want to practice, then decide which exercises belong in your routine.',
         'steps': [{
-            'phase': 'Choose your focus',
-            'title': 'Start with what interests you.',
-            'copy': 'The focus selection includes memory, processing speed, attention, and overall thinking. Your choices help shape the routine you see.',
-            'screen': 'iq-max-detail-screen-4.webp',
-            'screen_width': 600,
-            'screen_height': 1298,
-            'alt': 'IQ Max official App Store imagery showing the focus selection with memory, processing speed, focus, and overall thinking options.',
-            'caption': 'Focus selection',
-        }, {
             'phase': 'Shape your routine',
             'title': 'Make the routine your own.',
             'copy': 'Choose exercises to include in your daily practice. The routine screen makes the available activities and your selections visible together.',
@@ -45,21 +36,6 @@ PRODUCT_STORIES = {
             'screen_height': 1298,
             'alt': 'IQ Max official App Store imagery showing exercise selection switches for a daily routine, with sample app content.',
             'caption': 'Daily routine selection',
-        }],
-    },
-    'sleep-max': {
-        'title': 'Wind down. Then look back.',
-        'layout': 'reflection',
-        'intro': 'A sound library for winding down. An activity view for looking back on your routine.',
-        'steps': [{
-            'phase': 'Sounds to daily activity',
-            'title': 'Keep your activity in view.',
-            'copy': 'The profile groups your streak, badges, and activity grid in one place. These are in-app records of participation, not a clinical measure of sleep quality.',
-            'screen': 'sleep-max-detail-screen-3.webp',
-            'screen_width': 600,
-            'screen_height': 1298,
-            'alt': 'Sleep Max official App Store screenshot showing a sample profile, streak count, badges, and nightly activity grid.',
-            'caption': 'Profile and activity',
         }],
     },
     'fitness-max': {

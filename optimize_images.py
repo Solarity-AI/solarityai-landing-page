@@ -32,15 +32,15 @@ ASSETS = ROOT / 'dist' / 'assets'
 SOURCE_ASSETS = ROOT / 'source-assets'
 DESTINATION = ASSETS / 'optimized'
 REPORT = ROOT / 'research-assets' / 'image-optimization.json'
-SETTINGS_VERSION = 6
-# 400/800/1200 once the founder confirms the native-resolution re-fetch (P5a).
-SCREEN_WIDTHS = (240, 400, 600)
+SETTINGS_VERSION = 7
+# Native-resolution screenshots (1284x2778), confirmed by the founder on 2026-10-19.
+SCREEN_WIDTHS = (400, 800, 1200)
 ICON_WIDTHS = (48, 96, 144, 224, 320)
 EDGE_BAND = 8
 EDGE_LIMIT = 40
 # Trim against a stricter limit so resampled derivatives still pass the 40-level check.
 EDGE_TRIM_LIMIT = 30
-EDGE_MAX_INSET = 16
+EDGE_MAX_INSET = 32
 SUNRISE_WIDTHS = (480, 768, 1200, 1440, 1860)
 WEBP_QUALITY = 86
 AVIF_QUALITY = 70
@@ -50,7 +50,6 @@ SOURCE_ROLES = {
     'looks-max-detail-screen-6.webp': 'screen',
     'iq-max-detail-screen-4.webp': 'screen',
     'iq-max-detail-screen-6.webp': 'screen',
-    'sleep-max-detail-screen-3.webp': 'screen',
     'fitness-max-detail-screen-3.webp': 'screen',
     'fitness-max-detail-screen-5.webp': 'screen',
     'iq-max-screen-1.webp': 'screen',

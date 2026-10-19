@@ -32,7 +32,7 @@
  h1{font-family:var(--font-display);font-weight:400;font-size:var(--type-title);line-height:.98;letter-spacing:-.015em;word-spacing:.03em}
  h2{font-size:var(--type-section);line-height:1.08;letter-spacing:-.015em}
  h3{font-size:var(--type-sub);line-height:1.2;letter-spacing:-.005em}
- .product-hero h1,.platform-opening-copy h1,.explorer-heading h2,.explorer-panel h3,.strategy-copy h2,.founder-strip h2,.founder-section>div>h2,.founder-identity h2,.founder-booking h2,.conversation-band h2,.catalog-product-masthead h2,.product-story-heading h2,.product-connect h2,.career-opportunities-heading h2,.career-apply-copy h2,.module-num{font-family:var(--font-display);font-weight:400;font-size:var(--type-chapter);line-height:1.02;letter-spacing:-.01em;word-spacing:.03em}
+ .platform-opening-copy h1,.explorer-heading h2,.explorer-panel h3,.strategy-copy h2,.founder-strip h2,.founder-section>div>h2,.founder-identity h2,.founder-booking h2,.conversation-band h2,.catalog-product-masthead h2,.product-story-heading h2,.product-close h2,.career-opportunities-heading h2,.career-apply-copy h2,.module-num{font-family:var(--font-display);font-weight:400;font-size:var(--type-chapter);line-height:1.02;letter-spacing:-.01em;word-spacing:.03em}
  p,li,dd,figcaption,.lede{text-wrap:pretty}
  p{color:var(--muted)}
  /* About 75 characters per line in Manrope, whose 0 is wider than its average letter. */
