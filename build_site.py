@@ -206,8 +206,9 @@ def content_security_policy():
 
 SECURITY_HEADERS=('  Content-Security-Policy: '+content_security_policy()+'\n'
                   '  Strict-Transport-Security: max-age=31536000\n'
-                  '  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), browsing-topics=()\n'
-                  '  Cross-Origin-Opener-Policy: same-origin\n')
+                  '  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), browsing-topics=()\n')
+# No Cross-Origin-Opener-Policy: the site opens no cross-origin popups, and COOP's process swap breaks
+# Lighthouse and PageSpeed Insights traces (NO_NAVSTART), measured on 2026-10-19.
 (DIST/'_headers').write_text('/*\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n  X-Frame-Options: SAMEORIGIN\n'+SECURITY_HEADERS+'/404\n  X-Robots-Tag: noindex, follow\n/404.html\n  X-Robots-Tag: noindex, follow\n/assets/optimized/*\n  Cache-Control: public, max-age=31536000, immutable\n/assets/runtime/*\n  Cache-Control: public, max-age=31536000, immutable\n'+FONT_URL+'\n  Cache-Control: public, max-age=31536000, immutable\n'+DISPLAY_FONT_URL+'\n  Cache-Control: public, max-age=31536000, immutable\n', encoding='utf-8', newline='\n')
 # dist/ holds exactly what pages reference. An unpublished approved file in
 # source-assets/ is published once a page references it; retired files never are.
