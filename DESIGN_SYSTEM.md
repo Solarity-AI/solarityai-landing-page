@@ -34,7 +34,7 @@ Shared findings included 34 stylesheet sources, repeated declarations across suc
 | --- | --- |
 | `foundation.css` | Tokens, reset, semantics, type scale, grids, controls, dialog, shared closing invitation |
 | `chrome.css` | Header, active navigation, mobile disclosure and no-JS fallback, footer |
-| `home.css` | Home hero, evidence, native explorer, platform teaser, thesis, founder strip |
+| `home.css` | Home opening and credits row, portfolio wall, platform teaser, thesis, founder strip |
 | `products.css` | Apps directory and all four product detail compositions |
 | `company.css` | Company, Platform, Investors & Partners |
 | `contact.css` | Contact form, review/error/optional states, 404 recovery |
@@ -102,7 +102,7 @@ All values below are tokens on `:root` in `design/system/foundation.css`. `check
   - Interior pages: an opaque `--bg` bar from first paint with a `--line-soft` hairline and no blur.
   - Home:
     - `navigation.js` adds `html.header-over-hero` in the head when the visit starts at the top with no `#fragment`.
-    - An IntersectionObserver (88px root margin) turns the bar solid once the hero has passed, and transparent again at the top.
+    - An IntersectionObserver (220px root margin) turns the bar solid before the hero's credits row slides under it, and transparent again at the top.
     - Without JavaScript or IntersectionObserver, and while the mobile menu is open, the bar is solid.
     - The class is listed in `DYNAMIC_CLASSES`.
   - The hero's top scrim keeps nav and Contact text at 4.9:1 or better against the brightest sky behind them (measured at 1920, 1440, 1280, 1024 and 390).
@@ -153,6 +153,16 @@ All values below are tokens on `:root` in `design/system/foundation.css`. `check
     - The status dot and the "Get X ↓" link are removed.
   - Pages end with `product_close`: icon, statement, badges and one inquiry path, in the product's world light, which fades inside the scene.
   - Open item: every official IQ frame is light cyan, so IQ's screen is still the brightest surface in its first viewport. A darker official UI export is requested from the founder.
+- **Home wall and Apps lineup (P5b-2).**
+  - Home shows all four apps at once, as world cards. Each card has a 3:4 window aimed by `crop_focus`, a 56px icon and the name in the display face, one link to the product page, and an App Store / Google Play pair. Phones show a 2×2 grid, and the store links stay on the product pages.
+  - Measured:
+    - 1440×900: the four cards span 555px and fit in one view.
+    - 1280×800: they span 523px.
+    - 390×844: the wall ends 915px below its heading (limit 928px, 1.1 viewports).
+  - The Home header turns solid before the hero's credits row slides under it (220px root margin).
+  - Apps opens with a lineup of the four 112px icons on world glows. The lineup is the in-page navigation.
+  - Each app follows as a world band on alternating sides: a 64px icon, the name at chapter size, a deck summary, the official badges (with the Only Fitness disclosure once) and "Explore X →".
+  - Screens are 3:4 windows capped at 340px, or 55svh on phones. Images no longer open the viewer, and the status dot is gone.
 - **Buttons (P1).** The primary is `--sun-core` with an inner highlight and a warm bloom on hover and focus. The outline button is a `--control-border` hairline whose hover fill is `rgb(255 207 122 / .08)`.
 - **Status chips.** `.status` has a filled sun dot for evidence; `.status.vision` has a hollow ring for vision. Both always carry text.
 
@@ -171,8 +181,8 @@ All values below are tokens on `:root` in `design/system/foundation.css`. `check
   - Phase P3 (opening frame and header) is implemented: see Header and Home opening below.
   - Phase P4 (closing frame, footer and CTA hierarchy) is implemented: see Close and Footer below.
   - Phase P5a (product asset pipeline) is implemented. The founder confirmed the native screenshots on 2026-10-19, so they are published (see Product assets below).
-  - Phase P5b-1 (product openings, stage, badges, product close) is implemented. P5b-2 (the Home portfolio wall and the Apps lineup) follows.
-- **Still open:** the motion contract (plan §5, Phase P9), and the portfolio wall replacing the Home explorer (Phase P5b).
+  - Phase P5b is implemented: product openings, stage, badges and product close (P5b-1), plus the Home portfolio wall and the Apps lineup (P5b-2).
+- **Still open:** the motion contract (plan §5, Phase P9).
 - **Founder material:** plan §9 lists every asset and content item needed. None of it is invented in the meantime.
 - **Baseline renders:** `research-assets/baseline-2026-10-18/` holds full-page captures of https://solarityai.com (develop `b0eff9b`). It covers all 12 pages at 360, 390, 768, 1024 and 1440, plus Home and Investors at 1280x800 and 1920x1080, and a reduced-motion pass at 390 and 1440. `index.json` records each page height; none overflows horizontally. The JPEGs (about 21 MB) are kept out of git; only `index.json` is committed. Regenerate them with `node research-assets/baseline-2026-10-18/capture.mjs https://solarityai.com <folder>`.
 - **Lighthouse baseline:** recorded in `PRODUCTION_AUDIT.md`.
@@ -192,7 +202,7 @@ Responsive source rules cover 360, 390, 768, 1024, and 1440px contexts, includin
 ## Behavior and delivery guardrails
 
 - Preserve the synchronous navigation script before inline CSS. It establishes mobile layout before first paint and retains the expanded no-JS fallback.
-- Preserve the four native explorer radio inputs and their label/panel relationships. Invisible panels retain intrinsic layout space but are not interactive; print exposes all four.
+- The Home portfolio wall lists the four apps in APPS order, each with its icon, one link to its page and both store links (`check_site.py` enforces this). It replaced the native explorer in P5b.
 - Keep screenshot links as native image destinations enhanced with the existing accessible dialog. Preserve close, Escape, backdrop, modified-click, unsupported-dialog, and focus-return behavior.
 - Keep form input out of URLs until the user deliberately opens the reviewed email draft. Never show a delivered/sent success state. No backend submission is configured.
 - Images retain dimensions, genuine uncropped app content, responsive candidates, and updated `sizes` declarations. The Company founder portrait and opening product proof are eager; later conceptual artwork remains lazy.

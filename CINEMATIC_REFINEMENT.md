@@ -34,7 +34,7 @@ This pass addresses the approved 24-point cinematic audit as one design system. 
 ## Implementation and maintenance
 
 - Shared tokens, typography, controls, navigation, and footer: `design/system/foundation.css`, `design/system/chrome.css`, and `visual_chrome.py`.
-- Home composition and native product explorer: `visual_home.py`, `product_explorer.py`, and `design/system/home.css`.
+- Home composition and portfolio wall: `visual_home.py`, `visual_catalog.py` (`portfolio_wall`), and `design/system/home.css`. The native explorer was retired in P5b.
 - Product data and store destinations: `build_site.py`, `APPS`. Product composition: `visual_products.py`, `visual_catalog.py`, and `product_story.py`.
 - Platform, investor, and company composition: `visual_strategy.py`, `visual_company_upgrade.py`, `visual_sections.py`, and `visual_team.py`.
 - Contact destinations and native topics: `visual_contact.py`. Context enhancement: `scripts/contact.js`. Copy-address button (also on Careers): `copy_button` in `ux_components.py` and `scripts/copy.js`.
