@@ -56,6 +56,8 @@
  /* Full-bleed scene light extends past .wrap. Clip it at main, not body: body overflow would
     propagate to the viewport, and clip (unlike hidden) creates no scroll container. */
  main{overflow-x:clip}
+ /* Visitors who ask for more contrast get brighter secondary text and stronger hairlines. */
+ @media(prefers-contrast:more){:root{--muted:#e8e1d5;--dim:#d6cdbf;--sand:#ecd8b6;--line:#7a6852;--line-soft:#5b4c3c}}
  /* Headings break into balanced lines and paragraphs avoid a stranded last word. */
  :where(h1,h2,h3){text-wrap:balance}
  :where(p,li,dd,figcaption){text-wrap:pretty}
