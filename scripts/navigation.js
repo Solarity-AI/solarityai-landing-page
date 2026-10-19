@@ -16,6 +16,28 @@
   window.addEventListener('pointerdown', enableSmoothScroll, { passive: true });
   window.addEventListener('keydown', enableSmoothScroll, { passive: true });
 
+  // Home: the header floats over the sunrise. Decide before paint, and only for a
+  // fresh visit at the top; a restored scroll or #fragment starts with the solid bar.
+  // Without JavaScript or IntersectionObserver the header simply stays solid.
+  const root = document.documentElement;
+  const location = window.location || {};
+  const onHome = location.pathname === '/' || location.pathname === '/index.html';
+  if (onHome && !location.hash && !(window.scrollY > 0)) root.classList.add('header-over-hero');
+
+  function initializeHeroHeader() {
+    if (!onHome) return;
+    const hero = document.querySelector('.vision-hero');
+    if (!hero || typeof window.IntersectionObserver !== 'function') {
+      root.classList.remove('header-over-hero');
+      return;
+    }
+    // Solid once the hero has passed under the 88px header.
+    const observer = new window.IntersectionObserver((entries) => {
+      entries.forEach((entry) => root.classList.toggle('header-over-hero', entry.isIntersecting));
+    }, { rootMargin: '-88px 0px 0px 0px' });
+    observer.observe(hero);
+  }
+
   function initializeNavigation() {
     const toggle = document.querySelector('.menu-toggle');
     const nav = document.getElementById('site-nav');
@@ -78,9 +100,14 @@
     syncViewport();
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initializeNavigation, { once: true });
-  } else {
+  function initialize() {
+    initializeHeroHeader();
     initializeNavigation();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initialize, { once: true });
+  } else {
+    initialize();
   }
 })();

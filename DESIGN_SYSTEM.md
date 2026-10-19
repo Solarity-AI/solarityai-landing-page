@@ -98,6 +98,24 @@ All values below are tokens on `:root` in `design/system/foundation.css`. `check
 - **Portraits.** Founder imagery uses `--radius-panel` and `--shadow-portrait` (an alias of `--elev-object`), and stands in a warm key light.
 - **Spacing.** Fluid gutters (`--gutter`), content maximum 1264px, fluid section spacing (`--space-section`).
 - **Light, not borders, gives structure** (this replaces the October 13 "borders define structure" rule, with founder approval). Elevation is expressed as light: `--elev-panel` for lit panels, `--elev-object` for screenshots and portraits, `--elev-overlay` for the dialog backdrop. Glows must be motivated: behind a focal object, from the one key light. Fake dashboards, animated counters and hidden-content entrances remain out.
+- **Header (P3).**
+  - Interior pages: an opaque `--bg` bar from first paint with a `--line-soft` hairline and no blur.
+  - Home:
+    - `navigation.js` adds `html.header-over-hero` in the head when the visit starts at the top with no `#fragment`.
+    - An IntersectionObserver (88px root margin) turns the bar solid once the hero has passed, and transparent again at the top.
+    - Without JavaScript or IntersectionObserver, and while the mobile menu is open, the bar is solid.
+    - The class is listed in `DYNAMIC_CLASSES`.
+  - The hero's top scrim keeps nav and Contact text at 4.9:1 or better against the brightest sky behind them (measured at 1920, 1440, 1280, 1024 and 390).
+  - Wordmark: Manrope 600 at 16px, +0.06em, with "AI" in `--sand`.
+  - Nav links: 14px. A sun-core hairline draws under hover, focus and the current page.
+  - Contact is a ghost button (gold label, `--control-border`). On phones it becomes a compact text link beside a borderless menu icon.
+  - The mobile menu is a full-height scene of display-face links over a dawn glow.
+- **Home opening (P3).**
+  - Height is `clamp(640px, 100svh, 960px)`. The title is two lines ("Building for / human *potential.*"), followed by the deck, Investor inquiries (primary) and Partnership inquiries (ghost).
+  - Bottom edge: a credits row of the four app links, "Four apps · iOS & Android" and "Explore the portfolio ↓". An amber afterglow runs into the next scene.
+  - Warm umber scrims clear by half the width, and a soft shadow carries the title over bright sky.
+  - Phones: a 560px art strip, the title on its lower fade, and the caption on a chip.
+  - The hero `sizes` (`(max-width: 560px) 1233px, 2113px`) matches the AVIF preload exactly.
 - **Buttons (P1).** The primary is `--sun-core` with an inner highlight and a warm bloom on hover and focus. The outline button is a `--control-border` hairline whose hover fill is `rgb(255 207 122 / .08)`.
 - **Status chips.** `.status` has a filled sun dot for evidence; `.status.vision` has a hollow ring for vision. Both always carry text.
 
@@ -113,6 +131,7 @@ All values below are tokens on `:root` in `design/system/foundation.css`. `check
   - Phase P1 (light, color and materials) is implemented: see the rules above and the P1 pull request.
   - Phase P2 (type system) is implemented: see the Type rule above.
   - The P2 follow-up (folios, numbering, captions) is implemented: see the rules above.
+  - Phase P3 (opening frame and header) is implemented: see Header and Home opening below.
 - **Still open:** the motion contract (plan §5, Phase P9), and the portfolio wall replacing the Home explorer (Phase P5b).
 - **Founder material:** plan §9 lists every asset and content item needed. None of it is invented in the meantime.
 - **Baseline renders:** `research-assets/baseline-2026-10-18/` holds full-page captures of https://solarityai.com (develop `b0eff9b`). It covers all 12 pages at 360, 390, 768, 1024 and 1440, plus Home and Investors at 1280x800 and 1920x1080, and a reduced-motion pass at 390 and 1440. `index.json` records each page height; none overflows horizontally. The JPEGs (about 21 MB) are kept out of git; only `index.json` is committed. Regenerate them with `node research-assets/baseline-2026-10-18/capture.mjs https://solarityai.com <folder>`.

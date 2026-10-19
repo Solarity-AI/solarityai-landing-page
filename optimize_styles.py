@@ -10,6 +10,7 @@ import re
 
 
 DYNAMIC_CLASSES = frozenset({
+    'header-over-hero',
     'nav-enhanced', 'is-open', 'nav-open', 'image-preview-open', 'smooth-scroll',
 })
 _IDENTIFIER = re.compile(r'-?[_a-zA-Z][_a-zA-Z0-9-]*')
