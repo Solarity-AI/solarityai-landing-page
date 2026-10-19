@@ -1,5 +1,6 @@
 """Solar-inspired company opening, product evidence, and an explicit strategy."""
 from html import escape as e
+from visual_sections import platform_map
 
 
 def hero_section(apps, btn, contact):
@@ -33,23 +34,9 @@ def hero_section(apps, btn, contact):
 
 def company_strategy(apps, btn, contact):
     """Describe the strategic relationship without implying deployed integration."""
-    modules = [
-        ('engineering', 'Build', 'Engineering Max', 'Engineering workflow support.'),
-        ('management', 'Operate', 'Management Max', 'Product and team execution.'),
-        ('marketing', 'Grow', 'Marketing Max', 'Marketing workflow support.'),
-    ]
-    module_rows = ''.join(
-        f'<a class="strategy-module" href="/platform#{slug}-max"><span class="strategy-step">{verb}</span>'
-        f'<span><strong>{title}</strong><small>{desc}</small></span><span aria-hidden="true">→</span></a>'
-        for slug, verb, title, desc in modules
-    )
     return f'''<section class="company-strategy" aria-labelledby="strategy-title"><div class="strategy-layout wrap">
       <div class="strategy-copy"><p class="eyebrow">The app factory</p><h2 id="strategy-title">Build the product. <br><span>Improve the way it gets built.</span></h2><p>Each app starts with a distinct human ambition. Building these products also informs the workflows we want to make more repeatable.</p><p>Our app factory vision connects this experience with a longer-term focus on engineering, operations, and marketing.</p><a class="text-link" href="/platform">Explore the app factory <span aria-hidden="true">→</span></a></div>
-      <div class="strategy-relationship"><div class="strategy-portfolio"><p class="strategy-label">THE STARTING POINT</p><h3>Real product experience.</h3><p>What we learn from creating focused consumer apps informs the systems we develop next.</p></div>
-        <p class="strategy-connection"><span aria-hidden="true">↓</span> Experience informs workflow design</p>
-        <div class="strategy-workflows"><p class="strategy-label">THE APP FACTORY VISION</p>{module_rows}</div>
-        <p class="strategy-context">Conceptual strategy. These relationships do not represent a deployed, integrated platform.</p>
-      </div>
+      {platform_map(apps, 'home')}
     </div></section>'''
 
 

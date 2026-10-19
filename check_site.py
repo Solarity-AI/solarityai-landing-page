@@ -155,6 +155,12 @@ for file,d in docs.items():
         if t=='a' and 'screenshot-open' in a.get('class','').split():
             if not a.get('data-image-title') or not a.get('data-image-alt'):errors.append(f'{rel}: screenshot enlargement is missing descriptive dialog data')
             if not a.get('href','').startswith('/assets/') or a.get('target')!='_blank':errors.append(f'{rel}: screenshot enlargement lost its native direct-image fallback')
+    # The app factory map: every vision node carries the vision chip, and the legend states the connections are conceptual.
+    for figure in re.findall(r'<figure class="pmap[^"]*">(.*?)</figure>',text,re.S):
+        nodes=re.findall(r'class="pmap-node"[^>]*>(.*?)</(?:a|span)></li>',figure,re.S)
+        if len(nodes)!=3 or any('class="status vision"' not in n for n in nodes):errors.append(f'{rel}: each app factory map node needs its Vision status')
+        if 'do not represent deployed integrations' not in figure:errors.append(f'{rel}: the app factory map needs its conceptual-strategy legend')
+    if rel in ('index.html','platform/index.html') and 'class="pmap' not in text:errors.append(f'{rel}: missing the app factory map')
     if rel=='index.html':
         # The portfolio wall: the four apps in APPS order, each with its icon and both store links.
         wall=re.search(r'<ul class="wall-grid"[^>]*>(.*?)</ul>',text,re.S)
