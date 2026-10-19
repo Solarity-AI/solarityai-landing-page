@@ -43,7 +43,7 @@ def investor_opening(apps, btn, contact):
         '<p class="lede">Focused consumer apps. A vision for the systems behind them. '
         'Explore the products, then the company direction.</p>'
         '<div class="actions">' + btn('Investor inquiries', contact('Investor'))
-        + btn('Discuss a partnership', contact('Strategic partner'), 'outline')
+        + btn('Partnership inquiries', contact('Strategic partner'), 'outline')
         + '</div>' + page_index((('portfolio', 'Portfolio'), ('thesis', 'Thesis'),
                                  ('conversation-paths', 'Partnerships'),
                                  ('investor-questions', 'Questions'),
@@ -68,7 +68,7 @@ def strategy_story(btn, contact):
 <li><span class="strategy-story-number" aria-hidden="true">02</span><div><h3>Learn from the work behind it.</h3><p>Requirements, priorities, releases, and product storytelling are part of bringing an app to people. These disciplines inform the app factory direction.</p></div></li>
 <li><span class="strategy-story-number" aria-hidden="true">03</span><div><h3>Develop patterns worth reusing.</h3><p>The ambition is to carry useful workflows into future products while preserving the judgment each one needs.</p><div class="strategy-story-disciplines"><a href="#engineering-max">Build <span aria-hidden="true">↓</span></a><a href="#management-max">Operate <span aria-hidden="true">↓</span></a><a href="#marketing-max">Grow <span aria-hidden="true">↓</span></a></div></div></li>
 </ol>
-<div class="strategy-story-bottom"><p><strong>People remain responsible for the decisions.</strong><span>Architecture, product priorities, and releases need deliberate judgment. Reusable systems should support that work.</span></p>''' + btn('Discuss the platform direction', contact('Strategic partner', 'App factory vision'), 'outline') + '''</div>
+<div class="strategy-story-bottom"><p><strong>People remain responsible for the decisions.</strong><span>Architecture, product priorities, and releases need deliberate judgment. Reusable systems should support that work.</span></p></div>
 </section>'''
 
 

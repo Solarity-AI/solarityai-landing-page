@@ -26,7 +26,7 @@ def platform_opening(modules, btn, contact):
         '<h1 id="platform-opening-title">The work behind <span>what comes next.</span></h1>'
         '<p class="lede">A vision for the engineering, management, and marketing work '
         'behind focused mobile products.</p><div class="actions">'
-        + btn('Discuss a partnership', contact('Strategic partner', 'App factory vision'))
+        + btn('Partnership inquiries', contact('Strategic partner', 'App factory vision'))
         + '</div><a class="text-link platform-portfolio-link" href="/apps">'
         'Meet the products informing the direction <span aria-hidden="true">→</span></a></div>'
         '<figure class="platform-opening-map"><div class="platform-opening-map-heading">'
