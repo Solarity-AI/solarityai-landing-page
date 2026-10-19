@@ -4,7 +4,9 @@ from urllib.parse import urlencode
 from ux_components import app_breadcrumbs, related_apps, inquiry_panel
 from image_provenance import provenance
 from ux_content import investor_faq, recovery_links
-from visual_home import hero_section, closing_scene, company_strategy
+from visual_home import hero_section, closing_scene
+from visual_saas import saas_wall, saas_chapters
+from saas_products import SAAS
 from visual_sections import feature_grid, founder_card, founder_portrait
 from visual_team import selected_team
 from visual_careers import careers_page
@@ -91,7 +93,7 @@ pages={}
 hero=hero_section(APPS,btn,contact)
 products=portfolio_wall(APPS)
 founder_strip=f'''<section class="founder-strip wrap">{founder_portrait(compact=True)}<div><h2>Ata Turhan</h2><p>Building Solarity AI from Irving, Texas, with a focus on consumer products and the systems behind them.</p></div><a class="text-link" href="/company">Meet the company {ARROW}</a></section>'''
-pages['/']=('Building for human potential','AI-powered self-improvement apps and an app factory vision. Explore Solarity AI and connect with our founder.',hero+products+company_strategy(APPS,btn,contact)+founder_strip+cta('Build on a shared ambition.','Explore the portfolio, discuss a partnership, or speak with the founder about the company’s direction.'))
+pages['/']=('Building for human potential','AI-powered self-improvement apps, and three web apps for engineering, managing and marketing mobile products. Explore Solarity AI and connect with our founder.',hero+products+saas_wall(SAAS)+founder_strip+cta('Build on a shared ambition.','Explore the portfolio, discuss a partnership, or speak with the founder about the company’s direction.'))
 
 pages['/apps']=('Apps for everyday ambition','Discover Looks Max, IQ Max, Sleep Max and Fitness Max from Solarity AI.',portfolio_page(APPS,btn,app_art,product_status)+cta('Products with purpose.','Interested in distribution, product collaboration, or the wider Solarity AI story? Let’s start a conversation.'))
 
@@ -101,10 +103,7 @@ for a in APPS:
     features=feature_grid(a)
     pages['/apps/'+a['slug']]=(a['name']+' | '+a['category'],a['summary'],product_page(a,APPS,btn,contact,stores,status,features,app_breadcrumbs(a),related_apps(a,APPS)))
 
-modules=[('engineering-max','01','Engineering Max','Build with intention.','ENGINEERING WORKFLOWS','The engineering direction of our app factory: a more repeatable path from product requirements to implementation and review.','The focus is on supporting product-building work while preserving deliberate decisions about architecture, quality, and release.'),('management-max','02','Management Max','Keep execution in view.','PRODUCT & TEAM OPERATIONS','The management direction: bringing priorities, ownership, and delivery into a coherent operational picture.','The goal is to make the work behind each product easier to understand, coordinate, and follow through.'),('marketing-max','03','Marketing Max','Connect products with people.','MARKETING WORKFLOWS','The marketing direction: supporting the planning and execution involved in taking consumer apps to their audiences.','The ambition is to make product storytelling, marketing workflows, and learning from execution more repeatable.')]
-stage_words={'engineering-max':'Build','management-max':'Operate','marketing-max':'Grow'}
-module_sections=''.join(f'''<section class="module-detail" id="{slug}" aria-labelledby="{slug}-title"><span class="module-word" aria-hidden="true">{stage_words[slug]}</span><div class="module-num" aria-hidden="true">{num}</div><div><h2 id="{slug}-title">{name}</h2><span class="status vision"><i aria-hidden="true"></i>Vision</span><h3>{title}</h3><p>{desc}</p><p class="muted">{detail}</p></div></section>''' for slug,num,name,title,label,desc,detail in modules)
-pages['/platform']=('The app factory vision','Engineering Max, Management Max and Marketing Max: the Solarity AI platform vision for building, operating and growing mobile products.',f'''{platform_opening(APPS,btn,contact)}<div class="wrap module-list">{module_sections}</div>{strategy_story(btn,contact)}{cta("Shape the next product workflow.","Bring a specific engineering, management, or marketing problem to a conversation about the app factory direction.",lead='partner')}''')
+pages['/platform']=('The app factory','Engineering Max, Management Max and Marketing Max: three Solarity AI web apps for engineering, managing and marketing mobile products.',f'''{platform_opening(APPS,SAAS,btn,contact)}{saas_chapters(SAAS)}{strategy_story(btn,contact)}{cta("Shape the next product workflow.","Bring a specific engineering, management, or marketing problem to a conversation about the app factory direction.",lead='partner')}''')
 
 pages['/company']=('The company','Meet founder Ata Turhan and the Solarity AI team building self-improvement apps and the systems behind them.',f'''
 <section class="page-intro wrap company-intro"><h1>The people.<br>The purpose.</h1><p class="lede">Founded by Ata Turhan in Irving, Texas, Solarity AI brings focused self-improvement apps together with a vision for more repeatable product development.</p><a class="text-link company-team-shortcut" href="#team">Meet our team <span aria-hidden="true">↓</span></a><a class="text-link company-careers-shortcut" href="/careers">Explore careers <span aria-hidden="true">→</span></a></section>

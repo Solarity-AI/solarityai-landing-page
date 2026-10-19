@@ -41,7 +41,10 @@ EDGE_LIMIT = 40
 # Trim against a stricter limit so resampled derivatives still pass the 40-level check.
 EDGE_TRIM_LIMIT = 30
 EDGE_MAX_INSET = 32
-SUNRISE_WIDTHS = (480, 768, 1200, 1440, 1860)
+# The hero master is the approved artwork upscaled 2x (research-assets/solar-ascent-artwork.json).
+SUNRISE_WIDTHS = (480, 768, 1200, 1440, 1860, 2560, 3200, 3720)
+# Web app screenshots from the products' own sites (research-assets/saas-evidence.json).
+WEB_WIDTHS = (640, 960, 1440, 1920, 2560)
 WEBP_QUALITY = 86
 AVIF_QUALITY = 70
 
@@ -60,12 +63,18 @@ SOURCE_ROLES = {
     'sleep-max-icon.webp': 'icon',
     'fitness-max-icon.webp': 'icon',
     'solar-ascent.webp': 'hero',
+    'engineering-max-overview.webp': 'web',
+    'management-max-overview.webp': 'web',
+    'management-max-sources.webp': 'web',
+    'marketing-max-home.webp': 'web',
+    'marketing-max-caption.webp': 'web',
 }
 
 DEFAULT_SIZES = {
     'screen': '(max-width: 560px) 62vw, 244px',
     'icon': '48px',
     'hero': '100vw',
+    'web': '(max-width: 850px) 92vw, 640px',
 }
 _manifest: dict | None = None
 
@@ -213,7 +222,10 @@ def ensure_optimized_images() -> dict:
                 if any(insets.values()):
                     crop = insets
                     image = image.crop((insets['left'], insets['top'], image.width - insets['right'], image.height - insets['bottom']))
-            widths = {'screen': SCREEN_WIDTHS, 'icon': ICON_WIDTHS, 'hero': SUNRISE_WIDTHS}[role]
+            widths = {'screen': SCREEN_WIDTHS, 'icon': ICON_WIDTHS, 'hero': SUNRISE_WIDTHS, 'web': WEB_WIDTHS}[role]
+            if role == 'web':
+                # Always end at the screenshot's own width; never enlarge it.
+                widths = tuple(w for w in WEB_WIDTHS if w < image.width) + (image.width,)
             stem = source.stem
             record = {
                 'source': '/assets/' + filename,

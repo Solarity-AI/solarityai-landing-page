@@ -155,13 +155,30 @@ for file,d in docs.items():
         if t=='a' and 'screenshot-open' in a.get('class','').split():
             if not a.get('data-image-title') or not a.get('data-image-alt'):errors.append(f'{rel}: screenshot enlargement is missing descriptive dialog data')
             if not a.get('href','').startswith('/assets/') or a.get('target')!='_blank':errors.append(f'{rel}: screenshot enlargement lost its native direct-image fallback')
-    # The app factory map: every vision node carries the vision chip, and the legend states the connections are conceptual.
+    # The app factory map: each web app node states its own status, and the legend says the lines are not integrations.
+    saas_slugs=['engineering-max','management-max','marketing-max']
     for figure in re.findall(r'<figure class="pmap[^"]*">(.*?)</figure>',text,re.S):
-        nodes=re.findall(r'class="pmap-node"[^>]*>(.*?)</(?:a|span)></li>',figure,re.S)
-        if len(nodes)!=3 or any('class="status vision"' not in n for n in nodes):errors.append(f'{rel}: each app factory map node needs its Vision status')
-        if 'do not represent deployed integrations' not in figure:errors.append(f'{rel}: the app factory map needs its conceptual-strategy legend')
-    if rel in ('index.html','platform/index.html') and 'class="pmap' not in text:errors.append(f'{rel}: missing the app factory map')
+        nodes=re.findall(r'class="pmap-node" href="#([\w-]+)">(.*?)</a></li>',figure,re.S)
+        if [n[0] for n in nodes]!=saas_slugs or any('class="status"><i aria-hidden="true"></i>' not in n[1] for n in nodes):errors.append(f'{rel}: each app factory map node needs its web app status')
+        if 'they are not data integrations' not in figure:errors.append(f'{rel}: the app factory map needs its legend')
+    if rel=='platform/index.html':
+        if 'class="pmap' not in text:errors.append(f'{rel}: missing the app factory map')
+        # One chapter per web app, each with a real screen from its own site and a link to that site.
+        for slug in saas_slugs:
+            chapter=re.search(r'<section class="saas-chapter[^"]*" id="'+slug+r'"[^>]*>(.*?)</section>',text,re.S)
+            if not chapter:errors.append(f'{rel}: missing the {slug} chapter');continue
+            if not re.search(r'<img class="web-shot"[^>]*src="/assets/optimized/'+slug+r'-',chapter.group(1)):errors.append(f'{rel}: the {slug} chapter needs its product screenshot')
+            if 'href="https://'+slug.replace('-','')+'.solarityai.com/"' not in chapter.group(1):errors.append(f'{rel}: the {slug} chapter must link to its own site')
+    # Every footer lists the whole portfolio: the four mobile apps and the three web apps.
+    for slug in saas_slugs:
+        if not footer_match or f'href="/platform/#{slug}"' not in footer_match.group(1):errors.append(f'{rel}: footer is missing the {slug} web app')
     if rel=='index.html':
+        # The web apps follow the consumer wall: three cards in map order, each linking to its chapter and its site.
+        saas_cards=re.findall(r'<li class="saas-card" id="home-([\w-]+)">(.*?)</li>',text,re.S)
+        if [c[0] for c in saas_cards]!=saas_slugs:errors.append(f'{rel}: Home must introduce the three web apps in order')
+        for slug,card in saas_cards:
+            if f'href="/platform/#{slug}"' not in card or 'href="https://'+slug.replace('-','')+'.solarityai.com/"' not in card:errors.append(f'{rel}: each web app card links to its chapter and its site')
+            if not re.search(r'<img class="web-shot"[^>]*src="/assets/optimized/'+slug+r'-',card):errors.append(f'{rel}: each web app card needs its product screenshot')
         # The portfolio wall: the four apps in APPS order, each with its icon and both store links.
         wall=re.search(r'<ul class="wall-grid"[^>]*>(.*?)</ul>',text,re.S)
         cards=re.findall(r'<li class="wall-card"[^>]*>(.*?)</li>',wall.group(1),re.S) if wall else []
@@ -175,10 +192,11 @@ for file,d in docs.items():
         primary_images=[a for t,a in d.tags if t=='img' and 'progress-hero-image' in a.get('class','').split()]
         hero_sources=[a for t,a in d.tags if t=='source' and a.get('type')=='image/avif' and 'solar-ascent-' in a.get('srcset','')]
         if len(primary_images)!=1 or 'solar-ascent-' not in primary_images[0].get('src',''):errors.append(f'{rel}: hero must use the founder-approved atmospheric sunrise artwork')
-        if primary_images and (primary_images[0].get('width')!='1860' or primary_images[0].get('height')!='845'):errors.append(f'{rel}: hero must reserve the correct intrinsic dimensions')
+        if primary_images and (primary_images[0].get('width')!='3720' or primary_images[0].get('height')!='1690'):errors.append(f'{rel}: hero must reserve the correct intrinsic dimensions')
         if len(primary_images)!=1 or primary_images[0].get('loading')!='eager' or primary_images[0].get('fetchpriority')!='high':errors.append(f'{rel}: hero artwork must load eagerly at high priority')
         if len(hero_sources)!=1 or not primary_images or hero_sources[0].get('sizes')!=primary_images[0].get('sizes'):errors.append(f'{rel}: hero AVIF and WebP must share the rendered image-size contract')
-        if 'Conceptual brand artwork' not in text:errors.append(f'{rel}: hero must identify its illustrative role')
+        # The founder removed the hero caption on 2026-10-19; the artwork keeps its descriptive alt text.
+        if 'hero-image-caption' in text:errors.append(f'{rel}: the Home hero carries no caption (founder decision, 2026-10-19)')
         hero_preloads=[a for t,a in d.tags if t=='link' and a.get('rel')=='preload' and a.get('as')=='image']
         if len(hero_preloads)!=1 or not hero_sources or hero_preloads[0].get('type')!='image/avif' or hero_preloads[0].get('imagesrcset')!=hero_sources[0].get('srcset') or hero_preloads[0].get('imagesizes')!=hero_sources[0].get('sizes'):errors.append(f'{rel}: hero preload must match the primary AVIF source exactly')
     if rel.startswith('apps/') and rel!='apps/index.html':

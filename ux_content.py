@@ -19,24 +19,22 @@ def investor_faq():
             'availability in your region.</p>',
         ),
         (
-            "Is the app factory available to external teams?",
-            '<p>Engineering Max, Management Max, and Marketing Max represent '
-            'our platform vision. Specific capabilities, integrations, and '
-            'external commercial availability are topics for discussion with '
-            'prospective partners.</p>'
-            '<p><a href="/platform">Explore the three platform focus areas</a> '
-            'or <a href="/contact?type=Strategic+partner&amp;product=Platform+design+partnership#prepare-inquiry">'
-            'discuss a platform design partnership</a>.</p>',
+            "Can other teams use the web apps?",
+            '<p>Yes, at different stages. <a href="/platform#management-max">Management Max</a> '
+            'is open with a free plan for one app. <a href="/platform#engineering-max">Engineering Max</a> '
+            'is in private testing and <a href="/platform#marketing-max">Marketing Max</a> is in early access; '
+            'both take requests on their own sites. Mobile versions of all three are planned.</p>'
+            '<p><a href="/platform">Explore the app factory</a> '
+            'or <a href="/contact?type=Strategic+partner&amp;product=Web+apps#prepare-inquiry">'
+            'discuss the web apps for your team</a>.</p>',
         ),
         (
             "What is the business model direction?",
-            '<p>The consumer product direction includes subscriptions and '
-            'in-app purchases. Looks Max, IQ Max, Sleep Max, and Fitness Max have store '
-            'listings with in-app purchases; consult each listing for current '
-            'plans and terms.</p>'
-            '<p>Potential commercialization of the app factory is part of the '
-            'company strategy. The platform is presented here as a vision, '
-            'with commercial scope to be discussed.</p>',
+            '<p>The consumer apps use subscriptions and in-app purchases. Looks Max, IQ Max, '
+            'Sleep Max, and Fitness Max have store listings with in-app purchases; consult each '
+            'listing for current plans and terms.</p>'
+            '<p>Management Max offers a free plan and paid plans that count apps, not seats. '
+            'Engineering Max and Marketing Max have no price yet.</p>',
         ),
         (
             "What kinds of partnerships are relevant?",

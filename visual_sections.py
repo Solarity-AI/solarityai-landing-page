@@ -61,53 +61,42 @@ def feature_grid(app):
     )
 
 
-MAP_NODES = (
-    ('engineering-max', 'Build', 'Engineering Max', 'Requirements, implementation, review'),
-    ('management-max', 'Operate', 'Management Max', 'Priorities, ownership, delivery'),
-    ('marketing-max', 'Grow', 'Marketing Max', 'Planning, storytelling, learning'),
-)
-
-MAP_NOTE = ('Consumer product work informs the intended platform direction. '
-            'Connections shown do not represent deployed integrations.')
+MAP_NOTE = ('Engineering Max and Marketing Max were built and tried first on Solarity AI’s own apps. '
+            'The lines show where the work comes from; they are not data integrations.')
 
 
-def platform_map(apps, variant='platform'):
-    """The app factory as light: the store-listed apps are the lit source, the three directions are outlined vision.
-
-    The connectors read as "informs" (dashed, decorative) and never as deployed integrations. On Platform the
-    icons link to the apps and the nodes to the module sections; on Home the map is illustrative, and the
-    section's one "Explore the app factory" link leads on.
+def platform_map(apps, saas):
+    """The app factory as light: the store-listed apps are the lit source on a horizon, and the three web apps
+    they shaped sit below, each with its own status from its site. The dashed connectors read as "informs",
+    never as integrations. The icons link to the apps and the nodes to the Platform chapters.
     """
-    linked = variant == 'platform'
     listed = [app for app in apps if app.get('apple') and app.get('google')]
     icons = []
     for app in listed:
         slug, name = escape(app['slug'], quote=True), escape(app['name'])
-        img = ('<img src="/assets/' + slug + '-icon.webp" width="56" height="56" alt="' + name
-               + '" loading="lazy" decoding="async">')
-        icons.append('<li data-product-accent="' + escape(app['color'], quote=True) + '">'
-                     + ('<a href="/apps/' + slug + '">' + img + '</a>' if linked else img) + '</li>')
+        icons.append('<li data-product-accent="' + escape(app['color'], quote=True) + '"><a href="/apps/' + slug + '">'
+                     '<img src="/assets/' + slug + '-icon.webp" width="56" height="56" alt="' + name
+                     + '" loading="lazy" decoding="async"></a></li>')
     nodes = []
-    for slug, stage, name, caption in MAP_NODES:
-        body = ('<span class="pmap-word">' + stage + '</span><strong>' + escape(name) + '</strong>'
-                '<span class="pmap-caption">' + escape(caption) + '</span>'
-                '<span class="status vision"><i aria-hidden="true"></i>Vision</span>')
-        nodes.append('<li>' + ('<a class="pmap-node" href="#' + slug + '">' + body + '</a>' if linked
-                               else '<span class="pmap-node">' + body + '</span>') + '</li>')
+    for product in saas:
+        nodes.append('<li><a class="pmap-node" href="#' + escape(product['slug'], quote=True) + '">'
+                     '<span class="pmap-word">' + escape(product['stage']) + '</span><strong>' + escape(product['name']) + '</strong>'
+                     '<span class="pmap-caption">' + escape(product['category']) + '</span>'
+                     '<span class="status"><i aria-hidden="true"></i>' + escape(product['status'].split(' · ')[-1].capitalize()) + '</span></a></li>')
     names = ', '.join(escape(app['name']) for app in listed)
-    directions = '; '.join(stage + ', ' + escape(name) for _slug, stage, name, _caption in MAP_NODES)
-    return ('<figure class="pmap pmap--' + variant + '">'
-            '<div class="pmap-stage"><div class="pmap-source"><ul class="pmap-apps" aria-label="Consumer portfolio">'
+    tools = '; '.join(escape(p['stage']) + ', ' + escape(p['name']) + ' (' + escape(p['status']) + ')' for p in saas)
+    return ('<figure class="pmap pmap--platform">'
+            '<div class="pmap-stage"><div class="pmap-source"><ul class="pmap-apps" aria-label="Mobile apps">'
             + ''.join(icons) + '</ul><span class="status"><i aria-hidden="true"></i>Available on iOS&nbsp;&amp;&nbsp;Android</span></div>'
             '<svg class="pmap-arcs" viewBox="0 0 600 80" width="600" height="80" fill="none" preserveAspectRatio="none" aria-hidden="true" focusable="false">'
             '<path d="M300 0C300 44 100 36 100 80M300 0V80M300 0C300 44 500 36 500 80" stroke="currentColor" stroke-width="1.5" '
             'stroke-dasharray="2 7" stroke-linecap="round" vector-effect="non-scaling-stroke"/></svg>'
-            '<ol class="pmap-nodes" aria-label="App factory vision">' + ''.join(nodes) + '</ol></div>'
+            '<ol class="pmap-nodes" aria-label="Web apps">' + ''.join(nodes) + '</ol></div>'
             '<figcaption class="pmap-legend"><span class="pmap-keys" aria-hidden="true">'
-            '<span class="status"><i></i>Live products</span><span class="status vision"><i></i>Vision</span></span>'
-            '<span class="pmap-note"><strong>Conceptual company strategy.</strong> ' + MAP_NOTE + '</span>'
-            '<span class="sr-only"> The diagram shows ' + str(len(listed)) + ' store-listed apps (' + names
-            + ') informing three vision directions: ' + directions + '.</span></figcaption></figure>')
+            '<span class="status"><i></i>Mobile apps</span><span class="status"><i></i>Web apps</span></span>'
+            '<span class="pmap-note"><strong>How the work connects.</strong> ' + MAP_NOTE + '</span>'
+            '<span class="sr-only"> The diagram shows ' + str(len(listed)) + ' store-listed mobile apps (' + names
+            + ') above the three web apps they shaped: ' + tools + '.</span></figcaption></figure>')
 
 
 def founder_portrait(compact=False):

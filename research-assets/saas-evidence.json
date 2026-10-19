@@ -1,0 +1,93 @@
+{
+  "read_on": "2026-10-19",
+  "founder_instruction": "The three SaaS projects are web apps today and will also be released as mobile apps. Add them to Home, the Platform page and the footer portfolio, introduced from their own websites with real screenshots. (Founder, 2026-10-19)",
+  "products": {
+    "engineering-max": {
+      "url": "https://engineeringmax.solarityai.com/",
+      "statements": [
+        "Private testing · for Expo, React Native, Flutter and native apps",
+        "Find and fix what keeps your mobile app out of the App Store.",
+        "It audits against 155 rules, ranks the problems, and gives your own Claude Code or Codex one focused prompt at a time — then checks each fix.",
+        "We never see your code: your agent writes a report, and we read the report.",
+        "An internal test on Sleep Max, our live sleep app. We have no customer metrics yet.",
+        "Free during private testing. Pricing isn’t set yet."
+      ]
+    },
+    "management-max": {
+      "url": "https://managementmax.solarityai.com/",
+      "statements": [
+        "Management Max: governed weekly metrics for mobile app companies (page title)",
+        "Management Max holds your weekly metric set at app level, checks every figure on the way in, and combines it across any selection of apps. Where combining would be dishonest it shows the spread instead, and names the reason.",
+        "50 definitions · 16 validation rules · 4 categories",
+        "Connected sources: RevenueCat, AppsFlyer, App Store Connect, Google Play, Firebase, GitHub, YouTube; Meta and TikTok soon",
+        "Invite the people who close the week ... give each of them a role. EVERY CHANGE IS SIGNED",
+        "Counted in apps, not in seats. Free $0 forever, 1 app · 2 seats; paid Solo, Studio and Portfolio tiers",
+        "Start free / Sign in (header actions)"
+      ]
+    },
+    "marketing-max": {
+      "url": "https://marketingmax.solarityai.com/",
+      "statements": [
+        "Internal V1 · Instagram",
+        "Your next Reel, made from one that already worked.",
+        "It finds the Reels that performed, writes the caption and the line on your video, and posts at the time you pick. You approve each of the four steps.",
+        "Built by Solarity AI for its own apps first. Every screen on this page is the real product with sample data.",
+        "Limits today: Instagram only. TikTok and YouTube are switched off. Planned: TikTok, YouTube Shorts, a commercial version for other teams.",
+        "MarketingMax has no price yet. Early access is how you can use it today."
+      ]
+    }
+  },
+  "not_used": "Engineering Max screenshots that list named security findings in Sleep Max (issue.jpg, scan.jpg, verdict.jpg, and the capped-score box of overview.jpg) are left out of the corporate site.",
+  "assets": {
+    "/assets/engineering-max-overview.webp": {
+      "source_url": "https://engineeringmax.solarityai.com/site/overview.jpg",
+      "method": "Published product screenshot, cropped to the header, health score and areas. The crop leaves out the named security findings listed below them.",
+      "dimensions": [
+        1800,
+        662
+      ],
+      "sha256": "dde4cecd3baebca07aac38dfa44f2fc94baec52e6e0f17bc975810911f47b051",
+      "bytes": 86624
+    },
+    "/assets/management-max-overview.webp": {
+      "source_url": "https://managementmax.solarityai.com/ (hero Overview panel)",
+      "method": "Rendered at 1440x900, device scale 2, in headless Chrome on 2026-10-19; cropped to the Overview panel.",
+      "dimensions": [
+        1160,
+        1280
+      ],
+      "sha256": "4e2ce57bd248a9b7cf19ce6ad4d3c2f02fa1aec944081c24355731a4a11790de",
+      "bytes": 90246
+    },
+    "/assets/management-max-sources.webp": {
+      "source_url": "https://managementmax.solarityai.com/#sources",
+      "method": "Rendered at 1440x900, device scale 2, in headless Chrome on 2026-10-19; cropped to the sources diagram.",
+      "dimensions": [
+        2360,
+        760
+      ],
+      "sha256": "a18dbeb66c1d53e3440689f05eb289a4e03a9c1c2c1ed2406f704f0edeb11866",
+      "bytes": 75754
+    },
+    "/assets/marketing-max-home.webp": {
+      "source_url": "https://marketingmax.solarityai.com/screens/desk-home-dark@2x.avif",
+      "method": "Published product screenshot, unmodified apart from format conversion.",
+      "dimensions": [
+        2880,
+        1800
+      ],
+      "sha256": "23d3782ad887b55d561ab6cc71c1f98a43b78b36571f02876ee08f9fcfb1ac44",
+      "bytes": 252446
+    },
+    "/assets/marketing-max-caption.webp": {
+      "source_url": "https://marketingmax.solarityai.com/screens/desk-caption-dark@2x.avif",
+      "method": "Published product screenshot, unmodified apart from format conversion.",
+      "dimensions": [
+        1880,
+        1800
+      ],
+      "sha256": "e7ba412998befee3d4861a972a6677871da4e4d3b5ece9284292961c12ec7c14",
+      "bytes": 183152
+    }
+  }
+}
