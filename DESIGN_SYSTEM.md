@@ -163,6 +163,13 @@ All values below are tokens on `:root` in `design/system/foundation.css`. `check
   - Apps opens with a lineup of the four 112px icons on world glows. The lineup is the in-page navigation.
   - Each app follows as a world band on alternating sides: a 64px icon, the name at chapter size, a deck summary, the official badges (with the Only Fitness disclosure once) and "Explore X →".
   - Screens are 3:4 windows capped at 340px, or 55svh on phones. Images no longer open the viewer, and the status dot is gone.
+- **Investors narrative (P6a).**
+  - The opening puts the title beside its lede, actions and page index. The four store-listed apps follow as a lit showroom: a 3:4 window aimed by `crop_focus`, icon, name and category, one link to the product page, and an App Store / Google Play pair.
+  - Measured: all four frames are fully visible at 1440×900 (lowest at 854px) and 1280×800 (781px, with smaller windows below 860px of height). At 390×844 the frames become a keyboard-operable rail, and its first plate shows 211px in the first view.
+  - The fact band (`#at-a-glance`) states only verified facts: the company and city, the founder's name and portrait, and the number of apps listed on both stores, counted from APPS.
+  - Two registers: **Today** is a lit card with the four icons and a filled evidence status; **Ahead** is a dashed card with the hollow `.status.vision` ring and a link to Platform. Vision never borrows the evidence styling.
+  - The close pairs the founder booking (times as the primary, email as the outline) with the one reprise of the approved sunrise on this page, captioned "Conceptual brand artwork".
+  - Every chapter heading on the page uses the display face. Section glows fade in from transparent on every edge, so no band shows a seam.
 - **Buttons (P1).** The primary is `--sun-core` with an inner highlight and a warm bloom on hover and focus. The outline button is a `--control-border` hairline whose hover fill is `rgb(255 207 122 / .08)`.
 - **Status chips.** `.status` has a filled sun dot for evidence; `.status.vision` has a hollow ring for vision. Both always carry text.
 
@@ -182,6 +189,7 @@ All values below are tokens on `:root` in `design/system/foundation.css`. `check
   - Phase P4 (closing frame, footer and CTA hierarchy) is implemented: see Close and Footer below.
   - Phase P5a (product asset pipeline) is implemented. The founder confirmed the native screenshots on 2026-10-19, so they are published (see Product assets below).
   - Phase P5b is implemented: product openings, stage, badges and product close (P5b-1), plus the Home portfolio wall and the Apps lineup (P5b-2).
+  - Phase P6a (Investors: fact band, evidence and vision registers, booking close) is implemented. P6b (the platform diagram) follows.
 - **Still open:** the motion contract (plan §5, Phase P9).
 - **Founder material:** plan §9 lists every asset and content item needed. None of it is invented in the meantime.
 - **Baseline renders:** `research-assets/baseline-2026-10-18/` holds full-page captures of https://solarityai.com (develop `b0eff9b`). It covers all 12 pages at 360, 390, 768, 1024 and 1440, plus Home and Investors at 1280x800 and 1920x1080, and a reduced-motion pass at 390 and 1440. `index.json` records each page height; none overflows horizontally. The JPEGs (about 21 MB) are kept out of git; only `index.json` is committed. Regenerate them with `node research-assets/baseline-2026-10-18/capture.mjs https://solarityai.com <folder>`.
