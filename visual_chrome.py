@@ -2,6 +2,8 @@
 
 from html import escape
 
+from saas_products import SAAS
+
 
 def _wordmark():
     # Original-color sun recovered from the official company lockup.
@@ -14,7 +16,7 @@ def _wordmark():
 
 def site_header(path, nav_items, btn):
     """Keep the existing disclosure-navigation IDs and JS class contracts."""
-    descriptions = {'/apps': 'The consumer portfolio', '/platform': 'The app factory vision',
+    descriptions = {'/apps': 'The consumer portfolio', '/platform': 'The app factory: three web apps',
                     '/company': 'Our purpose and founder', '/investors-partners': 'Thesis and collaboration', '/careers': 'Roles and applications'}
     links = []
     for url, label in nav_items:
@@ -37,10 +39,11 @@ def site_header(path, nav_items, btn):
 
 
 def site_footer(email, path='/', booking=''):
-    """Footer directory with complete core-app routes and approved company context."""
+    """Footer directory: the whole portfolio (mobile and web apps), the company routes and direct contact."""
     groups = [
-        ('Portfolio', [('/apps/looks-max', 'Looks Max'), ('/apps/iq-max', 'IQ Max'),
-                           ('/apps/sleep-max', 'Sleep Max'), ('/apps/fitness-max', 'Fitness Max')]),
+        ('Mobile apps', [('/apps/looks-max', 'Looks Max'), ('/apps/iq-max', 'IQ Max'),
+                         ('/apps/sleep-max', 'Sleep Max'), ('/apps/fitness-max', 'Fitness Max')]),
+        ('Web apps', [('/platform#' + p['slug'], p['name']) for p in SAAS]),
         ('Company', [('/apps', 'Apps'), ('/platform', 'Platform'),
                      ('/company', 'Company'), ('/investors-partners', 'Investors & partners'), ('/careers', 'Careers')]),
         ('Contact', [('/contact?type=Investor#prepare-inquiry', 'Investor inquiries'),

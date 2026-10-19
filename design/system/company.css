@@ -41,23 +41,30 @@
   .platform-opening-copy { min-width:0; }
   .platform-opening-copy h1>span,.investor-opening-copy h1>span { color:var(--sun-core); }
   .platform-opening-copy>.lede { max-width:42ch; margin-top:30px; font-size:var(--text-base); }
-  .platform-opening-copy>.status { margin-top:18px; }
   .platform-opening-copy>.actions { margin-top:24px; }
   .platform-portfolio-link { font-size:var(--text-sm); margin-top:18px; max-width:41ch; }
-  .module-list { padding-bottom:20px; }
-  .module-detail { display:grid; grid-template-columns:90px minmax(0,1fr); gap:clamp(28px,4vw,56px); padding-block:clamp(48px,7vw,88px); border-top:1px solid var(--line); }
+  .saas-chapters { padding-bottom:20px; }
+  .saas-chapter { position:relative; isolation:isolate; overflow:clip; display:grid; grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr); gap:clamp(32px,5vw,80px); align-items:start; padding-block:clamp(56px,7vw,104px); border-top:1px solid var(--line); }
+  .saas-chapter--flip { grid-template-columns:minmax(0,1.18fr) minmax(0,.82fr); }
+  .saas-chapter--flip .saas-chapter-copy { order:2; }
+  .saas-chapter:target { border-top-color:var(--accent); }
+  .saas-chapter-copy { min-width:0; }
+  .saas-chapter-copy .module-num { font-size:var(--type-section); color:var(--accent); font-variant-numeric:tabular-nums; }
+  .saas-category { margin:18px 0 0; font-size:var(--type-label); font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--sand); }
+  .saas-chapter h2 { margin:8px 0 14px; font-family:var(--font-display); font-weight:400; font-size:var(--type-section); line-height:1.05; letter-spacing:-.01em; }
+  .saas-tagline { margin:22px 0 14px; font-size:var(--type-deck); line-height:1.4; font-weight:500; color:var(--text); max-width:30ch; }
+  .saas-chapter-copy>p:not(.saas-tagline):not(.saas-category):not(.saas-availability) { max-width:46ch; margin:0; font-size:var(--text-base); color:var(--muted); }
+  .saas-facts { display:grid; gap:10px; list-style:none; padding:0; margin:22px 0 0; }
+  .saas-facts li { position:relative; padding-left:22px; font-size:var(--text-sm); line-height:1.6; color:var(--text); }
+  .saas-facts li::before { content:""; position:absolute; left:0; top:.8em; width:10px; height:1px; background:var(--sun-core); }
+  .saas-chapter-copy .saas-availability { margin-top:20px; font-size:var(--text-sm); color:var(--sand); }
+  .saas-chapter-copy .actions { margin-top:26px; }
+  .saas-chapter-art { display:grid; gap:16px; min-width:0; margin:0; }
+  .saas-chapter-art .caption { margin:2px 0 0; }
+  .saas-chapter-art .web-window--tall { width:min(100%,500px); }
+  .platform-plan { display:flex; flex-wrap:wrap; gap:4px 20px; margin:18px 0 0; }
   .module-num { font-variant-numeric:tabular-nums; color:var(--accent); }
-  .module-detail>div:last-child { display:grid; grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr); gap:0 64px; align-items:start; }
-  .module-detail h2 { grid-column:1; grid-row:1; margin:0; }
-  .module-detail { position:relative; isolation:isolate; overflow:clip; }
   .module-word { position:absolute; z-index:-1; right:-.04em; bottom:-.18em; font-family:var(--font-display); font-size:var(--type-stage); line-height:1; letter-spacing:-.02em; color:transparent; -webkit-text-stroke:1px rgb(214 191 154/.16); pointer-events:none; user-select:none; }
-  .module-detail h2 { font-family:var(--font-display); font-weight:400; letter-spacing:-.01em; }
-  .module-detail .status { grid-column:1; grid-row:2; justify-self:start; margin-top:14px; }
-  .module-detail h3 { grid-column:1; grid-row:3 / 5; font-size:var(--text-base); color:var(--muted); font-weight:400; line-height:1.6; margin:18px 0 0; }
-  .module-detail p:not(.eyebrow):not(.muted) { grid-column:2; grid-row:1 / 3; font-size:var(--text-base); color:var(--text); margin:0 0 20px; }
-  .module-detail p.muted { grid-column:2; grid-row:3; font-size:var(--text-md); margin:0 0 20px; }
-  .module-detail .text-link { grid-column:2; grid-row:4; justify-self:start; font-size:var(--text-sm); }
-  .module-detail:target { border-top-color:var(--accent); }
   .strategy-story { padding-block:var(--space-section); }
   .strategy-story-intro { display:grid; grid-template-columns:1fr 1fr; gap:0 80px; margin-bottom:56px; }
   .strategy-story-intro>.eyebrow { grid-column:1 / -1; }
@@ -167,11 +174,14 @@
     .platform-opening { grid-template-columns:1fr; gap:48px; }
     .platform-opening-copy { max-width:740px; }
     .platform-opening-copy>.lede { max-width:var(--measure); }
-    .module-detail>div:last-child { column-gap:40px; }
     .investor-evidence-body { gap:36px; }
     .operating-principles>ol,.strategy-story-steps { gap:28px; }
     .investor-opening-copy .actions { flex-direction:column; align-items:start; }
     .investor-opening-products { gap:24px; }
+  }
+  @media (max-width:850px) {
+    .saas-chapter, .saas-chapter--flip { grid-template-columns:minmax(0,1fr); gap:32px; }
+    .saas-chapter--flip .saas-chapter-copy { order:0; }
   }
   @media (max-width:850px) {
     .company-intro,.investor-opening-copy { grid-template-columns:1fr; }
@@ -184,9 +194,6 @@
     .selected-team-intro,.investor-evidence-heading { gap:36px; }
     .selected-team-list { column-gap:36px; }
     .selected-team-member h3 { font-size:2rem; }
-    .module-detail { grid-template-columns:54px minmax(0,1fr); gap:28px; }
-    .module-detail>div:last-child { gap:0 28px; }
-    .module-detail p:not(.eyebrow):not(.muted) { font-size:var(--text-base); }
     .strategy-story-intro,.investor-evidence-heading,.investor-evidence-body,.partnership-agenda,.investor-faq { grid-template-columns:1fr; gap:32px; }
     .strategy-story-intro>h2,.strategy-story-intro>p:not(.eyebrow),.strategy-story-intro>.text-link { grid-column:1; grid-row:auto; }
     .strategy-story-intro { gap:0; }
@@ -213,9 +220,6 @@
     .operating-principles-heading { margin-bottom:36px; }
     .operating-principles h3,.strategy-story-steps h3 { max-width:38ch; }
     .operating-principles li>p { max-width:var(--measure); }
-    .module-detail>div:last-child { display:block; }
-    .module-detail h3 { margin:16px 0 24px; }
-    .module-detail .text-link { margin-top:4px; }
     .investor-commercial { grid-template-columns:1fr; gap:28px; }
     .investor-commercial>div+div { padding-top:28px; border-top:1px solid var(--line); }
     .founder-booking { grid-template-columns:1fr; gap:28px; }
@@ -225,7 +229,6 @@
     .selected-team-list { grid-template-columns:1fr; }
     .selected-team-member h3 { font-size:1.9rem; }
     .platform-portfolio-link { font-size:var(--text-xs); gap:12px; }
-    .module-detail { grid-template-columns:minmax(0,1fr); gap:6px; }
     .module-num { font-size:var(--type-section); }
     .strategy-story-bottom .button { width:100%; justify-content:space-between; }
     .investor-opening-proof { margin-top:44px; padding:24px 16px; }
@@ -273,9 +276,6 @@
     .selected-team-member { padding-block:12pt; break-inside:avoid; }
     .selected-team-member h3 { font-size:14pt; }
     .operating-principles>ol,.strategy-story-steps { grid-template-columns:1fr; }
-    .module-detail { break-inside:avoid; padding-block:20pt; }
-    .module-detail>div:last-child { display:block; }
-    .module-detail h3 { margin-bottom:14pt; }
     .strategy-story-bottom,.investor-commercial { display:block; margin-top:18pt; }
     .investor-evidence-vision { padding:18pt; margin-top:18pt; }
     .investor-commercial>div+div { margin-top:18pt; }
