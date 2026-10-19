@@ -18,41 +18,41 @@ def page_index(sections):
 
 
 def investor_opening(apps, btn, contact):
-    """Place authentic, linked product evidence next to the company thesis."""
-    products = []
+    """The screening room: the thesis beside its actions, then the four apps framed under one light."""
+    note = '<span class="sr-only"> (opens in a new tab)</span>'
+    frames = []
     for app in apps:
         if not app.get('apple') or not app.get('google') or not app.get('screen'):
             continue
-        alias = ('<span class="investor-opening-alias">In stores as '
-                 + escape(app['store_name']) + '</span>') if app.get('store_name') else ''
-        products.append(
-            '<li><a class="investor-opening-product" href="/apps/'
-            + escape(app['slug'], quote=True) + '" data-product-accent="'
-            + escape(app['color'], quote=True) + '"><span class="investor-opening-screen">'
-            + '<img src="/assets/' + escape(app['screen'], quote=True)
-            + '" alt="" width="' + str(app.get('screen_width', 600))
-            + '" height="' + str(app.get('screen_height', 1298))
-            + '" sizes="(max-width: 560px) calc(50vw - 52px), (max-width: 850px) calc(50vw - 100px), (max-width: 1356px) 18vw, 216px" decoding="async"></span><span class="investor-opening-product-name">'
-            + escape(app['name']) + '<span aria-hidden="true">→</span></span>'
-            + alias + '</a></li>'
+        slug = escape(app['slug'], quote=True)
+        focus = (' style="object-position:' + escape(app['crop_focus'], quote=True) + '"') if app.get('crop_focus') else ''
+        frames.append(
+            '<li class="showroom-frame" data-product-accent="' + escape(app['color'], quote=True) + '">'
+            '<a class="showroom-link" href="/apps/' + slug + '"><span class="showroom-window screenshot-stage">'
+            '<img class="store-screen plate--window"' + focus + ' src="/assets/' + escape(app['screen'], quote=True)
+            + '" alt="' + escape(app['name']) + ' official App Store imagery with sample app content" width="'
+            + str(app.get('screen_width', 600)) + '" height="' + str(app.get('screen_height', 1298))
+            + '" sizes="(max-width: 560px) 62vw, (max-width: 1100px) 22vw, 230px" decoding="async"></span>'
+            '<span class="showroom-identity"><img src="/assets/' + slug + '-icon.webp" width="40" height="40" alt="" loading="lazy" decoding="async">'
+            '<span><strong>' + escape(app['name']) + '</strong><small>' + escape(app['category']) + '</small></span></span></a>'
+            '<p class="showroom-stores"><a href="' + escape(app['apple'], quote=True) + '" target="_blank" rel="noopener noreferrer">App Store <span aria-hidden="true">↗</span>' + note + '</a>'
+            '<a href="' + escape(app['google'], quote=True) + '" target="_blank" rel="noopener noreferrer">Google Play <span aria-hidden="true">↗</span>' + note + '</a></p></li>'
         )
     return (
         '<section class="investor-opening wrap" aria-labelledby="investor-opening-title">'
         '<div class="investor-opening-copy"><p class="eyebrow">Investors &amp; partners</p>'
         '<h1 id="investor-opening-title">Products today.<br><span>Possibility ahead.</span></h1>'
-        '<p class="lede">Focused consumer apps. A vision for the systems behind them. '
+        '<div class="investor-opening-aside"><p class="lede">Focused consumer apps. A vision for the systems behind them. '
         'Explore the products, then the company direction.</p>'
         '<div class="actions">' + btn('Investor inquiries', contact('Investor'))
         + btn('Partnership inquiries', contact('Strategic partner'), 'outline')
-        + '</div>' + page_index((('portfolio', 'Portfolio'), ('thesis', 'Thesis'),
+        + '</div>' + page_index((('portfolio', 'Portfolio'), ('at-a-glance', 'At a glance'),
                                  ('conversation-paths', 'Partnerships'),
                                  ('investor-questions', 'Questions'),
-                                 ('booking', 'Talk with the founder'))) + '</div>'
-        '<div class="investor-opening-proof" id="portfolio"><div class="investor-opening-proof-heading">'
-        '<p class="eyebrow">Consumer portfolio</p><span>' + str(len(products))
-        + ' store-listed apps</span></div><ul class="investor-opening-products">'
-        + ''.join(products) + '</ul><p class="investor-opening-caption caption">'
-        + provenance() + ' Explore each product for its purpose, context, and store links.</p></div></section>'
+                                 ('booking', 'Founder'))) + '</div></div>'
+        '<div class="showroom" id="portfolio"><ul class="showroom-frames" tabindex="0" aria-label="Consumer portfolio: '
+        + str(len(frames)) + ' store-listed apps">' + ''.join(frames) + '</ul>'
+        '<p class="caption showroom-caption">' + provenance() + '</p></div></section>'
     )
 
 
@@ -73,7 +73,7 @@ def strategy_story(btn, contact):
 
 
 def investor_evidence(apps):
-    """Current product evidence and precise partnership paths, without repeated CTAs."""
+    """Verified facts first; then what exists today and what lies ahead, in two registers."""
     topics = [
         ('Distribution', 'Discuss an audience, channel, or distribution opportunity for one of the apps.', 'Distribution'),
         ('Technology collaboration', 'Explore a specific integration or product collaboration around shared interests.', 'Technology collaboration'),
@@ -88,26 +88,40 @@ def investor_evidence(apps):
             + '</strong><span class="partnership-topic-detail">' + escape(detail)
             + '</span></span><span class="partnership-topic-arrow" aria-hidden="true">→</span></a></li>'
         )
-    count = sum(bool(app.get('apple') and app.get('google')) for app in apps)
-    return '''<section class="investor-evidence wrap" id="thesis" aria-labelledby="investor-evidence-title">
+    listed = [app for app in apps if app.get('apple') and app.get('google')]
+    icons = ''.join('<img src="/assets/' + escape(app['slug'], quote=True) + '-icon.webp" width="48" height="48" alt="" loading="lazy" decoding="async">' for app in listed)
+    return '''<section class="investor-ledger wrap" id="at-a-glance" aria-labelledby="investor-ledger-title">
+<h2 class="sr-only" id="investor-ledger-title">At a glance</h2>
+<dl class="ledger">
+<div><dt>Company</dt><dd>Solarity AI LLC · Irving, Texas</dd></div>
+<div class="ledger-founder"><dt>Founder</dt><dd><a href="/company"><img class="ledger-print" src="/assets/brand/ata-turhan-320.db6d27d9b9b3.webp" width="96" height="120" alt="" loading="lazy" decoding="async"><span>Ata Turhan</span></a></dd></div>
+<div><dt>Portfolio</dt><dd><a href="/apps">''' + str(len(listed)) + ''' apps on the App Store and Google Play</a></dd></div>
+</dl>
+</section>
+<section class="investor-evidence wrap" id="thesis" aria-labelledby="investor-evidence-title">
 <div class="investor-evidence-heading"><div>
 <h2 id="investor-evidence-title">Build the product.<br>Learn from the work.</h2></div>
 <p>Develop focused consumer experiences while exploring more repeatable ways to build, operate, and grow mobile products.</p></div>
-<div class="investor-evidence-body"><div class="investor-evidence-current"><p class="investor-evidence-label"><span>The product thesis</span><span>''' + str(count) + ''' store-listed apps</span></p>
-<ol class="investor-thesis-list"><li><span aria-hidden="true">01</span><div><h3>Start with an everyday ambition.</h3><p>Self-care, cognitive practice, sleep, and fitness give each app a distinct purpose and audience.</p></div></li>
-<li><span aria-hidden="true">02</span><div><h3>Learn through focused products.</h3><p>The practical work of bringing apps to people provides a context for exploring better product workflows.</p></div></li>
-<li><span aria-hidden="true">03</span><div><h3>Develop useful patterns.</h3><p>The platform ambition is to make more of that work reusable, while keeping product decisions deliberate.</p></div></li></ol></div>
-<aside class="investor-evidence-vision" aria-labelledby="investor-vision-title"><p class="eyebrow">Platform vision</p><h3 id="investor-vision-title">The work behind the next product.</h3><p>Engineering Max, Management Max, and Marketing Max organize the intended direction for reusable product workflows.</p>
-<dl class="investor-vision-disciplines"><div><dt>Build</dt><dd>Engineering Max</dd></div><div><dt>Operate</dt><dd>Management Max</dd></div><div><dt>Grow</dt><dd>Marketing Max</dd></div></dl>
-<a class="text-link" href="/platform">Explore the platform direction <span aria-hidden="true">→</span></a></aside></div>
-<div class="investor-commercial"><div><p class="eyebrow">Consumer model</p><h3>Subscriptions and in-app purchases.</h3><p>The apps have live listings with in-app purchases. Current plans, prices, and terms are available through their official store pages.</p></div><div><p class="eyebrow">Platform strategy</p><h3>Potential commercialization.</h3><p>External commercial availability, connected capabilities, and partnership scope remain topics for discussion. They are not presented here as established platform services.</p></div></div>
+<div class="today-ahead">
+<article class="today-card" aria-labelledby="today-title"><p class="eyebrow">Today</p><h3 id="today-title">Four focused consumer apps.</h3><p>Self-care, cognitive practice, sleep, and fitness give each app a distinct purpose and audience.</p><div class="today-icons">''' + icons + '''</div><span class="status"><i aria-hidden="true"></i>Available on iOS&nbsp;&amp;&nbsp;Android</span></article>
+<article class="ahead-card" aria-labelledby="investor-vision-title"><p class="eyebrow">Ahead</p><h3 id="investor-vision-title">The work behind the next product.</h3><p>Engineering Max, Management Max, and Marketing Max organize the intended direction for reusable product workflows.</p><span class="status vision"><i aria-hidden="true"></i>Vision</span><a class="text-link" href="/platform">Explore the platform direction <span aria-hidden="true">→</span></a></article>
+</div>
+''' + '''<div class="investor-commercial"><div><p class="eyebrow">Consumer model</p><h3>Subscriptions and in-app purchases.</h3><p>The apps have live listings with in-app purchases. Current plans, prices, and terms are available through their official store pages.</p></div><div><p class="eyebrow">Platform strategy</p><h3>Potential commercialization.</h3><p>External commercial availability, connected capabilities, and partnership scope remain topics for discussion. They are not presented here as established platform services.</p></div></div>
+
 </section>
 <section class="partnership-agenda wrap" id="conversation-paths" aria-labelledby="partnership-agenda-title"><div class="partnership-agenda-heading"><h2 id="partnership-agenda-title">Where we can build together.</h2><p>A useful conversation starts with a product, a shared problem, or a relevant audience.</p></div>
 <ul class="partnership-topic-list">''' + ''.join(topic_rows) + '''</ul></section>'''
 
-def founder_booking(btn, booking):
-    """A single, genuine external scheduling path after the investor FAQ."""
-    return '''<section class="founder-booking wrap" id="booking" aria-labelledby="founder-booking-title"><div><h2 id="founder-booking-title">Compare perspectives with the founder.</h2><p>Speak with Ata Turhan about the portfolio, company direction, or a potential collaboration.</p></div><div class="founder-booking-action">''' + btn('View available times', booking, 'primary', True) + '''<p>Opens Ata’s booking page on Google Calendar in a new tab.</p></div></section>'''
+def founder_booking(btn, booking, email='ata.turhan@solarityai.com'):
+    """The close: speak with the founder, beside the one reprise of the approved sunrise."""
+    return ('<section class="founder-booking wrap" id="booking" aria-labelledby="founder-booking-title"><div class="founder-booking-copy">'
+            '<h2 id="founder-booking-title">Compare perspectives with the founder.</h2>'
+            '<p>Speak with Ata Turhan about the portfolio, company direction, or a potential collaboration.</p>'
+            '<div class="founder-booking-action">' + btn('View available times', booking, 'primary', True)
+            + btn('Email Ata', 'mailto:' + email, 'outline') + '</div></div>'
+            '<figure class="booking-reprise"><img src="/assets/solar-ascent.webp" alt="A person climbing mountain steps toward a golden sunrise above the clouds" '
+            'width="1860" height="845" sizes="(max-width: 850px) 92vw, 600px" loading="lazy" decoding="async">'
+            '<figcaption>Conceptual brand artwork</figcaption></figure></section>')
 
 
 def operating_principles():

@@ -32,7 +32,7 @@
  h1{font-family:var(--font-display);font-weight:400;font-size:var(--type-title);line-height:.98;letter-spacing:-.015em;word-spacing:.03em}
  h2{font-size:var(--type-section);line-height:1.08;letter-spacing:-.015em}
  h3{font-size:var(--type-sub);line-height:1.2;letter-spacing:-.005em}
- .platform-opening-copy h1,.wall-heading h2,.world-band h2,.strategy-copy h2,.founder-strip h2,.founder-section>div>h2,.founder-identity h2,.founder-booking h2,.conversation-band h2,.product-story-heading h2,.product-close h2,.career-opportunities-heading h2,.career-apply-copy h2,.module-num{font-family:var(--font-display);font-weight:400;font-size:var(--type-chapter);line-height:1.02;letter-spacing:-.01em;word-spacing:.03em}
+ .platform-opening-copy h1,.wall-heading h2,.world-band h2,.strategy-copy h2,.founder-strip h2,.founder-section>div>h2,.founder-identity h2,.founder-booking h2,.investor-evidence-heading h2,.partnership-agenda-heading h2,.investor-faq .section-heading h2,.conversation-band h2,.product-story-heading h2,.product-close h2,.career-opportunities-heading h2,.career-apply-copy h2,.module-num{font-family:var(--font-display);font-weight:400;font-size:var(--type-chapter);line-height:1.02;letter-spacing:-.01em;word-spacing:.03em}
  p,li,dd,figcaption,.lede{text-wrap:pretty}
  p{color:var(--muted)}
  /* About 75 characters per line in Manrope, whose 0 is wider than its average letter. */
@@ -955,6 +955,89 @@
     .investor-evidence-vision { padding:18pt; margin-top:18pt; }
     .investor-commercial>div+div { margin-top:18pt; }
     .investor-thesis-list>li,.partnership-topic,.operating-principles li,.strategy-story-steps>li { break-inside:avoid; }
+  }
+  /* P6a. The screening room: thesis and actions side by side, then the four apps under one light. */
+  .investor-opening-copy { grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr); align-items:end; }
+  .investor-opening-copy h1 { grid-column:1; grid-row:2; font-size:var(--type-chapter); }
+  .investor-opening-aside { grid-column:2; grid-row:2; min-width:0; }
+  .investor-opening-aside .lede { margin:0; max-width:40ch; }
+  .investor-opening-aside .actions { margin-top:24px; }
+  .investor-opening-aside .page-index { margin-top:18px; }
+  .investor-opening { padding-block:clamp(40px,4vw,56px) var(--space-section); }
+  .showroom { position:relative; isolation:isolate; margin-top:clamp(20px,2.5vw,32px); padding-top:8px; }
+  .showroom::before { content:""; position:absolute; z-index:-1; pointer-events:none; inset:-120px -10% -40px; background:radial-gradient(48% 46% at 50% 48%,rgb(255 190 110/.12),rgb(255 190 110/0)); }
+  .showroom-frames { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:24px; list-style:none; padding:0; margin:0; }
+  .showroom-frames:focus-visible { outline:2px solid var(--focus); outline-offset:8px; }
+  .showroom-frame { min-width:0; }
+  .showroom-link { display:grid; gap:10px; color:var(--text); text-decoration:none; }
+  .showroom-window { padding:14px 10%; }
+  .showroom-window .store-screen { width:100%; max-width:180px; aspect-ratio:3/4; object-fit:cover; }
+  .showroom-identity { display:flex; align-items:center; gap:12px; min-width:0; }
+  .showroom-identity img { width:40px; height:40px; border-radius:var(--radius-icon); flex:none; }
+  .showroom-identity strong { display:block; font-size:var(--type-meta); font-weight:600; }
+  .showroom-identity small { display:block; font-size:var(--type-label); color:var(--muted); }
+  .showroom-stores { display:flex; flex-wrap:wrap; gap:0 16px; margin-top:2px; }
+  .showroom-stores a { display:inline-flex; align-items:center; gap:6px; min-height:44px; font-size:var(--type-label); color:var(--gold); }
+  .showroom-caption { margin-top:16px; }
+  /* At a glance: verified facts only, in a lit panel. */
+  .investor-ledger { padding-block:clamp(40px,5vw,72px) clamp(56px,6vw,96px); }
+  .ledger { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px 40px; margin:0; padding:clamp(24px,3vw,40px); border-radius:var(--radius-panel); background:var(--elev-panel); box-shadow:var(--elev-panel-edge); }
+  .ledger dt { font-size:var(--type-label); font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--sand); margin-bottom:10px; }
+  .ledger dd { margin:0; font-family:var(--font-display); font-weight:400; font-size:var(--type-sub); line-height:1.25; color:var(--text); }
+  .ledger dd a { color:inherit; text-decoration:underline; text-decoration-color:var(--bronze); text-underline-offset:5px; }
+  .ledger-founder dd a { display:flex; align-items:center; gap:16px; text-decoration:none; }
+  .ledger-print { width:72px; height:90px; object-fit:cover; object-position:50% 22%; border-radius:var(--radius-control); padding:4px; background:var(--raised); box-shadow:var(--elev-object); }
+  /* Today is lit evidence; Ahead is drawn in outline and never brighter. */
+  .today-ahead { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px; margin-top:clamp(28px,4vw,48px); }
+  .today-card, .ahead-card { display:grid; align-content:start; gap:14px; padding:clamp(24px,3vw,40px); border-radius:var(--radius-panel); }
+  .today-card { background:radial-gradient(60% 70% at var(--key-x) 0,rgb(255 190 110/.10),transparent 70%),var(--elev-panel); box-shadow:var(--elev-panel-edge); }
+  .ahead-card { border:1px dashed var(--bronze); background:transparent; }
+  .today-card h3, .ahead-card h3 { font-family:var(--font-display); font-weight:400; font-size:var(--type-sub); }
+  .today-card p:not(.eyebrow), .ahead-card p:not(.eyebrow) { font-size:var(--text-md); margin:0; max-width:46ch; }
+  .today-card .eyebrow, .ahead-card .eyebrow { margin:0; }
+  .today-icons { display:flex; gap:12px; flex-wrap:wrap; margin-top:6px; }
+  .today-icons img { width:48px; height:48px; border-radius:var(--radius-icon); }
+  .ahead-card .text-link { justify-self:start; }
+  /* Partnerships: unnumbered tiles under the heading. */
+  .partnership-agenda { grid-template-columns:minmax(0,1fr); gap:28px; }
+  .partnership-topic-list { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; border-bottom:0; }
+  .partnership-topic { height:100%; align-items:start; padding:24px; border:1px solid var(--line); border-radius:var(--radius-panel); background:var(--surface); position:relative; overflow:hidden; }
+  .partnership-topic::after { content:""; position:absolute; left:0; right:0; bottom:0; height:1px; background:var(--gold); transform:scaleX(0); transform-origin:left; }
+  @media (prefers-reduced-motion:no-preference) { .partnership-topic::after { transition:transform 420ms var(--motion-ease); } }
+  .partnership-topic:is(:hover,:focus-visible)::after { transform:scaleX(1); }
+  /* The booking close: two direct actions beside the one sunrise reprise. */
+  .founder-booking { grid-template-columns:minmax(0,1fr) minmax(0,600px); }
+  .founder-booking-action { display:flex; flex-wrap:wrap; gap:12px; margin-top:28px; }
+  .founder-booking-action .button { width:auto; }
+  .founder-booking-action .button.outline { background:transparent; border-color:var(--control-border); color:var(--text); box-shadow:none; }
+  .founder-booking-action .button.outline:hover { background:rgb(255 207 122/.08); border-color:var(--control-border-hover); box-shadow:none; }
+  .booking-reprise { margin:0; }
+  .booking-reprise img { width:100%; aspect-ratio:2.39/1; object-fit:cover; object-position:70% 45%; border-radius:var(--radius-plate); box-shadow:var(--elev-object); }
+  .booking-reprise figcaption { margin-top:10px; font-size:var(--type-label); color:var(--dim); text-align:right; }
+  @media (max-width:1100px) { .showroom-frames { gap:16px; } .partnership-topic-list { grid-template-columns:minmax(0,1fr); } }
+  @media (max-width:850px) {
+    .investor-opening-copy { grid-template-columns:minmax(0,1fr); }
+    .investor-opening-copy h1, .investor-opening-aside { grid-column:1; grid-row:auto; }
+    .investor-opening-aside { margin-top:24px; }
+    .ledger, .today-ahead { grid-template-columns:minmax(0,1fr); }
+    .founder-booking { grid-template-columns:minmax(0,1fr); }
+  }
+  /* Phones: one large plate in the first screen, then a keyboard-operable rail of the four. */
+  @media (max-width:560px) {
+    .showroom-frames { display:flex; gap:14px; overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:8px; margin-inline:calc(-1 * var(--gutter)); padding-inline:var(--gutter); scroll-padding-inline:var(--gutter); }
+    .showroom-frame { flex:0 0 66%; scroll-snap-align:start; }
+    .showroom-window { padding:16px 6%; }
+    .investor-opening-aside { margin-top:16px; }
+    .investor-opening-aside .page-index { margin-top:12px; }
+    .showroom { margin-top:16px; }
+  }
+  /* Shorter laptop screens: smaller windows so the four frames still land in the first view. */
+  @media (min-width:851px) and (max-height:860px) {
+    .investor-opening { padding-top:28px; }
+    .investor-opening-aside .page-index { margin-top:12px; }
+    .showroom { margin-top:12px; }
+    .showroom-window { padding-block:10px; }
+    .showroom-window .store-screen { max-width:140px; }
   }
 }
 
