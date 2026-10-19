@@ -113,7 +113,7 @@ def platform_map(apps, saas):
 
 def founder_portrait(compact=False):
     """Official company portrait, uncropped and with reserved square geometry."""
-    size = '(max-width: 560px) 160px, (max-width: 850px) 220px, 300px' if compact else '(max-width: 650px) calc(100vw - 40px), (max-width: 1356px) 45vw, 600px'
+    size = '(max-width: 560px) 160px, (max-width: 850px) 220px, 300px' if compact else '(max-width: 650px) calc(100vw - 40px), (max-width: 850px) 36vw, 440px'
     return ('<img class="founder-photo' + (' founder-photo-compact' if compact else '') + '" '
             'src="/assets/brand/ata-turhan-640.742556487789.webp" '
             'srcset="/assets/brand/ata-turhan-320.db6d27d9b9b3.webp 320w, /assets/brand/ata-turhan-640.742556487789.webp 640w" '

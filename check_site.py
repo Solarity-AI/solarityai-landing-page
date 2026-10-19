@@ -324,7 +324,7 @@ for file in docs:
         if leaves and parts.scheme!='mailto' and '↗' not in label:errors.append(f'{rel}: external link lacks the external arrow: {parts.geturl()}')
 
 # dist/ is the publish set: every file must be a page, a host file, or referenced by a page.
-HOST_FILES={'_headers','_redirects','robots.txt','sitemap.xml','favicon.ico','assets/fonts/OFL-Manrope.txt','assets/fonts/OFL-Newsreader.txt'}
+HOST_FILES={'_headers','_redirects','robots.txt','sitemap.xml','favicon.ico','.well-known/security.txt','assets/fonts/OFL-Manrope.txt','assets/fonts/OFL-Newsreader.txt'}
 # Legacy redirects, applied by Cloudflare Pages from dist/_redirects.
 page_routes={'/' if f==DIST/'index.html' else '/'+f.parent.relative_to(DIST).as_posix()+'/' for f in docs if f!=DIST/'404.html'}
 for line in (DIST/'_redirects').read_text(encoding='utf-8').splitlines() if (DIST/'_redirects').is_file() else ['missing']:
@@ -337,6 +337,11 @@ referenced=set()
 for file in docs:
     # A '*' marks a URL pattern (speculation rules), never a published file.
     referenced|={url.lstrip('/') for url in re.findall(r'(?:'+re.escape(ORIGIN)+r'|(?<![\w.-]))(/assets/[^"\'\s,)*]+)',file.read_text(encoding='utf-8'))}
+# Home-screen icons: the official sun mark (make_app_icons.py).
+for _icon in ('apple-touch-icon.png','icon-192.png'):
+    if 'assets/icons/'+_icon not in referenced:errors.append(f'Pages must link /assets/icons/{_icon}')
+_security=DIST/'.well-known/security.txt'
+if not _security.is_file() or not re.search(r'^Contact: mailto:',_security.read_text(encoding='utf-8'),re.M) or not re.search(r'^Expires: 20\d\d-',_security.read_text(encoding='utf-8'),re.M):errors.append('.well-known/security.txt must name a contact and an expiry')
 for file in sorted(DIST.rglob('*')):
     rel=file.relative_to(DIST).as_posix()
     if file.is_file() and file.suffix!='.html' and rel not in HOST_FILES and rel not in referenced:errors.append(f'Unreferenced file is published: {rel}')

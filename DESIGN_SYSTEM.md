@@ -218,6 +218,18 @@ All values below are tokens on `:root` in `design/system/foundation.css`. `check
   - **Hover.** On pointer devices with motion allowed, cards and panels lift 4 px and catch a sun hairline. The lift uses `translate`, which composes with the scroll reveal's `transform`.
   - **Typography and brand.** Headings use `text-wrap: balance` and paragraphs `text-wrap: pretty`. Text selection is sun-core on ink, and the scrollbar and form accents follow the palette.
   - **Measured (local Lighthouse mobile, A/B against `develop`).** Product page, Company, Platform and Contact hold 99–100, CLS 0, accessibility 100. Home's local FCP rises 150 ms, a local-server artifact: `develop`'s own Home padded by 1 KB of comment shows the same 150 ms. That server sends the HTML uncompressed (75 KB), while production sends 18 KB.
+- **Website pass (October 19, 2026).** Ten improvements found by a Lighthouse audit of every production route, plus checks of delivery, standards and accessibility.
+  - **Right-sized screens.** `SCREEN_WIDTHS` adds 260 and 600. 260 is the smallest width at which every screen passes the edge check: 240 measured 41 against the limit of 40. `sizes` now match the measured drawn widths: Home wall 31vw on phones (drawn at 119 px), Investors showroom 47vw (180 px), Company founder print 440 px.
+  - **LCP priority.** The first Investors showroom frame and the Company founder print load with `fetchpriority="high"`.
+  - **Below-the-fold images yield.** The Home wall's screens load with `fetchpriority="low"`, so they never compete with the hero.
+  - **Store badge.** The official Google Play badge is served as 181 px and 362 px WebP (resized only) instead of the 646 px PNG. The PNG master stays in `source-assets/badges/`.
+  - **FAQ structured data.** Investors adds a `FAQPage` built from the same `ux_content.FAQ` list the page renders, so the two can't drift.
+  - **Home-screen icons.** `make_app_icons.py` writes the official sun mark on charcoal as `apple-touch-icon.png` (180 px) and `icon-192.png`. No web manifest: fetching it during load cost Lighthouse 70 ms of LCP on every page (measured, then removed).
+  - **security.txt.** `/.well-known/security.txt` (RFC 9116) names the founder's email and GitHub private vulnerability reporting. Its `Expires` is fixed at 2027-10-19, so renew it before then.
+  - **High contrast.** Under `forced-colors`, every panel, icon tile, the Platform index and the pull-quote keep a `CanvasText` outline.
+  - **More contrast.** `prefers-contrast: more` raises `--muted`, `--dim`, `--sand` and the hairline tokens.
+  - **Keyboard parity.** A card holding keyboard focus lifts and lights like a hovered one (`:has(:focus-visible)`), with motion allowed.
+  - **Measured (local Lighthouse mobile, A/B against `develop`).** Investors LCP 3,250 → 2,490 ms and score 93 → 97. Home LCP 2,785 → 2,638 ms and 96 → 97. Apps and Company unchanged. CLS 0 and accessibility 100 throughout.
 - **Buttons (P1).** The primary is `--sun-core` with an inner highlight and a warm bloom on hover and focus. The outline button is a `--control-border` hairline whose hover fill is `rgb(255 207 122 / .08)`.
 - **Status chips.** `.status` has a filled sun dot for evidence; `.status.vision` has a hollow ring for vision. Both always carry text.
 

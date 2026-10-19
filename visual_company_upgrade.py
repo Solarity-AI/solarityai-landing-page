@@ -34,7 +34,7 @@ def investor_opening(apps, btn, contact):
             '<img class="store-screen plate--window"' + focus + ' src="/assets/' + escape(app['screen'], quote=True)
             + '" alt="' + escape(app['name']) + ' official App Store imagery with sample app content" width="'
             + str(app.get('screen_width', 600)) + '" height="' + str(app.get('screen_height', 1298))
-            + '" sizes="(max-width: 560px) 62vw, (max-width: 1100px) 22vw, 230px" decoding="async"></span>'
+            + '" sizes="(max-width: 560px) 47vw, (max-width: 1100px) 18vw, 180px"' + (' fetchpriority="high"' if not frames else '') + ' decoding="async"></span>'
             '<span class="showroom-identity"><img src="/assets/' + slug + '-icon.webp" width="40" height="40" alt="" loading="lazy" decoding="async">'
             '<span><strong>' + escape(app['name']) + '</strong><small>' + escape(app['category']) + '</small></span></span></a>'
             '<p class="showroom-stores"><a href="' + escape(app['apple'], quote=True) + '" target="_blank" rel="noopener noreferrer">App Store <span aria-hidden="true">↗</span>' + note + '</a>'

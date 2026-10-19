@@ -1,0 +1,24 @@
+{
+  "source": "source-assets/brand/solarity-lockup-original.png",
+  "crop": [
+    186,
+    37,
+    1314,
+    1167
+  ],
+  "background": "#0f0d0b",
+  "files": {
+    "/assets/icons/apple-touch-icon.png": {
+      "size": 180,
+      "mark_share": 0.7,
+      "bytes": 13899,
+      "sha256": "d0c61a4971d696822ecb65f2b191679723b56b2bef84678c10cc328255f403ff"
+    },
+    "/assets/icons/icon-192.png": {
+      "size": 192,
+      "mark_share": 0.72,
+      "bytes": 15375,
+      "sha256": "c7960a537f0c3a70145109117a53a0c2097b3b089c4c603ac00616c53f718647"
+    }
+  }
+}

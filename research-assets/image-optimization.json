@@ -1,5 +1,5 @@
 {
-  "settings_version": 7,
+  "settings_version": 9,
   "source_hashes": {
     "looks-max-screen-4.webp": "81cac84815b71ada75480170e88b18858c84ddfe276076250a03e1e1b06af125",
     "looks-max-detail-screen-6.webp": "b2f9afdfd41b8cf591a9c39361cc4d7dc60bb6ecbb71fc2e5baccc2715150ae8",
@@ -15,6 +15,7 @@
     "sleep-max-icon.webp": "291d2db282087249bd6ba1fee24325de7cc7abc6030b2a8e3a73523e6ec29d11",
     "fitness-max-icon.webp": "7122f8246316b4a446fd4fe166e9dfb816b35f9e932968e629da461daa3e47e0",
     "solar-ascent.webp": "51c5646c2913a004394f142f16c3f1b5ae32b14cdae148c505f5cae768709b83",
+    "badges/google-play-badge.png": "f72611e2df8e88204009fd896d05d5e8e83c77009c63943bbffa169559934849",
     "engineering-max-overview.webp": "dde4cecd3baebca07aac38dfa44f2fc94baec52e6e0f17bc975810911f47b051",
     "management-max-overview.webp": "4e2ce57bd248a9b7cf19ce6ad4d3c2f02fa1aec944081c24355731a4a11790de",
     "management-max-sources.webp": "a18dbeb66c1d53e3440689f05eb289a4e03a9c1c2c1ed2406f704f0edeb11866",
@@ -47,11 +48,27 @@
       "derivative_height": 2746,
       "webp": [
         {
+          "url": "/assets/optimized/looks-max-screen-4-260.cc8b19830d35.webp",
+          "width": 260,
+          "height": 563,
+          "bytes": 15316,
+          "sha256": "cc8b19830d35990ee19980f2d3da5d9c5ba85da85a12122610a4649f4e144a1f",
+          "mime": "image/webp"
+        },
+        {
           "url": "/assets/optimized/looks-max-screen-4-400.d92a442b7645.webp",
           "width": 400,
           "height": 866,
           "bytes": 24884,
           "sha256": "d92a442b7645c48e003586a4348a4eea2ae1ab085fd451b11a08a13966aa5826",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/looks-max-screen-4-600.e1a88df00c0f.webp",
+          "width": 600,
+          "height": 1298,
+          "bytes": 37328,
+          "sha256": "e1a88df00c0fb533e71724f8acc734afe2586bd69cf74324498e40450193c004",
           "mime": "image/webp"
         },
         {
@@ -89,11 +106,27 @@
       "derivative_height": 2752,
       "webp": [
         {
+          "url": "/assets/optimized/looks-max-detail-screen-6-260.d382b00f8ee3.webp",
+          "width": 260,
+          "height": 564,
+          "bytes": 18796,
+          "sha256": "d382b00f8ee330f8cc9fd503cca91c514df24597051ab192687024557bdb45ed",
+          "mime": "image/webp"
+        },
+        {
           "url": "/assets/optimized/looks-max-detail-screen-6-400.1bca98a120e3.webp",
           "width": 400,
           "height": 867,
           "bytes": 31628,
           "sha256": "1bca98a120e34e03a4aad5bd580e2eb1e01ccedf6647ee08ee52dbbe9a387f46",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/looks-max-detail-screen-6-600.3313fb9caa48.webp",
+          "width": 600,
+          "height": 1301,
+          "bytes": 49854,
+          "sha256": "3313fb9caa4888af16128af0c13c6fe7becca29a497b00e3ae33939c064fdae8",
           "mime": "image/webp"
         },
         {
@@ -131,11 +164,27 @@
       "derivative_height": 2778,
       "webp": [
         {
+          "url": "/assets/optimized/iq-max-detail-screen-4-260.5d152ff77f9c.webp",
+          "width": 260,
+          "height": 565,
+          "bytes": 12594,
+          "sha256": "5d152ff77f9ce3799ef5b425691d5a3ae6b3e291b30b8b23489f9687355774a9",
+          "mime": "image/webp"
+        },
+        {
           "url": "/assets/optimized/iq-max-detail-screen-4-400.c858795eb8b4.webp",
           "width": 400,
           "height": 869,
           "bytes": 20144,
           "sha256": "c858795eb8b4ca750e972818bac5212ec2545f39d85aee56c5326801f9dd65ff",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/iq-max-detail-screen-4-600.fcd10a0b11b7.webp",
+          "width": 600,
+          "height": 1303,
+          "bytes": 27834,
+          "sha256": "fcd10a0b11b7e6c56c484c0495a71d72ceea057292daab36a0af0b467cbf1c0a",
           "mime": "image/webp"
         },
         {
@@ -173,11 +222,27 @@
       "derivative_height": 2766,
       "webp": [
         {
+          "url": "/assets/optimized/iq-max-detail-screen-6-260.12839949b774.webp",
+          "width": 260,
+          "height": 564,
+          "bytes": 15986,
+          "sha256": "12839949b77419502ce38f7a1832282c82cd017f344bf9e697bb107664554042",
+          "mime": "image/webp"
+        },
+        {
           "url": "/assets/optimized/iq-max-detail-screen-6-400.1c25ae0d04bc.webp",
           "width": 400,
           "height": 868,
           "bytes": 25194,
           "sha256": "1c25ae0d04bc43507e77834bee9ad3ebeaea98a9d30e4403fb3ca45e0cb408ad",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/iq-max-detail-screen-6-600.a4c17739748f.webp",
+          "width": 600,
+          "height": 1302,
+          "bytes": 35810,
+          "sha256": "a4c17739748fa441cdffe4bf98d6389a323d3ee50ccddcfca9d8d69a93d8571e",
           "mime": "image/webp"
         },
         {
@@ -215,11 +280,27 @@
       "derivative_height": 2763,
       "webp": [
         {
+          "url": "/assets/optimized/fitness-max-detail-screen-3-260.41bea3d55770.webp",
+          "width": 260,
+          "height": 564,
+          "bytes": 11834,
+          "sha256": "41bea3d5577015ec25a60a6dea9e37545b83c10646518773fbaa08e392dc2d3b",
+          "mime": "image/webp"
+        },
+        {
           "url": "/assets/optimized/fitness-max-detail-screen-3-400.fe01f052eb9e.webp",
           "width": 400,
           "height": 868,
           "bytes": 18022,
           "sha256": "fe01f052eb9e940a894f02db05b300bf6d60eff545abee6e5c5e6f25714fa941",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/fitness-max-detail-screen-3-600.cbbb483f95cb.webp",
+          "width": 600,
+          "height": 1301,
+          "bytes": 26406,
+          "sha256": "cbbb483f95cbd7d7b8b6a5419f073310747bc3015ac39d1b99732ee253f259fd",
           "mime": "image/webp"
         },
         {
@@ -257,11 +338,27 @@
       "derivative_height": 2778,
       "webp": [
         {
+          "url": "/assets/optimized/fitness-max-detail-screen-5-260.a551eee97f13.webp",
+          "width": 260,
+          "height": 565,
+          "bytes": 10368,
+          "sha256": "a551eee97f13f861b92f1814ef9c79d4c56c8f58df93cdd66dce384896bcf947",
+          "mime": "image/webp"
+        },
+        {
           "url": "/assets/optimized/fitness-max-detail-screen-5-400.19ea4acde50f.webp",
           "width": 400,
           "height": 869,
           "bytes": 15726,
           "sha256": "19ea4acde50fbec0e21b65bdcd0ad14bdffd981df48d50898d656e9f0e79e763",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/fitness-max-detail-screen-5-600.c5ea452c0044.webp",
+          "width": 600,
+          "height": 1303,
+          "bytes": 23800,
+          "sha256": "c5ea452c00441549cee4af62c3335634be4c5230c0225e984baa970290f0a9c4",
           "mime": "image/webp"
         },
         {
@@ -299,11 +396,27 @@
       "derivative_height": 2770,
       "webp": [
         {
+          "url": "/assets/optimized/iq-max-screen-1-260.98a2881a1cf2.webp",
+          "width": 260,
+          "height": 562,
+          "bytes": 19360,
+          "sha256": "98a2881a1cf28f86778c43bc117e092e0819254ad2bf04d754b3b42c1c771058",
+          "mime": "image/webp"
+        },
+        {
           "url": "/assets/optimized/iq-max-screen-1-400.60cb6fd607dc.webp",
           "width": 400,
           "height": 865,
           "bytes": 31146,
           "sha256": "60cb6fd607dc29d793df34e02d2fc5177f85f0b6049ea646730c676b69a33f9a",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/iq-max-screen-1-600.f5052242389d.webp",
+          "width": 600,
+          "height": 1297,
+          "bytes": 48490,
+          "sha256": "f5052242389ddbf33a8e9ef07a9ebb8b39371b7c633093122bc2982b43684395",
           "mime": "image/webp"
         },
         {
@@ -336,11 +449,27 @@
       "derivative_height": 2778,
       "webp": [
         {
+          "url": "/assets/optimized/sleep-max-screen-4-260.7feed59cb49a.webp",
+          "width": 260,
+          "height": 563,
+          "bytes": 11650,
+          "sha256": "7feed59cb49afae5029a7a67b8046ab015345339a118ae0d4069470bcb772261",
+          "mime": "image/webp"
+        },
+        {
           "url": "/assets/optimized/sleep-max-screen-4-400.ec53ea408980.webp",
           "width": 400,
           "height": 865,
           "bytes": 19526,
           "sha256": "ec53ea408980ea4a091832dfa7df0f572ab931a6fc6615219043b749860bc892",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/sleep-max-screen-4-600.c2749c241f70.webp",
+          "width": 600,
+          "height": 1298,
+          "bytes": 32492,
+          "sha256": "c2749c241f7092707717ba57a420ebda08042f89891b6ff177fc19f27993d9e7",
           "mime": "image/webp"
         },
         {
@@ -378,11 +507,27 @@
       "derivative_height": 2775,
       "webp": [
         {
+          "url": "/assets/optimized/fitness-max-screen-2-260.ca7d3ad3e34f.webp",
+          "width": 260,
+          "height": 565,
+          "bytes": 11802,
+          "sha256": "ca7d3ad3e34f1d5482c4d4f0a127926d29ff6b61cbb3d323f9e1b5c89ee68b5e",
+          "mime": "image/webp"
+        },
+        {
           "url": "/assets/optimized/fitness-max-screen-2-400.a8866d90ce55.webp",
           "width": 400,
           "height": 869,
           "bytes": 18090,
           "sha256": "a8866d90ce554a4090be78852094d17bde4e6fb9f7f2aaf642edff8a9edeb548",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/fitness-max-screen-2-600.87ab56d2e2d4.webp",
+          "width": 600,
+          "height": 1303,
+          "bytes": 26464,
+          "sha256": "87ab56d2e2d483065dc0dd4417b110911eceac7aeede6d17d926bf3c8299ebec",
           "mime": "image/webp"
         },
         {
@@ -757,6 +902,35 @@
           "mime": "image/avif"
         }
       ]
+    },
+    "/assets/badges/google-play-badge.png": {
+      "source": "/assets/badges/google-play-badge.png",
+      "role": "badge",
+      "width": 646,
+      "height": 250,
+      "original_bytes": 4904,
+      "crop": null,
+      "derivative_width": 646,
+      "derivative_height": 250,
+      "webp": [
+        {
+          "url": "/assets/optimized/google-play-badge-181.8c2077bb8b31.webp",
+          "width": 181,
+          "height": 70,
+          "bytes": 2286,
+          "sha256": "8c2077bb8b313e03590807c2617d00b191c893f8329835d86b4ae49bc96d3305",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/google-play-badge-362.e78bce53d381.webp",
+          "width": 362,
+          "height": 140,
+          "bytes": 4794,
+          "sha256": "e78bce53d38135a06371e675cdc767c41c981cd8ec4edfc639b3ddbb7011cac2",
+          "mime": "image/webp"
+        }
+      ],
+      "avif": []
     },
     "/assets/engineering-max-overview.webp": {
       "source": "/assets/engineering-max-overview.webp",

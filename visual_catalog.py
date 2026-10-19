@@ -15,11 +15,12 @@ def _store_pair(app):
             f'<a href="{e(app["google"])}" target="_blank" rel="noopener noreferrer">Google Play <span aria-hidden="true">↗</span>{note}</a>')
 
 
-def _window(app, sizes):
+def _window(app, sizes, low=False):
     focus = (' style="object-position:' + e(app['crop_focus']) + '"') if app.get('crop_focus') else ''
     return (f'<img class="store-screen plate--window"{focus} src="/assets/{e(app["screen"])}" '
             f'alt="{e(app["name"])} official App Store imagery with sample app content" '
-            f'width="{app.get("screen_width", 600)}" height="{app.get("screen_height", 1298)}" sizes="{sizes}" loading="lazy" decoding="async">')
+            f'width="{app.get("screen_width", 600)}" height="{app.get("screen_height", 1298)}" sizes="{sizes}" loading="lazy"'
+            + (' fetchpriority="low"' if low else '') + ' decoding="async">')
 
 
 def portfolio_wall(apps):
@@ -30,7 +31,7 @@ def portfolio_wall(apps):
             continue
         slug, name = e(app['slug']), e(app['name'])
         cards.append(f'''<li class="wall-card" data-product-accent="{e(app['color'])}">
-          <a class="wall-link" href="/apps/{slug}"><span class="wall-window screenshot-stage">{_window(app, '(max-width: 560px) 44vw, (max-width: 1100px) 22vw, 270px')}</span>
+          <a class="wall-link" href="/apps/{slug}"><span class="wall-window screenshot-stage">{_window(app, '(max-width: 560px) 31vw, (max-width: 850px) 39vw, (max-width: 1100px) 22vw, 250px', low=True)}</span>
             <span class="wall-identity"><img src="/assets/{slug}-icon.webp" width="56" height="56" alt="" loading="lazy" decoding="async"><span><strong>{name}</strong><small>{e(app['category'])}</small></span></span></a>
           <p class="wall-stores">{_store_pair(app)}</p>
         </li>''')

@@ -32,9 +32,10 @@ ASSETS = ROOT / 'dist' / 'assets'
 SOURCE_ASSETS = ROOT / 'source-assets'
 DESTINATION = ASSETS / 'optimized'
 REPORT = ROOT / 'research-assets' / 'image-optimization.json'
-SETTINGS_VERSION = 7
+SETTINGS_VERSION = 9
 # Native-resolution screenshots (1284x2778), confirmed by the founder on 2026-10-19.
-SCREEN_WIDTHS = (400, 800, 1200)
+# 260 (the smallest width every screen passes the edge check at) and 600 serve the small Home wall and Investors showroom windows on phones (measured 119 and 180 CSS px).
+SCREEN_WIDTHS = (260, 400, 600, 800, 1200)
 ICON_WIDTHS = (48, 96, 144, 224, 320)
 EDGE_BAND = 8
 EDGE_LIMIT = 40
@@ -43,6 +44,8 @@ EDGE_TRIM_LIMIT = 30
 EDGE_MAX_INSET = 32
 # The hero master is the approved artwork upscaled 2x (research-assets/solar-ascent-artwork.json).
 SUNRISE_WIDTHS = (480, 768, 1200, 1440, 1860, 2560, 3200, 3720)
+# The official Google Play badge (646 x 250 PNG) is drawn about 165 CSS px wide: 1x and 2x WebP, resized only.
+BADGE_WIDTHS = (181, 362)
 # Web app screenshots from the products' own sites (research-assets/saas-evidence.json).
 WEB_WIDTHS = (640, 960, 1440, 1920, 2560)
 WEBP_QUALITY = 86
@@ -63,6 +66,7 @@ SOURCE_ROLES = {
     'sleep-max-icon.webp': 'icon',
     'fitness-max-icon.webp': 'icon',
     'solar-ascent.webp': 'hero',
+    'badges/google-play-badge.png': 'badge',
     'engineering-max-overview.webp': 'web',
     'management-max-overview.webp': 'web',
     'management-max-sources.webp': 'web',
@@ -75,6 +79,7 @@ DEFAULT_SIZES = {
     'icon': '48px',
     'hero': '100vw',
     'web': '(max-width: 850px) 92vw, 640px',
+    'badge': '165px',
 }
 _manifest: dict | None = None
 
@@ -216,13 +221,15 @@ def ensure_optimized_images() -> dict:
         original = source.read_bytes()
         with Image.open(source) as image:
             image.load()
+            if role == 'badge':
+                image = image.convert('RGBA')
             crop = None
             if role == 'screen':
                 insets = edge_insets(image)
                 if any(insets.values()):
                     crop = insets
                     image = image.crop((insets['left'], insets['top'], image.width - insets['right'], image.height - insets['bottom']))
-            widths = {'screen': SCREEN_WIDTHS, 'icon': ICON_WIDTHS, 'hero': SUNRISE_WIDTHS, 'web': WEB_WIDTHS}[role]
+            widths = {'screen': SCREEN_WIDTHS, 'icon': ICON_WIDTHS, 'hero': SUNRISE_WIDTHS, 'web': WEB_WIDTHS, 'badge': BADGE_WIDTHS}[role]
             if role == 'web':
                 # Always end at the screenshot's own width; never enlarge it.
                 widths = tuple(w for w in WEB_WIDTHS if w < image.width) + (image.width,)
