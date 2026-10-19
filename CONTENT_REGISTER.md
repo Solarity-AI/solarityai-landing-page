@@ -13,10 +13,10 @@ Checked October 12, 2026. This register is source-only and is not part of the pu
 | Founder email and booking URL | Current corporate website | https://solarityai.com/ ; only public contact details retained |
 | Corporate legal documents | Unresolved | https://solarityai.com/legal.html contains placeholder text; omitted rather than treated as a policy |
 | Fitness Max, listed as Only Fitness | Founder-authorized current portfolio name and verified official store listings | https://apps.apple.com/us/app/only-fitness-ai-coach/id6789095658 and https://play.google.com/store/apps/details?id=com.solarityai.onlyfitness ; voice/text logging, meal photo estimates, coaching reports and progress photos |
-| Engineering / Management / Marketing Max | Founder-approved platform vision | Workflow descriptions are strategic direction, not asserted shipped capabilities |
+| Engineering / Management / Marketing Max | Founder-confirmed web apps, described from their own sites (2026-10-19) | https://engineeringmax.solarityai.com/ (private testing), https://managementmax.solarityai.com/ (free plan and paid plans), https://marketingmax.solarityai.com/ (internal V1, early access). Statements and screenshot sources in research-assets/saas-evidence.json; data in saas_products.py. Mobile versions are founder-stated plans, shown as planned. No customers, usage or revenue claimed. |
 | Company thesis and principles | Proposed editorial positioning | Derived from the approved brief; not fabricated performance or market proof |
 | Consumer subscriptions / in-app purchases | Official app listings | Described generally; prices, conversion, revenue and retention not claimed |
-| App factory commercialization | Strategic ambition | No claim of existing external customers or commercial availability |
+| Web app plans and prices | Each product's own site | Management Max: free for one app and two seats, paid plans count apps. Engineering Max: free during private testing. Marketing Max: early access, no price. Exact prices are left on the product sites. |
 | Product screenshot assets | Authentic promotional materials | Exact original download URLs in research-assets/downloaded-assets.json; selected images avoid unsupported ratings and transformation/clinical marketing claims |
 | Solar architecture visual | Illustrative | Generated conceptual artwork for the site; no evidence implied |
 | Traction, press, funding, third-party endorsements | Omitted | No sufficiently verified current evidence supplied |
@@ -121,3 +121,8 @@ The homepage portfolio-to-platform relationship is explicitly conceptual company
 - Corporate contact now consists of native email and the verified booking destination. No contact message is collected or submitted by the website. Topic and product context are used only to construct an email subject.
 - Manrope is self-hosted under SIL OFL 1.1. Font provenance and original license are stored beside the fingerprinted WOFF2.
 - See CINEMATIC_REFINEMENT.md for the complete audit disposition and verification limits.
+
+### Web apps and hero caption, October 19, 2026
+- The founder asked for Engineering Max, Management Max and Marketing Max to be introduced on Home, the Platform page and the footer as the company's three web apps, with real screenshots from their sites. Every statement is drawn from those sites as read on 2026-10-19 and recorded in `research-assets/saas-evidence.json`.
+- Screenshots: Marketing Max's are its published product images (real product, sample data). Engineering Max's overview is its published screenshot of Solarity AI's own Sleep Max, cropped to the score and areas. The crop leaves out the named security findings, and the other Engineering Max images that list them are not used. Management Max's are rendered from its own landing page with sample apps and figures.
+- The founder removed the "Conceptual brand artwork" caption from the Home hero. The image keeps its descriptive alt text, and `solar-ascent-artwork.json` still records it as generated brand artwork.
