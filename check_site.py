@@ -3,7 +3,7 @@ from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urlsplit, unquote
 from collections import Counter
-import ast,json,re
+import ast,html,json,re
 from hashlib import sha256
 from urllib.robotparser import RobotFileParser
 import xml.etree.ElementTree as ET
@@ -279,7 +279,7 @@ for file in docs:
         if leaves and parts.scheme!='mailto' and '↗' not in label:errors.append(f'{rel}: external link lacks the external arrow: {parts.geturl()}')
 
 # dist/ is the publish set: every file must be a page, a host file, or referenced by a page.
-HOST_FILES={'_headers','_redirects','robots.txt','sitemap.xml','favicon.ico','assets/fonts/OFL-Manrope.txt'}
+HOST_FILES={'_headers','_redirects','robots.txt','sitemap.xml','favicon.ico','assets/fonts/OFL-Manrope.txt','assets/fonts/OFL-Newsreader.txt'}
 # Legacy redirects, applied by Cloudflare Pages from dist/_redirects.
 page_routes={'/' if f==DIST/'index.html' else '/'+f.parent.relative_to(DIST).as_posix()+'/' for f in docs if f!=DIST/'404.html'}
 for line in (DIST/'_redirects').read_text(encoding='utf-8').splitlines() if (DIST/'_redirects').is_file() else ['missing']:
@@ -328,6 +328,9 @@ for source in style_sources:
     for value in re.findall(r'font-size:\s*([^;}]+)',screen):
         literal=re.fullmatch(r'(\d*\.?\d+)(rem|px|em)',value.strip())
         if literal and (literal.group(2)!='rem' or float(literal.group(1))<1.33):errors.append(f'{source}: text size {value.strip()} must use a --text-* step')
+    # Sizes come from the type roles in foundation.css (CINEMATIC_PREMIUM_PLAN.md §3.1); mono is retired.
+    if source!='design/system/foundation.css' and re.search(r'font-size:\s*clamp\(',screen):errors.append(f'{source}: fluid font sizes belong to the --type-* tokens in foundation.css')
+    if 'var(--font-mono)' in screen:errors.append(f'{source}: the monospace face is retired; use lining tabular numerals')
     for value in re.findall(r'(?<![\w-])font-weight:\s*([^;}]+)',screen):
         if value.strip() not in ('400','500','600','inherit','200 800'):errors.append(f'{source}: font weight {value.strip()} is outside the 400/500/600 system')
     for value in re.findall(r'border-radius:\s*([^;}]+)',screen):
@@ -383,6 +386,24 @@ for name in ['tone-night','tone-blue']:
     value=token_hex(name)
     if value and not rgb(value)[2]>=rgb(value)[1]>=rgb(value)[0]:errors.append(f'Color axis: --{name} {value} must satisfy B >= G >= R')
 if re.search(r'--paper',css):errors.append('Paper surfaces are retired; use the lit panel or outline register')
+# Fonts: every route stays within the 60 KiB budget, and display headings only use glyphs the subset carries.
+font_sources=json.loads((ROOT/'source-assets/fonts/font-sources.json').read_text(encoding='utf-8'))
+FONT_BUDGET=font_sources.get('route_budget_bytes',61440)
+def unicode_ranges(spec):
+    ranges=[]
+    for part in spec.split(','):
+        low,_,high=part.strip().removeprefix('U+').partition('-')
+        ranges.append((int(low,16),int(high or low,16)))
+    return ranges
+display_ranges=unicode_ranges(font_sources['display']['unicode_ranges'])+[(0x2190,0x2193),(0x2197,0x2197)]
+for file,d in docs.items():
+    rel=file.relative_to(DIST).as_posix();text=file.read_text(encoding='utf-8')
+    fonts=set(re.findall(r'/assets/fonts/[\w.-]+\.woff2',text))
+    total=sum((DIST/font.lstrip('/')).stat().st_size for font in fonts if (DIST/font.lstrip('/')).is_file())
+    if total>FONT_BUDGET:errors.append(f'{rel}: font files total {total} bytes, over the {FONT_BUDGET}-byte route budget')
+    for heading in re.findall(r'<h[12]\b[^>]*>(.*?)</h[12]>',text,re.S):
+        for char in set(html.unescape(re.sub(r'<[^>]+>','',heading))):
+            if ord(char)>32 and not any(low<=ord(char)<=high for low,high in display_ranges):errors.append(f'{rel}: heading character {char!r} (U+{ord(char):04X}) is outside the display subset')
 for breakpoint in [1150,850,560]:
     if f'max-width:{breakpoint}px' not in css:warnings.append(f'Missing expected CSS breakpoint {breakpoint}')
 if 'prefers-reduced-motion:reduce' not in css:errors.append('Missing reduced-motion rule')
