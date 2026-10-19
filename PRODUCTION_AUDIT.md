@@ -65,3 +65,24 @@ Method: Lighthouse 13.5.0 in headless Chrome 155 on this Windows machine. It ran
 | `/company/` | desktop | 100 | 100 | 100 | 100 | 0.44 s (337–504 ms) | 0.27 s | 0.000 | 0 ms |
 
 All 36 runs scored 100 in all four categories, with CLS 0 and TBT 0. The redesign must hold these numbers. The mobile home LCP, 1.72 s, is the figure most at risk from new fonts and larger imagery. Plan §10 sets the budgets.
+
+## Phase P2 type measurement (2026-10-18)
+
+The Newsreader display face was measured against the P0 baseline. Lighthouse 13.5.0 ran mobile simulated throttling, three runs each.
+
+- **Cross-network runs were too noisy to compare builds.** Back-to-back runs against Cloudflare from this machine varied by up to 700 ms on the same page, so the comparison used one local server instead.
+- **Controlled A/B on the Investors page (local server, uncompressed):**
+
+  | Build | LCP median | Runs (ms) |
+  |---|---|---|
+  | P0 | 2,118 ms | 2,117 / 2,118 / 2,136 |
+  | P1 | 2,116 ms | 2,110 / 2,116 / 2,119 |
+  | P2 | 2,225 ms | 2,197 / 2,225 / 2,298 |
+
+  - P1 (light and color) costs nothing.
+  - P2 costs about +109 ms of simulated slow-4G LCP. That is the 27 KB display-font preload competing for bandwidth, 9 ms over the plan's +100 ms target.
+  - It is kept deliberately: without the preload, a first visit would usually render titles in the Georgia fallback.
+- **Display font loading.** With `font-display: swap` the title re-rendered when the font arrived. That moved LCP by +600 to +850 ms on the preview. The face therefore loads `optional`.
+- **Home.** With `optional`, preloading the display face on Home measured 2,857 ms against 2,855 ms without, so Home keeps the preload.
+- **Layout shift.** CLS was 0 in every P2 run.
+
