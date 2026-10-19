@@ -235,6 +235,12 @@
       "moved_to": "source-assets/retired/optimized/human-progress-768.f4edcf0016df.webp",
       "bytes": 32498,
       "reason": "Derivative of retired human-progress hero"
+    },
+    {
+      "published_path": "/assets/sleep-max-detail-screen-3.webp",
+      "moved_to": "source-assets/sleep-max-detail-screen-3.webp",
+      "bytes": 118876,
+      "reason": "Retired from the Sleep Max story in P5b (empty sample profile, T5-06); kept as an approved source"
     }
   ],
   "removed_generated": [
