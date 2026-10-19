@@ -18,6 +18,13 @@ _ICONS = {
     'routine': '<circle cx="12" cy="12" r="8"/><path d="M12 7v5l3 2M5 3 3 5M19 3l2 2M8 21l-1 1M16 21l1 1"/>',
     'wind-down': '<path d="M15 3a7 7 0 0 0 6 10 8 8 0 1 1-6-10Z"/><path d="M4 19c2-1 3-1 5 0s3 1 5 0 3-1 5 0"/>',
     'training': '<path d="M3 8v8M6 6v12M18 6v12M21 8v8M6 12h12M3 12h3M18 12h3"/>',
+    'invest': '<path d="M3 20h18"/><path d="m4 15 5-5 4 4 7-7"/><path d="M15 7h5v5"/>',
+    'partner': '<circle cx="9" cy="12" r="5.5"/><circle cx="15" cy="12" r="5.5"/>',
+    'apps': '<rect x="4" y="4" width="6.5" height="6.5" rx="1.6"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1.6"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1.6"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.6"/>',
+    'message': '<path d="M4 5h16v11H9l-5 4z"/><path d="M8 9.5h8M8 12.5h5"/>',
+    'share': '<circle cx="12" cy="12" r="8"/><path d="M12 4v8l6 5"/>',
+    'globe': '<circle cx="12" cy="12" r="8"/><path d="M4 12h16M12 4c2.4 2.3 3.6 5 3.6 8s-1.2 5.7-3.6 8c-2.4-2.3-3.6-5-3.6-8s1.2-5.7 3.6-8z"/>',
+    'spark': '<path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M6 18l2.5-2.5M15.5 8.5 18 6"/><circle cx="12" cy="12" r="2.2"/>',
     'nutrition': '<path d="M12 7c-5-4-10 1-8 7 2 6 5 7 8 5 3 2 6 1 8-5 2-6-3-11-8-7ZM12 7c-1-3 1-5 4-5"/>',
 }
 
@@ -27,6 +34,11 @@ _FEATURE_SYMBOLS = {
     'sleep-max': ('diary', 'routine', 'wind-down'),
     'fitness-max': ('training', 'nutrition', 'consistency'),
 }
+
+
+def symbol(name):
+    """Public access to the decorative icon set."""
+    return _symbol(name)
 
 
 def _symbol(name):
@@ -116,7 +128,5 @@ def founder_card():
         '<p class="eyebrow">Founder</p>'
         '<div class="founder-identity"><h2 id="founder-card-name">Ata Turhan<span>.</span></h2>'
         '<p>Founder of Solarity AI</p></div>'
-        '<div class="founder-card-footer"><p><span>BASED IN</span>Irving, Texas</p>'
-        '<a class="text-link" href="/contact">Connect with Ata '
-        '<span aria-hidden="true">→</span></a></div></div></aside>'
+        '<div class="founder-card-footer"><p><span>BASED IN</span>Irving, Texas</p></div></div></aside>'
     )

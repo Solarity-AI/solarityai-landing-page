@@ -99,4 +99,6 @@ def saas_chapter(product, index):
 
 
 def saas_chapters(saas):
-    return '<div class="wrap saas-chapters">' + ''.join(saas_chapter(p, i) for i, p in enumerate(saas)) + '</div>'
+    index = ''.join(f'<a href="#{e(p["slug"])}"><span>{e(p["stage"])}</span>{e(p["name"])}</a>' for p in saas)
+    return ('<div class="wrap saas-chapters"><nav class="saas-index" aria-label="Web apps on this page">' + index + '</nav>'
+            + ''.join(saas_chapter(p, i) for i, p in enumerate(saas)) + '</div>')
