@@ -6,8 +6,12 @@ WebP ``img``. For the hero, wrap that img in a ``picture`` with a ``source``
 whose attributes come from ``avif_source_attrs(src, sizes=...)``. Original
 screenshot URLs are intentionally retained for native full-size gallery links.
 
-Only local resizing and encoding is performed. No image content is generated,
-cropped, sharpened, or otherwise altered. Filenames include the first twelve
+Only local resizing, encoding and recorded edge trimming are performed. No image
+content is generated, sharpened, or otherwise altered. Store screenshots carry thin
+baked-in listing hairlines at their edges; each derivative trims the smallest inset
+(at most EDGE_MAX_INSET px per side) that makes its outer EDGE_BAND px match the
+adjacent interior within EDGE_TRIM_LIMIT levels (checked at EDGE_LIMIT). The inset is recorded in the manifest,
+and the originals in dist/assets/ are never changed. Filenames include the first twelve
 hexadecimal characters of their actual byte hash so they can safely receive
 immutable cache headers.
 """
@@ -28,9 +32,15 @@ ASSETS = ROOT / 'dist' / 'assets'
 SOURCE_ASSETS = ROOT / 'source-assets'
 DESTINATION = ASSETS / 'optimized'
 REPORT = ROOT / 'research-assets' / 'image-optimization.json'
-SETTINGS_VERSION = 2
+SETTINGS_VERSION = 6
+# 400/800/1200 once the founder confirms the native-resolution re-fetch (P5a).
 SCREEN_WIDTHS = (240, 400, 600)
-ICON_WIDTHS = (48, 96, 144)
+ICON_WIDTHS = (48, 96, 144, 224, 320)
+EDGE_BAND = 8
+EDGE_LIMIT = 40
+# Trim against a stricter limit so resampled derivatives still pass the 40-level check.
+EDGE_TRIM_LIMIT = 30
+EDGE_MAX_INSET = 16
 SUNRISE_WIDTHS = (480, 768, 1200, 1440, 1860)
 WEBP_QUALITY = 86
 AVIF_QUALITY = 70
@@ -100,6 +110,54 @@ def _encode(image: Image.Image, width: int, fmt: str) -> tuple[bytes, int]:
     return output.getvalue(), height
 
 
+def _band_mean(image: Image.Image, side: str, start: int, depth: int) -> tuple:
+    width, height = image.size
+    box = {
+        'left': (start, 0, start + depth, height),
+        'right': (width - start - depth, 0, width - start, height),
+        'top': (0, start, width, start + depth),
+        'bottom': (0, height - start - depth, width, height - start),
+    }[side]
+    region = image.crop(box).convert('RGB')
+    pixels = region.width * region.height
+    sums = [0, 0, 0]
+    for count, color in region.getcolors(pixels) or []:
+        for channel in range(3):
+            sums[channel] += count * color[channel]
+    return tuple(value / pixels for value in sums)
+
+
+def edge_difference(image: Image.Image, side: str, inset: int = 0, band: int = EDGE_BAND) -> float:
+    """Acceptance check: the outer band's mean against the band just inside it.
+
+    For a resized derivative, pass the source-scale band (EDGE_BAND × width / source width)."""
+    outer = _band_mean(image, side, inset, band)
+    inner = _band_mean(image, side, inset + band, band)
+    return max(abs(a - b) for a, b in zip(outer, inner))
+
+
+def derivative_edge_band(width: int, source_width: int) -> int:
+    return max(3, round(EDGE_BAND * width / source_width))
+
+
+def _line_edge_difference(image: Image.Image, side: str, inset: int = 0) -> float:
+    """Trimming test, line by line, so a 2px hairline cannot hide inside an 8px average."""
+    inner = _band_mean(image, side, inset + EDGE_BAND, EDGE_BAND)
+    return max(max(abs(a - b) for a, b in zip(_band_mean(image, side, inset + line, 1), inner))
+               for line in range(EDGE_BAND))
+
+
+def edge_insets(image: Image.Image) -> dict:
+    """The smallest per-side trim that removes baked-in listing hairlines."""
+    insets = {}
+    for side in ('left', 'top', 'right', 'bottom'):
+        inset = 0
+        while inset < EDGE_MAX_INSET and _line_edge_difference(image, side, inset) > EDGE_TRIM_LIMIT:
+            inset += 1
+        insets[side] = inset
+    return insets
+
+
 def _cache_valid(report: dict, source_hashes: dict) -> bool:
     if report.get('settings_version') != SETTINGS_VERSION:
         return False
@@ -140,6 +198,8 @@ def ensure_optimized_images() -> dict:
             'resize': 'Lanczos, preserve complete image and aspect ratio',
             'original_full_size_screenshots': 'Preserved at their original URLs',
             'fallback_policy': 'Never enlarge the original full-width WebP by re-encoding',
+            'screen_formats': 'WebP only. Measured on the 10 screens at 400w (P5a): WebP q86 221,202 B at mean error 1.02; AVIF q70 231,545 B at 1.22; AVIF q60 191,949 B at 1.41. AVIF is larger or softer for UI text.',
+            'edge_trim': f'Screens: smallest inset (max {EDGE_MAX_INSET}px per side) whose outer {EDGE_BAND}px band matches the next band within {EDGE_LIMIT} levels; derivatives only',
         },
         'images': {},
     }
@@ -148,6 +208,12 @@ def ensure_optimized_images() -> dict:
         original = source.read_bytes()
         with Image.open(source) as image:
             image.load()
+            crop = None
+            if role == 'screen':
+                insets = edge_insets(image)
+                if any(insets.values()):
+                    crop = insets
+                    image = image.crop((insets['left'], insets['top'], image.width - insets['right'], image.height - insets['bottom']))
             widths = {'screen': SCREEN_WIDTHS, 'icon': ICON_WIDTHS, 'hero': SUNRISE_WIDTHS}[role]
             stem = source.stem
             record = {
@@ -156,14 +222,20 @@ def ensure_optimized_images() -> dict:
                 'width': image.width,
                 'height': image.height,
                 'original_bytes': len(original),
+                'crop': crop,
+                'derivative_width': image.width,
+                'derivative_height': image.height,
                 'webp': [],
                 'avif': [],
             }
             for width in widths:
                 if width > image.width:
-                    continue
+                    # A trimmed screen is a few pixels narrower than its nominal top width.
+                    if not (crop and width == widths[-1]):
+                        continue
+                    width = image.width
                 webp, height = _encode(image, width, 'WEBP')
-                if width == image.width and len(webp) >= len(original):
+                if width == image.width and not crop and len(webp) >= len(original):
                     webp = original
                 record['webp'].append(_file_record(webp, stem, width, height, 'WEBP'))
                 if role == 'hero':
@@ -189,16 +261,21 @@ def responsive_image_attrs(src: str, *, sizes: str | None = None) -> dict:
     variants = record['webp']
     # A modest fallback is efficient in legacy clients that ignore srcset.
     fallback = variants[1] if len(variants) > 1 else variants[0]
-    return {
+    attrs = {
         'src': fallback['url'],
         'srcset': ', '.join(f'{item["url"]} {item["width"]}w' for item in variants),
         'sizes': sizes or DEFAULT_SIZES[record['role']],
         'decoding': 'async',
     }
+    if record.get('crop'):
+        # Reserve the trimmed derivative's true aspect ratio.
+        attrs['width'] = str(record['derivative_width'])
+        attrs['height'] = str(record['derivative_height'])
+    return attrs
 
 
 def avif_source_attrs(src: str, *, sizes: str | None = None) -> dict:
-    """Return attrs for a hero AVIF picture source, or {} for other images."""
+    """Return attrs for the hero AVIF picture source, or {} for other images."""
     record = image_record(src)
     if not record or not record['avif']:
         return {}

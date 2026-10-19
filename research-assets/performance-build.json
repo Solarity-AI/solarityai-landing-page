@@ -19,8 +19,8 @@
       "speculation_rules": "Prefetch same-origin pages on intent (moderate); never prerender",
       "external_scripts": [],
       "javascript_bytes": 4524,
-      "html_bytes": 76041,
-      "html_gzip_bytes": 17920
+      "html_bytes": 77013,
+      "html_gzip_bytes": 18104
     },
     "/apps": {
       "source_bytes": 120932,
@@ -44,7 +44,7 @@
       ],
       "javascript_bytes": 8260,
       "html_bytes": 54970,
-      "html_gzip_bytes": 13634
+      "html_gzip_bytes": 13669
     },
     "/apps/looks-max": {
       "source_bytes": 120932,
@@ -67,8 +67,8 @@
         "gallery"
       ],
       "javascript_bytes": 8260,
-      "html_bytes": 65323,
-      "html_gzip_bytes": 16188
+      "html_bytes": 65809,
+      "html_gzip_bytes": 16330
     },
     "/apps/iq-max": {
       "source_bytes": 120932,
@@ -91,8 +91,8 @@
         "gallery"
       ],
       "javascript_bytes": 8260,
-      "html_bytes": 66885,
-      "html_gzip_bytes": 16294
+      "html_bytes": 67371,
+      "html_gzip_bytes": 16446
     },
     "/apps/sleep-max": {
       "source_bytes": 120932,
@@ -115,8 +115,8 @@
         "gallery"
       ],
       "javascript_bytes": 8260,
-      "html_bytes": 65018,
-      "html_gzip_bytes": 16133
+      "html_bytes": 65504,
+      "html_gzip_bytes": 16266
     },
     "/apps/fitness-max": {
       "source_bytes": 120932,
@@ -139,8 +139,8 @@
         "gallery"
       ],
       "javascript_bytes": 8260,
-      "html_bytes": 67107,
-      "html_gzip_bytes": 16363
+      "html_bytes": 67593,
+      "html_gzip_bytes": 16523
     },
     "/platform": {
       "source_bytes": 120932,
@@ -203,7 +203,7 @@
       "external_scripts": [],
       "javascript_bytes": 4524,
       "html_bytes": 62255,
-      "html_gzip_bytes": 15461
+      "html_gzip_bytes": 15496
     },
     "/careers": {
       "source_bytes": 120932,
