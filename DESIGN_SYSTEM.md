@@ -170,6 +170,17 @@ All values below are tokens on `:root` in `design/system/foundation.css`. `check
   - Two registers: **Today** is a lit card with the four icons and a filled evidence status; **Ahead** is a dashed card with the hollow `.status.vision` ring and a link to Platform. Vision never borrows the evidence styling.
   - The close pairs the founder booking (times as the primary, email as the outline) with the one reprise of the approved sunrise on this page, captioned "Conceptual brand artwork".
   - Every chapter heading on the page uses the display face. Section glows fade in from transparent on every edge, so no band shows a seam.
+- **App factory map (P6b).**
+  - `platform_map(apps, variant)` in `visual_sections.py` is shared by Platform and Home. The store-listed apps are the lit source on a horizon with the evidence chip. Build, Operate and Grow are dashed vision nodes, each with `.status.vision`. Connectors are dashed and decorative: they read as informing the direction, never as integrations.
+  - One legend per map replaces the scattered retractions: the two chips, then "Conceptual company strategy." with the existing note. The figcaption also holds a screen-reader sentence naming the apps and the three directions.
+  - On Platform the icons link to the apps and the nodes to the module sections. On Home the map is illustrative, and the section keeps its one "Explore the app factory →".
+  - Phones get a compact vertical map: the icons above a glowing line past three outlined nodes. It measures 345px, 41% of a 390×844 viewport (limit 60%).
+  - Platform's opening is top-aligned, with the vision chip under the lede. Its legend ends at 674px at 1440×900 and 662px at 1280×800, inside the first view.
+  - Modules are numbered chapters: a display numeral, the name in the display face, the vision chip, and an outlined, decorative stage word (`--type-stage`, `aria-hidden`). On phones the numeral sits above the name. Modules carry no contact links.
+  - Platform has one numbered sequence, the modules. The three-step argument lives only on Platform, keeps its order without numerals, and no longer repeats the Build ↓ Operate ↓ Grow ↓ links.
+  - Measured mean luminance: evidence is brighter than vision on every page (Platform map 55.7 vs 41.8, Home map 57.0 vs 41.0, Investors Today 33.1 vs Ahead 32.3).
+  - `check_site.py` requires the map on Home and Platform, the Vision chip on each node, and the legend.
+  - Deferred: pinning the map beside the scrolling modules with an active-node glow belongs to the motion contract (P9). The headline rewrites marked *(copy)* still wait for founder approval.
 - **Buttons (P1).** The primary is `--sun-core` with an inner highlight and a warm bloom on hover and focus. The outline button is a `--control-border` hairline whose hover fill is `rgb(255 207 122 / .08)`.
 - **Status chips.** `.status` has a filled sun dot for evidence; `.status.vision` has a hollow ring for vision. Both always carry text.
 
@@ -189,7 +200,7 @@ All values below are tokens on `:root` in `design/system/foundation.css`. `check
   - Phase P4 (closing frame, footer and CTA hierarchy) is implemented: see Close and Footer below.
   - Phase P5a (product asset pipeline) is implemented. The founder confirmed the native screenshots on 2026-10-19, so they are published (see Product assets below).
   - Phase P5b is implemented: product openings, stage, badges and product close (P5b-1), plus the Home portfolio wall and the Apps lineup (P5b-2).
-  - Phase P6a (Investors: fact band, evidence and vision registers, booking close) is implemented. P6b (the platform diagram) follows.
+  - Phase P6 is implemented: the Investors narrative (P6a) and the shared app factory map with the Platform modules (P6b).
 - **Still open:** the motion contract (plan §5, Phase P9).
 - **Founder material:** plan §9 lists every asset and content item needed. None of it is invented in the meantime.
 - **Baseline renders:** `research-assets/baseline-2026-10-18/` holds full-page captures of https://solarityai.com (develop `b0eff9b`). It covers all 12 pages at 360, 390, 768, 1024 and 1440, plus Home and Investors at 1280x800 and 1920x1080, and a reduced-motion pass at 390 and 1440. `index.json` records each page height; none overflows horizontally. The JPEGs (about 21 MB) are kept out of git; only `index.json` is committed. Regenerate them with `node research-assets/baseline-2026-10-18/capture.mjs https://solarityai.com <folder>`.
