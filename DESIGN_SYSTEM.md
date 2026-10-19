@@ -62,7 +62,24 @@ All values below are tokens on `:root` in `design/system/foundation.css`. `check
   - Paper is retired. Evidence uses lit panels (`--elev-panel` with `--elev-panel-edge`). Vision is drawn in outline: transparent, with a dashed `--bronze` border and dashed inner rules.
   - Grain (`--grain`) is an inline SVG noise tile at about 3% opacity, used on the page and on closing scenes. It needs no file and no request.
   - Glows sit on a pseudo-element larger than their box and fade at `closest-side`, so they never show an edge.
-- **Type.** One self-hosted Manrope variable font. Small and body text use only the scale `--text-2xs` 12px, `--text-xs` 13px, `--text-sm` 14px, `--text-md` 15px, `--text-base` 16px, `--text-lg` 18px and `--text-xl` 20px. Nothing renders below 12px. Headings use bounded `clamp()` sizes.
+- **Type (Phase P2, October 18, 2026).**
+  - Two self-hosted faces:
+    - Manrope variable does the work.
+    - Newsreader, at its display optical size in one 400 roman (27,416 bytes, founder choice A1), carries every `h1` and the chapter headings listed in `foundation.css`. Those are the statements, product names, closes and Platform numerals.
+  - Both faces are preloaded with `font-display: optional`. Metric-matched fallbacks keep lines stable:
+    - Georgia for Newsreader: `size-adjust` 101.5%.
+    - Arial for Manrope: `size-adjust` 103.94%.
+  - Arrows come from Manrope through the `Display Arrows` face. Provenance is in `source-assets/fonts/font-sources.json`.
+  - Roles: `--type-title` (one title moment per page), `--type-chapter` (display), `--type-section` (Manrope 500, `h2`), `--type-sub` (`h3`), `--type-deck` (ledes), `--type-body` (17–18px), `--type-meta`, `--type-label`, `--type-signature`.
+  - Page stylesheets never declare a fluid `clamp()` size. Display tracking is −0.015em or −0.01em, and no large Manrope text is tighter than −0.02em.
+  - Emphasis is `--sun-core` on a phrase (`em`, `span` or `.muted` inside `h1` and `h2`), never a face or weight change.
+  - Breaks fall only between sentences. `p`, `li`, `dd`, `figcaption` and `.lede` use `text-wrap: pretty`. "iOS & Android" never breaks.
+  - The small text scale `--text-2xs`…`--text-xl` remains for labels and supporting copy. Nothing renders below 12px.
+  - `check_site.py` enforces:
+    - no raw `clamp()` font size outside `foundation.css`;
+    - no monospace face;
+    - 61,440 font bytes or fewer per route (now 53,708);
+    - every heading character inside the display subset.
 - **Weights.** 400 for reading, 500 for headings and emphasis, 600 for labels, buttons and `strong`.
 - **Eyebrows.** One style: 12px, weight 600, `.1em` tracking, `--sand` on every surface. The hero uses a lighter gold for legibility over the artwork. The product-name label beside each app icon is 13px in its product accent.
 - **Measure.** Body paragraphs default to `--measure` (52ch, about 75 characters per line in Manrope, whose 0 is wider than its average letter). Wider containers must not stretch reading text past it.
@@ -85,6 +102,7 @@ All values below are tokens on `:root` in `design/system/foundation.css`. `check
   - Product world hues: **approved as shown** in the specimen. Looks Max violet, IQ Max blue, Sleep Max indigo, Fitness Max ember.
   - Home header: **approved to float over the hero** (Phase P3). Interior pages keep a solid bar.
   - Phase P1 (light, color and materials) is implemented: see the rules above and the P1 pull request.
+  - Phase P2 (type system) is implemented: see the Type rule above.
 - **Still open:** the motion contract (plan §5, Phase P9), and the portfolio wall replacing the Home explorer (Phase P5b).
 - **Founder material:** plan §9 lists every asset and content item needed. None of it is invented in the meantime.
 - **Baseline renders:** `research-assets/baseline-2026-10-18/` holds full-page captures of https://solarityai.com (develop `b0eff9b`). It covers all 12 pages at 360, 390, 768, 1024 and 1440, plus Home and Investors at 1280x800 and 1920x1080, and a reduced-motion pass at 390 and 1440. `index.json` records each page height; none overflows horizontally. The JPEGs (about 21 MB) are kept out of git; only `index.json` is committed. Regenerate them with `node research-assets/baseline-2026-10-18/capture.mjs https://solarityai.com <folder>`.

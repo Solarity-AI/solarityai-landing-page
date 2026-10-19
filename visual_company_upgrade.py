@@ -59,7 +59,7 @@ def strategy_story(btn, contact):
     """Replace the platform-bottom section with a readable strategy sequence."""
     return '''<section class="strategy-story wrap" aria-labelledby="strategy-story-title">
 <div class="strategy-story-intro"><p class="eyebrow">WHY THE TWO PRODUCT LINES BELONG TOGETHER</p>
-<h2 id="strategy-story-title">The products<br>ground the possibility.</h2>
+<h2 id="strategy-story-title">The products ground the possibility.</h2>
 <p>Focused apps give the company a practical context for exploring better ways to build, operate, and grow mobile products.</p>
 <a class="text-link" href="/apps">Meet the consumer portfolio <span aria-hidden="true">→</span></a></div>
 <ol class="strategy-story-steps">
@@ -97,17 +97,17 @@ def investor_evidence(apps):
 <ol class="investor-thesis-list"><li><span aria-hidden="true">01</span><div><h3>Start with an everyday ambition.</h3><p>Self-care, cognitive practice, sleep, and fitness give each app a distinct purpose and audience.</p></div></li>
 <li><span aria-hidden="true">02</span><div><h3>Learn through focused products.</h3><p>The practical work of bringing apps to people provides a context for exploring better product workflows.</p></div></li>
 <li><span aria-hidden="true">03</span><div><h3>Develop useful patterns.</h3><p>The platform ambition is to make more of that work reusable, while keeping product decisions deliberate.</p></div></li></ol></div>
-<aside class="investor-evidence-vision" aria-labelledby="investor-vision-title"><p class="eyebrow">THE PLATFORM VISION</p><h3 id="investor-vision-title">The work behind<br>the next product.</h3><p>Engineering Max, Management Max, and Marketing Max organize the intended direction for reusable product workflows.</p>
+<aside class="investor-evidence-vision" aria-labelledby="investor-vision-title"><p class="eyebrow">THE PLATFORM VISION</p><h3 id="investor-vision-title">The work behind the next product.</h3><p>Engineering Max, Management Max, and Marketing Max organize the intended direction for reusable product workflows.</p>
 <dl class="investor-vision-disciplines"><div><dt>Build</dt><dd>Engineering Max</dd></div><div><dt>Operate</dt><dd>Management Max</dd></div><div><dt>Grow</dt><dd>Marketing Max</dd></div></dl>
 <a class="text-link" href="/platform">Explore the platform direction <span aria-hidden="true">→</span></a></aside></div>
 <div class="investor-commercial"><div><p class="eyebrow">CONSUMER MODEL</p><h3>Subscriptions and in-app purchases.</h3><p>The apps have live listings with in-app purchases. Current plans, prices, and terms are available through their official store pages.</p></div><div><p class="eyebrow">PLATFORM STRATEGY</p><h3>Potential commercialization.</h3><p>External commercial availability, connected capabilities, and partnership scope remain topics for discussion. They are not presented here as established platform services.</p></div></div>
 </section>
-<section class="partnership-agenda wrap" id="conversation-paths" aria-labelledby="partnership-agenda-title"><div class="partnership-agenda-heading"><p class="eyebrow">WAYS TO WORK TOGETHER</p><h2 id="partnership-agenda-title">Where we can<br>build together.</h2><p>A useful conversation starts with a product, a shared problem, or a relevant audience.</p></div>
+<section class="partnership-agenda wrap" id="conversation-paths" aria-labelledby="partnership-agenda-title"><div class="partnership-agenda-heading"><p class="eyebrow">WAYS TO WORK TOGETHER</p><h2 id="partnership-agenda-title">Where we can build together.</h2><p>A useful conversation starts with a product, a shared problem, or a relevant audience.</p></div>
 <ul class="partnership-topic-list">''' + ''.join(topic_rows) + '''</ul></section>'''
 
 def founder_booking(btn, booking):
     """A single, genuine external scheduling path after the investor FAQ."""
-    return '''<section class="founder-booking wrap" id="booking" aria-labelledby="founder-booking-title"><div><p class="eyebrow">A DIRECT CONVERSATION</p><h2 id="founder-booking-title">Compare perspectives<br>with the founder.</h2><p>Speak with Ata Turhan about the portfolio, company direction, or a potential collaboration.</p></div><div class="founder-booking-action">''' + btn('View available times', booking, 'primary', True) + '''<p>Opens Ata’s booking page on Google Calendar in a new tab.</p></div></section>'''
+    return '''<section class="founder-booking wrap" id="booking" aria-labelledby="founder-booking-title"><div><p class="eyebrow">A DIRECT CONVERSATION</p><h2 id="founder-booking-title">Compare perspectives with the founder.</h2><p>Speak with Ata Turhan about the portfolio, company direction, or a potential collaboration.</p></div><div class="founder-booking-action">''' + btn('View available times', booking, 'primary', True) + '''<p>Opens Ata’s booking page on Google Calendar in a new tab.</p></div></section>'''
 
 
 def operating_principles():

@@ -64,7 +64,7 @@ def careers_page(btn):
 </section>
 
 <section class="career-benefits wrap" aria-labelledby="career-benefits-title">
-<div class="career-section-heading"><p class="eyebrow">WHY SOLARITY AI</p><h2 id="career-benefits-title">A place for <br><em>your contribution.</em></h2></div>
+<div class="career-section-heading"><p class="eyebrow">WHY SOLARITY AI</p><h2 id="career-benefits-title">A place for <em>your contribution.</em></h2></div>
 <dl class="career-benefit-list">
 <div><dt>Generous profit sharing</dt><dd>Share in the value you help create. Discuss the arrangement for your role during the hiring process.</dd></div>
 <div><dt>Fully remote</dt><dd>Contribute remotely, with the work and your collaboration at the center of the conversation.</dd></div>
@@ -79,7 +79,7 @@ def careers_page(btn):
 </section>
 
 <section class="career-apply wrap" id="apply" aria-labelledby="career-apply-title">
-<div class="career-apply-copy"><p class="eyebrow">START A CONVERSATION</p><h2 id="career-apply-title">Tell us what<br><em>you bring.</em></h2>
+<div class="career-apply-copy"><p class="eyebrow">START A CONVERSATION</p><h2 id="career-apply-title">Tell us what <em>you bring.</em></h2>
 <p>Start with your name, email, and the opportunity you have in mind. A LinkedIn profile or a link to your work can add context, if you have one.</p>
 
 <div class="career-email-alternative"><p>Prefer to contact us directly?</p><a href="mailto:careers@solarityai.com?subject=Career%20inquiry%20-%20Solarity%20AI">careers@solarityai.com <span aria-hidden="true">↗</span></a>''' + copy_button('careers@solarityai.com', 'careers-email-copy-status') + '''</div></div>
