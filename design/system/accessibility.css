@@ -7,6 +7,12 @@
   .footer-group a>span,.contact-method .method-arrow,.recovery-arrow{transition:transform var(--motion-fast) var(--motion-ease)}
   .footer-group a:focus-visible>span,.contact-method:focus-visible .method-arrow{transform:translateX(3px)}
   @media(hover:hover) and (pointer:fine){.footer-group a:hover>span,.contact-method:hover .method-arrow{transform:translateX(3px)}}
+  /* Cards and panels lift 4px and catch a sun hairline. translate composes with the scroll reveal's transform. */
+  @media(hover:hover) and (pointer:fine){
+   .wall-card,.saas-card,.feature-tile,.operating-principles li,.strategy-story-steps>li,.career-benefit-list>div,.partnership-topic,.today-card,.ahead-card,.lineup-app{transition:translate var(--motion-detail) var(--motion-ease),box-shadow var(--motion-detail) var(--motion-ease)}
+   .wall-card:hover,.saas-card:hover,.feature-tile:hover,.operating-principles li:hover,.strategy-story-steps>li:hover,.career-benefit-list>div:hover,.partnership-topic:hover,.today-card:hover,.lineup-app:hover{translate:0 -4px}
+   .saas-card:hover,.feature-tile:hover,.operating-principles li:hover,.strategy-story-steps>li:hover,.career-benefit-list>div:hover,.today-card:hover{box-shadow:var(--elev-panel-edge),0 0 0 1px rgb(255 207 122/.2),0 26px 50px -28px rgb(0 0 0/.85)}
+  }
   #image-dialog[open]{animation:surface-arrive 180ms var(--motion-ease)}
   @keyframes surface-arrive{from{opacity:.7;transform:translateY(5px)}to{opacity:1;transform:none}}
   /* Scroll reveals: content below the fold rises in as it enters. Progress follows the scroll, so anything

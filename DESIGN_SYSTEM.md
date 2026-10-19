@@ -205,6 +205,19 @@ All values below are tokens on `:root` in `design/system/foundation.css`. `check
   - The Home hero declares 680 px for phones, which sets the file the browser picks, not the drawn size. A 3× phone still loads 2560, 2.625× loads 1860, 2× loads 1440, and Lighthouse's 1.75× phone loads 1200 (68 KB instead of 128 KB).
   - Measured locally (Lighthouse 13.5 mobile, A/B against `develop`, 2 runs): Home style and layout 444–522 → 202–208 ms, blocking time 137–178 → 0–7 ms, LCP 3,084 → 2,635 ms, local score 92–93 → 97. CLS and accessibility unchanged (0, 100). The local server sends uncompressed HTML (74 KB against 18 KB brotli in production), so the local LCP runs about 0.4 s above PageSpeed's.
   - Rejected after measuring: a phone-only crop of the hero (`<source media>` with per-media preloads) made LCP 300 ms worse and FCP 150 ms worse than the size cap. Dropping the font preloads raised FCP by 400 ms.
+- **Design pass (October 19, 2026).** Ten changes, with no new copy apart from the Company founder paragraph, which now names the web apps instead of "an app factory vision".
+  - **Panels replace plain three-column text.** Product features, Company principles, Platform's three steps and Careers benefits use `--elev-panel` panels with `--elev-panel-edge`, `--radius-panel` and a 14–22 px gap.
+    - Product features take the product's world: a glowing 52 px icon tile (`color-mix` of `--world`), a quiet display numeral in `--world-tint`, and a world glow inside the panel.
+    - Principles are numbered in the display face; headings reserve two lines so the paragraphs align.
+    - Platform's steps are unnumbered (the web app chapters own the page's one numbered sequence) and joined by a horizon line at a sun dot.
+  - **Platform callout.** "People remain responsible for the decisions" is a pull-quote: a sun-core left rule, a warm fade, the display face, at most 820 px wide.
+  - **Icon tiles.** Contact topics and Careers benefits carry 48 px sun-core tiles. New icons: invest, partner, apps, message, share, globe, spark, in the existing 24 px stroke set (`visual_sections.symbol`). In Careers the icon sits inside the `<dt>`, which keeps the description list valid.
+  - **Company founder.** A 4:5 editorial print, at most 440 px wide, in a 0.8 / 1.2 grid. The card no longer repeats "Connect with Ata"; the column's button is the one action.
+  - **Platform chapter index.** A sticky pill under the header lists Build, Operate and Grow with each product; chapters scroll to 176 px below the top so they clear it. On phones it is three static columns.
+  - **Investors FAQ.** The questions are numbered in the display face; the open question's number turns sun-core over a warm fade.
+  - **Hover.** On pointer devices with motion allowed, cards and panels lift 4 px and catch a sun hairline. The lift uses `translate`, which composes with the scroll reveal's `transform`.
+  - **Typography and brand.** Headings use `text-wrap: balance` and paragraphs `text-wrap: pretty`. Text selection is sun-core on ink, and the scrollbar and form accents follow the palette.
+  - **Measured (local Lighthouse mobile, A/B against `develop`).** Product page, Company, Platform and Contact hold 99–100, CLS 0, accessibility 100. Home's local FCP rises 150 ms, a local-server artifact: `develop`'s own Home padded by 1 KB of comment shows the same 150 ms. That server sends the HTML uncompressed (75 KB), while production sends 18 KB.
 - **Buttons (P1).** The primary is `--sun-core` with an inner highlight and a warm bloom on hover and focus. The outline button is a `--control-border` hairline whose hover fill is `rgb(255 207 122 / .08)`.
 - **Status chips.** `.status` has a filled sun dot for evidence; `.status.vision` has a hollow ring for vision. Both always carry text.
 

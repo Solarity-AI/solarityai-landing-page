@@ -34,9 +34,11 @@
   .contact-topics-heading h2 { max-width: 18ch; }
   .contact-topics-heading p { max-width: 28ch; margin-top: 20px; font-size: var(--text-sm); line-height: 1.8; }
   .contact-topic-list { min-width: 0; }
-  .contact-topic { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 26px 0; border-block-end: 1px solid var(--line); min-height: 108px; }
+  .contact-topic { display: grid; grid-template-columns: 48px minmax(0, 1fr) auto; align-items: center; gap: 22px; padding: 26px 0; border-block-end: 1px solid var(--line); min-height: 108px; }
   .contact-topic:first-child { padding-block-start: 0; }
-  .contact-topic > span:first-child { display: grid; gap: 8px; min-width: 0; }
+  .contact-topic > span:nth-child(2) { display: grid; gap: 8px; min-width: 0; }
+  .contact-topic > span.contact-topic-icon { display: grid; place-items: center; width: 48px; height: 48px; border-radius: var(--radius-plate); color: var(--sun-core); background: rgb(255 207 122/.07); box-shadow: inset 0 0 0 1px var(--line); }
+  .contact-topic-icon svg { width: 24px; height: 24px; }
   .contact-topic strong { color: var(--text); font-size: var(--text-base); font-weight: 500; line-height: 1.45; }
   .contact-topic > span > span { max-width: 48ch; color: var(--muted); font-size: var(--text-sm); line-height: 1.75; }
   .contact-topic-arrow { color: var(--accent); font-size: var(--text-xl); flex: none; transition: transform var(--motion-detail) var(--motion-ease); }

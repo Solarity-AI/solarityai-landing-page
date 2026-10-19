@@ -57,7 +57,7 @@ def investor_faq():
         ),
     ]
     disclosures = "".join(
-        '<details class="faq-item"><summary><span class="faq-question">'
+        '<details class="faq-item"><summary><span class="faq-number" aria-hidden="true">' + f'{number:02d}' + '</span><span class="faq-question">'
         + question
         + '</span><span class="faq-marker" aria-hidden="true">+</span></summary>'
         + '<div class="faq-answer">'
