@@ -22,7 +22,7 @@ def platform_opening(modules, btn, contact):
         )
     return (
         '<section class="platform-opening wrap" aria-labelledby="platform-opening-title">'
-        '<div class="platform-opening-copy"><p class="eyebrow">THE APP FACTORY / PLATFORM VISION</p>'
+        '<div class="platform-opening-copy"><p class="eyebrow">The app factory</p>'
         '<h1 id="platform-opening-title">The work behind <span>what comes next.</span></h1>'
         '<p class="lede">A vision for the engineering, management, and marketing work '
         'behind focused mobile products.</p><div class="actions">'
@@ -30,7 +30,6 @@ def platform_opening(modules, btn, contact):
         + '</div><a class="text-link platform-portfolio-link" href="/apps">'
         'Meet the products informing the direction <span aria-hidden="true">→</span></a></div>'
         '<figure class="platform-opening-map"><div class="platform-opening-map-heading">'
-        '<p class="eyebrow">A PRODUCT-LED DIRECTION</p>'
         '<span class="strategy-vision-label">Platform vision</span></div>'
         '<div class="platform-strategy-visual"><div class="strategy-source">'
         '<span>Consumer portfolio</span><strong>Human<br>potential.</strong>'

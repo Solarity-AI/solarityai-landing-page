@@ -1,4 +1,5 @@
 """Editorial app discovery, with authentic assets and native navigation."""
+from image_provenance import provenance
 from html import escape as e
 from visual_products import voice_symbol
 
@@ -24,7 +25,7 @@ def home_portfolio(apps, btn):
             continue
         visions.append(f'''<a class="catalog-vision-link" data-product-accent="{e(app['color'])}" href="/apps/{e(app['slug'])}"><span class="catalog-vision-symbol">{voice_symbol(52)}</span><div><span class="catalog-vision-label">PRODUCT VISION</span><h3>{e(app['name'])}</h3><p>{e(app['summary'])}</p></div><span class="catalog-vision-action">Explore the direction <span aria-hidden="true">→</span></span></a>''')
     vision_markup = '<div class="catalog-vision-list">'+''.join(visions)+'</div>' if visions else ''
-    return f'''<section class="catalog-home wrap" id="our-products" aria-labelledby="catalog-home-title"><div class="catalog-section-heading"><div><p class="eyebrow">THE APP PORTFOLIO</p><h2 id="catalog-home-title">Everyday ambitions.<br><span class="muted">Focused experiences.</span></h2></div><p>From self-care to cognitive practice, sleep, and fitness, explore the products behind our company strategy.</p></div><div class="catalog-gallery">{''.join(cards)}</div><p class="catalog-image-note">Official app imagery · sample content</p>{vision_markup}<div class="catalog-section-footer"><span>Individual products. A shared ambition.</span>{btn('View the full portfolio','/apps','text')}</div></section>'''
+    return f'''<section class="catalog-home wrap" id="our-products" aria-labelledby="catalog-home-title"><div class="catalog-section-heading"><div><p class="eyebrow">The app portfolio</p><h2 id="catalog-home-title">Everyday ambitions.<br><span class="muted">Focused experiences.</span></h2></div><p>From self-care to cognitive practice, sleep, and fitness, explore the products behind our company strategy.</p></div><div class="catalog-gallery">{''.join(cards)}</div><p class="catalog-image-note caption">{provenance()}</p>{vision_markup}<div class="catalog-section-footer"><span>Individual products. A shared ambition.</span>{btn('View the full portfolio','/apps','text')}</div></section>'''
 
 
 def portfolio_page(apps, btn, app_art, product_status):
@@ -40,4 +41,4 @@ def portfolio_page(apps, btn, app_art, product_status):
           <div class="catalog-product-art">{app_art(app,True)}</div>
           <div class="catalog-product-copy"><p class="catalog-product-summary">{e(app['summary'])}</p>{store_name_note(app)}<div class="catalog-product-status">{product_status(app,True)}</div><div class="catalog-product-actions">{btn('Explore '+app['name'],'/apps/'+app['slug'],'text')}</div></div>
         </article>''')
-    return f'''<section class="catalog-page-intro wrap"><div class="catalog-intro-heading"><p class="eyebrow">THE CONSUMER PORTFOLIO</p><h1>One ambition.<br><span class="muted">Your next step.</span></h1></div><p class="catalog-intro-description">Self-care, cognitive practice, sleep, and fitness. Four focused apps for the routines you choose to build.</p></section><nav class="catalog-anchor-nav wrap" aria-label="Explore the apps">{''.join(links)}</nav><section class="catalog-product-list wrap" aria-label="Solarity AI apps">{''.join(rows)}</section>'''
+    return f'''<section class="catalog-page-intro wrap"><div class="catalog-intro-heading"><p class="eyebrow">Consumer portfolio</p><h1>One ambition.<br><span class="muted">Your next step.</span></h1></div><p class="catalog-intro-description">Self-care, cognitive practice, sleep, and fitness. Four focused apps for the routines you choose to build.</p></section><nav class="catalog-anchor-nav wrap" aria-label="Explore the apps">{''.join(links)}</nav><section class="catalog-product-list wrap" aria-label="Solarity AI apps">{''.join(rows)}</section>'''

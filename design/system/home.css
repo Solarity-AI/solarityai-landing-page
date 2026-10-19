@@ -77,7 +77,7 @@
 .explorer-store-name{color:var(--muted);font-size:var(--text-xs);line-height:1.65;max-width:35ch}
 .explorer-figure{grid-area:art;width:300px;max-width:100%;margin:0;justify-self:center}
 .explorer-figure img{display:block;width:300px;max-width:100%;height:auto;object-fit:contain;border-radius:var(--radius-plate);box-shadow:var(--elev-object),1px -1px 0 color-mix(in oklab,var(--world-tint) 35%,transparent)}
-.explorer-figure figcaption{color:var(--dim);font-size:var(--text-2xs);line-height:1.6;text-align:center;margin-top:18px}
+.explorer-figure figcaption{text-align:center;margin-top:18px}
 .explorer-panel-action{grid-area:action;min-width:0;align-self:start;padding-bottom:30px}
 .explorer-availability{display:block;color:var(--muted);font-size:var(--text-2xs);line-height:1.6;margin-bottom:16px}
 .explorer-panel-action .button{padding-inline:23px;gap:30px;background:transparent;border-color:var(--product-accent);color:var(--text)}

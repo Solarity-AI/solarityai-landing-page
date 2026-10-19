@@ -36,7 +36,8 @@
 .screenshot-enlarge svg{flex:none;width:16px;height:16px;color:var(--accent)}
 .screenshot-open:is(:hover,:focus-visible) .screenshot-enlarge{color:var(--text)}
 .screenshot-open:focus-visible{outline-color:var(--accent);outline-offset:6px}
-.asset-caption,.product-story-frame figcaption{color:var(--dim);font-size:var(--text-2xs);line-height:1.65;margin-top:0}
+.product-story-frame figcaption{color:var(--dim);font-size:var(--text-2xs);line-height:1.65;margin-top:0}
+.asset-caption{margin-top:0}
 
 .breadcrumbs{display:flex;justify-content:space-between;align-items:center;gap:20px;padding-block:20px 8px}
 .breadcrumbs ol{display:flex;flex-wrap:wrap;align-items:center;gap:6px;list-style:none;margin:0;padding:0}
@@ -54,6 +55,9 @@
 .product-identity{display:flex;align-items:center;gap:14px;margin-bottom:28px}
 .detail-icon{display:block;width:48px;height:48px;border-radius:var(--radius-icon);flex:none}
 .product-identity .eyebrow{margin:0;color:var(--product-accent);font-size:var(--text-xs)}
+/* Product names are identity, not folios: never capitalized, tracked or ruled. */
+.product-identity .eyebrow{letter-spacing:0;text-transform:none}
+.product-identity .eyebrow::before{content:none}
 .product-hero h1{max-width:17ch}
 .product-quick-link{display:none}
 .product-hero-art{grid-area:art;min-width:0;align-self:center}
@@ -94,12 +98,11 @@
 .product-story[data-story-layout="asymmetric"] .product-story-step{grid-template-columns:1fr;grid-template-areas:"art" "copy";gap:30px}
 .product-story[data-story-layout="asymmetric"] .product-story-step:nth-child(2){margin-top:100px}
 .product-story[data-story-layout="asymmetric"] .product-story-copy h3{font-size:var(--type-section)}
-.product-story-source{display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px;margin-top:28px;font-size:var(--text-2xs);line-height:1.75;color:var(--dim)}
+.product-story-source{display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px;margin-top:28px}
 .product-story-source a{display:inline-flex;align-items:center;gap:8px;min-height:44px;color:var(--muted);text-decoration:underline;text-underline-offset:4px;text-decoration-color:var(--line)}
 .product-story-source a:hover{color:var(--text)}
 .product-features{display:block;padding-block:clamp(48px,6vw,84px);border-top:1px solid var(--line)}
 .feature-section-heading{margin-bottom:36px}
-.feature-section-heading .eyebrow{display:none}
 .illustrated-features{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:42px}
 .feature-tile{min-width:0;padding:12px 0}
 .feature-index{display:none}

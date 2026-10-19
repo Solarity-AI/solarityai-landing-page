@@ -1,4 +1,5 @@
 """Native, script-free portfolio preview using the maintained app records."""
+from image_provenance import provenance
 from html import escape as e
 
 
@@ -28,11 +29,11 @@ def product_explorer(apps, btn):
         )
         panels.append(f'''<article class="explorer-panel" id="{panel_id}" data-product-accent="{e(app['color'])}" aria-labelledby="{title_id}">
           <div class="explorer-panel-copy"><p class="explorer-category">{e(app['category'])}</p><h3 id="{title_id}">{e(app['name'])}</h3><p class="explorer-summary">{e(app['summary'])}</p><ul class="explorer-feature-list" aria-label="{e(app['name'])} features">{features}</ul><div class="explorer-store-context">{alias}</div></div>
-          <figure class="explorer-figure"><img src="/assets/{e(app['screen'])}" alt="{e(app['name'])} official promotional screenshot with sample app content" width="{app.get('screen_width', 600)}" height="{app.get('screen_height', 1298)}" sizes="(max-width: 560px) 220px, (max-width: 850px) 250px, (max-width: 1100px) 280px, 300px" loading="lazy"><figcaption>Official app imagery · Sample content</figcaption></figure>
+          <figure class="explorer-figure"><img src="/assets/{e(app['screen'])}" alt="{e(app['name'])} official promotional screenshot with sample app content" width="{app.get('screen_width', 600)}" height="{app.get('screen_height', 1298)}" sizes="(max-width: 560px) 220px, (max-width: 850px) 250px, (max-width: 1100px) 280px, 300px" loading="lazy"><figcaption class="caption">{provenance()}</figcaption></figure>
           <div class="explorer-panel-action"><span class="explorer-availability">Available on iOS&nbsp;&amp;&nbsp;Android</span>{btn('Explore '+app['name'], '/apps/'+app['slug'], 'outline')}</div>
         </article>''')
     return f'''<section class="product-explorer wrap" id="our-products" aria-labelledby="product-explorer-title">
-      <div class="explorer-heading"><div><p class="eyebrow">THE APP PORTFOLIO</p><h2 id="product-explorer-title">Your ambition.<br><span class="muted">Your daily practice.</span></h2></div><p>Self-care, cognitive practice, sleep, and fitness. Four focused products, each built around a different part of everyday life.</p></div>
+      <div class="explorer-heading"><div><p class="eyebrow">The app portfolio</p><h2 id="product-explorer-title">Your ambition.<br><span class="muted">Your daily practice.</span></h2></div><p>Self-care, cognitive practice, sleep, and fitness. Four focused products, each built around a different part of everyday life.</p></div>
       <fieldset class="explorer-fieldset"><legend>Choose a product to preview</legend>{''.join(radios)}<div class="explorer-layout"><div class="explorer-choices">{''.join(choices)}</div><div class="explorer-stage">{''.join(panels)}</div></div></fieldset>
       <div class="explorer-footer"><p>Explore the approach, features, and store links for each app.</p>{btn('View the full portfolio', '/apps', 'text')}</div>
     </section>'''

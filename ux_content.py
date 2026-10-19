@@ -59,9 +59,7 @@ def investor_faq():
         ),
     ]
     disclosures = "".join(
-        '<details class="faq-item"><summary><span class="faq-number" aria-hidden="true">'
-        + f'{number:02d}'
-        + '</span><span class="faq-question">'
+        '<details class="faq-item"><summary><span class="faq-question">'
         + question
         + '</span><span class="faq-marker" aria-hidden="true">+</span></summary>'
         + '<div class="faq-answer">'
@@ -72,7 +70,7 @@ def investor_faq():
     return (
         '<section class="investor-faq section wrap" id="investor-questions" '
         'aria-labelledby="investor-questions-title">'
-        '<div class="section-heading"><div><p class="eyebrow">BEFORE WE CONNECT</p>'
+        '<div class="section-heading"><div>'
         '<h2 id="investor-questions-title">A few useful&nbsp;answers.</h2></div>'
         '<p class="section-lede">A clear starting point for exploring the '
         'products, the platform, and a potential collaboration.</p></div>'
@@ -86,15 +84,15 @@ def recovery_links():
     """Offer reliable destinations without depending on browser history."""
     return (
         '<nav class="recovery-nav" aria-label="More ways to continue">'
-        '<a href="/platform"><span class="recovery-number" aria-hidden="true">01</span>'
+        '<a href="/platform">'
         '<span class="recovery-destination"><strong>Explore the platform</strong>'
         '<span>Engineering, management, and marketing.</span></span>'
         '<span class="recovery-arrow" aria-hidden="true">→</span></a>'
-        '<a href="/investors-partners"><span class="recovery-number" aria-hidden="true">02</span>'
+        '<a href="/investors-partners">'
         '<span class="recovery-destination"><strong>Investors &amp; partners</strong>'
         '<span>The company thesis and collaboration paths.</span></span>'
         '<span class="recovery-arrow" aria-hidden="true">→</span></a>'
-        '<a href="/contact"><span class="recovery-number" aria-hidden="true">03</span>'
+        '<a href="/contact">'
         '<span class="recovery-destination"><strong>Contact Solarity AI</strong>'
         '<span>Reach the founder about your question.</span></span>'
         '<span class="recovery-arrow" aria-hidden="true">→</span></a>'

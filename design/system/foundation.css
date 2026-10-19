@@ -57,7 +57,11 @@
  .section{padding-block:var(--space-section)}
  .muted{color:var(--muted)}
  .mono{font-size:var(--text-2xs);letter-spacing:.04em;font-variant-numeric:lining-nums tabular-nums}
- .eyebrow{font-size:var(--text-2xs);line-height:1.65;font-weight:600;letter-spacing:.1em;color:var(--sand);margin-bottom:22px}
+ .eyebrow{display:flex;align-items:center;gap:12px;font-size:var(--text-2xs);line-height:1.65;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--sand);margin-bottom:22px}
+ /* The folio: a short bronze rule and a caps label, used sparingly. Strings stay in sentence case. */
+ .eyebrow::before{content:'';flex:none;width:32px;height:1px;background:var(--bronze)}
+ /* One attribution style for official imagery (provenance() in ux_components.py). */
+ .caption{font-size:var(--type-label);line-height:1.6;color:var(--dim);letter-spacing:.01em}
  .lede{font-size:var(--type-deck);line-height:1.5;color:var(--text);max-width:var(--measure)}
  .fineprint{font-size:var(--text-xs);line-height:1.7;color:var(--dim)}
  .page-intro{padding-block:clamp(60px,7.5vw,118px) clamp(44px,5.5vw,82px)}
@@ -123,7 +127,7 @@
  .image-dialog-nav button:hover{border-color:var(--control-border-hover)}
  #image-dialog-count{font-size:var(--text-xs);color:var(--dim);font-variant-numeric:tabular-nums}
  #image-dialog:has(.image-dialog-nav:not([hidden])) #image-dialog-image{max-height:calc(100vh - 250px);max-height:calc(100dvh - 250px)}
- #image-dialog-caption{text-align:center;font-size:var(--text-xs);padding:0 20px 20px}
+ #image-dialog-caption{text-align:center;padding:0 20px 20px}
  body.image-preview-open{overflow:hidden}
  @media(max-width:850px){.conversation-band{grid-template-columns:1fr;gap:28px}.conversation-actions{display:flex;flex-wrap:wrap;min-width:0}.conversation-actions .button{min-width:235px}}
  @media(max-width:560px){.button{gap:16px;padding-inline:18px}.conversation-actions{display:grid;grid-template-columns:1fr;width:100%}.conversation-actions .button{min-width:0}.image-dialog-bar{padding:12px;gap:12px}.image-dialog-bar h2{font-size:var(--text-sm)}#image-dialog-close{font-size:var(--text-2xs);padding-inline:10px}}
