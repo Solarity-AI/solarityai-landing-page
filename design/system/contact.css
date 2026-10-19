@@ -12,7 +12,9 @@
     border-block: 1px solid var(--line);
     position: relative;
   }
-  .contact-destination::before { content: ''; position: absolute; pointer-events: none; inset: 0 calc(-1 * var(--gutter)); z-index: -1; background: radial-gradient(ellipse at 72% 0, #bb814515, transparent 72%); }
+  .contact-destination { isolation: isolate; }
+  /* The direct line is the lit focal point; closest-side keeps the glow inside its box. */
+  .contact-destination::before { content: ''; position: absolute; pointer-events: none; inset: -80px -10% -40px 30%; z-index: -1; background: radial-gradient(closest-side, var(--glow-sun), rgb(255 190 110 / .07) 55%, transparent); }
   .contact-person, .contact-direct { min-width: 0; }
   /* The actions come first in source order, so phones show them on arrival;
      wide screens keep the person in the left column. */
@@ -23,7 +25,7 @@
   .contact-person > p:not(.eyebrow) { font-size: var(--text-sm); }
   .contact-person .text-link { margin-block-start: 17px; font-size: var(--text-xs); }
   .contact-context { color: var(--accent); font-size: var(--text-sm); line-height: 1.7; height: 3.4em; overflow-wrap: anywhere; max-width: 56ch; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
-  .contact-email { display: flex; align-items: center; justify-content: space-between; gap: 22px; padding-block: 8px 15px; border-block-end: 1px solid #8c7859; color: var(--text); font-size: clamp(1.25rem, 1rem + 1.2vw, 2rem); letter-spacing: -.035em; line-height: 1.45; }
+  .contact-email { display: flex; align-items: center; justify-content: space-between; gap: 22px; padding-block: 8px 15px; border-block-end: 1px solid var(--control-border); color: var(--text); font-size: clamp(1.25rem, 1rem + 1.2vw, 2rem); letter-spacing: -.035em; line-height: 1.45; }
   .contact-email > span:first-child { overflow-wrap: anywhere; min-width: 0; }
   .contact-email > span[aria-hidden] { color: var(--accent); flex: none; transition: transform var(--motion-detail) var(--motion-ease); }
   .contact-direct-help { max-width: 52ch; margin-block-start: 18px; font-size: var(--text-sm); line-height: 1.8; }
@@ -60,7 +62,7 @@
   .recovery-destination strong { color: var(--text); font-weight: 500; font-size: var(--text-lg); line-height: 1.5; }
   .recovery-destination > span { color: var(--muted); font-size: var(--text-sm); line-height: 1.7; }
   .recovery-arrow { color: var(--accent); font-size: 1.4rem; text-align: end; }
-  @media (hover: hover) { .contact-email:hover { border-color: var(--accent); } .contact-topic:hover strong { color: var(--accent); } .recovery-nav a:hover { background: var(--surface); } }
+  @media (hover: hover) { .contact-email:hover { border-color: var(--sun-core); } .contact-topic:hover strong { color: var(--accent); } .recovery-nav a:hover { background: var(--surface); } }
   @media (prefers-reduced-motion: no-preference) and (hover: hover) { .contact-email:hover > span[aria-hidden], .contact-topic:hover .contact-topic-arrow { transform: translate(3px, -3px); } }
   @media (max-width: 850px) {
     .contact-destination, .contact-topics { grid-template-columns: minmax(0, 1fr); gap: 30px; }

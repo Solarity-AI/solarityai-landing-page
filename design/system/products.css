@@ -28,8 +28,9 @@
 /* No synthetic phones, thumbnail boxes or viewer toolbars. */
 .app-art.screenshot-art{margin:0;width:100%;min-width:0}
 .screenshot-open{position:relative;display:block;min-width:0;cursor:zoom-in;text-decoration:none}
-.screenshot-stage,.product-story-image{display:flex;align-items:center;justify-content:center;padding:32px 24px;background:linear-gradient(148deg,#24211d 0%,#171715 45%,#111210 100%);overflow:hidden}
-.store-screen,.product-story-image img{display:block;max-width:100%;height:auto;object-fit:contain;border-radius:var(--radius);box-shadow:0 20px 46px #0005}
+/* A lit stage in the product's own world: a key light from the upper right and a floor glow. */
+.screenshot-stage,.product-story-image{display:flex;align-items:center;justify-content:center;padding:32px 24px;border-radius:var(--radius-panel);background:var(--world-deep);background:radial-gradient(60% 55% at var(--key-x) var(--key-y),color-mix(in oklab,var(--world) 40%,transparent),transparent 72%),radial-gradient(55% 18% at 50% 100%,color-mix(in oklab,var(--world) 24%,transparent),transparent 72%),var(--world-deep);box-shadow:var(--elev-panel-edge);overflow:hidden}
+.store-screen,.product-story-image img{display:block;max-width:100%;height:auto;object-fit:contain;border-radius:var(--radius-plate);box-shadow:var(--elev-object),1px -1px 0 color-mix(in oklab,var(--world-tint) 35%,transparent)}
 .store-screen{width:340px}
 .catalog-product-art .store-screen{width:320px}
 .screenshot-enlarge{display:flex;align-items:center;gap:9px;justify-content:flex-end;min-height:44px;padding:8px 0;color:var(--muted);font-size:var(--text-2xs);line-height:1.5}
@@ -46,6 +47,9 @@
 .breadcrumbs a:hover{color:var(--text)}
 .breadcrumbs [aria-current="page"]{color:var(--text);font-weight:500}
 .breadcrumb-context{font-size:var(--text-2xs);color:var(--dim)}
+.product-world{position:relative;isolation:isolate}
+/* The product page opens inside its world: deep color under a key light, settling into the page. */
+.product-world::before{content:"";position:absolute;z-index:-1;pointer-events:none;inset:-120px -100vmax auto;height:min(1100px,150%);background:linear-gradient(transparent,var(--bg));background:radial-gradient(50rem 32rem at var(--key-x) 8rem,color-mix(in oklab,var(--world) 30%,transparent),transparent 72%),linear-gradient(color-mix(in oklab,var(--world-deep) 85%,transparent),transparent)}
 .product-hero{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);grid-template-areas:"title art" "copy art";column-gap:clamp(48px,7vw,100px);row-gap:28px;padding-block:30px clamp(64px,8vw,110px)}
 .product-hero-heading{grid-area:title;align-self:end;min-width:0}
 .product-identity{display:flex;align-items:center;gap:14px;margin-bottom:28px}
@@ -150,7 +154,7 @@
 }
 @media(hover:hover) and (prefers-reduced-motion:no-preference){
  .store-screen,.product-story-image img{transition:transform 420ms var(--motion-ease),box-shadow 420ms var(--motion-ease)}
- .screenshot-open:hover .store-screen,.screenshot-open:hover .product-story-image img{transform:translateY(-4px);box-shadow:0 27px 56px #0007}
+ .screenshot-open:hover .store-screen,.screenshot-open:hover .product-story-image img{transform:translateY(-4px);box-shadow:var(--elev-object),0 0 40px color-mix(in oklab,var(--world) 30%,transparent)}
  .screenshot-enlarge,.catalog-anchor-nav>a,.related-apps nav a{transition:color var(--motion-fast),background-color var(--motion-fast)}
  .related-arrow{transition:transform var(--motion-detail) var(--motion-ease)}.related-apps nav a:hover .related-arrow{transform:translateX(4px)}
 }
