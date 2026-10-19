@@ -8,7 +8,7 @@ const vm = require('node:vm');
 
 const source = fs.readFileSync(path.join(__dirname, 'scripts/navigation.js'), 'utf8');
 
-function harness({ readyState = 'loading', mobile = true, header = true } = {}) {
+function harness({ readyState = 'loading', mobile = true, header = true, pathname = '/company/', hash = '', scrollY = 0, hero = true, io = true } = {}) {
   let currentMobile = mobile;
   let headerAvailable = readyState !== 'loading';
   const lookups = [];
@@ -68,6 +68,7 @@ function harness({ readyState = 'loading', mobile = true, header = true } = {}) 
     documentElement: { classList: classList() },
     querySelector(selector) {
       lookups.push(selector);
+      if (headerAvailable && hero && selector === '.vision-hero') return heroElement;
       return headerAvailable && header && selector === '.menu-toggle' ? toggle : null;
     },
     getElementById(id) {
@@ -113,8 +114,18 @@ function harness({ readyState = 'loading', mobile = true, header = true } = {}) 
   const link = element('a', nav);
   const linkText = element('span', link);
   const outside = element('button', body);
+  const heroElement = element('section', body);
+  const observers = [];
+  class IntersectionObserver {
+    constructor(callback, options) { this.callback = callback; this.options = options; this.targets = []; observers.push(this); }
+    observe(target) { this.targets.push(target); }
+    report(isIntersecting) { this.callback(this.targets.map((target) => ({ target, isIntersecting }))); }
+  }
   const window = {
     ...eventTarget(),
+    location: { pathname, hash },
+    scrollY,
+    IntersectionObserver: io ? IntersectionObserver : undefined,
     getComputedStyle(node) {
       assert.equal(node, toggle, 'viewport detection should inspect the real menu toggle');
       return { display: currentMobile ? 'flex' : 'none' };
@@ -124,7 +135,7 @@ function harness({ readyState = 'loading', mobile = true, header = true } = {}) 
   vm.runInNewContext(source, { document, window }, { filename: 'scripts/navigation.js' });
 
   return {
-    document, window, body, toggle, nav, link, linkText, outside, lookups,
+    document, window, body, toggle, nav, link, linkText, outside, lookups, observers,
     ready() {
       headerAvailable = true;
       document.body = body;
@@ -281,4 +292,45 @@ test('a missing header removes enhancement so fallback navigation is not suppres
   assert.equal(view.document.documentElement.classList.contains('nav-enhanced'), true);
   view.ready();
   assert.equal(view.document.documentElement.classList.contains('nav-enhanced'), false);
+});
+
+test('Home starts with the header floating over the hero before anything paints', () => {
+  const view = harness({ pathname: '/' });
+  assert.equal(view.document.documentElement.classList.contains('header-over-hero'), true);
+  const interior = harness({ pathname: '/company/' });
+  assert.equal(interior.document.documentElement.classList.contains('header-over-hero'), false);
+});
+
+test('a restored scroll position or #fragment on Home starts with the solid header', () => {
+  for (const options of [{ hash: '#our-products' }, { scrollY: 640 }]) {
+    const view = harness({ pathname: '/', ...options });
+    assert.equal(view.document.documentElement.classList.contains('header-over-hero'), false);
+  }
+});
+
+test('the header turns solid once the hero passes under it, and floats again at the top', () => {
+  const view = harness({ pathname: '/' });
+  view.ready();
+  assert.equal(view.observers.length, 1);
+  assert.equal(view.observers[0].options.rootMargin, '-88px 0px 0px 0px');
+  view.observers[0].report(false);
+  assert.equal(view.document.documentElement.classList.contains('header-over-hero'), false);
+  view.observers[0].report(true);
+  assert.equal(view.document.documentElement.classList.contains('header-over-hero'), true);
+});
+
+test('without IntersectionObserver or a hero the Home header falls back to solid', () => {
+  for (const options of [{ io: false }, { hero: false }]) {
+    const view = harness({ pathname: '/', ...options });
+    view.ready();
+    assert.equal(view.document.documentElement.classList.contains('header-over-hero'), false);
+    assert.equal(view.observers.length, 0);
+  }
+});
+
+test('interior pages never observe the hero', () => {
+  const view = harness({ pathname: '/investors-partners/' });
+  view.ready();
+  assert.equal(view.observers.length, 0);
+  assert.equal(view.lookups.includes('.vision-hero'), false);
 });
