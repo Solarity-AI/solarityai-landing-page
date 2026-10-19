@@ -49,7 +49,7 @@
  .footer-signature{position:relative;display:flex;align-items:flex-end;gap:2.45cqi;padding-block:clamp(28px,4vw,56px) clamp(20px,3vw,40px);font-size:14.75cqi;line-height:.8;letter-spacing:.005em;font-weight:500;color:var(--text);user-select:none}
  .footer-signature::after{content:'';position:absolute;z-index:-1;pointer-events:none;left:10%;right:10%;bottom:-10px;height:60%;background:radial-gradient(closest-side,var(--glow-ember),transparent)}
  .footer-sun{width:12.75cqi;height:auto;flex:none;margin-block-end:-.4cqi}
- .footer-signature-word{display:flex;gap:.18em;white-space:nowrap}
+ .footer-signature-word{display:flex;gap:.18em;white-space:nowrap;font-family:'Manrope','Signature Fallback',Arial,sans-serif}
  .footer-signature-word>span{color:var(--sand)}
  .footer-legal{display:grid;gap:2px;border-top:1px solid var(--line-soft);padding-top:16px;font-size:var(--text-2xs);color:var(--dim)}
  .footer-legal a{display:inline-flex;align-items:center;min-height:44px;color:var(--muted);text-decoration:underline;text-underline-offset:5px}
