@@ -1,0 +1,24 @@
+name: Content change
+description: Change wording, a product fact, a status, or an image on the site.
+labels: [content]
+body:
+  - type: input
+    id: page
+    attributes:
+      label: Page and section
+      placeholder: Platform · Management Max chapter
+    validations:
+      required: true
+  - type: textarea
+    id: change
+    attributes:
+      label: Current text and the change
+    validations:
+      required: true
+  - type: textarea
+    id: source
+    attributes:
+      label: Source
+      description: Every product capability, status, price or traction claim needs a source, such as a store listing, the product's own site, or a founder decision with its date. It is recorded in CONTENT_REGISTER.md.
+    validations:
+      required: true

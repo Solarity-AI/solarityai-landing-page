@@ -1,0 +1,25 @@
+version: 2
+updates:
+  # Workflow actions, grouped into one weekly pull request.
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    groups:
+      actions:
+        patterns: ['*']
+    labels: [dependencies, ci]
+    commit-message:
+      prefix: chore
+
+  # Pillow is the build's only Python dependency. A new version can change encoded images, so each update
+  # must rebuild dist/ and pass the committed-dist check before it is merged.
+  - package-ecosystem: pip
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    labels: [dependencies, build]
+    commit-message:
+      prefix: chore

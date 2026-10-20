@@ -1,0 +1,40 @@
+name: Release
+
+# Records what is live: tags develop's current commit and publishes a GitHub release with generated notes
+# (grouped by .github/release.yml) and the exact deployed dist/ as a download.
+on:
+  workflow_dispatch:
+    inputs:
+      title:
+        description: 'Release title (defaults to the tag)'
+        required: false
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Tag and publish
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    if: github.ref == 'refs/heads/develop'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Package dist
+        run: |
+          tag="site-$(date -u +%Y.%m.%d)-${GITHUB_SHA::7}"
+          echo "TAG=$tag" >> "$GITHUB_ENV"
+          (cd dist && zip -qr "../solarityai-$tag.zip" .)
+
+      - name: Publish the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TITLE: ${{ inputs.title }}
+        run: |
+          gh release create "$TAG" "solarityai-$TAG.zip" --target "$GITHUB_SHA" \
+            --title "${TITLE:-$TAG}" --generate-notes --latest

@@ -1,0 +1,55 @@
+content:
+  - changed-files:
+      - any-glob-to-any-file:
+          - ux_content.py
+          - saas_products.py
+          - product_story.py
+          - CONTENT_REGISTER.md
+          - research-assets/*evidence*
+
+design:
+  - changed-files:
+      - any-glob-to-any-file:
+          - design/system/**
+          - visual_*.py
+          - ux_components.py
+
+assets:
+  - changed-files:
+      - any-glob-to-any-file:
+          - source-assets/**
+          - optimize_images.py
+
+build:
+  - changed-files:
+      - any-glob-to-any-file:
+          - build_site.py
+          - performance_build.py
+          - optimize_styles.py
+          - site_urls.py
+          - requirements.txt
+
+scripts:
+  - changed-files:
+      - any-glob-to-any-file:
+          - scripts/**
+          - test-*.cjs
+
+checks:
+  - changed-files:
+      - any-glob-to-any-file:
+          - check_site.py
+          - test_*.py
+          - deploy/**
+          - audit_production.py
+
+ci:
+  - changed-files:
+      - any-glob-to-any-file:
+          - .github/**
+
+documentation:
+  - changed-files:
+      - any-glob-to-any-file:
+          - '*.md'
+          - .github/*.md

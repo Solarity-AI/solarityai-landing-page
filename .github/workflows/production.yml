@@ -1,0 +1,72 @@
+name: Production
+
+# Cloudflare Pages deploys develop to solarityai.com. This workflow waits until the live site serves the
+# committed dist/, then verifies it. It also runs daily, and files an issue when production drifts.
+on:
+  push:
+    branches:
+      - develop
+  schedule:
+    - cron: '17 6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: production
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    name: Verify solarityai.com
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment:
+      name: production
+      url: https://solarityai.com
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+        with:
+          python-version: '3.12'
+
+      - name: Wait for the deploy, then smoke-test it
+        id: smoke
+        run: |
+          # The smoke test compares every file with dist/, so it passes only once this commit is live.
+          for attempt in $(seq 1 20); do
+            if python deploy/smoke_test.py https://solarityai.com > smoke.txt 2>&1; then
+              cat smoke.txt
+              { echo '### solarityai.com'; echo; tail -n 3 smoke.txt; } >> "$GITHUB_STEP_SUMMARY"
+              exit 0
+            fi
+            echo "Attempt $attempt: not live or not matching yet"
+            sleep 30
+          done
+          cat smoke.txt
+          { echo '### solarityai.com failed the smoke test'; echo; echo '```'; tail -n 40 smoke.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+          exit 1
+
+      - name: File an issue when production fails
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          title='Production smoke test failing'
+          body="The smoke test of https://solarityai.com failed on ${GITHUB_SHA::7} (${GITHUB_EVENT_NAME}). Run: ${RUN_URL}"
+          existing=$(gh issue list --state open --label production --search "\"$title\" in:title" --json number --jq '.[0].number')
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --body "$body"
+          else
+            gh issue create --title "$title" --label production --body "$body"
+          fi
