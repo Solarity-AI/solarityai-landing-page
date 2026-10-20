@@ -3,6 +3,7 @@
 Keep these answers aligned with build_site.APPS and CONTENT_REGISTER.md.
 These helpers return static HTML and require no JavaScript.
 """
+from templating import render
 
 
 FAQ = [
@@ -58,45 +59,9 @@ FAQ = [
 
 def investor_faq():
     """Answer common investor and partner questions with native disclosures."""
-    questions = FAQ
-    disclosures = "".join(
-        '<details class="faq-item"><summary><span class="faq-number" aria-hidden="true">' + f'{number:02d}' + '</span><span class="faq-question">'
-        + question
-        + '</span><span class="faq-marker" aria-hidden="true">+</span></summary>'
-        + '<div class="faq-answer">'
-        + answer
-        + '</div></details>'
-        for number, (question, answer) in enumerate(questions, 1)
-    )
-    return (
-        '<section class="investor-faq section wrap" id="investor-questions" '
-        'aria-labelledby="investor-questions-title">'
-        '<div class="section-heading"><div>'
-        '<h2 id="investor-questions-title">A few useful answers.</h2></div>'
-        '<p class="section-lede">A clear starting point for exploring the '
-        'products, the platform, and a potential collaboration.</p></div>'
-        '<div class="faq-list">'
-        + disclosures
-        + '</div></section>'
-    )
+    return render('ux_content/investor_faq.html.j2', questions=FAQ)
 
 
 def recovery_links():
     """Offer reliable destinations without depending on browser history."""
-    return (
-        '<nav class="recovery-nav" aria-label="More ways to continue">'
-        '<a href="/platform">'
-        '<span class="recovery-destination"><strong>Explore the web apps</strong>'
-        '<span>Engineering Max, Management Max, and Marketing Max.</span></span>'
-        '<span class="recovery-arrow" aria-hidden="true">→</span></a>'
-        '<a href="/investors-partners">'
-        '<span class="recovery-destination"><strong>Investors &amp; partners</strong>'
-        '<span>The company thesis and collaboration paths.</span></span>'
-        '<span class="recovery-arrow" aria-hidden="true">→</span></a>'
-        '<a href="/contact">'
-        '<span class="recovery-destination"><strong>Contact Solarity AI</strong>'
-        '<span>Reach the founder about your question.</span></span>'
-        '<span class="recovery-arrow" aria-hidden="true">→</span></a>'
-        '</nav>'
-    )
-
+    return render('ux_content/recovery_links.html.j2')

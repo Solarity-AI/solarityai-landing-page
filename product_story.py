@@ -4,7 +4,7 @@ Each record explains visible functionality, not an independently tested outcome.
 Keep provenance and exclusions in research-assets/product-story-evidence.json.
 """
 from image_provenance import provenance
-from html import escape as e
+from templating import render
 
 
 PRODUCT_STORIES = {
@@ -70,23 +70,7 @@ def product_story(app):
     story = PRODUCT_STORIES.get(app['slug'])
     if not story:
         return ''
-    cards = []
-    for step in story['steps']:
-        image = '/assets/' + e(step['screen'])
-        title = e(app['name'] + ': ' + step['title'].rstrip('.'))
-        alt = e(step['alt'])
-        cards.append(f'''<article class="product-story-step">
-          <div class="product-story-copy"><p class="product-story-phase">{e(step['phase'])}</p><h3>{e(step['title'])}</h3><p>{e(step['copy'])}</p></div>
-          <figure class="product-story-frame">
-            <a class="screenshot-open" href="{image}" data-image-title="{title}" data-image-alt="{alt}" target="_blank" rel="noopener">
-              <span class="product-story-image"><img src="{image}" alt="{alt}" width="{step['screen_width']}" height="{step['screen_height']}" sizes="(max-width: 390px) calc(100vw - 72px), (max-width: 640px) 318px, (max-width: 1024px) 290px, 320px" loading="lazy" decoding="async"></span>
-              <span class="screenshot-enlarge"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" width="18" height="18" fill="none"><path d="M9 4H4v5m11-5h5v5M4 15v5h5m11-5v5h-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Enlarge<span class="sr-only"> {e(step['title'])}</span></span></span>
-            </a>
-            <figcaption>{e(step['caption'])}</figcaption>
-          </figure>
-        </article>''')
-    return f'''<section class="product-story wrap" data-story-layout="{e(story['layout'])}" data-product-accent="{e(app['color'])}" aria-labelledby="product-story-title">
-      <header class="product-story-heading"><h2 id="product-story-title">{e(story['title'])}</h2><p>{e(story['intro'])}</p></header>
-      <div class="product-story-grid">{''.join(cards)}</div>
-      <p class="product-story-source caption">{provenance()} <a href="{e(app['apple'])}" target="_blank" rel="noopener">View listing <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a></p>
-    </section>'''
+    # Each enlarged image is titled with the app and the step, without the step title's full stop.
+    cards = [{'step': step, 'title': app['name'] + ': ' + step['title'].rstrip('.')} for step in story['steps']]
+    return str(render('product_story/product_story.html.j2', app=app, story=story, cards=cards,
+                      provenance=provenance()))

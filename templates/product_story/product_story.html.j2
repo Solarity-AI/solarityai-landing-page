@@ -1,0 +1,14 @@
+<section class="product-story wrap" data-story-layout="{{ story['layout'] }}" data-product-accent="{{ app['color'] }}" aria-labelledby="product-story-title">
+      <header class="product-story-heading"><h2 id="product-story-title">{{ story['title'] }}</h2><p>{{ story['intro'] }}</p></header>
+      <div class="product-story-grid">{% for card in cards %}{% set step = card['step'] %}<article class="product-story-step">
+          <div class="product-story-copy"><p class="product-story-phase">{{ step['phase'] }}</p><h3>{{ step['title'] }}</h3><p>{{ step['copy'] }}</p></div>
+          <figure class="product-story-frame">
+            <a class="screenshot-open" href="/assets/{{ step['screen'] }}" data-image-title="{{ card['title'] }}" data-image-alt="{{ step['alt'] }}" target="_blank" rel="noopener">
+              <span class="product-story-image"><img src="/assets/{{ step['screen'] }}" alt="{{ step['alt'] }}" width="{{ step['screen_width'] }}" height="{{ step['screen_height'] }}" sizes="(max-width: 390px) calc(100vw - 72px), (max-width: 640px) 318px, (max-width: 1024px) 290px, 320px" loading="lazy" decoding="async"></span>
+              <span class="screenshot-enlarge">{% include 'visual_products/expand_icon.html.j2' %}<span>Enlarge<span class="sr-only"> {{ step['title'] }}</span></span></span>
+            </a>
+            <figcaption>{{ step['caption'] }}</figcaption>
+          </figure>
+        </article>{% endfor %}</div>
+      <p class="product-story-source caption">{{ provenance }} <a href="{{ app['apple'] }}" target="_blank" rel="noopener">View listing <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a></p>
+    </section>

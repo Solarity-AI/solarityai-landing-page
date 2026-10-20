@@ -1,0 +1,5 @@
+<ul class="saas-grid{% if compact %} saas-grid--compact{% endif %}" aria-label="{{ label }}">
+  {%- for card in cards %}{% set product = card['product'] %}<li class="saas-card" id="{{ prefix }}-{{ product['slug'] }}"><a class="saas-card-link" href="/platform#{{ product['slug'] }}">{{ card['window']|safe }}<span class="saas-card-copy"><span class="saas-stage">{{ product['stage'] }}</span><strong>{{ product['name'] }}</strong><small>{{ product['category'] }}</small></span></a>
+    {%- if not compact %}<p class="saas-card-tagline">{{ product['tagline'] }}</p>{% endif -%}
+    <p class="saas-card-meta">{{ card['status']|safe }}{{ card['link']|safe }}</p></li>
+  {%- endfor %}</ul>

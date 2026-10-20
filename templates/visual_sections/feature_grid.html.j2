@@ -1,0 +1,5 @@
+<section class="section wrap product-features {{ color }}" aria-label="{{ app_name }} features"><div class="feature-section-heading"><h2>The product experience.</h2></div><div class="feature-grid illustrated-features">
+{%- for card in cards -%}
+<article class="feature-tile"><span class="feature-index" aria-hidden="true">{{ '%02d'|format(loop.index) }}</span><span class="feature-symbol">{{ card.icon }}</span><div class="feature-copy"><h3>{{ card.title }}</h3><p>{{ card.description }}</p></div></article>
+{%- endfor -%}
+</div></section>

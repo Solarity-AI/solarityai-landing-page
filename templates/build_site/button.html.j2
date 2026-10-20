@@ -1,0 +1,1 @@
+<a class="button {{ style|safe }}" href="{{ href }}"{% if external %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ label }}<span aria-hidden="true">{% if leaves_site %}↗{% else %}→{% endif %}</span>{% if external %}<span class="sr-only"> (opens in a new tab)</span>{% endif %}</a>
