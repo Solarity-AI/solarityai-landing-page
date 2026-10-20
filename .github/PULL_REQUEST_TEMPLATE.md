@@ -10,7 +10,7 @@
 
 - [ ] `python build_site.py`, with `dist/` and `site-pages.json` committed
 - [ ] `python check_site.py` reports 0 errors
-- [ ] `python -m unittest test_optimize_styles.py test_site_urls.py test_seo.py`
+- [ ] `python -m unittest test_optimize_styles.py test_site_urls.py test_seo.py test_records.py`
 - [ ] `node --test test-navigation.cjs test-contact.cjs test-gallery.cjs test-careers.cjs test-copy.cjs`
 - [ ] Rendered at desktop and phone widths, for visual changes (say how)
 
