@@ -218,14 +218,15 @@ def main() -> int:
             'content_type': result.get('headers', {}).get('content-type'),
             'cache_control': result.get('headers', {}).get('cache-control'),
             'bytes': result.get('bytes'),
-            'canonical_ok': head.canonical == url,
+            'canonical_ok': head.canonical == ORIGIN + path,
             'robots': head.robots,
             'missing_expected_headers': missing,
         }
         if result.get('status') != 200:
             findings.append(f'{path}: status {result.get("status")}')
-        if head.canonical != url:
-            findings.append(f'{path}: canonical {head.canonical!r} does not match {url}')
+        # Pages always name the production origin as canonical, also on a preview.
+        if head.canonical != ORIGIN + path:
+            findings.append(f'{path}: canonical {head.canonical!r} does not match {ORIGIN + path}')
         assets |= asset_urls(result.get('text', ''), origin)
     report['pages'] = pages
 
