@@ -1,0 +1,16 @@
+<section class="catalog-page-intro wrap"><div class="catalog-intro-heading"><p class="eyebrow">Consumer portfolio</p><h1>One ambition.<br><span class="muted">Your next step.</span></h1></div><p class="catalog-intro-description">Self-care, cognitive practice, sleep, and fitness. Four focused apps for the routines you choose to build.</p></section>
+    <nav class="app-lineup wrap" aria-label="Explore the apps">
+      {%- for band in bands %}{% set app = band['app'] -%}
+      <a class="lineup-app" href="#{{ app['slug'] }}" data-product-accent="{{ app['color'] }}"><img src="/assets/{{ app['slug'] }}-icon.webp" width="112" height="112" alt="" decoding="async"><span><strong>{{ app['name'] }}</strong><small>{{ app['category'] }}</small></span><span class="lineup-arrow" aria-hidden="true">↓</span></a>
+      {%- endfor %}</nav>
+    <section class="world-bands" aria-label="Solarity AI apps">{% for band in bands %}{% set app = band['app'] %}<article class="world-band{% if loop.index0 % 2 %} world-band--flip{% endif %}" id="{{ app['slug'] }}" data-product-accent="{{ app['color'] }}" aria-labelledby="catalog-{{ app['slug'] }}-title">
+          <div class="world-band-copy">
+            <img class="world-band-icon" src="/assets/{{ app['slug'] }}-icon.webp" width="64" height="64" alt="" loading="lazy" decoding="async">
+            <p class="catalog-category">{{ app['category'] }}</p>
+            <h2 id="catalog-{{ app['slug'] }}-title"><a class="catalog-product-link" href="/apps/{{ app['slug'] }}">{{ app['name'] }}</a></h2>
+            <p class="world-band-summary">{{ app['summary'] }}</p>
+            <div class="world-band-stores">{{ band['badges']|safe }}{% if app.get('store_name') %}<p class="product-store-name">On the App Store and Google Play as {{ app['store_name'] }}.</p>{% endif %}</div>
+            <a class="world-band-explore" href="/apps/{{ app['slug'] }}">Explore {{ app['name'] }} <span aria-hidden="true">→</span></a>
+          </div>
+          <div class="world-band-art"><span class="screenshot-stage">{{ band['window']|safe }}</span></div>
+        </article>{% endfor %}</section>
