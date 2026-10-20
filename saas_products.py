@@ -27,6 +27,7 @@ SAAS = [
                'For Expo, React Native, Flutter, and native apps',
                'Reads the agent’s report, never the source code',
                'Tested first on Solarity AI’s own Sleep Max'),
+        fact_links={'Tested first on Solarity AI’s own Sleep Max': '/apps/sleep-max'},
         availability='Free during private testing. Pricing is not set yet.',
         screens=(dict(file='engineering-max-overview.webp', width=1800, height=662, focus='0% 0',
                       alt='Engineering Max overview of a scan of Sleep Max: a health score of 59 out of 100 beside scores by area, from security to cost and efficiency.'),),

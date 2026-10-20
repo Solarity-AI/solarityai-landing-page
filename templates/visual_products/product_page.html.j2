@@ -9,6 +9,9 @@
       </section>
       {{ story|safe }}
       {{ feature_markup|safe }}
+      {%- if app.get('factory_note') %}
+      <aside class="factory-note wrap" aria-label="From the app factory"><p><strong>From the app factory.</strong> {{ app['factory_note'][0] }} <a href="{{ app['factory_note'][1] }}">{{ app['factory_note'][2] }} <span aria-hidden="true">→</span></a></p></aside>
+      {%- endif %}
       <aside class="product-note wrap" aria-label="Product context"><p><strong>Product context.</strong> {{ app['note'] }}</p></aside>
       {{ close|safe }}
       {{ related_markup|safe }}
