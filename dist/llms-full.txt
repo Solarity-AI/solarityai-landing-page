@@ -1,0 +1,86 @@
+# Solarity AI
+
+> Solarity AI builds AI-powered self-improvement apps for iOS and Android (Looks Max, IQ Max, Sleep Max, and Fitness Max) and three web apps for engineering, managing, and marketing mobile products (Engineering Max, Management Max, and Marketing Max).
+
+Solarity AI LLC was founded by Ata Turhan in Irving, Texas, United States. The four mobile apps are listed on the App Store and Google Play. The three web apps run on the web today; mobile versions are planned. Contact: ata.turhan@solarityai.com (founder Ata Turhan).
+
+## Mobile apps (iOS and Android)
+
+- [Looks Max](https://solarityai.com/apps/looks-max/): Appearance & self-care. Personalized appearance insights, daily habits, and a place to follow your progress. [App Store](https://apps.apple.com/us/app/looks-max-look-your-best/id6778990308), [Google Play](https://play.google.com/store/apps/details?id=com.solarityai.onlylooksmax)
+  - For people making grooming and self-care part of their daily routine. Looks Max brings facial analysis and personalized guidance into a single app.
+  - Understand your starting point: Explore AI-generated facial assessments and breakdowns across appearance categories.
+  - Turn insights into habits: Find personalized grooming suggestions and daily habits you can return to.
+  - Keep a record of progress: Use the activity calendar and journal to follow your own routine over time.
+  - Context: Appearance scores are app-generated assessments, not objective measures of personal worth or promises of a particular result.
+- [IQ Max](https://solarityai.com/apps/iq-max/): Cognitive practice. Focused cognitive exercises, adaptive difficulty, and a daily routine you control. [App Store](https://apps.apple.com/us/app/iq-max-smarter-every-day/id6803826639), [Google Play](https://play.google.com/store/apps/details?id=com.solarityai.iqmax)
+  - For curious people who enjoy a structured mental challenge. Choose exercises, practice regularly, and follow your performance across sessions.
+  - Choose your daily practice: Explore exercises involving memory, reaction time, and attention.
+  - Keep the challenge moving: Adaptive difficulty adjusts the challenge as you practice.
+  - See your consistency: Session results, stars, and streaks make your practice visible.
+  - Context: Exercise scores describe performance within the app. They are not a clinical assessment or a guarantee of increased intelligence.
+- [Sleep Max](https://solarityai.com/apps/sleep-max/): Sleep & daily routines. A sleep diary, habit tracking, and coaching to support a more consistent routine. [App Store](https://apps.apple.com/us/app/sleep-max-rest-best/id6806709872), [Google Play](https://play.google.com/store/apps/details?id=com.solarityai.sleepmax)
+  - For people who want to pay closer attention to their sleep habits. Sleep Max combines personal logging with guidance and tools for winding down.
+  - Reflect on your nights: Record sleep in a diary and review your app-generated Sleep Score.
+  - Build a regular routine: Follow habits, activity, and streaks as part of your personal practice.
+  - Make space to wind down: Explore soundscapes and an AI sleep coach for general guidance.
+  - Context: Sleep Max is presented here as a general wellness product. Its guidance does not replace individual medical assessment.
+- [Fitness Max](https://solarityai.com/apps/fitness-max/): Fitness & nutrition. Meal insights, training logs, and AI coaching to help you follow your fitness routine. Listed in the app stores as Only Fitness. [App Store](https://apps.apple.com/us/app/only-fitness-ai-coach/id6789095658), [Google Play](https://play.google.com/store/apps/details?id=com.solarityai.onlyfitness)
+  - For people bringing more consistency to training and nutrition. Log your day, explore meal insights, and review progress with goal-focused AI coaching.
+  - Log your day in your own words: Use voice or text to record training, sleep, and daily updates.
+  - Explore your meals: Photo-based meal analysis provides estimated nutrition information to support your food log.
+  - Follow your progress: Review coaching reports and progress photos as you work toward your own goals.
+  - Context: Fitness Max is listed in app stores as Only Fitness. Nutrition estimates and AI coaching are general guidance, not medical advice or a guarantee of fitness results.
+
+## Web apps
+
+- [Engineering Max](https://engineeringmax.solarityai.com/): App engineering, Web app · private testing. Find and fix what keeps a mobile app out of the App Store.
+  - Your own Claude Code or Codex writes a read-only report on the app, with no source code. Engineering Max checks it against 155 rules across 12 areas, ranks the problems, and returns one focused fix prompt at a time, then checks each fix.
+  - 155 rules across 12 areas, store blockers and security first
+  - For Expo, React Native, Flutter, and native apps
+  - Reads the agent’s report, never the source code
+  - Tested first on Solarity AI’s own Sleep Max
+  - Free during private testing. Pricing is not set yet.
+- [Management Max](https://managementmax.solarityai.com/): Metrics for app portfolios, Web app · free plan. Governed weekly metrics for mobile app companies.
+  - Management Max holds a company’s weekly metric set per app, checks every figure on the way in, and combines it across any selection of apps. Where combining would be dishonest, it shows the spread instead and names the reason.
+  - 50 metric definitions and 16 validation rules
+  - Syncs from RevenueCat, AppsFlyer, App Store Connect, Google Play, Firebase, GitHub, and YouTube
+  - Roles for the whole team, and every change is signed
+  - Plans count apps, not seats
+  - Free for one app and two seats, with paid plans for larger portfolios.
+- [Marketing Max](https://marketingmax.solarityai.com/): Short-form video marketing, Web app · internal V1. Your next Reel, made from one that already worked.
+  - Marketing Max finds the Reels that performed, writes the caption and the line on the video in the brand’s voice, and posts to Instagram at the chosen time. A person approves each of the four steps.
+  - Built for Solarity AI’s own apps first
+  - Four recorded approvals: video, reason, caption, and send
+  - Line tests and results for every post
+  - Instagram today, with TikTok and YouTube Shorts planned
+  - In early access. Pricing is not set yet.
+
+## Company
+
+- [Company and team](https://solarityai.com/company/): founder Ata Turhan, with Emrecan Özkan, Ali Yılmaz, Hasan Ak, Eren Öz, Batuhan Yücetürk, and Melik Kaplan.
+- [App factory platform](https://solarityai.com/platform/): how the three web apps came from building the consumer apps.
+- [Investors and partners](https://solarityai.com/investors-partners/): company thesis, business model and partnership paths.
+- [Careers](https://solarityai.com/careers/): fully remote roles for a Full Stack Engineer, a Marketing Specialist, and a Business Development Manager.
+- [Contact](https://solarityai.com/contact/): email ata.turhan@solarityai.com or book a conversation with the founder.
+
+## Questions and answers
+
+### Which products can I explore today?
+
+Looks Max, IQ Max, Sleep Max, and Fitness Max have live App Store and Google Play listings. Fitness Max is listed in app stores as Only Fitness. Their product pages link to the stores for current offers and availability in your region.
+
+### Can other teams use the web apps?
+
+Yes, at different stages. Management Max is open with a free plan for one app. Engineering Max is in private testing and Marketing Max is in early access; both take requests on their own sites. Mobile versions of all three are planned. Explore the app factory or discuss the web apps for your team.
+
+### What is the business model direction?
+
+The consumer apps use subscriptions and in-app purchases. Looks Max, IQ Max, Sleep Max, and Fitness Max have store listings with in-app purchases; consult each listing for current plans and terms. Management Max offers a free plan and paid plans that count apps, not seats. Engineering Max and Marketing Max have no price yet.
+
+### What kinds of partnerships are relevant?
+
+We welcome conversations about product distribution, technology collaboration, and platform design partnerships. A useful introduction describes your audience or team, the product or workflow involved, and the collaboration you have in mind. Start a partnership inquiry.
+
+### How do I start a conversation?
+
+Choose an investor inquiry or partnership inquiry. The contact page opens your email app with the relevant subject, so you can write directly to the founder. You can also email ata.turhan@solarityai.com directly or use the founder’s booking link on the contact page.
