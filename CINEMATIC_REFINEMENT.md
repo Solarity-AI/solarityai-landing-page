@@ -1,5 +1,7 @@
 # Cinematic refinement, October 13, 2026
 
+> **Historical record (October 13, 2026).** Later passes superseded parts of this file: the solarityai.com origin, the Newsreader display face, the removed hero caption, the retired Home explorer, and the current test counts. `CLAUDE.md` and `DESIGN_SYSTEM.md` describe the current state.
+
 This pass addresses the approved 24-point cinematic audit as one design system. The natural-sunrise hero remains the exact founder-approved asset. Product facts, store destinations, the four-app scope, founder identity, selected team, public audience, and Sites origin are preserved.
 
 ## Audit dispositions

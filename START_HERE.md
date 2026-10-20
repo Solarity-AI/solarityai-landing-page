@@ -1,10 +1,10 @@
 # Continue this project in Claude
 
-The ZIP contains all 200 tracked project files from Site version 24, plus these handoff files. The source is complete, including build scripts, all 12 generated routes, CSS, JavaScript, tests, original and optimized assets, font license, and design/content records.
+This is the git repository `github.com/Solarity-AI/solarityai-landing-page`. It holds the complete source: build scripts, the 12 generated pages (11 routes and the 404), CSS, JavaScript, tests, original and optimized assets, the font licenses, and the design and content records.
 
 ## 1. Open the folder
 
-Extract the ZIP, open `solarity-ai-project` in your editor, and give Claude access to that folder. Ask Claude to read `CLAUDE.md` before making changes.
+Clone the repository (`git clone https://github.com/Solarity-AI/solarityai-landing-page.git solarity-ai-project`), open `solarity-ai-project` in your editor, and give Claude access to that folder. Ask Claude to read `CLAUDE.md` before making changes.
 
 ## 2. Install the dependency
 
@@ -17,7 +17,7 @@ py -3 -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
 .\.venv\Scripts\python.exe build_site.py
 .\.venv\Scripts\python.exe check_site.py
-.\.venv\Scripts\python.exe -m unittest test_optimize_styles.py test_site_urls.py
+.\.venv\Scripts\python.exe -m unittest test_optimize_styles.py test_site_urls.py test_seo.py
 node --test test-navigation.cjs test-contact.cjs test-gallery.cjs test-careers.cjs test-copy.cjs
 ```
 
@@ -29,7 +29,7 @@ python3 -m venv .venv
 python -m pip install -r requirements.txt
 python build_site.py
 python check_site.py
-python -m unittest test_optimize_styles.py test_site_urls.py
+python -m unittest test_optimize_styles.py test_site_urls.py test_seo.py
 node --test test-navigation.cjs test-contact.cjs test-gallery.cjs test-careers.cjs test-copy.cjs
 ```
 
@@ -57,8 +57,8 @@ To audit the live deployment (read-only GET requests), run `python audit_product
 
 Suggested initial instruction:
 
-> Read CLAUDE.md and CINEMATIC_REFINEMENT.md. Inspect the existing source and run the documented validation. Preserve the approved design, authentic assets, factual boundaries, and working behavior. Then continue with the specific changes I request. Do not replace this project with a new framework or rewrite generated HTML directly.
+> Read CLAUDE.md and DESIGN_SYSTEM.md. Inspect the existing source and run the documented validation. Preserve the approved design, authentic assets, factual boundaries, and working behavior. Then continue with the specific changes I request. Do not replace this project with a new framework or rewrite generated HTML directly.
 
-The repository's Git history, access tokens, machine caches, and local Python environments are intentionally excluded. `SOURCE_MANIFEST.json` records the exact exported source commit and original file checksums. If initializing a new Git repository, add `.venv/` and any local environment/secrets files to `.gitignore` first.
+`.gitignore` keeps `.venv/`, machine caches and local secrets out of git. `SOURCE_MANIFEST.json` is the historical record of the October 2026 export this repository started from; it does not describe the current tree.
 
 Production is https://solarityai.com, deployed from the `develop` branch of `github.com/Solarity-AI/solarityai-landing-page` (see CLAUDE.md, "Repository, deployment, and commits"). The earlier GPT Sites deployment at https://solarity-company.the-ata-turhan.chatgpt.site is not updated from this repository.

@@ -56,19 +56,3 @@ def product_page(app, apps, btn, contact, stores, status, feature_markup, breadc
       {related_markup}
     </div>'''
 
-
-def evidence_band(apps, btn):
-    """Make store-listed product evidence immediately identifiable."""
-    links = []
-    for app in apps:
-        if not app.get('apple'):
-            continue
-        links.append(f'''<a class="evidence-product" href="/apps/{e(app['slug'])}" data-product-accent="{e(app['color'])}">
-          <img src="/assets/{e(app['slug'])}-icon.webp" alt="" width="48" height="48" loading="lazy">
-          <span><strong>{e(app['name'])}</strong><small>{e(app['category'])}</small><span class="evidence-product-status">iOS&nbsp;&amp;&nbsp;Android</span></span>
-          <span class="evidence-product-arrow" aria-hidden="true">→</span>
-        </a>''')
-    return f'''<section class="proof-strip product-evidence-band wrap" aria-labelledby="product-evidence-title">
-      <div class="product-evidence-intro"><p class="eyebrow">START WITH THE PRODUCTS</p><h2 id="product-evidence-title">Explore what is already in the stores.</h2><p>Review the app experiences, then talk with us about the company behind them.</p>{btn('View our apps','/apps','outline')}</div>
-      <nav class="evidence-products" aria-label="Store-listed Solarity AI products">{''.join(links)}</nav>
-    </section>'''

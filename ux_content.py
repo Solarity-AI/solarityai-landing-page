@@ -100,14 +100,3 @@ def recovery_links():
         '</nav>'
     )
 
-
-def recovery_art():
-    """A decorative, code-native orbital motif for the error page only."""
-    return ('<div class="recovery-art" aria-hidden="true">'
-            '<svg viewBox="0 0 360 300" fill="none" focusable="false">'
-            '<circle cx="180" cy="150" r="110" stroke="currentColor" opacity=".35"/>'
-            '<circle cx="180" cy="150" r="83" stroke="currentColor" opacity=".16"/>'
-            '<ellipse cx="180" cy="150" rx="160" ry="42" transform="rotate(-28 180 150)" stroke="currentColor" opacity=".55"/>'
-            '<circle cx="302" cy="83" r="6" fill="currentColor"/>'
-            '<text x="180" y="170" text-anchor="middle" fill="currentColor" font-family="Arial,sans-serif" font-size="60" letter-spacing="-3">404</text>'
-            '</svg></div>')

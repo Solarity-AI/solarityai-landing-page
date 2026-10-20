@@ -120,7 +120,7 @@ for file,d in docs.items():
     startup_tags=[a for t,a in d.tags if t=='script' and a.get('id')=='navigation-startup']
     if len(startup_tags)!=1 or not startup or startup.group(1)!=navigation_source:
         errors.append(f'{rel}: missing or stale inline navigation startup')
-    elif startup.end()>text.index('<style id="page-styles"') or startup.end()>text.index('</head>'):
+    elif '<style id="page-styles"' not in text or startup.end()>text.index('<style id="page-styles"') or startup.end()>text.index('</head>'):
         errors.append(f'{rel}: navigation layout must be selected before styles and body painting')
     if startup_tags and (any(key in startup_tags[0] for key in ['src','defer','async']) or startup_tags[0].get('type','') not in ['', 'text/javascript']):
         errors.append(f'{rel}: navigation startup must execute synchronously without a network dependency')
@@ -389,6 +389,11 @@ for _icon in ('apple-touch-icon.png','icon-192.png'):
     if 'assets/icons/'+_icon not in referenced:errors.append(f'Pages must link /assets/icons/{_icon}')
 _security=DIST/'.well-known/security.txt'
 if not _security.is_file() or not re.search(r'^Contact: mailto:',_security.read_text(encoding='utf-8'),re.M) or not re.search(r'^Expires: 20\d\d-',_security.read_text(encoding='utf-8'),re.M):errors.append('.well-known/security.txt must name a contact and an expiry')
+# RFC 9116: an expired security.txt must be treated as stale. Fail a month ahead so it is renewed in time.
+import datetime as _dt
+_expires=re.search(r'^Expires: (\d{4}-\d{2}-\d{2})',_security.read_text(encoding='utf-8'),re.M) if _security.is_file() else None
+if _expires and _dt.date.fromisoformat(_expires.group(1))-_dt.date.today()<_dt.timedelta(days=30):errors.append(f'.well-known/security.txt expires {_expires.group(1)}; renew the date in build_site.py')
+
 for file in sorted(DIST.rglob('*')):
     rel=file.relative_to(DIST).as_posix()
     if file.is_file() and file.suffix!='.html' and rel not in HOST_FILES and rel not in referenced:errors.append(f'Unreferenced file is published: {rel}')
@@ -539,6 +544,8 @@ try:
             if _worst>_oi.EDGE_LIMIT:errors.append(f'{_variant["url"]}: outer edge differs from the interior by {_worst:.0f} levels (limit {_oi.EDGE_LIMIT})')
 except ImportError:
     warnings.append('Pillow is unavailable; screenshot edge check skipped')
+except (OSError,ValueError,KeyError) as _exc:
+    errors.append(f'Screenshot edge check could not run: {_exc}')
 for breakpoint in [1150,850,560]:
     if f'max-width:{breakpoint}px' not in css:warnings.append(f'Missing expected CSS breakpoint {breakpoint}')
 if 'prefers-reduced-motion:reduce' not in css:errors.append('Missing reduced-motion rule')

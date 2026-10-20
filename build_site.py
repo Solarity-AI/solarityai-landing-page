@@ -1,7 +1,7 @@
 from pathlib import Path
 import base64, hashlib, json, html, re, shutil
 from urllib.parse import urlencode
-from ux_components import app_breadcrumbs, related_apps, inquiry_panel
+from ux_components import app_breadcrumbs, related_apps
 from image_provenance import provenance
 from ux_content import investor_faq, recovery_links
 from visual_home import hero_section, closing_scene
@@ -11,11 +11,10 @@ from visual_sections import feature_grid, founder_card, founder_portrait
 from visual_team import selected_team
 from visual_careers import careers_page
 from visual_contact import contact_page
-from visual_chrome import site_header, site_footer, contact_methods
+from visual_chrome import site_header, site_footer
 from visual_stage import store_badges
-from visual_products import product_art, product_page, voice_symbol
+from visual_products import product_art, product_page
 from visual_catalog import portfolio_page, portfolio_wall
-from product_story import product_story
 from visual_company_upgrade import strategy_story, investor_evidence, investor_opening, operating_principles, founder_booking
 from visual_strategy import platform_opening
 import seo
@@ -53,28 +52,12 @@ def btn(label,href,style='primary',external=False):
 def product_status(a,full=False):
     return '<span class="status"><i aria-hidden="true"></i>'+('Available on iOS & Android' if full else 'iOS & Android')+'</span>' if a['apple'] else '<span class="status vision"><i aria-hidden="true"></i>Product vision</span>'
 
-def jump_nav(items,label):
-    return '<nav class="section-jump" aria-label="'+label+'"><div class="wrap"><span class="jump-label">'+label+'</span><div>'+''.join(f'<a href="#{slug}">{name}</a>' for slug,name in items)+'</div></div></nav>'
-
 def eyebrow(text): return f'<p class="eyebrow">{text}</p>'
-def heading(kicker,title,desc=''):
-    return f'<div class="section-heading"><div>{eyebrow(kicker)}<h2>{title}</h2></div>'+ (f'<p class="section-lede">{desc}</p>' if desc else '')+'</div>'
-def wave():
-    return '<div class="voice-art" aria-hidden="true"><div class="voice-art-mark">'+voice_symbol(220)+'</div><span>A voice for your ambition.</span></div>'
-
 def app_art(a,small=False):
     return product_art(a,small)
 
-def app_card(a,idx):
-    icon=f'<img src="/assets/{a["slug"]}-icon.webp" width="44" height="44" alt="" loading="lazy">' if a['apple'] else '<span class="voice-icon" aria-hidden="true">'+voice_symbol(44)+'</span>'
-    visual=f'<img src="/assets/{a["screen"]}" alt="" width="600" height="1298" loading="lazy">' if a['screen'] else wave()
-    return f'<a class="app-card {a["color"]}" href="/apps/{a["slug"]}"><div class="app-card-content"><div class="card-top">{icon}{product_status(a)}</div><p class="eyebrow">{e(a["category"])}</p><h3>{a["name"]}</h3><p>{e(a["summary"])}</p><span class="text-link">Explore {a["name"]} {ARROW}</span></div><div class="card-preview" aria-hidden="true">{visual}</div></a>'
 def cta(title='A conversation with possibility.',desc='For investors and partners who see the potential in thoughtful consumer products and the systems behind them.',lead='investor'):
     return closing_scene(title, desc, contact, lead)
-
-def intent_picker():
-    options=[('Investor','Company & investment'),('Strategic partner','Build something together'),('Product inquiry','Talk about an app'),('Other','Start a conversation')]
-    return '<fieldset class="intent-picker" id="intent-picker" hidden><legend>I’m reaching out about</legend><div>'+''.join(f'<label><input type="radio" name="inquiry-choice" value="{label}"><span><strong>{label}</strong><small>{desc}</small></span></label>' for label,desc in options)+'</div></fieldset>'
 
 def social_for(path):
     """The link-preview image for a route (make_social_images.py), and its alt text."""
@@ -102,7 +85,7 @@ def shell(path,title,desc,body):
     return f'''<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{e(full_title)}</title><meta name="description" content="{e(desc)}"><meta name="robots" content="{robots}"><meta name="referrer" content="strict-origin-when-cross-origin"><meta name="theme-color" content="#0f0d0b"><link rel="canonical" href="{ORIGIN}{public_path(path)}"><meta property="og:type" content="website"><meta property="og:title" content="{e(full_title)}"><meta property="og:locale" content="en_US"><meta property="og:description" content="{e(desc)}"><meta property="og:url" content="{ORIGIN}{public_path(path)}"><meta property="og:image" content="{ORIGIN}/assets/{social_image}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="{e(social_alt)}"><meta property="og:site_name" content="Solarity AI"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="{ORIGIN}/assets/{social_image}"><link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48"><link rel="icon" href="/assets/icons/icon-192.png" type="image/png" sizes="192x192"><link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png"><link rel="icon" href="/assets/brand/solarity-sun-48.9bc99afc73e8.webp" type="image/webp" sizes="48x48"><link rel="preload" href="{FONT_URL}" as="font" type="font/woff2" crossorigin>{display_preload}<link rel="stylesheet" href="/assets/presentation.css"><script src="/assets/site.js" defer></script></head>
 <body data-page="{path}"><!--email_off--><a class="skip-link" href="#main">Skip to content</a>{site_header(path,NAV,btn)}
-<main id="main" tabindex="-1">{body}</main><dialog id="image-dialog" aria-labelledby="image-dialog-title"><div class="image-dialog-bar"><h2 id="image-dialog-title">App screenshot</h2><button type="button" id="image-dialog-close">Close preview <span aria-hidden="true">×</span></button></div><img id="image-dialog-image" alt="" width="600" height="1298"><div class="image-dialog-nav" id="image-dialog-nav" hidden><button type="button" id="image-dialog-prev"><span aria-hidden="true">←</span> Previous<span class="sr-only"> screenshot</span></button><span id="image-dialog-count" aria-live="polite"></span><button type="button" id="image-dialog-next">Next<span class="sr-only"> screenshot</span> <span aria-hidden="true">→</span></button></div><p id="image-dialog-caption" class="caption">{provenance()}</p></dialog>{site_footer(EMAIL,path,BOOKING)}<script type="application/ld+json">{json.dumps(data)}</script><!--/email_off--></body></html>'''
+<main id="main" tabindex="-1">{body}</main><dialog id="image-dialog" aria-labelledby="image-dialog-title"><div class="image-dialog-bar"><h2 id="image-dialog-title">App screenshot</h2><button type="button" id="image-dialog-close">Close preview <span aria-hidden="true">×</span></button></div><img id="image-dialog-image" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="" width="600" height="1298"><div class="image-dialog-nav" id="image-dialog-nav" hidden><button type="button" id="image-dialog-prev"><span aria-hidden="true">←</span> Previous<span class="sr-only"> screenshot</span></button><span id="image-dialog-count" aria-live="polite"></span><button type="button" id="image-dialog-next">Next<span class="sr-only"> screenshot</span> <span aria-hidden="true">→</span></button></div><p id="image-dialog-caption" class="caption">{provenance()}</p></dialog>{site_footer(EMAIL,path,BOOKING)}<script type="application/ld+json">{json.dumps(data)}</script><!--/email_off--></body></html>'''
 
 pages={}
 hero=hero_section(APPS,btn,contact)
@@ -155,7 +138,7 @@ for path,(title,desc,body) in pages.items():
     document,metrics=optimize_page(document,path,source_css)
     dest.write_text(document, encoding='utf-8', newline='\n')
     performance_metrics[path]=metrics
-    referenced_assets|=set(re.findall(r'(?:'+re.escape(ORIGIN)+r'|(?<![\w.-]))(/assets/[^"\'\s,)]+)',document))
+    referenced_assets|=set(re.findall(r'(?:'+re.escape(ORIGIN)+r'|(?<![\w.-]))(/assets/[^"\'\s,)*]+)(?![\w*])',document))
 # Search engines and AI assistants may read every public page (seo.py names the AI crawlers).
 (DIST/'robots.txt').write_text(seo.robots_txt(), encoding='utf-8', newline='\n')
 (DIST/'sitemap.xml').write_text(seo.sitemap_xml(pages,PAGE_DATES), encoding='utf-8', newline='\n')
@@ -202,7 +185,7 @@ SECURITY_HEADERS=('  Content-Security-Policy: '+content_security_policy()+'\n'
 for url in sorted(referenced_assets):
     target=DIST/url.lstrip('/')
     source=SOURCE_ASSETS/url.removeprefix('/assets/')
-    if not target.exists() and source.is_file() and 'retired' not in source.relative_to(SOURCE_ASSETS).parts:
+    if source.is_file() and 'retired' not in source.relative_to(SOURCE_ASSETS).parts and (not target.exists() or target.read_bytes()!=source.read_bytes()):
         target.parent.mkdir(parents=True,exist_ok=True)
         shutil.copyfile(source,target)
 # Content-addressed outputs are regenerated by every build; remove stale ones.

@@ -12,7 +12,7 @@ def platform_opening(apps, saas, btn, contact):
         '<p class="lede">Three web apps for the engineering, management, and marketing work '
         'behind mobile products, built alongside Solarity AI’s own apps.</p>'
         '<p class="platform-plan"><span class="status"><i aria-hidden="true"></i>' + str(len(saas)) + ' web apps</span>'
-        '<span class="status vision"><i aria-hidden="true"></i>' + MOBILE_PLAN.split('. ')[1] + '</span></p><div class="actions">'
+        '<span class="status vision"><i aria-hidden="true"></i>' + MOBILE_PLAN.split('. ')[-1] + '</span></p><div class="actions">'
         + btn('Partnership inquiries', contact('Strategic partner', 'App factory'))
         + '</div><a class="text-link platform-portfolio-link" href="/apps">'
         'Meet the products informing the direction <span aria-hidden="true">→</span></a></div>'

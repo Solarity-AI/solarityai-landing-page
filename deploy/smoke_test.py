@@ -21,6 +21,8 @@ import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parent.parent
 DIST = ROOT / 'dist'
+sys.path.insert(0, str(ROOT))
+import seo  # noqa: E402
 IMMUTABLE = 'public, max-age=31536000, immutable'
 USER_AGENT = 'Mozilla/5.0 (compatible; SolaritySmokeTest/1.0)'
 SECURITY = {
@@ -184,6 +186,8 @@ def main(base: str) -> int:
         '/sitemap.xml': ('application/xml', False),
         '/llms.txt': ('text/plain', False),
         '/llms-full.txt': ('text/plain', False),
+        '/.well-known/security.txt': ('text/plain', False),
+        f'/{seo.INDEXNOW_KEY}.txt': ('text/plain', False),
     }
     for path, (content_type, immutable) in assets.items():
         status, headers, body = get(base, path)

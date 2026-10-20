@@ -147,7 +147,7 @@ def content_type_ok(path: str, actual: str) -> bool:
 
 
 def asset_urls(text: str, origin: str) -> set[str]:
-    pattern = r'(?:' + re.escape(origin) + r'|(?<![\w.-]))(/assets/[^"\'\s,)]+)'
+    pattern = r'(?:' + re.escape(origin) + r'|(?<![\w.-]))(/assets/[^"\'\s,)*]+)(?![\w*])'
     return {match.split('#')[0] for match in re.findall(pattern, text)}
 
 
@@ -202,7 +202,11 @@ def main() -> int:
 
     sitemap = fetch(origin + '/sitemap.xml')
     namespace = '{http://www.sitemaps.org/schemas/sitemap/0.9}'
-    routes = [node.text for node in ET.fromstring(sitemap['text']).iter(namespace + 'loc')]
+    if sitemap.get('status') != 200 or 'text' not in sitemap:
+        print(f'{origin}/sitemap.xml: status {sitemap.get("status")}; nothing to audit', file=sys.stderr)
+        return 1
+    # The sitemap names the canonical origin; audit the same paths on the origin requested.
+    routes = [origin + urlsplit(node.text).path for node in ET.fromstring(sitemap['text']).iter(namespace + 'loc')]
     pages, assets = {}, set()
     for url in routes:
         result = fetch(url)
@@ -214,14 +218,15 @@ def main() -> int:
             'content_type': result.get('headers', {}).get('content-type'),
             'cache_control': result.get('headers', {}).get('cache-control'),
             'bytes': result.get('bytes'),
-            'canonical_ok': head.canonical == url,
+            'canonical_ok': head.canonical == ORIGIN + path,
             'robots': head.robots,
             'missing_expected_headers': missing,
         }
         if result.get('status') != 200:
             findings.append(f'{path}: status {result.get("status")}')
-        if head.canonical != url:
-            findings.append(f'{path}: canonical {head.canonical!r} does not match {url}')
+        # Pages always name the production origin as canonical, also on a preview.
+        if head.canonical != ORIGIN + path:
+            findings.append(f'{path}: canonical {head.canonical!r} does not match {ORIGIN + path}')
         assets |= asset_urls(result.get('text', ''), origin)
     report['pages'] = pages
 
@@ -288,6 +293,8 @@ def main() -> int:
         separation = json.loads(SEPARATION.read_text(encoding='utf-8'))
         probe += [item['published_path'] for item in separation['moved'] + separation['removed_generated']]
     for path in probe:
+        if (DIST / path.lstrip('/')).is_file():
+            continue
         result = fetch(origin + path, body=False)
         if result.get('status') == 200:
             exposed[path] = result.get('headers', {}).get('content-type')
@@ -307,7 +314,8 @@ def main() -> int:
         # Lab results describe one host; never attribute them to another origin.
         if 'lighthouse' in previous and previous.get('origin') == origin:
             report['lighthouse'] = previous['lighthouse']
-            report['lighthouse_note'] = 'Carried over from measured_at ' + previous.get('lighthouse_measured_at', previous['measured_at'])
+            report['lighthouse_measured_at'] = previous.get('lighthouse_measured_at', previous['measured_at'])
+            report['lighthouse_note'] = 'Carried over from measured_at ' + report['lighthouse_measured_at']
     if args.lighthouse:
         report['lighthouse_measured_at'] = report['measured_at']
 

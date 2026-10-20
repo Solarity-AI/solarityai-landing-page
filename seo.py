@@ -11,6 +11,8 @@ import json
 import re
 from pathlib import Path
 
+from site_urls import public_path
+
 ORIGIN = 'https://solarityai.com'
 ORG_ID = ORIGIN + '/#organization'
 SITE_ID = ORIGIN + '/#website'
@@ -49,10 +51,6 @@ CRUMB_NAMES = {'/apps': 'Apps', '/platform': 'Platform', '/company': 'Company',
                '/investors-partners': 'Investors & Partners', '/careers': 'Careers', '/contact': 'Contact'}
 
 
-def public_path(path):
-    return '/' if path == '/' else path.rstrip('/') + '/'
-
-
 def plain(markup):
     """Visible text of an HTML fragment."""
     markup = re.sub(r'</p>\s*<p>', ' ', markup)
@@ -69,8 +67,8 @@ def page_dates(pages):
     stored = json.loads(DATES_FILE.read_text(encoding='utf-8')) if DATES_FILE.is_file() else {}
     today = datetime.date.today().isoformat()
     dates = {}
-    for path, (_title, desc, body) in pages.items():
-        digest = hashlib.sha256((desc + '\0' + body).encode('utf-8')).hexdigest()[:16]
+    for path, (title, desc, body) in pages.items():
+        digest = hashlib.sha256((title + '\0' + desc + '\0' + body).encode('utf-8')).hexdigest()[:16]
         record = stored.get(path)
         dates[path] = record if record and record['sha'] == digest else {'sha': digest, 'date': today}
     if dates != stored:
@@ -146,7 +144,7 @@ def graph(path, title, desc, *, apps, saas, faq, email, logo, portrait, social_i
             'description': desc, 'inLanguage': 'en', 'isPartOf': {'@id': SITE_ID}, 'about': {'@id': ORG_ID},
             'publisher': {'@id': ORG_ID}, 'dateModified': modified,
             'primaryImageOfPage': {'@type': 'ImageObject', 'url': ORIGIN + '/assets/' + social_image, 'width': 1200, 'height': 630}}
-    if path != '/':
+    if path not in ('/', '/404'):
         crumb_name = next((a['name'] for a in apps if '/apps/' + a['slug'] == path), CRUMB_NAMES.get(path, title))
         nodes.append(breadcrumbs(path, crumb_name))
         page['breadcrumb'] = {'@id': url + '#breadcrumb'}
@@ -195,10 +193,9 @@ def llms_txt(pages, *, apps, saas, email, full=False):
     """llms.txt (llmstxt.org): a plain summary for AI assistants. llms-full.txt adds every product fact,
     the investor FAQ and the context notes, so an assistant can answer from one file."""
     from ux_content import FAQ
-    title = lambda p: pages[p][0]
     link = lambda p: f'{ORIGIN}{public_path(p)}'
     store_apps = [a for a in apps if a.get('apple')]
-    out = [f'# Solarity AI', '', f'> {ORG_DESCRIPTION}', '',
+    out = ['# Solarity AI', '', f'> {ORG_DESCRIPTION}', '',
            'Solarity AI LLC was founded by Ata Turhan in Irving, Texas, United States. '
            'The four mobile apps are listed on the App Store and Google Play. The three web apps run on the web today; '
            f'mobile versions are planned. Contact: {email} (founder Ata Turhan).', '']
@@ -209,7 +206,7 @@ def llms_txt(pages, *, apps, saas, email, full=False):
                    f'[App Store]({a["apple"]}), [Google Play]({a["google"]})')
         if full:
             out += [f'  - {a["intro"]}'] + [f'  - {t}: {d}' for t, d in a['features']]
-            note = a.get('product_note') or a.get('note')
+            note = a.get('note')
             if note:
                 out.append(f'  - Context: {plain(note)}')
     out += ['', '## Web apps', '']

@@ -1157,7 +1157,6 @@
   .not-found h1 { margin-block: 0 24px; }
   .not-found h1 .muted { color: var(--accent); }
   .not-found .lede { max-width: 43ch; margin-block: 0 28px; }
-  .recovery-art { display: none; }
   .recovery-nav { border-block: 1px solid var(--line); margin-block-start: 56px; }
   .recovery-nav a { display: grid; grid-template-columns: minmax(0, 1fr) 24px; align-items: center; gap: 24px; min-height: 94px; padding: 24px 8px; color: var(--text); text-decoration: none; transition: background-color var(--motion-fast); }
   .recovery-nav a + a { border-block-start: 1px solid var(--line); }
@@ -1339,9 +1338,9 @@
   .button>span[aria-hidden],.text-link>span[aria-hidden]{transition:transform var(--motion-detail) var(--motion-ease)}
   .button:focus-visible>span[aria-hidden],.text-link:focus-visible>span[aria-hidden]{transform:translateX(3px)}
   @media(hover:hover) and (pointer:fine){.button:hover>span[aria-hidden],.text-link:hover>span[aria-hidden]{transform:translateX(3px)}}
-  .footer-group a>span,.contact-method .method-arrow,.recovery-arrow{transition:transform var(--motion-fast) var(--motion-ease)}
-  .footer-group a:focus-visible>span,.contact-method:focus-visible .method-arrow{transform:translateX(3px)}
-  @media(hover:hover) and (pointer:fine){.footer-group a:hover>span,.contact-method:hover .method-arrow{transform:translateX(3px)}}
+  .footer-group a>span,.recovery-arrow{transition:transform var(--motion-fast) var(--motion-ease)}
+  .footer-group a:focus-visible>span{transform:translateX(3px)}
+  @media(hover:hover) and (pointer:fine){.footer-group a:hover>span{transform:translateX(3px)}}
   /* Cards and panels lift 4px and catch a sun hairline. translate composes with the scroll reveal's transform. */
   @media(hover:hover) and (pointer:fine){
    .wall-card,.saas-card,.feature-tile,.operating-principles li,.strategy-story-steps>li,.career-benefit-list>div,.partnership-topic,.today-card,.ahead-card,.lineup-app{transition:translate var(--motion-detail) var(--motion-ease),box-shadow var(--motion-detail) var(--motion-ease)}

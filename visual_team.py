@@ -12,24 +12,6 @@ TEAM_MEMBERS = (
 )
 
 # Only identity-matched portraits from the official company website belong here.
-TEAM_PORTRAITS = {
-    'emrecan-ozkan': {
-        'src': '/assets/team/emrecan-ozkan-240-d1df701b3489.webp',
-        'srcset': '/assets/team/emrecan-ozkan-240-d1df701b3489.webp 240w, /assets/team/emrecan-ozkan-480-d117500c13c0.webp 480w',
-        'width': 240, 'height': 274,
-    },
-    'ali-yilmaz': {
-        'src': '/assets/team/ali-yilmaz-240-6a90dfff30ac.webp',
-        'srcset': '/assets/team/ali-yilmaz-240-6a90dfff30ac.webp 240w, /assets/team/ali-yilmaz-480-65556168df49.webp 480w',
-        'width': 240, 'height': 308,
-    },
-    'hasan-ak': {
-        'src': '/assets/team/hasan-ak-240-d70bfaf3c656.webp',
-        'srcset': '/assets/team/hasan-ak-240-d70bfaf3c656.webp 240w, /assets/team/hasan-ak-480-866549c99e7b.webp 480w',
-        'width': 240, 'height': 308,
-    },
-}
-
 
 def selected_team():
     """A complete typographic roster, without partial portraits or invented roles."""
