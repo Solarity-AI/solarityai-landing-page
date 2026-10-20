@@ -107,9 +107,10 @@ for file,d in docs.items():
     if rel=='contact/index.html':expected_scripts.append('contact')
     if rel=='careers/index.html':expected_scripts.append('careers')
     if any('data-copy' in a for t,a in d.tags):expected_scripts.append('copy')
+    if rel=='404.html':expected_scripts.append('not-found')
     actual_scripts=[]
     for script in runtime_scripts:
-        match=re.fullmatch(r'/assets/runtime/(gallery|contact|careers|copy)\.([a-f0-9]{12})\.js',script)
+        match=re.fullmatch(r'/assets/runtime/(gallery|contact|careers|copy|not-found)\.([a-f0-9]{12})\.js',script)
         if not match:errors.append(f'{rel}: unexpected runtime script {script}');continue
         actual_scripts.append(match.group(1))
         script_file=DIST/script.lstrip('/')
@@ -137,6 +138,8 @@ for file,d in docs.items():
     actual_robots={directive.strip().lower() for directive in meta.get('robots','').split(',')}
     if actual_robots!=expected_robots:errors.append(f'{rel}: incorrect public-site indexing directive {meta.get("robots", "")}')
     for t,a in d.tags:
+        # sizes is evaluated against the viewport: container and percentage units make browsers discard it.
+        if t in ('img','source') and re.search(r'\d(?:cq(?:i|b|w|h|min|max)|%)',a.get('sizes','')):errors.append(f'{rel}: sizes uses a unit browsers reject: {a.get("sizes")}')
         if t=='img' and a.get('src','').startswith('/assets/optimized/') and not a.get('srcset'):errors.append(f'{rel}: optimized image missing responsive candidates')
     # Preserve the approved brand opening and progressive image/navigation contracts.
     if 'human-potential-' in text:errors.append(f'{rel}: retired symbolic hero artwork is still referenced')
@@ -240,7 +243,7 @@ for file,d in docs.items():
         primary_email=by_id.get('contact-email',('',{}))[1].get('href','')
         if not primary_email.startswith('mailto:ata.turhan@solarityai.com?'):errors.append(f'{rel}: incorrect founder email destination')
         topics=[a for t,a in d.tags if t=='a' and a.get('data-inquiry-type')]
-        if [a['data-inquiry-type'] for a in topics]!=['Investor','Program','Strategic partner','Product inquiry','Other']:errors.append(f'{rel}: direct contact must retain all five inquiry types')
+        if [a['data-inquiry-type'] for a in topics]!=['Investor','Program','Strategic partner','Product inquiry','Press','Other']:errors.append(f'{rel}: direct contact must retain all six inquiry types')
         if any(not a.get('href','').startswith('mailto:ata.turhan@solarityai.com?subject=') for a in topics):errors.append(f'{rel}: inquiry topics must work as native email links')
         if any(t=='form' for t,a in d.tags):errors.append(f'{rel}: direct contact should not imply an unconfigured submission form')
         if not any(t=='a' and a.get('href','').startswith('https://calendar.google.com/calendar/appointments/schedules/') for t,a in d.tags):errors.append(f'{rel}: missing verified booking alternative')

@@ -48,4 +48,8 @@ test('program reviewers get their own subject and never carry a product', () => 
   assert.deepEqual(readInquiryContext('?type=Program&product=Anything'), { type: 'Program', product: '' });
   assert.equal(new URL(buildContactMailto({ type: 'Program', product: 'Ignored' })).searchParams.get('subject'), 'Solarity AI | Program');
   assert.equal(contactContextLabel({ type: 'Program' }), 'An accelerator, incubator, or grant program.');
+  // Press requests have their own subject, so they are not filed as Other
+  assert.deepEqual(readInquiryContext('?type=Press'), { type: 'Press', product: '' });
+  assert.equal(new URL(buildContactMailto({ type: 'Press' })).searchParams.get('subject'), 'Solarity AI | Press');
+  assert.equal(contactContextLabel({ type: 'Press' }), 'A press or media request.');
 });
