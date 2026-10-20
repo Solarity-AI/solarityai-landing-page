@@ -269,6 +269,13 @@ try:
         if any(not robots.can_fetch(agent,url) for url in expected_public_urls):errors.append(f'Robots blocks a public content page for {agent}')
 except OSError as exc:
     errors.append(f'Missing robots file: {exc}')
+# Page markup lives in templates/ (templating.py). Component modules keep data and logic, not HTML elements;
+# the icon path data in visual_sections.py and the FAQ answer snippets in ux_content.py are data.
+for _module in sorted([ROOT/'build_site.py',ROOT/'product_story.py',ROOT/'saas_products.py',*ROOT.glob('visual_*.py'),ROOT/'ux_components.py']):
+    _markup=re.findall(r'<(?:div|section|article|aside|header|footer|nav|main|p|span|a|h[1-6]|ul|ol|li|dl|dt|dd|img|picture|source|figure|figcaption|button|form|input|select|textarea|label|table|strong|em|small|br)[\s>/]',_module.read_text(encoding='utf-8'))
+    if _markup:errors.append(f'{_module.name}: {len(_markup)} HTML elements in Python; page markup belongs in templates/')
+for _template in sorted((ROOT/'templates').rglob('*')):
+    if _template.is_file() and _template.suffix=='.j2' and bytes([13]) in _template.read_bytes():errors.append(f'{_template.relative_to(ROOT).as_posix()}: CRLF line endings change the generated HTML; use LF')
 # Search and answer engines: titles, dates, schema.org graph, llms.txt and IndexNow.
 lastmods={}
 try:

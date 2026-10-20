@@ -1,5 +1,6 @@
 # Keep LF everywhere: build fingerprints and inline-script hashes use raw bytes.
 * text=auto eol=lf
+*.j2 text eol=lf
 *.png binary
 *.jpg binary
 *.webp binary
