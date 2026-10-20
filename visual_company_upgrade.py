@@ -17,6 +17,18 @@ def page_index(sections):
     return str(render('visual_company_upgrade/page_index.html.j2', sections=sections))
 
 
+def investor_sections():
+    """The Investors page chapters, shared by the opening index and the sticky section index."""
+    return ((('brief', 'Brief'),) if program_brief() else ()) + (
+        ('portfolio', 'Portfolio'), ('shipping-record', 'Record'), ('at-a-glance', 'At a glance'),
+        ('conversation-paths', 'Partnerships'), ('investor-questions', 'Questions'), ('booking', 'Founder'))
+
+
+def section_index():
+    """The same chapters in a bar that stays under the header while reading (wide screens only)."""
+    return str(render('visual_company_upgrade/section_index.html.j2', sections=investor_sections()))
+
+
 def investor_opening(apps, btn, contact):
     """The screening room: the thesis beside its actions, then the four apps framed under one light."""
     framed = [app for app in apps if app.get('apple') and app.get('google') and app.get('screen')]
@@ -26,10 +38,7 @@ def investor_opening(apps, btn, contact):
         investor_button=btn('Investor inquiries', contact('Investor')),
         partner_button=btn('Partnership inquiries', contact('Strategic partner'), 'outline'),
         program_href=contact('Program'),
-        index=page_index(((('brief', 'Brief'),) if program_brief() else ()) + (('portfolio', 'Portfolio'), ('shipping-record', 'Record'), ('at-a-glance', 'At a glance'),
-                          ('conversation-paths', 'Partnerships'),
-                          ('investor-questions', 'Questions'),
-                          ('booking', 'Founder'))),
+        index=page_index(investor_sections()),
         caption=provenance(),
         web_apps=showroom_web(SAAS),
     ))

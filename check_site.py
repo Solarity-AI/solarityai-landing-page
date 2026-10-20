@@ -133,7 +133,7 @@ for file,d in docs.items():
     if not isinstance(rules,dict) or set(rules)!={'prefetch'} or not rules['prefetch']:errors.append(f'{rel}: expected one prefetch-only speculation rules block')
     elif any(rule.get('eagerness') not in ['moderate','conservative'] or {'not':{'href_matches':'/assets/*'}} not in rule.get('where',{}).get('and',[]) for rule in rules['prefetch']):
         errors.append(f'{rel}: speculation rules must wait for visitor intent and skip asset files')
-    expected_robots={'noindex','follow'} if rel=='404.html' else {'index','follow'}
+    expected_robots={'noindex','follow'} if rel=='404.html' else {'index','follow','max-image-preview:large'}
     actual_robots={directive.strip().lower() for directive in meta.get('robots','').split(',')}
     if actual_robots!=expected_robots:errors.append(f'{rel}: incorrect public-site indexing directive {meta.get("robots", "")}')
     for t,a in d.tags:
@@ -459,6 +459,9 @@ for source in style_sources:
 # Contrast matrix over the declared tokens (CINEMATIC_PREMIUM_PLAN.md §3.2 and correction 6).
 foundation_css=(ROOT/'design/system/foundation.css').read_text(encoding='utf-8')
 root_match=re.search(r':root\{(.*?)\}',foundation_css,re.S)
+# A page's opening is on the first screen: deferring it with content-visibility gives it a placeholder size and shifts the page.
+if 'main>section:not(:first-child):not(.breadcrumbs + section)' not in foundation_css:
+    errors.append('design/system/foundation.css: the opening after a breadcrumb trail must be exempt from content-visibility')
 tokens=dict(re.findall(r'--([\w-]+):([^;]+)',root_match.group(1))) if root_match else {}
 def token_hex(name,seen=()):
     value=tokens.get(name,'').strip()

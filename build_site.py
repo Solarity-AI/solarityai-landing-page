@@ -1,7 +1,7 @@
 from pathlib import Path
 import base64, hashlib, json, re, shutil
 from urllib.parse import urlencode
-from ux_components import app_breadcrumbs, related_apps
+from ux_components import app_breadcrumbs, related_apps, page_breadcrumbs
 from image_provenance import provenance
 from ux_content import investor_faq, recovery_links
 from visual_home import hero_section, closing_scene
@@ -15,10 +15,11 @@ from visual_chrome import site_header, site_footer
 from visual_stage import store_badges
 from visual_products import product_art, product_page
 from visual_catalog import portfolio_page, portfolio_wall
-from visual_company_upgrade import strategy_story, investor_evidence, investor_opening, operating_principles, founder_booking
+from visual_company_upgrade import strategy_story, investor_evidence, investor_opening, operating_principles, founder_booking, section_index
 from visual_strategy import platform_opening
 from visual_record import shipping_record, founder_record, program_brief, company_line, record_summary, long_date, app_compare, web_compare, company_facts
 from visual_press import press_page
+from visual_policies import accessibility_page, website_data_page
 import seo
 from templating import render
 from optimize_images import ensure_optimized_images, write_favicon
@@ -78,7 +79,7 @@ def shell(path,title,desc,body):
     data=seo.graph(path,full_title,desc,apps=APPS,saas=SAAS,faq=FAQ,email=EMAIL,logo='/assets/brand/solarity-sun-320.2513ba060440.webp',
                    portrait='/assets/brand/ata-turhan-640.742556487789.webp',social_image=social_image,modified=PAGE_DATES[path])
     return str(render('build_site/shell.html.j2',path=path,full_title=full_title,desc=desc,body=body,
-                      robots='noindex,follow' if path=='/404' else 'index,follow',url=ORIGIN+public_path(path),origin=ORIGIN,
+                      robots='noindex,follow' if path=='/404' else 'index,follow,max-image-preview:large',url=ORIGIN+public_path(path),origin=ORIGIN,
                       social_image=social_image,social_alt=social_alt,font_url=FONT_URL,display_font_url=DISPLAY_FONT_URL,
                       header=site_header(path,NAV,btn),provenance=provenance(),footer=site_footer(EMAIL,path,BOOKING,long_date(PAGE_DATES[path]),PAGE_DATES[path]),json_ld=json.dumps(data)))
 
@@ -107,11 +108,15 @@ pages['/company']=('About Solarity AI and founder Ata Turhan','Solarity AI LLC w
                    page('company',record=record_summary(),company_facts=company_facts,email=EMAIL,founder_card=founder_card,founder_record=founder_record,selected_team=selected_team,operating_principles=operating_principles))
 
 pages['/investors-partners']=('Invest in or partner with Solarity AI','Explore the Solarity AI product thesis and opportunities for investment, distribution, technology collaboration, and platform design partnerships.',
-                              page('investors_partners',investor_opening=investor_opening,shipping_record=shipping_record,program_brief=program_brief,investor_evidence=investor_evidence,investor_faq=investor_faq,founder_booking=founder_booking,booking=BOOKING))
+                              page('investors_partners',investor_opening=investor_opening,section_index=section_index,shipping_record=shipping_record,program_brief=program_brief,investor_evidence=investor_evidence,investor_faq=investor_faq,founder_booking=founder_booking,booking=BOOKING))
 
 pages['/careers']=('Careers at Solarity AI: remote engineering and marketing roles','Fully remote engineering, marketing, and business development roles at Solarity AI, with profit sharing. Apply to help build focused AI-powered mobile products.',str(careers_page(btn)))
 
 pages['/press']=('Solarity AI press kit: descriptions, facts, and images','Approved descriptions, company facts, the Solarity AI sun mark, founder portrait, and app icons for articles, program pages, and event listings.',press_page(APPS,EMAIL,btn))
+
+pages['/accessibility']=('Accessibility statement','How solarityai.com is built and checked to meet WCAG 2.2 level AA, its known limitations, and how to report an accessibility problem.',accessibility_page(EMAIL))
+
+pages['/website-data']=('How the Solarity AI website handles data','What solarityai.com collects and does not: no cookies, cookieless page counts, email links, the careers form provider, hosting, and security.',website_data_page(EMAIL))
 
 pages['/contact']=('Contact Solarity AI and founder Ata Turhan','Contact Solarity AI about investment, strategic partnerships or its consumer apps. Reach founder Ata Turhan directly.',str(contact_page(EMAIL,BOOKING,btn)))
 pages['/404']=('Page not found','This page is not here. Find your way back to Solarity AI’s apps, app factory platform, company story, investor information, or contact page.',page('not_found',recovery_links=recovery_links))
@@ -130,7 +135,13 @@ retired_product.unlink(missing_ok=True)
 if retired_product.parent.is_dir() and not any(retired_product.parent.iterdir()):
     retired_product.parent.rmdir()
 
+# Inner pages directly under Home show the same trail as their BreadcrumbList data.
+for _path,_name in [('/apps','Apps'),('/platform','Platform'),('/company','Company'),('/investors-partners','Investors & Partners'),
+                    ('/careers','Careers'),('/contact','Contact'),('/press','Press kit'),('/accessibility','Accessibility'),('/website-data','Website data')]:
+    _title,_desc,_body=pages[_path]
+    pages[_path]=(_title,_desc,page_breadcrumbs(_name)+_body)
 PAGE_DATES=seo.page_dates(pages)
+PAGE_IMAGES={}
 for path,(title,desc,body) in pages.items():
     dest=DIST/'index.html' if path=='/' else DIST/'404.html' if path=='/404' else DIST/path.strip('/')/'index.html'
     dest.parent.mkdir(parents=True,exist_ok=True)
@@ -138,10 +149,14 @@ for path,(title,desc,body) in pages.items():
     document,metrics=optimize_page(document,path,source_css)
     dest.write_text(document, encoding='utf-8', newline='\n')
     performance_metrics[path]=metrics
+    main_html=document[document.find('<main'):document.find('</main>')]
+    PAGE_IMAGES[path]=list(dict.fromkeys(ORIGIN+src for tag in re.findall(r'<img\b[^>]*>',main_html)
+        for src in re.findall(r'\ssrc="(/assets/[^"]+)"',tag)
+        if re.search(r'\salt="[^"]+"',tag) and int((re.search(r'\swidth="(\d+)"',tag) or [0,'0'])[1])>=240))
     referenced_assets|=set(re.findall(r'(?:'+re.escape(ORIGIN)+r'|(?<![\w.-]))(/assets/[^"\'\s,)*]+)(?![\w*])',document))
 # Search engines and AI assistants may read every public page (seo.py names the AI crawlers).
 (DIST/'robots.txt').write_text(seo.robots_txt(), encoding='utf-8', newline='\n')
-(DIST/'sitemap.xml').write_text(seo.sitemap_xml(pages,PAGE_DATES), encoding='utf-8', newline='\n')
+(DIST/'sitemap.xml').write_text(seo.sitemap_xml(pages,PAGE_DATES,PAGE_IMAGES), encoding='utf-8', newline='\n')
 (DIST/'llms.txt').write_text(seo.llms_txt(pages,apps=APPS,saas=SAAS,email=EMAIL), encoding='utf-8', newline='\n')
 (DIST/'llms-full.txt').write_text(seo.llms_txt(pages,apps=APPS,saas=SAAS,email=EMAIL,full=True), encoding='utf-8', newline='\n')
 (DIST/(seo.INDEXNOW_KEY+'.txt')).write_text(seo.INDEXNOW_KEY, encoding='utf-8', newline='\n')

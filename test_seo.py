@@ -94,6 +94,17 @@ class GraphTest(unittest.TestCase):
         self.assertEqual(app['sameAs'], [APP['apple'], APP['google']])
         self.assertIn('Sleep Max - Rest Best', app['alternateName'])
 
+    def test_apps_name_their_published_screenshots(self):
+        def nodes(path):
+            return seo.graph(path, 'Page | Solarity AI', 'Description.', apps=[{**APP, 'screen': 'sleep-max-screen-4.webp'}],
+                             saas=[{**WEB, 'screens': [{'file': 'engineering-max-overview.webp'}]}], faq=[],
+                             email='founder@example.com', logo='/logo.webp', portrait='/portrait.webp',
+                             social_image='social/default.jpg', modified='2026-10-19')['@graph']
+        app = next(n for n in nodes('/apps/sleep-max') if n['@type'] == 'MobileApplication')
+        web = next(n for n in nodes('/platform') if n['@type'] == 'ItemList')['itemListElement'][0]['item']
+        self.assertEqual(app['screenshot'], ['https://solarityai.com/assets/sleep-max-screen-4.webp'])
+        self.assertEqual(web['screenshot'], ['https://solarityai.com/assets/engineering-max-overview.webp'])
+
 
 class CrawlerFilesTest(unittest.TestCase):
     def test_robots_welcomes_search_and_ai_crawlers(self):
@@ -107,6 +118,14 @@ class CrawlerFilesTest(unittest.TestCase):
         xml = seo.sitemap_xml(PAGES, {p: '2026-10-19' for p in PAGES})
         self.assertIn('<loc>https://solarityai.com/apps/sleep-max/</loc><lastmod>2026-10-19</lastmod>', xml)
         self.assertNotIn('404', xml)
+
+    def test_sitemap_lists_each_page_images(self):
+        image = 'https://solarityai.com/assets/optimized/a&b.webp'
+        xml = seo.sitemap_xml(PAGES, {p: '2026-10-19' for p in PAGES}, {'/platform': [image]})
+        self.assertIn('xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"', xml)
+        self.assertIn('<lastmod>2026-10-19</lastmod><image:image><image:loc>https://solarityai.com/assets/optimized/a&amp;b.webp'
+                      '</image:loc></image:image></url>', xml)
+        self.assertEqual(xml.count('<image:image>'), 1)
 
     def test_llms_summary_and_full_file(self):
         pages = {**PAGES, '/apps': ('Apps', '', ''), '/company': ('Company', '', ''), '/investors-partners': ('I', '', ''),

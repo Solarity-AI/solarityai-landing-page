@@ -26,7 +26,7 @@ Investor and strategic partner website, created October 12, 2026.
 
 ## Routes
 
-Home, Apps, Looks Max, IQ Max, Sleep Max, Fitness Max, Platform, Company, Investors & Partners, Careers, Contact, Press kit, and an error page.
+Home, Apps, Looks Max, IQ Max, Sleep Max, Fitness Max, Platform, Company, Investors & Partners, Careers, Contact, Press kit, Accessibility, Website data, and an error page.
 
 ## Contact behavior
 

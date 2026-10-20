@@ -1,7 +1,7 @@
 {
-  "pages": 13,
-  "internal_links_and_fragments_checked": 494,
-  "local_asset_references_checked": 874,
+  "pages": 15,
+  "internal_links_and_fragments_checked": 574,
+  "local_asset_references_checked": 899,
   "errors": [],
   "warnings": [],
   "scope": "Static HTML, generated routes/fragments/assets, metadata, labels and CSS source checks. No browser, measured layout, contact delivery, HTTP routing, or performance results."

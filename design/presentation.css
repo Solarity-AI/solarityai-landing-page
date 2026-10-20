@@ -65,7 +65,8 @@
  html{scrollbar-color:var(--line) var(--bg);accent-color:var(--sun-core)}
  /* Sections after the opening skip style and layout until they near the viewport, so first paint only lays out the first screen. The remembered size keeps scrolling stable. */
  /* Not the closing scene: content-visibility clips paint to the box, and its glow spills past it by design. */
- main>section:not(:first-child):not(.conversation-band),main>div:not(:first-child),.site-footer{content-visibility:auto;contain-intrinsic-size:auto 900px}
+ /* Not the opening after a breadcrumb trail either: it is on the first screen, and a placeholder size there would shift the page. */
+ main>section:not(:first-child):not(.breadcrumbs + section):not(.conversation-band),main>div:not(:first-child),.site-footer{content-visibility:auto;contain-intrinsic-size:auto 900px}
  ::selection{background:var(--sun-core);color:var(--ink)}
  .wrap{width:min(1264px,calc(100% - 2*var(--gutter)));margin-inline:auto}
  .section{padding-block:var(--space-section)}
@@ -1206,6 +1207,26 @@
   @media (max-width:850px) { .press-blurbs { grid-template-columns:minmax(0,1fr); } .press-images { grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; } .conversation-program { justify-self:start; } }
   @media print { .print-page, .copy-row, .press-image a { display:none; } .compare-scroll { overflow:visible; box-shadow:none; } .compare-table { min-width:0; } }
   @media (forced-colors:active) { .compare-scroll, .press-blurb, .press-image-frame { border:1px solid CanvasText; } }
+  /* Trails sit above an opening: the opening gives up the space the trail now takes. */
+  .breadcrumbs + :is(.page-intro,.platform-opening,.investor-opening,.careers-opening,.contact-opening,.catalog-page-intro) { padding-top:clamp(16px,2.5vw,40px); }
+  /* Investors: the section index follows the reader down the page on wide screens. */
+  .section-index { top:88px; margin-block:0 8px; }
+  /* One index at a time: the sticky bar on wide screens, the opening's list on narrow ones. */
+  @media (min-width:851px) { .investor-opening-aside .page-index { display:none; } }
+  @media (max-width:850px) { .section-index { display:none; } }
+  /* "Copy page link" sits on the action line, beside print. */
+  .investor-tools { display:flex; flex-wrap:wrap; align-items:center; gap:4px 24px; margin-top:8px; }
+  .actions > .copy-row { display:inline-flex; flex-wrap:wrap; align-items:center; gap:4px 12px; }
+  .actions > .copy-row :is(.copy-button,.copy-status) { margin-block-start:0; }
+  /* The button waits for copy.js; holding its space keeps the reveal from moving the page. */
+  .actions > .copy-row .copy-button[hidden] { display:inline-block; visibility:hidden; }
+  /* Accessibility and website data statements. */
+  .policy-body { display:grid; justify-items:start; padding-block:0 var(--space-section); }
+  .policy-section { width:100%; max-width:820px; padding-block:24px; border-top:1px solid var(--line); }
+  .policy-section h2 { font-size:var(--text-lg); font-weight:600; margin-bottom:10px; }
+  .policy-section p, .policy-section li { color:var(--muted); max-width:68ch; overflow-wrap:anywhere; }
+  .policy-section ul { margin:0; padding-left:20px; display:grid; gap:8px; }
+  .policy-section a { color:var(--gold); text-underline-offset:3px; }
 }
 
 /* Direct contact: one person, two dependable destinations, no draft-composer detour. */

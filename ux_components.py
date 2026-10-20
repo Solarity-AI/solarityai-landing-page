@@ -13,6 +13,11 @@ def app_breadcrumbs(app):
     return render('ux_components/breadcrumbs.html.j2', app=app)
 
 
+def page_breadcrumbs(current):
+    """Home / current page, for inner pages that sit directly under Home."""
+    return str(render('ux_components/page_breadcrumbs.html.j2', current=current))
+
+
 def related_apps(current, apps):
     return render('ux_components/related_apps.html.j2', current=current, apps=apps,
                   discovery_symbol=discovery_symbol)

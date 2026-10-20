@@ -48,7 +48,7 @@ INDEXNOW_KEY = '5b1f0c7e9a4d4e2f8c3b6a1d7e0f9c42'
 
 PAGE_TYPES = {'/apps': 'CollectionPage', '/platform': 'CollectionPage', '/company': 'AboutPage',
               '/contact': 'ContactPage', '/investors-partners': 'FAQPage'}
-CRUMB_NAMES = {'/apps': 'Apps', '/platform': 'Platform', '/company': 'Company', '/press': 'Press kit',
+CRUMB_NAMES = {'/apps': 'Apps', '/platform': 'Platform', '/company': 'Company', '/press': 'Press kit', '/accessibility': 'Accessibility', '/website-data': 'Website data',
                '/investors-partners': 'Investors & Partners', '/careers': 'Careers', '/contact': 'Contact'}
 
 
@@ -111,6 +111,7 @@ def mobile_app(a, full=True):
         'operatingSystem': 'iOS, Android', 'image': ORIGIN + '/assets/' + a['slug'] + '-icon.webp',
         'featureList': [f'{title}: {text}' for title, text in a['features']],
         'installUrl': [a['apple'], a['google']], 'sameAs': [a['apple'], a['google']],
+        **({'screenshot': [ORIGIN + '/assets/' + a['screen']]} if a.get('screen') else {}),
         'author': {'@id': ORG_ID}, 'publisher': {'@id': ORG_ID},
     })
     return node
@@ -123,6 +124,7 @@ def web_app(p, full=True):
     node.update({
         'description': p['summary'], 'abstract': p['tagline'], 'applicationCategory': 'BusinessApplication',
         'operatingSystem': 'Web', 'featureList': list(p['facts']), 'creativeWorkStatus': p['status'].split(' · ')[-1],
+        'screenshot': [ORIGIN + '/assets/' + s['file'] for s in p.get('screens', [])],
         'author': {'@id': ORG_ID}, 'publisher': {'@id': ORG_ID},
     })
     return node
@@ -188,9 +190,15 @@ def robots_txt():
             + f'\nSitemap: {ORIGIN}/sitemap.xml\n')
 
 
-def sitemap_xml(pages, dates):
-    rows = ''.join(f'<url><loc>{ORIGIN}{public_path(p)}</loc><lastmod>{dates[p]}</lastmod></url>' for p in pages if p != '/404')
-    return '<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' + rows + '</urlset>'
+def sitemap_xml(pages, dates, images=None):
+    """Every content page with its last change, plus the images it shows (Google's image sitemap extension)."""
+    images = images or {}
+    def row(p):
+        pictures = ''.join(f'<image:image><image:loc>{html.escape(src)}</image:loc></image:image>' for src in images.get(p, []))
+        return f'<url><loc>{ORIGIN}{public_path(p)}</loc><lastmod>{dates[p]}</lastmod>{pictures}</url>'
+    rows = ''.join(row(p) for p in pages if p != '/404')
+    return ('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '
+            'xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">' + rows + '</urlset>')
 
 
 def llms_txt(pages, *, apps, saas, email, full=False):
@@ -232,5 +240,7 @@ def llms_txt(pages, *, apps, saas, email, full=False):
         for q, a in FAQ:
             out += [f'### {plain(q)}', '', plain(a), '']
     else:
-        out += ['', '## Optional', '', f'- [Full product facts and FAQ]({ORIGIN}/llms-full.txt)']
+        out += ['', '## Optional', '', f'- [Full product facts and FAQ]({ORIGIN}/llms-full.txt)',
+                f'- [Website data]({link("/website-data")}): no cookies, cookieless page counts, and the services the site links to.',
+                f'- [Accessibility]({link("/accessibility")}): the WCAG 2.2 AA target, how it is checked, and known limitations.']
     return '\n'.join(out).rstrip() + '\n'

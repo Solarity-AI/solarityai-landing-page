@@ -177,3 +177,14 @@ The homepage portfolio-to-platform relationship is explicitly conceptual company
     - The facts list repeats the verified facts.
     - Images: the sun mark (`make_press_assets.py`, cropped from the official lockup with the documented `FAVICON_CROP`; provenance in `research-assets/press-assets.json`), the founder portrait from the company's own site (`brand-evidence.json`), and the official app icons from the store listings.
     - The older "SOLARITY / Always Better" lockup is not offered, because it no longer matches the wordmark.
+- **Fourth round (October 20, 2026).** Discoverability, transparency and orientation. Nothing new is claimed about the company or products.
+  - **Website data (`/website-data`).** Each statement was checked on that date:
+    - No cookies: production responses on `/`, `/apps/`, `/investors-partners/`, `/careers/` and `/contact/` carry no `Set-Cookie`.
+    - No browser storage: `scripts/*.js` use no `localStorage`, `sessionStorage`, IndexedDB or `document.cookie`.
+    - Analytics: only the cookieless Cloudflare Web Analytics beacon, which the zone injects (see CLAUDE.md).
+    - Careers form: FormSubmit, with its privacy policy at `https://formsubmit.co/privacy.pdf` (linked from its home page; a live PDF). Delivery to the inbox remains unverified (`CAREERS_DELIVERY.md`), so the page describes the intended destination only.
+    - Hosting, HTTPS, the content security policy and `/.well-known/security.txt` come from the build and `_headers`.
+  - **Accessibility (`/accessibility`).** The WCAG 2.2 AA target, and the checks run on every round: axe-core at phone and desktop widths, keyboard focus, text spacing, 200% zoom, reduced motion, forced colors and more contrast. The known limitations are screenshot text and third-party sites.
+  - **Search:** the sitemap lists each page's meaningful images (alt text, at least 240 px wide), the app schema names the published screenshots, robots meta allows large image previews, and `llms.txt` lists both new pages.
+  - **Orientation:** visible breadcrumbs on inner pages, matching the BreadcrumbList data. On wide screens, Investors keeps a sticky section index; narrow screens keep the opening's list.
+  - **Small details:** `color-scheme: dark`, `lang="tr"` on the team's Turkish names, and "Copy page link" on Press.

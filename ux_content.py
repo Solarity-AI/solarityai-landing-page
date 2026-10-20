@@ -11,7 +11,7 @@ from visual_team import TEAM_MEMBERS
 _NAMES = {'looks-max': 'Looks Max', 'fitness-max': 'Fitness Max (listed as Only Fitness)', 'iq-max': 'IQ Max', 'sleep-max': 'Sleep Max'}
 _RECORD = record_summary()
 _LAUNCHES = [f'{_NAMES[slug]} on {long_date(iso)}' for slug, iso in APP_STORE_RELEASES]
-_TEAM = [member['name'] for member in TEAM_MEMBERS]
+_TEAM = [f'<span lang="tr">{member["name"]}</span>' for member in TEAM_MEMBERS]
 
 
 FAQ = [
