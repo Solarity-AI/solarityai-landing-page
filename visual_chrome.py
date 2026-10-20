@@ -35,4 +35,7 @@ def site_footer(email, path='/', booking='', updated='', updated_iso=''):
                      ('/contact?type=Strategic+partner#prepare-inquiry', 'Partnership inquiries'),
                      ('mailto:' + email, 'Email Ata')] + ([(booking, 'Book a conversation')] if booking else [])),
     ]
-    return str(render('visual_chrome/site_footer.html.j2', groups=groups, path=path, company=company_line(), updated=updated, updated_iso=updated_iso))
+    from seo import ORG_PROFILES
+    profiles = list(zip(ORG_PROFILES, ['the App Store', 'Google Play', 'GitHub']))
+    return str(render('visual_chrome/site_footer.html.j2', groups=groups, path=path, company=company_line(), updated=updated,
+                      updated_iso=updated_iso, profiles=profiles))

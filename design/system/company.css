@@ -484,7 +484,7 @@
   .saas-index a[aria-current] { color:var(--text); background:rgb(255 207 122/.12); }
   @media (forced-colors:active) { .saas-index a[aria-current] { outline:1px solid CanvasText; outline-offset:-3px; } }
   /* Investors answers: one control for all, and a link to each. */
-  .faq-toggle { display:inline-flex; align-items:center; min-height:44px; margin-bottom:8px; padding:0; border:0; background:none; color:var(--gold); font:inherit; font-size:var(--text-sm); cursor:pointer; }
+  .faq-toggle { display:inline-flex; align-items:center; min-height:44px; margin-top:18px; padding:0; border:0; background:none; color:var(--gold); font:inherit; font-size:var(--text-sm); cursor:pointer; }
   .faq-toggle:hover { text-decoration:underline; }
   .faq-permalink { margin-top:12px; font-size:var(--text-xs); }
   .faq-permalink a { display:inline-flex; align-items:center; min-height:32px; color:var(--dim); text-decoration:underline; text-decoration-color:var(--line); text-underline-offset:4px; }
@@ -494,8 +494,8 @@
   .press-kit-download { margin:4px 0 24px; }
   .press-kit-meta { color:var(--dim); font-size:var(--text-xs); font-weight:500; }
   /* Contact: the founder's card. */
-  .contact-card-link { margin-top:4px; }
+  .contact-person-links { display:flex; flex-wrap:wrap; align-items:center; gap:0 28px; }
   /* Not found: the likely page, when one is close. */
-  .not-found-suggestion { margin-top:16px; color:var(--muted); }
+  .not-found-suggestion { margin:18px 0 28px; color:var(--muted); }
   .not-found-suggestion a { color:var(--gold); text-decoration:underline; text-underline-offset:4px; }
 }

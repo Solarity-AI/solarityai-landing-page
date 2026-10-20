@@ -6,3 +6,5 @@
 *.webp binary
 *.avif binary
 *.woff2 binary
+*.vcf binary
+*.zip binary

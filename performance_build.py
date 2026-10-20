@@ -34,6 +34,13 @@ def _attributes(attrs):
                     for name, value in attrs.items())
 
 
+def compact_script(source):
+    """An inline script as shipped: comment lines and indentation removed. Line breaks stay, so automatic
+    semicolon insertion reads the code exactly as written (the sources use no template literals)."""
+    assert '`' not in source and '/*' not in source
+    return '\n'.join(line.strip() for line in source.splitlines() if line.strip() and not line.strip().startswith('//')) + '\n'
+
+
 def _script_asset(name):
     source = (ROOT / 'scripts' / f'{name}.js').read_bytes()
     digest = sha256(source).hexdigest()[:12]
@@ -112,10 +119,22 @@ def optimize_page(document, path, css):
     # Navigation affects the initial mobile header height. Inline it before CSS
     # and body parsing so slow/failed runtime requests cannot collapse a painted
     # fallback menu. With JavaScript disabled, the expanded CSS fallback remains.
-    navigation = (ROOT / 'scripts/navigation.js').read_text(encoding='utf-8')
+    source = (ROOT / 'scripts/navigation.js').read_text(encoding='utf-8')
+    navigation = compact_script(source)
     assert '</script' not in navigation.lower()
-    navigation_hash = sha256(navigation.encode()).hexdigest()
+    navigation_hash = sha256(source.encode()).hexdigest()
     navigation_tag = f'<script id="navigation-startup" data-source-sha256="{navigation_hash}">{navigation}</script>'
+    # Linkable answers and the sticky index's current section: inlined at the end of the pages that have them.
+    inline = ['navigation']
+    if 'data-answers-toggle' in document or 'class="saas-index' in document:
+        sections_source = (ROOT / 'scripts/sections.js').read_text(encoding='utf-8')
+        sections = compact_script(sections_source)
+        # Inside the email_off wrapper, which must close the body (check_site.py). A module script never
+        # blocks parsing: it runs once the page is parsed, before DOMContentLoaded (a blocking one delayed
+        # Lighthouse first paint by about 80 ms on Platform and Investors, measured 2026-10-20).
+        assert '</script' not in sections.lower() and document.count('<!--/email_off-->') == 1
+        document = document.replace('<!--/email_off-->', f'<script type="module" id="sections-startup" data-source-sha256="{sha256(sections_source.encode()).hexdigest()}">{sections}</script><!--/email_off-->')
+        inline.append('sections')
     scripts = []
     if has_gallery:
         scripts.append('gallery')
@@ -125,7 +144,9 @@ def optimize_page(document, path, css):
         scripts.append('careers')
     if 'data-copy=' in document:
         scripts.append('copy')
-    script_tags, script_bytes = [], len(navigation.encode())
+    if path == '/404':
+        scripts.append('not-found')
+    script_tags, script_bytes = [], len(navigation.encode()) + (len(sections.encode()) if 'sections' in inline else 0)
     for name in scripts:
         url, size = _script_asset(name)
         script_tags.append(f'<script src="{url}" defer></script>')
@@ -151,7 +172,7 @@ def optimize_page(document, path, css):
         'css_gzip_bytes': len(gzip.compress(compact.encode(), mtime=0)),
         'css_delivery': 'Inline route-specific CSS; no blocking stylesheet request',
         'scripts': ['navigation'] + scripts,
-        'inline_scripts': ['navigation'],
+        'inline_scripts': inline,
         'speculation_rules': 'Prefetch same-origin pages on intent (moderate); never prerender',
         'external_scripts': scripts,
         'javascript_bytes': script_bytes,

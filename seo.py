@@ -177,7 +177,9 @@ def graph(path, title, desc, *, apps, saas, faq, email, logo, portrait, social_i
     elif path == '/contact':
         page['mainEntity'] = {'@id': FOUNDER_ID}
     elif path == '/investors-partners':
-        page['mainEntity'] = [{'@type': 'Question', 'name': plain(q), 'acceptedAnswer': {'@type': 'Answer', 'text': plain(a)}} for q, a in faq]
+        from ux_content import answer_id
+        page['mainEntity'] = [{'@type': 'Question', 'url': url + '#' + answer_id(q), 'name': plain(q),
+                               'acceptedAnswer': {'@type': 'Answer', 'text': plain(a)}} for q, a in faq]
     nodes.insert(3, page)
     return {'@context': 'https://schema.org', '@graph': nodes}
 
@@ -237,8 +239,9 @@ def llms_txt(pages, *, apps, saas, email, full=False):
             f'- [Contact]({link("/contact")}): email {email} or book a conversation with the founder.']
     if full:
         out += ['', '## Questions and answers', '']
+        from ux_content import answer_id
         for q, a in FAQ:
-            out += [f'### {plain(q)}', '', plain(a), '']
+            out += [f'### {plain(q)}', '', plain(a), '', f'Link: {link("/investors-partners")}#{answer_id(q)}', '']
     else:
         out += ['', '## Optional', '', f'- [Full product facts and FAQ]({ORIGIN}/llms-full.txt)',
                 f'- [Website data]({link("/website-data")}): no cookies, cookieless page counts, and the services the site links to.',
