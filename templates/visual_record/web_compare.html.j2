@@ -1,0 +1,11 @@
+<section class="compare wrap" id="compare-web-apps" aria-labelledby="compare-web-apps-title">
+{#- -#}
+<div class="record-heading"><div><p class="eyebrow">At a glance</p><h2 id="compare-web-apps-title">The three web apps, side by side.</h2></div><p>Each runs on the web today; mobile versions are planned. Details come from each product’s own site.</p></div>
+{#- -#}
+<div class="compare-scroll" tabindex="0" role="region" aria-label="Comparison of the three web apps, scrollable"><table class="compare-table">
+<thead><tr><th scope="col">Web app</th><th scope="col">Stage</th><th scope="col">Built for</th><th scope="col">Plans</th></tr></thead>
+<tbody>
+{%- for product in saas -%}
+<tr><th scope="row"><a href="#{{ product.slug }}"><span>{{ product.name }}</span></a><small>{{ product.stage }} · {{ product.domain }}</small></th><td><span class="status"><i aria-hidden="true"></i>{{ product.status.split(' · ')[-1]|capitalize_first }}</span></td><td>{{ product.category }}: {{ product.tagline }}</td><td>{{ product.availability }}</td></tr>
+{%- endfor -%}
+</tbody></table></div></section>

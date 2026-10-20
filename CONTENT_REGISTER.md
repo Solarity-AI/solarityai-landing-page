@@ -162,3 +162,18 @@ The homepage portfolio-to-platform relationship is explicitly conceptual company
   - **"Updated …" in each page's footer** is that page's last content change (`research-assets/page-dates.json`).
   - **Print.** Printing or saving a page as PDF opens every FAQ answer and compacts the web app cards and the shipping record.
   - **Share card.** The Investors share card reads "Four apps in twelve weeks." It was regenerated alone with `make_social_images.portfolio_card`, so the other cards keep their bytes.
+- **Third round (same day).** All built from facts already on the site. Nothing new is claimed.
+  - **Side-by-side tables:**
+    - **Apps:** each app's category, summary and App Store date.
+    - **Platform:** each web app's stage, category, tagline and availability, from `saas_products.py`.
+  - **Company facts list on Company:** legal name, location, founder, apps and web apps. The founding year and state stay hidden until supplied.
+  - **Investor FAQ "What is Solarity AI?":** it restates the home description.
+  - **Link between Sleep Max and Engineering Max:** "Engineering Max … was tested first on Sleep Max". This is the fact Engineering Max's own site states, already listed in its facts.
+  - **Reviewer link on every closing band:** "Applying through a program? Contact the founder", using the Program contact type.
+  - **Footer:** a "Program inquiries" link and a "Press kit" link.
+  - **"Print or save as PDF" buttons** on Investors and Press.
+  - **Press kit at `/press`:**
+    - The one-line and short descriptions restate site copy.
+    - The facts list repeats the verified facts.
+    - Images: the sun mark (`make_press_assets.py`, cropped from the official lockup with the documented `FAVICON_CROP`; provenance in `research-assets/press-assets.json`), the founder portrait from the company's own site (`brand-evidence.json`), and the official app icons from the store listings.
+    - The older "SOLARITY / Always Better" lockup is not offered, because it no longer matches the wordmark.

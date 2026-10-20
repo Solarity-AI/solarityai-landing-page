@@ -125,6 +125,13 @@
 
   // Printing or saving a page as PDF includes every collapsed answer, then restores the page.
   function initializePrint() {
+    // Print buttons are hidden in the markup and offered only where printing exists.
+    if (typeof window.print === 'function') {
+      document.querySelectorAll('button[data-print]').forEach((button) => {
+        button.hidden = false;
+        button.addEventListener('click', () => window.print());
+      });
+    }
     window.addEventListener('beforeprint', () => {
       document.querySelectorAll('details:not([open])').forEach((item) => { item.setAttribute('data-print-opened', ''); item.open = true; });
     });

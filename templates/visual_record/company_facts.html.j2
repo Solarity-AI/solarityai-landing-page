@@ -1,0 +1,12 @@
+<section class="company-facts wrap" id="facts" aria-labelledby="company-facts-title">
+{#- -#}
+<div class="record-heading"><div><p class="eyebrow">Company facts</p><h2 id="company-facts-title">Solarity AI in brief.</h2></div><p>The essentials, for programs, partners, and press. <a href="/press">Press kit <span aria-hidden="true">→</span></a></p></div>
+{#- -#}
+<dl class="facts-list">
+<div><dt>Company</dt><dd>{{ legal_name }}{% if founded %}, founded {{ founded }}{% endif %}{% if registered_in %}, registered in {{ registered_in }}{% endif %}</dd></div>
+<div><dt>Based in</dt><dd>Irving, Texas, United States</dd></div>
+<div><dt>Founder</dt><dd>Ata Turhan</dd></div>
+<div><dt>Mobile apps</dt><dd>{{ record.count }} on the App Store and Google Play, the first released {{ record.first }} (<a href="/investors-partners#shipping-record">shipping record</a>)</dd></div>
+<div><dt>Web apps</dt><dd>{% for product in saas %}{{ product.name }} ({{ product.status.split(' · ')[-1] }}){% if not loop.last %}, {% endif %}{% endfor %}</dd></div>
+<div><dt>Contact</dt><dd><a href="mailto:{{ email }}">{{ email }} <span aria-hidden="true">↗</span></a></dd></div>
+</dl></section>

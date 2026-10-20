@@ -6,7 +6,7 @@
   {#- -#}
   <p class="saas-tagline">{{ product['tagline'] }}</p><p>{{ product['summary'] }}</p>
   {#- -#}
-  <ul class="saas-facts">{% for fact in product['facts'] %}<li>{{ fact }}</li>{% endfor %}</ul><p class="saas-availability">{{ product['availability'] }}</p>
+  <ul class="saas-facts">{% for fact in product['facts'] %}<li>{% if product.get('fact_links', {}).get(fact) %}<a href="{{ product['fact_links'][fact] }}">{{ fact }}</a>{% else %}{{ fact }}{% endif %}</li>{% endfor %}</ul><p class="saas-availability">{{ product['availability'] }}</p>
   {#- -#}
   <div class="actions">{{ link|safe }}</div></div>
   {#- -#}

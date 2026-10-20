@@ -49,6 +49,29 @@ class RecordHelpersTest(unittest.TestCase):
         self.assertEqual(visual_record.app_store_since('unknown-app'), '')
 
 
+class SummariesTest(unittest.TestCase):
+    def test_app_compare_lists_store_apps_with_dates(self):
+        apps = [dict(a, category='Sleep & routines', summary='A <diary>.') for a in APPS]
+        html = visual_record.app_compare(apps)
+        self.assertEqual(html.count('<tr data-product-accent'), 4)
+        self.assertIn('<time datetime="2026-06-23">June 23, 2026</time>', html)
+        self.assertIn('A &lt;diary&gt;.', html)
+
+    def test_web_compare_keeps_status_capitals(self):
+        saas = [dict(slug='m', name='Marketing Max', domain='marketingmax.solarityai.com', stage='Grow', category='Video',
+                     tagline='Reels.', status='Web app · internal V1', availability='Early access.')]
+        html = visual_record.web_compare(saas)
+        self.assertIn('Internal V1', html)
+        self.assertNotIn('Internal v1', html)
+
+    def test_company_facts_show_verified_values_only(self):
+        html = visual_record.company_facts('founder@example.com')
+        self.assertIn('Solarity AI LLC</dd>', html)
+        self.assertNotIn('founded', html.split('<dt>Company</dt>')[1].split('</div>')[0])
+        with mock.patch.dict(visual_record.COMPANY, {'founded': '2025'}):
+            self.assertIn('Solarity AI LLC, founded 2025', visual_record.company_facts('founder@example.com'))
+
+
 class HiddenUntilSuppliedTest(unittest.TestCase):
     def test_empty_facts_render_nothing(self):
         self.assertEqual(visual_record.founder_record(), '')

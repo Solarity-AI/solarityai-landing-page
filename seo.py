@@ -48,7 +48,7 @@ INDEXNOW_KEY = '5b1f0c7e9a4d4e2f8c3b6a1d7e0f9c42'
 
 PAGE_TYPES = {'/apps': 'CollectionPage', '/platform': 'CollectionPage', '/company': 'AboutPage',
               '/contact': 'ContactPage', '/investors-partners': 'FAQPage'}
-CRUMB_NAMES = {'/apps': 'Apps', '/platform': 'Platform', '/company': 'Company',
+CRUMB_NAMES = {'/apps': 'Apps', '/platform': 'Platform', '/company': 'Company', '/press': 'Press kit',
                '/investors-partners': 'Investors & Partners', '/careers': 'Careers', '/contact': 'Contact'}
 
 
@@ -224,6 +224,7 @@ def llms_txt(pages, *, apps, saas, email, full=False):
             f'- [Company and team]({link("/company")}): founder Ata Turhan, with Emrecan Özkan, Ali Yılmaz, Hasan Ak, Eren Öz, Batuhan Yücetürk, and Melik Kaplan.',
             f'- [App factory platform]({link("/platform")}): how the three web apps came from building the consumer apps.',
             f'- [Investors and partners]({link("/investors-partners")}): company thesis, business model and partnership paths.',
+            f'- [Press kit]({link("/press")}): approved descriptions, facts, the sun mark, founder portrait, and app icons.',
             f'- [Careers]({link("/careers")}): fully remote roles for a Full Stack Engineer, a Marketing Specialist, and a Business Development Manager.',
             f'- [Contact]({link("/contact")}): email {email} or book a conversation with the founder.']
     if full:

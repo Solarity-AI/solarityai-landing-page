@@ -1,1 +1,1 @@
-<span class="copy-row"><button type="button" class="copy-button" data-copy="{{ address }}" data-copy-status="{{ status_id }}" hidden>Copy address</button><span class="copy-status" id="{{ status_id }}" role="status" aria-live="polite"></span></span>
+<span class="copy-row"><button type="button" class="copy-button" data-copy="{{ address }}" data-copy-status="{{ status_id }}"{% if name %} data-copy-name="{{ name }}"{% endif %} hidden>{{ label }}</button><span class="copy-status" id="{{ status_id }}" role="status" aria-live="polite"></span></span>

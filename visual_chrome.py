@@ -29,8 +29,9 @@ def site_footer(email, path='/', booking='', updated='', updated_iso=''):
                          ('/apps/sleep-max', 'Sleep Max'), ('/apps/fitness-max', 'Fitness Max')]),
         ('Web apps', [('/platform#' + p['slug'], p['name']) for p in SAAS]),
         ('Company', [('/apps', 'Apps'), ('/platform', 'Platform'),
-                     ('/company', 'Company'), ('/investors-partners', 'Investors & partners'), ('/careers', 'Careers')]),
+                     ('/company', 'Company'), ('/investors-partners', 'Investors & partners'), ('/careers', 'Careers'), ('/press', 'Press kit')]),
         ('Contact', [('/contact?type=Investor#prepare-inquiry', 'Investor inquiries'),
+                     ('/contact?type=Program#prepare-inquiry', 'Program inquiries'),
                      ('/contact?type=Strategic+partner#prepare-inquiry', 'Partnership inquiries'),
                      ('mailto:' + email, 'Email Ata')] + ([(booking, 'Book a conversation')] if booking else [])),
     ]
