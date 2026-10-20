@@ -442,6 +442,47 @@
 @media(max-width:1100px){.saas-heading{gap:24px 48px}.saas-grid{gap:16px}}
 @media(max-width:850px){.saas-heading{grid-template-columns:minmax(0,1fr)}.saas-grid{grid-template-columns:minmax(0,1fr);gap:20px}.saas-card .web-shot{aspect-ratio:16/9}}
 @media(forced-colors:active){.saas-card{border:1px solid CanvasText}.web-window{border:1px solid CanvasText}}
+/* Hero proof (program readiness): what is live, in the first screen at every width. */
+.vision-description{max-width:42ch}
+.vision-proof{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;max-width:none;margin-top:22px;font-size:var(--type-meta);font-weight:500;color:var(--text)}
+.vision-proof-icons{display:flex}
+.vision-proof-icons img{width:28px;height:28px;border-radius:var(--radius-icon);box-shadow:0 0 0 2px var(--bg)}
+.vision-proof-icons img+img{margin-left:-6px}
+/* Shipping record: dated launches on one horizon line, each linked to its public listing. */
+.shipping-record,.program-brief{padding-block:var(--space-section)}
+.record-heading{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.8fr);gap:20px 64px;align-items:end;margin-bottom:clamp(32px,4vw,52px)}
+.record-heading h2{font-family:var(--font-display);font-weight:400;font-size:var(--type-section);line-height:1.05}
+.record-heading>p{max-width:44ch;margin:0;color:var(--muted);font-size:var(--text-md);line-height:1.75}
+.record-track{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px;margin:0;padding:0;list-style:none}
+.record-track::before{content:"";position:absolute;left:0;right:0;top:46px;height:1px;background:var(--horizon)}
+.record-track--web{margin-top:44px}
+.record-step{position:relative;display:grid;gap:14px;align-content:start;min-width:0}
+.record-date{font-family:var(--font-display);font-size:var(--type-sub);line-height:1.1;color:var(--sun-core);font-variant-numeric:tabular-nums}
+.record-dot{width:13px;height:13px;border-radius:50%;background:var(--sun-core);box-shadow:0 0 0 5px var(--bg),0 0 22px 2px var(--glow-sun)}
+.record-app{display:flex;align-items:center;gap:12px;min-width:0;color:var(--text);text-decoration:none}
+.record-app img{width:44px;height:44px;border-radius:var(--radius-icon);flex:none}
+.record-app strong{display:block;font-weight:600}
+.record-app small{display:block;color:var(--muted);font-size:var(--text-xs)}
+.record-app:hover strong{color:var(--product-accent)}
+.record-listing{display:inline-flex;align-items:center;justify-self:start;min-height:32px;font-size:var(--text-xs);color:var(--gold);text-decoration:none}
+.record-listing:hover{text-decoration:underline}
+@media(max-width:850px){.record-heading{grid-template-columns:minmax(0,1fr)}.record-track{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:36px}.record-track::before{display:none}}
+@media(max-width:560px){
+ .record-track{grid-template-columns:minmax(0,1fr);gap:26px;padding-left:28px}
+ .record-track::before{display:block;left:6px;right:auto;top:8px;bottom:8px;width:1px;height:auto;background:linear-gradient(var(--sun-core),var(--bronze))}
+ .record-dot{position:absolute;left:-28px;top:8px}
+ .record-step{gap:8px}
+ .vision-proof{margin-top:16px}
+}
+/* The brief for programs (hidden until company_facts.PROGRAM_BRIEF is filled). */
+.brief-metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:16px;margin:0}
+.brief-metrics>div{padding:20px;border-radius:var(--radius-panel);background:var(--elev-panel);box-shadow:var(--elev-panel-edge)}
+.brief-metrics dt{color:var(--muted);font-size:var(--text-xs)}
+.brief-metrics dd{margin:6px 0 0;font-family:var(--font-display);font-size:var(--type-sub);color:var(--text);font-variant-numeric:tabular-nums}
+.brief-columns{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:32px;margin-top:36px}
+.brief-columns h3{font-size:var(--text-lg);font-weight:600;margin-bottom:10px}
+.brief-columns p{max-width:52ch;color:var(--muted)}
+@media(forced-colors:active){.record-dot{background:CanvasText}.brief-metrics>div{border:1px solid CanvasText}}
 }
 
 /* Image-led product chapters. Authentic artwork stays intact in neutral stages. */
@@ -1097,6 +1138,12 @@
     .showroom-window { padding-block:10px; }
     .showroom-window .store-screen { max-width:140px; }
   }
+  /* Founder record and team details (hidden until company_facts.py is filled). */
+  .founder-record { display:grid; gap:14px; margin-block:4px 26px; max-width:47ch; }
+  .founder-record p { margin:0; font-size:var(--text-base); }
+  .founder-why { font-family:var(--font-display); font-size:var(--type-deck); color:var(--text); }
+  .team-detail { display:flex; flex-wrap:wrap; gap:4px 14px; margin:6px 0 0; font-size:var(--text-xs); color:var(--muted); }
+  .team-detail a { color:var(--gold); }
 }
 
 /* Direct contact: one person, two dependable destinations, no draft-composer detour. */
