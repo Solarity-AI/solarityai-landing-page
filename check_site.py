@@ -8,6 +8,7 @@ from hashlib import sha256
 from urllib.robotparser import RobotFileParser
 import xml.etree.ElementTree as ET
 from site_urls import public_path
+import seo
 
 ROOT=Path(__file__).parent
 DIST=ROOT/'dist'
@@ -264,10 +265,56 @@ except (OSError,ET.ParseError) as exc:
 try:
     robots=RobotFileParser();robots.parse((DIST/'robots.txt').read_text(encoding='utf-8').splitlines())
     if robots.site_maps()!=[ORIGIN+'/sitemap.xml']:errors.append('Robots must advertise the deployment-origin sitemap')
-    for agent in ['*','Googlebot','Googlebot-Mobile']:
+    for agent in ['*','Googlebot','Googlebot-Mobile','Bingbot']+seo.AI_CRAWLERS:
         if any(not robots.can_fetch(agent,url) for url in expected_public_urls):errors.append(f'Robots blocks a public content page for {agent}')
 except OSError as exc:
     errors.append(f'Missing robots file: {exc}')
+# Search and answer engines: titles, dates, schema.org graph, llms.txt and IndexNow.
+lastmods={}
+try:
+    for node in ET.parse(DIST/'sitemap.xml').findall('{http://www.sitemaps.org/schemas/sitemap/0.9}url'):
+        loc=node.findtext('{http://www.sitemaps.org/schemas/sitemap/0.9}loc');mod=node.findtext('{http://www.sitemaps.org/schemas/sitemap/0.9}lastmod')
+        if not mod or not re.fullmatch(r'\d{4}-\d{2}-\d{2}',mod):errors.append(f'Sitemap: {loc} needs a lastmod date')
+        lastmods[loc]=mod
+except (OSError,ET.ParseError):pass
+for file,d in docs.items():
+    rel=file.relative_to(DIST).as_posix();text=file.read_text(encoding='utf-8')
+    title=html.unescape(''.join(d.title)).strip()
+    if not 15<=len(title)<=65:errors.append(f'{rel}: title is {len(title)} characters; search results show about 60')
+    if 'Solarity AI' not in title:errors.append(f'{rel}: title must name Solarity AI')
+    desc=next((a.get('content','') for t,a in d.tags if t=='meta' and a.get('name')=='description'),'')
+    if not 70<=len(html.unescape(desc))<=165:errors.append(f'{rel}: description is {len(html.unescape(desc))} characters; aim for 70-165')
+    blocks=re.findall(r'<script type="application/ld\+json">(.*?)</script>',text,re.S)
+    try:graph=[n for b in blocks for n in json.loads(b).get('@graph',[])]
+    except ValueError as exc:errors.append(f'{rel}: invalid JSON-LD: {exc}');continue
+    types={n.get('@type') for n in graph}
+    org=next((n for n in graph if n.get('@type')=='Organization'),{})
+    if not org.get('sameAs') or not org.get('description') or org.get('founder')!={'@id':seo.FOUNDER_ID}:errors.append(f'{rel}: Organization needs description, founder and official profiles')
+    if 'Person' not in types or 'WebSite' not in types:errors.append(f'{rel}: schema.org graph needs the founder and the website')
+    if rel=='404.html':continue
+    url=ORIGIN+public_path('/' if file==DIST/'index.html' else '/'+file.parent.relative_to(DIST).as_posix())
+    page=next((n for n in graph if n.get('@id')==url+'#webpage'),None)
+    if not page:errors.append(f'{rel}: schema.org graph has no node for the page itself');continue
+    if page.get('dateModified')!=lastmods.get(url):errors.append(f'{rel}: dateModified must match the sitemap lastmod')
+    if page.get('name')!=title:errors.append(f'{rel}: schema.org page name must match the title')
+    if url!=ORIGIN+'/' and 'BreadcrumbList' not in types:errors.append(f'{rel}: missing BreadcrumbList')
+    ids=set(re.findall(r'"@type":\s*"[^"]+",\s*"@id":\s*"([^"]+)"',json.dumps(graph)))
+    for ref in re.findall(r'"@id":\s*"([^"]+)"',json.dumps(graph)):
+        if ref.startswith(ORIGIN) and ref not in ids and ref!=url+'#breadcrumb':errors.append(f'{rel}: schema.org reference to an undefined node {ref}')
+    if '/apps/' in url and url!=ORIGIN+'/apps/':
+        app=next((n for n in graph if n.get('@type')=='MobileApplication'),{})
+        if len(app.get('sameAs',[]))!=2 or not app.get('featureList') or not app.get('alternateName'):errors.append(f'{rel}: MobileApplication needs store links, features and store name')
+    for n in graph:
+        for banned in ('aggregateRating','review','offers'):
+            if banned in n:errors.append(f'{rel}: schema.org states {banned}, which the pages do not show')
+for name in ('llms.txt','llms-full.txt'):
+    llm=(DIST/name).read_text(encoding='utf-8') if (DIST/name).is_file() else ''
+    if not llm.startswith('# Solarity AI\n\n> '):errors.append(f'{name}: must open with the llmstxt.org title and summary')
+    for product in ['Looks Max','IQ Max','Sleep Max','Fitness Max','Only Fitness','Engineering Max','Management Max','Marketing Max']:
+        if product not in llm:errors.append(f'{name}: missing {product}')
+    for link in re.findall(r'\]\((https://solarityai\.com[^)]*)\)',llm):
+        if link not in expected_public_urls and link!=ORIGIN+'/llms-full.txt':errors.append(f'{name}: links to {link}, which is not a public page')
+if ((DIST/(seo.INDEXNOW_KEY+'.txt')).read_text(encoding='utf-8') if (DIST/(seo.INDEXNOW_KEY+'.txt')).is_file() else '')!=seo.INDEXNOW_KEY:errors.append('IndexNow key file must contain exactly its key')
 header_rules={};current_rule=None
 for line in (DIST/'_headers').read_text(encoding='utf-8').splitlines():
     if line and not line[0].isspace():
@@ -324,7 +371,7 @@ for file in docs:
         if leaves and parts.scheme!='mailto' and '↗' not in label:errors.append(f'{rel}: external link lacks the external arrow: {parts.geturl()}')
 
 # dist/ is the publish set: every file must be a page, a host file, or referenced by a page.
-HOST_FILES={'_headers','_redirects','robots.txt','sitemap.xml','favicon.ico','.well-known/security.txt','assets/fonts/OFL-Manrope.txt','assets/fonts/OFL-Newsreader.txt'}
+HOST_FILES={'_headers','_redirects','robots.txt','sitemap.xml','llms.txt','llms-full.txt',seo.INDEXNOW_KEY+'.txt','favicon.ico','.well-known/security.txt','assets/fonts/OFL-Manrope.txt','assets/fonts/OFL-Newsreader.txt'}
 # Legacy redirects, applied by Cloudflare Pages from dist/_redirects.
 page_routes={'/' if f==DIST/'index.html' else '/'+f.parent.relative_to(DIST).as_posix()+'/' for f in docs if f!=DIST/'404.html'}
 for line in (DIST/'_redirects').read_text(encoding='utf-8').splitlines() if (DIST/'_redirects').is_file() else ['missing']:

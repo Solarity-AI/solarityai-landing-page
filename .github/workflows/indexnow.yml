@@ -1,0 +1,42 @@
+name: IndexNow
+
+# After a production deploy, tell IndexNow engines (Bing, which also feeds ChatGPT search and
+# Copilot, plus Yandex, Seznam and Naver) which pages changed. Google reads the sitemap instead.
+on:
+  push:
+    branches:
+      - develop
+    paths:
+      - dist/sitemap.xml
+  workflow_dispatch:
+    inputs:
+      all:
+        description: Submit every page, not only changed ones
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: indexnow
+  cancel-in-progress: true
+
+jobs:
+  submit:
+    name: Submit changed pages
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Submit to IndexNow
+        run: python deploy/indexnow.py ${{ inputs.all && '--all' || '' }}

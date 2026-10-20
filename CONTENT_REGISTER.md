@@ -130,3 +130,15 @@ The homepage portfolio-to-platform relationship is explicitly conceptual company
 ### Link previews and structured data, October 19, 2026
 - `source-assets/social/*.jpg` are compositions of approved, already-published material: the hero master, the official app icons and store screenshots, the web app screenshots, the sun mark and the site fonts. Their text is limited to product and page names and the existing phrases "iOS & Android" and "Four mobile apps · three web apps".
 - The schema.org data restates facts already on the pages (names, summaries, store links, the web apps' taglines and sites). It states no ratings, prices or store categories. The web apps are typed as `BusinessApplication` on the `Web`, as their own sites describe them.
+
+### Search and AI answer engines, October 19, 2026
+- The founder asked for the best possible ranking in Google and AI chatbots. `robots.txt` therefore allows every crawler, including the AI search and training crawlers it previously blocked (GPTBot, Google-Extended, ClaudeBot, PerplexityBot, CCBot and others, listed in `seo.py`). To restore a block, remove an agent from `seo.AI_CRAWLERS` and give it `Disallow: /`.
+- `seo.py` builds one schema.org graph per page: Organization, founder Person, WebSite, the page itself (`dateModified`), its breadcrumb, and the products it presents. Added facts and their sources:
+  - **Organization profiles:** the App Store and Google Play developer listings for Solarity AI LLC (both list all four apps, checked 2026-10-19) and the GitHub organization.
+  - **Founder profile:** the LinkedIn URL that the earlier solarityai.com paired with his portrait (`research-assets/brand-evidence.json`).
+  - **Store names:** taken from the developer listing ("Looks Max - Look Your Best", "IQ Max: Smarter Every Day", "Sleep Max - Rest Best", "Only Fitness: AI Coach").
+  - **Still excluded:** ratings, reviews, offers, prices and store categories. `check_site.py` rejects them.
+- Search titles and descriptions say what each page is in plain words, such as "Sleep Max: sleep diary and AI sleep coach app". They use only features the page shows. Visible headings are unchanged.
+- **`llms.txt` and `llms-full.txt`:** the [llmstxt.org](https://llmstxt.org) summaries for AI assistants, generated from the same `APPS`, `SAAS` and FAQ data the pages render.
+- **Sitemap `lastmod` and `dateModified`:** these come from `research-assets/page-dates.json`. A route's date changes only when its description or body changes, so a rebuild of unchanged content stays byte-identical.
+- **IndexNow:** after a deploy, `.github/workflows/indexnow.yml` runs `deploy/indexnow.py` to submit the pages whose `lastmod` changed. The key file `dist/<key>.txt` is public by design.

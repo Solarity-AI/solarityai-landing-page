@@ -1,46 +1,46 @@
 {
   "/": {
-    "title": "Building for human potential",
-    "description": "AI-powered self-improvement apps, and three web apps for engineering, managing, and marketing mobile products. Explore Solarity AI and connect with our founder."
+    "title": "Solarity AI: AI-powered self-improvement apps and web apps",
+    "description": "Solarity AI builds AI self-improvement apps for iOS and Android, Looks Max, IQ Max, Sleep Max, and Fitness Max, and three web apps for building mobile products."
   },
   "/apps": {
-    "title": "Apps for everyday ambition",
+    "title": "AI self-improvement apps for iOS and Android",
     "description": "Discover Looks Max, IQ Max, Sleep Max, and Fitness Max, and the Engineering Max, Management Max, and Marketing Max web apps from Solarity AI."
   },
   "/apps/looks-max": {
-    "title": "Looks Max | Appearance & self-care",
-    "description": "Personalized appearance insights, daily habits, and a place to follow your progress."
+    "title": "Looks Max: AI face analysis and self-care app",
+    "description": "Looks Max is an AI appearance and self-care app for iOS and Android: AI facial assessments, personalized grooming suggestions, and a progress journal."
   },
   "/apps/iq-max": {
-    "title": "IQ Max | Cognitive practice",
-    "description": "Focused cognitive exercises, adaptive difficulty, and a daily routine you control."
+    "title": "IQ Max: daily cognitive exercises app",
+    "description": "IQ Max is a cognitive practice app for iOS and Android: daily exercises for memory, reaction time, and attention, with adaptive difficulty, stars, and streaks."
   },
   "/apps/sleep-max": {
-    "title": "Sleep Max | Sleep & daily routines",
-    "description": "A sleep diary, habit tracking, and coaching to support a more consistent routine."
+    "title": "Sleep Max: sleep diary and AI sleep coach app",
+    "description": "Sleep Max is a sleep app for iOS and Android: a sleep diary with an app-generated Sleep Score, habit tracking, soundscapes, and an AI sleep coach."
   },
   "/apps/fitness-max": {
-    "title": "Fitness Max | Fitness & nutrition",
-    "description": "Meal insights, training logs, and AI coaching to help you follow your fitness routine."
+    "title": "Fitness Max: AI fitness and nutrition coach",
+    "description": "Fitness Max, listed in the app stores as Only Fitness, is an AI fitness and nutrition app: photo meal analysis, voice or text logging, and AI coaching."
   },
   "/platform": {
-    "title": "The app factory",
+    "title": "Engineering Max, Management Max, and Marketing Max",
     "description": "Engineering Max, Management Max, and Marketing Max: three Solarity AI web apps for engineering, managing, and marketing mobile products."
   },
   "/company": {
-    "title": "The company",
-    "description": "Meet founder Ata Turhan and the Solarity AI team building self-improvement apps and the systems behind them."
+    "title": "About Solarity AI and founder Ata Turhan",
+    "description": "Solarity AI LLC was founded by Ata Turhan in Irving, Texas. Meet the founder and the team building self-improvement apps and web apps for mobile products."
   },
   "/investors-partners": {
-    "title": "Investors & strategic partners",
+    "title": "Invest in or partner with Solarity AI",
     "description": "Explore the Solarity AI product thesis and opportunities for investment, distribution, technology collaboration, and platform design partnerships."
   },
   "/careers": {
-    "title": "Careers: Build with us",
-    "description": "Explore engineering, marketing, and business development opportunities at Solarity AI. Apply to help build focused AI-powered mobile products."
+    "title": "Careers at Solarity AI: remote engineering and marketing roles",
+    "description": "Fully remote engineering, marketing, and business development roles at Solarity AI, with profit sharing. Apply to help build focused AI-powered mobile products."
   },
   "/contact": {
-    "title": "Start a conversation",
+    "title": "Contact Solarity AI and founder Ata Turhan",
     "description": "Contact Solarity AI about investment, strategic partnerships or its consumer apps. Reach founder Ata Turhan directly."
   },
   "/404": {
