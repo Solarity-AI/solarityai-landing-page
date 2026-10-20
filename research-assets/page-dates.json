@@ -1,38 +1,38 @@
 {
   "/": {
-    "sha": "dddf0103b7e5594a",
+    "sha": "7f232054a7f8e3ac",
     "date": "2026-10-20"
   },
   "/apps": {
-    "sha": "86766a9e4d95c20d",
-    "date": "2026-10-19"
+    "sha": "b29eb7ed38cf58fd",
+    "date": "2026-10-20"
   },
   "/apps/looks-max": {
-    "sha": "7d257766ed183d86",
-    "date": "2026-10-19"
+    "sha": "16419371b3fbf846",
+    "date": "2026-10-20"
   },
   "/apps/iq-max": {
-    "sha": "71949a415f676538",
-    "date": "2026-10-19"
+    "sha": "dbe2cd9ca88498ca",
+    "date": "2026-10-20"
   },
   "/apps/sleep-max": {
-    "sha": "79ba95d0be80c479",
-    "date": "2026-10-19"
+    "sha": "b593f2bfc3aed169",
+    "date": "2026-10-20"
   },
   "/apps/fitness-max": {
-    "sha": "e30d9c074907bddb",
-    "date": "2026-10-19"
+    "sha": "8ad7e8c1bd094b99",
+    "date": "2026-10-20"
   },
   "/platform": {
     "sha": "280081607369c299",
     "date": "2026-10-20"
   },
   "/company": {
-    "sha": "25c43e6955feb3fb",
+    "sha": "4aa4bbb0cee54267",
     "date": "2026-10-20"
   },
   "/investors-partners": {
-    "sha": "628757bb45f643ec",
+    "sha": "6875af01b81d2536",
     "date": "2026-10-20"
   },
   "/careers": {
@@ -40,7 +40,7 @@
     "date": "2026-10-20"
   },
   "/contact": {
-    "sha": "5f5282b981383ed6",
+    "sha": "f977a2bf63dd7720",
     "date": "2026-10-20"
   },
   "/404": {
