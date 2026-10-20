@@ -82,7 +82,7 @@ def social_for(path):
         a=by_slug[path[6:]]
         return f'social/{a["slug"]}.jpg', f'{a["name"]}, {a["category"]}: the app icon beside official App Store imagery'
     return {'/apps':('social/apps.jpg','The four Solarity AI app icons'),
-            '/platform':('social/platform.jpg','Engineering Max, Management Max and Marketing Max product screens'),
+            '/platform':('social/platform.jpg','Engineering Max, Management Max, and Marketing Max product screens'),
             '/investors-partners':('social/investors.jpg','The four Solarity AI app icons')}.get(
             path,('social/default.jpg','A person climbing mountain steps toward a golden sunrise above the clouds'))
 
@@ -131,9 +131,9 @@ pages={}
 hero=hero_section(APPS,btn,contact)
 products=portfolio_wall(APPS)
 founder_strip=f'''<section class="founder-strip wrap">{founder_portrait(compact=True)}<div><h2>Ata Turhan</h2><p>Building Solarity AI from Irving, Texas, with a focus on consumer products and the systems behind them.</p></div><a class="text-link" href="/company">Meet the company {ARROW}</a></section>'''
-pages['/']=('Building for human potential','AI-powered self-improvement apps, and three web apps for engineering, managing and marketing mobile products. Explore Solarity AI and connect with our founder.',hero+products+saas_wall(SAAS)+founder_strip+cta('Build on a shared ambition.','Explore the portfolio, discuss a partnership, or speak with the founder about the company’s direction.'))
+pages['/']=('Building for human potential','AI-powered self-improvement apps, and three web apps for engineering, managing, and marketing mobile products. Explore Solarity AI and connect with our founder.',hero+products+saas_wall(SAAS)+founder_strip+cta('Build on a shared ambition.','Explore the portfolio, discuss a partnership, or speak with the founder about the company’s direction.'))
 
-pages['/apps']=('Apps for everyday ambition','Discover Looks Max, IQ Max, Sleep Max and Fitness Max, and the Engineering Max, Management Max and Marketing Max web apps from Solarity AI.',portfolio_page(APPS,btn,app_art,product_status)+apps_web_band(SAAS)+cta('Products with purpose.','Interested in distribution, product collaboration, or the wider Solarity AI story? Let’s start a conversation.'))
+pages['/apps']=('Apps for everyday ambition','Discover Looks Max, IQ Max, Sleep Max, and Fitness Max, and the Engineering Max, Management Max, and Marketing Max web apps from Solarity AI.',portfolio_page(APPS,btn,app_art,product_status)+apps_web_band(SAAS)+cta('Products with purpose.','Interested in distribution, product collaboration, or the wider Solarity AI story? Let’s start a conversation.'))
 
 for a in APPS:
     status=product_status(a,True)
@@ -141,7 +141,7 @@ for a in APPS:
     features=feature_grid(a)
     pages['/apps/'+a['slug']]=(a['name']+' | '+a['category'],a['summary'],product_page(a,APPS,btn,contact,stores,status,features,app_breadcrumbs(a),related_apps(a,APPS)))
 
-pages['/platform']=('The app factory','Engineering Max, Management Max and Marketing Max: three Solarity AI web apps for engineering, managing and marketing mobile products.',f'''{platform_opening(APPS,SAAS,btn,contact)}{saas_chapters(SAAS)}{strategy_story(btn,contact)}{cta("Shape the next product workflow.","Bring a specific engineering, management, or marketing problem to a conversation about the app factory direction.",lead='partner')}''')
+pages['/platform']=('The app factory','Engineering Max, Management Max, and Marketing Max: three Solarity AI web apps for engineering, managing, and marketing mobile products.',f'''{platform_opening(APPS,SAAS,btn,contact)}{saas_chapters(SAAS)}{strategy_story(btn,contact)}{cta("Shape the next product workflow.","Bring a specific engineering, management, or marketing problem to a conversation about the app factory direction.",lead='partner')}''')
 
 pages['/company']=('The company','Meet founder Ata Turhan and the Solarity AI team building self-improvement apps and the systems behind them.',f'''
 <section class="page-intro wrap company-intro"><h1>The people.<br>The purpose.</h1><p class="lede">Founded by Ata Turhan in Irving, Texas, Solarity AI brings focused self-improvement apps together with a vision for more repeatable product development.</p><a class="text-link company-team-shortcut" href="#team">Meet our team <span aria-hidden="true">↓</span></a><a class="text-link company-careers-shortcut" href="/careers">Explore careers <span aria-hidden="true">→</span></a></section>
@@ -149,12 +149,12 @@ pages['/company']=('The company','Meet founder Ata Turhan and the Solarity AI te
 {selected_team()}{operating_principles()}
 {cta("Meet the people. Explore the possibility.","Connect with the founder about Solarity AI’s products, company direction, or a potential partnership.")}''')
 
-pages['/investors-partners']=('Investors & strategic partners','Explore the Solarity AI product thesis and opportunities for investment, distribution, technology collaboration and platform design partnerships.',f'''{investor_opening(APPS,btn,contact)}{investor_evidence(APPS)}{investor_faq()}{founder_booking(btn,BOOKING)}''')
+pages['/investors-partners']=('Investors & strategic partners','Explore the Solarity AI product thesis and opportunities for investment, distribution, technology collaboration, and platform design partnerships.',f'''{investor_opening(APPS,btn,contact)}{investor_evidence(APPS)}{investor_faq()}{founder_booking(btn,BOOKING)}''')
 
-pages['/careers']=('Careers: Build with us','Explore engineering, marketing and business development opportunities at Solarity AI. Apply to help build focused AI-powered mobile products.',careers_page(btn))
+pages['/careers']=('Careers: Build with us','Explore engineering, marketing, and business development opportunities at Solarity AI. Apply to help build focused AI-powered mobile products.',careers_page(btn))
 
 pages['/contact']=('Start a conversation','Contact Solarity AI about investment, strategic partnerships or its consumer apps. Reach founder Ata Turhan directly.',contact_page(EMAIL,BOOKING,btn))
-pages['/404']=('Page not found','Find your way back to Solarity AI.',f'<section class="page-intro wrap not-found"><div class="recovery-intro">{eyebrow("Error 404")}<h1>This page <span class="muted">is not here.</span></h1><p class="lede">Let’s get you back to the products, the platform, or the conversation.</p><div class="actions">{btn("Back to home","/")}{btn("Explore our apps","/apps","outline")}</div></div>{recovery_links()}</section>')
+pages['/404']=('Page not found','This page is not here. Find your way back to Solarity AI’s apps, app factory platform, company story, investor information, or contact page.',f'<section class="page-intro wrap not-found"><div class="recovery-intro">{eyebrow("Error 404")}<h1>This page <span class="muted">is not here.</span></h1><p class="lede">Let’s get you back to the products, the platform, or the conversation.</p><div class="actions">{btn("Back to home","/")}{btn("Explore our apps","/apps","outline")}</div></div>{recovery_links()}</section>')
 
 style_sources=['design/system/foundation.css', 'design/system/chrome.css', 'design/system/home.css', 'design/system/products.css', 'design/system/company.css', 'design/system/contact.css', 'design/system/careers.css', 'design/system/accessibility.css']
 source_css='\n'.join((ROOT/name).read_text(encoding='utf-8') for name in style_sources)
