@@ -1,3 +1,6 @@
-# Exact Pillow version used to validate this export.
-# A compatible build needs WebP and AVIF encoders for full asset regeneration.
+# Exact versions the build is validated with.
+# Pillow needs WebP and AVIF encoders for full asset regeneration.
 Pillow==13.0.0
+# Page markup lives in templates/ and is rendered with Jinja (templating.py).
+Jinja2==3.1.6
+MarkupSafe==3.0.4
