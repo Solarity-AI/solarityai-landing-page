@@ -54,7 +54,7 @@
   .saas-index a span { font-size:var(--type-label); font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--sand); }
   .saas-index a:is(:hover,:focus-visible) { color:var(--text); background:rgb(255 207 122/.08); }
   .saas-chapter { scroll-margin-top:176px; }
-  .saas-chapter { position:relative; isolation:isolate; overflow:clip; display:grid; grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr); gap:clamp(32px,5vw,80px); align-items:start; padding-block:clamp(56px,7vw,104px); border-top:1px solid var(--line); }
+  .saas-chapter { position:relative; isolation:isolate; overflow:clip; display:grid; grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr); gap:clamp(32px,5vw,80px); align-items:start; padding-block:var(--space-section); border-top:1px solid var(--line); }
   .saas-chapter--flip { grid-template-columns:minmax(0,1.18fr) minmax(0,.82fr); }
   .saas-chapter--flip .saas-chapter-copy { order:2; }
   .saas-chapter:target { border-top-color:var(--accent); }
@@ -74,7 +74,6 @@
   .saas-chapter-art .web-window--tall { width:min(100%,500px); }
   .platform-plan { display:flex; flex-wrap:wrap; gap:4px 20px; margin:18px 0 0; }
   .module-num { font-variant-numeric:tabular-nums; color:var(--accent); }
-  .module-word { position:absolute; z-index:-1; right:-.04em; bottom:-.18em; font-family:var(--font-display); font-size:var(--type-stage); line-height:1; letter-spacing:-.02em; color:transparent; -webkit-text-stroke:1px rgb(214 191 154/.16); pointer-events:none; user-select:none; }
   .strategy-story { padding-block:var(--space-section); }
   .strategy-story-intro { display:grid; grid-template-columns:1fr 1fr; gap:0 80px; margin-bottom:56px; }
   .strategy-story-intro>.eyebrow { grid-column:1 / -1; }
@@ -124,7 +123,7 @@
   .investor-opening-alias { display:block; color:var(--dim); font-size:var(--text-xs); line-height:1.5; margin-top:7px; }
   .investor-opening-product:hover .investor-opening-product-name,.investor-opening-product:focus-visible .investor-opening-product-name { color:var(--product-accent); }
   .investor-opening-caption { margin-top:32px; max-width:var(--measure); }
-  .investor-evidence { padding-bottom:var(--space-section); }
+  .investor-evidence { padding-block:var(--space-section); }
   .investor-evidence-heading { display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr); align-items:end; gap:72px; margin-bottom:48px; }
   .investor-evidence-heading>p { max-width:45ch; margin:0; }
   .investor-evidence-body { display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr); gap:64px; align-items:start; }
@@ -149,7 +148,7 @@
   .investor-commercial .eyebrow { margin-bottom:16px; }
   .investor-commercial h3 { font-size:var(--text-xl); font-weight:500; line-height:1.35; margin:0 0 16px; }
   .investor-commercial p:not(.eyebrow) { font-size:var(--text-md); margin:0; max-width:var(--measure); }
-  .partnership-agenda { display:grid; grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr); gap:72px; padding-bottom:var(--space-section); }
+  .partnership-agenda { display:grid; grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr); gap:72px; padding-block:var(--space-section); }
   .partnership-agenda-heading>p:not(.eyebrow) { max-width:38ch; margin:26px 0 0; }
   .partnership-topic-list { list-style:none; padding:0; margin:0; border-bottom:1px solid var(--line); }
   .partnership-topic { display:grid; grid-template-columns:minmax(0,1fr) 22px; gap:24px; padding-block:30px; border-top:1px solid var(--line); text-decoration:none; }
@@ -159,7 +158,7 @@
   .partnership-topic-arrow { color:var(--accent); font-size:1.35rem; transition:transform var(--motion-fast) var(--motion-ease); }
   .partnership-topic:hover strong,.partnership-topic:focus-visible strong { color:var(--accent); }
   .partnership-topic:hover .partnership-topic-arrow { transform:translateX(4px); }
-  .investor-faq { display:grid; grid-template-columns:minmax(0,.72fr) minmax(0,1.28fr); gap:64px; padding-top:0; }
+  .investor-faq { display:grid; grid-template-columns:minmax(0,.72fr) minmax(0,1.28fr); gap:64px; padding-block:var(--space-section); }
   .investor-faq>.section-heading { display:block; margin:0; }
   .investor-faq .section-lede { font-size:var(--text-md); max-width:33ch; margin-top:26px; }
   .faq-list { min-width:0; border-bottom:1px solid var(--line); }
@@ -294,10 +293,8 @@
   }
   @media (forced-colors:active) {
     .founder-panel,.investor-evidence-vision,.founder-booking { border:1px solid CanvasText; }
-    .module-word { display:none; }
   }
   @media print {
-    .module-word { display:none; }
     .company-intro,.platform-opening,.investor-opening-copy,.founder-section,.selected-team,.operating-principles,.strategy-story-intro,.investor-evidence-heading,.investor-evidence-body,.partnership-agenda,.investor-faq,.founder-booking { display:block; padding-block:16pt; margin-block:0; }
     .investor-opening-proof { margin-top:20pt; }
     .investor-opening-products { grid-template-columns:repeat(4,minmax(0,1fr)); max-width:160mm; gap:12pt; }
