@@ -1,0 +1,18 @@
+{
+  "name": "solarityai.com",
+  "image": "mcr.microsoft.com/devcontainers/python:1-3.12-bookworm",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": { "version": "24" }
+  },
+  "postCreateCommand": "python -m pip install -r requirements.txt && python build_site.py && python check_site.py > /dev/null && echo 'Ready: python -m http.server 8000 --directory dist'",
+  "forwardPorts": [8000],
+  "portsAttributes": { "8000": { "label": "Site preview", "onAutoForward": "openPreview" } },
+  "customizations": {
+    "vscode": {
+      "extensions": ["ms-python.python", "github.vscode-github-actions", "editorconfig.editorconfig"]
+    },
+    "codespaces": {
+      "openFiles": ["CLAUDE.md"]
+    }
+  }
+}
