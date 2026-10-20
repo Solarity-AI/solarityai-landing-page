@@ -1,7 +1,7 @@
 (function () {
   'use strict';
   const CONTACT_EMAIL = 'ata.turhan@solarityai.com';
-  const INQUIRY_TYPES = ['Investor', 'Program', 'Strategic partner', 'Product inquiry', 'Other'];
+  const INQUIRY_TYPES = ['Investor', 'Program', 'Strategic partner', 'Product inquiry', 'Press', 'Other'];
   const unicodeText = (value) => String(value || '').replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]|[\uD800-\uDFFF]/g, (character) => character.length === 2 ? character : '\uFFFD');
   const cleanTopic = (value) => unicodeText(value).replace(/[\u0000-\u001f\u007f]/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 100).replace(/[\uD800-\uDBFF]$/, '');
   const validType = (value) => INQUIRY_TYPES.includes(value) ? value : 'Other';
@@ -26,11 +26,13 @@
       Program: 'An accelerator, incubator, or grant program.',
       'Strategic partner': 'A potential partnership.',
       'Product inquiry': 'A product conversation.',
+      Press: 'A press or media request.',
       Other: 'Start with an introduction.'
     };
     const type = validType(context.type);
     const product = ['Product inquiry', 'Strategic partner'].includes(type) ? cleanTopic(context.product) : '';
-    return product ? type + ': ' + product : labels[type];
+    // The topic follows the type's own sentence, as visitors read it, not the internal type name
+    return product ? labels[type].replace(/\.$/, '') + ': ' + product + '.' : labels[type];
   }
 
   if (typeof module !== 'undefined' && module.exports) {

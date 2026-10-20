@@ -1,0 +1,10 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Turhan;Ata;;;
+FN:Ata Turhan
+ORG:Solarity AI LLC
+TITLE:Founder
+EMAIL;TYPE=INTERNET,WORK:ata.turhan@solarityai.com
+URL:https://solarityai.com/
+ADR;TYPE=WORK:;;;Irving;Texas;;United States
+END:VCARD
