@@ -9,7 +9,8 @@ _WORDS = {2: 'two', 3: 'three', 4: 'four', 5: 'five', 6: 'six', 7: 'seven', 8: '
           11: 'eleven', 12: 'twelve', 13: 'thirteen', 14: 'fourteen', 15: 'fifteen', 16: 'sixteen'}
 
 
-def _long_date(iso):
+def long_date(iso):
+    """'June 23, 2026' from an ISO date."""
     d = date.fromisoformat(iso)
     return f'{d.strftime("%B")} {d.day}, {d.year}'
 
@@ -31,7 +32,21 @@ def shipping_record(apps):
     return str(render('visual_record/shipping_record.html.j2', launches=launches, web=web,
                       count=_WORDS.get(len(launches), str(len(launches))).capitalize(),
                       weeks=_WORDS.get(weeks, str(weeks)),
-                      first=_long_date(launches[0]['iso']), last=_long_date(launches[-1]['iso'])))
+                      first=long_date(launches[0]['iso']), last=long_date(launches[-1]['iso'])))
+
+
+def app_store_since(slug):
+    """'June 23, 2026' for an app with a recorded App Store release, otherwise ''."""
+    return next((long_date(iso) for s, iso in APP_STORE_RELEASES if s == slug), '')
+
+
+def record_summary():
+    """Launch count, weeks between the first and latest launch, and the first launch date."""
+    dates = [date.fromisoformat(iso) for _, iso in APP_STORE_RELEASES]
+    return {'count': len(dates), 'weeks': round((max(dates) - min(dates)).days / 7),
+            'count_word': _WORDS.get(len(dates), str(len(dates))),
+            'weeks_word': _WORDS.get(round((max(dates) - min(dates)).days / 7), ''),
+            'first': long_date(min(dates).isoformat())}
 
 
 def founder_record():
@@ -66,4 +81,4 @@ def program_brief():
     if not (brief.get('seeking') or brief.get('why_now') or metrics or brief.get('one_pager')):
         return ''
     return str(render('visual_record/program_brief.html.j2', brief=brief, metrics=metrics,
-                      as_of=_long_date(max(m['as_of'] for m in metrics)) if metrics else ''))
+                      as_of=long_date(max(m['as_of'] for m in metrics)) if metrics else ''))

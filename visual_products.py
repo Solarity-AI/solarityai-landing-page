@@ -1,6 +1,8 @@
 """Product presentation built around authentic assets, without synthetic app screens."""
 from image_provenance import provenance
+from company_facts import APP_STORE_RELEASES
 from templating import render
+from visual_record import app_store_since
 from visual_stage import product_close
 
 
@@ -30,4 +32,5 @@ def product_page(app, apps, btn, contact, stores, status, feature_markup, breadc
     return str(render('visual_products/product_page.html.j2', app=app, breadcrumbs=breadcrumbs,
                       art=product_art(app, hero=True), stores=stores, story=product_story(app),
                       feature_markup=feature_markup, close=product_close(app, btn, contact),
-                      related_markup=related_markup))
+                      related_markup=related_markup, since=app_store_since(app['slug']),
+                      since_iso=dict(APP_STORE_RELEASES).get(app['slug'], '')))

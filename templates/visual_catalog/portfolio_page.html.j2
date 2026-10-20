@@ -9,7 +9,7 @@
             <p class="catalog-category">{{ app['category'] }}</p>
             <h2 id="catalog-{{ app['slug'] }}-title"><a class="catalog-product-link" href="/apps/{{ app['slug'] }}">{{ app['name'] }}</a></h2>
             <p class="world-band-summary">{{ app['summary'] }}</p>
-            <div class="world-band-stores">{{ band['badges']|safe }}{% if app.get('store_name') %}<p class="product-store-name">On the App Store and Google Play as {{ app['store_name'] }}.</p>{% endif %}</div>
+            <div class="world-band-stores">{{ band['badges']|safe }}{% if app.get('store_name') %}<p class="product-store-name">On the App Store and Google Play as {{ app['store_name'] }}.</p>{% endif %}{% if band['since'] %}<p class="fineprint">On the App Store since <time datetime="{{ band['since_iso'] }}">{{ band['since'] }}</time>.</p>{% endif %}</div>
             <a class="world-band-explore" href="/apps/{{ app['slug'] }}">Explore {{ app['name'] }} <span aria-hidden="true">→</span></a>
           </div>
           <div class="world-band-art"><span class="screenshot-stage">{{ band['window']|safe }}</span></div>
