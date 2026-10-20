@@ -94,7 +94,7 @@ def platform_map(apps, saas):
         nodes.append('<li><a class="pmap-node" href="#' + escape(product['slug'], quote=True) + '">'
                      '<span class="pmap-word">' + escape(product['stage']) + '</span><strong>' + escape(product['name']) + '</strong>'
                      '<span class="pmap-caption">' + escape(product['category']) + '</span>'
-                     '<span class="status"><i aria-hidden="true"></i>' + escape(product['status'].split(' · ')[-1].capitalize()) + '</span></a></li>')
+                     '<span class="status"><i aria-hidden="true"></i>' + escape((lambda s: s[:1].upper() + s[1:])(product['status'].split(' · ')[-1])) + '</span></a></li>')
     names = ', '.join(escape(app['name']) for app in listed)
     tools = '; '.join(escape(p['stage']) + ', ' + escape(p['name']) + ' (' + escape(p['status']) + ')' for p in saas)
     return ('<figure class="pmap pmap--platform">'

@@ -53,7 +53,7 @@ def saas_wall(saas):
     """Home: the three web apps beside the consumer apps, each a card with its real product screen."""
     return f'''<section class="company-strategy saas-wall" id="web-apps" aria-labelledby="strategy-title"><div class="wrap">
       <div class="saas-heading"><div class="strategy-copy"><p class="eyebrow">The app factory</p><h2 id="strategy-title">Build the product. <br><span>Improve the way it gets built.</span></h2></div>
-      <div class="saas-heading-copy"><p>Each app starts with a distinct human ambition. Building these products also shaped three web apps for the work behind them: engineering, management and marketing.</p><p class="saas-plan">{MOBILE_PLAN}</p><a class="text-link" href="/platform">Explore the app factory <span aria-hidden="true">→</span></a></div></div>
+      <div class="saas-heading-copy"><p>Each app starts with a distinct human ambition. Building these products also shaped three web apps for the work behind them: engineering, management, and marketing.</p><p class="saas-plan">{MOBILE_PLAN}</p><a class="text-link" href="/platform">Explore the app factory <span aria-hidden="true">→</span></a></div></div>
       {saas_cards(saas, 'home')}
     </div></section>'''
 
@@ -62,7 +62,7 @@ def apps_web_band(saas):
     """Apps: the portfolio page also lists the three web apps, after the consumer world bands."""
     return f'''<section class="apps-web wrap" id="web-apps" aria-labelledby="apps-web-title">
       <div class="saas-heading"><div><p class="eyebrow">Web apps</p><h2 id="apps-web-title">For the teams who build apps.</h2></div>
-      <div class="saas-heading-copy"><p>Engineering Max, Management Max and Marketing Max, built alongside the consumer apps for the work behind them.</p><p class="saas-plan">{MOBILE_PLAN}</p><a class="text-link" href="/platform">Explore the app factory <span aria-hidden="true">→</span></a></div></div>
+      <div class="saas-heading-copy"><p>Engineering Max, Management Max, and Marketing Max, built alongside the consumer apps for the work behind them.</p><p class="saas-plan">{MOBILE_PLAN}</p><a class="text-link" href="/platform">Explore the app factory <span aria-hidden="true">→</span></a></div></div>
       {saas_cards(saas, 'apps')}
     </section>'''
 

@@ -1,11 +1,11 @@
 {
   "/": {
     "title": "Building for human potential",
-    "description": "AI-powered self-improvement apps, and three web apps for engineering, managing and marketing mobile products. Explore Solarity AI and connect with our founder."
+    "description": "AI-powered self-improvement apps, and three web apps for engineering, managing, and marketing mobile products. Explore Solarity AI and connect with our founder."
   },
   "/apps": {
     "title": "Apps for everyday ambition",
-    "description": "Discover Looks Max, IQ Max, Sleep Max and Fitness Max, and the Engineering Max, Management Max and Marketing Max web apps from Solarity AI."
+    "description": "Discover Looks Max, IQ Max, Sleep Max, and Fitness Max, and the Engineering Max, Management Max, and Marketing Max web apps from Solarity AI."
   },
   "/apps/looks-max": {
     "title": "Looks Max | Appearance & self-care",
@@ -25,7 +25,7 @@
   },
   "/platform": {
     "title": "The app factory",
-    "description": "Engineering Max, Management Max and Marketing Max: three Solarity AI web apps for engineering, managing and marketing mobile products."
+    "description": "Engineering Max, Management Max, and Marketing Max: three Solarity AI web apps for engineering, managing, and marketing mobile products."
   },
   "/company": {
     "title": "The company",
@@ -33,11 +33,11 @@
   },
   "/investors-partners": {
     "title": "Investors & strategic partners",
-    "description": "Explore the Solarity AI product thesis and opportunities for investment, distribution, technology collaboration and platform design partnerships."
+    "description": "Explore the Solarity AI product thesis and opportunities for investment, distribution, technology collaboration, and platform design partnerships."
   },
   "/careers": {
     "title": "Careers: Build with us",
-    "description": "Explore engineering, marketing and business development opportunities at Solarity AI. Apply to help build focused AI-powered mobile products."
+    "description": "Explore engineering, marketing, and business development opportunities at Solarity AI. Apply to help build focused AI-powered mobile products."
   },
   "/contact": {
     "title": "Start a conversation",
@@ -45,6 +45,6 @@
   },
   "/404": {
     "title": "Page not found",
-    "description": "Find your way back to Solarity AI."
+    "description": "This page is not here. Find your way back to Solarity AI\u2019s apps, app factory platform, company story, investor information, or contact page."
   }
 }

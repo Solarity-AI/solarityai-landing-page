@@ -230,6 +230,26 @@ All values below are tokens on `:root` in `design/system/foundation.css`. `check
   - **More contrast.** `prefers-contrast: more` raises `--muted`, `--dim`, `--sand` and the hairline tokens.
   - **Keyboard parity.** A card holding keyboard focus lifts and lights like a hovered one (`:has(:focus-visible)`), with motion allowed.
   - **Measured (local Lighthouse mobile, A/B against `develop`).** Investors LCP 3,250 → 2,490 ms and score 93 → 97. Home LCP 2,785 → 2,638 ms and 96 → 97. Apps and Company unchanged. CLS 0 and accessibility 100 throughout.
+- **QA pass (October 19, 2026).** Coverage:
+  - A static crawl of `dist/`: links, anchors, IDs, ARIA references, headings, metadata and JSON-LD.
+  - The 14 external links.
+  - A browser sweep of all 12 routes at 10 widths from 320 to 1920.
+  - axe-core 4.14 (WCAG 2.2 AA plus best practice).
+  - A keyboard focus walk, and the WCAG 1.4.12 text-spacing test.
+  - The menu, screenshot viewer, contact links, copy button and careers validation, with the form provider blocked so nothing was sent.
+  - A read of every page's copy.
+
+  Fixed:
+  - **Apps summaries on phones** were cut to one line with an ellipsis. They now wrap in full.
+  - **Investors FAQ heading.** A non-breaking space in "A few useful answers." ran it 71–100 px past its column at 1024 px and wider.
+  - **Investors booking heading.** The image track took a fixed 600 px, so "Compare perspectives with the founder." overflowed its column by 84 px at 1024 and 10 px at 1280. The track is now `min(600px, 50%)`.
+  - **Product titles** no longer use `nowrap` on desktop. Every name still fits on one line from 851 px up, and under text spacing "Fitness Max" wraps instead of running into the phone art.
+  - **Platform index at 320 px.** "Management Max" overflowed its cell by 7 px. Phones up to 360 px get tighter cell padding.
+  - **404 description** went from 34 characters to a full sentence.
+  - **App factory map status.** `capitalize()` turned "internal V1" into "Internal v1". Only the first letter is raised now.
+  - **Serial comma** added in the lists that lacked it (meta descriptions, the web app intro, and the Engineering, Management and Marketing Max facts), matching the rest of the site.
+
+  `check_site.py` now fails on a non-breaking space inside an h1–h3, and on `text-overflow: ellipsis` anywhere but the browser-frame address label. No axe violations, and every interactive check passed.
 - **Buttons (P1).** The primary is `--sun-core` with an inner highlight and a warm bloom on hover and focus. The outline button is a `--control-border` hairline whose hover fill is `rgb(255 207 122 / .08)`.
 - **Status chips.** `.status` has a filled sun dot for evidence; `.status.vision` has a hollow ring for vision. Both always carry text.
 

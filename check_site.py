@@ -371,6 +371,12 @@ for file in docs:
         for match in re.finditer(r'class="(?:[^"]*\s)?'+re.escape(scope)+r'(?:\s[^"]*)?"[^>]*>(.*?)</h[1-6]>',text,re.S):
             words=re.sub(r'<[^>]+>','',re.sub(r'<br\b[^>]*>','\0',match.group(1)))
             for joined in re.findall(r'\S+\0\S+',words):errors.append(f'{rel}: hidden line break joins words in .{scope}: {joined.replace(chr(0)," / ")}')
+    # Display headings must be free to wrap: a non-breaking space pushed the FAQ heading out of its column.
+    for level,heading in re.findall(r'<h([1-3])\b[^>]*>(.*?)</h\1>',text,re.S):
+        if '&nbsp;' in heading or ' ' in heading:errors.append(f'{rel}: non-breaking space in an h{level} keeps it from wrapping: {re.sub("<[^>]+>","",heading)[:50]}')
+# Copy is never cut to one line; only the browser-frame address label may end in an ellipsis.
+for selector,body in re.findall(r'([^{}]+)\{([^{}]*text-overflow\s*:\s*ellipsis[^{}]*)\}',css):
+    if selector.strip()!='.web-bar span':errors.append(f'Presentation CSS truncates text with an ellipsis: {selector.strip()[:60]}')
 # Design tokens: small and body text use the type scale, three weights, and named radii.
 for source in style_sources:
     rules=(ROOT/source).read_text(encoding='utf-8') if (ROOT/source).is_file() else ''

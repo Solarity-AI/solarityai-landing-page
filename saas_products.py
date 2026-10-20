@@ -1,4 +1,4 @@
-"""The three Solarity AI web apps: Engineering Max, Management Max and Marketing Max.
+"""The three Solarity AI web apps: Engineering Max, Management Max, and Marketing Max.
 
 Every statement here comes from the product's own site, read on 2026-10-19
 (research-assets/saas-evidence.json), or from the founder's instruction of the
@@ -24,7 +24,7 @@ SAAS = [
                  'Engineering Max checks it against 155 rules across 12 areas, ranks the problems, and returns '
                  'one focused fix prompt at a time, then checks each fix.'),
         facts=('155 rules across 12 areas, store blockers and security first',
-               'For Expo, React Native, Flutter and native apps',
+               'For Expo, React Native, Flutter, and native apps',
                'Reads the agent’s report, never the source code',
                'Tested first on Solarity AI’s own Sleep Max'),
         availability='Free during private testing. Pricing is not set yet.',
@@ -46,14 +46,14 @@ SAAS = [
                  'and combines it across any selection of apps. Where combining would be dishonest, it shows '
                  'the spread instead and names the reason.'),
         facts=('50 metric definitions and 16 validation rules',
-               'Syncs from RevenueCat, AppsFlyer, App Store Connect, Google Play, Firebase, GitHub and YouTube',
+               'Syncs from RevenueCat, AppsFlyer, App Store Connect, Google Play, Firebase, GitHub, and YouTube',
                'Roles for the whole team, and every change is signed',
                'Plans count apps, not seats'),
         availability='Free for one app and two seats, with paid plans for larger portfolios.',
         screens=(dict(file='management-max-overview.webp', width=1160, height=1280,
                       alt='Management Max overview of a sample week: active users, MRR and crash-free sessions across seven sample apps, and a retention spread it declines to average.'),
                  dict(file='management-max-sources.webp', width=2360, height=760,
-                      alt='Management Max sources: RevenueCat, AppsFlyer, App Store Connect, Google Play, Firebase, GitHub and YouTube feed four routes in, which pass 16 rules before the data is stored.')),
+                      alt='Management Max sources: RevenueCat, AppsFlyer, App Store Connect, Google Play, Firebase, GitHub, and YouTube feed four routes in, which pass 16 rules before the data is stored.')),
         caption='From managementmax.solarityai.com, with sample apps and figures.',
     ),
     dict(
@@ -70,7 +70,7 @@ SAAS = [
                  'the brand’s voice, and posts to Instagram at the chosen time. A person approves each of the '
                  'four steps.'),
         facts=('Built for Solarity AI’s own apps first',
-               'Four recorded approvals: video, reason, caption and send',
+               'Four recorded approvals: video, reason, caption, and send',
                'Line tests and results for every post',
                'Instagram today, with TikTok and YouTube Shorts planned'),
         availability='In early access. Pricing is not set yet.',

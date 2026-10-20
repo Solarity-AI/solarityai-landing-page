@@ -72,7 +72,7 @@ def investor_faq():
         '<section class="investor-faq section wrap" id="investor-questions" '
         'aria-labelledby="investor-questions-title">'
         '<div class="section-heading"><div>'
-        '<h2 id="investor-questions-title">A few useful&nbsp;answers.</h2></div>'
+        '<h2 id="investor-questions-title">A few useful answers.</h2></div>'
         '<p class="section-lede">A clear starting point for exploring the '
         'products, the platform, and a potential collaboration.</p></div>'
         '<div class="faq-list">'
