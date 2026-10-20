@@ -51,7 +51,8 @@ for file,d in docs.items():
     canonical=[a.get('href','') for t,a in d.tags if t=='link' and a.get('rel')=='canonical']
     route='/' if file==DIST/'index.html' else '/404' if file==DIST/'404.html' else '/'+file.parent.relative_to(DIST).as_posix()
     expected_url=ORIGIN+public_path(route)
-    if canonical!=[expected_url]:errors.append(f'{rel}: unexpected canonical {canonical}')
+    # The error page is noindex and names no canonical: it is not a page search engines should keep.
+    if canonical!=([] if route=='/404' else [expected_url]):errors.append(f'{rel}: unexpected canonical {canonical}')
     if meta.get('og:url')!=expected_url:errors.append(f'{rel}: Open Graph URL must match the final canonical URL')
     if meta.get('referrer')!='strict-origin-when-cross-origin':errors.append(f'{rel}: missing browser referrer policy')
     labels={a['for'] for t,a in d.tags if t=='label' and a.get('for')}
