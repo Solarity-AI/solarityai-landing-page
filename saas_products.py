@@ -8,6 +8,8 @@ that a site does not state.
 """
 
 MOBILE_PLAN = 'Web apps today. Mobile versions are planned.'
+# Shown under every row of web app cards: the screens carry figures, and only some are real
+SCREEN_NOTE = 'Screens from each web app’s own site. Management Max and Marketing Max show sample apps and figures.'
 
 SAAS = [
     dict(

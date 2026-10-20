@@ -132,6 +132,7 @@
 .wall-stores a{display:inline-flex;align-items:center;gap:6px;min-height:44px;font-size:var(--type-meta);color:var(--gold)}
 .wall-stores a:is(:hover,:focus-visible){color:var(--text)}
 .wall-caption{margin-top:32px;padding-top:16px;border-top:1px solid var(--line-soft)}
+.saas-caption{margin-top:16px}
 @media(hover:hover) and (prefers-reduced-motion:no-preference){
  .wall-window .store-screen{transition:transform 420ms var(--motion-ease)}
  .wall-link:hover .store-screen{transform:translateY(-6px)}
