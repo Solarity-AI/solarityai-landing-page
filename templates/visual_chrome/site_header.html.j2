@@ -1,0 +1,17 @@
+<header class="site-header chrome-header"><div class="header-inner wrap">
+  {#- Original-color sun recovered from the official company lockup. -#}
+  <a class="wordmark brand-wordmark" href="/" aria-label="Solarity AI home">
+  {#- -#}
+  <img class="brand-sun" src="/assets/brand/solarity-sun-48.9bc99afc73e8.webp" srcset="/assets/brand/solarity-sun-48.9bc99afc73e8.webp 48w, /assets/brand/solarity-sun-96.da9c18cba138.webp 96w" sizes="34px" width="48" height="48" alt="" decoding="async">
+  {#- -#}
+  <b>SOLARITY <span>AI</span></b></a>
+  {#- -#}
+  <button class="menu-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Open navigation">
+  {#- -#}
+  <span class="sr-only">Menu</span><span class="menu-lines" aria-hidden="true"></span></button>
+  {#- -#}
+  <nav id="site-nav" aria-label="Primary navigation">
+  {%- for link in links -%}
+    <a href="{{ link['url'] }}"{% if link['current'] %} aria-current="{{ link['current'] }}"{% endif %}><span class="nav-link-label">{{ link['label'] }}<small class="nav-link-description">{{ link['description'] }}</small></span><span class="nav-link-arrow" aria-hidden="true">→</span></a>
+  {%- endfor -%}
+  </nav><div class="header-actions">{{ contact_button|safe }}</div></div></header>
