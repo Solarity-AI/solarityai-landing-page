@@ -43,3 +43,9 @@ test('topic length limits keep Unicode pairs intact and malformed input cannot c
   assert.equal(url.searchParams.get('subject'), 'Solarity AI | Product inquiry | �&bcc=other@example.com');
   assert.deepEqual([...url.searchParams.keys()], ['subject']);
 });
+
+test('program reviewers get their own subject and never carry a product', () => {
+  assert.deepEqual(readInquiryContext('?type=Program&product=Anything'), { type: 'Program', product: '' });
+  assert.equal(new URL(buildContactMailto({ type: 'Program', product: 'Ignored' })).searchParams.get('subject'), 'Solarity AI | Program');
+  assert.equal(contactContextLabel({ type: 'Program' }), 'An accelerator, incubator, or grant program.');
+});

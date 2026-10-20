@@ -3,6 +3,7 @@
 <dl class="ledger">
 <div><dt>Company</dt><dd>{% if company %}{{ company }}{% else %}Solarity AI LLC{% endif %} · Irving, Texas</dd></div>
 <div class="ledger-founder"><dt>Founder</dt><dd><a href="/company"><img class="ledger-print" src="/assets/brand/ata-turhan-320.db6d27d9b9b3.webp" width="96" height="120" alt="" loading="lazy" decoding="async"><span>Ata Turhan</span></a></dd></div>
+<div><dt>Shipping</dt><dd><a href="#shipping-record">{{ record.count }} apps in {{ record.weeks }} weeks</a> · first release {{ record.first }}</dd></div>
 <div><dt>Portfolio</dt><dd><a href="/apps">{{ listed|length }} mobile apps</a> on the App Store and Google Play, and <a href="/platform">{{ web_app_count }} web apps</a></dd></div>
 </dl>
 </section>

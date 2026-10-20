@@ -5,7 +5,7 @@
         <div class="product-hero-art">{{ art|safe }}</div>
         <div class="product-hero-copy"><p class="lede">{{ app['intro'] }}</p><div class="product-get" id="get-app">{{ stores|safe }}</div>
           {%- if app.get('store_name') %}<p class="product-store-name">On the App Store and Google Play as {{ app['store_name'] }}.</p>{% endif %}
-          {%- if app.get('apple') %}<p class="fineprint">In-app purchases. See the stores for current plans and regional availability.</p>{% endif %}</div>
+          {%- if app.get('apple') %}<p class="fineprint">{% if since %}On the App Store since <time datetime="{{ since_iso }}">{{ since }}</time>. {% endif %}In-app purchases. See the stores for current plans and regional availability.</p>{% endif %}</div>
       </section>
       {{ story|safe }}
       {{ feature_markup|safe }}

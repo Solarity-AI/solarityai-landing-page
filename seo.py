@@ -11,6 +11,7 @@ import json
 import re
 from pathlib import Path
 
+from company_facts import APP_STORE_RELEASES
 from site_urls import public_path
 
 ORIGIN = 'https://solarityai.com'
@@ -102,6 +103,9 @@ def mobile_app(a, full=True):
     if not full:
         return node
     names = [STORE_NAMES[a['slug']]] + (['Only Fitness'] if a['slug'] == 'fitness-max' else [])
+    released = dict(APP_STORE_RELEASES).get(a['slug'])
+    if released:
+        node['datePublished'] = released
     node.update({
         'alternateName': names, 'description': a['intro'], 'abstract': a['summary'],
         'operatingSystem': 'iOS, Android', 'image': ORIGIN + '/assets/' + a['slug'] + '-icon.webp',
@@ -202,6 +206,8 @@ def llms_txt(pages, *, apps, saas, email, full=False):
     out += ['## Mobile apps (iOS and Android)', '']
     for a in store_apps:
         alias = ' Listed in the app stores as Only Fitness.' if a['slug'] == 'fitness-max' else ''
+        released = dict(APP_STORE_RELEASES).get(a['slug'])
+        alias += f' On the App Store since {released}.' if released else ''
         out.append(f'- [{a["name"]}]({link("/apps/" + a["slug"])}): {a["category"]}. {a["summary"]}{alias} '
                    f'[App Store]({a["apple"]}), [Google Play]({a["google"]})')
         if full:

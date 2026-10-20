@@ -297,6 +297,9 @@
   @media print {
     .company-intro,.platform-opening,.investor-opening-copy,.founder-section,.selected-team,.operating-principles,.strategy-story-intro,.investor-evidence-heading,.investor-evidence-body,.partnership-agenda,.investor-faq,.founder-booking { display:block; padding-block:16pt; margin-block:0; }
     .investor-opening-proof { margin-top:20pt; }
+    /* A printed or PDF brief keeps the web app cards compact: the screenshots are on the live page. */
+    .showroom .saas-grid { grid-template-columns:repeat(3,minmax(0,1fr)); gap:12pt; }
+    .showroom .web-window { max-height:45mm; overflow:hidden; }
     .investor-opening-products { grid-template-columns:repeat(4,minmax(0,1fr)); max-width:160mm; gap:12pt; }
     .investor-opening-product-name { font-size:10pt; }
     .founder-panel { max-width:85mm; margin-bottom:18pt; break-inside:avoid; }

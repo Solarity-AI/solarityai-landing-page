@@ -148,3 +148,17 @@ The homepage portfolio-to-platform relationship is explicitly conceptual company
 - **Hero copy:** "Solarity AI builds AI self-improvement apps, four of them live on iOS and Android, and the tools that let our small team ship them fast." The proof strip reads "4 apps live on iOS & Android · 3 web apps · Irving, Texas". Both restate verified facts.
 - **App factory line on Home:** "Our approach: build consumer apps and the tools behind them, so every app we ship improves the tools for the next." This is stated as the company's approach, not as a measured result.
 - **Hidden until supplied:** the founder bio and LinkedIn link, team roles, commitment and links, the founding year and state of registration, and the program brief (ask, why now, dated metrics, one-pager). They live in `company_facts.py` and render nothing while empty (`test_records.py`). Fill them only with founder-supplied facts, and record the source here. Metrics need an "as of" date.
+- **Ten readiness improvements (same day).** All are built from `company_facts.APP_STORE_RELEASES`, the approved roster in `visual_team.py` and existing copy, so no new claims:
+  - **Where the release data now appears:**
+    - "On the App Store since …" on each product page and Apps band.
+    - A "Shipping" row in the Investors summary.
+    - A track-record line on Company.
+    - `datePublished` in each MobileApplication's structured data.
+    - "On the App Store since …" in `llms.txt`.
+  - **Two new investor FAQ answers**, generated from that same data:
+    - "How quickly has Solarity AI shipped?" (launch dates)
+    - "Who builds Solarity AI?" (the founder and the approved team names, without roles)
+  - **A fifth contact topic,** "Accelerators, incubators, and grants" (`type=Program`, subject "Solarity AI | Program"). The Investors page links to it.
+  - **"Updated …" in each page's footer** is that page's last content change (`research-assets/page-dates.json`).
+  - **Print.** Printing or saving a page as PDF opens every FAQ answer and compacts the web app cards and the shipping record.
+  - **Share card.** The Investors share card reads "Four apps in twelve weeks." It was regenerated alone with `make_social_images.portfolio_card`, so the other cards keep their bytes.

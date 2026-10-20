@@ -21,7 +21,7 @@ def site_header(path, nav_items, btn):
     return str(render('visual_chrome/site_header.html.j2', links=links, contact_button=contact_button))
 
 
-def site_footer(email, path='/', booking=''):
+def site_footer(email, path='/', booking='', updated='', updated_iso=''):
     """Footer directory: the whole portfolio (mobile and web apps), the company routes and direct contact.
     Links that leave the Site (mailto:, https:) carry ↗; https: links also open in a new tab."""
     groups = [
@@ -34,4 +34,4 @@ def site_footer(email, path='/', booking=''):
                      ('/contact?type=Strategic+partner#prepare-inquiry', 'Partnership inquiries'),
                      ('mailto:' + email, 'Email Ata')] + ([(booking, 'Book a conversation')] if booking else [])),
     ]
-    return str(render('visual_chrome/site_footer.html.j2', groups=groups, path=path, company=company_line()))
+    return str(render('visual_chrome/site_footer.html.j2', groups=groups, path=path, company=company_line(), updated=updated, updated_iso=updated_iso))

@@ -12,6 +12,6 @@
   {#- -#}
   <span class="footer-signature-word">SOLARITY<span>AI</span></span></div>
   {#- -#}
-  <div class="footer-legal"><p>© 2026 {% if company %}{{ company }}{% else %}Solarity AI LLC{% endif %} · Irving, Texas, United States · <a href="/contact#data-note">About this contact experience</a></p>
+  <div class="footer-legal"><p>© 2026 {% if company %}{{ company }}{% else %}Solarity AI LLC{% endif %} · Irving, Texas, United States{% if updated %} · Updated <time datetime="{{ updated_iso }}">{{ updated }}</time>{% endif %} · <a href="/contact#data-note">About this contact experience</a></p>
   {#- -#}
   <p>App Store is a trademark of Apple Inc. Google Play is a trademark of Google LLC.</p></div></div></footer>

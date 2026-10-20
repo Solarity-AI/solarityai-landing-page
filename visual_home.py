@@ -1,9 +1,10 @@
 """Solar-inspired company opening, product evidence, and an explicit strategy."""
 from templating import render
+from visual_record import record_summary
 
 
 def hero_section(apps, btn, contact):
-    return render('visual_home/hero.html.j2', apps=apps, btn=btn, contact=contact)
+    return render('visual_home/hero.html.j2', apps=apps, btn=btn, contact=contact, record=record_summary())
 
 
 def closing_scene(statement, desc, contact, lead='investor'):

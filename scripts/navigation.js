@@ -123,10 +123,21 @@
     }, { passive: true });
   }
 
+  // Printing or saving a page as PDF includes every collapsed answer, then restores the page.
+  function initializePrint() {
+    window.addEventListener('beforeprint', () => {
+      document.querySelectorAll('details:not([open])').forEach((item) => { item.setAttribute('data-print-opened', ''); item.open = true; });
+    });
+    window.addEventListener('afterprint', () => {
+      document.querySelectorAll('details[data-print-opened]').forEach((item) => { item.removeAttribute('data-print-opened'); item.open = false; });
+    });
+  }
+
   function initialize() {
     initializeHeroHeader();
     initializeNavigation();
     initializePointerLight();
+    initializePrint();
   }
 
   if (document.readyState === 'loading') {

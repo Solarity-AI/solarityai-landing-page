@@ -3,7 +3,15 @@
 Keep these answers aligned with build_site.APPS and CONTENT_REGISTER.md.
 These helpers return static HTML and require no JavaScript.
 """
+from company_facts import APP_STORE_RELEASES
 from templating import render
+from visual_record import long_date, record_summary
+from visual_team import TEAM_MEMBERS
+
+_NAMES = {'looks-max': 'Looks Max', 'fitness-max': 'Fitness Max (listed as Only Fitness)', 'iq-max': 'IQ Max', 'sleep-max': 'Sleep Max'}
+_RECORD = record_summary()
+_LAUNCHES = [f'{_NAMES[slug]} on {long_date(iso)}' for slug, iso in APP_STORE_RELEASES]
+_TEAM = [member['name'] for member in TEAM_MEMBERS]
 
 
 FAQ = [
@@ -16,6 +24,18 @@ FAQ = [
         'Google Play listings. Fitness Max is listed in app stores as Only Fitness. '
         'Their product pages link to the stores for current offers and '
         'availability in your region.</p>',
+    ),
+    (
+        "How quickly has Solarity AI shipped?",
+        f'<p>{_RECORD["count_word"].capitalize()} apps launched on the App Store in {_RECORD["weeks_word"]} weeks: '
+        + ', '.join(_LAUNCHES[:-1]) + ', and ' + _LAUNCHES[-1] + '. Each is also on Google Play. '
+        '<a href="/investors-partners#shipping-record">See the shipping record</a>.</p>',
+    ),
+    (
+        "Who builds Solarity AI?",
+        '<p>Founder Ata Turhan leads Solarity AI from Irving, Texas, with '
+        + ', '.join(_TEAM[:-1]) + ', and ' + _TEAM[-1] + '. '
+        '<a href="/company#team">Meet the team</a>.</p>',
     ),
     (
         "Can other teams use the web apps?",

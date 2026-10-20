@@ -17,7 +17,7 @@ from visual_products import product_art, product_page
 from visual_catalog import portfolio_page, portfolio_wall
 from visual_company_upgrade import strategy_story, investor_evidence, investor_opening, operating_principles, founder_booking
 from visual_strategy import platform_opening
-from visual_record import shipping_record, founder_record, program_brief, company_line
+from visual_record import shipping_record, founder_record, program_brief, company_line, record_summary, long_date
 import seo
 from templating import render
 from optimize_images import ensure_optimized_images, write_favicon
@@ -79,7 +79,7 @@ def shell(path,title,desc,body):
     return str(render('build_site/shell.html.j2',path=path,full_title=full_title,desc=desc,body=body,
                       robots='noindex,follow' if path=='/404' else 'index,follow',url=ORIGIN+public_path(path),origin=ORIGIN,
                       social_image=social_image,social_alt=social_alt,font_url=FONT_URL,display_font_url=DISPLAY_FONT_URL,
-                      header=site_header(path,NAV,btn),provenance=provenance(),footer=site_footer(EMAIL,path,BOOKING),json_ld=json.dumps(data)))
+                      header=site_header(path,NAV,btn),provenance=provenance(),footer=site_footer(EMAIL,path,BOOKING,long_date(PAGE_DATES[path]),PAGE_DATES[path]),json_ld=json.dumps(data)))
 
 def page(name,**context):
     """A page body from templates/build_site/pages/, as a plain string for the page records."""
@@ -103,7 +103,7 @@ pages['/platform']=('Engineering Max, Management Max, and Marketing Max','Engine
                     page('platform',platform_opening=platform_opening,saas_chapters=saas_chapters,strategy_story=strategy_story))
 
 pages['/company']=('About Solarity AI and founder Ata Turhan','Solarity AI LLC was founded by Ata Turhan in Irving, Texas. Meet the founder and the team building self-improvement apps and web apps for mobile products.',
-                   page('company',founder_card=founder_card,founder_record=founder_record,selected_team=selected_team,operating_principles=operating_principles))
+                   page('company',record=record_summary(),founder_card=founder_card,founder_record=founder_record,selected_team=selected_team,operating_principles=operating_principles))
 
 pages['/investors-partners']=('Invest in or partner with Solarity AI','Explore the Solarity AI product thesis and opportunities for investment, distribution, technology collaboration, and platform design partnerships.',
                               page('investors_partners',investor_opening=investor_opening,shipping_record=shipping_record,program_brief=program_brief,investor_evidence=investor_evidence,investor_faq=investor_faq,founder_booking=founder_booking,booking=BOOKING))

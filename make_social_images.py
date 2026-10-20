@@ -164,7 +164,7 @@ def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     cards = {'default': default_card(), 'platform': platform_card(),
              'apps': portfolio_card(['Apps for', 'everyday ambition.'], 'Four mobile apps · three web apps'),
-             'investors': portfolio_card(['Products today.', 'Possibility ahead.'], 'Investors & partners')}
+             'investors': portfolio_card(['Four apps in', 'twelve weeks.'], 'Investors & partners · Solarity AI')}
     for app in APPS:
         cards[app[0]] = product_card(*app)
     record = {'size': [W, H], 'note': __doc__.strip().splitlines()[0], 'files': {}}

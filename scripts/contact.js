@@ -1,7 +1,7 @@
 (function () {
   'use strict';
   const CONTACT_EMAIL = 'ata.turhan@solarityai.com';
-  const INQUIRY_TYPES = ['Investor', 'Strategic partner', 'Product inquiry', 'Other'];
+  const INQUIRY_TYPES = ['Investor', 'Program', 'Strategic partner', 'Product inquiry', 'Other'];
   const unicodeText = (value) => String(value || '').replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]|[\uD800-\uDFFF]/g, (character) => character.length === 2 ? character : '\uFFFD');
   const cleanTopic = (value) => unicodeText(value).replace(/[\u0000-\u001f\u007f]/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 100).replace(/[\uD800-\uDBFF]$/, '');
   const validType = (value) => INQUIRY_TYPES.includes(value) ? value : 'Other';
@@ -23,6 +23,7 @@
   function contactContextLabel(context) {
     const labels = {
       Investor: 'An investment conversation.',
+      Program: 'An accelerator, incubator, or grant program.',
       'Strategic partner': 'A potential partnership.',
       'Product inquiry': 'A product conversation.',
       Other: 'Start with an introduction.'

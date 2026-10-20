@@ -6,7 +6,7 @@
         <div class="vision-copy">
           <h1 id="hero-title">Building for<br>human <em>potential.</em></h1>
           <p class="vision-description">Solarity AI builds AI self-improvement apps, four of them live on iOS and Android, and the tools that let our small team ship them fast.</p>
-          <p class="vision-proof"><span class="vision-proof-icons" aria-hidden="true">{%- for a in apps if a.get('apple') -%}<img src="/assets/{{ a['slug'] }}-icon.webp" alt="" width="48" height="48">{%- endfor -%}</span><span>4 apps live on iOS &amp; Android · 3 web apps · Irving, Texas</span></p>
+          <p class="vision-proof"><span class="vision-proof-icons" aria-hidden="true">{%- for a in apps if a.get('apple') -%}<img src="/assets/{{ a['slug'] }}-icon.webp" alt="" width="48" height="48">{%- endfor -%}</span><span><a href="#shipping-record">4 apps live on iOS &amp; Android</a> · 3 web apps · Irving, Texas</span></p>
         </div>
         <div class="vision-actions">
           <div class="actions">{{ btn('Investor inquiries', contact('Investor'))|safe }}{{ btn('Partnership inquiries', contact('Strategic partner'), 'outline')|safe }}</div>
@@ -18,6 +18,6 @@
           <a class="hero-product" data-product-accent="{{ a['color'] }}" href="/apps/{{ a['slug'] }}"><img src="/assets/{{ a['slug'] }}-icon.webp" alt="" width="48" height="48"><span><strong>{{ a['name'] }}</strong><small>{{ a['category'] }}</small></span><span class="rail-arrow" aria-hidden="true">→</span></a>
           {%- endfor -%}
         </nav>
-        <div class="hero-credits-aside"><p class="hero-credits-meta">Four mobile apps · iOS&nbsp;&amp;&nbsp;Android</p><a class="text-link vision-explore" href="#our-products">Explore the portfolio <span aria-hidden="true">↓</span></a></div>
+        <div class="hero-credits-aside"><a class="hero-credits-meta" href="#shipping-record">{{ record.count_word|capitalize }} apps in {{ record.weeks_word }} weeks <span aria-hidden="true">↓</span></a><a class="text-link vision-explore" href="#our-products">Explore the portfolio <span aria-hidden="true">↓</span></a></div>
       </div>
     </section>

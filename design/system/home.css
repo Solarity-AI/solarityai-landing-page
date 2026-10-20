@@ -18,7 +18,8 @@
 .hero-credits{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:16px 48px;padding-block:22px 28px;border-top:1px solid rgb(245 241 232/.12)}
 .hero-evidence-products{display:grid;grid-template-columns:repeat(4,minmax(0,max-content));gap:8px 40px}
 .hero-credits-aside{display:flex;flex-direction:column;align-items:flex-end;gap:0}
-.hero-credits-meta{font-size:var(--type-meta);color:var(--muted)}
+.hero-credits-meta{display:inline-flex;align-items:center;gap:6px;min-height:40px;font-size:var(--type-meta);color:var(--muted);text-decoration:none}
+.hero-credits-meta:hover{color:var(--text)}
 .hero-credits .vision-explore{min-height:40px;font-size:var(--type-meta);color:var(--gold)}
 .hero-product{display:flex;align-items:center;gap:12px;min-width:0;min-height:56px;padding-block:6px;color:var(--text)}
 .hero-product:hover strong{color:var(--product-accent)}
@@ -194,5 +195,6 @@
 .brief-columns{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:32px;margin-top:36px}
 .brief-columns h3{font-size:var(--text-lg);font-weight:600;margin-bottom:10px}
 .brief-columns p{max-width:52ch;color:var(--muted)}
+@media print{.shipping-record,.program-brief{padding-block:14pt}.record-track{grid-template-columns:repeat(4,minmax(0,1fr));gap:10pt;padding-left:0}.record-track::before{display:block;left:0;right:0;top:28pt;bottom:auto;width:auto;height:1px;background:#999}.record-dot{position:static;box-shadow:none;background:#666}.record-step{break-inside:avoid}.record-listing{display:none}}
 @media(forced-colors:active){.record-dot{background:CanvasText}.brief-metrics>div{border:1px solid CanvasText}}
 }

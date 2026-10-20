@@ -240,14 +240,14 @@ for file,d in docs.items():
         primary_email=by_id.get('contact-email',('',{}))[1].get('href','')
         if not primary_email.startswith('mailto:ata.turhan@solarityai.com?'):errors.append(f'{rel}: incorrect founder email destination')
         topics=[a for t,a in d.tags if t=='a' and a.get('data-inquiry-type')]
-        if [a['data-inquiry-type'] for a in topics]!=['Investor','Strategic partner','Product inquiry','Other']:errors.append(f'{rel}: direct contact must retain all four inquiry types')
+        if [a['data-inquiry-type'] for a in topics]!=['Investor','Program','Strategic partner','Product inquiry','Other']:errors.append(f'{rel}: direct contact must retain all five inquiry types')
         if any(not a.get('href','').startswith('mailto:ata.turhan@solarityai.com?subject=') for a in topics):errors.append(f'{rel}: inquiry topics must work as native email links')
         if any(t=='form' for t,a in d.tags):errors.append(f'{rel}: direct contact should not imply an unconfigured submission form')
         if not any(t=='a' and a.get('href','').startswith('https://calendar.google.com/calendar/appointments/schedules/') for t,a in d.tags):errors.append(f'{rel}: missing verified booking alternative')
         if 'This website does not collect or submit contact messages.' not in text:errors.append(f'{rel}: missing truthful contact behavior disclosure')
     if rel=='investors-partners/index.html':
         if 'investor-questions' not in by_id:errors.append(f'{rel}: missing investor FAQ')
-        if sum(t=='details' and 'faq-item' in a.get('class','').split() for t,a in d.tags)!=5:errors.append(f'{rel}: expected five native FAQ disclosures')
+        if sum(t=='details' and 'faq-item' in a.get('class','').split() for t,a in d.tags)!=len(__import__('ux_content').FAQ):errors.append(f'{rel}: every FAQ entry needs a native disclosure')
     if rel=='404.html':
         if not any(t=='nav' and a.get('aria-label')=='More ways to continue' for t,a in d.tags):errors.append(f'{rel}: missing recovery navigation')
         for destination in ['/platform','/investors-partners','/contact']:
