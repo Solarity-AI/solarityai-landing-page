@@ -1,0 +1,13 @@
+<figure class="pmap pmap--platform"><div class="pmap-stage"><div class="pmap-source"><ul class="pmap-apps" aria-label="Mobile apps">
+{%- for app in listed -%}
+<li data-product-accent="{{ app.color }}"><a href="/apps/{{ app.slug }}"><img src="/assets/{{ app.slug }}-icon.webp" width="56" height="56" alt="{{ app.name }}" loading="lazy" decoding="async"></a></li>
+{%- endfor -%}
+</ul><span class="status"><i aria-hidden="true"></i>Available on iOS&nbsp;&amp;&nbsp;Android</span></div>
+{#- Dashed connectors: they read as "informs", never as integrations. -#}
+<svg class="pmap-arcs" viewBox="0 0 600 80" width="600" height="80" fill="none" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M300 0C300 44 100 36 100 80M300 0V80M300 0C300 44 500 36 500 80" stroke="currentColor" stroke-width="1.5" stroke-dasharray="2 7" stroke-linecap="round" vector-effect="non-scaling-stroke"/></svg><ol class="pmap-nodes" aria-label="Web apps">
+{%- for node in nodes -%}
+<li><a class="pmap-node" href="#{{ node.slug }}"><span class="pmap-word">{{ node.stage }}</span><strong>{{ node.name }}</strong><span class="pmap-caption">{{ node.category }}</span><span class="status"><i aria-hidden="true"></i>{{ node.label }}</span></a></li>
+{%- endfor -%}
+</ol></div><figcaption class="pmap-legend"><span class="pmap-keys" aria-hidden="true"><span class="status"><i></i>Mobile apps</span><span class="status"><i></i>Web apps</span></span><span class="pmap-note"><strong>How the work connects.</strong> {{ note }}</span>
+{#- Screen-reader summary of the diagram. -#}
+<span class="sr-only"> The diagram shows {{ listed|length }} store-listed mobile apps ({% for app in listed %}{{ app.name }}{% if not loop.last %}, {% endif %}{% endfor %}) above the three web apps they shaped: {% for product in saas %}{{ product.stage }}, {{ product.name }} ({{ product.status }}){% if not loop.last %}; {% endif %}{% endfor %}.</span></figcaption></figure>
