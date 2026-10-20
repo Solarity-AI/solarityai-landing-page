@@ -1,0 +1,50 @@
+{
+  "/": {
+    "sha": "8fd5062c0b03e328",
+    "date": "2026-10-19"
+  },
+  "/apps": {
+    "sha": "d3d1e13ccf4814aa",
+    "date": "2026-10-19"
+  },
+  "/apps/looks-max": {
+    "sha": "8885a344816e1da3",
+    "date": "2026-10-19"
+  },
+  "/apps/iq-max": {
+    "sha": "85b61b8090547adf",
+    "date": "2026-10-19"
+  },
+  "/apps/sleep-max": {
+    "sha": "c13afc75018a79d2",
+    "date": "2026-10-19"
+  },
+  "/apps/fitness-max": {
+    "sha": "6a8f82e68b4325fc",
+    "date": "2026-10-19"
+  },
+  "/platform": {
+    "sha": "8c2f5894bbaebf4d",
+    "date": "2026-10-19"
+  },
+  "/company": {
+    "sha": "4c5048f07046590f",
+    "date": "2026-10-19"
+  },
+  "/investors-partners": {
+    "sha": "5004c7b2fbe8474b",
+    "date": "2026-10-19"
+  },
+  "/careers": {
+    "sha": "62da4271489ba8d6",
+    "date": "2026-10-19"
+  },
+  "/contact": {
+    "sha": "7937c82de82e132b",
+    "date": "2026-10-19"
+  },
+  "/404": {
+    "sha": "284aaee0bd78b42e",
+    "date": "2026-10-19"
+  }
+}
