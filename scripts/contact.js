@@ -31,7 +31,8 @@
     };
     const type = validType(context.type);
     const product = ['Product inquiry', 'Strategic partner'].includes(type) ? cleanTopic(context.product) : '';
-    return product ? type + ': ' + product : labels[type];
+    // The topic follows the type's own sentence, as visitors read it, not the internal type name
+    return product ? labels[type].replace(/\.$/, '') + ': ' + product + '.' : labels[type];
   }
 
   if (typeof module !== 'undefined' && module.exports) {
