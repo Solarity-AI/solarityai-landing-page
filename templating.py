@@ -34,6 +34,7 @@ ENV = Environment(
 ENV.filters['noquote'] = lambda value: Markup(escape(str(value), quote=False))
 
 
-def render(name, **context):
-    """Render templates/<name> and return Markup, so the result can be placed in other templates."""
-    return Markup(ENV.get_template(name).render(**context))
+def render(template, /, **context):
+    """Render templates/<template> and return Markup, so the result can be placed in other templates.
+    template is positional-only, so any keyword (including name) is free for template variables."""
+    return Markup(ENV.get_template(template).render(**context))
