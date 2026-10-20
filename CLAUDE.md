@@ -60,6 +60,26 @@ This project lives in `github.com/Solarity-AI/solarityai-landing-page`, which al
 - **Cloudflare zone behavior on solarityai.com.** Email Address Obfuscation would rewrite `mailto:` links, so every page body is wrapped in `<!--email_off-->…<!--/email_off-->`, which Cloudflare honors and then strips (`check_site.py` enforces the wrapper). The zone's Web Analytics setting injects a cookieless beacon script for browsers. `www` and `http` redirects are Cloudflare edge rules.
 - **Verify a deployment** with `python deploy/smoke_test.py` (defaults to https://solarityai.com, or pass a `pages.dev` URL). It checks every route, redirect, the custom 404, `_headers` rules, MIME types, caching, and that files are byte-identical to `dist/` apart from the known edge changes above. `python audit_production.py` adds a broader read-only audit, plus Lighthouse with `--lighthouse <cli>`.
 - `.github/workflows/site-checks.yml` runs on every pull request and on `develop`. It rebuilds the site and fails if the committed `dist/` differs, then runs the static audit and both test suites. Merge only when it and the Cloudflare Pages preview check pass.
+- **GitHub automation.**
+  - **Workflows** (`.github/workflows/`), all with actions pinned to commit SHAs (the repository requires it; Dependabot updates the pins weekly):
+
+    | Workflow | What it does |
+    |---|---|
+    | `site-checks` | Rebuild, dist drift, audit and tests. Required. |
+    | `codeql` | Python, JavaScript and Actions. |
+    | `dependency-review` | Reviews dependency changes in pull requests. |
+    | `labeler` | Labels pull requests by area. |
+    | `preview` | Waits for the PR's Cloudflare preview, smoke-tests it, and records informational Lighthouse runs. |
+    | `production` | After each deploy and daily, smoke-tests solarityai.com and opens or updates a `production` issue when it fails. |
+    | `indexnow` | Submits changed pages after a deploy. |
+    | `release` | Manual: tags `develop` and publishes the live `dist/` with generated notes. |
+
+  - **Settings and protections:**
+    - The `develop` ruleset requires a pull request and the "Build and static checks" and "Cloudflare Pages" checks. It blocks force pushes and deletion, and blocks merges that add high-severity code scanning alerts.
+    - Secret scanning with push protection, Dependabot alerts and security updates, and private vulnerability reporting are on.
+    - The Production environment only accepts `develop`.
+  - **Community files:** issue forms, the PR template, CODEOWNERS, CONTRIBUTING, SECURITY and CODE_OF_CONDUCT live in `.github/`.
+  - **Codespaces:** `.devcontainer/` opens with Python 3.12, Node 24 and a built site.
 - **Removed pipelines.** Production was previously a Docker/nginx image rolled out by Woodpecker (`ci.solarityai.com`) to Kubernetes behind Caddy, with an AWS S3/CloudFront workflow alongside. Woodpecker stopped accepting GitHub webhooks (HTTP 400) and the AWS workflow failed on every run, so both were removed from this repository on 2026-10-18 (see git history). The old servers may still be running and are no longer receiving solarityai.com traffic. `ansible/` is an older, manually run EC2/nginx setup that is also unused for solarityai.com.
 - Commits follow `Commit Rules.md` and `skills/git-conventional-commit`: one logical change per commit, with a single-line, lowercase, imperative Conventional Commit message of at most 50 characters (for example `fix: keep words apart at hidden line breaks`).
 - A domain change requires coordinated edits to the origin in `build_site.py`, `seo.py`, `check_site.py`, `audit_production.py`, `deploy/smoke_test.py`, the `host` in `deploy/indexnow.py`, and the careers `_url` in `visual_careers.py`. Then attach the new domain to the Pages project, and verify with `python deploy/smoke_test.py` and `python audit_production.py`.
