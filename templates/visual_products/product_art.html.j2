@@ -1,0 +1,7 @@
+<figure class="app-art screenshot-art" data-product-accent="{{ app['color'] }}">
+      <a class="screenshot-open" href="{{ image }}" data-image-title="{{ app['name'] }} screenshot" data-image-alt="{{ alt }}" target="_blank" rel="noopener">
+        <span class="screenshot-stage"><img class="store-screen{% if hero %} plate--window{% endif %}"{% if focus %} style="object-position:{{ focus }}"{% endif %} src="{{ image }}" alt="{{ alt }}" width="{{ width }}" height="{{ height }}" sizes="{{ sizes }}" loading="lazy" decoding="async"></span>
+        <span class="screenshot-enlarge">{% include 'visual_products/expand_icon.html.j2' %}<span>Enlarge<span class="sr-only"> {{ app['name'] }} screenshot</span></span></span>
+      </a>
+      <figcaption class="asset-caption caption">{{ provenance }}</figcaption>
+    </figure>

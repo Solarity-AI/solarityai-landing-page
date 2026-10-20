@@ -1,0 +1,15 @@
+<div class="product-world" data-product="{{ app['slug'] }}" data-product-accent="{{ app['color'] }}">
+      {{ breadcrumbs|safe }}
+      <section class="product-hero wrap" aria-labelledby="product-title">
+        <header class="product-hero-heading"><div class="product-identity"><img class="detail-icon" src="/assets/{{ app['slug'] }}-icon.webp" width="104" height="104" alt=""><p class="eyebrow">{{ app['category'] }}</p></div><h1 id="product-title">{{ app['name'] }}</h1><p class="product-deck">{{ app['headline'] }}</p></header>
+        <div class="product-hero-art">{{ art|safe }}</div>
+        <div class="product-hero-copy"><p class="lede">{{ app['intro'] }}</p><div class="product-get" id="get-app">{{ stores|safe }}</div>
+          {%- if app.get('store_name') %}<p class="product-store-name">On the App Store and Google Play as {{ app['store_name'] }}.</p>{% endif %}
+          {%- if app.get('apple') %}<p class="fineprint">In-app purchases. See the stores for current plans and regional availability.</p>{% endif %}</div>
+      </section>
+      {{ story|safe }}
+      {{ feature_markup|safe }}
+      <aside class="product-note wrap" aria-label="Product context"><p><strong>Product context.</strong> {{ app['note'] }}</p></aside>
+      {{ close|safe }}
+      {{ related_markup|safe }}
+    </div>
