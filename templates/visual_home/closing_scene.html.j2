@@ -3,4 +3,5 @@
   {%- for label, kind, style in actions -%}
   <a class="button {{ style|safe }}" href="{{ contact(kind) }}">{{ label|safe }} <span aria-hidden="true">→</span></a>
   {%- endfor -%}
+  <a class="text-link conversation-program" href="{{ contact('Program') }}">Applying through a program? Contact the founder <span aria-hidden="true">→</span></a>
 </nav></section>
