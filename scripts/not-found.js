@@ -52,7 +52,14 @@
     return best;
   }
 
-  if (typeof module !== 'undefined' && module.exports) module.exports = { normalize, distance, suggest };
+  // A route is a lowercase same-site path such as /apps/sleep-max/; anything else is refused.
+  function safePath(route) {
+    const value = String(route || '');
+    if (!/^\/[a-z0-9-/]*$/.test(value) || value.indexOf('//') !== -1) return null;
+    return value;
+  }
+
+  if (typeof module !== 'undefined' && module.exports) module.exports = { normalize, distance, suggest, safePath };
   if (typeof document === 'undefined') return;
   const slot = document.querySelector('[data-routes]');
   if (!slot) return;
@@ -60,9 +67,12 @@
   try { routes = JSON.parse(slot.getAttribute('data-routes') || '[]'); } catch (error) { return; }
   const match = suggest((window.location || {}).pathname, routes);
   if (!match) return;
+  // Only a plain same-site path becomes a link, whatever the attribute holds.
+  const path = safePath(match[0]);
+  if (!path) return;
   const link = document.createElement('a');
-  link.href = match[0];
-  link.textContent = match[1] + ' ';
+  link.setAttribute('href', path);
+  link.textContent = String(match[1]) + ' ';
   const arrow = document.createElement('span');
   arrow.setAttribute('aria-hidden', 'true');
   arrow.textContent = '→';

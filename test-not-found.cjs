@@ -43,3 +43,11 @@ test('stays quiet when nothing is close', () => {
   assert.equal(suggest('/', ROUTES), null);
   assert.equal(suggest('/xyz', ROUTES), null);
 });
+
+test('only plain same-site paths become links', () => {
+  const { safePath } = require('./scripts/not-found.js');
+  for (const route of ROUTES) assert.equal(safePath(route[0]), route[0]);
+  for (const bad of ['javascript:alert(1)', 'https://example.com/', '//example.com/', '/apps/<b>', '/apps?x=1', '', null]) {
+    assert.equal(safePath(bad), null, String(bad));
+  }
+});
