@@ -1,0 +1,5 @@
+<section class="related-apps wrap" aria-labelledby="related-title"><div class="related-intro"><h2 id="related-title">Another ambition in mind?</h2><p>Explore the other products in the Solarity AI portfolio.</p></div><nav aria-label="Other Solarity AI apps">
+{%- for a in apps if a['slug'] != current['slug'] -%}
+<a href="/apps/{{ a['slug'] }}" data-product-accent="{{ a['color'] }}">{{ discovery_symbol(a) }}<span class="related-identity"><strong>{{ a['name'] }}</strong><span class="related-category">{{ a['category'] }}</span></span><small class="related-availability">{% if a['apple'] %}iOS&nbsp;&amp;&nbsp;Android{% else %}Product vision{% endif %}</small><span aria-hidden="true" class="related-arrow">→</span></a>
+{%- endfor -%}
+</nav></section>

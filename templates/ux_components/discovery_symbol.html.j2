@@ -1,0 +1,5 @@
+{% if app['apple'] -%}
+<span class="discovery-symbol" aria-hidden="true"><img src="/assets/{{ app['slug'] }}-icon.webp" alt="" width="48" height="48" loading="lazy"></span>
+{%- else -%}
+<span class="discovery-symbol discovery-concept" aria-hidden="true">{{ voice_symbol(48)|safe }}</span>
+{%- endif %}
