@@ -51,7 +51,7 @@ Home, Apps, Looks Max, IQ Max, Sleep Max, Fitness Max, Platform, Company, Invest
 
 ## Access and publication
 
-- **Origin:** https://solarityai.com, served by Cloudflare Pages from the `develop` branch. The earlier GPT Sites origin was https://solarity-company.the-ata-turhan.chatgpt.site.
+- **Origin:** https://solarityai.com, served by Cloudflare Pages from the `main` branch. The earlier GPT Sites origin was https://solarity-company.the-ata-turhan.chatgpt.site.
 - **Public access:** the founder authorized public access on October 12, 2026. Future deployments must preserve it unless the founder changes that instruction.
 - **Indexing:** content pages allow indexing, and the 404 page asks not to be indexed.
 - **robots.txt:** welcomes search engines and AI assistants, including AI crawlers it blocked before October 19, 2026 (see `CONTENT_REGISTER.md`), and advertises the sitemap. DNS is not managed by this project.

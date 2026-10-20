@@ -14,4 +14,4 @@
 - [ ] `node --test test-navigation.cjs test-contact.cjs test-gallery.cjs test-careers.cjs test-copy.cjs`
 - [ ] Rendered at desktop and phone widths, for visual changes (say how)
 
-Merging into `develop` deploys https://solarityai.com.
+Merging into `main` deploys https://solarityai.com.

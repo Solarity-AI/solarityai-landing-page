@@ -2,7 +2,7 @@
 
 Start with [CLAUDE.md](../CLAUDE.md) for the architecture and the rules, and [START_HERE.md](../START_HERE.md) for setup.
 
-1. Branch from `develop`. Every push to `develop` deploys https://solarityai.com, so changes arrive by pull request.
+1. Branch from `main`. Every push to `main` deploys https://solarityai.com, so changes arrive by pull request.
 2. Edit the Python components, `design/system/` and `scripts/`, never the generated output. Then run `python build_site.py` and commit `dist/` and `site-pages.json`. Never delete `dist/`.
 3. Run `python check_site.py` and both test suites (listed in the pull request template).
 4. Keep claims sourced: product capabilities, statuses, prices and traction come from store listings, the products' own sites or a dated founder decision, recorded in `CONTENT_REGISTER.md`.
