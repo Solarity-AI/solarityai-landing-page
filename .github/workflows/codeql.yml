@@ -4,7 +4,7 @@ on:
   pull_request:
   push:
     branches:
-      - develop
+      - main
   schedule:
     # Mondays, 05:23 UTC: new queries also run against unchanged code.
     - cron: '23 5 * * 1'

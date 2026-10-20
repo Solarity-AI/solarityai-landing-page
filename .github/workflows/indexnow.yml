@@ -5,7 +5,7 @@ name: IndexNow
 on:
   push:
     branches:
-      - develop
+      - main
     paths:
       - dist/sitemap.xml
   workflow_dispatch:
