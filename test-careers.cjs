@@ -99,3 +99,11 @@ test('links pasted without a scheme gain https:// and other input is left for va
   // Completed links then pass the same validation as typed ones.
   assert.deepEqual(validateCareerApplication({ ...application, linkedin: withScheme('tr.linkedin.com/in/person'), portfolio: withScheme('github.com/person') }), {});
 });
+
+test('the optional note is accepted up to 1,000 characters', () => {
+  const { validateCareerApplication } = require('./scripts/careers.js');
+  const base = { fullName: 'Ada Lovelace', email: 'ada@example.com', position: 'Full Stack Engineer', workType: 'Full-time' };
+  assert.equal(validateCareerApplication(base).note, undefined);
+  assert.equal(validateCareerApplication({ ...base, note: 'x'.repeat(1000) }).note, undefined);
+  assert.equal(validateCareerApplication({ ...base, note: 'x'.repeat(1001) }).note, 'Use 1,000 characters or fewer for your note.');
+});
