@@ -10,6 +10,7 @@
 .vision-copy h1{text-shadow:0 2px 28px rgb(12 9 6/.55)}
 .vision-description{max-width:34ch;margin-top:28px;font-size:var(--type-deck);line-height:1.45;color:var(--text)}
 .vision-actions .actions{gap:12px}
+.vision-overview{display:inline-flex;margin-top:18px;font-size:var(--text-sm)}
 .vision-actions .button.outline{background:rgb(12 9 6/.28)}
 .solar-hero-art{position:absolute;z-index:0;inset:0;margin:0;overflow:hidden}
 .solar-hero-art .hero-picture,.solar-hero-art .progress-hero-image{position:absolute;inset:0;display:block;width:100%;height:100%}
