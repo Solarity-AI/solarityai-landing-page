@@ -21,7 +21,8 @@ function harness({ clipboard = 'resolves', addresses = ['ata.turhan@solarityai.c
       hidden: true,
       textContent: 'Copy address',
       getAttribute(name) {
-        return { 'data-copy': address, 'data-copy-status': statusId }[name] ?? null;
+        const value = typeof address === 'string' ? { text: address } : address;
+        return { 'data-copy': value.text, 'data-copy-status': statusId, 'data-copy-name': value.name ?? null }[name] ?? null;
       },
       addEventListener(type, listener) { listeners[type] = listener; },
       click() { return listeners.click(); },
@@ -93,4 +94,20 @@ test('each button copies its own address into its own status', async () => {
   assert.deepEqual(view.writes, ['careers@solarityai.com']);
   assert.equal(view.statuses['status-0'].textContent, '');
   assert.match(view.statuses['status-1'].textContent, /^careers@solarityai\.com copied/);
+});
+
+test('a named button announces its name instead of reading a long passage aloud', async () => {
+  const passage = 'Solarity AI LLC, based in Irving, Texas, builds apps. '.repeat(4);
+  const view = harness({ clipboard: 'resolves', addresses: [{ text: passage, name: 'The short description' }] });
+  view.buttons[0].click();
+  await settle();
+  assert.equal(view.writes[0], passage);
+  assert.equal(view.statuses['status-0'].textContent, 'The short description copied to your clipboard.');
+});
+
+test('a named button that cannot copy asks for the text, not an address', async () => {
+  const view = harness({ clipboard: 'rejects', addresses: [{ text: 'Long text', name: 'The one-line description' }] });
+  view.buttons[0].click();
+  await settle();
+  assert.equal(view.statuses['status-0'].textContent, 'Copying is not available here. Select the text to copy it.');
 });
