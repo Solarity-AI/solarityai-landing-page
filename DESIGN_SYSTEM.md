@@ -231,6 +231,23 @@ All values below are tokens on `:root` in `design/system/foundation.css`. `check
   - **More contrast.** `prefers-contrast: more` raises `--muted`, `--dim`, `--sand` and the hairline tokens.
   - **Keyboard parity.** A card holding keyboard focus lifts and lights like a hovered one (`:has(:focus-visible)`), with motion allowed.
   - **Measured (local Lighthouse mobile, A/B against `develop`).** Investors LCP 3,250 → 2,490 ms and score 93 → 97. Home LCP 2,785 → 2,638 ms and 96 → 97. Apps and Company unchanged. CLS 0 and accessibility 100 throughout.
+- **Design pass (October 20, 2026).** The work began with renders of every route at 390 and 1280 px, compared with Linear, Stripe and Vercel. Gaps between neighbouring sections ranged from 33 to 306 px with no rule behind them; the references hold an even rhythm.
+  - **One section rhythm.** `--space-section` is now `clamp(48px, 32px + 3.2vw, 84px)`, and every content section pads that much above and below.
+    - This replaces about a dozen one-off clamps on the wall, app factory, founder strip, conversation band, product story, features and close, the Platform chapters, and the Investors sections, which used to pad only one side.
+    - The footer no longer adds its own top margin.
+    - Measured gaps between sections: desktop mean 186 → 153 px, standard deviation 62 → 43; phones 129 → 105 px, standard deviation 44 → 25.
+  - **Apps world bands.** The invisible screenshot stage added 48 px above and below every product. Each band is now 72 px shorter at desktop.
+  - **Platform.** The giant outlined stage words ("Build", "Operate", "Grow") bled out of each chapter into the next one and under the sticky index. They are removed; each chapter keeps its number and stage label.
+  - **Company opening.** Its grid reserves a row for an eyebrow, but the page had none, so the headline sat a row below the intro. It now has the "Company" eyebrow like every other page.
+  - **Founder strip (Home).** It has a "Founder" eyebrow, and the portrait has a hairline print frame (`outline-offset: 8px`) that ties the white studio background to the dark page.
+  - **Home wall caption.** It sits on a hairline rule instead of floating.
+  - **Product pages.** On phones the stacked feature tiles are 12 px apart (they nearly touched), and titles clear the corner number. The context note runs to 88ch.
+  - **Phone hero credits.** "Four mobile apps · iOS & Android" and "Explore the portfolio" no longer break mid-phrase.
+  - **Measured.**
+    - The 120-render sweep found no overflow and axe found no violations.
+    - Lighthouse mobile A/B against `develop` (2 runs each): Home 96–97 → 97 (LCP 2,635–2,651 → 2,636 ms), Investors 98 → 98, Sleep Max 99 → 99.
+    - Sleep Max FCP is bimodal (about 980 or about 1,110 ms) on both builds.
+    - CLS 0 and accessibility 100 throughout.
 - **QA pass (October 19, 2026).** Coverage:
   - A static crawl of `dist/`: links, anchors, IDs, ARIA references, headings, metadata and JSON-LD.
   - The 14 external links.
