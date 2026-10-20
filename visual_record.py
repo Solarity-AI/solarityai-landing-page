@@ -49,6 +49,26 @@ def record_summary():
             'first': long_date(min(dates).isoformat())}
 
 
+def app_compare(apps):
+    """The four store-listed apps in one table: focus, what each does, and its App Store release date."""
+    releases = dict(APP_STORE_RELEASES)
+    rows = [dict(app=a, since=app_store_since(a['slug']), since_iso=releases.get(a['slug'], ''))
+            for a in apps if a.get('apple')]
+    return str(render('visual_record/app_compare.html.j2', rows=rows))
+
+
+def web_compare(saas):
+    """The three web apps in one table: stage, who each is for, and its plans, from their own sites."""
+    return str(render('visual_record/web_compare.html.j2', saas=saas))
+
+
+def company_facts(email):
+    """Verified company facts in one list; the founding year and state appear once supplied."""
+    return str(render('visual_record/company_facts.html.j2', legal_name=COMPANY['legal_name'],
+                      founded=COMPANY.get('founded', ''), registered_in=COMPANY.get('registered_in', ''),
+                      record=record_summary(), saas=SAAS, email=email))
+
+
 def founder_record():
     """Founder bio, motivation and profile link. Empty until supplied."""
     if not (FOUNDER.get('bio') or FOUNDER.get('why') or FOUNDER.get('linkedin')):

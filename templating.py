@@ -30,6 +30,9 @@ ENV = Environment(
     auto_reload=False,
 )
 
+# 'internal V1' -> 'Internal V1': raise only the first letter (str.capitalize would lower the rest).
+ENV.filters['capitalize_first'] = lambda value: value[:1].upper() + value[1:]
+
 
 def render(template, /, **context):
     """Render templates/<template> and return Markup, so the result can be placed in other templates.

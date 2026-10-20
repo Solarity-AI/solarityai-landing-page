@@ -1,0 +1,11 @@
+<section class="compare wrap" id="compare-apps" aria-labelledby="compare-apps-title">
+{#- -#}
+<div class="record-heading"><div><p class="eyebrow">At a glance</p><h2 id="compare-apps-title">The four apps, side by side.</h2></div><p>Each app is on iOS and Android, with in-app purchases. Dates are App Store release dates.</p></div>
+{#- -#}
+<div class="compare-scroll" tabindex="0" role="region" aria-label="Comparison of the four apps, scrollable"><table class="compare-table">
+<thead><tr><th scope="col">App</th><th scope="col">Focus</th><th scope="col">What it does</th><th scope="col">On the App Store since</th></tr></thead>
+<tbody>
+{%- for row in rows -%}
+<tr data-product-accent="{{ row.app.color }}"><th scope="row"><a href="/apps/{{ row.app.slug }}"><img src="/assets/{{ row.app.slug }}-icon.webp" width="32" height="32" alt="" loading="lazy" decoding="async"><span>{{ row.app.name }}</span></a>{% if row.app.get('store_name') %}<small>Listed as {{ row.app.store_name }}</small>{% endif %}</th><td>{{ row.app.category }}</td><td>{{ row.app.summary }}</td><td>{% if row.since %}<time datetime="{{ row.since_iso }}">{{ row.since }}</time>{% endif %}</td></tr>
+{%- endfor -%}
+</tbody></table></div></section>
