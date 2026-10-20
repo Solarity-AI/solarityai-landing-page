@@ -5,13 +5,13 @@ on:
   merge_group:
   push:
     branches:
-      - develop
+      - main
   workflow_dispatch:
 
 permissions:
   contents: read
 
-# A newer push to the same pull request replaces the run in progress; develop runs always finish.
+# A newer push to the same pull request replaces the run in progress; main runs always finish.
 concurrency:
   group: site-checks-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}

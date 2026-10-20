@@ -1,11 +1,11 @@
 name: Production
 
-# Cloudflare Pages deploys develop to solarityai.com. This workflow waits until the live site serves the
+# Cloudflare Pages deploys main to solarityai.com. This workflow waits until the live site serves the
 # committed dist/, then verifies it. It also runs daily, and files an issue when production drifts.
 on:
   push:
     branches:
-      - develop
+      - main
   schedule:
     - cron: '17 6 * * *'
   workflow_dispatch:

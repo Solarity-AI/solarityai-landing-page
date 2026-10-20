@@ -1,6 +1,6 @@
 # Production audit, solarityai.com, 2026-10-18
 
-Origin: `https://solarityai.com`, served by Cloudflare Pages (project `solarityai-landing-page`, production branch `develop`) since 2026-10-18. Raw data: `research-assets/production-audit.json`. Re-run with `python audit_production.py` and `python deploy/smoke_test.py`, adding `--lighthouse <path to lighthouse/cli/index.js>` to the audit for lab scores.
+Origin: `https://solarityai.com`, served by Cloudflare Pages (project `solarityai-landing-page`, production branch `develop` at the time; `main` since 2026-10-20) since 2026-10-18. Raw data: `research-assets/production-audit.json`. Re-run with `python audit_production.py` and `python deploy/smoke_test.py`, adding `--lighthouse <path to lighthouse/cli/index.js>` to the audit for lab scores.
 
 ## Method
 

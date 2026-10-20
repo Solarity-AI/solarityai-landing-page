@@ -1,6 +1,6 @@
 """Tell IndexNow search engines (Bing, Yandex, Seznam, Naver) which pages changed in a deploy.
 
-Run after a push to develop. It waits until solarityai.com serves the committed sitemap, so engines
+Run after a push to main. It waits until solarityai.com serves the committed sitemap, so engines
 fetch the new pages, then submits every URL whose <lastmod> differs from the previous commit's sitemap.
 
     python deploy/indexnow.py [--previous <git rev>] [--all] [--dry-run]

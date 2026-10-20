@@ -61,4 +61,4 @@ Suggested initial instruction:
 
 `.gitignore` keeps `.venv/`, machine caches and local secrets out of git. `SOURCE_MANIFEST.json` is the historical record of the October 2026 export this repository started from; it does not describe the current tree.
 
-Production is https://solarityai.com, deployed from the `develop` branch of `github.com/Solarity-AI/solarityai-landing-page` (see CLAUDE.md, "Repository, deployment, and commits"). The earlier GPT Sites deployment at https://solarity-company.the-ata-turhan.chatgpt.site is not updated from this repository.
+Production is https://solarityai.com, deployed from the `main` branch of `github.com/Solarity-AI/solarityai-landing-page` (see CLAUDE.md, "Repository, deployment, and commits"). The earlier GPT Sites deployment at https://solarity-company.the-ata-turhan.chatgpt.site is not updated from this repository.

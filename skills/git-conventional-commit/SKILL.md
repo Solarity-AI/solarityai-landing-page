@@ -62,7 +62,7 @@ Do not use non-Git command substitutes for this workflow.
 7. If push is requested:
    - use `--branch` when provided
    - otherwise resolve branch via `git rev-parse --abbrev-ref HEAD`
-   - run exactly `git push -u origin <branch>` (never push `develop` or `main` directly: a push to `develop` deploys solarityai.com)
+   - run exactly `git push -u origin <branch>` (never push `main` directly: a push to `main` deploys solarityai.com)
 
 ## Commit Message Rules
 

@@ -1,6 +1,6 @@
 name: Release
 
-# Records what is live: tags develop's current commit and publishes a GitHub release with generated notes
+# Records what is live: tags main's current commit and publishes a GitHub release with generated notes
 # (grouped by .github/release.yml) and the exact deployed dist/ as a download.
 on:
   workflow_dispatch:
@@ -17,7 +17,7 @@ jobs:
     name: Tag and publish
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    if: github.ref == 'refs/heads/develop'
+    if: github.ref == 'refs/heads/main'
     steps:
       - name: Checkout repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
