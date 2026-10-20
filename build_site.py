@@ -1,5 +1,5 @@
 from pathlib import Path
-import base64, hashlib, json, html, re, shutil
+import base64, hashlib, json, re, shutil
 from urllib.parse import urlencode
 from ux_components import app_breadcrumbs, related_apps
 from image_provenance import provenance
@@ -18,6 +18,7 @@ from visual_catalog import portfolio_page, portfolio_wall
 from visual_company_upgrade import strategy_story, investor_evidence, investor_opening, operating_principles, founder_booking
 from visual_strategy import platform_opening
 import seo
+from templating import render
 from optimize_images import ensure_optimized_images, write_favicon
 from performance_build import optimize_page, RUNTIME, WRITTEN_RUNTIME
 from site_urls import public_path, normalize_page_links
@@ -30,9 +31,6 @@ EMAIL = 'ata.turhan@solarityai.com'
 FONT_URL = '/assets/fonts/manrope-latin-variable.cfa570d7c3ee.woff2'
 DISPLAY_FONT_URL = '/assets/fonts/newsreader-display-latin.16985410e5b5.woff2'
 BOOKING = 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ2qgXk0ZfBd6QJf7ef-306in7AI0Kzc-pL3NJFK1fU74vAUGiftVJPF3-DoXp9_RZoyqW_sjSpI'
-e = html.escape
-ARROW = '<span aria-hidden="true">→</span>'
-EXTERNAL_ARROW = '<span aria-hidden="true">↗</span>'
 
 APPS = [
  dict(slug='looks-max',seo_title='Looks Max: AI face analysis and self-care app',seo_description='Looks Max is an AI appearance and self-care app for iOS and Android: AI facial assessments, personalized grooming suggestions, and a progress journal.',crop_focus='50% 64%',name='Looks Max',category='Appearance & self-care',color='lavender',headline='A more considered approach to self-care.',summary='Personalized appearance insights, daily habits, and a place to follow your progress.',intro='For people making grooming and self-care part of their daily routine. Looks Max brings facial analysis and personalized guidance into a single app.',features=[('Understand your starting point','Explore AI-generated facial assessments and breakdowns across appearance categories.'),('Turn insights into habits','Find personalized grooming suggestions and daily habits you can return to.'),('Keep a record of progress','Use the activity calendar and journal to follow your own routine over time.')],screen='looks-max-screen-4.webp',apple='https://apps.apple.com/us/app/looks-max-look-your-best/id6778990308',google='https://play.google.com/store/apps/details?id=com.solarityai.onlylooksmax',note='Appearance scores are app-generated assessments, not objective measures of personal worth or promises of a particular result.'),
@@ -44,15 +42,14 @@ APPS = [
 def contact(kind='Other', product=None):
     return '/contact?' + urlencode({'type':kind, **({'product':product} if product else {})}) + '#prepare-inquiry'
 
+# btn() and product_status() return plain strings: the component modules concatenate them with other strings.
 def btn(label,href,style='primary',external=False):
-    arrow = EXTERNAL_ARROW if external or href.startswith(('http','mailto:')) else ARROW
-    new_tab = '<span class="sr-only"> (opens in a new tab)</span>' if external else ''
-    return f'<a class="button {style}" href="{e(href)}"'+(' target="_blank" rel="noopener noreferrer"' if external else '')+f'>{e(label)}{arrow}{new_tab}</a>'
+    leaves_site = external or href.startswith(('http','mailto:'))
+    return str(render('build_site/button.html.j2',label=label,href=href,style=style,external=external,leaves_site=leaves_site))
 
 def product_status(a,full=False):
-    return '<span class="status"><i aria-hidden="true"></i>'+('Available on iOS & Android' if full else 'iOS & Android')+'</span>' if a['apple'] else '<span class="status vision"><i aria-hidden="true"></i>Product vision</span>'
+    return str(render('build_site/product_status.html.j2',app=a,full=full))
 
-def eyebrow(text): return f'<p class="eyebrow">{text}</p>'
 def app_art(a,small=False):
     return product_art(a,small)
 
@@ -72,49 +69,48 @@ def social_for(path):
 
 NAV=[('/apps','Apps'),('/platform','Platform'),('/company','Company'),('/investors-partners','Investors & Partners'),('/careers','Careers')]
 def shell(path,title,desc,body):
-    # email_off keeps Cloudflare Email Address Obfuscation from rewriting mailto links
-    # and visible addresses, so the domain serves exactly what dist/ contains.
-    robots = "noindex,follow" if path == "/404" else "index,follow"
+    """The complete document, as a plain string for the link and delivery passes that follow."""
     social_image, social_alt = social_for(path)
-    # Preloaded everywhere: with font-display optional it adds no Home LCP cost (2855 vs 2857 ms measured in P2).
-    display_preload = f'<link rel="preload" href="{DISPLAY_FONT_URL}" as="font" type="font/woff2" crossorigin>'
     from ux_content import FAQ
     full_title=title if 'Solarity AI' in title else title+' | Solarity AI'
     data=seo.graph(path,full_title,desc,apps=APPS,saas=SAAS,faq=FAQ,email=EMAIL,logo='/assets/brand/solarity-sun-320.2513ba060440.webp',
                    portrait='/assets/brand/ata-turhan-640.742556487789.webp',social_image=social_image,modified=PAGE_DATES[path])
-    return f'''<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{e(full_title)}</title><meta name="description" content="{e(desc)}"><meta name="robots" content="{robots}"><meta name="referrer" content="strict-origin-when-cross-origin"><meta name="theme-color" content="#0f0d0b"><link rel="canonical" href="{ORIGIN}{public_path(path)}"><meta property="og:type" content="website"><meta property="og:title" content="{e(full_title)}"><meta property="og:locale" content="en_US"><meta property="og:description" content="{e(desc)}"><meta property="og:url" content="{ORIGIN}{public_path(path)}"><meta property="og:image" content="{ORIGIN}/assets/{social_image}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="{e(social_alt)}"><meta property="og:site_name" content="Solarity AI"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="{ORIGIN}/assets/{social_image}"><link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48"><link rel="icon" href="/assets/icons/icon-192.png" type="image/png" sizes="192x192"><link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png"><link rel="icon" href="/assets/brand/solarity-sun-48.9bc99afc73e8.webp" type="image/webp" sizes="48x48"><link rel="preload" href="{FONT_URL}" as="font" type="font/woff2" crossorigin>{display_preload}<link rel="stylesheet" href="/assets/presentation.css"><script src="/assets/site.js" defer></script></head>
-<body data-page="{path}"><!--email_off--><a class="skip-link" href="#main">Skip to content</a>{site_header(path,NAV,btn)}
-<main id="main" tabindex="-1">{body}</main><dialog id="image-dialog" aria-labelledby="image-dialog-title"><div class="image-dialog-bar"><h2 id="image-dialog-title">App screenshot</h2><button type="button" id="image-dialog-close">Close preview <span aria-hidden="true">×</span></button></div><img id="image-dialog-image" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="" width="600" height="1298"><div class="image-dialog-nav" id="image-dialog-nav" hidden><button type="button" id="image-dialog-prev"><span aria-hidden="true">←</span> Previous<span class="sr-only"> screenshot</span></button><span id="image-dialog-count" aria-live="polite"></span><button type="button" id="image-dialog-next">Next<span class="sr-only"> screenshot</span> <span aria-hidden="true">→</span></button></div><p id="image-dialog-caption" class="caption">{provenance()}</p></dialog>{site_footer(EMAIL,path,BOOKING)}<script type="application/ld+json">{json.dumps(data)}</script><!--/email_off--></body></html>'''
+    return str(render('build_site/shell.html.j2',path=path,full_title=full_title,desc=desc,body=body,
+                      robots='noindex,follow' if path=='/404' else 'index,follow',url=ORIGIN+public_path(path),origin=ORIGIN,
+                      social_image=social_image,social_alt=social_alt,font_url=FONT_URL,display_font_url=DISPLAY_FONT_URL,
+                      header=site_header(path,NAV,btn),provenance=provenance(),footer=site_footer(EMAIL,path,BOOKING),json_ld=json.dumps(data)))
 
+def page(name,**context):
+    """A page body from templates/build_site/pages/, as a plain string for the page records."""
+    return str(render(f'build_site/pages/{name}.html.j2',apps=APPS,saas=SAAS,btn=btn,contact=contact,cta=cta,**context))
+
+# Page bodies stay plain strings: seo.page_dates() hashes them together with the title and description.
 pages={}
-hero=hero_section(APPS,btn,contact)
-products=portfolio_wall(APPS)
-founder_strip=f'''<section class="founder-strip wrap">{founder_portrait(compact=True)}<div>{eyebrow('Founder')}<h2>Ata Turhan</h2><p>Building Solarity AI from Irving, Texas, with a focus on consumer products and the systems behind them.</p></div><a class="text-link" href="/company">Meet the company {ARROW}</a></section>'''
-pages['/']=('Solarity AI: AI-powered self-improvement apps and web apps','Solarity AI builds AI self-improvement apps for iOS and Android, Looks Max, IQ Max, Sleep Max, and Fitness Max, and three web apps for building mobile products.',hero+products+saas_wall(SAAS)+founder_strip+cta('Build on a shared ambition.','Explore the portfolio, discuss a partnership, or speak with the founder about the company’s direction.'))
+pages['/']=('Solarity AI: AI-powered self-improvement apps and web apps','Solarity AI builds AI self-improvement apps for iOS and Android, Looks Max, IQ Max, Sleep Max, and Fitness Max, and three web apps for building mobile products.',
+            page('home',hero_section=hero_section,portfolio_wall=portfolio_wall,saas_wall=saas_wall,founder_portrait=founder_portrait))
 
-pages['/apps']=('AI self-improvement apps for iOS and Android','Discover Looks Max, IQ Max, Sleep Max, and Fitness Max, and the Engineering Max, Management Max, and Marketing Max web apps from Solarity AI.',portfolio_page(APPS,btn,app_art,product_status)+apps_web_band(SAAS)+cta('Products with purpose.','Interested in distribution, product collaboration, or the wider Solarity AI story? Let’s start a conversation.'))
+pages['/apps']=('AI self-improvement apps for iOS and Android','Discover Looks Max, IQ Max, Sleep Max, and Fitness Max, and the Engineering Max, Management Max, and Marketing Max web apps from Solarity AI.',
+                page('apps',portfolio_page=portfolio_page,app_art=app_art,product_status=product_status,apps_web_band=apps_web_band))
 
 for a in APPS:
     status=product_status(a,True)
     stores=store_badges(a, btn('Ask about '+a['name'],contact('Product inquiry',a['name'])))
     features=feature_grid(a)
-    pages['/apps/'+a['slug']]=(a['seo_title'],a['seo_description'],product_page(a,APPS,btn,contact,stores,status,features,app_breadcrumbs(a),related_apps(a,APPS)))
+    pages['/apps/'+a['slug']]=(a['seo_title'],a['seo_description'],str(product_page(a,APPS,btn,contact,stores,status,features,app_breadcrumbs(a),related_apps(a,APPS))))
 
-pages['/platform']=('Engineering Max, Management Max, and Marketing Max','Engineering Max, Management Max, and Marketing Max: three Solarity AI web apps for engineering, managing, and marketing mobile products.',f'''{platform_opening(APPS,SAAS,btn,contact)}{saas_chapters(SAAS)}{strategy_story(btn,contact)}{cta("Shape the next product workflow.","Bring a specific engineering, management, or marketing problem to a conversation about the app factory direction.",lead='partner')}''')
+pages['/platform']=('Engineering Max, Management Max, and Marketing Max','Engineering Max, Management Max, and Marketing Max: three Solarity AI web apps for engineering, managing, and marketing mobile products.',
+                    page('platform',platform_opening=platform_opening,saas_chapters=saas_chapters,strategy_story=strategy_story))
 
-pages['/company']=('About Solarity AI and founder Ata Turhan','Solarity AI LLC was founded by Ata Turhan in Irving, Texas. Meet the founder and the team building self-improvement apps and web apps for mobile products.',f'''
-<section class="page-intro wrap company-intro">{eyebrow("Company")}<h1>The people.<br>The purpose.</h1><p class="lede">Founded by Ata Turhan in Irving, Texas, Solarity AI brings focused self-improvement apps together with a vision for more repeatable product development.</p><a class="text-link company-team-shortcut" href="#team">Meet our team <span aria-hidden="true">↓</span></a><a class="text-link company-careers-shortcut" href="/careers">Explore careers <span aria-hidden="true">→</span></a></section>
-<section class="founder-section wrap">{founder_card()}<div><h2>Start with the person.<br>Build with purpose.</h2><p>Ata Turhan founded Solarity AI with a focus on AI-powered products. Today, that direction brings four self-improvement apps together with three web apps for the teams who build them.</p><p>The company welcomes investors and collaborators interested in consumer software, product distribution, and systems for the teams creating mobile experiences.</p>{btn('Connect with Ata','/contact','outline')}</div></section>
-{selected_team()}{operating_principles()}
-{cta("Meet the people. Explore the possibility.","Connect with the founder about Solarity AI’s products, company direction, or a potential partnership.")}''')
+pages['/company']=('About Solarity AI and founder Ata Turhan','Solarity AI LLC was founded by Ata Turhan in Irving, Texas. Meet the founder and the team building self-improvement apps and web apps for mobile products.',
+                   page('company',founder_card=founder_card,selected_team=selected_team,operating_principles=operating_principles))
 
-pages['/investors-partners']=('Invest in or partner with Solarity AI','Explore the Solarity AI product thesis and opportunities for investment, distribution, technology collaboration, and platform design partnerships.',f'''{investor_opening(APPS,btn,contact)}{investor_evidence(APPS)}{investor_faq()}{founder_booking(btn,BOOKING)}''')
+pages['/investors-partners']=('Invest in or partner with Solarity AI','Explore the Solarity AI product thesis and opportunities for investment, distribution, technology collaboration, and platform design partnerships.',
+                              page('investors_partners',investor_opening=investor_opening,investor_evidence=investor_evidence,investor_faq=investor_faq,founder_booking=founder_booking,booking=BOOKING))
 
-pages['/careers']=('Careers at Solarity AI: remote engineering and marketing roles','Fully remote engineering, marketing, and business development roles at Solarity AI, with profit sharing. Apply to help build focused AI-powered mobile products.',careers_page(btn))
+pages['/careers']=('Careers at Solarity AI: remote engineering and marketing roles','Fully remote engineering, marketing, and business development roles at Solarity AI, with profit sharing. Apply to help build focused AI-powered mobile products.',str(careers_page(btn)))
 
-pages['/contact']=('Contact Solarity AI and founder Ata Turhan','Contact Solarity AI about investment, strategic partnerships or its consumer apps. Reach founder Ata Turhan directly.',contact_page(EMAIL,BOOKING,btn))
-pages['/404']=('Page not found','This page is not here. Find your way back to Solarity AI’s apps, app factory platform, company story, investor information, or contact page.',f'<section class="page-intro wrap not-found"><div class="recovery-intro">{eyebrow("Error 404")}<h1>This page <span class="muted">is not here.</span></h1><p class="lede">Let’s get you back to the products, the platform, or the conversation.</p><div class="actions">{btn("Back to home","/")}{btn("Explore our apps","/apps","outline")}</div></div>{recovery_links()}</section>')
+pages['/contact']=('Contact Solarity AI and founder Ata Turhan','Contact Solarity AI about investment, strategic partnerships or its consumer apps. Reach founder Ata Turhan directly.',str(contact_page(EMAIL,BOOKING,btn)))
+pages['/404']=('Page not found','This page is not here. Find your way back to Solarity AI’s apps, app factory platform, company story, investor information, or contact page.',page('not_found',recovery_links=recovery_links))
 
 style_sources=['design/system/foundation.css', 'design/system/chrome.css', 'design/system/home.css', 'design/system/products.css', 'design/system/company.css', 'design/system/contact.css', 'design/system/careers.css', 'design/system/accessibility.css']
 source_css='\n'.join((ROOT/name).read_text(encoding='utf-8') for name in style_sources)
