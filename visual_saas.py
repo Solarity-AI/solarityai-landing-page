@@ -89,7 +89,6 @@ def saas_chapter(product, index):
     lead = _enlargeable(product, screens[0], '(max-width: 850px) 92vw, 720px')
     extra = ''.join(_enlargeable(product, s, '(max-width: 850px) 92vw, 720px') for s in screens[1:])
     return (f'<section class="saas-chapter{" saas-chapter--flip" if index % 2 else ""}" id="{slug}" aria-labelledby="{slug}-title">'
-            f'<span class="module-word" aria-hidden="true">{e(product["stage"])}</span>'
             f'<div class="saas-chapter-copy"><div class="module-num" aria-hidden="true">{e(product["number"])}</div>'
             f'<p class="saas-category">{e(product["category"])}</p><h2 id="{slug}-title">{name}</h2>{saas_status(product)}'
             f'<p class="saas-tagline">{e(product["tagline"])}</p><p>{e(product["summary"])}</p>'

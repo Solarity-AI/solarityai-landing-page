@@ -33,7 +33,7 @@
  .menu-toggle[aria-expanded='true']{border-color:var(--gold);color:var(--gold)}
  .menu-toggle[aria-expanded='true'] .menu-lines::before{transform:translateY(4.5px) rotate(45deg)}
  .menu-toggle[aria-expanded='true'] .menu-lines::after{transform:translateY(-4.5px) rotate(-45deg)}
- .chrome-footer{--footer-from:var(--bg);margin-top:clamp(48px,6vw,88px);background:var(--grain),linear-gradient(var(--footer-from),var(--tone-footer) 160px)}
+ .chrome-footer{--footer-from:var(--bg);margin-top:0;background:var(--grain),linear-gradient(var(--footer-from),var(--tone-footer) 160px)}
  body:has(main>.conversation-band:last-child) .chrome-footer{--footer-from:var(--tone-golden);margin-top:0}
  .chrome-footer>.wrap{padding-block:clamp(48px,6vw,84px) 20px}
  .footer-directory{display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) minmax(0,1.15fr);gap:50px;padding-block:12px 48px}
@@ -83,7 +83,7 @@
   .menu-toggle{border-color:transparent}
   .header-actions .button.small,html.header-over-hero .header-actions .button.small{min-height:44px;padding-inline:8px;border-color:transparent;background:none;color:var(--text)}
   .header-actions .button.small>span[aria-hidden]{display:none}
-  .chrome-footer>.wrap{padding-block:28px 12px}
+  .chrome-footer>.wrap{padding-block:48px 12px}
   .footer-directory{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 20px}
   .footer-group a{font-size:var(--text-sm)}.footer-signature{padding-block:20px 16px}.footer-legal{gap:0;padding-top:10px}
   /* Phones: the directory sits in two columns and Contact pairs its four links, so the footer stays under 0.75 viewport. */
