@@ -38,6 +38,17 @@ class ShippingRecordTest(unittest.TestCase):
         self.assertNotIn('Missing date', html)
 
 
+class RecordHelpersTest(unittest.TestCase):
+    def test_summary_matches_the_release_dates(self):
+        summary = visual_record.record_summary()
+        self.assertEqual((summary['count'], summary['weeks'], summary['first']), (4, 12, 'June 23, 2026'))
+        self.assertEqual((summary['count_word'], summary['weeks_word']), ('four', 'twelve'))
+
+    def test_since_dates_only_for_recorded_apps(self):
+        self.assertEqual(visual_record.app_store_since('sleep-max'), 'September 16, 2026')
+        self.assertEqual(visual_record.app_store_since('unknown-app'), '')
+
+
 class HiddenUntilSuppliedTest(unittest.TestCase):
     def test_empty_facts_render_nothing(self):
         self.assertEqual(visual_record.founder_record(), '')
