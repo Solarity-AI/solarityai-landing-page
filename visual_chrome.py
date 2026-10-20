@@ -2,6 +2,7 @@
 
 from saas_products import SAAS
 from templating import render
+from visual_record import company_line
 
 
 def site_header(path, nav_items, btn):
@@ -33,4 +34,4 @@ def site_footer(email, path='/', booking=''):
                      ('/contact?type=Strategic+partner#prepare-inquiry', 'Partnership inquiries'),
                      ('mailto:' + email, 'Email Ata')] + ([(booking, 'Book a conversation')] if booking else [])),
     ]
-    return str(render('visual_chrome/site_footer.html.j2', groups=groups, path=path))
+    return str(render('visual_chrome/site_footer.html.j2', groups=groups, path=path, company=company_line()))

@@ -1,0 +1,15 @@
+<section class="program-brief wrap" id="brief" aria-labelledby="program-brief-title">
+{#- -#}
+<div class="record-heading"><div><p class="eyebrow">For programs and investors</p><h2 id="program-brief-title">What we’re looking for.</h2></div>
+{%- if brief.get('one_pager') %}<a class="button outline" href="{{ brief.get('one_pager') }}">Download the one-pager (PDF) <span aria-hidden="true">→</span></a>{% endif -%}
+</div>
+{%- if metrics -%}
+<dl class="brief-metrics" aria-describedby="brief-metrics-note">
+{%- for metric in metrics %}<div><dt>{{ metric.label }}</dt><dd>{{ metric.value }}</dd></div>{% endfor -%}
+</dl><p class="caption" id="brief-metrics-note">As of {{ as_of }}.</p>
+{%- endif -%}
+<div class="brief-columns">
+{%- if brief.get('seeking') %}<div><h3>What we’re seeking</h3><p>{{ brief.get('seeking') }}</p>{% if brief.get('use') %}<p>{{ brief.get('use') }}</p>{% endif %}</div>{% endif -%}
+{%- if brief.get('why_now') %}<div><h3>Why now</h3><p>{{ brief.get('why_now') }}</p></div>{% endif -%}
+</div>
+</section>

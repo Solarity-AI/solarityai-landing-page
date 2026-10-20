@@ -17,6 +17,7 @@ from visual_products import product_art, product_page
 from visual_catalog import portfolio_page, portfolio_wall
 from visual_company_upgrade import strategy_story, investor_evidence, investor_opening, operating_principles, founder_booking
 from visual_strategy import platform_opening
+from visual_record import shipping_record, founder_record, program_brief, company_line
 import seo
 from templating import render
 from optimize_images import ensure_optimized_images, write_favicon
@@ -87,7 +88,7 @@ def page(name,**context):
 # Page bodies stay plain strings: seo.page_dates() hashes them together with the title and description.
 pages={}
 pages['/']=('Solarity AI: AI-powered self-improvement apps and web apps','Solarity AI builds AI self-improvement apps for iOS and Android, Looks Max, IQ Max, Sleep Max, and Fitness Max, and three web apps for building mobile products.',
-            page('home',hero_section=hero_section,portfolio_wall=portfolio_wall,saas_wall=saas_wall,founder_portrait=founder_portrait))
+            page('home',hero_section=hero_section,portfolio_wall=portfolio_wall,shipping_record=shipping_record,saas_wall=saas_wall,founder_portrait=founder_portrait))
 
 pages['/apps']=('AI self-improvement apps for iOS and Android','Discover Looks Max, IQ Max, Sleep Max, and Fitness Max, and the Engineering Max, Management Max, and Marketing Max web apps from Solarity AI.',
                 page('apps',portfolio_page=portfolio_page,app_art=app_art,product_status=product_status,apps_web_band=apps_web_band))
@@ -102,10 +103,10 @@ pages['/platform']=('Engineering Max, Management Max, and Marketing Max','Engine
                     page('platform',platform_opening=platform_opening,saas_chapters=saas_chapters,strategy_story=strategy_story))
 
 pages['/company']=('About Solarity AI and founder Ata Turhan','Solarity AI LLC was founded by Ata Turhan in Irving, Texas. Meet the founder and the team building self-improvement apps and web apps for mobile products.',
-                   page('company',founder_card=founder_card,selected_team=selected_team,operating_principles=operating_principles))
+                   page('company',founder_card=founder_card,founder_record=founder_record,selected_team=selected_team,operating_principles=operating_principles))
 
 pages['/investors-partners']=('Invest in or partner with Solarity AI','Explore the Solarity AI product thesis and opportunities for investment, distribution, technology collaboration, and platform design partnerships.',
-                              page('investors_partners',investor_opening=investor_opening,investor_evidence=investor_evidence,investor_faq=investor_faq,founder_booking=founder_booking,booking=BOOKING))
+                              page('investors_partners',investor_opening=investor_opening,shipping_record=shipping_record,program_brief=program_brief,investor_evidence=investor_evidence,investor_faq=investor_faq,founder_booking=founder_booking,booking=BOOKING))
 
 pages['/careers']=('Careers at Solarity AI: remote engineering and marketing roles','Fully remote engineering, marketing, and business development roles at Solarity AI, with profit sharing. Apply to help build focused AI-powered mobile products.',str(careers_page(btn)))
 

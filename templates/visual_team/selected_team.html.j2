@@ -8,6 +8,6 @@
   {#- -#}
   <ul class="selected-team-list">
     {%- for member in members -%}
-    <li class="selected-team-member" data-member="{{ member['slug']|safe }}"><h3>{{ member['name'] }}</h3></li>
+    <li class="selected-team-member" data-member="{{ member['slug']|safe }}"><h3>{{ member['name'] }}</h3>{{ team_detail(member['name'])|safe }}</li>
     {%- endfor -%}
   </ul></section>

@@ -1,0 +1,5 @@
+<p class="team-detail">
+{%- if detail.get('role') %}<span class="team-role">{{ detail.get('role') }}</span>{% endif -%}
+{%- if detail.get('commitment') %}<span class="team-commitment">{{ detail.get('commitment') }}</span>{% endif -%}
+{%- if detail.get('linkedin') %}<a href="{{ detail.get('linkedin') }}" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span><span class="sr-only"> profile of {{ name }} (opens in a new tab)</span></a>{% endif -%}
+</p>

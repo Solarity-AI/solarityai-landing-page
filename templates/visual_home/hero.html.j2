@@ -5,7 +5,8 @@
       <div class="vision-story wrap">
         <div class="vision-copy">
           <h1 id="hero-title">Building for<br>human <em>potential.</em></h1>
-          <p class="vision-description">AI-powered self-improvement apps, and the web apps we built to engineer, run, and grow them.</p>
+          <p class="vision-description">Solarity AI builds AI self-improvement apps, four of them live on iOS and Android, and the tools that let our small team ship them fast.</p>
+          <p class="vision-proof"><span class="vision-proof-icons" aria-hidden="true">{%- for a in apps if a.get('apple') -%}<img src="/assets/{{ a['slug'] }}-icon.webp" alt="" width="48" height="48">{%- endfor -%}</span><span>4 apps live on iOS &amp; Android · 3 web apps · Irving, Texas</span></p>
         </div>
         <div class="vision-actions">
           <div class="actions">{{ btn('Investor inquiries', contact('Investor'))|safe }}{{ btn('Partnership inquiries', contact('Strategic partner'), 'outline')|safe }}</div>
