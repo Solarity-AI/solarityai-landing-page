@@ -22,6 +22,7 @@ Solarity AI LLC was founded by Ata Turhan in Irving, Texas, United States. The f
 - [Company and team](https://solarityai.com/company/): founder Ata Turhan, with Emrecan Özkan, Ali Yılmaz, Hasan Ak, Eren Öz, Batuhan Yücetürk, and Melik Kaplan.
 - [App factory platform](https://solarityai.com/platform/): how the three web apps came from building the consumer apps.
 - [Investors and partners](https://solarityai.com/investors-partners/): company thesis, business model and partnership paths.
+- [Press kit](https://solarityai.com/press/): approved descriptions, facts, the sun mark, founder portrait, and app icons.
 - [Careers](https://solarityai.com/careers/): fully remote roles for a Full Stack Engineer, a Marketing Specialist, and a Business Development Manager.
 - [Contact](https://solarityai.com/contact/): email ata.turhan@solarityai.com or book a conversation with the founder.
 
