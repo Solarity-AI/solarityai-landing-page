@@ -4,7 +4,7 @@ Updated October 13, 2026. Current reference-inspired pass starts from public dep
 
 ## Direction
 
-The site presents a consumer product company to investors and strategic partners. Its four store-listed apps provide tangible product evidence; Engineering Max, Management Max, and Marketing Max remain an explicitly identified platform vision. Design should reinforce that distinction.
+The site presents a consumer product company to investors and strategic partners. Its four store-listed apps provide tangible product evidence; Engineering Max, Management Max, and Marketing Max are real web apps, each shown with its own status, and their mobile versions are a stated plan. Design should keep evidence and plans visibly distinct.
 
 The visual language combines charcoal, warm solar accents, off-white type, restrained paper surfaces, editorial proportions, and authentic product screens. Authentic product imagery now leads Home and Investors. The conceptual human-progress artwork remains secondary on Company, where genuine people lead. No new decorative website assets, fonts, dependencies, or runtime JavaScript were added. See `REFERENCE_DESIGN_PASS.md` for the current route-by-route implementation map and verification limits.
 
@@ -26,7 +26,7 @@ Every generated route was audited in source before implementation. Browser rende
 | Contact | Numerous conflicting style passes and weak grouping | Composed inquiry workspace, clearer topic controls, optional fields, errors, and distinct review sheet; honest email handoff retained |
 | 404 | Unrelated orbital decoration | Direct recovery message and useful destination directory |
 
-Shared findings included 34 stylesheet sources, repeated declarations across successive visual passes, inconsistent radii and type scales, and fragile cross-file override ordering. All 34 legacy CSS sources were removed from the active checkout and remain available in Git history. Seven files now define the maintained system.
+Shared findings included 34 stylesheet sources, repeated declarations across successive visual passes, inconsistent radii and type scales, and fragile cross-file override ordering. All 34 legacy CSS sources were removed from the active checkout and remain available in Git history. Eight files now define the maintained system (`careers.css` joined later).
 
 ## Source responsibilities
 
@@ -37,7 +37,8 @@ Shared findings included 34 stylesheet sources, repeated declarations across suc
 | `home.css` | Home opening and credits row, portfolio wall, platform teaser, thesis, founder strip |
 | `products.css` | Apps directory and all four product detail compositions |
 | `company.css` | Company, Platform, Investors & Partners |
-| `contact.css` | Contact form, review/error/optional states, 404 recovery |
+| `contact.css` | Contact page (direct email and booking links, topic choices), 404 recovery |
+| `careers.css` | Careers page, role cards and the application form with its error states |
 | `accessibility.css` | Final reduced-motion, forced-color, and print rules |
 
 The declared cascade is `foundation, components, pages, accessibility`. Modify the responsible source rather than appending another override file. The generated presentation bundle and each inline route stylesheet are build outputs.
@@ -114,8 +115,8 @@ All values below are tokens on `:root` in `design/system/foundation.css`. `check
   - Height is `clamp(640px, 100svh, 960px)`. The title is two lines ("Building for / human *potential.*"), followed by the deck, Investor inquiries (primary) and Partnership inquiries (ghost).
   - Bottom edge: a credits row of the four app links, "Four apps · iOS & Android" and "Explore the portfolio ↓". An amber afterglow runs into the next scene.
   - Warm umber scrims clear by half the width, and a soft shadow carries the title over bright sky.
-  - Phones: a 560px art strip, the title on its lower fade, and the caption on a chip.
-  - The hero `sizes` (`(max-width: 560px) 1233px, 2113px`) matches the AVIF preload exactly.
+  - Phones: a 560px art strip and the title on its lower fade. (The caption chip was removed on 2026-10-19.)
+  - The hero `sizes` matches the AVIF preload exactly. It is now `(max-width: 560px) 680px, 2113px`.
 - **Close (P4).**
   - Every corporate page ends once, with `closing_scene()` in `visual_home.py`: a chapter-scale statement and two standard actions, Investor inquiries and Partnership inquiries. Platform leads with Partnership inquiries.
   - The scene supplies its own padding: 108–112px or less before the statement at 1440 and above. The dawn glow (`--light-field`) fades out before the scene's edge, so it dissolves into the footer with no step.
@@ -171,7 +172,7 @@ All values below are tokens on `:root` in `design/system/foundation.css`. `check
   - The close pairs the founder booking (times as the primary, email as the outline) with the one reprise of the approved sunrise on this page, captioned "Conceptual brand artwork".
   - Every chapter heading on the page uses the display face. Section glows fade in from transparent on every edge, so no band shows a seam.
 - **App factory map (P6b).**
-  - `platform_map(apps, variant)` in `visual_sections.py` is shared by Platform and Home. The store-listed apps are the lit source on a horizon with the evidence chip. Build, Operate and Grow are dashed vision nodes, each with `.status.vision`. Connectors are dashed and decorative: they read as informing the direction, never as integrations.
+  - Superseded on 2026-10-19: the map is now `platform_map(apps, saas)`, appears on Platform only, and its nodes are the three web apps with their real statuses. As first built, `platform_map(apps, variant)` in `visual_sections.py` was shared by Platform and Home. The store-listed apps are the lit source on a horizon with the evidence chip. Build, Operate and Grow are dashed vision nodes, each with `.status.vision`. Connectors are dashed and decorative: they read as informing the direction, never as integrations.
   - One legend per map replaces the scattered retractions: the two chips, then "Conceptual company strategy." with the existing note. The figcaption also holds a screen-reader sentence naming the apps and the three directions.
   - On Platform the icons link to the apps and the nodes to the module sections. On Home the map is illustrative, and the section keeps its one "Explore the app factory →".
   - Phones get a compact vertical map: the icons above a glowing line past three outlined nodes. It measures 345px, 41% of a 390×844 viewport (limit 60%).

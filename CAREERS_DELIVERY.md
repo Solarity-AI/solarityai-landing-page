@@ -1,6 +1,6 @@
 # Careers delivery verification
 
-Status on 2026-10-18: **unconfirmed, with evidence of risk.** No application has been confirmed as delivered from the current Site.
+Status on 2026-10-19: **confirmed on the earlier GPT Sites origin, unverified on solarityai.com.** Repeat the one-application test below on `https://solarityai.com/careers/#apply`.
 
 **Status after the move (2026-10-18):** the site is live on solarityai.com and posts to `careers@solarityai.com`, which the founder chose to keep. The founder confirmed activation and delivery from the GPT Sites origin. The same one-application test must be repeated on `https://solarityai.com`; until it passes, an applicant's first submission from solarityai.com may only trigger FormSubmit's activation email.
 
@@ -13,7 +13,7 @@ Status on 2026-10-18: **unconfirmed, with evidence of risk.** No application has
 - **Connected mailbox search** (the founder's Gmail, which receives `info@solarityai.com` forwards). It covered every FormSubmit message, including trash.
   - Real job applications were delivered through FormSubmit to **info@solarityai.com** from the previous `https://solarityai.com/` site. Messages are dated 2026-01-30, 2026-02-16 (two), 2026-03-07, 2026-04-21 and 2026-07-20, the last two forwarded by info@. So FormSubmit delivery works for that address and origin.
   - There are **no** FormSubmit messages addressed to `careers@solarityai.com`, neither activation requests nor submissions.
-  - There are **no** FormSubmit messages that mention the current origin `solarity-company.the-ata-turhan.chatgpt.site`.
+  - There are **no** FormSubmit messages that mention the then-current origin `solarity-company.the-ata-turhan.chatgpt.site`.
 - FormSubmit sends a separate "Action Required: Activate FormSubmit on <origin>" email for each new address and site origin. The mailbox shows separate activations for `www.solarityai.com`, `127.0.0.1:8000` and `127.0.0.1:45969`. Submissions sent before activation are not delivered.
 - `solarityai.com` MX records point to `mx1/mx2.privateemail.com`. Whether `careers@` is a real mailbox, an alias, or forwarded somewhere was not verifiable from here.
 
@@ -25,7 +25,7 @@ A real application has to pass FormSubmit's CAPTCHA, which Claude does not solve
 
 ## Test procedure (one real application, about 5 minutes)
 
-1. In a normal browser, open the deployed careers page: `https://solarityai.com/careers/#apply` once this site is live there. Before that, use the GPT Sites deployment at `https://solarity-company.the-ata-turhan.chatgpt.site/careers/#apply`. Activation is per origin, so repeat the test on solarityai.com after the switch.
+1. In a normal browser, open the deployed careers page: `https://solarityai.com/careers/#apply`. Activation is per origin, so the earlier GPT Sites test does not cover solarityai.com.
 2. Fill the form with your own details. Use the subject-identifying name `Delivery test – <date>` and choose any role and work type.
 3. Select **Continue application**, then complete FormSubmit's CAPTCHA.
 4. Record what FormSubmit shows (confirmation page, or "activate your form" notice).
