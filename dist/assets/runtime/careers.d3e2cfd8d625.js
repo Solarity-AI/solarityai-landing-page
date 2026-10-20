@@ -97,6 +97,7 @@
 
   let attempted = false;
   let handoff = false;
+  let handoffAt = 0;
   const touched = new Set();
   const values = () => Object.fromEntries(Object.entries(fields).map(([key, field]) => [key, field.value]));
 
@@ -180,6 +181,11 @@
   });
 
   form.addEventListener('submit', (event) => {
+    // A second click while the provider is loading would post the application twice.
+    if (handoff && Date.now() - handoffAt < 10000) {
+      event.preventDefault();
+      return;
+    }
     attempted = true;
     resetHandoff();
     fields.linkedin.value = withScheme(fields.linkedin.value);
@@ -196,6 +202,7 @@
     // Never infer successful delivery from this page or from URL parameters.
     Object.values(fields).forEach((field) => { field.value = field.value.trim(); });
     handoff = true;
+    handoffAt = Date.now();
     form.setAttribute('aria-busy', 'true');
     submit.setAttribute('aria-busy', 'true');
     status.textContent = 'Continuing to FormSubmit for verification. Your application has not been confirmed yet.';
