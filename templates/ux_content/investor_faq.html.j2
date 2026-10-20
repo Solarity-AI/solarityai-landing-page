@@ -1,0 +1,5 @@
+<section class="investor-faq section wrap" id="investor-questions" aria-labelledby="investor-questions-title"><div class="section-heading"><div><h2 id="investor-questions-title">A few useful answers.</h2></div><p class="section-lede">A clear starting point for exploring the products, the platform, and a potential collaboration.</p></div><div class="faq-list">
+{%- for question, answer in questions -%}
+<details class="faq-item"><summary><span class="faq-number" aria-hidden="true">{{ '%02d'|format(loop.index) }}</span><span class="faq-question">{{ question|safe }}</span><span class="faq-marker" aria-hidden="true">+</span></summary><div class="faq-answer">{{ answer|safe }}</div></details>
+{%- endfor -%}
+</div></section>
