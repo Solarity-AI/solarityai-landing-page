@@ -67,15 +67,18 @@ FAQ = [
     (
         "What kinds of partnerships are relevant?",
         '<p>We welcome conversations about product distribution, '
-        'technology collaboration, and platform design partnerships. '
+        'technology collaboration, and web app partnerships around Engineering Max, '
+        'Management Max, or Marketing Max. '
         'A useful introduction describes your audience or team, the '
         'product or workflow involved, and the collaboration you have in mind.</p>'
         '<p><a href="/contact?type=Strategic+partner#prepare-inquiry">Start a partnership inquiry</a>.</p>',
     ),
     (
         "How do I start a conversation?",
-        '<p>Choose an <a href="/contact?type=Investor#prepare-inquiry">investor inquiry</a> '
-        'or <a href="/contact?type=Strategic+partner#prepare-inquiry">partnership inquiry</a>. '
+        '<p>Choose an <a href="/contact?type=Investor#prepare-inquiry">investor inquiry</a>, '
+        'a <a href="/contact?type=Strategic+partner#prepare-inquiry">partnership inquiry</a>, '
+        'or, when you are reviewing an application, a '
+        '<a href="/contact?type=Program#prepare-inquiry">program inquiry</a>. '
         'The contact page opens your email app with the relevant subject, '
         'so you can write directly to the founder.</p>'
         '<p>You can also email '

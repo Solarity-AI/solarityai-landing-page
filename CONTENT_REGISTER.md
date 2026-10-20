@@ -195,3 +195,20 @@ The homepage portfolio-to-platform relationship is explicitly conceptual company
   - **Press kit archive (`/assets/press/solarity-ai-press-kit.zip`):** the same approved images the page offers, plus a README with the one-line and short descriptions and usage notes. It is stored uncompressed with fixed metadata, so the bytes are identical on every machine.
   - **`security.txt` Policy:** `https://github.com/Solarity-AI/solarityai-landing-page/security/policy` (`.github/SECURITY.md`), checked live.
   - **Linkable answers:** each investor answer has a stable id (`ux_content.answer_id`). The FAQ schema and `llms-full.txt` give its URL.
+- **Sixth round (October 20, 2026).** From a peer review; nothing new is claimed.
+  - **Press formats:** JPEG (portrait, screens) and PNG (icons) copies from `make_press_assets.py`, recorded with hashes in `research-assets/press-assets.json`. The WebP originals stay linked.
+  - **Press product screens and their captions follow this register:**
+    - The four app screens: official App Store images with sample content.
+    - Engineering Max: its own site's scan of Solarity AI's Sleep Max.
+    - Management Max: sample apps and figures.
+    - Marketing Max: sample data.
+  - **Careers note:** an optional field of up to 1,000 characters, sent with the application as `note`. Delivery to the inbox is still unverified (`CAREERS_DELIVERY.md`).
+  - **Program path:** the four app pages' closing bands link the Program inquiry. Investor FAQ 08 offers it. FAQ 07 now names "web app partnerships", as the partnership section does.
+  - **Cross-links:**
+    - Investors links to Company facts and the press kit.
+    - Website data links each app page, where its store listings and their privacy details are linked.
+  - **404:** no canonical (it is noindex), and recovery links to Careers and Press.
+  - **Left for the founder:**
+    - The founder LinkedIn link: it's in the schema, but listed here as hidden until supplied.
+    - The careers "Internship" option, while every role lists Full-time / Part-time.
+    - Marketing Max's "internal V1" vs "early access" labels.

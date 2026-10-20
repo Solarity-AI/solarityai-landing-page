@@ -51,6 +51,9 @@
     return email.length <= 254 && /^[a-z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?(?:\.[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?)*$/i.test(email);
   }
 
+  // The optional note matches the textarea's maxlength.
+  const NOTE_LIMIT = 1000;
+
   function validateCareerApplication(input) {
     const errors = {};
     const fullName = trim(input.fullName);
@@ -63,6 +66,7 @@
     if (trim(input.portfolio) && !parseWebUrl(input.portfolio)) errors.portfolio = 'Enter a complete website, portfolio, GitHub, or Linktree URL starting with https:// or http://.';
     if (!ROLES.includes(input.position)) errors.position = 'Choose one of the listed positions.';
     if (!WORK_TYPES.includes(input.workType)) errors.workType = 'Choose your preferred work type.';
+    if (String(input.note || '').length > NOTE_LIMIT) errors.note = 'Use ' + NOTE_LIMIT.toLocaleString('en-US') + ' characters or fewer for your note.';
     return errors;
   }
 
@@ -87,6 +91,9 @@
     position: document.getElementById('career-position'),
     workType: document.getElementById('career-work-type')
   };
+  // The note is optional markup: pages without it keep the original six fields.
+  const note = document.getElementById('career-note');
+  if (note) fields.note = note;
   const summary = document.getElementById('career-errors');
   const errorList = document.getElementById('career-error-list');
   const status = document.getElementById('career-status');

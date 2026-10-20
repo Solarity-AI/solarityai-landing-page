@@ -1,4 +1,4 @@
 <section class="product-close wrap" aria-labelledby="product-close-title">
       <div class="product-close-copy"><img class="product-close-icon" src="/assets/{{ app['slug'] }}-icon.webp" width="64" height="64" alt="" loading="lazy" decoding="async"><h2 id="product-close-title">Let’s talk about {{ app['name'] }}.</h2><p>For product questions, distribution opportunities, or a potential collaboration.</p></div>
-      <div class="product-close-actions">{{ badges|safe }}<div class="actions">{{ btn('Ask about ' + app['name'], contact('Product inquiry', app['name']), 'outline')|safe }}{{ btn('All apps', '/apps#' + app['slug'], 'text')|safe }}</div></div>
+      <div class="product-close-actions">{{ badges|safe }}<div class="actions">{{ btn('Ask about ' + app['name'], contact('Product inquiry', app['name']), 'outline')|safe }}{{ btn('All apps', '/apps#' + app['slug'], 'text')|safe }}</div><a class="text-link conversation-program" href="{{ contact('Program') }}">Applying through a program? Contact the founder <span aria-hidden="true">→</span></a></div>
     </section>

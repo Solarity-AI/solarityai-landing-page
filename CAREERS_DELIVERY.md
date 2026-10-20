@@ -31,7 +31,7 @@ A real application has to pass FormSubmit's CAPTCHA, which Claude does not solve
 4. Record what FormSubmit shows (confirmation page, or "activate your form" notice).
 5. Check the `careers@solarityai.com` inbox, including spam, for **"Action Required: Activate FormSubmit on <the origin you tested>"**. If it is there, click **Activate Form**.
 6. If you activated in step 5, repeat steps 1–3 once more. The first submission is not delivered.
-7. Confirm that **"New Job Application - Solarity AI"** arrives in `careers@` with all fields: fullName, email, position, workType, plus the optional linkedin and portfolio.
+7. Confirm that **"New Job Application - Solarity AI"** arrives in `careers@` with all fields: fullName, email, position, workType, plus the optional linkedin, portfolio and note.
 8. Fill in the result below and commit this file.
 
 If `careers@` cannot receive mail, the founder should decide between creating that mailbox and pointing the form to the already-activated `info@solarityai.com`. The second option also changes `visual_careers.py`, the `check_site.py` destination contract, and `CLAUDE.md`.

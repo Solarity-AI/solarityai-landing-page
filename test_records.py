@@ -133,7 +133,10 @@ class DownloadsTest(unittest.TestCase):
         names = zipfile.ZipFile(io.BytesIO(data)).namelist()
         self.assertEqual(names[0], 'solarity-ai-press-kit/README.txt')
         self.assertIn('solarity-ai-press-kit/solarity-sun-mark.png', names)
-        self.assertEqual(sum(n.endswith('-icon.webp') for n in names), 4)
+        self.assertIn('solarity-ai-press-kit/ata-turhan-founder.jpg', names)
+        self.assertEqual(sum(n.endswith('-icon.png') for n in names), 4)
+        self.assertEqual(sum(n.startswith('solarity-ai-press-kit/screens/') and n.endswith('.jpg') for n in names), 7)
+        self.assertFalse(any(n.endswith('.webp') for n in names))
         for info in zipfile.ZipFile(io.BytesIO(data)).infolist():
             self.assertEqual((info.compress_type, info.create_system, info.date_time), (zipfile.ZIP_STORED, 3, (2026, 10, 20, 0, 0, 0)))
 
