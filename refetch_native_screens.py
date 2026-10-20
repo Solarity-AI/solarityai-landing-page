@@ -2,11 +2,12 @@
 
 The same official listing images recorded in research-assets/downloaded-assets.json and
 product-story-evidence.json are requested at their largest size. Each native file is compared
-with the published 600px file (downscaled, mean and 99th-percentile channel difference) and
-recorded with its checksum in research-assets/native-refetch.json.
+with the published file (downscaled, mean and 99th-percentile channel difference) and recorded
+with its checksum in research-assets/native-refetch.json.
 
-Nothing is published: the natives land in source-assets/native/ (git-ignored, build-only) and the
-site keeps its current files until the founder confirms the re-fetch (CINEMATIC_PREMIUM_PLAN.md P5a).
+The founder confirmed the native files on 2026-10-19 and the site now publishes them, so a re-run
+checks that the listings still match what is published. Nothing is published by this script: the
+natives land in source-assets/native/ (git-ignored, build-only).
 Run: python refetch_native_screens.py
 """
 from __future__ import annotations
@@ -95,7 +96,7 @@ def main() -> None:
         print(f"{name}: {size[0]}x{size[1]}, mean {comparison['mean_difference']}, p99 {comparison['p99_difference']}, match {comparison['matches_published']}")
     REPORT.write_text(json.dumps({
         'purpose': 'Native-resolution re-fetch of the published App Store screenshots (P5a)',
-        'status': 'Awaiting founder confirmation. The site still publishes the 600px files.',
+        'status': 'Founder confirmed the native files on 2026-10-19; the site publishes them. This run compares the listings with the published files.',
         'match_rule': f'downscaled native vs published: mean <= {MATCH_MEAN} and 99th percentile <= {MATCH_P99} levels',
         'assets': records,
     }, indent=2) + '\n', encoding='utf-8', newline='\n')
