@@ -1,0 +1,6 @@
+{# raw: statement and desc are markup supplied by the page -#}
+<section class="conversation-band wrap" aria-label="Connect with Solarity AI"><div><h2>{{ statement|safe }}</h2><p>{{ desc|safe }}</p></div><nav class="conversation-actions" aria-label="Inquiry paths">
+  {%- for label, kind, style in actions -%}
+  <a class="button {{ style|safe }}" href="{{ contact(kind) }}">{{ label|safe }} <span aria-hidden="true">→</span></a>
+  {%- endfor -%}
+</nav></section>

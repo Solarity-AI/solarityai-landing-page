@@ -1,0 +1,7 @@
+<div class="store-badges">
+  {#- -#}
+  <a class="store-badge store-badge--apple" href="{{ app['apple'] }}" target="_blank" rel="noopener noreferrer"><img src="{{ apple_badge|safe }}" alt="Download {{ app['name'] }} on the App Store" width="144" height="48" decoding="async"><span class="store-badge-arrow" aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a>
+  {%- if app.get('google') -%}
+  <a class="store-badge store-badge--google" href="{{ app['google'] }}" target="_blank" rel="noopener noreferrer"><img src="{{ google_badge|safe }}" alt="Get {{ app['name'] }} on Google Play" width="181" height="70" sizes="181px" decoding="async"><span class="store-badge-arrow" aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a>
+  {%- endif -%}
+</div>

@@ -1,0 +1,13 @@
+<section class="selected-team wrap" id="team" aria-labelledby="selected-team-heading">
+  {#- -#}
+  <div class="selected-team-intro"><div><p class="eyebrow">The team</p>
+  {#- -#}
+  <h2 id="selected-team-heading">Individual talent.<br>Shared ambition.</h2></div>
+  {#- -#}
+  <p>Meet the team helping bring Solarity AI’s products and company vision to life.</p></div>
+  {#- -#}
+  <ul class="selected-team-list">
+    {%- for member in members -%}
+    <li class="selected-team-member" data-member="{{ member['slug']|safe }}"><h3>{{ member['name'] }}</h3></li>
+    {%- endfor -%}
+  </ul></section>
