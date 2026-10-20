@@ -1,11 +1,7 @@
 """Editorial app discovery, with authentic assets and native navigation."""
 from image_provenance import provenance
 from html import escape as e
-from visual_products import voice_symbol
 
-
-def store_name_note(app):
-    return ('<p class="product-store-name">Listed in app stores as '+e(app['store_name'])+'.</p>') if app.get('store_name') else ''
 
 
 def _store_pair(app):

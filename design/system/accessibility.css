@@ -4,9 +4,9 @@
   .button>span[aria-hidden],.text-link>span[aria-hidden]{transition:transform var(--motion-detail) var(--motion-ease)}
   .button:focus-visible>span[aria-hidden],.text-link:focus-visible>span[aria-hidden]{transform:translateX(3px)}
   @media(hover:hover) and (pointer:fine){.button:hover>span[aria-hidden],.text-link:hover>span[aria-hidden]{transform:translateX(3px)}}
-  .footer-group a>span,.contact-method .method-arrow,.recovery-arrow{transition:transform var(--motion-fast) var(--motion-ease)}
-  .footer-group a:focus-visible>span,.contact-method:focus-visible .method-arrow{transform:translateX(3px)}
-  @media(hover:hover) and (pointer:fine){.footer-group a:hover>span,.contact-method:hover .method-arrow{transform:translateX(3px)}}
+  .footer-group a>span,.recovery-arrow{transition:transform var(--motion-fast) var(--motion-ease)}
+  .footer-group a:focus-visible>span{transform:translateX(3px)}
+  @media(hover:hover) and (pointer:fine){.footer-group a:hover>span{transform:translateX(3px)}}
   /* Cards and panels lift 4px and catch a sun hairline. translate composes with the scroll reveal's transform. */
   @media(hover:hover) and (pointer:fine){
    .wall-card,.saas-card,.feature-tile,.operating-principles li,.strategy-story-steps>li,.career-benefit-list>div,.partnership-topic,.today-card,.ahead-card,.lineup-app{transition:translate var(--motion-detail) var(--motion-ease),box-shadow var(--motion-detail) var(--motion-ease)}

@@ -56,7 +56,6 @@
   .not-found h1 { margin-block: 0 24px; }
   .not-found h1 .muted { color: var(--accent); }
   .not-found .lede { max-width: 43ch; margin-block: 0 28px; }
-  .recovery-art { display: none; }
   .recovery-nav { border-block: 1px solid var(--line); margin-block-start: 56px; }
   .recovery-nav a { display: grid; grid-template-columns: minmax(0, 1fr) 24px; align-items: center; gap: 24px; min-height: 94px; padding: 24px 8px; color: var(--text); text-decoration: none; transition: background-color var(--motion-fast); }
   .recovery-nav a + a { border-block-start: 1px solid var(--line); }
