@@ -1,6 +1,6 @@
 # Continue this project in Claude
 
-This is the git repository `github.com/Solarity-AI/solarityai-landing-page`. It holds the complete source: build scripts, the 13 generated pages (12 routes and the 404), CSS, JavaScript, tests, original and optimized assets, the font licenses, and the design and content records.
+This is the git repository `github.com/Solarity-AI/solarityai-landing-page`. It holds the complete source: build scripts, the 15 generated pages (14 routes and the 404), CSS, JavaScript, tests, original and optimized assets, the font licenses, and the design and content records.
 
 ## 1. Open the folder
 
