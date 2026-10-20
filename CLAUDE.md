@@ -17,6 +17,7 @@ This repository holds the complete source of the public Solarity AI corporate si
 - `visual_*.py`, `product_story.py`, `ux_components.py`, `ux_content.py`: the data and logic for shared and route-specific sections; each renders its own templates. `saas_products.py` holds the three web apps; `visual_saas.py` renders them on Home and Platform. `visual_stage.py` holds the official store badges and the product close; `visual_catalog.py` holds the Home portfolio wall and the Apps lineup. The Home explorer (`product_explorer.py`) was retired in P5b.
 - `design/system/`: 8 maintained CSS files. Edit these sources, not the generated `design/presentation.css` bundle (used only for build hashing) or inline output.
 - `scripts/`: 5 maintained scripts for navigation, the screenshot viewer (with previous/next browsing), contact context, careers validation, and the copy-address button. The build fingerprints external scripts and inlines navigation before first paint to protect mobile layout stability. `UX_REFINEMENTS.md` lists the October 18 UX pass and the contracts it relies on.
+- `company_facts.py` and `visual_record.py`: the dated shipping record (App Store release dates), plus the founder record, team details, company line and program brief. Those four stay hidden until their facts are filled in `company_facts.py`. `test_records.py` covers both states.
 - `seo.py`: search and AI answer-engine metadata. It builds the schema.org graph for each page, `robots.txt` (search and AI crawlers welcome), the sitemap with `lastmod` from `research-assets/page-dates.json`, `llms.txt` and `llms-full.txt`, and the IndexNow key. `deploy/indexnow.py` (run by `.github/workflows/indexnow.yml` after each deploy) submits changed pages. `CONTENT_REGISTER.md` lists the sources for every fact it states.
 - `make_social_images.py`: run by hand; writes the 1200×630 link-preview images to `source-assets/social/` from approved material only. Commit its output. The build publishes the images on reference, which keeps the bytes identical across machines.
 - `optimize_images.py`: local responsive WebP/AVIF variants, recorded edge trims for store screenshots, and the image manifest. `refetch_native_screens.py` re-fetches the published screenshots at native resolution into the git-ignored `source-assets/native/` for founder confirmation; it publishes nothing. `optimize_styles.py`: conservative route CSS filtering; classes that only scripts add belong in its `DYNAMIC_CLASSES`. `performance_build.py`: delivery optimization, including each page's speculation rules. They prefetch same-origin pages on visitor intent and must never prerender, which would run analytics for pages nobody opened. `check_site.py` enforces this.
@@ -33,7 +34,7 @@ Run from the project root after changes:
 ```sh
 python build_site.py
 python check_site.py
-python -m unittest test_optimize_styles.py test_site_urls.py test_seo.py
+python -m unittest test_optimize_styles.py test_site_urls.py test_seo.py test_records.py
 node --test test-navigation.cjs test-contact.cjs test-gallery.cjs test-careers.cjs test-copy.cjs
 ```
 

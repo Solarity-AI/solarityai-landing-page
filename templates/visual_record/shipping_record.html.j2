@@ -1,0 +1,20 @@
+{%- set new_tab = '<span class="sr-only"> (opens in a new tab)</span>'|safe -%}
+<section class="shipping-record wrap" id="shipping-record" aria-labelledby="shipping-record-title">
+{#- -#}
+<div class="record-heading"><div><p class="eyebrow">Shipping record</p><h2 id="shipping-record-title">{{ count }} apps in {{ weeks }} weeks.</h2></div>
+{#- -#}
+<p>From the first launch on {{ first }} to the latest on {{ last }}. Dates are App Store release dates; every app is also on Google Play.</p></div>
+{#- -#}
+<ol class="record-track" aria-label="App launches">
+{%- for launch in launches -%}
+<li class="record-step" data-product-accent="{{ launch.app.color }}"><time class="record-date" datetime="{{ launch.iso }}">{{ launch.label }}</time><span class="record-dot" aria-hidden="true"></span><a class="record-app" href="/apps/{{ launch.app.slug }}"><img src="/assets/{{ launch.app.slug }}-icon.webp" width="44" height="44" alt="" loading="lazy" decoding="async"><span><strong>{{ launch.app.name }}</strong><small>{{ launch.app.category }}</small></span></a><a class="record-listing" href="{{ launch.app.apple }}" target="_blank" rel="noopener noreferrer">App Store listing <span aria-hidden="true">↗</span>{{ new_tab }}</a></li>
+{%- endfor -%}
+</ol>
+{%- if web -%}
+<ol class="record-track record-track--web" aria-label="Web app milestones">
+{%- for milestone in web -%}
+<li class="record-step"><time class="record-date" datetime="{{ milestone.iso }}">{{ milestone.label }}</time><span class="record-dot" aria-hidden="true"></span><a class="record-app" href="/platform#{{ milestone.product.slug }}"><span><strong>{{ milestone.product.name }}</strong><small>{{ milestone.text }}</small></span></a></li>
+{%- endfor -%}
+</ol>
+{%- endif -%}
+</section>

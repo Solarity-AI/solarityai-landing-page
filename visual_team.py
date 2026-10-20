@@ -1,5 +1,6 @@
 """Founder-approved roster. Add people only after explicit selection by the founder."""
 from templating import render
+from visual_record import team_detail
 
 
 TEAM_MEMBERS = (
@@ -15,4 +16,4 @@ TEAM_MEMBERS = (
 
 def selected_team():
     """A complete typographic roster, without partial portraits or invented roles."""
-    return render('visual_team/selected_team.html.j2', members=TEAM_MEMBERS)
+    return render('visual_team/selected_team.html.j2', members=TEAM_MEMBERS, team_detail=team_detail)

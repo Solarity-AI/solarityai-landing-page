@@ -142,3 +142,9 @@ The homepage portfolio-to-platform relationship is explicitly conceptual company
 - **`llms.txt` and `llms-full.txt`:** the [llmstxt.org](https://llmstxt.org) summaries for AI assistants, generated from the same `APPS`, `SAAS` and FAQ data the pages render.
 - **Sitemap `lastmod` and `dateModified`:** these come from `research-assets/page-dates.json`. A route's date changes only when its description or body changes, so a rebuild of unchanged content stays byte-identical.
 - **IndexNow:** after a deploy, `.github/workflows/indexnow.yml` runs `deploy/indexnow.py` to submit the pages whose `lastmod` changed. The key file `dist/<key>.txt` is public by design.
+
+### Program readiness, October 20, 2026
+- **Shipping record.** App Store release dates come from Apple's public lookup for each listing, checked 2026-10-20: Looks Max 2026-06-23, Only Fitness (Fitness Max) 2026-08-15, IQ Max 2026-09-11, Sleep Max 2026-09-16. They are kept in `company_facts.APP_STORE_RELEASES`. "Four apps in twelve weeks" is computed from these dates (85 days). Google Play dates are not stated.
+- **Hero copy:** "Solarity AI builds AI self-improvement apps, four of them live on iOS and Android, and the tools that let our small team ship them fast." The proof strip reads "4 apps live on iOS & Android · 3 web apps · Irving, Texas". Both restate verified facts.
+- **App factory line on Home:** "Our approach: build consumer apps and the tools behind them, so every app we ship improves the tools for the next." This is stated as the company's approach, not as a measured result.
+- **Hidden until supplied:** the founder bio and LinkedIn link, team roles, commitment and links, the founding year and state of registration, and the program brief (ask, why now, dated metrics, one-pager). They live in `company_facts.py` and render nothing while empty (`test_records.py`). Fill them only with founder-supplied facts, and record the source here. Metrics need an "as of" date.
