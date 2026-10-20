@@ -182,6 +182,8 @@ def main(base: str) -> int:
         '/favicon.ico': ('image/x-icon', False),
         '/robots.txt': ('text/plain', False),
         '/sitemap.xml': ('application/xml', False),
+        '/llms.txt': ('text/plain', False),
+        '/llms-full.txt': ('text/plain', False),
     }
     for path, (content_type, immutable) in assets.items():
         status, headers, body = get(base, path)
