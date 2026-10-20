@@ -23,7 +23,62 @@
   @supports (animation-timeline:view()){
    /* Movement only: text keeps full contrast in every state, including content not yet scrolled to. */
    @keyframes rise-in{from{transform:translateY(36px)}to{transform:none}}
-   .wall-card,.saas-card,.world-band,.saas-chapter-copy,.saas-chapter-art,.today-card,.ahead-card,.ledger,.partnership-topic,.pmap-stage,.strategy-story-steps>li,.selected-team-member,.feature-card,.closing-scene .wrap{animation:rise-in linear both;animation-timeline:view();animation-range:entry 5% entry 55%}
+   .wall-card,.saas-card,.world-band,.saas-chapter-copy,.saas-chapter-art,.today-card,.ahead-card,.ledger,.partnership-topic,.pmap-stage,.strategy-story-steps>li,.selected-team-member,.feature-card,.feature-tile,.operating-principles li,.career-benefit-list>div,.contact-topic,.closing-scene .wrap{animation:rise-in linear both;animation-timeline:view();animation-range:entry 5% entry 55%}
+  }
+  /* Motion language (October 20, 2026): the sunrise. Light rises, surfaces settle on one expo ease-out
+     (--ease-sunrise), and everything is either tied to the scroll position (it cannot lag, loop or delay
+     anything) or a short response to the visitor. Only transforms move, and only decoration fades. */
+  @media(hover:hover) and (pointer:fine){
+   /* Cards catch a warm light where the pointer is; navigation.js writes --mx/--my on the hovered card. */
+   .saas-card,.feature-tile,.today-card,.ahead-card,.operating-principles li,.strategy-story-steps>li,.career-benefit-list>div,.contact-topic{position:relative;isolation:isolate}
+   .saas-card::after,.feature-tile::after,.today-card::after,.ahead-card::after,.operating-principles li::after,.strategy-story-steps>li::after,.career-benefit-list>div::after,.contact-topic::after{content:"";position:absolute;z-index:-1;inset:0;border-radius:inherit;pointer-events:none;background:radial-gradient(360px circle at var(--mx,50%) var(--my,-20%),rgb(255 207 122/.14),rgb(255 207 122/0) 62%);opacity:0;transition:opacity var(--motion-slow) var(--ease-sunrise)}
+   .saas-card:hover::after,.feature-tile:hover::after,.today-card:hover::after,.ahead-card:hover::after,.operating-principles li:hover::after,.strategy-story-steps>li:hover::after,.career-benefit-list>div:hover::after,.contact-topic:hover::after{opacity:1}
+   /* The primary action catches a sweep of sunlight. */
+   .button.primary{position:relative;isolation:isolate;overflow:hidden}
+   .button.primary::after{content:"";position:absolute;z-index:-1;inset:0;pointer-events:none;background:linear-gradient(105deg,rgb(255 255 255/0) 30%,rgb(255 255 255/.5) 50%,rgb(255 255 255/0) 70%);transform:translateX(-120%)}
+   .button.primary:is(:hover,:focus-visible)::after{transform:translateX(120%);transition:transform 900ms var(--ease-sunrise)}
+  }
+  /* The mobile menu settles into place, its links following one after another. */
+  .nav-enhanced #site-nav.is-open{transition:transform 420ms var(--ease-sunrise)}
+  .nav-enhanced #site-nav.is-open>a{transition:translate 520ms var(--ease-sunrise)}
+  .nav-enhanced #site-nav.is-open>a:nth-child(2){transition-delay:40ms}
+  .nav-enhanced #site-nav.is-open>a:nth-child(3){transition-delay:80ms}
+  .nav-enhanced #site-nav.is-open>a:nth-child(4){transition-delay:120ms}
+  .nav-enhanced #site-nav.is-open>a:nth-child(5){transition-delay:160ms}
+  @starting-style{.nav-enhanced #site-nav.is-open{transform:translateY(-12px)}.nav-enhanced #site-nav.is-open>a{translate:0 16px}}
+  @supports (animation-timeline:view()){
+   /* Dusk: scrolling past the hero deepens a scrim over the (still) artwork while the copy drifts up
+      ahead of the page. The scrim is its own layer; the hero image itself is never animated. */
+   @keyframes dusk{from{opacity:0}to{opacity:1}}
+   @keyframes hero-drift{to{transform:translateY(-12vh)}}
+   @keyframes hero-drift-soft{to{transform:translateY(-6vh)}}
+   .vision-hero::before{content:"";position:absolute;z-index:1;inset:0;pointer-events:none;background:linear-gradient(180deg,rgb(10 8 6/.3),rgb(10 8 6/.88) 80%);animation:dusk linear both;animation-timeline:scroll(root);animation-range:0 100svh}
+   .vision-copy{animation:hero-drift linear both;animation-timeline:scroll(root);animation-range:0 100svh}
+   .vision-actions{animation:hero-drift-soft linear both;animation-timeline:scroll(root);animation-range:0 100svh}
+   /* Depth: product and web app screens tilt up out of the page and catch the light as they arrive. */
+   @keyframes settle{from{transform:perspective(1400px) rotateX(12deg) translateY(36px) scale(.95);filter:brightness(.7)}to{transform:none;filter:none}}
+   .world-band-art .screenshot-stage,.wall-window,.saas-card .web-window,.saas-chapter-art .web-window,.product-story-image{transform-origin:50% 100%;animation:settle linear both;animation-timeline:view();animation-range:entry 0% entry 90%}
+   /* Light rising: each product world, the founder glow and the closing light field brighten on arrival. */
+   @keyframes light-rise{from{opacity:0;transform:translateY(10%)}to{opacity:1;transform:none}}
+   @keyframes light-on{from{opacity:0}to{opacity:1}}
+   .world-band::before{animation:light-on linear both;animation-timeline:view();animation-range:entry 0% entry 60%}
+   .founder-strip::before,.feature-tile::before{animation:light-rise linear both;animation-timeline:view();animation-range:entry 0% entry 100%}
+   /* Lines draw: eyebrow rules from the left, the closing horizon from the centre. */
+   @keyframes draw{from{transform:scaleX(0)}to{transform:none}}
+   .eyebrow::before{transform-origin:left center;animation:draw linear both;animation-timeline:view();animation-range:entry 30% entry 100%}
+   .conversation-band::after{transform-origin:center;animation:draw linear both;animation-timeline:view();animation-range:entry 0% entry 100%}
+   /* The footer sun turns into place as the signature arrives. */
+   @keyframes sun-turn{from{transform:rotate(-45deg) scale(.86)}to{transform:none}}
+   .footer-sun{animation:sun-turn linear both;animation-timeline:view();animation-range:entry 0% entry 100%}
+  }
+  /* Cards in one row arrive one after another. Sibling selectors (not :nth-child) let the per-page
+     CSS filter drop the rules for cards a page does not have. */
+  @supports (animation-timeline:view()){
+   @media(min-width:851px){
+    .wall-card+.wall-card,.saas-card+.saas-card,.feature-tile+.feature-tile,.operating-principles li+li,.strategy-story-steps>li+li,.partnership-topic+.partnership-topic,.career-benefit-list>div+div,.contact-topic+.contact-topic{animation-range:entry 11% entry 63%}
+    .wall-card+.wall-card+.wall-card,.saas-card+.saas-card+.saas-card,.feature-tile+.feature-tile+.feature-tile,.operating-principles li+li+li,.strategy-story-steps>li+li+li,.partnership-topic+.partnership-topic+.partnership-topic,.career-benefit-list>div+div+div,.contact-topic+.contact-topic+.contact-topic{animation-range:entry 17% entry 70%}
+    .wall-card+.wall-card+.wall-card+.wall-card,.saas-card+.saas-card+.saas-card+.saas-card,.feature-tile+.feature-tile+.feature-tile+.feature-tile,.operating-principles li+li+li+li,.strategy-story-steps>li+li+li+li,.partnership-topic+.partnership-topic+.partnership-topic+.partnership-topic,.career-benefit-list>div+div+div+div,.contact-topic+.contact-topic+.contact-topic+.contact-topic{animation-range:entry 23% entry 77%}
+   }
   }
  }
  @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
@@ -48,4 +103,13 @@
   .page-intro{padding-block:22pt}.button,.text-link{min-height:0;padding:6pt 0;border:0;text-decoration:underline}
   .actions{gap:12pt}a{overflow-wrap:anywhere}figure,img{break-inside:avoid}h1,h2,h3{break-after:avoid}
  }
+}
+/* Same-site navigations rise in from below, without fading; the header stays put. */
+@media(prefers-reduced-motion:no-preference){
+ @view-transition{navigation:auto}
+ .site-header{view-transition-name:site-header}
+ @keyframes page-rise{from{transform:translateY(18px)}}
+ ::view-transition-old(root),::view-transition-old(site-header),::view-transition-new(site-header){animation:none}
+ ::view-transition-old(root){opacity:0}
+ ::view-transition-new(root){animation:page-rise 520ms var(--ease-sunrise) both}
 }

@@ -231,6 +231,23 @@ All values below are tokens on `:root` in `design/system/foundation.css`. `check
   - **More contrast.** `prefers-contrast: more` raises `--muted`, `--dim`, `--sand` and the hairline tokens.
   - **Keyboard parity.** A card holding keyboard focus lifts and lights like a hovered one (`:has(:focus-visible)`), with motion allowed.
   - **Measured (local Lighthouse mobile, A/B against `develop`).** Investors LCP 3,250 → 2,490 ms and score 93 → 97. Home LCP 2,785 → 2,638 ms and 96 → 97. Apps and Company unchanged. CLS 0 and accessibility 100 throughout.
+- **Motion pass (October 20, 2026): the sunrise motion language.** All motion lives in `accessibility.css` under `prefers-reduced-motion: no-preference`; with reduced motion the page is complete and still (0 running animations, measured).
+  - **Tokens:** `--ease-sunrise` `cubic-bezier(.16,1,.3,1)` (expo out) and `--motion-slow` 720 ms, beside the existing `--motion-fast` / `--motion-detail`.
+  - **Animated properties:** most effects are scroll-linked (`animation-timeline: view()` / `scroll(root)`), so they cannot lag, loop or delay anything. Only transforms move; only decoration (scrims, glows, light) changes opacity; images may change `filter`. Text never fades.
+  - **Hero dusk (Home):** while the first 100svh scroll by, a `.vision-hero::before` scrim deepens over the artwork and the copy drifts up (12vh, the actions 6vh). The artwork itself is never animated (`check_site.py`).
+  - **Depth:** Apps band screens, Home wall windows, web app windows and product story images tilt up from `rotateX(12deg)` and brighten from `brightness(.7)` as they enter.
+  - **Staggered arrival:** from 851 px, the 2nd, 3rd and 4th card in a row start later. The rules use sibling selectors (`.card+.card`), so the per-page CSS filter drops them where a page has no such cards; `:nth-child` would ship everywhere.
+  - **Light:**
+    - Product world fields, the founder glow and feature-tile glows brighten on arrival.
+    - Eyebrow rules draw from the left, and the closing horizon draws from the centre.
+    - The footer sun turns into place.
+  - **Responses (fine pointers only):** cards light up where the pointer is (`navigation.js` writes `--mx`/`--my` on the hovered card, at most once a frame), and primary buttons catch a sweep of light.
+  - **Mobile menu:** it settles 12 px and its links follow one after another (`@starting-style`).
+  - **Page transitions:** same-site navigations use a cross-document view transition. The new page rises 18 px in 520 ms with no fade, and the header holds still. The block is unlayered so `@view-transition` is honoured.
+  - **Measured:**
+    - The 120-render sweep and a motion-on overflow scan of 18 renders are clean, axe reports 0 violations, and the interaction suite passes.
+    - Lighthouse local A/B against `develop`: Home 97/97 (LCP 2,636–2,642 vs 2,636–2,637 ms), Investors 98/98.
+    - Sleep Max showed 99 → 98, but a baseline padded with the same 4.3 KB scores identically (98, LCP 2,256 ms). That is the local server's uncompressed-HTML artifact, not motion cost. Gzipped, each page grows by about 1.1 KB.
 - **Design pass (October 20, 2026).** The work began with renders of every route at 390 and 1280 px, compared with Linear, Stripe and Vercel. Gaps between neighbouring sections ranged from 33 to 306 px with no rule behind them; the references hold an even rhythm.
   - **One section rhythm.** `--space-section` is now `clamp(48px, 32px + 3.2vw, 84px)`, and every content section pads that much above and below.
     - This replaces about a dozen one-off clamps on the wall, app factory, founder strip, conversation band, product story, features and close, the Platform chapters, and the Investors sections, which used to pad only one side.

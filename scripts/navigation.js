@@ -100,9 +100,33 @@
     syncViewport();
   }
 
+  // Cards catch a warm light where the pointer is (design/system/accessibility.css). Fine pointers with
+  // motion allowed only; one passive listener, and at most one style write per animation frame.
+  const LIT_CARDS = '.saas-card,.feature-tile,.today-card,.ahead-card,.operating-principles li,.strategy-story-steps>li,.career-benefit-list>div,.contact-topic';
+  function initializePointerLight() {
+    if (typeof window.matchMedia !== 'function' || typeof window.requestAnimationFrame !== 'function') return;
+    if (!window.matchMedia('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)').matches) return;
+    let pending = null;
+    let frame = 0;
+    function paint() {
+      frame = 0;
+      const target = pending && pending.target;
+      const card = target && typeof target.closest === 'function' ? target.closest(LIT_CARDS) : null;
+      if (!card) return;
+      const box = card.getBoundingClientRect();
+      card.style.setProperty('--mx', Math.round(pending.clientX - box.left) + 'px');
+      card.style.setProperty('--my', Math.round(pending.clientY - box.top) + 'px');
+    }
+    document.addEventListener('pointermove', (event) => {
+      pending = event;
+      if (!frame) frame = window.requestAnimationFrame(paint);
+    }, { passive: true });
+  }
+
   function initialize() {
     initializeHeroHeader();
     initializeNavigation();
+    initializePointerLight();
   }
 
   if (document.readyState === 'loading') {
