@@ -9,7 +9,7 @@ from image_provenance import provenance
 from saas_products import SAAS
 from templating import render
 from visual_saas import showroom_web
-from visual_record import company_line, program_brief
+from visual_record import company_line, program_brief, record_summary
 
 
 def page_index(sections):
@@ -25,6 +25,7 @@ def investor_opening(apps, btn, contact):
         apps=framed,
         investor_button=btn('Investor inquiries', contact('Investor')),
         partner_button=btn('Partnership inquiries', contact('Strategic partner'), 'outline'),
+        program_href=contact('Program'),
         index=page_index(((('brief', 'Brief'),) if program_brief() else ()) + (('portfolio', 'Portfolio'), ('shipping-record', 'Record'), ('at-a-glance', 'At a glance'),
                           ('conversation-paths', 'Partnerships'),
                           ('investor-questions', 'Questions'),
@@ -51,7 +52,7 @@ def investor_evidence(apps):
                    for title, detail, context in topics]
     listed = [app for app in apps if app.get('apple') and app.get('google')]
     return str(render('visual_company_upgrade/investor_evidence.html.j2',
-                      listed=listed, web_app_count=len(SAAS), topics=topic_links, company=company_line()))
+                      listed=listed, web_app_count=len(SAAS), topics=topic_links, company=company_line(), record=record_summary()))
 
 
 def founder_booking(btn, booking, email='ata.turhan@solarityai.com'):

@@ -5,11 +5,12 @@ from templating import render
 from ux_components import copy_button
 from visual_sections import symbol
 
-TOPIC_ICONS = {'Investor': 'invest', 'Strategic partner': 'partner', 'Product inquiry': 'apps', 'Other': 'message'}
+TOPIC_ICONS = {'Investor': 'invest', 'Program': 'spark', 'Strategic partner': 'partner', 'Product inquiry': 'apps', 'Other': 'message'}
 
 
 CONTACT_TOPICS = (
     ('Investor', 'Investment conversations', 'The portfolio, company strategy, and future priorities.'),
+    ('Program', 'Accelerators, incubators, and grants', 'Application reviews, program questions, and introductions.'),
     ('Strategic partner', 'Strategic partnerships', 'Distribution, technology, and the web apps for your team.'),
     ('Product inquiry', 'Product questions', 'The four mobile apps, or Engineering Max, Management Max, and Marketing Max.'),
     ('Other', 'Something else in mind?', 'A clear introduction is a good place to start.'),
