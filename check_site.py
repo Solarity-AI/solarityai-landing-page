@@ -442,7 +442,7 @@ for source in style_sources:
     for value in re.findall(r'(?<![\w-])font-weight:\s*([^;}]+)',screen):
         if value.strip() not in ('400','500','600','inherit','200 800'):errors.append(f'{source}: font weight {value.strip()} is outside the 400/500/600 system')
     for value in re.findall(r'border-radius:\s*([^;}]+)',screen):
-        if not re.fullmatch(r'var\(--radius-(control|plate|panel|pill|icon)\)|0|50%',value.strip()):errors.append(f'{source}: radius {value.strip()} must use a --radius-control/plate/panel/pill/icon token')
+        if not re.fullmatch(r'var\(--radius-(control|plate|panel|pill|icon)\)|0|50%|inherit',value.strip()):errors.append(f'{source}: radius {value.strip()} must use a --radius-control/plate/panel/pill/icon token')
     # Colors live in foundation.css tokens; borders, outlines and shadows never hard-code a hex value.
     if source!='design/system/foundation.css':
         for prop,value in re.findall(r'(?<![\w-])((?:border|outline|box-shadow)[\w-]*)\s*:\s*([^;}]+)',screen):
