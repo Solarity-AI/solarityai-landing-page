@@ -4,7 +4,9 @@ These symbols are decorative UI illustrations. They do not represent app screens
 product results, a company emblem, or a deployed platform architecture.
 """
 
-from html import escape
+from markupsafe import Markup
+
+from templating import render
 
 
 _ICONS = {
@@ -37,15 +39,12 @@ _FEATURE_SYMBOLS = {
 
 
 def symbol(name):
-    """Public access to the decorative icon set."""
-    return _symbol(name)
+    """Public access to the decorative icon set, as a plain HTML string for concatenating callers."""
+    return str(_symbol(name))
 
 
 def _symbol(name):
-    return ('<svg viewBox="0 0 24 24" width="32" height="32" '
-            'fill="none" stroke="currentColor" stroke-width="1.5" '
-            'stroke-linecap="round" stroke-linejoin="round" '
-            'aria-hidden="true" focusable="false">' + _ICONS[name] + '</svg>')
+    return render('visual_sections/symbol.html.j2', paths=_ICONS[name])
 
 
 def feature_grid(app):
@@ -54,27 +53,20 @@ def feature_grid(app):
     if not features:
         return ''
     symbols = _FEATURE_SYMBOLS.get(app['slug'], ('practice', 'habits', 'calendar'))
-    cards = []
-    for index, (title, description) in enumerate(features):
-        symbol = symbols[index % len(symbols)]
-        cards.append(
-            '<article class="feature-tile"><span class="feature-index" aria-hidden="true">'
-            + f'{index + 1:02d}' + '</span><span class="feature-symbol">'
-            + _symbol(symbol) + '</span><div class="feature-copy"><h3>' + escape(title)
-            + '</h3><p>' + escape(description) + '</p></div></article>'
-        )
-    return (
-        '<section class="section wrap product-features '
-        + escape(app.get('color', ''), quote=True)
-        + '" aria-label="' + escape(app['name'], quote=True) + ' features">'
-        '<div class="feature-section-heading"><h2>The product experience.</h2></div>'
-        '<div class="feature-grid illustrated-features">' + ''.join(cards)
-        + '</div></section>'
-    )
+    cards = [{'title': title, 'description': description, 'icon': _symbol(symbols[index % len(symbols)])}
+             for index, (title, description) in enumerate(features)]
+    return str(render('visual_sections/feature_grid.html.j2',
+                      color=app.get('color', ''), app_name=app['name'], cards=cards))
 
 
 MAP_NOTE = ('Engineering Max and Marketing Max were built and tried first on Solarity AI’s own apps. '
             'The lines show where the work comes from; they are not data integrations.')
+
+
+def _status_label(status):
+    """The last part of a web app's status, with its first letter capitalized."""
+    label = status.split(' · ')[-1]
+    return label[:1].upper() + label[1:]
 
 
 def platform_map(apps, saas):
@@ -83,50 +75,16 @@ def platform_map(apps, saas):
     never as integrations. The icons link to the apps and the nodes to the Platform chapters.
     """
     listed = [app for app in apps if app.get('apple') and app.get('google')]
-    icons = []
-    for app in listed:
-        slug, name = escape(app['slug'], quote=True), escape(app['name'])
-        icons.append('<li data-product-accent="' + escape(app['color'], quote=True) + '"><a href="/apps/' + slug + '">'
-                     '<img src="/assets/' + slug + '-icon.webp" width="56" height="56" alt="' + name
-                     + '" loading="lazy" decoding="async"></a></li>')
-    nodes = []
-    for product in saas:
-        nodes.append('<li><a class="pmap-node" href="#' + escape(product['slug'], quote=True) + '">'
-                     '<span class="pmap-word">' + escape(product['stage']) + '</span><strong>' + escape(product['name']) + '</strong>'
-                     '<span class="pmap-caption">' + escape(product['category']) + '</span>'
-                     '<span class="status"><i aria-hidden="true"></i>' + escape((lambda s: s[:1].upper() + s[1:])(product['status'].split(' · ')[-1])) + '</span></a></li>')
-    names = ', '.join(escape(app['name']) for app in listed)
-    tools = '; '.join(escape(p['stage']) + ', ' + escape(p['name']) + ' (' + escape(p['status']) + ')' for p in saas)
-    return ('<figure class="pmap pmap--platform">'
-            '<div class="pmap-stage"><div class="pmap-source"><ul class="pmap-apps" aria-label="Mobile apps">'
-            + ''.join(icons) + '</ul><span class="status"><i aria-hidden="true"></i>Available on iOS&nbsp;&amp;&nbsp;Android</span></div>'
-            '<svg class="pmap-arcs" viewBox="0 0 600 80" width="600" height="80" fill="none" preserveAspectRatio="none" aria-hidden="true" focusable="false">'
-            '<path d="M300 0C300 44 100 36 100 80M300 0V80M300 0C300 44 500 36 500 80" stroke="currentColor" stroke-width="1.5" '
-            'stroke-dasharray="2 7" stroke-linecap="round" vector-effect="non-scaling-stroke"/></svg>'
-            '<ol class="pmap-nodes" aria-label="Web apps">' + ''.join(nodes) + '</ol></div>'
-            '<figcaption class="pmap-legend"><span class="pmap-keys" aria-hidden="true">'
-            '<span class="status"><i></i>Mobile apps</span><span class="status"><i></i>Web apps</span></span>'
-            '<span class="pmap-note"><strong>How the work connects.</strong> ' + MAP_NOTE + '</span>'
-            '<span class="sr-only"> The diagram shows ' + str(len(listed)) + ' store-listed mobile apps (' + names
-            + ') above the three web apps they shaped: ' + tools + '.</span></figcaption></figure>')
+    nodes = [{'slug': product['slug'], 'stage': product['stage'], 'name': product['name'],
+              'category': product['category'], 'label': _status_label(product['status'])} for product in saas]
+    return str(render('visual_sections/platform_map.html.j2', listed=listed, nodes=nodes, saas=saas, note=MAP_NOTE))
 
 
 def founder_portrait(compact=False):
     """Official company portrait, uncropped and with reserved square geometry."""
-    size = '(max-width: 560px) 160px, (max-width: 850px) 220px, 300px' if compact else '(max-width: 650px) calc(100vw - 40px), (max-width: 850px) 36vw, 440px'
-    return ('<img class="founder-photo' + (' founder-photo-compact' if compact else '') + '" '
-            'src="/assets/brand/ata-turhan-640.742556487789.webp" '
-            'srcset="/assets/brand/ata-turhan-320.db6d27d9b9b3.webp 320w, /assets/brand/ata-turhan-640.742556487789.webp 640w" '
-            'sizes="' + size + '" width="640" height="640" alt="Ata Turhan, founder of Solarity AI" loading="lazy" decoding="async">')
+    return str(render('visual_sections/founder_portrait.html.j2', compact=compact))
 
 
 def founder_card():
     """Return the verified portrait and a concise founder identity panel."""
-    return (
-        '<aside class="founder-panel founder-editorial portrait-editorial" aria-labelledby="founder-card-name">'
-        + founder_portrait() + '<div class="founder-sheet">'
-        '<p class="eyebrow">Founder</p>'
-        '<div class="founder-identity"><h2 id="founder-card-name">Ata Turhan<span>.</span></h2>'
-        '<p>Founder of Solarity AI</p></div>'
-        '<div class="founder-card-footer"><p><span>BASED IN</span>Irving, Texas</p></div></div></aside>'
-    )
+    return str(render('visual_sections/founder_card.html.j2', portrait=Markup(founder_portrait())))

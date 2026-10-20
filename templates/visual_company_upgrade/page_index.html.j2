@@ -1,0 +1,5 @@
+<nav class="page-index" aria-labelledby="page-index-title"><p class="page-index-title" id="page-index-title">On this page</p><ul>
+{%- for anchor, label in sections -%}
+<li><a href="#{{ anchor }}">{{ label }} <span aria-hidden="true">↓</span></a></li>
+{%- endfor -%}
+</ul></nav>
