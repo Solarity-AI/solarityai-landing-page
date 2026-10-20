@@ -43,6 +43,14 @@
     "title": "Solarity AI press kit: descriptions, facts, and images",
     "description": "Approved descriptions, company facts, the Solarity AI sun mark, founder portrait, and app icons for articles, program pages, and event listings."
   },
+  "/accessibility": {
+    "title": "Accessibility statement",
+    "description": "How solarityai.com is built and checked to meet WCAG 2.2 level AA, its known limitations, and how to report an accessibility problem."
+  },
+  "/website-data": {
+    "title": "How the Solarity AI website handles data",
+    "description": "What solarityai.com collects and does not: no cookies, cookieless page counts, email links, the careers form provider, hosting, and security."
+  },
   "/contact": {
     "title": "Contact Solarity AI and founder Ata Turhan",
     "description": "Contact Solarity AI about investment, strategic partnerships or its consumer apps. Reach founder Ata Turhan directly."
