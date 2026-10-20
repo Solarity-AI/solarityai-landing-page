@@ -19,6 +19,7 @@ def related_apps(current, apps):
 
 
 
-def copy_button(address, status_id):
-    """Copy-to-clipboard fallback for an email address; scripts/copy.js reveals it."""
-    return render('ux_components/copy_button.html.j2', address=address, status_id=status_id)
+def copy_button(address, status_id, label='Copy address', name=''):
+    """Copy-to-clipboard button; scripts/copy.js reveals it. name, when given, is what the status announces
+    instead of reading the copied text aloud (for long passages)."""
+    return render('ux_components/copy_button.html.j2', address=address, status_id=status_id, label=label, name=name)

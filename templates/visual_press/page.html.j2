@@ -1,0 +1,33 @@
+<section class="page-intro wrap press-intro" aria-labelledby="press-title"><p class="eyebrow">Press kit</p><h1 id="press-title">Solarity AI, <span class="muted">in your words.</span></h1><p class="lede">Approved descriptions, company facts, and images for articles, program pages, and event listings.</p><div class="actions">{{ contact_button|safe }}<button type="button" class="text-link print-page" data-print hidden>Print or save as PDF</button></div></section>
+{#- -#}
+<section class="press-section wrap" aria-labelledby="press-describe-title"><h2 id="press-describe-title">Descriptions</h2>
+<div class="press-blurbs">
+<article class="press-blurb"><h3>One line</h3><p>{{ one_line }}</p>{{ copy_one|safe }}</article>
+<article class="press-blurb"><h3>Short description</h3><p>{{ short }}</p>{{ copy_short|safe }}</article>
+</div></section>
+{#- -#}
+<section class="press-section wrap" aria-labelledby="press-facts-title"><h2 id="press-facts-title">Facts</h2>
+<dl class="facts-list">
+<div><dt>Company</dt><dd>Solarity AI LLC, Irving, Texas, United States</dd></div>
+<div><dt>Founder</dt><dd>Ata Turhan</dd></div>
+<div><dt>Mobile apps</dt><dd>{{ record.count }} on the App Store and Google Play, {{ record.count_word }} in {{ record.weeks_word }} weeks from {{ record.first }}</dd></div>
+<div><dt>Web apps</dt><dd>{% for product in saas %}{{ product.name }} ({{ product.status.split(' · ')[-1] }}){% if not loop.last %}, {% endif %}{% endfor %}</dd></div>
+<div><dt>Website</dt><dd>solarityai.com</dd></div>
+<div><dt>Press contact</dt><dd><a href="mailto:{{ email }}">{{ email }} <span aria-hidden="true">↗</span></a></dd></div>
+</dl></section>
+{#- -#}
+<section class="press-section wrap" aria-labelledby="press-images-title"><h2 id="press-images-title">Images</h2>
+<ul class="press-images">
+{%- for href, preview, label, meta, kind in images -%}
+<li class="press-image press-image--{{ kind }}"><span class="press-image-frame"><img src="{{ preview }}" alt="{{ label }}" width="320" height="320" loading="lazy" decoding="async"></span><strong>{{ label }}</strong><small>{{ meta }}</small><a href="{{ href }}" download>Download <span aria-hidden="true">→</span></a></li>
+{%- endfor -%}
+{%- for href, name in icons -%}
+<li class="press-image press-image--icon"><span class="press-image-frame"><img src="{{ href }}" alt="{{ name }} app icon" width="320" height="320" loading="lazy" decoding="async"></span><strong>{{ name }} app icon</strong><small>WebP · 400 × 400</small><a href="{{ href }}" download>Download <span aria-hidden="true">→</span></a></li>
+{%- endfor -%}
+</ul>
+<div class="press-usage"><h3>Using the name and images</h3><ul>
+<li>Write the name as <strong>Solarity AI</strong>: two words, with “AI” in capitals.</li>
+<li>Use the sun mark as supplied. Don’t recolor, stretch, or redraw it.</li>
+<li>Fitness Max appears in the app stores as Only Fitness; name both when you link to its listing.</li>
+<li>Describe products with the facts on this site. Ask before stating numbers, users, or results.</li>
+</ul></div></section>

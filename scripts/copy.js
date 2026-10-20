@@ -26,9 +26,10 @@
 
     button.addEventListener('click', () => {
       const text = button.getAttribute('data-copy');
+      const name = button.getAttribute('data-copy-name');
       clipboard.writeText(text).then(
-        () => report(text + ' copied to your clipboard.', 'Copied'),
-        () => report('Copying is not available here. Select the address to copy it.', label)
+        () => report((name || text) + ' copied to your clipboard.', 'Copied'),
+        () => report('Copying is not available here. Select the ' + (name ? 'text' : 'address') + ' to copy it.', label)
       );
     });
     button.hidden = false;

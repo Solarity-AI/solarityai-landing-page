@@ -1,0 +1,20 @@
+{
+  "note": "Write the press kit's sun mark into source-assets/press/ (run by hand, then commit).",
+  "source": "source-assets/brand/solarity-lockup-original.png (official lockup, see brand-evidence.json)",
+  "crop_box": [
+    186,
+    37,
+    1314,
+    1167
+  ],
+  "files": {
+    "/assets/press/solarity-sun-mark.png": {
+      "size": [
+        1024,
+        1026
+      ],
+      "bytes": 154406,
+      "sha256": "13ad8ef0f7bc883c4b7a48da3819c2948cb3a7b5576db810d1a71e2535625064"
+    }
+  }
+}
