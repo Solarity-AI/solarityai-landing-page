@@ -7,6 +7,7 @@
     1314,
     1167
   ],
+  "copies": "Re-encodings of the published WebP files: JPEG quality 90, PNG lossless",
   "files": {
     "/assets/press/solarity-sun-mark.png": {
       "size": [
@@ -15,6 +16,114 @@
       ],
       "bytes": 154406,
       "sha256": "13ad8ef0f7bc883c4b7a48da3819c2948cb3a7b5576db810d1a71e2535625064"
+    },
+    "/assets/press/ata-turhan-founder.jpg": {
+      "from": "/assets/brand/ata-turhan-original.webp",
+      "size": [
+        800,
+        800
+      ],
+      "bytes": 96140,
+      "sha256": "21161483f1c93c57498ce62a2af9d817912ce1b6721e7009c7cd642f66ba1377"
+    },
+    "/assets/press/looks-max-icon.png": {
+      "from": "/assets/looks-max-icon.webp",
+      "size": [
+        400,
+        400
+      ],
+      "bytes": 47026,
+      "sha256": "286e95acdc624a0c3138395c06e0054b9caca1290e9530c4b8cdb6d279e95458"
+    },
+    "/assets/press/iq-max-icon.png": {
+      "from": "/assets/iq-max-icon.webp",
+      "size": [
+        400,
+        400
+      ],
+      "bytes": 147858,
+      "sha256": "ffd091d5732d79b257cdb414bdca2c3ba3d35ce672cf4569e2f864dfbba576c4"
+    },
+    "/assets/press/sleep-max-icon.png": {
+      "from": "/assets/sleep-max-icon.webp",
+      "size": [
+        400,
+        400
+      ],
+      "bytes": 49878,
+      "sha256": "430dc01b26a44a7cff09e07e2734c05db10ef47921f610b9bfc6fc603acb1f3d"
+    },
+    "/assets/press/fitness-max-icon.png": {
+      "from": "/assets/fitness-max-icon.webp",
+      "size": [
+        400,
+        400
+      ],
+      "bytes": 87581,
+      "sha256": "9ef9d0139014e77982b37df117c8c49d85ae3342df663952fe6d4a2dcf6c26d9"
+    },
+    "/assets/press/looks-max-screen.jpg": {
+      "from": "/assets/looks-max-screen-4.webp",
+      "size": [
+        1284,
+        2778
+      ],
+      "bytes": 263138,
+      "sha256": "f337cd1b14fb76a2c9660fc5a3c1877185c5d6435d99ff3dd3f5510f1db19b95"
+    },
+    "/assets/press/iq-max-screen.jpg": {
+      "from": "/assets/iq-max-screen-1.webp",
+      "size": [
+        1284,
+        2778
+      ],
+      "bytes": 245206,
+      "sha256": "1eb03fc584dd8f37ae4274fddf1b2197958eb7e3e51d1435f160cb0291e9de62"
+    },
+    "/assets/press/sleep-max-screen.jpg": {
+      "from": "/assets/sleep-max-screen-4.webp",
+      "size": [
+        1284,
+        2778
+      ],
+      "bytes": 190125,
+      "sha256": "cb3f2debbfe09136d4d946ae4e978576f2134632da58ea1ff1ce3f94847e98ac"
+    },
+    "/assets/press/fitness-max-screen.jpg": {
+      "from": "/assets/fitness-max-screen-2.webp",
+      "size": [
+        1284,
+        2778
+      ],
+      "bytes": 218830,
+      "sha256": "676c299dc9d035bd002ed31e8540b68e933430bf61d599d6767a921ecfc3b8b0"
+    },
+    "/assets/press/engineering-max-screen.jpg": {
+      "from": "/assets/engineering-max-overview.webp",
+      "size": [
+        1800,
+        662
+      ],
+      "bytes": 120202,
+      "sha256": "06b5c69513025feeaa4215a36318ec7f30a120841677367b9b053b2c8fa63995"
+    },
+    "/assets/press/management-max-screen.jpg": {
+      "from": "/assets/management-max-overview.webp",
+      "size": [
+        1160,
+        1280
+      ],
+      "bytes": 132549,
+      "sha256": "e066f00897e5c909f7dd36fe3c3578fce6fab097a73f17b2ddd8d4eb9b30102c"
+    },
+    "/assets/press/marketing-max-screen.jpg": {
+      "from": "/assets/marketing-max-home.webp",
+      "size": [
+        2880,
+        1800
+      ],
+      "bytes": 353299,
+      "sha256": "4949deb3c228f4cbd7b3621ef13767480582c0afdeb0ebc6e6ed88f829d227c9"
     }
   }
 }
