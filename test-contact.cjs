@@ -16,7 +16,7 @@ test('email destinations preserve Unicode and punctuation without adding mail he
   assert.equal(url.pathname, 'ata.turhan@solarityai.com');
   assert.deepEqual([...url.searchParams.keys()], ['subject']);
   assert.equal(url.searchParams.get('subject'), 'Solarity AI | Strategic partner | Çağrı & R&D / A+B #2');
-  assert.equal(contactContextLabel(context), 'Strategic partner: Çağrı & R&D / A+B #2');
+  assert.equal(contactContextLabel(context), 'A potential partnership: Çağrı & R&D / A+B #2.');
 });
 
 test('untrusted type and line breaks cannot create email recipients or headers', () => {
@@ -29,7 +29,7 @@ test('untrusted type and line breaks cannot create email recipients or headers',
 
 test('context labels use established inquiry categories and omit stale product context', () => {
   assert.equal(contactContextLabel({ type: 'Investor', product: 'Fitness Max' }), 'An investment conversation.');
-  assert.equal(contactContextLabel({ type: 'Product inquiry', product: 'Sleep Max' }), 'Product inquiry: Sleep Max');
+  assert.equal(contactContextLabel({ type: 'Product inquiry', product: 'Sleep Max' }), 'A product conversation: Sleep Max.');
   assert.equal(contactContextLabel({ type: '<script>' }), 'Start with an introduction.');
   assert.equal(new URL(buildContactMailto({ type: 'Other', product: 'Ignored' })).searchParams.get('subject'), 'Solarity AI | Other');
 });
@@ -48,4 +48,8 @@ test('program reviewers get their own subject and never carry a product', () => 
   assert.deepEqual(readInquiryContext('?type=Program&product=Anything'), { type: 'Program', product: '' });
   assert.equal(new URL(buildContactMailto({ type: 'Program', product: 'Ignored' })).searchParams.get('subject'), 'Solarity AI | Program');
   assert.equal(contactContextLabel({ type: 'Program' }), 'An accelerator, incubator, or grant program.');
+  // Press requests have their own subject, so they are not filed as Other
+  assert.deepEqual(readInquiryContext('?type=Press'), { type: 'Press', product: '' });
+  assert.equal(new URL(buildContactMailto({ type: 'Press' })).searchParams.get('subject'), 'Solarity AI | Press');
+  assert.equal(contactContextLabel({ type: 'Press' }), 'A press or media request.');
 });

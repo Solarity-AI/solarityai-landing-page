@@ -433,6 +433,7 @@
   .factory-note a { color:var(--gold); text-underline-offset:3px; }
   /* Reviewer paths and print. */
   .conversation-program { grid-column:1 / -1; justify-self:end; font-size:var(--text-sm); }
+  .conversation-overview { grid-column:1 / -1; justify-self:end; font-size:var(--text-sm); }
   .print-page { min-height:44px; padding:0; border:0; background:none; color:var(--gold); font:inherit; font-size:var(--text-sm); cursor:pointer; }
   .print-page:hover { text-decoration:underline; }
   /* Press kit. */
@@ -456,7 +457,7 @@
   .press-usage { margin-top:36px; max-width:72ch; }
   .press-usage h3 { font-size:var(--text-lg); font-weight:600; margin-bottom:10px; }
   .press-usage li { color:var(--muted); margin-block:6px; }
-  @media (max-width:850px) { .press-blurbs { grid-template-columns:minmax(0,1fr); } .press-images { grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; } .conversation-program { justify-self:start; } }
+  @media (max-width:850px) { .press-blurbs { grid-template-columns:minmax(0,1fr); } .press-images { grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; } .conversation-program, .conversation-overview { justify-self:start; } }
   @media print { .print-page, .copy-row, .press-image a { display:none; } .compare-scroll { overflow:visible; box-shadow:none; } .compare-table { min-width:0; } }
   @media (forced-colors:active) { .compare-scroll, .press-blurb, .press-image-frame { border:1px solid CanvasText; } }
   /* Trails sit above an opening: the opening gives up the space the trail now takes. */
@@ -479,4 +480,22 @@
   .policy-section p, .policy-section li { color:var(--muted); max-width:68ch; overflow-wrap:anywhere; }
   .policy-section ul { margin:0; padding-left:20px; display:grid; gap:8px; }
   .policy-section a { color:var(--gold); text-underline-offset:3px; }
+  /* The section being read, in the sticky indexes. */
+  .saas-index a[aria-current] { color:var(--text); background:rgb(255 207 122/.12); }
+  @media (forced-colors:active) { .saas-index a[aria-current] { outline:1px solid CanvasText; outline-offset:-3px; } }
+  /* Investors answers: one control for all, and a link to each. */
+  .faq-toggle { display:inline-flex; align-items:center; min-height:44px; margin-top:18px; padding:0; border:0; background:none; color:var(--gold); font:inherit; font-size:var(--text-sm); cursor:pointer; }
+  .faq-toggle:hover { text-decoration:underline; }
+  .faq-permalink { margin-top:12px; font-size:var(--text-xs); }
+  .faq-permalink a { display:inline-flex; align-items:center; min-height:32px; color:var(--dim); text-decoration:underline; text-decoration-color:var(--line); text-underline-offset:4px; }
+  .faq-permalink a:hover { color:var(--text); }
+  @media print { .faq-toggle, .faq-permalink { display:none; } }
+  /* Press: the whole kit in one download. */
+  .press-kit-download { margin:4px 0 24px; }
+  .press-kit-meta { color:var(--dim); font-size:var(--text-xs); font-weight:500; }
+  /* Contact: the founder's card. */
+  .contact-person-links { display:flex; flex-wrap:wrap; align-items:center; gap:0 28px; }
+  /* Not found: the likely page, when one is close. */
+  .not-found-suggestion { margin:18px 0 28px; color:var(--muted); }
+  .not-found-suggestion a { color:var(--gold); text-decoration:underline; text-underline-offset:4px; }
 }

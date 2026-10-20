@@ -10,7 +10,7 @@ from saas_products import SAAS
 from visual_sections import feature_grid, founder_card, founder_portrait
 from visual_team import selected_team
 from visual_careers import careers_page
-from visual_contact import contact_page
+from visual_contact import contact_page, founder_vcard
 from visual_chrome import site_header, site_footer
 from visual_stage import store_badges
 from visual_products import product_art, product_page
@@ -18,7 +18,7 @@ from visual_catalog import portfolio_page, portfolio_wall
 from visual_company_upgrade import strategy_story, investor_evidence, investor_opening, operating_principles, founder_booking, section_index
 from visual_strategy import platform_opening
 from visual_record import shipping_record, founder_record, program_brief, company_line, record_summary, long_date, app_compare, web_compare, company_facts
-from visual_press import press_page
+from visual_press import press_page, press_kit_zip
 from visual_policies import accessibility_page, website_data_page
 import seo
 from templating import render
@@ -56,8 +56,8 @@ def product_status(a,full=False):
 def app_art(a,small=False):
     return product_art(a,small)
 
-def cta(title='A conversation with possibility.',desc='For investors and partners who see the potential in thoughtful consumer products and the systems behind them.',lead='investor'):
-    return closing_scene(title, desc, contact, lead)
+def cta(title='A conversation with possibility.',desc='For investors and partners who see the potential in thoughtful consumer products and the systems behind them.',lead='investor',overview=False):
+    return closing_scene(title, desc, contact, lead, overview)
 
 def social_for(path):
     """The link-preview image for a route (make_social_images.py), and its alt text."""
@@ -76,9 +76,11 @@ def shell(path,title,desc,body):
     social_image, social_alt = social_for(path)
     from ux_content import FAQ
     full_title=title if 'Solarity AI' in title else title+' | Solarity AI'
+    app=next((a for a in APPS if path=='/apps/'+a['slug'] and a.get('apple')),None)
+    app_store_id=re.search(r'/id(\d+)',app['apple']).group(1) if app else ''
     data=seo.graph(path,full_title,desc,apps=APPS,saas=SAAS,faq=FAQ,email=EMAIL,logo='/assets/brand/solarity-sun-320.2513ba060440.webp',
                    portrait='/assets/brand/ata-turhan-640.742556487789.webp',social_image=social_image,modified=PAGE_DATES[path])
-    return str(render('build_site/shell.html.j2',path=path,full_title=full_title,desc=desc,body=body,
+    return str(render('build_site/shell.html.j2',path=path,full_title=full_title,desc=desc,body=body,app_store_id=app_store_id,
                       robots='noindex,follow' if path=='/404' else 'index,follow,max-image-preview:large',url=ORIGIN+public_path(path),origin=ORIGIN,
                       social_image=social_image,social_alt=social_alt,font_url=FONT_URL,display_font_url=DISPLAY_FONT_URL,
                       header=site_header(path,NAV,btn),provenance=provenance(),footer=site_footer(EMAIL,path,BOOKING,long_date(PAGE_DATES[path]),PAGE_DATES[path]),json_ld=json.dumps(data)))
@@ -119,7 +121,8 @@ pages['/accessibility']=('Accessibility statement','How solarityai.com is built 
 pages['/website-data']=('How the Solarity AI website handles data','What solarityai.com collects and does not: no cookies, cookieless page counts, email links, the careers form provider, hosting, and security.',website_data_page(EMAIL))
 
 pages['/contact']=('Contact Solarity AI and founder Ata Turhan','Contact Solarity AI about investment, strategic partnerships or its consumer apps. Reach founder Ata Turhan directly.',str(contact_page(EMAIL,BOOKING,btn)))
-pages['/404']=('Page not found','This page is not here. Find your way back to Solarity AI’s apps, app factory platform, company story, investor information, or contact page.',page('not_found',recovery_links=recovery_links))
+pages['/404']=('Page not found','This page is not here. Find your way back to Solarity AI’s apps, app factory platform, company story, investor information, or contact page.',page('not_found',recovery_links=recovery_links,
+    routes=json.dumps([[public_path(p),'Home' if p=='/' else next((a['name'] for a in APPS if p=='/apps/'+a['slug']),seo.CRUMB_NAMES.get(p,''))] for p in pages if p!='/404'],ensure_ascii=False,separators=(',',':'))))
 
 style_sources=['design/system/foundation.css', 'design/system/chrome.css', 'design/system/home.css', 'design/system/products.css', 'design/system/company.css', 'design/system/contact.css', 'design/system/careers.css', 'design/system/accessibility.css']
 source_css='\n'.join((ROOT/name).read_text(encoding='utf-8') for name in style_sources)
@@ -142,6 +145,12 @@ for _path,_name in [('/apps','Apps'),('/platform','Platform'),('/company','Compa
     pages[_path]=(_title,_desc,page_breadcrumbs(_name)+_body)
 PAGE_DATES=seo.page_dates(pages)
 PAGE_IMAGES={}
+# Downloads the pages link to: the press kit archive and the founder's contact card.
+(DIST/'assets/press').mkdir(parents=True,exist_ok=True)
+(DIST/'assets/press/solarity-ai-press-kit.zip').write_bytes(press_kit_zip(APPS))
+(DIST/'assets/contact').mkdir(parents=True,exist_ok=True)
+(DIST/'assets/contact/ata-turhan.vcf').write_bytes(founder_vcard(EMAIL).encode('utf-8'))
+
 for path,(title,desc,body) in pages.items():
     dest=DIST/'index.html' if path=='/' else DIST/'404.html' if path=='/404' else DIST/path.strip('/')/'index.html'
     dest.parent.mkdir(parents=True,exist_ok=True)
@@ -164,7 +173,7 @@ for path,(title,desc,body) in pages.items():
 LEGACY_REDIRECTS=[('/careers.html','/careers/'),('/blog.html','/'),('/legal.html','/contact/'),('/docs/xtract-demo.html','/')]
 # RFC 9116: where to report a vulnerability. Expires is a fixed date; renew it before then.
 (DIST/'.well-known').mkdir(exist_ok=True)
-(DIST/'.well-known/security.txt').write_text('Contact: mailto:'+EMAIL+'\nContact: https://github.com/Solarity-AI/solarityai-landing-page/security/advisories/new\nExpires: 2027-10-19T00:00:00.000Z\nPreferred-Languages: en\nCanonical: '+ORIGIN+'/.well-known/security.txt\n', encoding='utf-8', newline='\n')
+(DIST/'.well-known/security.txt').write_text('Contact: mailto:'+EMAIL+'\nContact: https://github.com/Solarity-AI/solarityai-landing-page/security/advisories/new\nPolicy: https://github.com/Solarity-AI/solarityai-landing-page/security/policy\nExpires: 2027-10-19T00:00:00.000Z\nPreferred-Languages: en\nCanonical: '+ORIGIN+'/.well-known/security.txt\n', encoding='utf-8', newline='\n')
 (DIST/'_redirects').write_text(''.join(f'{old} {new} 301\n' for old,new in LEGACY_REDIRECTS), encoding='utf-8', newline='\n')
 def content_security_policy():
     """A strict policy built from the pages just written: every inline script that runs is allowed by its

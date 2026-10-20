@@ -17,6 +17,7 @@
 </dl></section>
 {#- -#}
 <section class="press-section wrap" aria-labelledby="press-images-title"><h2 id="press-images-title">Images</h2>
+<p class="press-kit-download"><a class="button outline" href="{{ kit_href }}" download>Download everything <span class="press-kit-meta">ZIP · {{ kit_size }}</span><span aria-hidden="true">→</span></a></p>
 <ul class="press-images">
 {%- for href, preview, label, meta, kind in images -%}
 <li class="press-image press-image--{{ kind }}"><span class="press-image-frame"><img src="{{ preview }}" alt="{{ label }}" width="320" height="320" loading="lazy" decoding="async"></span><strong>{{ label }}</strong><small>{{ meta }}</small><a href="{{ href }}" download>Download <span aria-hidden="true">→</span></a></li>

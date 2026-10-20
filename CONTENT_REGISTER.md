@@ -188,3 +188,10 @@ The homepage portfolio-to-platform relationship is explicitly conceptual company
   - **Search:** the sitemap lists each page's meaningful images (alt text, at least 240 px wide), the app schema names the published screenshots, robots meta allows large image previews, and `llms.txt` lists both new pages.
   - **Orientation:** visible breadcrumbs on inner pages, matching the BreadcrumbList data. On wide screens, Investors keeps a sticky section index; narrow screens keep the opening's list.
   - **Small details:** `color-scheme: dark`, `lang="tr"` on the team's Turkish names, and "Copy page link" on Press.
+- **Fifth round (October 20, 2026).** Nothing new is claimed; each item reuses a verified fact.
+  - **Smart App Banners:** each app page names its App Store id, taken from the listing URL in `APPS`. Apple's public lookup API confirmed all four apps live and published by Solarity AI LLC on 2026-10-20 (ids 6778990308, 6803826639, 6806709872, 6789095658).
+  - **Footer profiles:** the App Store and Google Play developer pages and the GitHub organization, the same `seo.ORG_PROFILES` the structured data already states.
+  - **Founder contact card (`/assets/contact/ata-turhan.vcf`):** name, Founder, Solarity AI LLC, the contact email, the website, and Irving, Texas, United States, all as the Contact page states them. No phone number or LinkedIn link (the LinkedIn link stays hidden until supplied).
+  - **Press kit archive (`/assets/press/solarity-ai-press-kit.zip`):** the same approved images the page offers, plus a README with the one-line and short descriptions and usage notes. It is stored uncompressed with fixed metadata, so the bytes are identical on every machine.
+  - **`security.txt` Policy:** `https://github.com/Solarity-AI/solarityai-landing-page/security/policy` (`.github/SECURITY.md`), checked live.
+  - **Linkable answers:** each investor answer has a stable id (`ux_content.answer_id`). The FAQ schema and `llms-full.txt` give its URL.

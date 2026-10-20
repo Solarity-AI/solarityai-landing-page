@@ -73,4 +73,4 @@ jobs:
         run: python -m unittest test_optimize_styles.py test_site_urls.py test_seo.py test_records.py
 
       - name: Node tests
-        run: node --test test-navigation.cjs test-contact.cjs test-gallery.cjs test-careers.cjs test-copy.cjs
+        run: node --test test-navigation.cjs test-contact.cjs test-gallery.cjs test-careers.cjs test-copy.cjs test-answers.cjs test-not-found.cjs

@@ -3,6 +3,7 @@ from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urlsplit, unquote
 from collections import Counter
+from performance_build import compact_script
 import ast,html,json,re
 from hashlib import sha256
 from urllib.robotparser import RobotFileParser
@@ -107,9 +108,10 @@ for file,d in docs.items():
     if rel=='contact/index.html':expected_scripts.append('contact')
     if rel=='careers/index.html':expected_scripts.append('careers')
     if any('data-copy' in a for t,a in d.tags):expected_scripts.append('copy')
+    if rel=='404.html':expected_scripts.append('not-found')
     actual_scripts=[]
     for script in runtime_scripts:
-        match=re.fullmatch(r'/assets/runtime/(gallery|contact|careers|copy)\.([a-f0-9]{12})\.js',script)
+        match=re.fullmatch(r'/assets/runtime/(gallery|contact|careers|copy|not-found)\.([a-f0-9]{12})\.js',script)
         if not match:errors.append(f'{rel}: unexpected runtime script {script}');continue
         actual_scripts.append(match.group(1))
         script_file=DIST/script.lstrip('/')
@@ -118,7 +120,7 @@ for file,d in docs.items():
     startup=re.search(r'<script\b[^>]*id="navigation-startup"[^>]*>(.*?)</script>',text,re.S)
     navigation_source=(ROOT/'scripts/navigation.js').read_text(encoding='utf-8')
     startup_tags=[a for t,a in d.tags if t=='script' and a.get('id')=='navigation-startup']
-    if len(startup_tags)!=1 or not startup or startup.group(1)!=navigation_source:
+    if len(startup_tags)!=1 or not startup or startup.group(1)!=compact_script(navigation_source):
         errors.append(f'{rel}: missing or stale inline navigation startup')
     elif '<style id="page-styles"' not in text or startup.end()>text.index('<style id="page-styles"') or startup.end()>text.index('</head>'):
         errors.append(f'{rel}: navigation layout must be selected before styles and body painting')
@@ -126,6 +128,10 @@ for file,d in docs.items():
         errors.append(f'{rel}: navigation startup must execute synchronously without a network dependency')
     if startup_tags and startup_tags[0].get('data-source-sha256')!=sha256(navigation_source.encode()).hexdigest():
         errors.append(f'{rel}: stale navigation source hash')
+    sections_startup=re.search(r'<script\b[^>]*id="sections-startup"[^>]*>(.*?)</script>',text,re.S)
+    wants_sections='data-answers-toggle' in text or 'class="saas-index' in text
+    if wants_sections!=bool(sections_startup) or (sections_startup and sections_startup.group(1)!=compact_script((ROOT/'scripts/sections.js').read_text(encoding='utf-8'))):
+        errors.append(f'{rel}: sections script must be inlined, current, exactly where answers or a section index appear')
     # Intent-based prefetch speeds page-to-page moves; prerender would run analytics for unseen visits.
     speculation=[m.group(2) for m in re.finditer(r'<script\b([^>]*)>(.*?)</script>',text,re.S) if re.search(r'\btype="speculationrules"',m.group(1))]
     try:rules=json.loads(speculation[0]) if len(speculation)==1 else None
@@ -137,6 +143,8 @@ for file,d in docs.items():
     actual_robots={directive.strip().lower() for directive in meta.get('robots','').split(',')}
     if actual_robots!=expected_robots:errors.append(f'{rel}: incorrect public-site indexing directive {meta.get("robots", "")}')
     for t,a in d.tags:
+        # sizes is evaluated against the viewport: container and percentage units make browsers discard it.
+        if t in ('img','source') and re.search(r'\d(?:cq(?:i|b|w|h|min|max)|%)',a.get('sizes','')):errors.append(f'{rel}: sizes uses a unit browsers reject: {a.get("sizes")}')
         if t=='img' and a.get('src','').startswith('/assets/optimized/') and not a.get('srcset'):errors.append(f'{rel}: optimized image missing responsive candidates')
     # Preserve the approved brand opening and progressive image/navigation contracts.
     if 'human-potential-' in text:errors.append(f'{rel}: retired symbolic hero artwork is still referenced')
@@ -240,7 +248,7 @@ for file,d in docs.items():
         primary_email=by_id.get('contact-email',('',{}))[1].get('href','')
         if not primary_email.startswith('mailto:ata.turhan@solarityai.com?'):errors.append(f'{rel}: incorrect founder email destination')
         topics=[a for t,a in d.tags if t=='a' and a.get('data-inquiry-type')]
-        if [a['data-inquiry-type'] for a in topics]!=['Investor','Program','Strategic partner','Product inquiry','Other']:errors.append(f'{rel}: direct contact must retain all five inquiry types')
+        if [a['data-inquiry-type'] for a in topics]!=['Investor','Program','Strategic partner','Product inquiry','Press','Other']:errors.append(f'{rel}: direct contact must retain all six inquiry types')
         if any(not a.get('href','').startswith('mailto:ata.turhan@solarityai.com?subject=') for a in topics):errors.append(f'{rel}: inquiry topics must work as native email links')
         if any(t=='form' for t,a in d.tags):errors.append(f'{rel}: direct contact should not imply an unconfigured submission form')
         if not any(t=='a' and a.get('href','').startswith('https://calendar.google.com/calendar/appointments/schedules/') for t,a in d.tags):errors.append(f'{rel}: missing verified booking alternative')

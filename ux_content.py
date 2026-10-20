@@ -3,6 +3,8 @@
 Keep these answers aligned with build_site.APPS and CONTENT_REGISTER.md.
 These helpers return static HTML and require no JavaScript.
 """
+import re
+
 from company_facts import APP_STORE_RELEASES
 from templating import render
 from visual_record import long_date, record_summary
@@ -84,9 +86,15 @@ FAQ = [
 ]
 
 
+def answer_id(question):
+    """A stable fragment for an answer, from its question: "What is Solarity AI?" is #faq-what-is-solarity-ai."""
+    words = re.sub(r'<[^>]+>', '', question).lower()
+    return 'faq-' + re.sub(r'[^a-z0-9]+', '-', words).strip('-')
+
+
 def investor_faq():
-    """Answer common investor and partner questions with native disclosures."""
-    return render('ux_content/investor_faq.html.j2', questions=FAQ)
+    """Answer common investor and partner questions with native disclosures, each one linkable."""
+    return render('ux_content/investor_faq.html.j2', questions=[(answer_id(q), q, a) for q, a in FAQ])
 
 
 def recovery_links():

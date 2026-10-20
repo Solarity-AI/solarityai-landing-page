@@ -1,5 +1,5 @@
 """The three web apps on Home and Platform, introduced from their own sites (saas_products.py)."""
-from saas_products import MOBILE_PLAN
+from saas_products import MOBILE_PLAN, SCREEN_NOTE
 from templating import render
 
 
@@ -30,7 +30,7 @@ def saas_cards(saas, prefix, label='Solarity AI web apps', compact=False):
               'window': web_window(product, product['screens'][0], CARD_SIZES, low=True),
               'status': saas_status(product),
               'link': site_link(product, 'Visit site')} for product in saas]
-    return str(render('visual_saas/cards.html.j2', cards=cards, prefix=prefix, label=label, compact=compact))
+    return str(render('visual_saas/cards.html.j2', cards=cards, prefix=prefix, label=label, compact=compact, note=SCREEN_NOTE))
 
 
 def saas_wall(saas):

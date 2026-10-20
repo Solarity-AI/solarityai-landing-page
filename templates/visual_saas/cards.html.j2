@@ -3,3 +3,4 @@
     {%- if not compact %}<p class="saas-card-tagline">{{ product['tagline'] }}</p>{% endif -%}
     <p class="saas-card-meta">{{ card['status']|safe }}{{ card['link']|safe }}</p></li>
   {%- endfor %}</ul>
+<p class="caption saas-caption">{{ note }}</p>

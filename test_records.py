@@ -113,3 +113,35 @@ class HiddenUntilSuppliedTest(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+
+class DownloadsTest(unittest.TestCase):
+    def test_answer_ids_are_stable_fragments(self):
+        from ux_content import FAQ, answer_id
+        self.assertEqual(answer_id('What is Solarity AI?'), 'faq-what-is-solarity-ai')
+        self.assertEqual(answer_id('Can <em>other</em> teams use it?'), 'faq-can-other-teams-use-it')
+        ids = [answer_id(q) for q, _ in FAQ]
+        self.assertEqual(len(ids), len(set(ids)))
+
+    def test_press_kit_archive_is_reproducible(self):
+        import io
+        import zipfile
+        from visual_press import press_kit_zip
+        APPS = [{'slug': s, 'apple': 'https://apps.apple.com/'} for s in ('looks-max', 'iq-max', 'sleep-max', 'fitness-max')]
+        data = press_kit_zip(APPS)
+        self.assertEqual(data, press_kit_zip(APPS))
+        names = zipfile.ZipFile(io.BytesIO(data)).namelist()
+        self.assertEqual(names[0], 'solarity-ai-press-kit/README.txt')
+        self.assertIn('solarity-ai-press-kit/solarity-sun-mark.png', names)
+        self.assertEqual(sum(n.endswith('-icon.webp') for n in names), 4)
+        for info in zipfile.ZipFile(io.BytesIO(data)).infolist():
+            self.assertEqual((info.compress_type, info.create_system, info.date_time), (zipfile.ZIP_STORED, 3, (2026, 10, 20, 0, 0, 0)))
+
+    def test_founder_card_states_only_published_facts(self):
+        from visual_contact import founder_vcard
+        card = founder_vcard('founder@example.com')
+        self.assertTrue(card.startswith('BEGIN:VCARD\r\nVERSION:3.0\r\n') and card.endswith('END:VCARD\r\n'))
+        self.assertNotIn('\n', card.replace('\r\n', ''))
+        for line in ['FN:Ata Turhan', 'ORG:Solarity AI LLC', 'TITLE:Founder', 'EMAIL;TYPE=INTERNET,WORK:founder@example.com']:
+            self.assertIn(line + '\r\n', card)
+        self.assertNotIn('TEL', card)
