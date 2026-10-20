@@ -23,4 +23,5 @@ def press_page(apps, email, btn):
                       copy_one=copy_button(ONE_LINE, 'press-one-line-status', 'Copy', 'The one-line description'),
                       copy_short=copy_button(SHORT, 'press-short-status', 'Copy', 'The short description'),
                       record=record_summary(), saas=SAAS, email=email,
+                      copy_link=copy_button('https://solarityai.com/press/', 'press-link-status', 'Copy page link', 'The page link'),
                       contact_button=btn('Press inquiries', '/contact?type=Other#prepare-inquiry', 'outline')))
