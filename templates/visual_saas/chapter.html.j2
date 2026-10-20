@@ -1,0 +1,19 @@
+<section class="saas-chapter{% if flip %} saas-chapter--flip{% endif %}" id="{{ product['slug'] }}" aria-labelledby="{{ product['slug'] }}-title">
+  {#- -#}
+  <div class="saas-chapter-copy"><div class="module-num" aria-hidden="true">{{ product['number'] }}</div>
+  {#- -#}
+  <p class="saas-category">{{ product['category'] }}</p><h2 id="{{ product['slug'] }}-title">{{ product['name'] }}</h2>{{ status|safe }}
+  {#- -#}
+  <p class="saas-tagline">{{ product['tagline'] }}</p><p>{{ product['summary'] }}</p>
+  {#- -#}
+  <ul class="saas-facts">{% for fact in product['facts'] %}<li>{{ fact }}</li>{% endfor %}</ul><p class="saas-availability">{{ product['availability'] }}</p>
+  {#- -#}
+  <div class="actions">{{ link|safe }}</div></div>
+  {#- -#}
+  <figure class="saas-chapter-art">
+  {%- for shot in shots -%}
+    <a class="screenshot-open" href="/assets/{{ shot['screen']['file'] }}" data-image-title="{{ product['name'] }} screenshot" data-image-alt="{{ shot['screen']['alt'] }}" data-image-caption="{{ product['caption'] }}" target="_blank" rel="noopener">{{ shot['window']|safe }}
+    {#- -#}
+    <span class="screenshot-enlarge">{% include 'visual_products/expand_icon.html.j2' %}<span>Enlarge<span class="sr-only"> {{ product['name'] }} screenshot</span></span></span></a>
+  {%- endfor -%}
+  <figcaption class="caption">{{ product['caption'] }}</figcaption></figure></section>
