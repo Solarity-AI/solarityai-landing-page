@@ -30,9 +30,6 @@ ENV = Environment(
     auto_reload=False,
 )
 
-# html.escape(value, quote=False): for the few places that leave quotes as they are.
-ENV.filters['noquote'] = lambda value: Markup(escape(str(value), quote=False))
-
 
 def render(template, /, **context):
     """Render templates/<template> and return Markup, so the result can be placed in other templates.
