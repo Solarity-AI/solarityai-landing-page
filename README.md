@@ -4,44 +4,75 @@ Investor and strategic partner website, created October 12, 2026.
 
 ## Maintain content
 
-- Edit `build_site.py` for shared page content, company contact destinations and the `APPS` product records. Shared discovery/contact markup lives in `ux_components.py`; investor FAQs and recovery links live in `ux_content.py`. The hero and closing invitations live in `visual_home.py`, shared navigation/footer/contact links in `visual_chrome.py`, and screenshot markup in `visual_products.py`. The Apps index lives in `visual_catalog.py`; the native homepage selector lives in `product_explorer.py`. The platform index remains in `visual_strategy.py`; new platform, company and investor editorial sections live in `visual_company_upgrade.py`. Supplementary app stories and verified screenshots are maintained in `product_story.py` and `research-assets/product-story-evidence.json`.
-- Product fields include name, purpose, features, store URLs, screenshot and contextual note. Store availability badges only render when a verified store destination is configured.
-- Maintain styles only in the seven files under `design/system/`. `DESIGN_SYSTEM.md` defines their responsibilities, tokens, cascade layers, and verification limits. `style_sources` in `build_site.py` is authoritative. The build combines these sources into the generated `dist/assets/presentation.css`, then filters and inlines CSS per route. Do not edit generated styles or restore the retired override files.
-- Maintain interactions in `scripts/navigation.js`, `scripts/gallery.js`, `scripts/contact.js`, `scripts/careers.js`, and `scripts/copy.js`. Navigation is inlined synchronously in the head before styles to select a stable mobile layout before first paint. The other scripts use fingerprinted external files only on routes that need them. Every page also carries prefetch-only speculation rules from `performance_build.py`. The earlier `dist/assets/site.js` is retained as historical source and is no longer loaded.
-- Shared control states live in `design/system/foundation.css`, navigation/footer in `chrome.css`, and alternate accessibility modes in `accessibility.css`. Page composition belongs in `home.css`, `products.css`, `company.css`, or `contact.css`.
-- `optimize_images.py` creates uncropped responsive image variants and content-hashed filenames. Edit the source images, then run the build. Do not edit generated optimized assets manually. Native screenshot enlargement links preserve the original full-size image.
-- Add authentic assets to `dist/assets/` only when a page references them; keep build-only masters in `source-assets/` (see CLAUDE.md). Record provenance before publishing.
-- Run `python3 build_site.py` to regenerate the HTML. CSS, JS and image assets are retained.
-- Run `python3 check_site.py`, `python3 -m unittest test_optimize_styles.py test_site_urls.py`, and `node --test test-navigation.cjs test-contact.cjs test-gallery.cjs test-careers.cjs test-copy.cjs` for all available checks.
-- `site_urls.py` normalizes known page anchors, canonical/Open Graph URLs, and sitemap entries to the host's final trailing-slash URLs. Keep route keys and `data-page` attributes unchanged when editing components.
+- **Shared content and product records:** edit `build_site.py` for shared page content, company contact destinations and the `APPS` records.
+  - `saas_products.py` holds the three web apps (Engineering Max, Management Max, Marketing Max).
+  - `visual_saas.py` renders them on Home, Apps, Platform and Investors.
+- **Where the markup lives:**
+
+  | File | Contents |
+  |---|---|
+  | `ux_components.py` | Shared discovery markup |
+  | `ux_content.py` | The investor FAQ and the recovery links |
+  | `visual_home.py` | The hero and closing invitations |
+  | `visual_chrome.py` | Navigation, footer and contact links |
+  | `visual_products.py` | Product pages and screenshots |
+  | `visual_catalog.py` | The Home portfolio wall and the Apps index |
+  | `visual_strategy.py` | The Platform opening |
+  | `visual_company_upgrade.py` | Company and investor editorial sections |
+  | `visual_careers.py` | Careers |
+  | `visual_contact.py` | Contact |
+  | `product_story.py` and `research-assets/product-story-evidence.json` | App stories and verified screenshots |
+
+- **`seo.py`:** search and AI answer-engine metadata (schema.org, robots.txt, sitemap dates, `llms.txt`, IndexNow).
+- **Product fields:** name, purpose, features, store URLs, screenshot and contextual note. Store badges render only when a verified store destination is configured.
+- **Styles:** maintain them only in the eight files under `design/system/`. `DESIGN_SYSTEM.md` defines their responsibilities, tokens and verification limits.
+  - `style_sources` in `build_site.py` is authoritative.
+  - The build writes the combined `design/presentation.css` (used for hashing), then filters and inlines CSS per route. Do not edit generated styles.
+  - Shared control states live in `foundation.css`, navigation and footer in `chrome.css`, and alternate accessibility modes in `accessibility.css`.
+  - Page composition belongs in `home.css`, `products.css`, `company.css`, `contact.css` or `careers.css`.
+- **Interactions:** maintain them in `scripts/navigation.js`, `scripts/gallery.js`, `scripts/contact.js`, `scripts/careers.js` and `scripts/copy.js`.
+  - Navigation is inlined in the head before styles, so the mobile layout is stable before first paint.
+  - The other scripts are fingerprinted external files, loaded only on routes that need them.
+  - Every page also carries prefetch-only speculation rules from `performance_build.py`.
+- **Images:** `optimize_images.py` creates uncropped responsive variants with content-hashed filenames. Edit the source images, then run the build; never edit generated optimized assets. Screenshot enlargement links keep the original full-size image.
+- **Assets:** keep build-only masters in `source-assets/`. The build publishes a file to `dist/assets/` once a page references it (see CLAUDE.md). Record provenance before publishing.
+- **Build and checks:** run `python build_site.py` to regenerate `dist/`, then `python check_site.py`, `python -m unittest test_optimize_styles.py test_site_urls.py test_seo.py` and `node --test test-navigation.cjs test-contact.cjs test-gallery.cjs test-careers.cjs test-copy.cjs`.
+- **URLs:** `site_urls.py` normalizes page anchors, canonical and Open Graph URLs, and sitemap entries to the host's final trailing-slash URLs. Keep route keys and `data-page` attributes unchanged when editing components.
 
 ## Routes
 
-Home, Apps, Looks Max, IQ Max, Sleep Max, Fitness Max, Platform, Company, Investors & Partners, Contact, and an error page.
+Home, Apps, Looks Max, IQ Max, Sleep Max, Fitness Max, Platform, Company, Investors & Partners, Careers, Contact, and an error page.
 
 ## Contact behavior
 
-The site uses a client-side email composer addressed to the publicly verified `ata.turhan@solarityai.com`. Visitors review recipient, subject and body before opening their mail application or copying the draft. The site never claims a message was delivered. Only name and message are required; reply email and organization are optional. It also offers a copy fallback and a verified public founder booking URL. No website inquiry backend or analytics is configured. Input is not persisted by site code. Hosting/provider data practices should be reviewed separately.
+- **Contact page:** links open the visitor's email app, addressed to `ata.turhan@solarityai.com` with a subject chosen by topic, or open the founder's Google Calendar booking page. The site does not collect or submit contact messages and never claims a message was delivered. A copy button copies the address.
+- **Careers:** the form posts to FormSubmit, with direct email as a fallback (see `CAREERS_DELIVERY.md`).
+- **Analytics:** the Cloudflare zone injects its cookieless Web Analytics beacon; the site itself adds none.
 
 ## Access and publication
 
-Site origin: https://solarityai.com (canonical since the move into `Solarity-AI/solarityai-landing-page`; the earlier GPT Sites origin was https://solarity-company.the-ata-turhan.chatgpt.site)
-
-The founder explicitly authorized all GPT Sites to remain public on October 12, 2026. This supersedes the original instruction to preserve private access. Solarity AI is public, and future deployments must preserve public access unless the founder changes that instruction. Valid content pages allow indexing; the 404 page remains accessible but requests no indexing. Robots allows search crawling, keeps solarityai.com's existing block on AI-training crawlers, and advertises the sitemap at the canonical origin. DNS is not managed by this project.
+- **Origin:** https://solarityai.com, served by Cloudflare Pages from the `develop` branch. The earlier GPT Sites origin was https://solarity-company.the-ata-turhan.chatgpt.site.
+- **Public access:** the founder authorized public access on October 12, 2026. Future deployments must preserve it unless the founder changes that instruction.
+- **Indexing:** content pages allow indexing, and the 404 page asks not to be indexed.
+- **robots.txt:** welcomes search engines and AI assistants, including AI crawlers it blocked before October 19, 2026 (see `CONTENT_REGISTER.md`), and advertises the sitemap. DNS is not managed by this project.
 
 ## Outstanding items
 
-- Fitness Max is listed in the App Store and Google Play as Only Fitness. Keep that naming disclosure beside its product and store actions.
-- The 3 app factory modules are presented as a platform vision. Production integration, external availability and commercial performance are not asserted.
-- Motivation Max, Productivity Max and Hair Max are omitted pending sufficient public-facing details.
-- Existing corporate legal links lead to placeholders. They were not imported as policies. Obtain applicable company policies; no policy text has been invented.
-- Authentic company sun and founder portrait are now sourced from solarityai.com. `research-assets/brand-evidence.json` records source URLs, original files, the narrow sun crop, and optimized variants. The founder-selected six-member roster lives in `visual_team.py`; portrait evidence is in `research-assets/team-evidence.json`. Add no other people without approval.
-- Browser rendering, responsive overflow, focus behavior in an actual browser and Lighthouse scores were not verified because the supported managed browser skill was unavailable. CSS provides explicit breakpoints; static and logic checks are reported separately.
-- Live HTTP inspection confirms this static host does not apply `dist/_headers`: it returns `public, max-age=0, must-revalidate` for fingerprinted assets and omits the custom security headers. Keep these as declared intent, not proof of enforcement. Error pages have noindex metadata, and all pages have a browser-level referrer policy. Host-controlled header and cache behavior remain a platform limitation.
+- **Fitness Max** is listed in the App Store and Google Play as Only Fitness. Keep that naming disclosure beside its product and store actions.
+- **The three web apps** are real products with their own statuses (`saas_products.py`). Their mobile versions are a founder-stated plan and stay labeled as planned. No customers, usage or revenue are claimed.
+- **Motivation Max, Productivity Max and Hair Max** are omitted pending sufficient public-facing details.
+- **No privacy policy or terms page.** The site has none. The careers form links to FormSubmit's privacy policy. Obtain the company's own policies; none has been invented.
+- **Team.** The company sun and the founder portrait come from the earlier solarityai.com (`research-assets/brand-evidence.json`). The founder-selected six-member roster lives in `visual_team.py`, with portrait evidence in `research-assets/team-evidence.json`. Add no other people without approval.
+- **Verification.**
+  - Browser, accessibility and Lighthouse checks are recorded in `UX_REFINEMENTS.md`, `PRODUCTION_AUDIT.md` and `DESIGN_SYSTEM.md`.
+  - Cloudflare Pages applies `dist/_headers`.
+  - After a header change, the zone's edge cache keeps serving older static files with their old headers until a purge (Caching → Configuration → Purge Everything).
 
 ## Asset note
 
-The current hero restores the original cinematic architecture direction and adds a person moving up deliberate steps toward a solar opening. It expresses human potential supported by intentional systems. The illustration is explicitly conceptual and does not depict the founder, actual company facilities, product UI or deployed architecture. Authentic app identities follow in a separate evidence rail, with genuine screenshots in the product gallery. Its responsive variants and social image are recorded in `research-assets/hero-human-progress.json`. Earlier art remains in source assets but is no longer referenced by generated pages. Product visuals and icons are authentic App Store assets; their exact sources are in `research-assets/downloaded-assets.json`.
+- **Hero:** the approved natural-sunrise artwork. The master is `source-assets/solar-ascent.webp`, upscaled from `research-assets/solar-ascent-approved.png`, and `research-assets/solar-ascent-artwork.json` records it. It is conceptual brand artwork and does not depict the founder, company facilities or product UI.
+- **Earlier artwork** remains under `source-assets/retired/` and is never republished.
+- **Product visuals and icons** are authentic store assets; their sources are in `research-assets/downloaded-assets.json`.
 
 ## Historical implementation log
 

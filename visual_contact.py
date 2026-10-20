@@ -3,12 +3,15 @@ from html import escape
 from urllib.parse import quote, urlencode
 
 from ux_components import copy_button
+from visual_sections import symbol
+
+TOPIC_ICONS = {'Investor': 'invest', 'Strategic partner': 'partner', 'Product inquiry': 'apps', 'Other': 'message'}
 
 
 CONTACT_TOPICS = (
     ('Investor', 'Investment conversations', 'The portfolio, company strategy, and future priorities.'),
-    ('Strategic partner', 'Strategic partnerships', 'Distribution, technology, and the app factory direction.'),
-    ('Product inquiry', 'Product questions', 'Looks Max, IQ Max, Sleep Max, or Fitness Max.'),
+    ('Strategic partner', 'Strategic partnerships', 'Distribution, technology, and the web apps for your team.'),
+    ('Product inquiry', 'Product questions', 'The four mobile apps, or Engineering Max, Management Max, and Marketing Max.'),
     ('Other', 'Something else in mind?', 'A clear introduction is a good place to start.'),
 )
 
@@ -20,7 +23,7 @@ def contact_page(email, booking, btn):
         href = 'mailto:' + email + '?' + urlencode({'subject': 'Solarity AI | ' + kind}, quote_via=quote)
         topics.append(
             '<a class="contact-topic" data-inquiry-type="' + escape(kind, quote=True)
-            + '" href="' + escape(href, quote=True) + '"><span><strong>'
+            + '" href="' + escape(href, quote=True) + '"><span class="contact-topic-icon">' + symbol(TOPIC_ICONS[kind]) + '</span><span><strong>'
             + escape(title) + '</strong><span>' + escape(description)
             + '</span></span><span class="contact-topic-arrow" aria-hidden="true">↗</span></a>'
         )

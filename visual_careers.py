@@ -6,6 +6,7 @@ The provider, rather than this page, confirms verification and acceptance.
 from html import escape
 
 from ux_components import copy_button
+from visual_sections import symbol
 
 
 CAREER_ROLES = (
@@ -66,9 +67,9 @@ def careers_page(btn):
 <section class="career-benefits wrap" aria-labelledby="career-benefits-title">
 <div class="career-section-heading"><h2 id="career-benefits-title">A place for <em>your contribution.</em></h2></div>
 <dl class="career-benefit-list">
-<div><dt>Generous profit sharing</dt><dd>Share in the value you help create. Discuss the arrangement for your role during the hiring process.</dd></div>
-<div><dt>Fully remote</dt><dd>Contribute remotely, with the work and your collaboration at the center of the conversation.</dd></div>
-<div><dt>Respect for talent</dt><dd>Bring your perspective, your skills, and the care you put into your work. We want to understand what you can contribute.</dd></div>
+<div><dt><span class="career-benefit-icon">''' + symbol('share') + '''</span>Generous profit sharing</dt><dd>Share in the value you help create. Discuss the arrangement for your role during the hiring process.</dd></div>
+<div><dt><span class="career-benefit-icon">''' + symbol('globe') + '''</span>Fully remote</dt><dd>Contribute remotely, with the work and your collaboration at the center of the conversation.</dd></div>
+<div><dt><span class="career-benefit-icon">''' + symbol('spark') + '''</span>Respect for talent</dt><dd>Bring your perspective, your skills, and the care you put into your work. We want to understand what you can contribute.</dd></div>
 </dl></section>
 
 <section class="career-opportunities wrap" id="opportunities" aria-labelledby="career-opportunities-title">

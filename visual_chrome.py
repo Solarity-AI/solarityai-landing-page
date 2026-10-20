@@ -2,6 +2,8 @@
 
 from html import escape
 
+from saas_products import SAAS
+
 
 def _wordmark():
     # Original-color sun recovered from the official company lockup.
@@ -14,7 +16,7 @@ def _wordmark():
 
 def site_header(path, nav_items, btn):
     """Keep the existing disclosure-navigation IDs and JS class contracts."""
-    descriptions = {'/apps': 'The consumer portfolio', '/platform': 'The app factory vision',
+    descriptions = {'/apps': 'The consumer portfolio', '/platform': 'The app factory: three web apps',
                     '/company': 'Our purpose and founder', '/investors-partners': 'Thesis and collaboration', '/careers': 'Roles and applications'}
     links = []
     for url, label in nav_items:
@@ -37,10 +39,11 @@ def site_header(path, nav_items, btn):
 
 
 def site_footer(email, path='/', booking=''):
-    """Footer directory with complete core-app routes and approved company context."""
+    """Footer directory: the whole portfolio (mobile and web apps), the company routes and direct contact."""
     groups = [
-        ('Portfolio', [('/apps/looks-max', 'Looks Max'), ('/apps/iq-max', 'IQ Max'),
-                           ('/apps/sleep-max', 'Sleep Max'), ('/apps/fitness-max', 'Fitness Max')]),
+        ('Mobile apps', [('/apps/looks-max', 'Looks Max'), ('/apps/iq-max', 'IQ Max'),
+                         ('/apps/sleep-max', 'Sleep Max'), ('/apps/fitness-max', 'Fitness Max')]),
+        ('Web apps', [('/platform#' + p['slug'], p['name']) for p in SAAS]),
         ('Company', [('/apps', 'Apps'), ('/platform', 'Platform'),
                      ('/company', 'Company'), ('/investors-partners', 'Investors & partners'), ('/careers', 'Careers')]),
         ('Contact', [('/contact?type=Investor#prepare-inquiry', 'Investor inquiries'),
@@ -71,24 +74,3 @@ def site_footer(email, path='/', booking=''):
     )
 
 
-def _method_icon(kind):
-    paths = ('<rect x="3" y="5" width="18" height="14" rx="2"/>'
-             '<path d="m4 7 8 6 8-6"/>') if kind == 'email' else (
-             '<rect x="3" y="5" width="18" height="16" rx="2"/>'
-             '<path d="M7 3v4m10-4v4M3 11h18m-14 4h3m4 0h3"/>')
-    return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">' + paths + '</svg>'
-
-
-def contact_methods(email, booking):
-    """Direct verified destinations, without implying message delivery or a response SLA."""
-    return (
-        '<div class="contact-methods" aria-label="Direct contact options">'
-        '<a class="contact-method" href="mailto:' + escape(email) + '">'
-        '<span class="method-icon">' + _method_icon('email') + '</span>'
-        '<span class="method-copy"><strong>Email Ata</strong><span>' + escape(email) + '</span></span>'
-        '<span class="method-arrow" aria-hidden="true">↗</span></a>'
-        '<a class="contact-method" href="' + escape(booking) + '" target="_blank" rel="noopener noreferrer">'
-        '<span class="method-icon">' + _method_icon('calendar') + '</span>'
-        '<span class="method-copy"><strong>Book a conversation</strong><span>Choose a time on Google Calendar</span></span>'
-        '<span class="method-arrow" aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a></div>'
-    )

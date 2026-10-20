@@ -34,25 +34,28 @@
   .contact-topics-heading h2 { max-width: 18ch; }
   .contact-topics-heading p { max-width: 28ch; margin-top: 20px; font-size: var(--text-sm); line-height: 1.8; }
   .contact-topic-list { min-width: 0; }
-  .contact-topic { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 26px 0; border-block-end: 1px solid var(--line); min-height: 108px; }
+  .contact-topic { display: grid; grid-template-columns: 48px minmax(0, 1fr) auto; align-items: center; gap: 22px; padding: 26px 0; border-block-end: 1px solid var(--line); min-height: 108px; }
   .contact-topic:first-child { padding-block-start: 0; }
-  .contact-topic > span:first-child { display: grid; gap: 8px; min-width: 0; }
+  .contact-topic > span:nth-child(2) { display: grid; gap: 8px; min-width: 0; }
+  .contact-topic > span.contact-topic-icon { display: grid; place-items: center; width: 48px; height: 48px; border-radius: var(--radius-plate); color: var(--sun-core); background: rgb(255 207 122/.07); box-shadow: inset 0 0 0 1px var(--line); }
+  .contact-topic-icon svg { width: 24px; height: 24px; }
   .contact-topic strong { color: var(--text); font-size: var(--text-base); font-weight: 500; line-height: 1.45; }
   .contact-topic > span > span { max-width: 48ch; color: var(--muted); font-size: var(--text-sm); line-height: 1.75; }
   .contact-topic-arrow { color: var(--accent); font-size: var(--text-xl); flex: none; transition: transform var(--motion-detail) var(--motion-ease); }
-  .contact-data-note { padding-block: 0 32px; }
+  .contact-data-note { padding-block: 0 var(--space-section); }
   .contact-data-note h2 { font-size: var(--text-xs); letter-spacing: 0; margin-block-end: 10px; }
   .contact-data-note p { max-width: var(--measure); color: var(--dim); font-size: var(--text-xs); line-height: 1.8; }
   .contact-data-note p + p { margin-block-start: 8px; }
   .contact-data-note a { text-decoration: underline; text-underline-offset: 3px; overflow-wrap: anywhere; }
 
   /* Recovery remains a useful directory. */
-  .not-found { max-width: 1040px; padding-block: var(--space-section); }
+  /* The page keeps the site grid; only the list is narrowed, so the title starts at the gutter like every route. */
+  .not-found { padding-block: var(--space-section); }
+  .not-found .recovery-nav { max-width: 1040px; }
   .recovery-intro { max-width: 720px; }
   .not-found h1 { margin-block: 0 24px; }
   .not-found h1 .muted { color: var(--accent); }
   .not-found .lede { max-width: 43ch; margin-block: 0 28px; }
-  .recovery-art { display: none; }
   .recovery-nav { border-block: 1px solid var(--line); margin-block-start: 56px; }
   .recovery-nav a { display: grid; grid-template-columns: minmax(0, 1fr) 24px; align-items: center; gap: 24px; min-height: 94px; padding: 24px 8px; color: var(--text); text-decoration: none; transition: background-color var(--motion-fast); }
   .recovery-nav a + a { border-block-start: 1px solid var(--line); }

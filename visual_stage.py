@@ -14,7 +14,7 @@ def store_badges(app, fallback=''):
              f'<img src="{APP_STORE_BADGE}" alt="Download {e(app["name"])} on the App Store" width="144" height="48" decoding="async">'
              f'<span class="store-badge-arrow" aria-hidden="true">↗</span>{_NEW_TAB}</a>')
     google = (f'<a class="store-badge store-badge--google" href="{e(app["google"])}" target="_blank" rel="noopener noreferrer">'
-              f'<img src="{GOOGLE_PLAY_BADGE}" alt="Get {e(app["name"])} on Google Play" width="181" height="70" decoding="async">'
+              f'<img src="{GOOGLE_PLAY_BADGE}" alt="Get {e(app["name"])} on Google Play" width="181" height="70" sizes="181px" decoding="async">'
               f'<span class="store-badge-arrow" aria-hidden="true">↗</span>{_NEW_TAB}</a>') if app.get('google') else ''
     return f'<div class="store-badges">{apple}{google}</div>'
 

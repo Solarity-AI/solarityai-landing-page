@@ -1,23 +1,25 @@
 # Solarity AI: coding handoff
 
-This is the complete source export of the public Solarity AI corporate Site, version 24, commit `27e009b87c931d61e0464bc6460041e80417db95`, exported October 18, 2026. See START_HERE.md for setup and SOURCE_MANIFEST.json for provenance and checksums. The live website was not changed to create this export.
+This repository holds the complete source of the public Solarity AI corporate site, https://solarityai.com. It began as the October 18, 2026 export of Site version 24; `SOURCE_MANIFEST.json` records that export and does not describe the current tree. See START_HERE.md for setup.
 
 ## Read first
 
-1. Read this file and `CINEMATIC_REFINEMENT.md` for the current architecture and behavior.
+1. Read this file and `DESIGN_SYSTEM.md` for the current architecture, rules and behavior. `CINEMATIC_REFINEMENT.md` is the October 13 record behind them.
 2. Read `build_site.py`, the relevant component modules, and `CONTENT_REGISTER.md` before editing.
 3. Treat older README and design-log sections as history. They describe superseded contact composers, hero artwork, font choices, stylesheet counts, and route counts. The implemented source and the latest cinematic refinement take precedence for the exported state.
-4. Follow the founder's latest instructions for any new work. Public launch status, product capabilities, and commercial claims must be reverified before new publication; this export preserves the October 13 implementation, not a new factual review.
+4. Follow the founder's latest instructions for any new work. Public launch status, product capabilities, and commercial claims must be reverified before new publication; the sources of each published fact are in `CONTENT_REGISTER.md`.
 
 ## Architecture
 
 - Static HTML/CSS/JavaScript, generated with Python. No React, Next.js, Vite, npm package manifest, database, or build framework is required.
-- `build_site.py`: APPS records, page assembly, metadata, canonical origin, contacts, sitemap, robots, hosting headers, and the authoritative stylesheet list.
-- `visual_*.py`, `product_story.py`, `ux_components.py`, `ux_content.py`: shared and route-specific HTML. `visual_stage.py` holds the official store badges and the product close; `visual_catalog.py` holds the Home portfolio wall and the Apps lineup. The Home explorer (`product_explorer.py`) was retired in P5b.
+- `build_site.py`: APPS records, page assembly, metadata, canonical origin, contacts, hosting headers and redirects, and the authoritative stylesheet list. `seo.py` writes the sitemap and robots.txt.
+- `visual_*.py`, `product_story.py`, `ux_components.py`, `ux_content.py`: shared and route-specific HTML. `saas_products.py` holds the three web apps; `visual_saas.py` renders them on Home and Platform. `visual_stage.py` holds the official store badges and the product close; `visual_catalog.py` holds the Home portfolio wall and the Apps lineup. The Home explorer (`product_explorer.py`) was retired in P5b.
 - `design/system/`: 8 maintained CSS files. Edit these sources, not the generated `design/presentation.css` bundle (used only for build hashing) or inline output.
 - `scripts/`: 5 maintained scripts for navigation, the screenshot viewer (with previous/next browsing), contact context, careers validation, and the copy-address button. The build fingerprints external scripts and inlines navigation before first paint to protect mobile layout stability. `UX_REFINEMENTS.md` lists the October 18 UX pass and the contracts it relies on.
+- `seo.py`: search and AI answer-engine metadata. It builds the schema.org graph for each page, `robots.txt` (search and AI crawlers welcome), the sitemap with `lastmod` from `research-assets/page-dates.json`, `llms.txt` and `llms-full.txt`, and the IndexNow key. `deploy/indexnow.py` (run by `.github/workflows/indexnow.yml` after each deploy) submits changed pages. `CONTENT_REGISTER.md` lists the sources for every fact it states.
+- `make_social_images.py`: run by hand; writes the 1200×630 link-preview images to `source-assets/social/` from approved material only. Commit its output. The build publishes the images on reference, which keeps the bytes identical across machines.
 - `optimize_images.py`: local responsive WebP/AVIF variants, recorded edge trims for store screenshots, and the image manifest. `refetch_native_screens.py` re-fetches the published screenshots at native resolution into the git-ignored `source-assets/native/` for founder confirmation; it publishes nothing. `optimize_styles.py`: conservative route CSS filtering; classes that only scripts add belong in its `DYNAMIC_CLASSES`. `performance_build.py`: delivery optimization, including each page's speculation rules. They prefetch same-origin pages on visitor intent and must never prerender, which would run analytics for pages nobody opened. `check_site.py` enforces this.
-- `dist/`: the publish set, meaning exactly what is deployed. **Do not delete dist before a build.** `dist/assets/` still holds published originals that have no other copy: full-size app screenshots (native gallery links), the social image, brand variants, and the font. `check_site.py` fails if `dist/` contains a file that no page references, apart from `_headers`, `robots.txt`, `sitemap.xml`, `favicon.ico`, and the font license.
+- `dist/`: the publish set, meaning exactly what is deployed. **Do not delete dist before a build.** `dist/assets/` still holds published originals that have no other copy: full-size app screenshots (native gallery links), brand variants, and the two fonts (Manrope and Newsreader). `check_site.py` fails if `dist/` contains a file that no page references, apart from the host files in its `HOST_FILES` (`_headers`, `_redirects`, `robots.txt`, `sitemap.xml`, `llms.txt`, `llms-full.txt`, the IndexNow key, `favicon.ico`, `.well-known/security.txt` and the two font licenses).
 - `source-assets/`: build inputs and unpublished approved files that are never deployed. This covers app-icon and hero masters, original brand files, team portraits, unused brand variants, and font provenance. If a page references `/assets/<path>` and only `source-assets/<path>` exists, the build publishes it automatically. `source-assets/retired/` holds retired artwork and scripts, which are never republished. `research-assets/deploy-separation.json` records every move.
 - The build writes `dist/favicon.ico` from the documented sun crop of the original lockup. It also prunes stale content-addressed files in `dist/assets/optimized/` and `dist/assets/runtime/`.
 - `research-assets/`: original approved hero, asset provenance, content evidence, optimization manifests, measured source-byte reports, and `production-audit.json`.
@@ -30,7 +32,7 @@ Run from the project root after changes:
 ```sh
 python build_site.py
 python check_site.py
-python -m unittest test_optimize_styles.py test_site_urls.py
+python -m unittest test_optimize_styles.py test_site_urls.py test_seo.py
 node --test test-navigation.cjs test-contact.cjs test-gallery.cjs test-careers.cjs test-copy.cjs
 ```
 
@@ -39,14 +41,16 @@ Use `python3` if that is the Python 3 command on the local machine. On Windows, 
 ## Preserve unless the founder requests a change
 
 - Investor and strategic partner objective; broad company self-improvement positioning.
-- The approved natural-sunrise hero: `research-assets/solar-ascent-approved.png`, with build master `source-assets/solar-ascent.webp` (published only as `/assets/optimized/solar-ascent-*` variants). Do not restore retired artwork merely because older files remain.
+- The approved natural-sunrise hero: `research-assets/solar-ascent-approved.png`, with build master `source-assets/solar-ascent.webp`: the approved image upscaled 2× to 3720×1690 with Real-ESRGAN, approved by the founder on 2026-10-19 (`research-assets/solar-ascent-artwork.json`). It is published only as `/assets/optimized/solar-ascent-*` variants. Regenerate the master only from the approved PNG. Do not restore retired artwork merely because older files remain.
 - 4 consumer app names: Looks Max, IQ Max, Sleep Max, Fitness Max. Fitness Max's store-name disclosure is Only Fitness. Voice Max is retired from this Site.
 - Approved company team: Ata Turhan plus Emrecan Özkan, Ali Yılmaz, Hasan Ak, Eren Öz, Batuhan Yücetürk, Melik Kaplan. Do not invent roles, portraits, credentials, or traction.
-- App factory pages distinguish company strategy from verified deployed capabilities. Obtain current evidence before strengthening claims.
+- Three web apps: Engineering Max (private testing), Management Max (free plan) and Marketing Max (internal V1, early access), described only from their own sites (`saas_products.py`, `research-assets/saas-evidence.json`). Re-read those sites before changing a status, plan or capability. Mobile versions are a founder-stated plan and stay labeled as planned. No customer, usage or revenue claims.
 - Current contact behavior is direct email/booking. It does not collect or submit contact messages. Keep query-derived subjects encoded and bounded.
-- Careers posts to `https://formsubmit.co/careers@solarityai.com` with native validation, CAPTCHA, honeypot, provider confirmation, and direct email fallback. Activation and actual inbox receipt remain unverified. See `CAREERS_DELIVERY.md` for the evidence and the one-application test. Never treat a URL query parameter as delivery proof.
+- Careers posts to `https://formsubmit.co/careers@solarityai.com` with native validation, CAPTCHA, honeypot, provider confirmation, and direct email fallback. Activation and inbox receipt were confirmed on the earlier GPT Sites origin and remain unverified on solarityai.com. See `CAREERS_DELIVERY.md` for the evidence and the one-application test. Never treat a URL query parameter as delivery proof.
 - Public access and the production domain `https://solarityai.com` (canonical origin since the move into this repository). `.openai/hosting.json` records the earlier GPT Sites deployment identity, but contains no deployment credential. Do not change DNS, the domain, or the deployment pipelines as part of ordinary code work.
 - Native navigation, accessible focus and dialog behavior, reduced-motion support, explicit image dimensions, and matching hero preload.
+- The Content-Security-Policy in `_headers` is generated from the built pages: a new inline script gets its hash automatically. A new third-party script, form target or connection must be added to `content_security_policy()` in `build_site.py`, and verified on the branch preview before merging.
+- Motion stays opt-in: keyframes and scroll timelines live only under `prefers-reduced-motion: no-preference` (enforced by `check_site.py`), and reveals move but never fade text.
 
 ## Repository, deployment, and commits
 
@@ -58,8 +62,8 @@ This project lives in `github.com/Solarity-AI/solarityai-landing-page`, which al
 - `.github/workflows/site-checks.yml` runs on every pull request and on `develop`. It rebuilds the site and fails if the committed `dist/` differs, then runs the static audit and both test suites. Merge only when it and the Cloudflare Pages preview check pass.
 - **Removed pipelines.** Production was previously a Docker/nginx image rolled out by Woodpecker (`ci.solarityai.com`) to Kubernetes behind Caddy, with an AWS S3/CloudFront workflow alongside. Woodpecker stopped accepting GitHub webhooks (HTTP 400) and the AWS workflow failed on every run, so both were removed from this repository on 2026-10-18 (see git history). The old servers may still be running and are no longer receiving solarityai.com traffic. `ansible/` is an older, manually run EC2/nginx setup that is also unused for solarityai.com.
 - Commits follow `Commit Rules.md` and `skills/git-conventional-commit`: one logical change per commit, with a single-line, lowercase, imperative Conventional Commit message of at most 50 characters (for example `fix: keep words apart at hidden line breaks`).
-- A domain change requires coordinated edits to the origin in `build_site.py`, `check_site.py`, `audit_production.py`, and the careers `_url` in `visual_careers.py`. Then attach the new domain to the Pages project, and verify with `python deploy/smoke_test.py` and `python audit_production.py`.
+- A domain change requires coordinated edits to the origin in `build_site.py`, `seo.py`, `check_site.py`, `audit_production.py`, `deploy/smoke_test.py`, the `host` in `deploy/indexnow.py`, and the careers `_url` in `visual_careers.py`. Then attach the new domain to the Pages project, and verify with `python deploy/smoke_test.py` and `python audit_production.py`.
 
-Missing optional source material: a matched set of clean app UI exports, approved team roles/additional portraits, and the upstream font TTF. The complete deployable font, license, provenance, and all build-required image files are included. Some historical provenance records reference scratch paths that are no longer available; those are not build dependencies.
+Missing optional source material: a matched set of clean app UI exports, approved team roles/additional portraits, and the upstream font TTFs. The complete deployable fonts, licenses, provenance, and all build-required image files are included. Some historical provenance records reference scratch paths that are no longer available; those are not build dependencies.
 
 Local coding needs no deployment: build, check, and preview locally, then open a pull request.

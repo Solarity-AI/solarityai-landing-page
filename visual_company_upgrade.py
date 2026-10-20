@@ -1,12 +1,14 @@
 """Evidence-led editorial sections adapted from the reference-site review.
 
-The app list remains data-driven. Platform descriptions express company strategy,
-not deployed integrations, customer traction, or external commercial availability.
+The app lists remain data-driven. The web apps are described from their own sites
+(saas_products.py): no customer traction, prices or integrations beyond what those sites state.
 """
 from html import escape
 from urllib.parse import urlencode
 
 from image_provenance import provenance
+from saas_products import SAAS
+from visual_saas import showroom_web
 
 
 def page_index(sections):
@@ -32,7 +34,7 @@ def investor_opening(apps, btn, contact):
             '<img class="store-screen plate--window"' + focus + ' src="/assets/' + escape(app['screen'], quote=True)
             + '" alt="' + escape(app['name']) + ' official App Store imagery with sample app content" width="'
             + str(app.get('screen_width', 600)) + '" height="' + str(app.get('screen_height', 1298))
-            + '" sizes="(max-width: 560px) 62vw, (max-width: 1100px) 22vw, 230px" decoding="async"></span>'
+            + '" sizes="(max-width: 560px) 47vw, (max-width: 1100px) 18vw, 180px"' + (' fetchpriority="high"' if not frames else '') + ' decoding="async"></span>'
             '<span class="showroom-identity"><img src="/assets/' + slug + '-icon.webp" width="40" height="40" alt="" loading="lazy" decoding="async">'
             '<span><strong>' + escape(app['name']) + '</strong><small>' + escape(app['category']) + '</small></span></span></a>'
             '<p class="showroom-stores"><a href="' + escape(app['apple'], quote=True) + '" target="_blank" rel="noopener noreferrer">App Store <span aria-hidden="true">↗</span>' + note + '</a>'
@@ -42,7 +44,7 @@ def investor_opening(apps, btn, contact):
         '<section class="investor-opening wrap" aria-labelledby="investor-opening-title">'
         '<div class="investor-opening-copy"><p class="eyebrow">Investors &amp; partners</p>'
         '<h1 id="investor-opening-title">Products today.<br><span>Possibility ahead.</span></h1>'
-        '<div class="investor-opening-aside"><p class="lede">Focused consumer apps. A vision for the systems behind them. '
+        '<div class="investor-opening-aside"><p class="lede">Four consumer apps, and three web apps for the work behind them. '
         'Explore the products, then the company direction.</p>'
         '<div class="actions">' + btn('Investor inquiries', contact('Investor'))
         + btn('Partnership inquiries', contact('Strategic partner'), 'outline')
@@ -52,7 +54,7 @@ def investor_opening(apps, btn, contact):
                                  ('booking', 'Founder'))) + '</div></div>'
         '<div class="showroom" id="portfolio"><ul class="showroom-frames" tabindex="0" aria-label="Consumer portfolio: '
         + str(len(frames)) + ' store-listed apps">' + ''.join(frames) + '</ul>'
-        '<p class="caption showroom-caption">' + provenance() + '</p></div></section>'
+        '<p class="caption showroom-caption">' + provenance() + '</p>' + showroom_web(SAAS) + '</div></section>'
     )
 
 
@@ -77,7 +79,7 @@ def investor_evidence(apps):
     topics = [
         ('Distribution', 'Discuss an audience, channel, or distribution opportunity for one of the apps.', 'Distribution'),
         ('Technology collaboration', 'Explore a specific integration or product collaboration around shared interests.', 'Technology collaboration'),
-        ('Platform design partnership', 'Discuss product-building workflows that could inform the app factory vision.', 'Platform design partnership'),
+        ('Web app partnership', 'Discuss Engineering Max, Management Max, or Marketing Max for your team or portfolio.', 'Web apps'),
     ]
     topic_rows = []
     for index, (title, detail, context) in enumerate(topics, 1):
@@ -95,7 +97,7 @@ def investor_evidence(apps):
 <dl class="ledger">
 <div><dt>Company</dt><dd>Solarity AI LLC · Irving, Texas</dd></div>
 <div class="ledger-founder"><dt>Founder</dt><dd><a href="/company"><img class="ledger-print" src="/assets/brand/ata-turhan-320.db6d27d9b9b3.webp" width="96" height="120" alt="" loading="lazy" decoding="async"><span>Ata Turhan</span></a></dd></div>
-<div><dt>Portfolio</dt><dd><a href="/apps">''' + str(len(listed)) + ''' apps on the App Store and Google Play</a></dd></div>
+<div><dt>Portfolio</dt><dd><a href="/apps">''' + str(len(listed)) + ''' mobile apps</a> on the App Store and Google Play, and <a href="/platform">''' + str(len(SAAS)) + ''' web apps</a></dd></div>
 </dl>
 </section>
 <section class="investor-evidence wrap" id="thesis" aria-labelledby="investor-evidence-title">
@@ -103,10 +105,10 @@ def investor_evidence(apps):
 <h2 id="investor-evidence-title">Build the product.<br>Learn from the work.</h2></div>
 <p>Develop focused consumer experiences while exploring more repeatable ways to build, operate, and grow mobile products.</p></div>
 <div class="today-ahead">
-<article class="today-card" aria-labelledby="today-title"><p class="eyebrow">Today</p><h3 id="today-title">Four focused consumer apps.</h3><p>Self-care, cognitive practice, sleep, and fitness give each app a distinct purpose and audience.</p><div class="today-icons">''' + icons + '''</div><span class="status"><i aria-hidden="true"></i>Available on iOS&nbsp;&amp;&nbsp;Android</span></article>
-<article class="ahead-card" aria-labelledby="investor-vision-title"><p class="eyebrow">Ahead</p><h3 id="investor-vision-title">The work behind the next product.</h3><p>Engineering Max, Management Max, and Marketing Max organize the intended direction for reusable product workflows.</p><span class="status vision"><i aria-hidden="true"></i>Vision</span><a class="text-link" href="/platform">Explore the platform direction <span aria-hidden="true">→</span></a></article>
+<article class="today-card" aria-labelledby="today-title"><p class="eyebrow">Today</p><h3 id="today-title">Four consumer apps. Three web apps.</h3><p>Self-care, cognitive practice, sleep, and fitness on iOS and Android, and Engineering Max, Management Max, and Marketing Max on the web.</p><div class="today-icons">''' + icons + '''</div><span class="status"><i aria-hidden="true"></i>Available on iOS&nbsp;&amp;&nbsp;Android</span></article>
+<article class="ahead-card" aria-labelledby="investor-vision-title"><p class="eyebrow">Ahead</p><h3 id="investor-vision-title">The web apps, on mobile.</h3><p>Engineering Max, Management Max, and Marketing Max run on the web today. Mobile versions are planned, and Marketing Max plans a commercial version for other teams.</p><span class="status vision"><i aria-hidden="true"></i>Planned</span><a class="text-link" href="/platform">Explore the app factory <span aria-hidden="true">→</span></a></article>
 </div>
-''' + '''<div class="investor-commercial"><div><p class="eyebrow">Consumer model</p><h3>Subscriptions and in-app purchases.</h3><p>The apps have live listings with in-app purchases. Current plans, prices, and terms are available through their official store pages.</p></div><div><p class="eyebrow">Platform strategy</p><h3>Potential commercialization.</h3><p>External commercial availability, connected capabilities, and partnership scope remain topics for discussion. They are not presented here as established platform services.</p></div></div>
+''' + '''<div class="investor-commercial"><div><p class="eyebrow">Consumer model</p><h3>Subscriptions and in-app purchases.</h3><p>The apps have live listings with in-app purchases. Current plans, prices, and terms are available through their official store pages.</p></div><div><p class="eyebrow">Web apps</p><h3>Plans set by each product.</h3><p>Management Max has a free plan for one app and paid plans for larger portfolios. Engineering Max is free during private testing, and Marketing Max is in early access. Neither has a price yet.</p></div></div>
 
 </section>
 <section class="partnership-agenda wrap" id="conversation-paths" aria-labelledby="partnership-agenda-title"><div class="partnership-agenda-heading"><h2 id="partnership-agenda-title">Where we can build together.</h2><p>A useful conversation starts with a product, a shared problem, or a relevant audience.</p></div>
@@ -120,7 +122,7 @@ def founder_booking(btn, booking, email='ata.turhan@solarityai.com'):
             '<div class="founder-booking-action">' + btn('View available times', booking, 'primary', True)
             + btn('Email Ata', 'mailto:' + email, 'outline') + '</div></div>'
             '<figure class="booking-reprise"><img src="/assets/solar-ascent.webp" alt="A person climbing mountain steps toward a golden sunrise above the clouds" '
-            'width="1860" height="845" sizes="(max-width: 850px) 92vw, 600px" loading="lazy" decoding="async">'
+            'width="3720" height="1690" sizes="(max-width: 850px) 92vw, 600px" loading="lazy" decoding="async">'
             '<figcaption>Conceptual brand artwork</figcaption></figure></section>')
 
 

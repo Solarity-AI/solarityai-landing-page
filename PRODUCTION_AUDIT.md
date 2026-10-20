@@ -86,3 +86,14 @@ The Newsreader display face was measured against the P0 baseline. Lighthouse 13.
 - **Home.** With `optional`, preloading the display face on Home measured 2,857 ms against 2,855 ms without, so Home keeps the preload.
 - **Layout shift.** CLS was 0 in every P2 run.
 
+
+## Re-audit, 2026-10-20 (HTTP only; Lighthouse carried over from 2026-10-18)
+
+- **The audit script's own false findings are fixed.**
+  - It no longer treats the speculation-rules pattern `/assets/*` as a file.
+  - It no longer lists files the current build publishes again (the app icons that schema.org names) as leftovers.
+  - It audits the origin it is given rather than the sitemap's canonical URLs, and it records the real Lighthouse date when carrying results over.
+- **Edge cache.** The Cloudflare zone's edge cache serves two kinds of stale file:
+  - Seven static files that were cached before the CSP, HSTS and Permissions-Policy headers existed are still served without them. `deploy/smoke_test.py` reports these as 18–21 failures.
+  - Three files that are no longer deployed still return 200 from the cache: `/assets/sleep-max-detail-screen-3.webp`, `/assets/iq-max-screen-1.webp` and `/assets/solar-ascent-social.jpg`.
+  - Pages and every other file are correct. **Fix:** Cloudflare dashboard → Caching → Configuration → Purge Everything, then rerun `python deploy/smoke_test.py` and `python audit_production.py`.

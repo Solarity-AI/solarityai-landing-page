@@ -45,10 +45,12 @@ jobs:
       - name: Rebuild the site
         run: python build_site.py
 
-      - name: Committed dist matches its sources
+      - name: Committed build outputs match their sources
         run: |
-          if ! git diff --exit-code --stat -- dist site-pages.json; then
-            echo "::error title=Stale build output::Run python build_site.py and commit dist/ and site-pages.json."
+          outputs="dist site-pages.json design/presentation.css research-assets/page-dates.json research-assets/performance-build.json"
+          if [ -n "$(git status --porcelain -- $outputs)" ]; then
+            git status --porcelain -- $outputs
+            echo "::error title=Stale build output::Run python build_site.py and commit dist/ and the other build outputs."
             exit 1
           fi
 
@@ -68,7 +70,7 @@ jobs:
           exit "$status"
 
       - name: Python tests
-        run: python -m unittest test_optimize_styles.py test_site_urls.py
+        run: python -m unittest test_optimize_styles.py test_site_urls.py test_seo.py
 
       - name: Node tests
         run: node --test test-navigation.cjs test-contact.cjs test-gallery.cjs test-careers.cjs test-copy.cjs

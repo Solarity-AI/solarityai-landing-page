@@ -1,0 +1,5 @@
+Contact: mailto:ata.turhan@solarityai.com
+Contact: https://github.com/Solarity-AI/solarityai-landing-page/security/advisories/new
+Expires: 2027-10-19T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://solarityai.com/.well-known/security.txt

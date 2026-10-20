@@ -8,6 +8,7 @@ from hashlib import sha256
 from urllib.robotparser import RobotFileParser
 import xml.etree.ElementTree as ET
 from site_urls import public_path
+import seo
 
 ROOT=Path(__file__).parent
 DIST=ROOT/'dist'
@@ -119,7 +120,7 @@ for file,d in docs.items():
     startup_tags=[a for t,a in d.tags if t=='script' and a.get('id')=='navigation-startup']
     if len(startup_tags)!=1 or not startup or startup.group(1)!=navigation_source:
         errors.append(f'{rel}: missing or stale inline navigation startup')
-    elif startup.end()>text.index('<style id="page-styles"') or startup.end()>text.index('</head>'):
+    elif '<style id="page-styles"' not in text or startup.end()>text.index('<style id="page-styles"') or startup.end()>text.index('</head>'):
         errors.append(f'{rel}: navigation layout must be selected before styles and body painting')
     if startup_tags and (any(key in startup_tags[0] for key in ['src','defer','async']) or startup_tags[0].get('type','') not in ['', 'text/javascript']):
         errors.append(f'{rel}: navigation startup must execute synchronously without a network dependency')
@@ -155,13 +156,30 @@ for file,d in docs.items():
         if t=='a' and 'screenshot-open' in a.get('class','').split():
             if not a.get('data-image-title') or not a.get('data-image-alt'):errors.append(f'{rel}: screenshot enlargement is missing descriptive dialog data')
             if not a.get('href','').startswith('/assets/') or a.get('target')!='_blank':errors.append(f'{rel}: screenshot enlargement lost its native direct-image fallback')
-    # The app factory map: every vision node carries the vision chip, and the legend states the connections are conceptual.
+    # The app factory map: each web app node states its own status, and the legend says the lines are not integrations.
+    saas_slugs=['engineering-max','management-max','marketing-max']
     for figure in re.findall(r'<figure class="pmap[^"]*">(.*?)</figure>',text,re.S):
-        nodes=re.findall(r'class="pmap-node"[^>]*>(.*?)</(?:a|span)></li>',figure,re.S)
-        if len(nodes)!=3 or any('class="status vision"' not in n for n in nodes):errors.append(f'{rel}: each app factory map node needs its Vision status')
-        if 'do not represent deployed integrations' not in figure:errors.append(f'{rel}: the app factory map needs its conceptual-strategy legend')
-    if rel in ('index.html','platform/index.html') and 'class="pmap' not in text:errors.append(f'{rel}: missing the app factory map')
+        nodes=re.findall(r'class="pmap-node" href="#([\w-]+)">(.*?)</a></li>',figure,re.S)
+        if [n[0] for n in nodes]!=saas_slugs or any('class="status"><i aria-hidden="true"></i>' not in n[1] for n in nodes):errors.append(f'{rel}: each app factory map node needs its web app status')
+        if 'they are not data integrations' not in figure:errors.append(f'{rel}: the app factory map needs its legend')
+    if rel=='platform/index.html':
+        if 'class="pmap' not in text:errors.append(f'{rel}: missing the app factory map')
+        # One chapter per web app, each with a real screen from its own site and a link to that site.
+        for slug in saas_slugs:
+            chapter=re.search(r'<section class="saas-chapter[^"]*" id="'+slug+r'"[^>]*>(.*?)</section>',text,re.S)
+            if not chapter:errors.append(f'{rel}: missing the {slug} chapter');continue
+            if not re.search(r'<img class="web-shot"[^>]*src="/assets/optimized/'+slug+r'-',chapter.group(1)):errors.append(f'{rel}: the {slug} chapter needs its product screenshot')
+            if 'href="https://'+slug.replace('-','')+'.solarityai.com/"' not in chapter.group(1):errors.append(f'{rel}: the {slug} chapter must link to its own site')
+    # Every footer lists the whole portfolio: the four mobile apps and the three web apps.
+    for slug in saas_slugs:
+        if not footer_match or f'href="/platform/#{slug}"' not in footer_match.group(1):errors.append(f'{rel}: footer is missing the {slug} web app')
     if rel=='index.html':
+        # The web apps follow the consumer wall: three cards in map order, each linking to its chapter and its site.
+        saas_cards=re.findall(r'<li class="saas-card" id="home-([\w-]+)">(.*?)</li>',text,re.S)
+        if [c[0] for c in saas_cards]!=saas_slugs:errors.append(f'{rel}: Home must introduce the three web apps in order')
+        for slug,card in saas_cards:
+            if f'href="/platform/#{slug}"' not in card or 'href="https://'+slug.replace('-','')+'.solarityai.com/"' not in card:errors.append(f'{rel}: each web app card links to its chapter and its site')
+            if not re.search(r'<img class="web-shot"[^>]*src="/assets/optimized/'+slug+r'-',card):errors.append(f'{rel}: each web app card needs its product screenshot')
         # The portfolio wall: the four apps in APPS order, each with its icon and both store links.
         wall=re.search(r'<ul class="wall-grid"[^>]*>(.*?)</ul>',text,re.S)
         cards=re.findall(r'<li class="wall-card"[^>]*>(.*?)</li>',wall.group(1),re.S) if wall else []
@@ -175,10 +193,11 @@ for file,d in docs.items():
         primary_images=[a for t,a in d.tags if t=='img' and 'progress-hero-image' in a.get('class','').split()]
         hero_sources=[a for t,a in d.tags if t=='source' and a.get('type')=='image/avif' and 'solar-ascent-' in a.get('srcset','')]
         if len(primary_images)!=1 or 'solar-ascent-' not in primary_images[0].get('src',''):errors.append(f'{rel}: hero must use the founder-approved atmospheric sunrise artwork')
-        if primary_images and (primary_images[0].get('width')!='1860' or primary_images[0].get('height')!='845'):errors.append(f'{rel}: hero must reserve the correct intrinsic dimensions')
+        if primary_images and (primary_images[0].get('width')!='3720' or primary_images[0].get('height')!='1690'):errors.append(f'{rel}: hero must reserve the correct intrinsic dimensions')
         if len(primary_images)!=1 or primary_images[0].get('loading')!='eager' or primary_images[0].get('fetchpriority')!='high':errors.append(f'{rel}: hero artwork must load eagerly at high priority')
         if len(hero_sources)!=1 or not primary_images or hero_sources[0].get('sizes')!=primary_images[0].get('sizes'):errors.append(f'{rel}: hero AVIF and WebP must share the rendered image-size contract')
-        if 'Conceptual brand artwork' not in text:errors.append(f'{rel}: hero must identify its illustrative role')
+        # The founder removed the hero caption on 2026-10-19; the artwork keeps its descriptive alt text.
+        if 'hero-image-caption' in text:errors.append(f'{rel}: the Home hero carries no caption (founder decision, 2026-10-19)')
         hero_preloads=[a for t,a in d.tags if t=='link' and a.get('rel')=='preload' and a.get('as')=='image']
         if len(hero_preloads)!=1 or not hero_sources or hero_preloads[0].get('type')!='image/avif' or hero_preloads[0].get('imagesrcset')!=hero_sources[0].get('srcset') or hero_preloads[0].get('imagesizes')!=hero_sources[0].get('sizes'):errors.append(f'{rel}: hero preload must match the primary AVIF source exactly')
     if rel.startswith('apps/') and rel!='apps/index.html':
@@ -246,10 +265,56 @@ except (OSError,ET.ParseError) as exc:
 try:
     robots=RobotFileParser();robots.parse((DIST/'robots.txt').read_text(encoding='utf-8').splitlines())
     if robots.site_maps()!=[ORIGIN+'/sitemap.xml']:errors.append('Robots must advertise the deployment-origin sitemap')
-    for agent in ['*','Googlebot','Googlebot-Mobile']:
+    for agent in ['*','Googlebot','Googlebot-Mobile','Bingbot']+seo.AI_CRAWLERS:
         if any(not robots.can_fetch(agent,url) for url in expected_public_urls):errors.append(f'Robots blocks a public content page for {agent}')
 except OSError as exc:
     errors.append(f'Missing robots file: {exc}')
+# Search and answer engines: titles, dates, schema.org graph, llms.txt and IndexNow.
+lastmods={}
+try:
+    for node in ET.parse(DIST/'sitemap.xml').findall('{http://www.sitemaps.org/schemas/sitemap/0.9}url'):
+        loc=node.findtext('{http://www.sitemaps.org/schemas/sitemap/0.9}loc');mod=node.findtext('{http://www.sitemaps.org/schemas/sitemap/0.9}lastmod')
+        if not mod or not re.fullmatch(r'\d{4}-\d{2}-\d{2}',mod):errors.append(f'Sitemap: {loc} needs a lastmod date')
+        lastmods[loc]=mod
+except (OSError,ET.ParseError):pass
+for file,d in docs.items():
+    rel=file.relative_to(DIST).as_posix();text=file.read_text(encoding='utf-8')
+    title=html.unescape(''.join(d.title)).strip()
+    if not 15<=len(title)<=65:errors.append(f'{rel}: title is {len(title)} characters; search results show about 60')
+    if 'Solarity AI' not in title:errors.append(f'{rel}: title must name Solarity AI')
+    desc=next((a.get('content','') for t,a in d.tags if t=='meta' and a.get('name')=='description'),'')
+    if not 70<=len(html.unescape(desc))<=165:errors.append(f'{rel}: description is {len(html.unescape(desc))} characters; aim for 70-165')
+    blocks=re.findall(r'<script type="application/ld\+json">(.*?)</script>',text,re.S)
+    try:graph=[n for b in blocks for n in json.loads(b).get('@graph',[])]
+    except ValueError as exc:errors.append(f'{rel}: invalid JSON-LD: {exc}');continue
+    types={n.get('@type') for n in graph}
+    org=next((n for n in graph if n.get('@type')=='Organization'),{})
+    if not org.get('sameAs') or not org.get('description') or org.get('founder')!={'@id':seo.FOUNDER_ID}:errors.append(f'{rel}: Organization needs description, founder and official profiles')
+    if 'Person' not in types or 'WebSite' not in types:errors.append(f'{rel}: schema.org graph needs the founder and the website')
+    if rel=='404.html':continue
+    url=ORIGIN+public_path('/' if file==DIST/'index.html' else '/'+file.parent.relative_to(DIST).as_posix())
+    page=next((n for n in graph if n.get('@id')==url+'#webpage'),None)
+    if not page:errors.append(f'{rel}: schema.org graph has no node for the page itself');continue
+    if page.get('dateModified')!=lastmods.get(url):errors.append(f'{rel}: dateModified must match the sitemap lastmod')
+    if page.get('name')!=title:errors.append(f'{rel}: schema.org page name must match the title')
+    if url!=ORIGIN+'/' and 'BreadcrumbList' not in types:errors.append(f'{rel}: missing BreadcrumbList')
+    ids=set(re.findall(r'"@type":\s*"[^"]+",\s*"@id":\s*"([^"]+)"',json.dumps(graph)))
+    for ref in re.findall(r'"@id":\s*"([^"]+)"',json.dumps(graph)):
+        if ref.startswith(ORIGIN) and ref not in ids and ref!=url+'#breadcrumb':errors.append(f'{rel}: schema.org reference to an undefined node {ref}')
+    if '/apps/' in url and url!=ORIGIN+'/apps/':
+        app=next((n for n in graph if n.get('@type')=='MobileApplication'),{})
+        if len(app.get('sameAs',[]))!=2 or not app.get('featureList') or not app.get('alternateName'):errors.append(f'{rel}: MobileApplication needs store links, features and store name')
+    for n in graph:
+        for banned in ('aggregateRating','review','offers'):
+            if banned in n:errors.append(f'{rel}: schema.org states {banned}, which the pages do not show')
+for name in ('llms.txt','llms-full.txt'):
+    llm=(DIST/name).read_text(encoding='utf-8') if (DIST/name).is_file() else ''
+    if not llm.startswith('# Solarity AI\n\n> '):errors.append(f'{name}: must open with the llmstxt.org title and summary')
+    for product in ['Looks Max','IQ Max','Sleep Max','Fitness Max','Only Fitness','Engineering Max','Management Max','Marketing Max']:
+        if product not in llm:errors.append(f'{name}: missing {product}')
+    for link in re.findall(r'\]\((https://solarityai\.com[^)]*)\)',llm):
+        if link not in expected_public_urls and link!=ORIGIN+'/llms-full.txt':errors.append(f'{name}: links to {link}, which is not a public page')
+if ((DIST/(seo.INDEXNOW_KEY+'.txt')).read_text(encoding='utf-8') if (DIST/(seo.INDEXNOW_KEY+'.txt')).is_file() else '')!=seo.INDEXNOW_KEY:errors.append('IndexNow key file must contain exactly its key')
 header_rules={};current_rule=None
 for line in (DIST/'_headers').read_text(encoding='utf-8').splitlines():
     if line and not line[0].isspace():
@@ -259,6 +324,27 @@ for line in (DIST/'_headers').read_text(encoding='utf-8').splitlines():
 if 'x-robots-tag' in header_rules.get('/*',{}):errors.append('Global crawler exclusion must not apply to public content')
 for error_path in ['/404','/404.html']:
     if header_rules.get(error_path,{}).get('x-robots-tag')!='noindex, follow':errors.append(f'{error_path}: missing error-page noindex header')
+# Security headers: a CSP that allows every inline script that runs by its hash, and no script wildcards.
+global_headers=header_rules.get('/*',{})
+csp=global_headers.get('content-security-policy','')
+directives={part.split()[0]:part.split()[1:] for part in csp.split(';') if part.strip()}
+if not csp:errors.append('_headers: missing Content-Security-Policy')
+script_sources=directives.get('script-src',[])
+if any(source in script_sources for source in ("'unsafe-inline'","'unsafe-eval'",'*','https:')):errors.append('CSP script-src must not allow inline, eval or wildcard scripts')
+for directive,expected in (('object-src',["'none'"]),('base-uri',["'self'"]),('frame-ancestors',["'self'"])):
+    if directives.get(directive)!=expected:errors.append(f'CSP must set {directive} {" ".join(expected)}')
+if 'https://formsubmit.co' not in directives.get('form-action',[]):errors.append('CSP form-action must allow the careers form provider')
+import base64 as _b64
+for page in DIST.rglob('*.html'):
+    for attrs,body in re.findall(r'<script([^>]*)>(.*?)</script>',page.read_text(encoding='utf-8'),re.S):
+        if 'src=' in attrs or 'application/ld+json' in attrs:continue
+        digest="'sha256-"+_b64.b64encode(sha256(body.encode('utf-8')).digest()).decode()+"'"
+        if digest not in script_sources:errors.append(f'{page.relative_to(DIST).as_posix()}: inline script is not allowed by the CSP hash list')
+# COOP stays off: it breaks Lighthouse and PageSpeed Insights traces (NO_NAVSTART) and the site opens no cross-origin popups.
+if 'cross-origin-opener-policy' in global_headers:errors.append('_headers: Cross-Origin-Opener-Policy breaks PageSpeed Insights measurement; leave it off')
+for name,expected in (('strict-transport-security','max-age=31536000'),):
+    if global_headers.get(name)!=expected:errors.append(f'_headers: {name} must be {expected}')
+if 'camera=()' not in global_headers.get('permissions-policy',''):errors.append('_headers: Permissions-Policy must disable unused device features')
 fingerprinted_fonts=['/assets/fonts/'+font.name for font in (DIST/'assets/fonts').glob('*.woff2')]
 for font_url in fingerprinted_fonts:
     font_file=DIST/font_url.lstrip('/')
@@ -285,7 +371,7 @@ for file in docs:
         if leaves and parts.scheme!='mailto' and '↗' not in label:errors.append(f'{rel}: external link lacks the external arrow: {parts.geturl()}')
 
 # dist/ is the publish set: every file must be a page, a host file, or referenced by a page.
-HOST_FILES={'_headers','_redirects','robots.txt','sitemap.xml','favicon.ico','assets/fonts/OFL-Manrope.txt','assets/fonts/OFL-Newsreader.txt'}
+HOST_FILES={'_headers','_redirects','robots.txt','sitemap.xml','llms.txt','llms-full.txt',seo.INDEXNOW_KEY+'.txt','favicon.ico','.well-known/security.txt','assets/fonts/OFL-Manrope.txt','assets/fonts/OFL-Newsreader.txt'}
 # Legacy redirects, applied by Cloudflare Pages from dist/_redirects.
 page_routes={'/' if f==DIST/'index.html' else '/'+f.parent.relative_to(DIST).as_posix()+'/' for f in docs if f!=DIST/'404.html'}
 for line in (DIST/'_redirects').read_text(encoding='utf-8').splitlines() if (DIST/'_redirects').is_file() else ['missing']:
@@ -298,6 +384,16 @@ referenced=set()
 for file in docs:
     # A '*' marks a URL pattern (speculation rules), never a published file.
     referenced|={url.lstrip('/') for url in re.findall(r'(?:'+re.escape(ORIGIN)+r'|(?<![\w.-]))(/assets/[^"\'\s,)*]+)',file.read_text(encoding='utf-8'))}
+# Home-screen icons: the official sun mark (make_app_icons.py).
+for _icon in ('apple-touch-icon.png','icon-192.png'):
+    if 'assets/icons/'+_icon not in referenced:errors.append(f'Pages must link /assets/icons/{_icon}')
+_security=DIST/'.well-known/security.txt'
+if not _security.is_file() or not re.search(r'^Contact: mailto:',_security.read_text(encoding='utf-8'),re.M) or not re.search(r'^Expires: 20\d\d-',_security.read_text(encoding='utf-8'),re.M):errors.append('.well-known/security.txt must name a contact and an expiry')
+# RFC 9116: an expired security.txt must be treated as stale. Fail a month ahead so it is renewed in time.
+import datetime as _dt
+_expires=re.search(r'^Expires: (\d{4}-\d{2}-\d{2})',_security.read_text(encoding='utf-8'),re.M) if _security.is_file() else None
+if _expires and _dt.date.fromisoformat(_expires.group(1))-_dt.date.today()<_dt.timedelta(days=30):errors.append(f'.well-known/security.txt expires {_expires.group(1)}; renew the date in build_site.py')
+
 for file in sorted(DIST.rglob('*')):
     rel=file.relative_to(DIST).as_posix()
     if file.is_file() and file.suffix!='.html' and rel not in HOST_FILES and rel not in referenced:errors.append(f'Unreferenced file is published: {rel}')
@@ -327,6 +423,12 @@ for file in docs:
         for match in re.finditer(r'class="(?:[^"]*\s)?'+re.escape(scope)+r'(?:\s[^"]*)?"[^>]*>(.*?)</h[1-6]>',text,re.S):
             words=re.sub(r'<[^>]+>','',re.sub(r'<br\b[^>]*>','\0',match.group(1)))
             for joined in re.findall(r'\S+\0\S+',words):errors.append(f'{rel}: hidden line break joins words in .{scope}: {joined.replace(chr(0)," / ")}')
+    # Display headings must be free to wrap: a non-breaking space pushed the FAQ heading out of its column.
+    for level,heading in re.findall(r'<h([1-3])\b[^>]*>(.*?)</h\1>',text,re.S):
+        if '&nbsp;' in heading or ' ' in heading:errors.append(f'{rel}: non-breaking space in an h{level} keeps it from wrapping: {re.sub("<[^>]+>","",heading)[:50]}')
+# Copy is never cut to one line; only the browser-frame address label may end in an ellipsis.
+for selector,body in re.findall(r'([^{}]+)\{([^{}]*text-overflow\s*:\s*ellipsis[^{}]*)\}',css):
+    if selector.strip()!='.web-bar span':errors.append(f'Presentation CSS truncates text with an ellipsis: {selector.strip()[:60]}')
 # Design tokens: small and body text use the type scale, three weights, and named radii.
 for source in style_sources:
     rules=(ROOT/source).read_text(encoding='utf-8') if (ROOT/source).is_file() else ''
@@ -340,7 +442,7 @@ for source in style_sources:
     for value in re.findall(r'(?<![\w-])font-weight:\s*([^;}]+)',screen):
         if value.strip() not in ('400','500','600','inherit','200 800'):errors.append(f'{source}: font weight {value.strip()} is outside the 400/500/600 system')
     for value in re.findall(r'border-radius:\s*([^;}]+)',screen):
-        if not re.fullmatch(r'var\(--radius-(control|plate|panel|pill|icon)\)|0|50%',value.strip()):errors.append(f'{source}: radius {value.strip()} must use a --radius-control/plate/panel/pill/icon token')
+        if not re.fullmatch(r'var\(--radius-(control|plate|panel|pill|icon)\)|0|50%|inherit',value.strip()):errors.append(f'{source}: radius {value.strip()} must use a --radius-control/plate/panel/pill/icon token')
     # Colors live in foundation.css tokens; borders, outlines and shadows never hard-code a hex value.
     if source!='design/system/foundation.css':
         for prop,value in re.findall(r'(?<![\w-])((?:border|outline|box-shadow)[\w-]*)\s*:\s*([^;}]+)',screen):
@@ -392,6 +494,21 @@ for name in ['tone-night','tone-blue']:
     value=token_hex(name)
     if value and not rgb(value)[2]>=rgb(value)[1]>=rgb(value)[0]:errors.append(f'Color axis: --{name} {value} must satisfy B >= G >= R')
 if re.search(r'--paper',css):errors.append('Paper surfaces are retired; use the lit panel or outline register')
+# Motion is opt-in: keyframes and scroll-driven animations live only under prefers-reduced-motion: no-preference,
+# and the hero artwork is never animated.
+for css_file in sorted((ROOT/'design/system').glob('*.css')):
+    css_text=re.sub(r'/\*.*?\*/','',css_file.read_text(encoding='utf-8'),flags=re.S)
+    stack=[];prelude_start=0
+    for index,char in enumerate(css_text):
+        if char=='{':stack.append(css_text[prelude_start:index].strip());prelude_start=index+1
+        elif char=='}':
+            if stack:stack.pop()
+            prelude_start=index+1
+        elif char==';':prelude_start=index+1
+        if css_text.startswith('@keyframes',index) or css_text.startswith('animation-timeline',index):
+            guarded=any(re.search(r'prefers-reduced-motion:\s*no-preference',p) for p in stack)
+            if not guarded:errors.append(f'{css_file.name}: animation outside the prefers-reduced-motion: no-preference guard')
+    if re.search(r'(solar-hero-art|progress-hero-image)[^{}]*\{[^}]*animation',css_text):errors.append(f'{css_file.name}: the hero artwork must not be animated')
 # Fonts: every route stays within the 60 KiB budget, and display headings only use glyphs the subset carries.
 font_sources=json.loads((ROOT/'source-assets/fonts/font-sources.json').read_text(encoding='utf-8'))
 FONT_BUDGET=font_sources.get('route_budget_bytes',61440)
@@ -427,6 +544,8 @@ try:
             if _worst>_oi.EDGE_LIMIT:errors.append(f'{_variant["url"]}: outer edge differs from the interior by {_worst:.0f} levels (limit {_oi.EDGE_LIMIT})')
 except ImportError:
     warnings.append('Pillow is unavailable; screenshot edge check skipped')
+except (OSError,ValueError,KeyError) as _exc:
+    errors.append(f'Screenshot edge check could not run: {_exc}')
 for breakpoint in [1150,850,560]:
     if f'max-width:{breakpoint}px' not in css:warnings.append(f'Missing expected CSS breakpoint {breakpoint}')
 if 'prefers-reduced-motion:reduce' not in css:errors.append('Missing reduced-motion rule')

@@ -1,5 +1,5 @@
 {
-  "settings_version": 7,
+  "settings_version": 9,
   "source_hashes": {
     "looks-max-screen-4.webp": "81cac84815b71ada75480170e88b18858c84ddfe276076250a03e1e1b06af125",
     "looks-max-detail-screen-6.webp": "b2f9afdfd41b8cf591a9c39361cc4d7dc60bb6ecbb71fc2e5baccc2715150ae8",
@@ -14,7 +14,13 @@
     "iq-max-icon.webp": "ca765c2fc4c1907475c4542e42cafcc0e302452ecf8e5786689adff761484f01",
     "sleep-max-icon.webp": "291d2db282087249bd6ba1fee24325de7cc7abc6030b2a8e3a73523e6ec29d11",
     "fitness-max-icon.webp": "7122f8246316b4a446fd4fe166e9dfb816b35f9e932968e629da461daa3e47e0",
-    "solar-ascent.webp": "fee06b897b31710a10c7d15ab2d93e552671a3e734708b2d1ddc73eb38cd219a"
+    "solar-ascent.webp": "51c5646c2913a004394f142f16c3f1b5ae32b14cdae148c505f5cae768709b83",
+    "badges/google-play-badge.png": "f72611e2df8e88204009fd896d05d5e8e83c77009c63943bbffa169559934849",
+    "engineering-max-overview.webp": "dde4cecd3baebca07aac38dfa44f2fc94baec52e6e0f17bc975810911f47b051",
+    "management-max-overview.webp": "4e2ce57bd248a9b7cf19ce6ad4d3c2f02fa1aec944081c24355731a4a11790de",
+    "management-max-sources.webp": "a18dbeb66c1d53e3440689f05eb289a4e03a9c1c2c1ed2406f704f0edeb11866",
+    "marketing-max-home.webp": "23d3782ad887b55d561ab6cc71c1f98a43b78b36571f02876ee08f9fcfb1ac44",
+    "marketing-max-caption.webp": "e7ba412998befee3d4861a972a6677871da4e4d3b5ece9284292961c12ec7c14"
   },
   "encoding": {
     "webp_quality": 86,
@@ -42,11 +48,27 @@
       "derivative_height": 2746,
       "webp": [
         {
+          "url": "/assets/optimized/looks-max-screen-4-260.cc8b19830d35.webp",
+          "width": 260,
+          "height": 563,
+          "bytes": 15316,
+          "sha256": "cc8b19830d35990ee19980f2d3da5d9c5ba85da85a12122610a4649f4e144a1f",
+          "mime": "image/webp"
+        },
+        {
           "url": "/assets/optimized/looks-max-screen-4-400.d92a442b7645.webp",
           "width": 400,
           "height": 866,
           "bytes": 24884,
           "sha256": "d92a442b7645c48e003586a4348a4eea2ae1ab085fd451b11a08a13966aa5826",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/looks-max-screen-4-600.e1a88df00c0f.webp",
+          "width": 600,
+          "height": 1298,
+          "bytes": 37328,
+          "sha256": "e1a88df00c0fb533e71724f8acc734afe2586bd69cf74324498e40450193c004",
           "mime": "image/webp"
         },
         {
@@ -84,11 +106,27 @@
       "derivative_height": 2752,
       "webp": [
         {
+          "url": "/assets/optimized/looks-max-detail-screen-6-260.d382b00f8ee3.webp",
+          "width": 260,
+          "height": 564,
+          "bytes": 18796,
+          "sha256": "d382b00f8ee330f8cc9fd503cca91c514df24597051ab192687024557bdb45ed",
+          "mime": "image/webp"
+        },
+        {
           "url": "/assets/optimized/looks-max-detail-screen-6-400.1bca98a120e3.webp",
           "width": 400,
           "height": 867,
           "bytes": 31628,
           "sha256": "1bca98a120e34e03a4aad5bd580e2eb1e01ccedf6647ee08ee52dbbe9a387f46",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/looks-max-detail-screen-6-600.3313fb9caa48.webp",
+          "width": 600,
+          "height": 1301,
+          "bytes": 49854,
+          "sha256": "3313fb9caa4888af16128af0c13c6fe7becca29a497b00e3ae33939c064fdae8",
           "mime": "image/webp"
         },
         {
@@ -126,11 +164,27 @@
       "derivative_height": 2778,
       "webp": [
         {
+          "url": "/assets/optimized/iq-max-detail-screen-4-260.5d152ff77f9c.webp",
+          "width": 260,
+          "height": 565,
+          "bytes": 12594,
+          "sha256": "5d152ff77f9ce3799ef5b425691d5a3ae6b3e291b30b8b23489f9687355774a9",
+          "mime": "image/webp"
+        },
+        {
           "url": "/assets/optimized/iq-max-detail-screen-4-400.c858795eb8b4.webp",
           "width": 400,
           "height": 869,
           "bytes": 20144,
           "sha256": "c858795eb8b4ca750e972818bac5212ec2545f39d85aee56c5326801f9dd65ff",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/iq-max-detail-screen-4-600.fcd10a0b11b7.webp",
+          "width": 600,
+          "height": 1303,
+          "bytes": 27834,
+          "sha256": "fcd10a0b11b7e6c56c484c0495a71d72ceea057292daab36a0af0b467cbf1c0a",
           "mime": "image/webp"
         },
         {
@@ -168,11 +222,27 @@
       "derivative_height": 2766,
       "webp": [
         {
+          "url": "/assets/optimized/iq-max-detail-screen-6-260.12839949b774.webp",
+          "width": 260,
+          "height": 564,
+          "bytes": 15986,
+          "sha256": "12839949b77419502ce38f7a1832282c82cd017f344bf9e697bb107664554042",
+          "mime": "image/webp"
+        },
+        {
           "url": "/assets/optimized/iq-max-detail-screen-6-400.1c25ae0d04bc.webp",
           "width": 400,
           "height": 868,
           "bytes": 25194,
           "sha256": "1c25ae0d04bc43507e77834bee9ad3ebeaea98a9d30e4403fb3ca45e0cb408ad",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/iq-max-detail-screen-6-600.a4c17739748f.webp",
+          "width": 600,
+          "height": 1302,
+          "bytes": 35810,
+          "sha256": "a4c17739748fa441cdffe4bf98d6389a323d3ee50ccddcfca9d8d69a93d8571e",
           "mime": "image/webp"
         },
         {
@@ -210,11 +280,27 @@
       "derivative_height": 2763,
       "webp": [
         {
+          "url": "/assets/optimized/fitness-max-detail-screen-3-260.41bea3d55770.webp",
+          "width": 260,
+          "height": 564,
+          "bytes": 11834,
+          "sha256": "41bea3d5577015ec25a60a6dea9e37545b83c10646518773fbaa08e392dc2d3b",
+          "mime": "image/webp"
+        },
+        {
           "url": "/assets/optimized/fitness-max-detail-screen-3-400.fe01f052eb9e.webp",
           "width": 400,
           "height": 868,
           "bytes": 18022,
           "sha256": "fe01f052eb9e940a894f02db05b300bf6d60eff545abee6e5c5e6f25714fa941",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/fitness-max-detail-screen-3-600.cbbb483f95cb.webp",
+          "width": 600,
+          "height": 1301,
+          "bytes": 26406,
+          "sha256": "cbbb483f95cbd7d7b8b6a5419f073310747bc3015ac39d1b99732ee253f259fd",
           "mime": "image/webp"
         },
         {
@@ -252,11 +338,27 @@
       "derivative_height": 2778,
       "webp": [
         {
+          "url": "/assets/optimized/fitness-max-detail-screen-5-260.a551eee97f13.webp",
+          "width": 260,
+          "height": 565,
+          "bytes": 10368,
+          "sha256": "a551eee97f13f861b92f1814ef9c79d4c56c8f58df93cdd66dce384896bcf947",
+          "mime": "image/webp"
+        },
+        {
           "url": "/assets/optimized/fitness-max-detail-screen-5-400.19ea4acde50f.webp",
           "width": 400,
           "height": 869,
           "bytes": 15726,
           "sha256": "19ea4acde50fbec0e21b65bdcd0ad14bdffd981df48d50898d656e9f0e79e763",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/fitness-max-detail-screen-5-600.c5ea452c0044.webp",
+          "width": 600,
+          "height": 1303,
+          "bytes": 23800,
+          "sha256": "c5ea452c00441549cee4af62c3335634be4c5230c0225e984baa970290f0a9c4",
           "mime": "image/webp"
         },
         {
@@ -294,11 +396,27 @@
       "derivative_height": 2770,
       "webp": [
         {
+          "url": "/assets/optimized/iq-max-screen-1-260.98a2881a1cf2.webp",
+          "width": 260,
+          "height": 562,
+          "bytes": 19360,
+          "sha256": "98a2881a1cf28f86778c43bc117e092e0819254ad2bf04d754b3b42c1c771058",
+          "mime": "image/webp"
+        },
+        {
           "url": "/assets/optimized/iq-max-screen-1-400.60cb6fd607dc.webp",
           "width": 400,
           "height": 865,
           "bytes": 31146,
           "sha256": "60cb6fd607dc29d793df34e02d2fc5177f85f0b6049ea646730c676b69a33f9a",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/iq-max-screen-1-600.f5052242389d.webp",
+          "width": 600,
+          "height": 1297,
+          "bytes": 48490,
+          "sha256": "f5052242389ddbf33a8e9ef07a9ebb8b39371b7c633093122bc2982b43684395",
           "mime": "image/webp"
         },
         {
@@ -331,11 +449,27 @@
       "derivative_height": 2778,
       "webp": [
         {
+          "url": "/assets/optimized/sleep-max-screen-4-260.7feed59cb49a.webp",
+          "width": 260,
+          "height": 563,
+          "bytes": 11650,
+          "sha256": "7feed59cb49afae5029a7a67b8046ab015345339a118ae0d4069470bcb772261",
+          "mime": "image/webp"
+        },
+        {
           "url": "/assets/optimized/sleep-max-screen-4-400.ec53ea408980.webp",
           "width": 400,
           "height": 865,
           "bytes": 19526,
           "sha256": "ec53ea408980ea4a091832dfa7df0f572ab931a6fc6615219043b749860bc892",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/sleep-max-screen-4-600.c2749c241f70.webp",
+          "width": 600,
+          "height": 1298,
+          "bytes": 32492,
+          "sha256": "c2749c241f7092707717ba57a420ebda08042f89891b6ff177fc19f27993d9e7",
           "mime": "image/webp"
         },
         {
@@ -373,11 +507,27 @@
       "derivative_height": 2775,
       "webp": [
         {
+          "url": "/assets/optimized/fitness-max-screen-2-260.ca7d3ad3e34f.webp",
+          "width": 260,
+          "height": 565,
+          "bytes": 11802,
+          "sha256": "ca7d3ad3e34f1d5482c4d4f0a127926d29ff6b61cbb3d323f9e1b5c89ee68b5e",
+          "mime": "image/webp"
+        },
+        {
           "url": "/assets/optimized/fitness-max-screen-2-400.a8866d90ce55.webp",
           "width": 400,
           "height": 869,
           "bytes": 18090,
           "sha256": "a8866d90ce554a4090be78852094d17bde4e6fb9f7f2aaf642edff8a9edeb548",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/fitness-max-screen-2-600.87ab56d2e2d4.webp",
+          "width": 600,
+          "height": 1303,
+          "bytes": 26464,
+          "sha256": "87ab56d2e2d483065dc0dd4417b110911eceac7aeede6d17d926bf3c8299ebec",
           "mime": "image/webp"
         },
         {
@@ -614,96 +764,414 @@
     "/assets/solar-ascent.webp": {
       "source": "/assets/solar-ascent.webp",
       "role": "hero",
-      "width": 1860,
-      "height": 845,
-      "original_bytes": 219990,
+      "width": 3720,
+      "height": 1690,
+      "original_bytes": 536066,
       "crop": null,
-      "derivative_width": 1860,
-      "derivative_height": 845,
+      "derivative_width": 3720,
+      "derivative_height": 1690,
       "webp": [
         {
-          "url": "/assets/optimized/solar-ascent-480.ac7a79e81d7d.webp",
+          "url": "/assets/optimized/solar-ascent-480.7bea5284cad7.webp",
           "width": 480,
           "height": 218,
-          "bytes": 20196,
-          "sha256": "ac7a79e81d7d788ea1c72af3e041f9bc8517a99e07b93ff481a5cc0262c22143",
+          "bytes": 19576,
+          "sha256": "7bea5284cad791eb13919934b34d1057cc1beefd19e14a06b6c0a965343e5915",
           "mime": "image/webp"
         },
         {
-          "url": "/assets/optimized/solar-ascent-768.a2934ffc2e78.webp",
+          "url": "/assets/optimized/solar-ascent-768.387666968778.webp",
           "width": 768,
           "height": 349,
-          "bytes": 41874,
-          "sha256": "a2934ffc2e78a90e4875ce791d002e57e1ff4be85c20ac5327fc6fcda3af2b48",
+          "bytes": 40772,
+          "sha256": "3876669687783b81bc4fc8217edd60bfaa8ac7888d92cf88fecfa15759758b50",
           "mime": "image/webp"
         },
         {
-          "url": "/assets/optimized/solar-ascent-1200.15de939dc709.webp",
+          "url": "/assets/optimized/solar-ascent-1200.6219e36c7cb0.webp",
           "width": 1200,
           "height": 545,
-          "bytes": 83448,
-          "sha256": "15de939dc70912570312542fa1b8441ae7ca7dfad5a66bce03c1b934e2b2222c",
+          "bytes": 81916,
+          "sha256": "6219e36c7cb04cf41da79ec461853b9192716523394382d05a1fdba8f1ed18b3",
           "mime": "image/webp"
         },
         {
-          "url": "/assets/optimized/solar-ascent-1440.4630e36e4141.webp",
+          "url": "/assets/optimized/solar-ascent-1440.6b5e4bf976b4.webp",
           "width": 1440,
           "height": 654,
-          "bytes": 104716,
-          "sha256": "4630e36e4141425698b06d3f22765df38c4ad5f619f7c119c8a0c2be1f04cfe1",
+          "bytes": 106840,
+          "sha256": "6b5e4bf976b430253f0e78a166e53c79021e7589ef27cb6eb196fecfa7239cad",
           "mime": "image/webp"
         },
         {
-          "url": "/assets/optimized/solar-ascent-1860.4ab107438b1a.webp",
+          "url": "/assets/optimized/solar-ascent-1860.eb3b49d31268.webp",
           "width": 1860,
           "height": 845,
-          "bytes": 155274,
-          "sha256": "4ab107438b1ad99207f04a0955178000bd9878e6c41cdc949d5e4134d46b7e6d",
+          "bytes": 153978,
+          "sha256": "eb3b49d31268d5b1a9f6fed380ab9469ba2e5d188d5701066c25d74b1c491488",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/solar-ascent-2560.5a1169020a4b.webp",
+          "width": 2560,
+          "height": 1163,
+          "bytes": 230824,
+          "sha256": "5a1169020a4b8dc585f51966b28be241b033dfb2f3b1d9c990d39ff048235c90",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/solar-ascent-3200.14297afcd9e8.webp",
+          "width": 3200,
+          "height": 1454,
+          "bytes": 298096,
+          "sha256": "14297afcd9e8a4975d7ab364699f282f3500165cb612e1e2c2cf0e7bc400dafd",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/solar-ascent-3720.57774824d9a4.webp",
+          "width": 3720,
+          "height": 1690,
+          "bytes": 366750,
+          "sha256": "57774824d9a41734efe471bb644fd7634201e558d6f6314759060f48fed3852c",
           "mime": "image/webp"
         }
       ],
       "avif": [
         {
-          "url": "/assets/optimized/solar-ascent-480.e83c42387514.avif",
+          "url": "/assets/optimized/solar-ascent-480.e2631c9bf565.avif",
           "width": 480,
           "height": 218,
-          "bytes": 16429,
-          "sha256": "e83c42387514892617047cefa6cdaa69d7a4df57dd42e389587621df030eef66",
+          "bytes": 15865,
+          "sha256": "e2631c9bf565f011fe717617714e563187e2f08a22060640fea613a144f26117",
           "mime": "image/avif"
         },
         {
-          "url": "/assets/optimized/solar-ascent-768.c3a09a25e15c.avif",
+          "url": "/assets/optimized/solar-ascent-768.661501130655.avif",
           "width": 768,
           "height": 349,
-          "bytes": 34543,
-          "sha256": "c3a09a25e15c4771306d92f5666f94f2016dbd79b28302473a03845d706b9f00",
+          "bytes": 33425,
+          "sha256": "6615011306554ce0635ca8ea6fce5fa80d5914415d98b531996344e19db0056e",
           "mime": "image/avif"
         },
         {
-          "url": "/assets/optimized/solar-ascent-1200.2dfd1527d27d.avif",
+          "url": "/assets/optimized/solar-ascent-1200.2b7184542934.avif",
           "width": 1200,
           "height": 545,
-          "bytes": 69470,
-          "sha256": "2dfd1527d27d00a79e5fa65e7d428d608479acd255a45b5562e5b03665f884f5",
+          "bytes": 68238,
+          "sha256": "2b71845429342a5565396a3208a65e9166e4c48f672295352240cb2c65648a05",
           "mime": "image/avif"
         },
         {
-          "url": "/assets/optimized/solar-ascent-1440.5f9efc614f94.avif",
+          "url": "/assets/optimized/solar-ascent-1440.c5eb08cd32b4.avif",
           "width": 1440,
           "height": 654,
-          "bytes": 90890,
-          "sha256": "5f9efc614f940658e1596d5d5a59b90a57d09a2609ed646c1bfa45507dcae11e",
+          "bytes": 89429,
+          "sha256": "c5eb08cd32b43f077c8437cb33752306a1eaebe6681cb9c57cea09effe5d9e45",
           "mime": "image/avif"
         },
         {
-          "url": "/assets/optimized/solar-ascent-1860.ab965179a93b.avif",
+          "url": "/assets/optimized/solar-ascent-1860.cf4f62e35efe.avif",
           "width": 1860,
           "height": 845,
-          "bytes": 128441,
-          "sha256": "ab965179a93b2e0d0ad3d3800843811bd1e4dacf14f6dc4c81a6e46a06b62e19",
+          "bytes": 128239,
+          "sha256": "cf4f62e35efe5068de96702b08b036372c31765aeec5075a9627c1d3be444383",
+          "mime": "image/avif"
+        },
+        {
+          "url": "/assets/optimized/solar-ascent-2560.4d2155714e65.avif",
+          "width": 2560,
+          "height": 1163,
+          "bytes": 191995,
+          "sha256": "4d2155714e65a024651642e7807c9ab2c913ee1dbaf1999171c0a7ff0f96c036",
+          "mime": "image/avif"
+        },
+        {
+          "url": "/assets/optimized/solar-ascent-3200.bc3debe95634.avif",
+          "width": 3200,
+          "height": 1454,
+          "bytes": 252677,
+          "sha256": "bc3debe956345915daa22468e359b42ba657563960616430bfdc208492c816ce",
+          "mime": "image/avif"
+        },
+        {
+          "url": "/assets/optimized/solar-ascent-3720.cac5c09da129.avif",
+          "width": 3720,
+          "height": 1690,
+          "bytes": 307668,
+          "sha256": "cac5c09da12975ffe01cc2cdcb59e9ea18111fa961a4da7a45b2b0cefc97eddd",
           "mime": "image/avif"
         }
       ]
+    },
+    "/assets/badges/google-play-badge.png": {
+      "source": "/assets/badges/google-play-badge.png",
+      "role": "badge",
+      "width": 646,
+      "height": 250,
+      "original_bytes": 4904,
+      "crop": null,
+      "derivative_width": 646,
+      "derivative_height": 250,
+      "webp": [
+        {
+          "url": "/assets/optimized/google-play-badge-181.8c2077bb8b31.webp",
+          "width": 181,
+          "height": 70,
+          "bytes": 2286,
+          "sha256": "8c2077bb8b313e03590807c2617d00b191c893f8329835d86b4ae49bc96d3305",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/google-play-badge-362.e78bce53d381.webp",
+          "width": 362,
+          "height": 140,
+          "bytes": 4794,
+          "sha256": "e78bce53d38135a06371e675cdc767c41c981cd8ec4edfc639b3ddbb7011cac2",
+          "mime": "image/webp"
+        }
+      ],
+      "avif": []
+    },
+    "/assets/engineering-max-overview.webp": {
+      "source": "/assets/engineering-max-overview.webp",
+      "role": "web",
+      "width": 1800,
+      "height": 662,
+      "original_bytes": 86624,
+      "crop": null,
+      "derivative_width": 1800,
+      "derivative_height": 662,
+      "webp": [
+        {
+          "url": "/assets/optimized/engineering-max-overview-640.8f84b5784cff.webp",
+          "width": 640,
+          "height": 235,
+          "bytes": 13156,
+          "sha256": "8f84b5784cfffcf29daf2c1654876316712e58ef324a01da105ccf54114de096",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/engineering-max-overview-960.2a04b151b1ea.webp",
+          "width": 960,
+          "height": 353,
+          "bytes": 23620,
+          "sha256": "2a04b151b1ea071b3f0e0eb182aa141be1b2b5d3fe719b728b94be373b132c3b",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/engineering-max-overview-1440.cfa33e0b6021.webp",
+          "width": 1440,
+          "height": 530,
+          "bytes": 40296,
+          "sha256": "cfa33e0b6021778d62d3108b4e601d32c7e7eda47ee7ae18143bdd559543a230",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/engineering-max-overview-1800.3ec2431ea9cf.webp",
+          "width": 1800,
+          "height": 662,
+          "bytes": 52448,
+          "sha256": "3ec2431ea9cf632a503a18aaaa2e160930f47a052f422a7b3a9800f10a9a3857",
+          "mime": "image/webp"
+        }
+      ],
+      "avif": []
+    },
+    "/assets/management-max-overview.webp": {
+      "source": "/assets/management-max-overview.webp",
+      "role": "web",
+      "width": 1160,
+      "height": 1280,
+      "original_bytes": 90246,
+      "crop": null,
+      "derivative_width": 1160,
+      "derivative_height": 1280,
+      "webp": [
+        {
+          "url": "/assets/optimized/management-max-overview-640.f88c4c2b8f44.webp",
+          "width": 640,
+          "height": 706,
+          "bytes": 29712,
+          "sha256": "f88c4c2b8f44f5b58c6289b23c9bf8f40b63b4da5bc4501d827abe4de83f4e75",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/management-max-overview-960.ade721f3fb00.webp",
+          "width": 960,
+          "height": 1059,
+          "bytes": 47464,
+          "sha256": "ade721f3fb008aa759dfe8bd1e578b50f333cd21808a4a788610ad25708f9edb",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/management-max-overview-1160.a902cd64a0be.webp",
+          "width": 1160,
+          "height": 1280,
+          "bytes": 58306,
+          "sha256": "a902cd64a0bece13d4ce91b5819412d8e9fb8e1d31606a2660fb6dc02f749bf0",
+          "mime": "image/webp"
+        }
+      ],
+      "avif": []
+    },
+    "/assets/management-max-sources.webp": {
+      "source": "/assets/management-max-sources.webp",
+      "role": "web",
+      "width": 2360,
+      "height": 760,
+      "original_bytes": 75754,
+      "crop": null,
+      "derivative_width": 2360,
+      "derivative_height": 760,
+      "webp": [
+        {
+          "url": "/assets/optimized/management-max-sources-640.4f04c2e3d743.webp",
+          "width": 640,
+          "height": 206,
+          "bytes": 7910,
+          "sha256": "4f04c2e3d743b563c8b940567159097669a0c891a79aaa5054367023d0dcae68",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/management-max-sources-960.116146454aca.webp",
+          "width": 960,
+          "height": 309,
+          "bytes": 14740,
+          "sha256": "116146454aca183e933f64a28dc93c15bf08374d83a5bc9301909502333f2f9c",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/management-max-sources-1440.86972b86a1b7.webp",
+          "width": 1440,
+          "height": 464,
+          "bytes": 25460,
+          "sha256": "86972b86a1b7f20193f233015385a70dfb07ed31f2be6b37dbeb96466694439f",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/management-max-sources-1920.bc9639afd748.webp",
+          "width": 1920,
+          "height": 618,
+          "bytes": 36520,
+          "sha256": "bc9639afd7480b80308a496c4b66eb2cdb6e68765320e04b67dd9c275ed833ae",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/management-max-sources-2360.48f9240c6f36.webp",
+          "width": 2360,
+          "height": 760,
+          "bytes": 46388,
+          "sha256": "48f9240c6f36919442eae92e3a95bf1b0be8b395ff94d227d5024923367c1120",
+          "mime": "image/webp"
+        }
+      ],
+      "avif": []
+    },
+    "/assets/marketing-max-home.webp": {
+      "source": "/assets/marketing-max-home.webp",
+      "role": "web",
+      "width": 2880,
+      "height": 1800,
+      "original_bytes": 252446,
+      "crop": null,
+      "derivative_width": 2880,
+      "derivative_height": 1800,
+      "webp": [
+        {
+          "url": "/assets/optimized/marketing-max-home-640.bfffb2ad0896.webp",
+          "width": 640,
+          "height": 400,
+          "bytes": 22560,
+          "sha256": "bfffb2ad08960e444535b9b867f88d73e00458b67b7a1c56fea6fca83c156f5a",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/marketing-max-home-960.e59f0f68e2ca.webp",
+          "width": 960,
+          "height": 600,
+          "bytes": 42268,
+          "sha256": "e59f0f68e2cab5c9587845d51509a205b4e6f26c866d6ffc4c1e3d70dc5ebb87",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/marketing-max-home-1440.71111508577b.webp",
+          "width": 1440,
+          "height": 900,
+          "bytes": 71812,
+          "sha256": "71111508577bdfa5c06452fd532c32acd38c38342ac473ba416a4a09e08f2c35",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/marketing-max-home-1920.f44004c2e8f0.webp",
+          "width": 1920,
+          "height": 1200,
+          "bytes": 101648,
+          "sha256": "f44004c2e8f0495712126c240773dae9df640d68724491dbf2c04806641a844e",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/marketing-max-home-2560.4162c4bf0eeb.webp",
+          "width": 2560,
+          "height": 1600,
+          "bytes": 146728,
+          "sha256": "4162c4bf0eeb8feffb4a14493a652c2397ca910724682c90e82e1e714f9608c7",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/marketing-max-home-2880.57d60cde8f60.webp",
+          "width": 2880,
+          "height": 1800,
+          "bytes": 166252,
+          "sha256": "57d60cde8f60586e4f41e63314a771a3fcc689f772c0f3570ed35ec9e0493c93",
+          "mime": "image/webp"
+        }
+      ],
+      "avif": []
+    },
+    "/assets/marketing-max-caption.webp": {
+      "source": "/assets/marketing-max-caption.webp",
+      "role": "web",
+      "width": 1880,
+      "height": 1800,
+      "original_bytes": 183152,
+      "crop": null,
+      "derivative_width": 1880,
+      "derivative_height": 1800,
+      "webp": [
+        {
+          "url": "/assets/optimized/marketing-max-caption-640.a71533560f35.webp",
+          "width": 640,
+          "height": 613,
+          "bytes": 30278,
+          "sha256": "a71533560f350c6ae203b92aa2e738bdb6231e9413eae7aea87f9caee9c5700e",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/marketing-max-caption-960.4ea1d5ee8f3d.webp",
+          "width": 960,
+          "height": 919,
+          "bytes": 52432,
+          "sha256": "4ea1d5ee8f3db49839845c05f5c59868634312f78344539809f3c6113d9e4318",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/marketing-max-caption-1440.1ce3a0b2e34e.webp",
+          "width": 1440,
+          "height": 1379,
+          "bytes": 85970,
+          "sha256": "1ce3a0b2e34e822987d55ebdc92ecc1b99163cfd7a2e0427986b4a103c45986a",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/marketing-max-caption-1880.b6c4b7336684.webp",
+          "width": 1880,
+          "height": 1800,
+          "bytes": 118166,
+          "sha256": "b6c4b73366841599142b23e2bdc1fa9087035dcec03cfea35fa3ec5c92bedfed",
+          "mime": "image/webp"
+        }
+      ],
+      "avif": []
     }
   }
 }
