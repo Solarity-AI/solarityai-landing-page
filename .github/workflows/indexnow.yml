@@ -20,7 +20,7 @@ permissions:
 
 concurrency:
   group: indexnow
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   submit:
@@ -31,7 +31,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 2
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -39,4 +39,9 @@ jobs:
           python-version: '3.12'
 
       - name: Submit to IndexNow
-        run: python deploy/indexnow.py ${{ inputs.all && '--all' || '' }}
+        env:
+          BEFORE: ${{ github.event.before }}
+        run: |
+          previous=HEAD~1
+          if [ -n "$BEFORE" ] && git cat-file -e "$BEFORE^{commit}" 2>/dev/null; then previous="$BEFORE"; fi
+          python deploy/indexnow.py --previous "$previous" ${{ inputs.all && '--all' || '' }}

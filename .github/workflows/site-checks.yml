@@ -35,14 +35,16 @@ jobs:
       - name: Rebuild the site
         run: python build_site.py
 
-      - name: Committed dist matches its sources
-        run: git diff --exit-code --stat -- dist
+      - name: Committed build outputs match their sources
+        run: |
+          git status --porcelain -- dist site-pages.json design/presentation.css research-assets/page-dates.json research-assets/performance-build.json
+          test -z "$(git status --porcelain -- dist site-pages.json design/presentation.css research-assets/page-dates.json research-assets/performance-build.json)"
 
       - name: Static audit
         run: python check_site.py
 
       - name: Python tests
-        run: python -m unittest test_optimize_styles.py test_site_urls.py
+        run: python -m unittest test_optimize_styles.py test_site_urls.py test_seo.py
 
       - name: Node tests
         run: node --test test-navigation.cjs test-contact.cjs test-gallery.cjs test-careers.cjs test-copy.cjs
