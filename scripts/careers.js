@@ -76,8 +76,19 @@
       && (!link.target || link.target === '_self') && !link.hasAttribute('download');
   }
 
+  // Where a role link sends the applicant: the first empty of name, email and work type (all above or
+  // beside the role field), else the role field itself.
+  function firstOpenField(fields) {
+    return [fields.fullName, fields.email, fields.workType].find((field) => !String(field.value || '').trim()) || fields.position;
+  }
+
+  // A second submit while the verification service is still loading would post the application twice.
+  function isRepeatSubmit(handoff, handoffAt, now) {
+    return Boolean(handoff) && now - handoffAt < 10000;
+  }
+
   if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { readCareerRole, parseWebUrl, isLinkedInProfile, isEmailAddress, validateCareerApplication, isPlainActivation, withScheme };
+    module.exports = { readCareerRole, parseWebUrl, isLinkedInProfile, isEmailAddress, validateCareerApplication, isPlainActivation, withScheme, firstOpenField, isRepeatSubmit };
   }
   if (typeof document === 'undefined') return;
 
@@ -182,7 +193,7 @@
       renderErrors(validateCareerApplication(values()));
       status.textContent = fields.position.options[fields.position.selectedIndex].textContent + ' selected. Complete the application below.';
       // Start where the applicant has work left: the first empty field, which sits above the role field.
-      const next = [fields.fullName, fields.email, fields.workType].find((field) => !field.value.trim()) || fields.position;
+      const next = firstOpenField(fields);
       next.focus({ preventScroll: true });
       const reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       next.scrollIntoView({ block: 'center', behavior: reducedMotion ? 'instant' : 'smooth' });
@@ -191,7 +202,7 @@
 
   form.addEventListener('submit', (event) => {
     // A second click while the provider is loading would post the application twice.
-    if (handoff && Date.now() - handoffAt < 10000) {
+    if (isRepeatSubmit(handoff, handoffAt, Date.now())) {
       event.preventDefault();
       return;
     }
