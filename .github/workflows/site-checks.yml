@@ -70,7 +70,8 @@ jobs:
           exit "$status"
 
       - name: Python tests
-        run: python -m unittest test_optimize_styles.py test_site_urls.py test_seo.py test_records.py
+        # Every test file runs, so a new one needs no workflow edit (validate.py does the same locally).
+        run: python -m unittest test_*.py
 
       - name: Node tests
-        run: node --test test-navigation.cjs test-contact.cjs test-gallery.cjs test-careers.cjs test-copy.cjs test-answers.cjs test-not-found.cjs
+        run: node --test test-*.cjs

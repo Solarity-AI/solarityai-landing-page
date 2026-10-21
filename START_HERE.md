@@ -15,10 +15,7 @@ Windows PowerShell:
 ```powershell
 py -3 -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
-.\.venv\Scripts\python.exe build_site.py
-.\.venv\Scripts\python.exe check_site.py
-.\.venv\Scripts\python.exe -m unittest test_optimize_styles.py test_site_urls.py test_seo.py test_records.py
-node --test test-navigation.cjs test-contact.cjs test-gallery.cjs test-careers.cjs test-copy.cjs test-answers.cjs test-not-found.cjs
+.\.venv\Scripts\python.exe validate.py
 ```
 
 macOS or Linux:
@@ -27,10 +24,7 @@ macOS or Linux:
 python3 -m venv .venv
 . .venv/bin/activate
 python -m pip install -r requirements.txt
-python build_site.py
-python check_site.py
-python -m unittest test_optimize_styles.py test_site_urls.py test_seo.py test_records.py
-node --test test-navigation.cjs test-contact.cjs test-gallery.cjs test-careers.cjs test-copy.cjs test-answers.cjs test-not-found.cjs
+python validate.py
 ```
 
 Pillow must support WebP and AVIF to regenerate every image format. Existing optimized assets are included, so no external image downloads are needed. If the exact dependency pin is unavailable on your platform, use a compatible Pillow build with both encoders and rerun validation.

@@ -21,7 +21,7 @@ Investor and strategic partner website, created October 12, 2026.
   - Every page also carries prefetch-only speculation rules from `performance_build.py`.
 - **Images:** `optimize_images.py` creates uncropped responsive variants with content-hashed filenames. Edit the source images, then run the build; never edit generated optimized assets. Screenshot enlargement links keep the original full-size image.
 - **Assets:** keep build-only masters in `source-assets/`. The build publishes a file to `dist/assets/` once a page references it (see CLAUDE.md). Record provenance before publishing.
-- **Build and checks:** run `python build_site.py` to regenerate `dist/`, then `python check_site.py`, `python -m unittest test_optimize_styles.py test_site_urls.py test_seo.py test_records.py` and `node --test test-navigation.cjs test-contact.cjs test-gallery.cjs test-careers.cjs test-copy.cjs test-answers.cjs test-not-found.cjs`.
+- **Build and checks:** run `python validate.py`: it rebuilds `dist/`, runs `python check_site.py`, and runs every Python and Node test file.
 - **URLs:** `site_urls.py` normalizes page anchors, canonical and Open Graph URLs, and sitemap entries to the host's final trailing-slash URLs. Keep route keys and `data-page` attributes unchanged when editing components.
 
 ## Routes
