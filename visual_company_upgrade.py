@@ -8,6 +8,7 @@ from urllib.parse import urlencode
 from image_provenance import provenance
 from saas_products import SAAS
 from templating import render
+from ux_components import copy_button
 from visual_saas import showroom_web
 from visual_record import company_line, program_brief, record_summary
 
@@ -39,6 +40,7 @@ def investor_opening(apps, btn, contact):
         partner_button=btn('Partnership inquiries', contact('Strategic partner'), 'outline'),
         program_href=contact('Program'),
         index=page_index(investor_sections()),
+        copy_link=copy_button('https://solarityai.com/investors-partners/', 'investor-link-status', 'Copy page link', 'The page link'),
         caption=provenance(),
         web_apps=showroom_web(SAAS),
     ))
