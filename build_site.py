@@ -8,7 +8,8 @@ from visual_home import hero_section, closing_scene
 from visual_saas import saas_wall, saas_chapters, apps_web_band
 from saas_products import SAAS
 from visual_sections import feature_grid, founder_card, founder_portrait
-from visual_team import selected_team
+from visual_team import selected_team, TEAM_MEMBERS
+from company_facts import TEAM_DETAILS
 from visual_careers import careers_page
 from visual_contact import contact_page, founder_vcard
 from visual_chrome import site_header, site_footer
@@ -22,7 +23,7 @@ from visual_press import press_page, press_kit_zip
 from visual_policies import accessibility_page, website_data_page
 import seo
 from templating import render
-from optimize_images import ensure_optimized_images, write_favicon
+from optimize_images import ensure_optimized_images, image_record, write_favicon
 from performance_build import optimize_page, RUNTIME, WRITTEN_RUNTIME
 from site_urls import public_path, normalize_page_links
 
@@ -71,6 +72,8 @@ def social_for(path):
             path,('social/default.jpg','A person climbing mountain steps toward a golden sunrise above the clouds'))
 
 NAV=[('/apps','Apps'),('/platform','Platform'),('/company','Company'),('/investors-partners','Investors & Partners'),('/careers','Careers')]
+# The team for search and AI answers: the roster, roles and LinkedIn shown on Company, with the 480w portrait.
+TEAM=[{**m,**TEAM_DETAILS.get(m['name'],{}),'image':next((v['url'] for v in (image_record(m['portrait']) or {}).get('webp',[]) if v['width']==480),'')} for m in TEAM_MEMBERS]
 def shell(path,title,desc,body):
     """The complete document, as a plain string for the link and delivery passes that follow."""
     social_image, social_alt = social_for(path)
@@ -79,7 +82,7 @@ def shell(path,title,desc,body):
     app=next((a for a in APPS if path=='/apps/'+a['slug'] and a.get('apple')),None)
     app_store_id=re.search(r'/id(\d+)',app['apple']).group(1) if app else ''
     data=seo.graph(path,full_title,desc,apps=APPS,saas=SAAS,faq=FAQ,email=EMAIL,logo='/assets/brand/solarity-sun-320.2513ba060440.webp',
-                   portrait='/assets/brand/ata-turhan-640.742556487789.webp',social_image=social_image,modified=PAGE_DATES[path])
+                   portrait='/assets/brand/ata-turhan-640.742556487789.webp',social_image=social_image,modified=PAGE_DATES[path],team=TEAM)
     return str(render('build_site/shell.html.j2',path=path,full_title=full_title,desc=desc,body=body,app_store_id=app_store_id,
                       robots='noindex,follow' if path=='/404' else 'index,follow,max-image-preview:large',url=ORIGIN+public_path(path),origin=ORIGIN,
                       social_image=social_image,social_alt=social_alt,font_url=FONT_URL,display_font_url=DISPLAY_FONT_URL,
@@ -166,8 +169,8 @@ for path,(title,desc,body) in pages.items():
 # Search engines and AI assistants may read every public page (seo.py names the AI crawlers).
 (DIST/'robots.txt').write_text(seo.robots_txt(), encoding='utf-8', newline='\n')
 (DIST/'sitemap.xml').write_text(seo.sitemap_xml(pages,PAGE_DATES,PAGE_IMAGES), encoding='utf-8', newline='\n')
-(DIST/'llms.txt').write_text(seo.llms_txt(pages,apps=APPS,saas=SAAS,email=EMAIL), encoding='utf-8', newline='\n')
-(DIST/'llms-full.txt').write_text(seo.llms_txt(pages,apps=APPS,saas=SAAS,email=EMAIL,full=True), encoding='utf-8', newline='\n')
+(DIST/'llms.txt').write_text(seo.llms_txt(pages,apps=APPS,saas=SAAS,email=EMAIL,team=TEAM), encoding='utf-8', newline='\n')
+(DIST/'llms-full.txt').write_text(seo.llms_txt(pages,apps=APPS,saas=SAAS,email=EMAIL,team=TEAM,full=True), encoding='utf-8', newline='\n')
 (DIST/(seo.INDEXNOW_KEY+'.txt')).write_text(seo.INDEXNOW_KEY, encoding='utf-8', newline='\n')
 # Previous solarityai.com URLs, redirected by Cloudflare Pages from _redirects.
 LEGACY_REDIRECTS=[('/careers.html','/careers/'),('/blog.html','/'),('/legal.html','/contact/'),('/docs/xtract-demo.html','/')]

@@ -103,6 +103,25 @@ def founder(portrait):
             'homeLocation': {'@type': 'Place', 'name': 'Irving, Texas, United States'}, 'sameAs': FOUNDER_PROFILES}
 
 
+def team_member(m):
+    """A team member as the Company page shows them: name, role, portrait and LinkedIn, nothing more."""
+    node = {'@type': 'Person', '@id': f'{ORIGIN}/company/#{m["slug"]}', 'name': m['name'], 'worksFor': {'@id': ORG_ID},
+            'url': ORIGIN + '/company/#team'}
+    if m.get('role'):
+        node['jobTitle'] = m['role']
+    if m.get('image'):
+        node['image'] = ORIGIN + m['image']
+    if m.get('linkedin'):
+        node['sameAs'] = [m['linkedin']]
+    return node
+
+
+def team_line(team):
+    """The roster for llms.txt, with each member's role when it is known."""
+    named = [m['name'] + (f' ({m["role"][0].lower() + m["role"][1:]})' if m.get('role') else '') for m in team]
+    return ' and '.join(named) if len(named) < 3 else ', '.join(named[:-1]) + ', and ' + named[-1]
+
+
 def mobile_app(a, full=True):
     url = ORIGIN + public_path('/apps/' + a['slug'])
     node = {'@type': 'MobileApplication', '@id': url + '#app', 'name': a['name'], 'url': url}
@@ -146,7 +165,7 @@ def breadcrumbs(path, name):
             'itemListElement': [{'@type': 'ListItem', 'position': i + 1, 'name': n, 'item': u} for i, (n, u) in enumerate(items)]}
 
 
-def graph(path, title, desc, *, apps, saas, faq, email, logo, portrait, social_image, modified):
+def graph(path, title, desc, *, apps, saas, faq, email, logo, portrait, social_image, modified, team=()):
     """The schema.org graph for one route: organization, founder, site, the page itself, and what it presents."""
     url = ORIGIN + public_path(path)
     nodes = [organization(email, logo), founder(portrait),
@@ -180,6 +199,9 @@ def graph(path, title, desc, *, apps, saas, faq, email, logo, portrait, social_i
                       'itemListElement': [{'@type': 'ListItem', 'position': i + 1, 'item': web_app(p)} for i, p in enumerate(saas)]})
     elif path == '/company':
         page['mainEntity'] = {'@id': ORG_ID}
+        people = [team_member(m) for m in team]
+        nodes[0]['employee'] = [{'@id': FOUNDER_ID}] + [{'@id': person['@id']} for person in people]
+        nodes += people
     elif path == '/contact':
         page['mainEntity'] = {'@id': FOUNDER_ID}
     elif path == '/investors-partners':
@@ -209,7 +231,7 @@ def sitemap_xml(pages, dates, images=None):
             'xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">' + rows + '</urlset>')
 
 
-def llms_txt(pages, *, apps, saas, email, full=False):
+def llms_txt(pages, *, apps, saas, email, team=(), full=False):
     """llms.txt (llmstxt.org): a plain summary for AI assistants. llms-full.txt adds every product fact,
     the investor FAQ and the context notes, so an assistant can answer from one file."""
     from ux_content import FAQ
@@ -237,7 +259,7 @@ def llms_txt(pages, *, apps, saas, email, full=False):
         if full:
             out += [f'  - {p["summary"]}'] + [f'  - {fact}' for fact in p['facts']] + [f'  - {p["availability"]}']
     out += ['', '## Company', '',
-            f'- [Company and team]({link("/company")}): founder Ata Turhan, with Hasan Ak, Ali Yılmaz, Emrecan Özkan, Eren Öz, Melik Kaplan, and Batuhan Yücetürk.',
+            f'- [Company and team]({link("/company")}): founder Ata Turhan, with {team_line(team)}.',
             f'- [App factory platform]({link("/platform")}): how the three web apps came from building the consumer apps.',
             f'- [Investors and partners]({link("/investors-partners")}): company thesis, business model and partnership paths.',
             f'- [Press kit]({link("/press")}): approved descriptions, facts, the sun mark, founder portrait, and app icons.',
