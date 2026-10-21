@@ -181,9 +181,11 @@
       touched.add('position');
       renderErrors(validateCareerApplication(values()));
       status.textContent = fields.position.options[fields.position.selectedIndex].textContent + ' selected. Complete the application below.';
-      fields.position.focus({ preventScroll: true });
+      // Start where the applicant has work left: the first empty field, which sits above the role field.
+      const next = [fields.fullName, fields.email, fields.workType].find((field) => !field.value.trim()) || fields.position;
+      next.focus({ preventScroll: true });
       const reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      fields.position.scrollIntoView({ block: 'center', behavior: reducedMotion ? 'instant' : 'smooth' });
+      next.scrollIntoView({ block: 'center', behavior: reducedMotion ? 'instant' : 'smooth' });
     });
   });
 
