@@ -38,6 +38,20 @@
  .hero-credits-aside{flex-direction:row;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:4px 16px}
  .hero-credits-meta,.hero-credits .vision-explore{white-space:nowrap}
 }
+/* Landscape phones: the cover keeps the climber at the right, so the copy stops short of it. */
+@media(max-width:1100px) and (max-height:520px) and (orientation:landscape){
+ .vision-copy,.vision-actions{width:min(100%,60vw)}
+ .vision-story{padding-block:96px 24px}
+}
+/* Portrait tablets: a full-height cover crops the climber into the middle of the copy, so they take
+   the phones' art strip, scaled up, with the title on its lower fade. */
+@media(min-width:561px) and (max-width:1100px) and (orientation:portrait){
+ .vision-hero{min-height:0}
+ .solar-hero-art{bottom:auto;height:clamp(560px,74vw,760px)}
+ .solar-hero-art .progress-hero-image{object-position:74% center}
+ .solar-hero-art::after{background:var(--grain),linear-gradient(180deg,rgb(12 9 6/.55),rgb(12 9 6/0) 160px),linear-gradient(0deg,var(--bg) 0%,rgb(15 13 11/.72) 24%,rgb(15 13 11/0) 52%)}
+ .vision-story{justify-content:flex-start;padding-block:calc(clamp(560px,74vw,760px) - 190px) 28px}
+}
 /* Phones: a 560px art strip; the title sits on its lower fade and the caption on a chip. */
 @media(max-width:560px){
  .vision-hero{min-height:0}
@@ -50,6 +64,12 @@
  .vision-actions .button.primary{justify-content:space-between}
  .vision-actions .button.outline{justify-content:flex-start;gap:14px;min-height:44px;padding-inline:0;border:0;background:none;color:var(--gold)}
  .hero-credits{padding-block:18px 24px}
+}
+/* Short phones (up to 830px tall): the strip shrinks with the viewport so the deck and the primary action
+   land on the first screen; the title keeps its place on the strip's lower fade. svh needs its px fallback. */
+@media(max-width:560px) and (max-height:830px){
+ .solar-hero-art{height:460px;height:clamp(400px,60svh,560px)}
+ .vision-story{padding-top:230px;padding-top:calc(clamp(400px,60svh,560px) - 230px)}
 }
 
 /* Every panel occupies the same grid cell. Hidden panels reserve dimensions,
