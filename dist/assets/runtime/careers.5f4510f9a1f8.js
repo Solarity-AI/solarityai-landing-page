@@ -63,7 +63,7 @@
     else if (hasControls(fullName)) errors.fullName = 'Enter your name on one line.';
     if (!isEmailAddress(input.email)) errors.email = 'Enter a valid email address, such as name@example.com.';
     if (trim(input.linkedin) && !isLinkedInProfile(input.linkedin)) errors.linkedin = 'Enter your LinkedIn profile URL, such as https://www.linkedin.com/in/your-name.';
-    if (trim(input.portfolio) && !parseWebUrl(input.portfolio)) errors.portfolio = 'Enter a complete website, portfolio, GitHub, or Linktree URL starting with https:// or http://.';
+    if (trim(input.portfolio) && !parseWebUrl(input.portfolio)) errors.portfolio = 'Enter a complete website, portfolio, GitHub, or Linktree address, such as github.com/your-name.';
     if (!ROLES.includes(input.position)) errors.position = 'Choose one of the listed positions.';
     if (!WORK_TYPES.includes(input.workType)) errors.workType = 'Choose your preferred work type.';
     if (String(input.note || '').length > NOTE_LIMIT) errors.note = 'Use ' + NOTE_LIMIT.toLocaleString('en-US') + ' characters or fewer for your note.';
@@ -181,9 +181,11 @@
       touched.add('position');
       renderErrors(validateCareerApplication(values()));
       status.textContent = fields.position.options[fields.position.selectedIndex].textContent + ' selected. Complete the application below.';
-      fields.position.focus({ preventScroll: true });
+      // Start where the applicant has work left: the first empty field, which sits above the role field.
+      const next = [fields.fullName, fields.email, fields.workType].find((field) => !field.value.trim()) || fields.position;
+      next.focus({ preventScroll: true });
       const reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      fields.position.scrollIntoView({ block: 'center', behavior: reducedMotion ? 'instant' : 'smooth' });
+      next.scrollIntoView({ block: 'center', behavior: reducedMotion ? 'instant' : 'smooth' });
     });
   });
 
