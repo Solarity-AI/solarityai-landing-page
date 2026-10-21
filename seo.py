@@ -235,7 +235,7 @@ def llms_txt(pages, *, apps, saas, email, full=False):
             f'- [App factory platform]({link("/platform")}): how the three web apps came from building the consumer apps.',
             f'- [Investors and partners]({link("/investors-partners")}): company thesis, business model and partnership paths.',
             f'- [Press kit]({link("/press")}): approved descriptions, facts, the sun mark, founder portrait, and app icons.',
-            f'- [Careers]({link("/careers")}): fully remote roles for a Full Stack Engineer, a Marketing Specialist, and a Business Development Manager.',
+            f'- [Careers]({link("/careers")}): fully remote roles for a Full Stack Engineer and a Marketing Specialist, full-time, part-time, or as an intern.',
             f'- [Contact]({link("/contact")}): email {email} or book a conversation with the founder.']
     if full:
         out += ['', '## Questions and answers', '']

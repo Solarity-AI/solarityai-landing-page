@@ -74,7 +74,8 @@ class SummariesTest(unittest.TestCase):
 
 class HiddenUntilSuppliedTest(unittest.TestCase):
     def test_empty_facts_render_nothing(self):
-        self.assertEqual(visual_record.founder_record(), '')
+        with mock.patch.dict(visual_record.FOUNDER, {'bio': '', 'why': '', 'linkedin': ''}):
+            self.assertEqual(visual_record.founder_record(), '')
         self.assertEqual(visual_record.team_detail('Ali Yılmaz'), '')
         self.assertEqual(visual_record.company_line(), '')
         self.assertEqual(visual_record.program_brief(), '')

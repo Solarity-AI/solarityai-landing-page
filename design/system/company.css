@@ -525,4 +525,6 @@
   /* Careers: the note spans the form's width. */
   .career-field--wide { grid-column:1 / -1; }
   .career-field textarea { min-height:120px; resize:vertical; }
+  /* A status reads as one label: it never breaks inside a table cell. */
+  .compare-table .status { white-space:nowrap; }
 }

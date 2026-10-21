@@ -13,9 +13,9 @@ Solarity AI LLC was founded by Ata Turhan in Irving, Texas, United States. The f
 
 ## Web apps
 
-- [Engineering Max](https://engineeringmax.solarityai.com/): App engineering, Web app · private testing. Find and fix what keeps a mobile app out of the App Store.
-- [Management Max](https://managementmax.solarityai.com/): Metrics for app portfolios, Web app · free plan. Governed weekly metrics for mobile app companies.
-- [Marketing Max](https://marketingmax.solarityai.com/): Short-form video marketing, Web app · internal V1. Your next Reel, made from one that already worked.
+- [Engineering Max](https://engineeringmax.solarityai.com/): App engineering, Web app · early access. Find and fix what keeps a mobile app out of the App Store.
+- [Management Max](https://managementmax.solarityai.com/): Metrics for app portfolios, Web app · early access. Governed weekly metrics for mobile app companies.
+- [Marketing Max](https://marketingmax.solarityai.com/): Short-form video marketing, Web app · early access. Your next Reel, made from one that already worked.
 
 ## Company
 
@@ -23,7 +23,7 @@ Solarity AI LLC was founded by Ata Turhan in Irving, Texas, United States. The f
 - [App factory platform](https://solarityai.com/platform/): how the three web apps came from building the consumer apps.
 - [Investors and partners](https://solarityai.com/investors-partners/): company thesis, business model and partnership paths.
 - [Press kit](https://solarityai.com/press/): approved descriptions, facts, the sun mark, founder portrait, and app icons.
-- [Careers](https://solarityai.com/careers/): fully remote roles for a Full Stack Engineer, a Marketing Specialist, and a Business Development Manager.
+- [Careers](https://solarityai.com/careers/): fully remote roles for a Full Stack Engineer and a Marketing Specialist, full-time, part-time, or as an intern.
 - [Contact](https://solarityai.com/contact/): email ata.turhan@solarityai.com or book a conversation with the founder.
 
 ## Optional

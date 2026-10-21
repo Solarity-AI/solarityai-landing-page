@@ -13,10 +13,10 @@ Checked October 12, 2026. This register is source-only and is not part of the pu
 | Founder email and booking URL | Current corporate website | https://solarityai.com/ ; only public contact details retained |
 | Corporate legal documents | Unresolved | https://solarityai.com/legal.html contains placeholder text; omitted rather than treated as a policy |
 | Fitness Max, listed as Only Fitness | Founder-authorized current portfolio name and verified official store listings | https://apps.apple.com/us/app/only-fitness-ai-coach/id6789095658 and https://play.google.com/store/apps/details?id=com.solarityai.onlyfitness ; voice/text logging, meal photo estimates, coaching reports and progress photos |
-| Engineering / Management / Marketing Max | Founder-confirmed web apps, described from their own sites (2026-10-19) | https://engineeringmax.solarityai.com/ (private testing), https://managementmax.solarityai.com/ (free plan and paid plans), https://marketingmax.solarityai.com/ (internal V1, early access). Statements and screenshot sources in research-assets/saas-evidence.json; data in saas_products.py. Mobile versions are founder-stated plans, shown as planned. No customers, usage or revenue claimed. |
+| Engineering / Management / Marketing Max | Founder-confirmed web apps, described from their own sites (2026-10-19) | https://engineeringmax.solarityai.com/, https://managementmax.solarityai.com/ (free plan and paid plans), https://marketingmax.solarityai.com/. All three are labeled early access by the founder's instruction of 2026-10-20 (Engineering Max's own site also says "Request early access"). Statements and screenshot sources in research-assets/saas-evidence.json; data in saas_products.py. Mobile versions are founder-stated plans, shown as planned. No customers, usage or revenue claimed. |
 | Company thesis and principles | Proposed editorial positioning | Derived from the approved brief; not fabricated performance or market proof |
 | Consumer subscriptions / in-app purchases | Official app listings | Described generally; prices, conversion, revenue and retention not claimed |
-| Web app plans and prices | Each product's own site | Management Max: free for one app and two seats, paid plans count apps. Engineering Max: free during private testing. Marketing Max: early access, no price. Exact prices are left on the product sites. |
+| Web app plans and prices | Each product's own site | Management Max: free for one app and two seats, paid plans count apps. Engineering Max: free during early access. Marketing Max: no price yet. Exact prices are left on the product sites. |
 | Product screenshot assets | Authentic promotional materials | Exact original download URLs in research-assets/downloaded-assets.json; selected images avoid unsupported ratings and transformation/clinical marketing claims |
 | Solar architecture visual | Illustrative | Generated conceptual artwork for the site; no evidence implied |
 | Traction, press, funding, third-party endorsements | Omitted | No sufficiently verified current evidence supplied |
@@ -92,7 +92,7 @@ The homepage portfolio-to-platform relationship is explicitly conceptual company
 
 ## Careers addition and proposed hero, October 13, 2026
 
-- The founder requested a page similar to https://solarityai.com/careers.html. Its current published roles are Full Stack Engineer, Marketing Specialist, and Business Development Manager, each with full-time/part-time tags. Profit sharing, remote work, and respect for talent are adapted from the same source. No compensation percentages, salary, eligibility, hiring timeline, or detailed job requirements are asserted.
+- The founder requested a page similar to https://solarityai.com/careers.html. Its published roles are Full Stack Engineer and Marketing Specialist, each open full-time, part-time or as an internship (founder, 2026-10-20: offer internships and remove the Business Development Manager role). Profit sharing, remote work, and respect for talent are adapted from the same source. No compensation percentages, salary, eligibility, hiring timeline, or detailed job requirements are asserted.
 - `visual_careers.py` holds the maintained roles, editorial invitations, job-poster URL, and native application markup. The original posters folder is https://drive.google.com/drive/folders/1iOew815DHxi_TDBWtbpUp_433V-bamws. The page links to it without importing unseen job descriptions.
 - The source form posts to https://formsubmit.co/info@solarityai.com. The new page reuses that native destination with CAPTCHA and honeypot, discloses the third-party handoff, links to https://formsubmit.co/privacy.pdf, and provides the verified recruiting email as an alternative. The original required name, Gmail, LinkedIn, portfolio, position, and work-type fields are preserved. Client-side validation is an enhancement; browser validation remains available without JavaScript.
 - Confirmation remains on FormSubmit. The source page's query-only success message and `_next` redirect were deliberately excluded because a URL parameter cannot prove application acceptance. No test application was sent. FormSubmit's receiver activation and end-to-end delivery remain unverified. Corporate privacy documents remain unresolved; the provider policy is identified only as the provider policy.
@@ -147,7 +147,7 @@ The homepage portfolio-to-platform relationship is explicitly conceptual company
 - **Shipping record.** App Store release dates come from Apple's public lookup for each listing, checked 2026-10-20: Looks Max 2026-06-23, Only Fitness (Fitness Max) 2026-08-15, IQ Max 2026-09-11, Sleep Max 2026-09-16. They are kept in `company_facts.APP_STORE_RELEASES`. "Four apps in twelve weeks" is computed from these dates (85 days). Google Play dates are not stated.
 - **Hero copy:** "Solarity AI builds AI self-improvement apps, four of them live on iOS and Android, and the tools that let our small team ship them fast." The proof strip reads "4 apps live on iOS & Android · 3 web apps · Irving, Texas". Both restate verified facts.
 - **App factory line on Home:** "Our approach: build consumer apps and the tools behind them, so every app we ship improves the tools for the next." This is stated as the company's approach, not as a measured result.
-- **Hidden until supplied:** the founder bio and LinkedIn link, team roles, commitment and links, the founding year and state of registration, and the program brief (ask, why now, dated metrics, one-pager). They live in `company_facts.py` and render nothing while empty (`test_records.py`). Fill them only with founder-supplied facts, and record the source here. Metrics need an "as of" date.
+- **Hidden until supplied:** the founder bio, team roles, commitment and links, the founding year and state of registration, and the program brief (ask, why now, dated metrics, one-pager). They live in `company_facts.py` and render nothing while empty (`test_records.py`). Fill them only with founder-supplied facts, and record the source here. Metrics need an "as of" date.
 - **Ten readiness improvements (same day).** All are built from `company_facts.APP_STORE_RELEASES`, the approved roster in `visual_team.py` and existing copy, so no new claims:
   - **Where the release data now appears:**
     - "On the App Store since …" on each product page and Apps band.
@@ -208,7 +208,7 @@ The homepage portfolio-to-platform relationship is explicitly conceptual company
     - Investors links to Company facts and the press kit.
     - Website data links each app page, where its store listings and their privacy details are linked.
   - **404:** no canonical (it is noindex), and recovery links to Careers and Press.
-  - **Left for the founder:**
-    - The founder LinkedIn link: it's in the schema, but listed here as hidden until supplied.
-    - The careers "Internship" option, while every role lists Full-time / Part-time.
-    - Marketing Max's "internal V1" vs "early access" labels.
+  - **Founder's answers (2026-10-20):**
+    - **LinkedIn:** show it. `company_facts.FOUNDER['linkedin']` reveals it on Company, Contact and the vCard.
+    - **Careers:** offer internships, and remove Business Development Manager.
+    - **Web apps:** all three are labeled early access.

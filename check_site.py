@@ -237,7 +237,7 @@ for file,d in docs.items():
         if honey.get('name')!='_honey' or honey.get('tabindex')!='-1':errors.append(f'{rel}: missing application honeypot')
         for control_id in ['career-errors','career-name-error','career-email-error','career-linkedin-error','career-portfolio-error','career-position-error','career-work-type-error']:
             if 'hidden' not in by_id.get(control_id,('',{}))[1]:errors.append(f'{rel}: application error must start hidden: {control_id}')
-        expected_roles=['full-stack-engineer','marketing-specialist','business-development-manager']
+        expected_roles=['full-stack-engineer','marketing-specialist']
         role_links=[a for t,a in d.tags if t=='a' and 'data-career-role' in a]
         if [a['data-career-role'] for a in role_links]!=expected_roles or any(a.get('href')!='/careers/?role='+a['data-career-role']+'#apply' for a in role_links):errors.append(f'{rel}: careers role actions must retain exact role context')
         if not any(t=='a' and a.get('href')=='https://formsubmit.co/privacy.pdf' for t,a in d.tags):errors.append(f'{rel}: missing form-provider privacy disclosure')
