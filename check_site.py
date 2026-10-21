@@ -178,16 +178,23 @@ for file,d in docs.items():
             chapter=re.search(r'<section class="saas-chapter[^"]*" id="'+slug+r'"[^>]*>(.*?)</section>',text,re.S)
             if not chapter:errors.append(f'{rel}: missing the {slug} chapter');continue
             if not re.search(r'<img class="web-shot"[^>]*src="/assets/optimized/'+slug+r'-',chapter.group(1)):errors.append(f'{rel}: the {slug} chapter needs its product screenshot')
-            if 'href="https://'+slug.replace('-','')+'.solarityai.com/"' not in chapter.group(1):errors.append(f'{rel}: the {slug} chapter must link to its own site')
+            # The link may carry the site's campaign tag (site_urls.attributed), so only the origin is fixed.
+            if not re.search(r'href="https://'+slug.replace('-','')+r'\.solarityai\.com/(\?[^"]*)?"',chapter.group(1)):errors.append(f'{rel}: the {slug} chapter must link to its own site')
     # Every footer lists the whole portfolio: the four mobile apps and the three web apps.
     for slug in saas_slugs:
         if not footer_match or f'href="/platform/#{slug}"' not in footer_match.group(1):errors.append(f'{rel}: footer is missing the {slug} web app')
+    if rel=='company/index.html':
+        # Each approved team member has one 4:5 portrait or, until a photo is supplied, a monogram in the same frame.
+        members=re.findall(r'<li class="selected-team-member"[^>]*>(.*?)</li>',text,re.S)
+        if len(members)!=6:errors.append(f'{rel}: the team roster must list the six approved members')
+        for member in members:
+            if not re.search(r'<img class="team-portrait"[^>]*src="/assets/optimized/[a-z-]+-\d+\.[0-9a-f]{12}\.webp"[^>]*width="96" height="120"',member) and 'class="team-portrait team-monogram"' not in member:errors.append(f'{rel}: each team member needs a portrait or a monogram')
     if rel=='index.html':
         # The web apps follow the consumer wall: three cards in map order, each linking to its chapter and its site.
         saas_cards=re.findall(r'<li class="saas-card" id="home-([\w-]+)">(.*?)</li>',text,re.S)
         if [c[0] for c in saas_cards]!=saas_slugs:errors.append(f'{rel}: Home must introduce the three web apps in order')
         for slug,card in saas_cards:
-            if f'href="/platform/#{slug}"' not in card or 'href="https://'+slug.replace('-','')+'.solarityai.com/"' not in card:errors.append(f'{rel}: each web app card links to its chapter and its site')
+            if f'href="/platform/#{slug}"' not in card or not re.search(r'href="https://'+slug.replace('-','')+r'\.solarityai\.com/(\?[^"]*)?"',card):errors.append(f'{rel}: each web app card links to its chapter and its site')
             if not re.search(r'<img class="web-shot"[^>]*src="/assets/optimized/'+slug+r'-',card):errors.append(f'{rel}: each web app card needs its product screenshot')
         # The portfolio wall: the four apps in APPS order, each with its icon and both store links.
         wall=re.search(r'<ul class="wall-grid"[^>]*>(.*?)</ul>',text,re.S)

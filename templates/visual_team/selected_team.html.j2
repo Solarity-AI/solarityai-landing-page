@@ -8,6 +8,12 @@
   {#- -#}
   <ul class="selected-team-list">
     {%- for member in members -%}
-    <li class="selected-team-member" data-member="{{ member['slug']|safe }}"><h3 lang="tr">{{ member['name'] }}</h3>{{ team_detail(member['name'])|safe }}</li>
+    <li class="selected-team-member" data-member="{{ member['slug']|safe }}">
+      {%- if member['portrait'] -%}
+      <img class="team-portrait" src="{{ member['portrait'] }}" alt="" width="96" height="120" sizes="(max-width: 560px) 72px, 96px" loading="lazy" decoding="async">
+      {%- else -%}
+      <span class="team-portrait team-monogram" aria-hidden="true">{{ member['initials'] }}</span>
+      {%- endif -%}
+      <div class="selected-team-identity"><h3 lang="tr">{{ member['name'] }}</h3>{{ team_detail(member['name'])|safe }}</div></li>
     {%- endfor -%}
   </ul></section>

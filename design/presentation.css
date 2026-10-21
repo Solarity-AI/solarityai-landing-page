@@ -13,7 +13,7 @@
  @font-face{font-family:'Signature Fallback';src:local('Arial');size-adjust:93.6%;ascent-override:113.4%;descent-override:31.9%;line-gap-override:0%}
  /* Light, color and materials (CINEMATIC_PREMIUM_PLAN.md §3.2–3.6). Neutrals sit on a warm ember axis;
     one sun lights every scene from the upper right. check_site.py verifies the contrast matrix and color axes. */
- :root{color-scheme:dark;--bg:#0f0d0b;--surface:#18140f;--raised:#221c16;--surface-raised:var(--raised);--line:#3a3027;--line-soft:#2a231c;--text:#f5f1e8;--muted:#c9c0b2;--dim:#a99f91;--ink:#1a140e;--sun-core:#ffcf7a;--gold:#e9b56a;--sand:#d6bf9a;--bronze:#9c7446;--ember:#d9782f;--haze:#f5dfbb;--accent:var(--gold);--glow-sun:rgb(255 190 110/.28);--glow-ember:rgb(217 120 47/.18);--glow-haze:rgb(245 223 187/.10);--key-x:85%;--key-y:12%;--tone-night:#0d1014;--tone-blue:#12161b;--tone-base:#0f0d0b;--tone-first:#17110c;--tone-golden:#24170c;--tone-footer:#0b0907;--control-border:var(--bronze);--control-border-hover:var(--gold);--focus:var(--sun-core);--danger:#efaa98;--danger-strong:#ce9181;--danger-text:#ffd0c3;--danger-ink:#ffe0d7;--danger-line:#704d46;--danger-surface:#2d211f;--notice-surface:#2a2116;--notice-text:#f2dfbb;--elev-panel:linear-gradient(#1f1913,#120f0c);--elev-panel-edge:inset 0 1px 0 rgb(255 220 170/.10),0 0 0 1px rgb(214 191 154/.10);--elev-object:0 0 0 1px rgb(255 255 255/.08),0 30px 60px -24px rgb(0 0 0/.85);--elev-overlay:rgb(8 6 4/.9);--shadow-portrait:var(--elev-object);--grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 .94 0 0 0 0 .86 0 0 0 .075 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");--light-field:radial-gradient(46% 32% at 50% 66%,rgb(255 196 120/.24),rgb(255 196 120/0)),radial-gradient(90% 34% at 50% 64%,rgb(217 120 47/.22),rgb(217 120 47/0)),linear-gradient(var(--bg),var(--tone-golden));--horizon:linear-gradient(90deg,transparent,var(--bronze) 20%,var(--sun-core) 50%,var(--bronze) 80%,transparent);--radius-control:10px;--radius-plate:14px;--radius-panel:20px;--radius-pill:999px;--radius-icon:24%;--looks-deep:#1e0f30;--looks-world:#7a35c9;--looks-tint:#e3c8ff;--iq-deep:#0c1838;--iq-world:#2a4fd0;--iq-tint:#c3f2ee;--sleep-deep:#0f1230;--sleep-world:#3a42b0;--sleep-tint:#ccd0fb;--fitness-deep:#160b06;--fitness-world:#ff5a1f;--fitness-tint:#ffc4a6;--looks-accent:var(--looks-tint);--iq-accent:var(--iq-tint);--sleep-accent:var(--sleep-tint);--fitness-accent:var(--fitness-tint);--product-accent:var(--gold);--world-deep:var(--surface);--world:var(--ember);--world-tint:var(--sand);--gutter:clamp(22px,4.3vw,64px);--space-section:clamp(48px,32px + 3.2vw,84px);--font-body:'Manrope','Manrope Fallback',Arial,sans-serif;--font-display:'Newsreader','Display Arrows','Display Fallback',Georgia,serif;--font-editorial:var(--font-body);--text-2xs:.75rem;--text-xs:.8125rem;--text-sm:.875rem;--text-md:.9375rem;--text-base:1rem;--text-lg:1.125rem;--text-xl:1.25rem;--measure:52ch;--type-title:clamp(3.25rem,1.9rem + 5.6vw,7.5rem);--type-chapter:clamp(2.5rem,1.6rem + 3.6vw,4.75rem);--type-section:clamp(2rem,1.45rem + 1.9vw,3.25rem);--type-sub:clamp(1.375rem,1.15rem + .75vw,1.875rem);--type-deck:clamp(1.1875rem,1.05rem + .45vw,1.4375rem);--type-body:clamp(1.0625rem,1rem + .15vw,1.125rem);--type-meta:.875rem;--type-label:.75rem;--type-signature:clamp(2.65rem,11.5vw,10rem);--type-stage:clamp(4.5rem,2rem + 10vw,11rem);--measure-deck:34ch;--measure-heading:18ch;--motion-fast:180ms;--motion-detail:320ms;--motion-ease:cubic-bezier(.22,.68,.2,1);--motion-slow:720ms;--ease-sunrise:cubic-bezier(.16,1,.3,1)}
+ :root{color-scheme:dark;--pad-panel:clamp(24px,2.5vw,36px);--bg:#0f0d0b;--surface:#18140f;--raised:#221c16;--surface-raised:var(--raised);--line:#3a3027;--line-soft:#2a231c;--text:#f5f1e8;--muted:#c9c0b2;--dim:#a99f91;--ink:#1a140e;--sun-core:#ffcf7a;--gold:#e9b56a;--sand:#d6bf9a;--bronze:#9c7446;--ember:#d9782f;--haze:#f5dfbb;--accent:var(--gold);--glow-sun:rgb(255 190 110/.28);--glow-ember:rgb(217 120 47/.18);--glow-haze:rgb(245 223 187/.10);--key-x:85%;--key-y:12%;--tone-night:#0d1014;--tone-blue:#12161b;--tone-base:#0f0d0b;--tone-first:#17110c;--tone-golden:#24170c;--tone-footer:#0b0907;--control-border:var(--bronze);--control-border-hover:var(--gold);--focus:var(--sun-core);--danger:#efaa98;--danger-strong:#ce9181;--danger-text:#ffd0c3;--danger-ink:#ffe0d7;--danger-line:#704d46;--danger-surface:#2d211f;--notice-surface:#2a2116;--notice-text:#f2dfbb;--elev-panel:linear-gradient(#1f1913,#120f0c);--elev-panel-edge:inset 0 1px 0 rgb(255 220 170/.10),0 0 0 1px rgb(214 191 154/.10);--elev-object:0 0 0 1px rgb(255 255 255/.08),0 30px 60px -24px rgb(0 0 0/.85);--elev-overlay:rgb(8 6 4/.9);--shadow-portrait:var(--elev-object);--grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 .94 0 0 0 0 .86 0 0 0 .075 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");--light-field:radial-gradient(46% 32% at 50% 66%,rgb(255 196 120/.24),rgb(255 196 120/0)),radial-gradient(90% 34% at 50% 64%,rgb(217 120 47/.22),rgb(217 120 47/0)),linear-gradient(var(--bg),var(--tone-golden));--horizon:linear-gradient(90deg,transparent,var(--bronze) 20%,var(--sun-core) 50%,var(--bronze) 80%,transparent);--radius-control:10px;--radius-plate:14px;--radius-panel:20px;--radius-pill:999px;--radius-icon:24%;--looks-deep:#1e0f30;--looks-world:#7a35c9;--looks-tint:#e3c8ff;--iq-deep:#0c1838;--iq-world:#2a4fd0;--iq-tint:#c3f2ee;--sleep-deep:#0f1230;--sleep-world:#3a42b0;--sleep-tint:#ccd0fb;--fitness-deep:#160b06;--fitness-world:#ff5a1f;--fitness-tint:#ffc4a6;--looks-accent:var(--looks-tint);--iq-accent:var(--iq-tint);--sleep-accent:var(--sleep-tint);--fitness-accent:var(--fitness-tint);--product-accent:var(--gold);--world-deep:var(--surface);--world:var(--ember);--world-tint:var(--sand);--gutter:clamp(22px,4.3vw,64px);--space-section:clamp(48px,32px + 3.2vw,84px);--font-body:'Manrope','Manrope Fallback',Arial,sans-serif;--font-display:'Newsreader','Display Arrows','Display Fallback',Georgia,serif;--font-editorial:var(--font-body);--text-2xs:.75rem;--text-xs:.8125rem;--text-sm:.875rem;--text-md:.9375rem;--text-base:1rem;--text-lg:1.125rem;--text-xl:1.25rem;--measure:52ch;--type-title:clamp(3.25rem,1.9rem + 5.6vw,7.5rem);--type-chapter:clamp(2.5rem,1.6rem + 3.6vw,4.75rem);--type-section:clamp(2rem,1.45rem + 1.9vw,3.25rem);--type-sub:clamp(1.375rem,1.15rem + .75vw,1.875rem);--type-deck:clamp(1.1875rem,1.05rem + .45vw,1.4375rem);--type-body:clamp(1.0625rem,1rem + .15vw,1.125rem);--type-meta:.875rem;--type-label:.75rem;--type-signature:clamp(2.65rem,11.5vw,10rem);--type-stage:clamp(4.5rem,2rem + 10vw,11rem);--measure-deck:34ch;--measure-heading:18ch;--motion-fast:180ms;--motion-detail:320ms;--motion-ease:cubic-bezier(.22,.68,.2,1);--motion-slow:720ms;--ease-sunrise:cubic-bezier(.16,1,.3,1)}
  *,*::before,*::after{box-sizing:border-box}
  /* The one offset for every in-page jump: clears the sticky header with room to breathe. */
  html{font-size:100%;scroll-padding-top:112px;-webkit-text-size-adjust:100%}
@@ -42,6 +42,11 @@
  /* About 75 characters per line in Manrope, whose 0 is wider than its average letter. */
  main p{max-width:var(--measure)}
  a{color:inherit;text-decoration:none;text-underline-offset:.25em}
+ /* A link inside running text is gold with a bronze underline: gold and --muted share one luminance (1.03:1),
+    so hue alone would hide it. Store pairs and download rows are action lists, not prose, and keep their own style. */
+ :is(p,dd,td,figcaption,small,span):not(.wall-stores,.showroom-stores,.press-downloads)>a:not([class]){color:var(--gold);text-decoration:underline;text-decoration-thickness:1px;text-decoration-color:var(--bronze);text-underline-offset:4px;transition:color var(--motion-fast),text-decoration-color var(--motion-fast)}
+ :is(p,dd,td,figcaption,small,span)>a:not([class]):is(:hover,:focus-visible){color:var(--text);text-decoration-color:currentColor}
+ :is(p,dd,td,figcaption,small,span)>a:not([class])>span[aria-hidden]{display:inline-block}
  button,input,select,textarea{font:inherit}
  button{cursor:pointer}
  button:disabled{cursor:wait}
@@ -66,7 +71,8 @@
  /* Sections after the opening skip style and layout until they near the viewport, so first paint only lays out the first screen. The remembered size keeps scrolling stable. */
  /* Not the closing scene: content-visibility clips paint to the box, and its glow spills past it by design. */
  /* Not the opening after a breadcrumb trail either: it is on the first screen, and a placeholder size there would shift the page. */
- main>section:not(:first-child):not(.breadcrumbs + section):not(.conversation-band),main>div:not(:first-child),.site-footer{content-visibility:auto;contain-intrinsic-size:auto 900px}
+ /* Its paint containment would also cut the glows that spill past a section (founder strip 140px, Contact card 80px) into hard edges: the clip margin lets them fade out first. */
+ main>section:not(:first-child):not(.breadcrumbs + section):not(.conversation-band),main>div:not(:first-child),.site-footer{content-visibility:auto;contain-intrinsic-size:auto 900px;overflow-clip-margin:160px}
  ::selection{background:var(--sun-core);color:var(--ink)}
  .wrap{width:min(1264px,calc(100% - 2*var(--gutter)));margin-inline:auto}
  .section{padding-block:var(--space-section)}
@@ -189,9 +195,9 @@
  .footer-directory{display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) minmax(0,1.15fr);gap:50px;padding-block:12px 48px}
  .footer-group h2{font-size:var(--type-label);line-height:1.5;letter-spacing:.12em;text-transform:uppercase;color:var(--sand);font-weight:600;margin-bottom:16px}
  .footer-group ul{list-style:none;padding:0;margin:0}
- .footer-group a{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:44px;padding-block:8px;font-size:var(--text-sm);color:var(--muted);text-decoration:underline;text-decoration-color:transparent;text-underline-offset:5px;transition:color var(--motion-fast),text-decoration-color var(--motion-fast)}
- .footer-group a{justify-content:flex-start}
- .footer-group a>span[aria-hidden]{color:var(--gold)}
+ .footer-group a{display:block;min-height:44px;padding-block:11.5px;line-height:1.5;font-size:var(--text-sm);color:var(--muted);text-decoration:underline;text-decoration-color:transparent;text-underline-offset:5px;transition:color var(--motion-fast),text-decoration-color var(--motion-fast)}
+ /* The arrow stays with the last word when a label wraps on phones. */
+ .footer-group a>span[aria-hidden]{margin-left:16px;color:var(--gold)}
  .footer-group a:hover,.footer-group a[aria-current]{color:var(--text);text-decoration-color:var(--sun-core)}
  .footer-group a[aria-current]{font-weight:600}
  /* The signature spans the wrap: sized in container units, never uncapped vw. */
@@ -217,6 +223,8 @@
   .nav-link-label{display:block;font-family:var(--font-display);font-weight:400;font-size:1.75rem;line-height:1.15;letter-spacing:-.01em;color:var(--text)}
   .nav-link-description{display:block;font-family:var(--font-body);font-size:var(--type-meta);line-height:1.5;color:var(--muted);margin-top:6px;letter-spacing:0}
   .nav-link-arrow{display:block;color:var(--gold);font-size:var(--text-xl)}
+  /* The current page reads as current state, as the desktop hairline does. */
+  #site-nav>a[aria-current] .nav-link-label{color:var(--gold)}
   /* The open menu is the only scrolling surface; the page behind it stays put. */
   body.nav-open{overflow:hidden}
   .nav-enhanced .menu-toggle{display:flex}
@@ -310,7 +318,8 @@
 .hero-credits{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:16px 48px;padding-block:22px 28px;border-top:1px solid rgb(245 241 232/.12)}
 .hero-evidence-products{display:grid;grid-template-columns:repeat(4,minmax(0,max-content));gap:8px 40px}
 .hero-credits-aside{display:flex;flex-direction:column;align-items:flex-end;gap:0}
-.hero-credits-meta{display:inline-flex;align-items:center;gap:6px;min-height:40px;font-size:var(--type-meta);color:var(--muted);text-decoration:none}
+.hero-credits-meta{display:inline-flex;align-items:center;gap:20px;min-height:40px;font-size:var(--type-meta);color:var(--muted);text-decoration:none}
+.hero-credits-meta>span[aria-hidden]{color:var(--gold)}
 .hero-credits-meta:hover{color:var(--text)}
 .hero-credits .vision-explore{min-height:40px;font-size:var(--type-meta);color:var(--gold)}
 .hero-product{display:flex;align-items:center;gap:12px;min-width:0;min-height:56px;padding-block:6px;color:var(--text)}
@@ -329,6 +338,20 @@
  .hero-credits-aside{flex-direction:row;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:4px 16px}
  .hero-credits-meta,.hero-credits .vision-explore{white-space:nowrap}
 }
+/* Landscape phones: the cover keeps the climber at the right, so the copy stops short of it. */
+@media(max-width:1100px) and (max-height:520px) and (orientation:landscape){
+ .vision-copy,.vision-actions{width:min(100%,60vw)}
+ .vision-story{padding-block:96px 24px}
+}
+/* Portrait tablets: a full-height cover crops the climber into the middle of the copy, so they take
+   the phones' art strip, scaled up, with the title on its lower fade. */
+@media(min-width:561px) and (max-width:1100px) and (orientation:portrait){
+ .vision-hero{min-height:0}
+ .solar-hero-art{bottom:auto;height:clamp(560px,74vw,760px)}
+ .solar-hero-art .progress-hero-image{object-position:74% center}
+ .solar-hero-art::after{background:var(--grain),linear-gradient(180deg,rgb(12 9 6/.55),rgb(12 9 6/0) 160px),linear-gradient(0deg,var(--bg) 0%,rgb(15 13 11/.72) 24%,rgb(15 13 11/0) 52%)}
+ .vision-story{justify-content:flex-start;padding-block:calc(clamp(560px,74vw,760px) - 190px) 28px}
+}
 /* Phones: a 560px art strip; the title sits on its lower fade and the caption on a chip. */
 @media(max-width:560px){
  .vision-hero{min-height:0}
@@ -341,6 +364,12 @@
  .vision-actions .button.primary{justify-content:space-between}
  .vision-actions .button.outline{justify-content:flex-start;gap:14px;min-height:44px;padding-inline:0;border:0;background:none;color:var(--gold)}
  .hero-credits{padding-block:18px 24px}
+}
+/* Short phones (up to 830px tall): the strip shrinks with the viewport so the deck and the primary action
+   land on the first screen; the title keeps its place on the strip's lower fade. svh needs its px fallback. */
+@media(max-width:560px) and (max-height:830px){
+ .solar-hero-art{height:460px;height:clamp(400px,60svh,560px)}
+ .vision-story{padding-top:230px;padding-top:calc(clamp(400px,60svh,560px) - 230px)}
 }
 
 /* Every panel occupies the same grid cell. Hidden panels reserve dimensions,
@@ -447,6 +476,8 @@
 /* The web apps: three across on desktop, stacked on phones with a shorter window. */
 @media(max-width:1100px){.saas-heading{gap:24px 48px}.saas-grid{gap:16px}}
 @media(max-width:850px){.saas-heading{grid-template-columns:minmax(0,1fr)}.saas-grid{grid-template-columns:minmax(0,1fr);gap:20px}.saas-card .web-shot{aspect-ratio:16/9}}
+/* Tablets: the screen sits beside the name, so three stacked cards no longer run to 1,800px. */
+@media(min-width:561px) and (max-width:850px){.saas-card-link{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);align-items:center;gap:22px}.saas-card .web-shot{aspect-ratio:16/10}}
 @media(forced-colors:active){.saas-card{border:1px solid CanvasText}.web-window{border:1px solid CanvasText}}
 /* Hero proof (program readiness): what is live, in the first screen at every width. */
 .vision-description{max-width:42ch}
@@ -470,8 +501,10 @@
 .record-app strong{display:block;font-weight:600}
 .record-app small{display:block;color:var(--muted);font-size:var(--text-xs)}
 .record-app:hover strong{color:var(--product-accent)}
-.record-listing{display:inline-flex;align-items:center;justify-self:start;min-height:32px;font-size:var(--text-xs);color:var(--gold);text-decoration:none}
+.record-listing{display:inline-flex;align-items:center;gap:6px;justify-self:start;min-height:32px;font-size:var(--text-xs);color:var(--gold);text-decoration:none}
 .record-listing:hover{text-decoration:underline}
+/* Touch screens get the full 44px target; fine pointers keep the compact row. */
+@media(pointer:coarse){.record-listing{min-height:44px}}
 @media(max-width:850px){.record-heading{grid-template-columns:minmax(0,1fr)}.record-track{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:36px}.record-track::before{display:none}}
 @media(max-width:560px){
  .record-track{grid-template-columns:minmax(0,1fr);gap:26px;padding-left:28px}
@@ -601,7 +634,7 @@
 .feature-section-heading{margin-bottom:36px}
 .illustrated-features{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,1.6vw,22px)}
 /* Each feature is a panel in the product's world light: a glowing icon tile, a quiet numeral, the copy. */
-.feature-tile{position:relative;isolation:isolate;overflow:hidden;min-width:0;padding:clamp(24px,2.4vw,34px);border-radius:var(--radius-panel);background:var(--elev-panel);box-shadow:var(--elev-panel-edge)}
+.feature-tile{position:relative;isolation:isolate;overflow:hidden;min-width:0;padding:var(--pad-panel);border-radius:var(--radius-panel);background:var(--elev-panel);box-shadow:var(--elev-panel-edge)}
 .feature-tile::before{content:"";position:absolute;z-index:-1;pointer-events:none;inset:-45% 30% 35% -30%;background:radial-gradient(closest-side,color-mix(in srgb,var(--world) 36%,transparent),transparent)}
 .feature-index{position:absolute;top:clamp(22px,2.2vw,30px);right:clamp(22px,2.4vw,32px);font-family:var(--font-display);font-size:var(--type-sub);line-height:1;color:var(--world-tint);opacity:.6}
 .feature-symbol{display:grid;place-items:center;width:52px;height:52px;margin-bottom:28px;border-radius:var(--radius-plate);color:var(--world-tint);background:color-mix(in srgb,var(--world) 24%,transparent);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--world-tint) 24%,transparent)}
@@ -638,7 +671,7 @@
 @media(max-width:850px){
  .product-quick-link{display:inline-flex;align-items:center;gap:20px;min-height:44px;margin-top:18px;color:var(--accent);font-size:var(--text-sm);text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:5px}.product-quick-link:is(:hover,:focus-visible){color:var(--text)}
  .catalog-page-intro{grid-template-columns:1fr;gap:28px;padding-block:64px 32px}.catalog-intro-description{max-width:51ch}.catalog-product-list{padding-top:48px}
- .product-hero,.product-world[data-product="iq-max"] .product-hero,.product-world[data-product="sleep-max"] .product-hero{grid-template-columns:1fr;grid-template-areas:"title" "art" "copy";gap:32px;padding-top:28px}.product-hero-heading,.product-world[data-product="sleep-max"] .product-hero-heading{max-width:680px;justify-self:start;text-align:left;padding:0}.product-world[data-product="sleep-max"] .product-identity{justify-content:flex-start}.product-hero h1,.product-world[data-product="sleep-max"] .product-hero h1,.product-world[data-product="fitness-max"] .product-hero h1{max-width:20ch}.product-hero-art{width:100%;max-width:640px;justify-self:center}.product-hero-copy,.product-world[data-product="sleep-max"] .product-hero-copy{max-width:620px;width:100%;justify-self:center}.product-hero .lede{max-width:var(--measure)}.product-hero .actions{max-width:510px}.product-identity{margin-bottom:24px}
+ .product-hero,.product-world[data-product="iq-max"] .product-hero,.product-world[data-product="sleep-max"] .product-hero{grid-template-columns:1fr;grid-template-areas:"title" "art" "copy";gap:32px;padding-top:28px}.product-hero-heading,.product-world[data-product="sleep-max"] .product-hero-heading{max-width:680px;justify-self:start;text-align:left;padding:0}.product-world[data-product="sleep-max"] .product-identity{justify-content:flex-start}.product-hero h1,.product-world[data-product="sleep-max"] .product-hero h1,.product-world[data-product="fitness-max"] .product-hero h1{max-width:20ch}.product-hero-art{width:100%;max-width:640px;justify-self:center}.product-hero-copy,.product-world[data-product="sleep-max"] .product-hero-copy{max-width:620px;width:100%;justify-self:start}.product-hero .lede{max-width:var(--measure)}.product-hero .actions{max-width:510px}.product-identity{margin-bottom:24px}
  .product-story-heading{max-width:650px}.product-story-copy h3{font-size:2rem}.product-story-step{gap:34px}.product-story[data-story-layout="asymmetric"] .product-story-grid{gap:30px}.product-story[data-story-layout="asymmetric"] .product-story-step:nth-child(2){margin-top:64px}.product-story-copy>p:last-child{font-size:var(--text-md)}.illustrated-features{grid-template-columns:1fr;gap:12px}.feature-copy h3{padding-right:44px}.feature-tile{display:grid;grid-template-columns:34px 1fr;gap:23px;padding-block:22px}.feature-symbol{margin:3px 0 0}.feature-copy h3{max-width:none}.feature-copy p{max-width:var(--measure)}.related-apps{grid-template-columns:1fr;gap:28px}.related-intro h2{max-width:none}.related-intro>p{max-width:52ch}
 }
 @media(max-width:700px){
@@ -702,6 +735,8 @@
 @media(max-width:1024px){.product-hero-art .store-screen.plate--window{width:340px}}
 @media(max-width:850px){
  .product-hero,.product-world[data-product="iq-max"] .product-hero{grid-template-columns:minmax(0,1fr);grid-template-areas:"title" "copy" "art"}
+ /* Sleep Max stays one centered scene: its title and copy share the centre line at every width. */
+ .product-world[data-product="sleep-max"] .product-hero-heading,.product-world[data-product="sleep-max"] .product-hero-copy{justify-self:center}
  .product-close{grid-template-columns:minmax(0,1fr)}
 }
 @media(max-width:640px){
@@ -781,15 +816,24 @@
   .selected-team-intro { display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr); align-items:end; gap:64px; margin-bottom:56px; }
   .selected-team-intro>p { max-width:39ch; margin:0; }
   .selected-team-list { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); column-gap:64px; padding:0; margin:0; list-style:none; }
-  .selected-team-member { display:flex; align-items:center; min-width:0; border-top:1px solid var(--line); padding-block:30px; }
+  .selected-team-member { display:flex; align-items:center; gap:24px; min-width:0; border-top:1px solid var(--line); padding-block:30px; }
+  /* One 4:5 print per person, eyes on the 40% line (research-assets/team-portraits.json); a monogram holds the frame until a photo exists. */
+  .team-portrait { flex:none; display:block; width:96px; height:120px; border-radius:var(--radius-plate); background:var(--raised); box-shadow:var(--elev-object); object-fit:cover; }
+  .team-monogram { display:grid; place-items:center; background:var(--elev-panel); box-shadow:var(--elev-panel-edge); font-family:var(--font-display); font-size:var(--type-sub); letter-spacing:.02em; color:var(--sand); }
+  .selected-team-identity { min-width:0; }
   .selected-team-member h3 { font-size:var(--type-section); line-height:1.3; font-weight:400; letter-spacing:-.02em; overflow-wrap:break-word; margin:0; }
+  /* The tile takes 120px of each column: names step down so the longest ("Batuhan Yücetürk") keeps one line. */
+  @media (min-width:851px) and (max-width:1150px) { .selected-team-member h3 { font-size:2.25rem; } }
+  @media (min-width:851px) and (max-width:980px) { .selected-team-member h3 { font-size:1.75rem; } }
+  /* Tablets: one name per row, so the print and the name share the full width. */
+  @media (max-width:850px) { .selected-team-list { grid-template-columns:1fr; } }
   .operating-principles { padding-block:var(--space-section); }
   .operating-principles-heading { margin-bottom:56px; }
   /* Principles: numbered editorial panels; the headings share two lines so the paragraphs align. */
   .operating-principles>ol { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:clamp(14px,1.6vw,22px); padding:0; margin:0; list-style:none; counter-reset:principle; }
-  .operating-principles li { counter-increment:principle; padding:clamp(26px,2.6vw,36px); border-radius:var(--radius-panel); background:var(--elev-panel); box-shadow:var(--elev-panel-edge); }
+  .operating-principles li { counter-increment:principle; padding:var(--pad-panel); border-radius:var(--radius-panel); background:var(--elev-panel); box-shadow:var(--elev-panel-edge); }
   .operating-principles li::before { content:counter(principle,decimal-leading-zero); display:block; margin-bottom:26px; font-family:var(--font-display); font-size:var(--type-section); line-height:1; color:var(--sun-core); }
-  .operating-principles h3 { margin:0 0 18px; min-height:2.8em; font-size:1.35rem; line-height:1.4; font-weight:500; max-width:26ch; }
+  .operating-principles h3 { margin:0 0 18px; min-height:2.8em; font-size:var(--text-xl); line-height:1.4; font-weight:500; max-width:26ch; }
   .operating-principles li>p { margin:0; font-size:var(--text-md); max-width:42ch; }
 
   /* A semantic strategy illustration, explicitly separate from deployed architecture. */
@@ -834,7 +878,7 @@
   .strategy-story-intro>.text-link { grid-column:2; justify-self:start; }
   /* The three steps read as one track: lit panels joined by a horizon line at the sun dot. */
   .strategy-story-steps { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:clamp(18px,2vw,28px); list-style:none; padding:0; margin:0; }
-  .strategy-story-steps>li { position:relative; padding:clamp(26px,2.6vw,36px) clamp(22px,2.4vw,32px); border-radius:var(--radius-panel); background:var(--elev-panel); box-shadow:var(--elev-panel-edge); }
+  .strategy-story-steps>li { position:relative; padding:var(--pad-panel); border-radius:var(--radius-panel); background:var(--elev-panel); box-shadow:var(--elev-panel-edge); }
   .strategy-story-steps>li::before { content:""; display:block; width:10px; height:10px; margin-bottom:26px; border-radius:50%; background:var(--sun-core); box-shadow:0 0 16px var(--glow-sun); }
   .strategy-story-steps>li:not(:last-child)::after { content:""; position:absolute; top:calc(clamp(26px,2.6vw,36px) + 5px); left:calc(100% - 6px); width:calc(clamp(18px,2vw,28px) + 12px); height:1px; background:var(--horizon); }
   .strategy-story-steps h3 { font-size:var(--text-xl); line-height:1.4; font-weight:500; margin:0 0 18px; }
@@ -905,9 +949,9 @@
   .partnership-topic-list { list-style:none; padding:0; margin:0; border-bottom:1px solid var(--line); }
   .partnership-topic { display:grid; grid-template-columns:minmax(0,1fr) 22px; gap:24px; padding-block:30px; border-top:1px solid var(--line); text-decoration:none; }
   .partnership-topic-copy { display:flex; flex-direction:column; min-width:0; gap:14px; }
-  .partnership-topic-copy strong { color:var(--text); font-size:1.35rem; font-weight:500; line-height:1.35; }
+  .partnership-topic-copy strong { color:var(--text); font-size:var(--text-xl); font-weight:500; line-height:1.35; }
   .partnership-topic-detail { color:var(--muted); font-size:var(--text-md); max-width:52ch; }
-  .partnership-topic-arrow { color:var(--accent); font-size:1.35rem; transition:transform var(--motion-fast) var(--motion-ease); }
+  .partnership-topic-arrow { color:var(--accent); font-size:var(--text-xl); transition:transform var(--motion-fast) var(--motion-ease); }
   .partnership-topic:hover strong,.partnership-topic:focus-visible strong { color:var(--accent); }
   .partnership-topic:hover .partnership-topic-arrow { transform:translateX(4px); }
   .investor-faq { display:grid; grid-template-columns:minmax(0,.72fr) minmax(0,1.28fr); gap:64px; padding-block:var(--space-section); }
@@ -999,6 +1043,8 @@
     .selected-team-intro { grid-template-columns:1fr; gap:24px; margin-bottom:36px; }
     .selected-team-member { padding-block:24px; }
     .selected-team-member h3 { font-size:1.6rem; }
+    .selected-team-member { gap:18px; }
+    .team-portrait { width:72px; height:90px; }
     .operating-principles>ol,.strategy-story-steps { grid-template-columns:1fr; gap:32px; }
     .operating-principles-heading { margin-bottom:36px; }
     .operating-principles h3,.strategy-story-steps h3 { max-width:38ch; }
@@ -1011,6 +1057,11 @@
   @media (max-width:560px) {
     .selected-team-list { grid-template-columns:1fr; }
     .selected-team-member h3 { font-size:1.9rem; }
+  }
+  /* Phones: the longest name ("Batuhan Yücetürk") keeps one line beside the 72px print. */
+  @media (max-width:420px) { .selected-team-member h3 { font-size:1.625rem; } }
+  @media (max-width:350px) { .selected-team-member h3 { font-size:1.375rem; } }
+  @media (max-width:560px) {
     .platform-portfolio-link { font-size:var(--text-xs); gap:12px; }
     .module-num { font-size:var(--type-section); }
     .strategy-story-bottom .button { width:100%; justify-content:space-between; }
@@ -1098,7 +1149,7 @@
   .ledger-print { width:72px; height:90px; object-fit:cover; object-position:50% 22%; border-radius:var(--radius-control); padding:4px; background:var(--raised); box-shadow:var(--elev-object); }
   /* Today is lit evidence; Ahead is drawn in outline and never brighter. */
   .today-ahead { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px; margin-top:clamp(28px,4vw,48px); }
-  .today-card, .ahead-card { display:grid; align-content:start; gap:14px; padding:clamp(24px,3vw,40px); border-radius:var(--radius-panel); }
+  .today-card, .ahead-card { display:grid; align-content:start; gap:14px; padding:var(--pad-panel); border-radius:var(--radius-panel); }
   .today-card { background:radial-gradient(60% 70% at var(--key-x) 0,rgb(255 190 110/.10),transparent 70%),var(--elev-panel); box-shadow:var(--elev-panel-edge); }
   .ahead-card { border:1px dashed var(--bronze); background:transparent; }
   .today-card h3, .ahead-card h3 { font-family:var(--font-display); font-weight:400; font-size:var(--type-sub); }
@@ -1152,8 +1203,9 @@
   .founder-record { display:grid; gap:14px; margin-block:4px 26px; max-width:47ch; }
   .founder-record p { margin:0; font-size:var(--text-base); }
   .founder-why { font-family:var(--font-display); font-size:var(--type-deck); color:var(--text); }
-  .team-detail { display:flex; flex-wrap:wrap; gap:4px 14px; margin:6px 0 0; font-size:var(--text-xs); color:var(--muted); }
-  .team-detail a { color:var(--gold); }
+  .team-detail { display:flex; flex-wrap:wrap; align-items:center; gap:0 16px; margin:6px 0 0; font-size:var(--text-sm); line-height:1.5; color:var(--muted); }
+  .team-detail a { display:inline-flex; align-items:center; gap:6px; min-height:24px; color:var(--gold); }
+  @media (pointer:coarse) { .team-detail a { min-height:44px; } }
   /* Side-by-side summaries (Apps, Platform). The table scrolls inside its own frame on narrow screens. */
   .compare { padding-block:var(--space-section); }
   .compare-scroll { overflow-x:auto; border-radius:var(--radius-panel); background:var(--elev-panel); box-shadow:var(--elev-panel-edge); }
@@ -1228,10 +1280,10 @@
   /* Accessibility and website data statements. */
   .policy-body { display:grid; justify-items:start; padding-block:0 var(--space-section); }
   .policy-section { width:100%; max-width:820px; padding-block:24px; border-top:1px solid var(--line); }
-  .policy-section h2 { font-size:var(--text-lg); font-weight:600; margin-bottom:10px; }
+  .policy-section h2 { font-size:var(--type-sub); font-weight:500; margin-bottom:12px; }
   .policy-section p, .policy-section li { color:var(--muted); max-width:68ch; overflow-wrap:anywhere; }
   .policy-section ul { margin:0; padding-left:20px; display:grid; gap:8px; }
-  .policy-section a { color:var(--gold); text-underline-offset:3px; }
+  .policy-section a { color:var(--gold); }
   /* The section being read, in the sticky indexes. */
   .saas-index a[aria-current] { color:var(--text); background:rgb(255 207 122/.12); }
   @media (forced-colors:active) { .saas-index a[aria-current] { outline:1px solid CanvasText; outline-offset:-3px; } }
@@ -1241,6 +1293,7 @@
   .faq-permalink { margin-top:12px; font-size:var(--text-xs); }
   .faq-permalink a { display:inline-flex; align-items:center; min-height:32px; color:var(--dim); text-decoration:underline; text-decoration-color:var(--line); text-underline-offset:4px; }
   .faq-permalink a:hover { color:var(--text); }
+  @media (pointer:coarse) { .faq-permalink a { min-height:44px; } }
   @media print { .faq-toggle, .faq-permalink { display:none; } }
   /* Press: the whole kit in one download. */
   .press-kit-download { margin:4px 0 24px; }
@@ -1261,6 +1314,8 @@
   .press-screen-frame img { width:auto; height:auto; max-width:100%; max-height:100%; border-radius:var(--radius-plate); }
   .press-screen small { color:var(--dim); font-size:var(--text-xs); }
   .press-downloads a { display:inline-flex; align-items:center; gap:6px; min-height:32px; color:var(--gold); font-size:var(--text-sm); }
+  /* Touch screens get the full 44px target for every download. */
+  @media (pointer:coarse) { .press-downloads a, .press-image a { min-height:44px; } }
   @media (max-width:850px) { .press-screens { grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; } }
   @media print { .press-downloads { display:none; } }
   /* Comparison tables on phones: each row is a card, each value under its column name. */
@@ -1345,7 +1400,7 @@
   .recovery-destination { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: 24px; align-items: baseline; }
   .recovery-destination strong { color: var(--text); font-weight: 500; font-size: var(--text-lg); line-height: 1.5; }
   .recovery-destination > span { color: var(--muted); font-size: var(--text-sm); line-height: 1.7; }
-  .recovery-arrow { color: var(--accent); font-size: 1.4rem; text-align: end; }
+  .recovery-arrow { color: var(--accent); font-size: var(--text-xl); text-align: end; }
   @media (hover: hover) { .contact-email:hover { border-color: var(--sun-core); } .contact-topic:hover strong { color: var(--accent); } .recovery-nav a:hover { background: var(--surface); } }
   @media (prefers-reduced-motion: no-preference) and (hover: hover) { .contact-email:hover > span[aria-hidden], .contact-topic:hover .contact-topic-arrow { transform: translate(3px, -3px); } }
   @media (max-width: 850px) {
@@ -1410,7 +1465,7 @@
   .career-section-heading h2 br { display: none; }
   .career-section-heading .eyebrow { flex: none; margin: 0; }
   .career-benefit-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(14px, 1.6vw, 22px); margin: 0; }
-  .career-benefit-list > div { padding: clamp(24px, 2.4vw, 32px); border-radius: var(--radius-panel); background: var(--elev-panel); box-shadow: var(--elev-panel-edge); }
+  .career-benefit-list > div { padding: var(--pad-panel); border-radius: var(--radius-panel); background: var(--elev-panel); box-shadow: var(--elev-panel-edge); }
   .career-benefit-list dt { display: grid; gap: 22px; color: var(--text); font-size: var(--text-base); font-weight: 500; line-height: 1.5; margin-block-end: 13px; }
   .career-benefit-icon { display: grid; place-items: center; width: 48px; height: 48px; border-radius: var(--radius-plate); color: var(--sun-core); background: rgb(255 207 122/.07); box-shadow: inset 0 0 0 1px var(--line); }
   .career-benefit-icon svg { width: 24px; height: 24px; }
@@ -1599,7 +1654,7 @@
  }
  @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
  @media(forced-colors:active){
-  .feature-tile,.operating-principles li,.strategy-story-steps>li,.strategy-story-bottom,.career-benefit-list>div,.contact-topic-icon,.career-benefit-icon,.feature-symbol,.saas-index,.today-card,.ahead-card{border:1px solid CanvasText}
+  .feature-tile,.operating-principles li,.strategy-story-steps>li,.strategy-story-bottom,.career-benefit-list>div,.contact-topic-icon,.career-benefit-icon,.feature-symbol,.saas-index,.today-card,.ahead-card,.team-monogram{border:1px solid CanvasText}
   :root{--bg:Canvas;--surface:Canvas;--raised:Canvas;--surface-raised:Canvas;--text:CanvasText;--muted:CanvasText;--dim:CanvasText;--ink:CanvasText;--accent:LinkText;--sun-core:LinkText;--gold:LinkText;--sand:CanvasText;--bronze:CanvasText;--haze:LinkText;--line:CanvasText;--line-soft:CanvasText;--control-border:ButtonText;--control-border-hover:Highlight;--focus:Highlight;--product-accent:LinkText;--world-deep:Canvas;--world:CanvasText;--world-tint:CanvasText;--tone-golden:Canvas;--tone-footer:Canvas;--tone-blue:Canvas;--danger:CanvasText;--danger-text:CanvasText;--danger-surface:Canvas;--notice-surface:Canvas;--notice-text:CanvasText;--elev-panel:Canvas;--grain:none;--light-field:none;--horizon:linear-gradient(CanvasText,CanvasText)}
   .founder-panel,.founder-booking,.career-form,.screenshot-stage,.product-story-image{border:1px solid CanvasText}
   .button,.menu-toggle,input,select,textarea{border:1px solid ButtonText!important;box-shadow:none!important}

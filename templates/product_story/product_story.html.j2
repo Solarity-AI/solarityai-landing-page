@@ -10,5 +10,5 @@
             <figcaption>{{ step['caption'] }}</figcaption>
           </figure>
         </article>{% endfor %}</div>
-      <p class="product-story-source caption">{{ provenance }} <a href="{{ app['apple'] }}" target="_blank" rel="noopener">View listing <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a></p>
+      <p class="product-story-source caption">{{ provenance }} <a href="{{ app['apple']|attributed('product-story') }}" target="_blank" rel="noopener">View listing <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a></p>
     </section>

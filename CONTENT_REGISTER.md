@@ -182,6 +182,7 @@ The homepage portfolio-to-platform relationship is explicitly conceptual company
     - No cookies: production responses on `/`, `/apps/`, `/investors-partners/`, `/careers/` and `/contact/` carry no `Set-Cookie`.
     - No browser storage: `scripts/*.js` use no `localStorage`, `sessionStorage`, IndexedDB or `document.cookie`.
     - Analytics: only the cookieless Cloudflare Web Analytics beacon, which the zone injects (see CLAUDE.md).
+    - Campaign tags: visible Google Play and web-app links carry utm_source, utm_medium and a utm_campaign naming the site surface; App Store links are tagged only once `APPLE_CAMPAIGN_PROVIDER` in `company_facts.py` holds the App Store Connect provider token (`site_urls.attributed`, 2026-10-20). The tags name no visitor.
     - Careers form: FormSubmit, with its privacy policy at `https://formsubmit.co/privacy.pdf` (linked from its home page; a live PDF). Delivery to the inbox remains unverified (`CAREERS_DELIVERY.md`), so the page describes the intended destination only.
     - Hosting, HTTPS, the content security policy and `/.well-known/security.txt` come from the build and `_headers`.
   - **Accessibility (`/accessibility`).** The WCAG 2.2 AA target, and the checks run on every round: axe-core at phone and desktop widths, keyboard focus, text spacing, 200% zoom, reduced motion, forced colors and more contrast. The known limitations are screenshot text and third-party sites.
@@ -212,3 +213,10 @@ The homepage portfolio-to-platform relationship is explicitly conceptual company
     - **LinkedIn:** show it. `company_facts.FOUNDER['linkedin']` reveals it on Company, Contact and the vCard.
     - **Careers:** offer internships, and remove Business Development Manager.
     - **Web apps:** all three are labeled early access.
+
+## Team portraits (2026-10-21)
+
+- Source: the founder's Google Drive folder "Current Employees / Profile Photos": `Ali.png` (Ali Yılmaz), `eren-kurumsal-portre.png` (Eren Öz), `HasanErdemAk.png` (Hasan Ak), `Melik Kaplan.png` (Melik Kaplan) and `PHOTO-YUKSEK-COZUNURLUK.png` (Batuhan Yücetürk, confirmed by the founder the same day).
+- Treatment: a 4:5 crop per person, eyes on the 40% line and faces at a matching scale; no retouching. Checksums and crop boxes: `research-assets/team-portraits.json`.
+- Emrecan Özkan: no photo supplied; the roster shows his initials in the same frame. The earlier site's Ali Yılmaz and Hasan Ak portraits are retired to `source-assets/retired/team/`.
+- Titles and LinkedIn profiles: supplied by the founder in chat on 2026-10-21 (`TEAM_DETAILS` in `company_facts.py`). Melik Kaplan's profile URL is under his full name, Egehan Melik Kaplan; the site keeps the approved name. Batuhan Yücetürk: title only, no profile supplied.

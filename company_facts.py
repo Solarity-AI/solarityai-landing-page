@@ -5,6 +5,10 @@ A field left empty (None, '' or an empty list) renders nothing: the page structu
 until the founder provides the fact. Record each new fact's source in CONTENT_REGISTER.md.
 """
 
+# App Store Connect provider token (App Analytics > Sources > Campaigns). While empty, App Store links
+# carry no campaign tag; Google Play and the web apps are tagged regardless (site_urls.attributed).
+APPLE_CAMPAIGN_PROVIDER = ''
+
 # App Store release dates, from Apple's public lookup for each listing (checked 2026-10-20).
 # Each app is also on Google Play; its release date there is not stated.
 APP_STORE_RELEASES = [
@@ -27,7 +31,15 @@ FOUNDER = {
 
 # Team (recommendation 4), keyed by the approved names in visual_team.py. Fill only what each person
 # agreed to show: 'role', 'commitment' ('Full-time', 'Part-time' or 'Adviser') and 'linkedin'.
-TEAM_DETAILS = {}
+# Titles and profiles supplied by the founder on 2026-10-21 (Batuhan Yücetürk: no profile given).
+TEAM_DETAILS = {
+    'Hasan Ak': {'role': 'Engineering manager and principal software engineer', 'linkedin': 'https://www.linkedin.com/in/hasan-erdem-ak/'},
+    'Ali Yılmaz': {'role': 'Staff software engineer', 'linkedin': 'https://www.linkedin.com/in/ali-yilmaz2/'},
+    'Emrecan Özkan': {'role': 'Staff software engineer', 'linkedin': 'https://www.linkedin.com/in/emrecan-ozkan/'},
+    'Eren Öz': {'role': 'Senior software engineer', 'linkedin': 'https://www.linkedin.com/in/ozeren1337/'},
+    'Melik Kaplan': {'role': 'Marketing engineer', 'linkedin': 'https://www.linkedin.com/in/egehan-melik-kaplan-5b317a29a/'},
+    'Batuhan Yücetürk': {'role': 'Marketing engineer'},
+}
 
 # Company facts (recommendation 13).
 COMPANY = {
