@@ -29,7 +29,7 @@
 <h3 class="press-subhead" id="press-screens-title">Product screens</h3>
 <ul class="press-screens" aria-labelledby="press-screens-title">
 {%- for s in screens -%}
-<li class="press-screen"><span class="press-screen-frame"><img src="{{ s.preview }}" alt="{{ s.name }} screen" width="{{ s.width }}" height="{{ s.height }}" loading="lazy" decoding="async"></span><strong>{{ s.name }}</strong><small>{{ s.caption }} · JPEG · {{ s.width }} × {{ s.height }}</small><span class="press-downloads"><a href="{{ s.href }}" download>Download <span aria-hidden="true">→</span></a><a href="{{ s.original }}" download>WebP <span aria-hidden="true">→</span></a></span></li>
+<li class="press-screen"><span class="press-screen-frame"><img src="{{ s.preview }}" alt="{{ s.name }} screen" width="{{ s.width }}" height="{{ s.height }}" sizes="{% if s.height > s.width %}(max-width: 850px) calc(30vw - 36px), (max-width: 1440px) calc(15vw - 36px), 160px{% else %}(max-width: 850px) calc(50vw - 60px), (max-width: 1440px) calc(25vw - 60px), 266px{% endif %}" loading="lazy" decoding="async"></span><strong>{{ s.name }}</strong><small>{{ s.caption }} · JPEG · {{ s.width }} × {{ s.height }}</small><span class="press-downloads"><a href="{{ s.href }}" download>Download <span aria-hidden="true">→</span></a><a href="{{ s.original }}" download>WebP <span aria-hidden="true">→</span></a></span></li>
 {%- endfor -%}
 </ul>
 <div class="press-usage"><h3>Using the name and images</h3><ul>
