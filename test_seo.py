@@ -116,6 +116,36 @@ class GraphTest(unittest.TestCase):
         self.assertEqual(web['screenshot'], ['https://solarityai.com/assets/engineering-max-overview.webp'])
 
 
+TEAM = [dict(slug='hasan-ak', name='Hasan Ak', role='Staff engineer', linkedin='https://www.linkedin.com/in/example/',
+             image='/hasan-480.webp'),
+        dict(slug='batuhan-yuceturk', name='Batuhan Yücetürk', role='Marketing engineer', image='')]
+
+
+class TeamTest(unittest.TestCase):
+    def company_graph(self):
+        return seo.graph('/company', 'Company | Solarity AI', 'About.', apps=[APP], saas=[WEB], faq=[],
+                         email='founder@example.com', logo='/logo.webp', portrait='/portrait.webp',
+                         social_image='social/default.jpg', modified='2026-10-21', team=TEAM)['@graph']
+
+    def test_company_lists_each_member_with_only_their_published_facts(self):
+        people = {n['name']: n for n in self.company_graph() if n['@type'] == 'Person'}
+        self.assertEqual(people['Hasan Ak']['jobTitle'], 'Staff engineer')
+        self.assertEqual(people['Hasan Ak']['sameAs'], ['https://www.linkedin.com/in/example/'])
+        self.assertEqual(people['Hasan Ak']['image'], 'https://solarityai.com/hasan-480.webp')
+        self.assertNotIn('sameAs', people['Batuhan Yücetürk'])
+        self.assertNotIn('image', people['Batuhan Yücetürk'])
+
+    def test_organization_names_founder_and_team_as_employees(self):
+        graph = self.company_graph()
+        employees = [ref['@id'] for ref in graph[0]['employee']]
+        self.assertEqual(employees[0], seo.FOUNDER_ID)
+        self.assertLessEqual(set(employees), defined_ids(graph))
+        self.assertNotIn('employee', build_graph('/')[0])
+
+    def test_llms_roster_carries_roles(self):
+        self.assertEqual(seo.team_line(TEAM), 'Hasan Ak (staff engineer) and Batuhan Yücetürk (marketing engineer)')
+
+
 class CrawlerFilesTest(unittest.TestCase):
     def test_robots_welcomes_search_and_ai_crawlers(self):
         robots = RobotFileParser()
