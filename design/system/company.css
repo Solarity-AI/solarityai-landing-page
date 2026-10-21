@@ -345,7 +345,7 @@
   .showroom-caption { margin-top:16px; }
   /* At a glance: verified facts only, in a lit panel. */
   .investor-ledger { padding-block:clamp(40px,5vw,72px) clamp(56px,6vw,96px); }
-  .ledger { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px 40px; margin:0; padding:clamp(24px,3vw,40px); border-radius:var(--radius-panel); background:var(--elev-panel); box-shadow:var(--elev-panel-edge); }
+  .ledger { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px 40px; margin:0; padding:clamp(24px,3vw,40px); border-radius:var(--radius-panel); background:var(--elev-panel); box-shadow:var(--elev-panel-edge); }
   .ledger dt { font-size:var(--type-label); font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--sand); margin-bottom:10px; }
   .ledger dd { margin:0; font-family:var(--font-display); font-weight:400; font-size:var(--type-sub); line-height:1.25; color:var(--text); }
   .ledger dd a { color:inherit; text-decoration:underline; text-decoration-color:var(--bronze); text-underline-offset:5px; }
