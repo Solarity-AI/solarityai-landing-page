@@ -7,6 +7,7 @@ from saas_products import SAAS
 from templating import render
 from ux_components import copy_button
 from visual_record import record_summary
+from visual_team import TEAM_MEMBERS
 
 ONE_LINE = 'Solarity AI builds AI self-improvement apps and the tools that let its small team ship them fast.'
 SHORT = ('Solarity AI LLC, based in Irving, Texas, builds AI-powered self-improvement apps: Looks Max, IQ Max, Sleep Max, '
@@ -77,7 +78,7 @@ def press_page(apps, email, btn):
     return str(render('visual_press/page.html.j2', one_line=ONE_LINE, short=SHORT, images=IMAGES, icons=icons, screens=screens,
                       copy_one=copy_button(ONE_LINE, 'press-one-line-status', 'Copy', 'The one-line description'),
                       copy_short=copy_button(SHORT, 'press-short-status', 'Copy', 'The short description'),
-                      record=record_summary(), saas=SAAS, email=email,
+                      record=record_summary(), saas=SAAS, email=email, team=TEAM_MEMBERS,
                       copy_link=copy_button('https://solarityai.com/press/', 'press-link-status', 'Copy page link', 'The page link'),
                       contact_button=btn('Press inquiries', '/contact?type=Press#prepare-inquiry', 'outline'),
                       kit_href=KIT_PATH, kit_size=f'{len(press_kit_zip(apps)) / 1_000_000:.1f} MB'))
