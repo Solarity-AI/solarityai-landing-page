@@ -201,8 +201,10 @@
 .record-app strong{display:block;font-weight:600}
 .record-app small{display:block;color:var(--muted);font-size:var(--text-xs)}
 .record-app:hover strong{color:var(--product-accent)}
-.record-listing{display:inline-flex;align-items:center;justify-self:start;min-height:32px;font-size:var(--text-xs);color:var(--gold);text-decoration:none}
+.record-listing{display:inline-flex;align-items:center;gap:6px;justify-self:start;min-height:32px;font-size:var(--text-xs);color:var(--gold);text-decoration:none}
 .record-listing:hover{text-decoration:underline}
+/* Touch screens get the full 44px target; fine pointers keep the compact row. */
+@media(pointer:coarse){.record-listing{min-height:44px}}
 @media(max-width:850px){.record-heading{grid-template-columns:minmax(0,1fr)}.record-track{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:36px}.record-track::before{display:none}}
 @media(max-width:560px){
  .record-track{grid-template-columns:minmax(0,1fr);gap:26px;padding-left:28px}

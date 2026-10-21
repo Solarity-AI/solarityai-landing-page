@@ -489,6 +489,7 @@
   .faq-permalink { margin-top:12px; font-size:var(--text-xs); }
   .faq-permalink a { display:inline-flex; align-items:center; min-height:32px; color:var(--dim); text-decoration:underline; text-decoration-color:var(--line); text-underline-offset:4px; }
   .faq-permalink a:hover { color:var(--text); }
+  @media (pointer:coarse) { .faq-permalink a { min-height:44px; } }
   @media print { .faq-toggle, .faq-permalink { display:none; } }
   /* Press: the whole kit in one download. */
   .press-kit-download { margin:4px 0 24px; }
@@ -509,6 +510,8 @@
   .press-screen-frame img { width:auto; height:auto; max-width:100%; max-height:100%; border-radius:var(--radius-plate); }
   .press-screen small { color:var(--dim); font-size:var(--text-xs); }
   .press-downloads a { display:inline-flex; align-items:center; gap:6px; min-height:32px; color:var(--gold); font-size:var(--text-sm); }
+  /* Touch screens get the full 44px target for every download. */
+  @media (pointer:coarse) { .press-downloads a, .press-image a { min-height:44px; } }
   @media (max-width:850px) { .press-screens { grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; } }
   @media print { .press-downloads { display:none; } }
   /* Comparison tables on phones: each row is a card, each value under its column name. */
