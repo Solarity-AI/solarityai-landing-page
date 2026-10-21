@@ -8,7 +8,7 @@ from visual_record import company_line
 def site_header(path, nav_items, btn):
     """Keep the existing disclosure-navigation IDs and JS class contracts."""
     descriptions = {'/apps': 'The consumer portfolio', '/platform': 'The app factory: three web apps',
-                    '/company': 'Our purpose and founder', '/investors-partners': 'Thesis and collaboration', '/careers': 'Roles and applications'}
+                    '/company': 'Our purpose, founder and team', '/investors-partners': 'Thesis and collaboration', '/careers': 'Roles and applications'}
     links = []
     for url, label in nav_items:
         current = ('page' if path == url else
