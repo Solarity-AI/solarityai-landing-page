@@ -7,7 +7,7 @@
 {#- -#}
 <ol class="record-track" aria-label="App launches">
 {%- for launch in launches -%}
-<li class="record-step" data-product-accent="{{ launch.app.color }}"><time class="record-date" datetime="{{ launch.iso }}">{{ launch.label }}</time><span class="record-dot" aria-hidden="true"></span><a class="record-app" href="/apps/{{ launch.app.slug }}"><img src="/assets/{{ launch.app.slug }}-icon.webp" width="44" height="44" alt="" loading="lazy" decoding="async"><span><strong>{{ launch.app.name }}</strong><small>{{ launch.app.category }}</small></span></a><a class="record-listing" href="{{ launch.app.apple }}" target="_blank" rel="noopener noreferrer">App Store listing <span aria-hidden="true">↗</span>{{ new_tab }}</a></li>
+<li class="record-step" data-product-accent="{{ launch.app.color }}"><time class="record-date" datetime="{{ launch.iso }}">{{ launch.label }}</time><span class="record-dot" aria-hidden="true"></span><a class="record-app" href="/apps/{{ launch.app.slug }}"><img src="/assets/{{ launch.app.slug }}-icon.webp" width="44" height="44" alt="" loading="lazy" decoding="async"><span><strong>{{ launch.app.name }}</strong><small>{{ launch.app.category }}</small></span></a><a class="record-listing" href="{{ launch.app.apple|attributed('shipping-record') }}" target="_blank" rel="noopener noreferrer">App Store listing <span aria-hidden="true">↗</span>{{ new_tab }}</a></li>
 {%- endfor -%}
 </ol>
 {%- if web -%}

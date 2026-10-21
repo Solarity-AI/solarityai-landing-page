@@ -5,6 +5,10 @@ A field left empty (None, '' or an empty list) renders nothing: the page structu
 until the founder provides the fact. Record each new fact's source in CONTENT_REGISTER.md.
 """
 
+# App Store Connect provider token (App Analytics > Sources > Campaigns). While empty, App Store links
+# carry no campaign tag; Google Play and the web apps are tagged regardless (site_urls.attributed).
+APPLE_CAMPAIGN_PROVIDER = ''
+
 # App Store release dates, from Apple's public lookup for each listing (checked 2026-10-20).
 # Each app is also on Google Play; its release date there is not stated.
 APP_STORE_RELEASES = [

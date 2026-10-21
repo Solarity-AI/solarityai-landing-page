@@ -1,6 +1,6 @@
 """Public URL contracts: remove redirects without losing inquiry context."""
 import unittest
-from site_urls import normalize_page_links, public_path
+from site_urls import attributed, normalize_page_links, public_path
 
 
 class PublicURLTests(unittest.TestCase):
@@ -38,6 +38,28 @@ class PublicURLTests(unittest.TestCase):
     def test_normalization_is_idempotent(self):
         markup='<a href="/apps/">Apps</a><a href="/">Home</a><a href="/404">Error</a>'
         self.assertEqual(self.normalize(self.normalize(markup)),markup)
+
+
+
+
+class AttributedLinkTests(unittest.TestCase):
+    play='https://play.google.com/store/apps/details?id=com.solarityai.sleepmax'
+    apple='https://apps.apple.com/us/app/sleep-max-rest-best/id6806709872'
+
+    def test_google_play_and_web_apps_name_the_surface(self):
+        self.assertEqual(attributed(self.play,'store-badge'),
+                         self.play+'&utm_source=solarityai.com&utm_medium=website&utm_campaign=store-badge')
+        self.assertEqual(attributed('https://engineeringmax.solarityai.com/','site-link'),
+                         'https://engineeringmax.solarityai.com/?utm_source=solarityai.com&utm_medium=website&utm_campaign=site-link')
+
+    def test_app_store_needs_the_provider_token(self):
+        self.assertEqual(attributed(self.apple,'store-badge'),self.apple)
+        self.assertEqual(attributed(self.apple,'store-badge','123456'),
+                         self.apple+'?pt=123456&ct=solarityai-store-badge&mt=8')
+
+    def test_other_hosts_are_untouched(self):
+        for url in ('mailto:ata.turhan@solarityai.com','https://calendar.google.com/x','/apps/looks-max/','https://github.com/Solarity-AI'):
+            self.assertEqual(attributed(url,'footer'),url)
 
 
 if __name__=='__main__':

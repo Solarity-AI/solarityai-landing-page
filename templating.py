@@ -8,6 +8,8 @@ deliberately raw value with |safe.
 from html import escape
 from pathlib import Path
 
+from company_facts import APPLE_CAMPAIGN_PROVIDER
+from site_urls import attributed
 from jinja2 import Environment, FileSystemLoader, StrictUndefined
 from markupsafe import Markup
 
@@ -32,6 +34,8 @@ ENV = Environment(
 
 # 'internal V1' -> 'Internal V1': raise only the first letter (str.capitalize would lower the rest).
 ENV.filters['capitalize_first'] = lambda value: value[:1].upper() + value[1:]
+# Visible store and web-app links name the site surface they sit on (site_urls.attributed).
+ENV.filters['attributed'] = lambda url, campaign: attributed(url, campaign, APPLE_CAMPAIGN_PROVIDER)
 
 
 def render(template, /, **context):

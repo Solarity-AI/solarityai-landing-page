@@ -182,6 +182,7 @@ The homepage portfolio-to-platform relationship is explicitly conceptual company
     - No cookies: production responses on `/`, `/apps/`, `/investors-partners/`, `/careers/` and `/contact/` carry no `Set-Cookie`.
     - No browser storage: `scripts/*.js` use no `localStorage`, `sessionStorage`, IndexedDB or `document.cookie`.
     - Analytics: only the cookieless Cloudflare Web Analytics beacon, which the zone injects (see CLAUDE.md).
+    - Campaign tags: visible Google Play and web-app links carry utm_source, utm_medium and a utm_campaign naming the site surface; App Store links are tagged only once `APPLE_CAMPAIGN_PROVIDER` in `company_facts.py` holds the App Store Connect provider token (`site_urls.attributed`, 2026-10-20). The tags name no visitor.
     - Careers form: FormSubmit, with its privacy policy at `https://formsubmit.co/privacy.pdf` (linked from its home page; a live PDF). Delivery to the inbox remains unverified (`CAREERS_DELIVERY.md`), so the page describes the intended destination only.
     - Hosting, HTTPS, the content security policy and `/.well-known/security.txt` come from the build and `_headers`.
   - **Accessibility (`/accessibility`).** The WCAG 2.2 AA target, and the checks run on every round: axe-core at phone and desktop widths, keyboard focus, text spacing, 200% zoom, reduced motion, forced colors and more contrast. The known limitations are screenshot text and third-party sites.

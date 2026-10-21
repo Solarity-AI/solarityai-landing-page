@@ -178,7 +178,8 @@ for file,d in docs.items():
             chapter=re.search(r'<section class="saas-chapter[^"]*" id="'+slug+r'"[^>]*>(.*?)</section>',text,re.S)
             if not chapter:errors.append(f'{rel}: missing the {slug} chapter');continue
             if not re.search(r'<img class="web-shot"[^>]*src="/assets/optimized/'+slug+r'-',chapter.group(1)):errors.append(f'{rel}: the {slug} chapter needs its product screenshot')
-            if 'href="https://'+slug.replace('-','')+'.solarityai.com/"' not in chapter.group(1):errors.append(f'{rel}: the {slug} chapter must link to its own site')
+            # The link may carry the site's campaign tag (site_urls.attributed), so only the origin is fixed.
+            if not re.search(r'href="https://'+slug.replace('-','')+r'\.solarityai\.com/(\?[^"]*)?"',chapter.group(1)):errors.append(f'{rel}: the {slug} chapter must link to its own site')
     # Every footer lists the whole portfolio: the four mobile apps and the three web apps.
     for slug in saas_slugs:
         if not footer_match or f'href="/platform/#{slug}"' not in footer_match.group(1):errors.append(f'{rel}: footer is missing the {slug} web app')
@@ -187,7 +188,7 @@ for file,d in docs.items():
         saas_cards=re.findall(r'<li class="saas-card" id="home-([\w-]+)">(.*?)</li>',text,re.S)
         if [c[0] for c in saas_cards]!=saas_slugs:errors.append(f'{rel}: Home must introduce the three web apps in order')
         for slug,card in saas_cards:
-            if f'href="/platform/#{slug}"' not in card or 'href="https://'+slug.replace('-','')+'.solarityai.com/"' not in card:errors.append(f'{rel}: each web app card links to its chapter and its site')
+            if f'href="/platform/#{slug}"' not in card or not re.search(r'href="https://'+slug.replace('-','')+r'\.solarityai\.com/(\?[^"]*)?"',card):errors.append(f'{rel}: each web app card links to its chapter and its site')
             if not re.search(r'<img class="web-shot"[^>]*src="/assets/optimized/'+slug+r'-',card):errors.append(f'{rel}: each web app card needs its product screenshot')
         # The portfolio wall: the four apps in APPS order, each with its icon and both store links.
         wall=re.search(r'<ul class="wall-grid"[^>]*>(.*?)</ul>',text,re.S)

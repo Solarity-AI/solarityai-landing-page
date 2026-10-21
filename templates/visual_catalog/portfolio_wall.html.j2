@@ -3,7 +3,7 @@
       <ul class="wall-grid" aria-label="Solarity AI apps">{% for card in cards %}{% set app = card['app'] %}<li class="wall-card" data-product-accent="{{ app['color'] }}">
           <a class="wall-link" href="/apps/{{ app['slug'] }}"><span class="wall-window screenshot-stage">{{ card['window']|safe }}</span>
             <span class="wall-identity"><img src="/assets/{{ app['slug'] }}-icon.webp" width="56" height="56" alt="" loading="lazy" decoding="async"><span><strong>{{ app['name'] }}</strong><small>{{ app['category'] }}</small></span></span></a>
-          <p class="wall-stores"><a href="{{ app['apple'] }}" target="_blank" rel="noopener noreferrer">App Store <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a><a href="{{ app['google'] }}" target="_blank" rel="noopener noreferrer">Google Play <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a></p>
+          <p class="wall-stores"><a href="{{ app['apple']|attributed('home-wall') }}" target="_blank" rel="noopener noreferrer">App Store <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a><a href="{{ app['google']|attributed('home-wall') }}" target="_blank" rel="noopener noreferrer">Google Play <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a></p>
         </li>{% endfor %}</ul>
       <p class="caption wall-caption">{{ provenance }}</p>
     </section>

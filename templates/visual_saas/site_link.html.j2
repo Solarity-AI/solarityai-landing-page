@@ -1,1 +1,1 @@
-<a class="{{ cls }}" href="{{ product['url'] }}" target="_blank" rel="noopener noreferrer">{{ label }} <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a>
+<a class="{{ cls }}" href="{{ product['url']|attributed('site-link') }}" target="_blank" rel="noopener noreferrer">{{ label }} <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a>
