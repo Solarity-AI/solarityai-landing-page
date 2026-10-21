@@ -17,7 +17,7 @@ from visual_products import product_art, product_page
 from visual_catalog import portfolio_page, portfolio_wall
 from visual_company_upgrade import strategy_story, investor_evidence, investor_opening, operating_principles, founder_booking, section_index
 from visual_strategy import platform_opening
-from visual_record import shipping_record, founder_record, program_brief, company_line, record_summary, long_date, app_compare, web_compare, company_facts
+from visual_record import shipping_record, founder_record, program_brief, record_summary, long_date, app_compare, web_compare, company_facts
 from visual_press import press_page, press_kit_zip
 from visual_policies import accessibility_page, website_data_page
 import seo
