@@ -9,12 +9,12 @@
   @media(hover:hover) and (pointer:fine){.footer-group a:hover>span{transform:translateX(3px)}}
   /* Cards and panels lift 4px and catch a sun hairline. translate composes with the scroll reveal's transform. */
   @media(hover:hover) and (pointer:fine){
-   .wall-card,.saas-card,.feature-tile,.operating-principles li,.strategy-story-steps>li,.career-benefit-list>div,.partnership-topic,.today-card,.ahead-card,.lineup-app{transition:translate var(--motion-detail) var(--motion-ease),box-shadow var(--motion-detail) var(--motion-ease)}
-   .wall-card:hover,.saas-card:hover,.feature-tile:hover,.operating-principles li:hover,.strategy-story-steps>li:hover,.career-benefit-list>div:hover,.partnership-topic:hover,.today-card:hover,.lineup-app:hover{translate:0 -4px}
-   .saas-card:hover,.feature-tile:hover,.operating-principles li:hover,.strategy-story-steps>li:hover,.career-benefit-list>div:hover,.today-card:hover{box-shadow:var(--elev-panel-edge),0 0 0 1px rgb(255 207 122/.2),0 26px 50px -28px rgb(0 0 0/.85)}
+   .wall-card,.saas-card,.feature-tile,.operating-principles li,.strategy-story-steps>li,.career-benefit-list>div,.partnership-topic,.today-card,.ahead-card,.lineup-app,.selected-team-member{transition:translate var(--motion-detail) var(--motion-ease),box-shadow var(--motion-detail) var(--motion-ease)}
+   .wall-card:hover,.saas-card:hover,.feature-tile:hover,.operating-principles li:hover,.strategy-story-steps>li:hover,.career-benefit-list>div:hover,.partnership-topic:hover,.today-card:hover,.lineup-app:hover,.selected-team-member:hover{translate:0 -4px}
+   .saas-card:hover,.feature-tile:hover,.operating-principles li:hover,.strategy-story-steps>li:hover,.career-benefit-list>div:hover,.today-card:hover,.selected-team-member:hover{box-shadow:var(--elev-panel-edge),0 0 0 1px rgb(255 207 122/.2),0 26px 50px -28px rgb(0 0 0/.85)}
   }
-  .wall-card:has(:focus-visible),.saas-card:has(:focus-visible),.partnership-topic:focus-visible,.lineup-app:focus-visible{translate:0 -4px}
-  .saas-card:has(:focus-visible){box-shadow:var(--elev-panel-edge),0 0 0 1px rgb(255 207 122/.2),0 26px 50px -28px rgb(0 0 0/.85)}
+  .wall-card:has(:focus-visible),.saas-card:has(:focus-visible),.selected-team-member:has(:focus-visible),.partnership-topic:focus-visible,.lineup-app:focus-visible{translate:0 -4px}
+  .saas-card:has(:focus-visible),.selected-team-member:has(:focus-visible){box-shadow:var(--elev-panel-edge),0 0 0 1px rgb(255 207 122/.2),0 26px 50px -28px rgb(0 0 0/.85)}
   #image-dialog[open]{animation:surface-arrive 180ms var(--motion-ease)}
   @keyframes surface-arrive{from{opacity:.7;transform:translateY(5px)}to{opacity:1;transform:none}}
   /* Scroll reveals: content below the fold rises in as it enters. Progress follows the scroll, so anything
@@ -75,7 +75,7 @@
      CSS filter drop the rules for cards a page does not have. */
   @supports (animation-timeline:view()){
    @media(min-width:851px){
-    .wall-card+.wall-card,.saas-card+.saas-card,.feature-tile+.feature-tile,.operating-principles li+li,.strategy-story-steps>li+li,.partnership-topic+.partnership-topic,.career-benefit-list>div+div,.contact-topic+.contact-topic{animation-range:entry 11% entry 63%}
+    .wall-card+.wall-card,.saas-card+.saas-card,.feature-tile+.feature-tile,.operating-principles li+li,.strategy-story-steps>li+li,.partnership-topic+.partnership-topic,.career-benefit-list>div+div,.contact-topic+.contact-topic,.selected-team-member+.selected-team-member{animation-range:entry 11% entry 63%}
     .wall-card+.wall-card+.wall-card,.saas-card+.saas-card+.saas-card,.feature-tile+.feature-tile+.feature-tile,.operating-principles li+li+li,.strategy-story-steps>li+li+li,.partnership-topic+.partnership-topic+.partnership-topic,.career-benefit-list>div+div+div,.contact-topic+.contact-topic+.contact-topic{animation-range:entry 17% entry 70%}
     .wall-card+.wall-card+.wall-card+.wall-card,.saas-card+.saas-card+.saas-card+.saas-card,.feature-tile+.feature-tile+.feature-tile+.feature-tile,.operating-principles li+li+li+li,.strategy-story-steps>li+li+li+li,.partnership-topic+.partnership-topic+.partnership-topic+.partnership-topic,.career-benefit-list>div+div+div+div,.contact-topic+.contact-topic+.contact-topic+.contact-topic{animation-range:entry 23% entry 77%}
    }
@@ -83,7 +83,7 @@
  }
  @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
  @media(forced-colors:active){
-  .feature-tile,.operating-principles li,.strategy-story-steps>li,.strategy-story-bottom,.career-benefit-list>div,.contact-topic-icon,.career-benefit-icon,.feature-symbol,.saas-index,.today-card,.ahead-card,.team-monogram{border:1px solid CanvasText}
+  .feature-tile,.operating-principles li,.strategy-story-steps>li,.strategy-story-bottom,.career-benefit-list>div,.contact-topic-icon,.career-benefit-icon,.feature-symbol,.saas-index,.today-card,.ahead-card,.team-monogram,.selected-team-member{border:1px solid CanvasText}
   :root{--bg:Canvas;--surface:Canvas;--raised:Canvas;--surface-raised:Canvas;--text:CanvasText;--muted:CanvasText;--dim:CanvasText;--ink:CanvasText;--accent:LinkText;--sun-core:LinkText;--gold:LinkText;--sand:CanvasText;--bronze:CanvasText;--haze:LinkText;--line:CanvasText;--line-soft:CanvasText;--control-border:ButtonText;--control-border-hover:Highlight;--focus:Highlight;--product-accent:LinkText;--world-deep:Canvas;--world:CanvasText;--world-tint:CanvasText;--tone-golden:Canvas;--tone-footer:Canvas;--tone-blue:Canvas;--danger:CanvasText;--danger-text:CanvasText;--danger-surface:Canvas;--notice-surface:Canvas;--notice-text:CanvasText;--elev-panel:Canvas;--grain:none;--light-field:none;--horizon:linear-gradient(CanvasText,CanvasText)}
   .founder-panel,.founder-booking,.career-form,.screenshot-stage,.product-story-image{border:1px solid CanvasText}
   .button,.menu-toggle,input,select,textarea{border:1px solid ButtonText!important;box-shadow:none!important}
