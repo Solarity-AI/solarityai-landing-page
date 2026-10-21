@@ -19,7 +19,7 @@ def web_window(product, screen, sizes, eager=False, low=False):
                       eager=eager, low=low, tall=tall))
 
 
-CARD_SIZES = '(max-width: 560px) calc(100vw - 72px), (max-width: 850px) calc(100vw - 96px), 400px'
+CARD_SIZES = '(max-width: 560px) calc(100vw - 72px), (max-width: 850px) 46vw, 400px'
 CHAPTER_SIZES = '(max-width: 850px) 92vw, 720px'
 
 
