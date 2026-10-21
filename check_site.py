@@ -188,7 +188,7 @@ for file,d in docs.items():
         members=re.findall(r'<li class="selected-team-member"[^>]*>(.*?)</li>',text,re.S)
         if len(members)!=6:errors.append(f'{rel}: the team roster must list the six approved members')
         for member in members:
-            if not re.search(r'<img class="team-portrait"[^>]*src="/assets/optimized/[a-z-]+-\d+\.[0-9a-f]{12}\.webp"[^>]*width="96" height="120"',member) and 'class="team-portrait team-monogram"' not in member:errors.append(f'{rel}: each team member needs a portrait or a monogram')
+            if not re.search(r'<img class="team-portrait"[^>]*src="/assets/optimized/[a-z-]+-\d+\.[0-9a-f]{12}\.webp"[^>]*width="480" height="600"',member) and 'class="team-portrait team-monogram"' not in member:errors.append(f'{rel}: each team member needs a portrait or a monogram')
     if rel=='index.html':
         # The web apps follow the consumer wall: three cards in map order, each linking to its chapter and its site.
         saas_cards=re.findall(r'<li class="saas-card" id="home-([\w-]+)">(.*?)</li>',text,re.S)

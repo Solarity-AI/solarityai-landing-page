@@ -32,7 +32,7 @@ ASSETS = ROOT / 'dist' / 'assets'
 SOURCE_ASSETS = ROOT / 'source-assets'
 DESTINATION = ASSETS / 'optimized'
 REPORT = ROOT / 'research-assets' / 'image-optimization.json'
-SETTINGS_VERSION = 9
+SETTINGS_VERSION = 10
 # Native-resolution screenshots (1284x2778), confirmed by the founder on 2026-10-19.
 # 260 (the smallest width every screen passes the edge check at) and 600 serve the small Home wall and Investors showroom windows on phones (measured 119 and 180 CSS px).
 SCREEN_WIDTHS = (260, 400, 600, 800, 1200)
@@ -46,8 +46,8 @@ EDGE_MAX_INSET = 32
 SUNRISE_WIDTHS = (480, 768, 1200, 1440, 1860, 2560, 3200, 3720)
 # The official Google Play badge (646 x 250 PNG) is drawn about 165 CSS px wide: 1x and 2x WebP, resized only.
 BADGE_WIDTHS = (181, 362)
-# Team portraits: the roster tile is 96 px (72 px on phones), so 1×–3× of each.
-PORTRAIT_WIDTHS = (120, 240, 360)
+# Team portraits: the roster card is at most 405 px wide (about 160 px on phones), up to 2× of each; never enlarged.
+PORTRAIT_WIDTHS = (320, 480, 640, 800)
 # Web app screenshots from the products' own sites (research-assets/saas-evidence.json).
 WEB_WIDTHS = (640, 960, 1440, 1920, 2560)
 WEBP_QUALITY = 86
@@ -87,7 +87,7 @@ DEFAULT_SIZES = {
     'hero': '100vw',
     'web': '(max-width: 850px) 92vw, 640px',
     'badge': '165px',
-    'portrait': '(max-width: 560px) 72px, 96px',
+    'portrait': '(max-width: 560px) calc(50vw - 30px), 405px',
 }
 _manifest: dict | None = None
 

@@ -28,18 +28,17 @@
   .selected-team { padding-block:var(--space-section); border-block:1px solid var(--line); }
   .selected-team-intro { display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr); align-items:end; gap:64px; margin-bottom:56px; }
   .selected-team-intro>p { max-width:39ch; margin:0; }
-  .selected-team-list { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); column-gap:64px; padding:0; margin:0; list-style:none; }
-  .selected-team-member { display:flex; align-items:center; gap:24px; min-width:0; border-top:1px solid var(--line); padding-block:30px; }
-  /* One 4:5 print per person, eyes on the 40% line (research-assets/team-portraits.json); a monogram holds the frame until a photo exists. */
-  .team-portrait { flex:none; display:block; width:96px; height:120px; border-radius:var(--radius-plate); background:var(--raised); box-shadow:var(--elev-object); object-fit:cover; }
-  .team-monogram { display:grid; place-items:center; background:var(--elev-panel); box-shadow:var(--elev-panel-edge); font-family:var(--font-display); font-size:var(--type-sub); letter-spacing:.02em; color:var(--sand); }
-  .selected-team-identity { min-width:0; }
-  .selected-team-member h3 { font-size:var(--type-section); line-height:1.3; font-weight:400; letter-spacing:-.02em; overflow-wrap:break-word; margin:0; }
-  /* The tile takes 120px of each column: names step down so the longest ("Batuhan Yücetürk") keeps one line. */
-  @media (min-width:851px) and (max-width:1150px) { .selected-team-member h3 { font-size:2.25rem; } }
-  @media (min-width:851px) and (max-width:980px) { .selected-team-member h3 { font-size:1.75rem; } }
-  /* Tablets: one name per row, so the print and the name share the full width. */
-  @media (max-width:850px) { .selected-team-list { grid-template-columns:1fr; } }
+  /* Each person is a lit print: the 4:5 portrait (eyes on the 40% line, research-assets/team-portraits.json),
+     then the name in the display face, the title and the profile. A monogram holds the frame until a photo exists. */
+  .selected-team-list { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px; padding:0; margin:0; list-style:none; }
+  .selected-team-member { display:flex; flex-direction:column; min-width:0; overflow:hidden; border-radius:var(--radius-panel); background:var(--elev-panel); box-shadow:var(--elev-panel-edge); }
+  .team-portrait { display:block; width:100%; height:auto; aspect-ratio:4/5; object-fit:cover; background:var(--raised); }
+  .team-monogram { display:grid; place-items:center; background:radial-gradient(70% 55% at 50% 38%,rgb(255 190 110/.12),transparent 70%),var(--raised); font-family:var(--font-display); font-size:var(--type-chapter); line-height:1; letter-spacing:.02em; color:var(--sand); }
+  .selected-team-identity { display:flex; flex:1; flex-direction:column; gap:8px; min-width:0; padding:20px 22px 18px; }
+  .selected-team-member h3 { font-family:var(--font-display); font-size:var(--type-sub); line-height:1.15; font-weight:400; letter-spacing:-.005em; overflow-wrap:break-word; margin:0; }
+  @media (max-width:1050px) { .selected-team-list { gap:16px; } .selected-team-identity { padding:16px 16px 14px; } }
+  @media (max-width:650px) { .selected-team-list { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+  @media (max-width:560px) { .selected-team-list { gap:12px; } .selected-team-identity { gap:6px; padding:12px 12px 10px; } .selected-team-member h3 { font-size:var(--type-deck); } }
   .operating-principles { padding-block:var(--space-section); }
   .operating-principles-heading { margin-bottom:56px; }
   /* Principles: numbered editorial panels; the headings share two lines so the paragraphs align. */
@@ -235,8 +234,6 @@
     .founder-section>div>p:not(.eyebrow) { font-size:var(--text-md); }
     .founder-sheet { padding:24px; }
     .selected-team-intro,.investor-evidence-heading { gap:36px; }
-    .selected-team-list { column-gap:36px; }
-    .selected-team-member h3 { font-size:2rem; }
     .strategy-story-intro,.investor-evidence-heading,.investor-evidence-body,.partnership-agenda,.investor-faq { grid-template-columns:1fr; gap:32px; }
     .strategy-story-intro>h2,.strategy-story-intro>p:not(.eyebrow),.strategy-story-intro>.text-link { grid-column:1; grid-row:auto; }
     .strategy-story-intro { gap:0; }
@@ -257,10 +254,6 @@
     .founder-section { grid-template-columns:1fr; gap:36px; }
     .founder-panel { width:100%; }
     .selected-team-intro { grid-template-columns:1fr; gap:24px; margin-bottom:36px; }
-    .selected-team-member { padding-block:24px; }
-    .selected-team-member h3 { font-size:1.6rem; }
-    .selected-team-member { gap:18px; }
-    .team-portrait { width:72px; height:90px; }
     .operating-principles>ol,.strategy-story-steps { grid-template-columns:1fr; gap:32px; }
     .operating-principles-heading { margin-bottom:36px; }
     .operating-principles h3,.strategy-story-steps h3 { max-width:38ch; }
@@ -270,13 +263,6 @@
     .founder-booking { grid-template-columns:1fr; gap:28px; }
     .founder-booking-action { max-width:400px; width:100%; }
   }
-  @media (max-width:560px) {
-    .selected-team-list { grid-template-columns:1fr; }
-    .selected-team-member h3 { font-size:1.9rem; }
-  }
-  /* Phones: the longest name ("Batuhan Yücetürk") keeps one line beside the 72px print. */
-  @media (max-width:420px) { .selected-team-member h3 { font-size:1.625rem; } }
-  @media (max-width:350px) { .selected-team-member h3 { font-size:1.375rem; } }
   @media (max-width:560px) {
     .platform-portfolio-link { font-size:var(--text-xs); gap:12px; }
     .module-num { font-size:var(--type-section); }
@@ -323,9 +309,10 @@
     .investor-opening-product-name { font-size:10pt; }
     .founder-panel { max-width:85mm; margin-bottom:18pt; break-inside:avoid; }
     .founder-sheet { padding:12pt; }
-    .selected-team-list { grid-template-columns:repeat(2,minmax(0,1fr)); gap:0 18pt; }
-    .selected-team-member { padding-block:12pt; break-inside:avoid; }
-    .selected-team-member h3 { font-size:14pt; }
+    .selected-team-list { grid-template-columns:repeat(3,minmax(0,1fr)); gap:10pt; }
+    .selected-team-member { break-inside:avoid; box-shadow:none; border:1px solid #999; }
+    .selected-team-identity { padding:6pt 8pt; }
+    .selected-team-member h3 { font-size:12pt; }
     .operating-principles>ol,.strategy-story-steps { grid-template-columns:1fr; }
     .strategy-story-bottom,.investor-commercial { display:block; margin-top:18pt; }
     .investor-evidence-vision { padding:18pt; margin-top:18pt; }
@@ -419,8 +406,9 @@
   .founder-record { display:grid; gap:14px; margin-block:4px 26px; max-width:47ch; }
   .founder-record p { margin:0; font-size:var(--text-base); }
   .founder-why { font-family:var(--font-display); font-size:var(--type-deck); color:var(--text); }
-  .team-detail { display:flex; flex-wrap:wrap; align-items:center; gap:0 16px; margin:6px 0 0; font-size:var(--text-sm); line-height:1.5; color:var(--muted); }
-  .team-detail a { display:inline-flex; align-items:center; gap:6px; min-height:24px; color:var(--gold); }
+  .team-detail { display:flex; flex:1; flex-direction:column; align-items:flex-start; gap:6px; margin:0; font-size:var(--text-sm); line-height:1.5; color:var(--muted); }
+  /* The profile sits at the card's foot, so the links line up across a row whatever the title's length. */
+  .team-detail a { display:inline-flex; align-items:center; gap:6px; min-height:24px; margin-top:auto; color:var(--gold); }
   @media (pointer:coarse) { .team-detail a { min-height:44px; } }
   /* Side-by-side summaries (Apps, Platform). The table scrolls inside its own frame on narrow screens. */
   .compare { padding-block:var(--space-section); }

@@ -10,7 +10,7 @@
     {%- for member in members -%}
     <li class="selected-team-member" data-member="{{ member['slug']|safe }}">
       {%- if member['portrait'] -%}
-      <img class="team-portrait" src="{{ member['portrait'] }}" alt="" width="96" height="120" sizes="(max-width: 560px) 72px, 96px" loading="lazy" decoding="async">
+      <img class="team-portrait" src="{{ member['portrait'] }}" alt="" width="480" height="600" sizes="(max-width: 560px) calc(50vw - 30px), (max-width: 650px) calc(50vw - 50px), (max-width: 1100px) calc(33vw - 40px), 405px" loading="lazy" decoding="async">
       {%- else -%}
       <span class="team-portrait team-monogram" aria-hidden="true">{{ member['initials'] }}</span>
       {%- endif -%}
