@@ -42,6 +42,11 @@
  /* About 75 characters per line in Manrope, whose 0 is wider than its average letter. */
  main p{max-width:var(--measure)}
  a{color:inherit;text-decoration:none;text-underline-offset:.25em}
+ /* A link inside running text is gold with a bronze underline: gold and --muted share one luminance (1.03:1),
+    so hue alone would hide it. Store pairs and download rows are action lists, not prose, and keep their own style. */
+ :is(p,dd,td,figcaption,small,span):not(.wall-stores,.showroom-stores,.press-downloads)>a:not([class]){color:var(--gold);text-decoration:underline;text-decoration-thickness:1px;text-decoration-color:var(--bronze);text-underline-offset:4px;transition:color var(--motion-fast),text-decoration-color var(--motion-fast)}
+ :is(p,dd,td,figcaption,small,span)>a:not([class]):is(:hover,:focus-visible){color:var(--text);text-decoration-color:currentColor}
+ :is(p,dd,td,figcaption,small,span)>a:not([class])>span[aria-hidden]{display:inline-block}
  button,input,select,textarea{font:inherit}
  button{cursor:pointer}
  button:disabled{cursor:wait}
