@@ -32,6 +32,9 @@
   .contact-booking > span { font-size: var(--text-2xs); color: var(--dim); }
   .contact-topics { display: grid; grid-template-columns: minmax(0, .75fr) minmax(0, 1.25fr); gap: clamp(32px, 6vw, 88px); padding-block: var(--space-section); }
   .contact-topics-heading h2 { max-width: 18ch; }
+  /* Topic links open a mail app; the address stays in reach for visitors without one. */
+  .contact-topics-heading .contact-topics-fallback { margin-top: 12px; }
+  .contact-address { color: var(--text); user-select: all; overflow-wrap: anywhere; }
   .contact-topics-heading p { max-width: 28ch; margin-top: 20px; font-size: var(--text-sm); line-height: 1.8; }
   .contact-topic-list { min-width: 0; }
   .contact-topic { display: grid; grid-template-columns: 48px minmax(0, 1fr) auto; align-items: center; gap: 22px; padding: 26px 0; border-block-end: 1px solid var(--line); min-height: 108px; }

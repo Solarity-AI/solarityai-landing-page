@@ -70,7 +70,8 @@ def founder_booking(btn, booking, email='ata.turhan@solarityai.com'):
     """The close: speak with the founder, beside the one reprise of the approved sunrise."""
     return str(render('visual_company_upgrade/founder_booking.html.j2',
                       booking_button=btn('View available times', booking, 'primary', True),
-                      email_button=btn('Email Ata', 'mailto:' + email, 'outline')))
+                      email_button=btn('Email Ata', 'mailto:' + email, 'outline'),
+                      email=email, copy=copy_button(email, 'booking-email-copy-status')))
 
 
 def operating_principles():
