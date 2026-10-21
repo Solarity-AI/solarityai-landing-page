@@ -30,6 +30,8 @@ SECURITY = {
     'referrer-policy': 'strict-origin-when-cross-origin',
     'x-frame-options': 'SAMEORIGIN',
 }
+# cf-cache-status values for a response served from Cloudflare's edge copy.
+EDGE_CACHED = {'HIT', 'REVALIDATED', 'STALE', 'UPDATING'}
 # Equivalent registrations of the same format differ between servers.
 TYPE_ALIASES = {'application/javascript': 'text/javascript', 'text/xml': 'application/xml',
                 'image/vnd.microsoft.icon': 'image/x-icon'}
@@ -200,7 +202,15 @@ def main(base: str) -> int:
         else:
             expect('immutable' not in actual, f'{path}: unfingerprinted file is cached as immutable')
         expect(body == (DIST / path.lstrip('/')).read_bytes(), f'{path}: served bytes differ from dist')
-        for name, value in {**SECURITY, **declared(path, rules)}.items():
+        expected = {**SECURITY, **declared(path, rules)}
+        stale = [name for name, value in expected.items() if headers.get(name) != value]
+        if stale and headers.get('cf-cache-status') in EDGE_CACHED:
+            # A file whose bytes did not change keeps the headers Cloudflare cached with it until that
+            # copy expires, even after a deploy changes _headers (for example a new inline-script hash
+            # in the CSP). Check what the deployment itself serves, and note the lag.
+            _, headers, _ = get(base, f'{path}?smoke-fresh')
+            edge_notes.add(f'cached files still carry the previous {", ".join(sorted(stale))} until their edge copies expire')
+        for name, value in expected.items():
             expect(headers.get(name) == value, f'{path}: {name} is {headers.get(name)!r}, expected {value!r}')
 
     if failures:
