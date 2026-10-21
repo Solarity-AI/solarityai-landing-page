@@ -63,7 +63,7 @@
     else if (hasControls(fullName)) errors.fullName = 'Enter your name on one line.';
     if (!isEmailAddress(input.email)) errors.email = 'Enter a valid email address, such as name@example.com.';
     if (trim(input.linkedin) && !isLinkedInProfile(input.linkedin)) errors.linkedin = 'Enter your LinkedIn profile URL, such as https://www.linkedin.com/in/your-name.';
-    if (trim(input.portfolio) && !parseWebUrl(input.portfolio)) errors.portfolio = 'Enter a complete website, portfolio, GitHub, or Linktree URL starting with https:// or http://.';
+    if (trim(input.portfolio) && !parseWebUrl(input.portfolio)) errors.portfolio = 'Enter a complete website, portfolio, GitHub, or Linktree address, such as github.com/your-name.';
     if (!ROLES.includes(input.position)) errors.position = 'Choose one of the listed positions.';
     if (!WORK_TYPES.includes(input.workType)) errors.workType = 'Choose your preferred work type.';
     if (String(input.note || '').length > NOTE_LIMIT) errors.note = 'Use ' + NOTE_LIMIT.toLocaleString('en-US') + ' characters or fewer for your note.';
