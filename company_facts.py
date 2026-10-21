@@ -22,7 +22,7 @@ WEB_APP_MILESTONES = []
 FOUNDER = {
     'bio': '',
     'why': '',          # one sentence: why he started Solarity AI
-    'linkedin': '',     # https://www.linkedin.com/in/...
+    'linkedin': 'https://www.linkedin.com/in/ataturhan/',  # founder: show it (2026-10-20)
 }
 
 # Team (recommendation 4), keyed by the approved names in visual_team.py. Fill only what each person
