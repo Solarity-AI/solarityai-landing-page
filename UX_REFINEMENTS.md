@@ -47,3 +47,13 @@ Implemented October 18, 2026. This pass makes the Site faster to act on and easi
     - The navigation used that prefetch.
     - No analytics or form request was sent.
   - Chrome for Android (138 and later) also prefetches after a 500 ms scroll pause. Desktop Chrome does not implement that heuristic, so it needs a real Android device to observe.
+
+## October 21, 2026 pass
+
+Six core jobs walked at 375 and 1440 px: investor or partner inquiry, applying for a role, getting an app, a Contact topic email, the press kit and booking a call. Three changes.
+
+- **Email without a mail app.** Contact's topic links sat 1,042 to 1,712 px below the only visible address on phones, and Investors' "Email Ata" showed no address. Both now say "No email app? Write to ata.turhan@solarityai.com." with the shared Copy button; the address is selectable in one tap (`user-select: all`).
+- **Apply starts at the first empty field.** The role links used to focus the role field, which sits below name and email. Focus and scroll now go to the first empty of name, email and work type, falling back to the role (`scripts/careers.js`).
+- **Portfolio help** says "https:// is added if you leave it out", which the field already does on blur; its error gives an example address instead of asking for a scheme.
+
+Already sound and unchanged: prefilled inquiry subjects, careers validation on blur with an error summary that keeps input, the double-submit guard and hand-off notice, keyboard menu, FAQ show/hide all, and in-page jumps clearing the header.
