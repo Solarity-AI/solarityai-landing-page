@@ -67,6 +67,8 @@
   .nav-link-label{display:block;font-family:var(--font-display);font-weight:400;font-size:1.75rem;line-height:1.15;letter-spacing:-.01em;color:var(--text)}
   .nav-link-description{display:block;font-family:var(--font-body);font-size:var(--type-meta);line-height:1.5;color:var(--muted);margin-top:6px;letter-spacing:0}
   .nav-link-arrow{display:block;color:var(--gold);font-size:var(--text-xl)}
+  /* The current page reads as current state, as the desktop hairline does. */
+  #site-nav>a[aria-current] .nav-link-label{color:var(--gold)}
   /* The open menu is the only scrolling surface; the page behind it stays put. */
   body.nav-open{overflow:hidden}
   .nav-enhanced .menu-toggle{display:flex}
