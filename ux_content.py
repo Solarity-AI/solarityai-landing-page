@@ -48,10 +48,10 @@ FAQ = [
     ),
     (
         "Can other teams use the web apps?",
-        '<p>Yes, at different stages. <a href="/platform#management-max">Management Max</a> '
-        'is open with a free plan for one app. <a href="/platform#engineering-max">Engineering Max</a> '
-        'is in private testing and <a href="/platform#marketing-max">Marketing Max</a> is in early access; '
-        'both take requests on their own sites. Mobile versions of all three are planned.</p>'
+        '<p>Yes. All three are in early access. <a href="/platform#management-max">Management Max</a> '
+        'has a free plan for one app; <a href="/platform#engineering-max">Engineering Max</a> and '
+        '<a href="/platform#marketing-max">Marketing Max</a> take requests on their own sites. '
+        'Mobile versions of all three are planned.</p>'
         '<p><a href="/platform">Explore the app factory</a> '
         'or <a href="/contact?type=Strategic+partner&amp;product=Web+apps#prepare-inquiry">'
         'discuss the web apps for your team</a>.</p>',
