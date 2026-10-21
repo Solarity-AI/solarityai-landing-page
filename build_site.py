@@ -83,7 +83,7 @@ def shell(path,title,desc,body):
     return str(render('build_site/shell.html.j2',path=path,full_title=full_title,desc=desc,body=body,app_store_id=app_store_id,
                       robots='noindex,follow' if path=='/404' else 'index,follow,max-image-preview:large',url=ORIGIN+public_path(path),origin=ORIGIN,
                       social_image=social_image,social_alt=social_alt,font_url=FONT_URL,display_font_url=DISPLAY_FONT_URL,
-                      header=site_header(path,NAV,btn),provenance=provenance(),footer=site_footer(EMAIL,path,BOOKING,long_date(PAGE_DATES[path]),PAGE_DATES[path]),json_ld=json.dumps(data)))
+                      header=site_header(path,NAV,btn),provenance=provenance(),footer=site_footer(EMAIL,path,BOOKING,long_date(PAGE_DATES[path]),PAGE_DATES[path]),json_ld=seo.script_json(data)))
 
 def page(name,**context):
     """A page body from templates/build_site/pages/, as a plain string for the page records."""

@@ -42,6 +42,16 @@ def defined_ids(value, found=None):
     return found
 
 
+class ScriptJsonTest(unittest.TestCase):
+    def test_no_string_can_close_the_script_element(self):
+        data = {'name': 'Ends </script><script>alert(1)</script>', 'text': 'iOS & Android'}
+        out = seo.script_json(data)
+        self.assertNotIn('<', out)
+        self.assertNotIn('>', out)
+        self.assertNotIn('&', out)
+        self.assertEqual(json.loads(out), data)
+
+
 class PageDatesTest(unittest.TestCase):
     def dates(self, pages, today):
         with mock.patch.object(seo, 'datetime') as clock:
