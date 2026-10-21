@@ -213,3 +213,10 @@ The homepage portfolio-to-platform relationship is explicitly conceptual company
     - **LinkedIn:** show it. `company_facts.FOUNDER['linkedin']` reveals it on Company, Contact and the vCard.
     - **Careers:** offer internships, and remove Business Development Manager.
     - **Web apps:** all three are labeled early access.
+
+## Team portraits (2026-10-21)
+
+- Source: the founder's Google Drive folder "Current Employees / Profile Photos": `Ali.png` (Ali Yılmaz), `eren-kurumsal-portre.png` (Eren Öz), `HasanErdemAk.png` (Hasan Ak), `Melik Kaplan.png` (Melik Kaplan) and `PHOTO-YUKSEK-COZUNURLUK.png` (Batuhan Yücetürk, confirmed by the founder the same day).
+- Treatment: a 4:5 crop per person, eyes on the 40% line and faces at a matching scale; no retouching. Checksums and crop boxes: `research-assets/team-portraits.json`.
+- Emrecan Özkan: no photo supplied; the roster shows his initials in the same frame. The earlier site's Ali Yılmaz and Hasan Ak portraits are retired to `source-assets/retired/team/`.
+- Titles and LinkedIn profiles: supplied by the founder in chat on 2026-10-21 (`TEAM_DETAILS` in `company_facts.py`). Melik Kaplan's profile URL is under his full name, Egehan Melik Kaplan; the site keeps the approved name. Batuhan Yücetürk: title only, no profile supplied.

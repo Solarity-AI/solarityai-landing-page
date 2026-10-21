@@ -46,6 +46,8 @@ EDGE_MAX_INSET = 32
 SUNRISE_WIDTHS = (480, 768, 1200, 1440, 1860, 2560, 3200, 3720)
 # The official Google Play badge (646 x 250 PNG) is drawn about 165 CSS px wide: 1x and 2x WebP, resized only.
 BADGE_WIDTHS = (181, 362)
+# Team portraits: the roster tile is 96 px (72 px on phones), so 1×–3× of each.
+PORTRAIT_WIDTHS = (120, 240, 360)
 # Web app screenshots from the products' own sites (research-assets/saas-evidence.json).
 WEB_WIDTHS = (640, 960, 1440, 1920, 2560)
 WEBP_QUALITY = 86
@@ -72,6 +74,11 @@ SOURCE_ROLES = {
     'management-max-sources.webp': 'web',
     'marketing-max-home.webp': 'web',
     'marketing-max-caption.webp': 'web',
+    'team/ali-yilmaz.webp': 'portrait',
+    'team/hasan-ak.webp': 'portrait',
+    'team/eren-oz.webp': 'portrait',
+    'team/batuhan-yuceturk.webp': 'portrait',
+    'team/melik-kaplan.webp': 'portrait',
 }
 
 DEFAULT_SIZES = {
@@ -80,6 +87,7 @@ DEFAULT_SIZES = {
     'hero': '100vw',
     'web': '(max-width: 850px) 92vw, 640px',
     'badge': '165px',
+    'portrait': '(max-width: 560px) 72px, 96px',
 }
 _manifest: dict | None = None
 
@@ -229,7 +237,7 @@ def ensure_optimized_images() -> dict:
                 if any(insets.values()):
                     crop = insets
                     image = image.crop((insets['left'], insets['top'], image.width - insets['right'], image.height - insets['bottom']))
-            widths = {'screen': SCREEN_WIDTHS, 'icon': ICON_WIDTHS, 'hero': SUNRISE_WIDTHS, 'web': WEB_WIDTHS, 'badge': BADGE_WIDTHS}[role]
+            widths = {'screen': SCREEN_WIDTHS, 'icon': ICON_WIDTHS, 'hero': SUNRISE_WIDTHS, 'web': WEB_WIDTHS, 'badge': BADGE_WIDTHS, 'portrait': PORTRAIT_WIDTHS}[role]
             if role == 'web':
                 # Always end at the screenshot's own width; never enlarge it.
                 widths = tuple(w for w in WEB_WIDTHS if w < image.width) + (image.width,)

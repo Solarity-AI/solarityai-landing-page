@@ -72,11 +72,29 @@ class SummariesTest(unittest.TestCase):
             self.assertIn('Solarity AI LLC, founded 2025', visual_record.company_facts('founder@example.com'))
 
 
+class TeamRosterTest(unittest.TestCase):
+    def test_every_member_has_a_portrait_or_monogram(self):
+        import visual_team
+        html = str(visual_team.selected_team())
+        self.assertEqual(html.count('class="selected-team-member"'), 6)
+        self.assertEqual(html.count('<img class="team-portrait"'), 5)
+        self.assertEqual(html.count('class="team-portrait team-monogram" aria-hidden="true">EÖ<'), 1)
+        self.assertIn('src="/assets/team/batuhan-yuceturk.webp"', html)
+
+    def test_every_member_has_a_title_and_only_supplied_profiles(self):
+        import visual_team
+        html = str(visual_team.selected_team())
+        self.assertEqual(html.count('class="team-role"'), 6)
+        self.assertEqual(html.count('href="https://www.linkedin.com/in/'), 5)
+        self.assertIn('Engineering manager and principal software engineer', html)
+
+
 class HiddenUntilSuppliedTest(unittest.TestCase):
     def test_empty_facts_render_nothing(self):
         with mock.patch.dict(visual_record.FOUNDER, {'bio': '', 'why': '', 'linkedin': ''}):
             self.assertEqual(visual_record.founder_record(), '')
-        self.assertEqual(visual_record.team_detail('Ali Yılmaz'), '')
+        with mock.patch.object(visual_record, 'TEAM_DETAILS', {}):
+            self.assertEqual(visual_record.team_detail('Ali Yılmaz'), '')
         self.assertEqual(visual_record.company_line(), '')
         self.assertEqual(visual_record.program_brief(), '')
 

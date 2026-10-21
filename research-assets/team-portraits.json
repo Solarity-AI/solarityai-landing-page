@@ -1,0 +1,143 @@
+{
+  "supplied": "2026-10-21, by the founder: Google Drive folder \"Current Employees / Profile Photos\" (id 1NaxrnbedCRNC-osbcQFWKeSj9e6aSMv3)",
+  "identity": "File names name Ali, Eren, Hasan (HasanErdemAk) and Melik Kaplan; the founder confirmed PHOTO-YUKSEK-COZUNURLUK.png is Batuhan Yücetürk on 2026-10-21. Emrecan Özkan had no photo in the folder and shows a monogram.",
+  "frame": "4:5 crop per person, eyes on the 40% line, faces at a matching scale; masters are WebP q95 at most 960 px wide (never enlarged). Hasan Ak's RGBA file was flattened on its own backdrop colour; Melik Kaplan's letterbox bars are outside the crop.",
+  "retired": "The earlier site's Ali Yılmaz and Hasan Ak portraits moved to source-assets/retired/team/.",
+  "portraits": {
+    "ali-yilmaz": {
+      "drive_file": "Ali.png",
+      "bytes": 2051835,
+      "sha256": "9155901d309408ba9a4f72e3f077fd2371a862cdb41a6deb3b19b3e6a911829d",
+      "source_size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "content_columns": [
+        0,
+        1254
+      ],
+      "crop_box": [
+        115,
+        0,
+        1115,
+        1250
+      ],
+      "master": "source-assets/team/ali-yilmaz.webp",
+      "master_size": [
+        960,
+        1200
+      ],
+      "master_bytes": 185582
+    },
+    "eren-oz": {
+      "drive_file": "eren-kurumsal-portre.png",
+      "bytes": 2163007,
+      "sha256": "7a3d89b1637f6fc064916462cc1914c09a03f9b5d504999b4d5b980bf0f4e9bf",
+      "source_size": [
+        1122,
+        1402
+      ],
+      "mode": "RGB",
+      "content_columns": [
+        0,
+        1122
+      ],
+      "crop_box": [
+        64,
+        60,
+        1056,
+        1300
+      ],
+      "master": "source-assets/team/eren-oz.webp",
+      "master_size": [
+        960,
+        1200
+      ],
+      "master_bytes": 194566
+    },
+    "hasan-ak": {
+      "drive_file": "HasanErdemAk.png",
+      "bytes": 1310417,
+      "sha256": "4e842d0d05dec68a9bb1b4ffa6e9de75e309fcb7ae62290d64348d121bb84359",
+      "source_size": [
+        869,
+        1116
+      ],
+      "mode": "RGBA",
+      "content_columns": [
+        0,
+        869
+      ],
+      "flattened_on": [
+        160,
+        155,
+        146
+      ],
+      "crop_box": [
+        35,
+        0,
+        835,
+        1000
+      ],
+      "master": "source-assets/team/hasan-ak.webp",
+      "master_size": [
+        800,
+        1000
+      ],
+      "master_bytes": 101794
+    },
+    "melik-kaplan": {
+      "drive_file": "Melik Kaplan.png",
+      "bytes": 2738499,
+      "sha256": "31e3c3adefa950a71eef7d4a24762923e8b5f82f3adf330b5057ef08eaa0bd4e",
+      "source_size": [
+        1536,
+        1058
+      ],
+      "mode": "RGB",
+      "content_columns": [
+        63,
+        1474
+      ],
+      "crop_box": [
+        400,
+        58,
+        1200,
+        1058
+      ],
+      "master": "source-assets/team/melik-kaplan.webp",
+      "master_size": [
+        800,
+        1000
+      ],
+      "master_bytes": 96636
+    },
+    "batuhan-yuceturk": {
+      "drive_file": "PHOTO-YUKSEK-COZUNURLUK.png",
+      "bytes": 2114841,
+      "sha256": "d074ef0df5476c46223473046e66629791ecc1828a7bb2eafcd6fcbd531d18ce",
+      "source_size": [
+        1122,
+        1402
+      ],
+      "mode": "RGB",
+      "content_columns": [
+        0,
+        1122
+      ],
+      "crop_box": [
+        25,
+        0,
+        1065,
+        1300
+      ],
+      "master": "source-assets/team/batuhan-yuceturk.webp",
+      "master_size": [
+        960,
+        1200
+      ],
+      "master_bytes": 189914
+    }
+  }
+}
