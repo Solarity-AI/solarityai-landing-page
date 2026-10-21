@@ -103,7 +103,7 @@ for a in APPS:
     features=feature_grid(a)
     pages['/apps/'+a['slug']]=(a['seo_title'],a['seo_description'],str(product_page(a,APPS,btn,contact,stores,status,features,app_breadcrumbs(a),related_apps(a,APPS))))
 
-pages['/platform']=('Engineering Max, Management Max, and Marketing Max','Engineering Max, Management Max, and Marketing Max: three Solarity AI web apps for engineering, managing, and marketing mobile products.',
+pages['/platform']=('Engineering Max, Management Max, Marketing Max','Engineering Max, Management Max, and Marketing Max: three Solarity AI web apps for engineering, managing, and marketing mobile products.',
                     page('platform',web_compare=web_compare,platform_opening=platform_opening,saas_chapters=saas_chapters,strategy_story=strategy_story))
 
 pages['/company']=('About Solarity AI and founder Ata Turhan','Solarity AI LLC was founded by Ata Turhan in Irving, Texas. Meet the founder and the team building self-improvement apps and web apps for mobile products.',
@@ -112,7 +112,7 @@ pages['/company']=('About Solarity AI and founder Ata Turhan','Solarity AI LLC w
 pages['/investors-partners']=('Invest in or partner with Solarity AI','Explore the Solarity AI product thesis and opportunities for investment, distribution, technology collaboration, and platform design partnerships.',
                               page('investors_partners',investor_opening=investor_opening,section_index=section_index,shipping_record=shipping_record,program_brief=program_brief,investor_evidence=investor_evidence,investor_faq=investor_faq,founder_booking=founder_booking,booking=BOOKING))
 
-pages['/careers']=('Careers at Solarity AI: remote engineering and marketing roles','Fully remote engineering and marketing roles at Solarity AI: full-time, part-time, or internship, with profit sharing. Help build focused AI-powered apps.',str(careers_page(btn)))
+pages['/careers']=('Solarity AI careers: remote engineering and marketing roles','Fully remote engineering and marketing roles at Solarity AI: full-time, part-time, or internship, with profit sharing. Help build focused AI-powered apps.',str(careers_page(btn)))
 
 pages['/press']=('Solarity AI press kit: descriptions, facts, and images','Approved descriptions, company facts, the Solarity AI sun mark, founder portrait, and app icons for articles, program pages, and event listings.',press_page(APPS,EMAIL,btn))
 
