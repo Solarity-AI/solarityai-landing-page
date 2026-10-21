@@ -23,13 +23,6 @@ CAREER_ROLES = (
         'Help connect products with the people they are built for. Share work '
         'that shows how you approach a message, an audience, or a campaign.',
     ),
-    (
-        'business-development-manager',
-        'Business Development Manager',
-        'Business development',
-        'Interested in building meaningful business relationships? Introduce '
-        'your experience and the opportunities you would like to explore.',
-    ),
 )
 
 POSTERS_URL = 'https://drive.google.com/drive/folders/1iOew815DHxi_TDBWtbpUp_433V-bamws'

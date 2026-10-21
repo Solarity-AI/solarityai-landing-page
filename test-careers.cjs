@@ -11,7 +11,8 @@ const application = {
 test('a complete application accepts Unicode names, email plus-addressing, and real profile URLs', () => {
   assert.deepEqual(validateCareerApplication(application), {});
   assert.deepEqual(validateCareerApplication({ ...application, fullName: '  Ada Lovelace  ', email: 'Person.Name@GMAIL.COM', linkedin: 'https://linkedin.com/in/ada?trk=profile', portfolio: 'http://example.com/work', position: 'marketing-specialist', workType: 'part-time' }), {});
-  assert.deepEqual(validateCareerApplication({ ...application, position: 'business-development-manager', workType: 'intern' }), {});
+  assert.deepEqual(validateCareerApplication({ ...application, position: 'full-stack-engineer', workType: 'intern' }), {});
+  assert.ok(validateCareerApplication({ ...application, position: 'business-development-manager' }).position);
 });
 
 test('required fields report every problem without accepting unknown role or work-type values', () => {
@@ -64,8 +65,7 @@ test('name and URL limits are enforced without silently truncating submitted inf
 test('role query context is allowlisted and unrelated or personal URL parameters have no effect', () => {
   assert.equal(readCareerRole('?role=full-stack-engineer'), 'full-stack-engineer');
   assert.equal(readCareerRole('?role=marketing-specialist&email=someone%40gmail.com&success=true'), 'marketing-specialist');
-  assert.equal(readCareerRole('?role=business-development-manager'), 'business-development-manager');
-  for (const query of ['', '?role=CEO', '?role=%3Cscript%3E', '?role=FULL-STACK-ENGINEER', '?success=true&name=Someone']) assert.equal(readCareerRole(query), '');
+  for (const query of ['', '?role=business-development-manager', '?role=CEO', '?role=%3Cscript%3E', '?role=FULL-STACK-ENGINEER', '?success=true&name=Someone']) assert.equal(readCareerRole(query), '');
 });
 
 test('role enhancement preserves modified clicks, other buttons, downloads, and new-tab targets', () => {

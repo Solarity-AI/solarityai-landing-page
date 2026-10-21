@@ -112,7 +112,7 @@ pages['/company']=('About Solarity AI and founder Ata Turhan','Solarity AI LLC w
 pages['/investors-partners']=('Invest in or partner with Solarity AI','Explore the Solarity AI product thesis and opportunities for investment, distribution, technology collaboration, and platform design partnerships.',
                               page('investors_partners',investor_opening=investor_opening,section_index=section_index,shipping_record=shipping_record,program_brief=program_brief,investor_evidence=investor_evidence,investor_faq=investor_faq,founder_booking=founder_booking,booking=BOOKING))
 
-pages['/careers']=('Careers at Solarity AI: remote engineering and marketing roles','Fully remote engineering, marketing, and business development roles at Solarity AI, with profit sharing. Apply to help build focused AI-powered mobile products.',str(careers_page(btn)))
+pages['/careers']=('Careers at Solarity AI: remote engineering and marketing roles','Fully remote engineering and marketing roles at Solarity AI: full-time, part-time, or internship, with profit sharing. Help build focused AI-powered apps.',str(careers_page(btn)))
 
 pages['/press']=('Solarity AI press kit: descriptions, facts, and images','Approved descriptions, company facts, the Solarity AI sun mark, founder portrait, and app icons for articles, program pages, and event listings.',press_page(APPS,EMAIL,btn))
 
