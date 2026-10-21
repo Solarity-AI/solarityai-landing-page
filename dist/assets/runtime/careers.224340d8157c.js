@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  const ROLES = ['full-stack-engineer', 'marketing-specialist', 'business-development-manager'];
+  const ROLES = ['full-stack-engineer', 'marketing-specialist'];
   const WORK_TYPES = ['full-time', 'part-time', 'intern'];
   const trim = (value) => String(value || '').trim();
   const hasControls = (value) => /[\u0000-\u001f\u007f]/.test(value);
