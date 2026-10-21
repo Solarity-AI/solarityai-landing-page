@@ -8,7 +8,7 @@ Clone the repository (`git clone https://github.com/Solarity-AI/solarityai-landi
 
 ## 2. Install the dependency
 
-Use Python 3.12+ and Node.js. This export was verified with Python 3.12.14, Pillow 12.3.0, and Node 24.19.0. Node is used only for tests; there are no npm packages to install.
+Use Python 3.12+ and Node.js. This export was verified with Python 3.12.14 and Node 24.19.0 (`.python-version`, `.nvmrc`); `requirements.txt` pins Pillow 13.0.0. Node is used only for tests; there are no npm packages to install.
 
 Windows PowerShell:
 
