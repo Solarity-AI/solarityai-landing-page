@@ -17,7 +17,7 @@ from visual_products import product_art, product_page
 from visual_catalog import portfolio_page, portfolio_wall
 from visual_company_upgrade import strategy_story, investor_evidence, investor_opening, operating_principles, founder_booking, section_index
 from visual_strategy import platform_opening
-from visual_record import shipping_record, founder_record, program_brief, company_line, record_summary, long_date, app_compare, web_compare, company_facts
+from visual_record import shipping_record, founder_record, program_brief, record_summary, long_date, app_compare, web_compare, company_facts
 from visual_press import press_page, press_kit_zip
 from visual_policies import accessibility_page, website_data_page
 import seo
@@ -83,7 +83,7 @@ def shell(path,title,desc,body):
     return str(render('build_site/shell.html.j2',path=path,full_title=full_title,desc=desc,body=body,app_store_id=app_store_id,
                       robots='noindex,follow' if path=='/404' else 'index,follow,max-image-preview:large',url=ORIGIN+public_path(path),origin=ORIGIN,
                       social_image=social_image,social_alt=social_alt,font_url=FONT_URL,display_font_url=DISPLAY_FONT_URL,
-                      header=site_header(path,NAV,btn),provenance=provenance(),footer=site_footer(EMAIL,path,BOOKING,long_date(PAGE_DATES[path]),PAGE_DATES[path]),json_ld=json.dumps(data)))
+                      header=site_header(path,NAV,btn),provenance=provenance(),footer=site_footer(EMAIL,path,BOOKING,long_date(PAGE_DATES[path]),PAGE_DATES[path]),json_ld=seo.script_json(data)))
 
 def page(name,**context):
     """A page body from templates/build_site/pages/, as a plain string for the page records."""

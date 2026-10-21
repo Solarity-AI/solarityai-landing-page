@@ -34,13 +34,12 @@ This repository holds the complete source of the public Solarity AI corporate si
 Run from the project root after changes:
 
 ```sh
-python build_site.py
-python check_site.py
-python -m unittest test_optimize_styles.py test_site_urls.py test_seo.py test_records.py
-node --test test-navigation.cjs test-contact.cjs test-gallery.cjs test-careers.cjs test-copy.cjs test-answers.cjs test-not-found.cjs
+python validate.py
 ```
 
-Use `python3` if that is the Python 3 command on the local machine. On Windows, run the same commands with `.venv\Scripts\python.exe`. Build and audit scripts read and write text as explicit UTF-8 with LF newlines, and `.gitattributes` keeps LF in checkouts, because script fingerprints and inline-script hashes use raw bytes. Keep `encoding='utf-8'` (and `newline='\n'` on writes) in any new file I/O. `check_site.py` also fails when a `<br>` that CSS hides at some widths would join two words (put a space before such breaks). It also fails when a same-site link uses ↗. ↗ marks links that leave the Site (other origins, `mailto:`). Same-site links use →, and in-page jumps use ↓. The export was checked with Python 3.12.14, Pillow 12.3.0, and Node 24.19.0. The third-party Python dependencies are Pillow, Jinja2 and MarkupSafe, pinned in `requirements.txt`. Browser testing and fresh Lighthouse results are separate from these static and behavior checks. Never claim measurements that were not run.
+`validate.py` runs, in order and stopping at the first failure: `python build_site.py`, `python check_site.py` (0 errors required), every `test_*.py` with `unittest`, and every `test-*.cjs` with `node --test`. CI (`site-checks.yml`) runs the same steps and also fails if the rebuilt build outputs differ from the committed ones. New test files are picked up by name, with no edits to the script, the docs or CI.
+
+Use `python3` if that is the Python 3 command on the local machine. On Windows, run the same commands with `.venv\Scripts\python.exe`. Build and audit scripts read and write text as explicit UTF-8 with LF newlines, and `.gitattributes` keeps LF in checkouts, because script fingerprints and inline-script hashes use raw bytes. Keep `encoding='utf-8'` (and `newline='\n'` on writes) in any new file I/O. `check_site.py` also fails when a `<br>` that CSS hides at some widths would join two words (put a space before such breaks). It also fails when a same-site link uses ↗. ↗ marks links that leave the Site (other origins, `mailto:`). Same-site links use →, and in-page jumps use ↓. The export was checked with Python 3.12.14 and Node 24.19.0; `.python-version` and `.nvmrc` record the majors (3.12, 24), and `requirements.txt` pins Pillow 13.0.0. The third-party Python dependencies are Pillow, Jinja2 and MarkupSafe, pinned in `requirements.txt`. Browser testing and fresh Lighthouse results are separate from these static and behavior checks. Never claim measurements that were not run.
 
 ## Preserve unless the founder requests a change
 

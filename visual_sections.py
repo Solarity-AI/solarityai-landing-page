@@ -80,9 +80,14 @@ def platform_map(apps, saas):
     return str(render('visual_sections/platform_map.html.j2', listed=listed, nodes=nodes, saas=saas, note=MAP_NOTE))
 
 
+# The founder's published portrait files, shared by every page that shows him at a photo size.
+FOUNDER_PORTRAIT = {'src': '/assets/brand/ata-turhan-640.742556487789.webp',
+                    'srcset': '/assets/brand/ata-turhan-320.db6d27d9b9b3.webp 320w, /assets/brand/ata-turhan-640.742556487789.webp 640w, /assets/brand/ata-turhan-original.webp 800w'}
+
+
 def founder_portrait(compact=False):
     """Official company portrait, uncropped and with reserved square geometry."""
-    return str(render('visual_sections/founder_portrait.html.j2', compact=compact))
+    return str(render('visual_sections/founder_portrait.html.j2', compact=compact, portrait=FOUNDER_PORTRAIT))
 
 
 def founder_card():

@@ -62,6 +62,12 @@ def plain(markup):
 DATES_FILE = Path(__file__).resolve().parent / 'research-assets' / 'page-dates.json'
 
 
+def script_json(data):
+    """JSON for an inline <script> block. "<", ">" and "&" become JSON unicode escapes, so no string in
+    the data can close the script element early (for example "</script>"); JSON readers decode them back."""
+    return json.dumps(data).replace('<', r'\u003c').replace('>', r'\u003e').replace('&', r'\u0026')
+
+
 def page_dates(pages):
     """Last content change per route. A route's date moves only when its body changes, so rebuilding
     unchanged content is byte-identical on any day (CI compares the rebuild with the committed dist)."""

@@ -59,11 +59,20 @@ jobs:
               { echo "### Preview: $PREVIEW"; echo; tail -n 2 smoke.txt; } >> "$GITHUB_STEP_SUMMARY"
               exit 0
             fi
-            echo "Attempt $attempt: preview not ready or not matching yet"
+            # 404 means Cloudflare has no deployment at this alias yet (or its build failed);
+            # 200 means the preview exists but does not match this commit's dist/ yet.
+            status=$(curl -s -o /dev/null -w '%{http_code}' --max-time 20 "$PREVIEW/" || echo 000)
+            echo "Attempt $attempt: $PREVIEW/ answered HTTP $status; preview not ready or not matching yet"
             sleep 30
           done
           cat smoke.txt
-          { echo "### Preview failed the smoke test: $PREVIEW"; echo; echo '```'; tail -n 40 smoke.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+          if [ "$status" = "404" ] || [ "$status" = "000" ]; then
+            reason="Cloudflare never served a preview here (HTTP $status). Check the Cloudflare Pages check on this PR: its build likely failed, and pushing the commit again retries it."
+          else
+            reason="The preview answers (HTTP $status) but does not match this commit's dist/."
+          fi
+          echo "$reason"
+          { echo "### Preview failed the smoke test: $PREVIEW"; echo; echo "$reason"; echo; echo '```'; tail -n 40 smoke.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
           exit 1
 
       - name: Lighthouse (mobile)

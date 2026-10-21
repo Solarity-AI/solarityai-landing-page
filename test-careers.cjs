@@ -1,6 +1,6 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
-const { readCareerRole, parseWebUrl, isLinkedInProfile, isEmailAddress, validateCareerApplication, isPlainActivation, withScheme } = require('./scripts/careers.js');
+const { readCareerRole, parseWebUrl, isLinkedInProfile, isEmailAddress, validateCareerApplication, isPlainActivation, withScheme, firstOpenField, isRepeatSubmit } = require('./scripts/careers.js');
 
 const application = {
   fullName: 'Çağrı O’Neil', email: 'person.name+careers@gmail.com',
@@ -106,4 +106,24 @@ test('the optional note is accepted up to 1,000 characters', () => {
   assert.equal(validateCareerApplication(base).note, undefined);
   assert.equal(validateCareerApplication({ ...base, note: 'x'.repeat(1000) }).note, undefined);
   assert.equal(validateCareerApplication({ ...base, note: 'x'.repeat(1001) }).note, 'Use 1,000 characters or fewer for your note.');
+});
+
+test('a role link starts the applicant at the first empty field, then the role itself', () => {
+  const field = (value) => ({ value });
+  const fields = { fullName: field(''), email: field(''), workType: field(''), position: field('full-stack-engineer') };
+  assert.equal(firstOpenField(fields), fields.fullName);
+  fields.fullName.value = 'Ada Lovelace';
+  assert.equal(firstOpenField(fields), fields.email);
+  fields.email.value = '  ';
+  assert.equal(firstOpenField(fields), fields.email, 'whitespace counts as empty');
+  fields.email.value = 'ada@example.com';
+  assert.equal(firstOpenField(fields), fields.workType);
+  fields.workType.value = 'full-time';
+  assert.equal(firstOpenField(fields), fields.position);
+});
+
+test('a repeat submit within 10 seconds of the hand-off is ignored, and allowed after', () => {
+  assert.equal(isRepeatSubmit(false, 0, 5000), false, 'no hand-off yet');
+  assert.equal(isRepeatSubmit(true, 1000, 1000 + 9999), true);
+  assert.equal(isRepeatSubmit(true, 1000, 1000 + 10000), false, 'the provider may have failed to load: let the applicant retry');
 });

@@ -8,17 +8,14 @@ Clone the repository (`git clone https://github.com/Solarity-AI/solarityai-landi
 
 ## 2. Install the dependency
 
-Use Python 3.12+ and Node.js. This export was verified with Python 3.12.14, Pillow 12.3.0, and Node 24.19.0. Node is used only for tests; there are no npm packages to install.
+Use Python 3.12+ and Node.js. This export was verified with Python 3.12.14 and Node 24.19.0 (`.python-version`, `.nvmrc`); `requirements.txt` pins Pillow 13.0.0. Node is used only for tests; there are no npm packages to install.
 
 Windows PowerShell:
 
 ```powershell
 py -3 -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
-.\.venv\Scripts\python.exe build_site.py
-.\.venv\Scripts\python.exe check_site.py
-.\.venv\Scripts\python.exe -m unittest test_optimize_styles.py test_site_urls.py test_seo.py test_records.py
-node --test test-navigation.cjs test-contact.cjs test-gallery.cjs test-careers.cjs test-copy.cjs test-answers.cjs test-not-found.cjs
+.\.venv\Scripts\python.exe validate.py
 ```
 
 macOS or Linux:
@@ -27,10 +24,7 @@ macOS or Linux:
 python3 -m venv .venv
 . .venv/bin/activate
 python -m pip install -r requirements.txt
-python build_site.py
-python check_site.py
-python -m unittest test_optimize_styles.py test_site_urls.py test_seo.py test_records.py
-node --test test-navigation.cjs test-contact.cjs test-gallery.cjs test-careers.cjs test-copy.cjs test-answers.cjs test-not-found.cjs
+python validate.py
 ```
 
 Pillow must support WebP and AVIF to regenerate every image format. Existing optimized assets are included, so no external image downloads are needed. If the exact dependency pin is unavailable on your platform, use a compatible Pillow build with both encoders and rerun validation.
