@@ -23,7 +23,7 @@ def attributed(url, campaign, apple_provider=''):
         if not apple_provider:
             return url
         tags = [('pt', apple_provider), ('ct', 'solarityai-' + campaign), ('mt', '8')]
-    elif host.endswith('play.google.com') or host.endswith('.solarityai.com'):
+    elif host == 'play.google.com' or host.endswith('.solarityai.com'):
         tags = [('utm_source', 'solarityai.com'), ('utm_medium', 'website'), ('utm_campaign', campaign)]
     if not tags:
         return url

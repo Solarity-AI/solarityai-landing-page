@@ -58,7 +58,8 @@ class AttributedLinkTests(unittest.TestCase):
                          self.apple+'?pt=123456&ct=solarityai-store-badge&mt=8')
 
     def test_other_hosts_are_untouched(self):
-        for url in ('mailto:ata.turhan@solarityai.com','https://calendar.google.com/x','/apps/looks-max/','https://github.com/Solarity-AI'):
+        for url in ('mailto:ata.turhan@solarityai.com','https://calendar.google.com/x','/apps/looks-max/','https://github.com/Solarity-AI',
+                    'https://notplay.google.com/store','https://evilsolarityai.com/'):
             self.assertEqual(attributed(url,'footer'),url)
 
 
