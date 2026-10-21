@@ -32,11 +32,11 @@ ASSETS = ROOT / 'dist' / 'assets'
 SOURCE_ASSETS = ROOT / 'source-assets'
 DESTINATION = ASSETS / 'optimized'
 REPORT = ROOT / 'research-assets' / 'image-optimization.json'
-SETTINGS_VERSION = 10
+SETTINGS_VERSION = 11
 # Native-resolution screenshots (1284x2778), confirmed by the founder on 2026-10-19.
 # 260 (the smallest width every screen passes the edge check at) and 600 serve the small Home wall and Investors showroom windows on phones (measured 119 and 180 CSS px).
 SCREEN_WIDTHS = (260, 400, 600, 800, 1200)
-ICON_WIDTHS = (48, 96, 144, 224, 320)
+ICON_WIDTHS = (48, 96, 144, 224, 320, 400)
 EDGE_BAND = 8
 EDGE_LIMIT = 40
 # Trim against a stricter limit so resampled derivatives still pass the 40-level check.
