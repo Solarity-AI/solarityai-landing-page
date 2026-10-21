@@ -35,9 +35,9 @@
   .operating-principles-heading { margin-bottom:56px; }
   /* Principles: numbered editorial panels; the headings share two lines so the paragraphs align. */
   .operating-principles>ol { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:clamp(14px,1.6vw,22px); padding:0; margin:0; list-style:none; counter-reset:principle; }
-  .operating-principles li { counter-increment:principle; padding:clamp(26px,2.6vw,36px); border-radius:var(--radius-panel); background:var(--elev-panel); box-shadow:var(--elev-panel-edge); }
+  .operating-principles li { counter-increment:principle; padding:var(--pad-panel); border-radius:var(--radius-panel); background:var(--elev-panel); box-shadow:var(--elev-panel-edge); }
   .operating-principles li::before { content:counter(principle,decimal-leading-zero); display:block; margin-bottom:26px; font-family:var(--font-display); font-size:var(--type-section); line-height:1; color:var(--sun-core); }
-  .operating-principles h3 { margin:0 0 18px; min-height:2.8em; font-size:1.35rem; line-height:1.4; font-weight:500; max-width:26ch; }
+  .operating-principles h3 { margin:0 0 18px; min-height:2.8em; font-size:var(--text-xl); line-height:1.4; font-weight:500; max-width:26ch; }
   .operating-principles li>p { margin:0; font-size:var(--text-md); max-width:42ch; }
 
   /* A semantic strategy illustration, explicitly separate from deployed architecture. */
@@ -82,7 +82,7 @@
   .strategy-story-intro>.text-link { grid-column:2; justify-self:start; }
   /* The three steps read as one track: lit panels joined by a horizon line at the sun dot. */
   .strategy-story-steps { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:clamp(18px,2vw,28px); list-style:none; padding:0; margin:0; }
-  .strategy-story-steps>li { position:relative; padding:clamp(26px,2.6vw,36px) clamp(22px,2.4vw,32px); border-radius:var(--radius-panel); background:var(--elev-panel); box-shadow:var(--elev-panel-edge); }
+  .strategy-story-steps>li { position:relative; padding:var(--pad-panel); border-radius:var(--radius-panel); background:var(--elev-panel); box-shadow:var(--elev-panel-edge); }
   .strategy-story-steps>li::before { content:""; display:block; width:10px; height:10px; margin-bottom:26px; border-radius:50%; background:var(--sun-core); box-shadow:0 0 16px var(--glow-sun); }
   .strategy-story-steps>li:not(:last-child)::after { content:""; position:absolute; top:calc(clamp(26px,2.6vw,36px) + 5px); left:calc(100% - 6px); width:calc(clamp(18px,2vw,28px) + 12px); height:1px; background:var(--horizon); }
   .strategy-story-steps h3 { font-size:var(--text-xl); line-height:1.4; font-weight:500; margin:0 0 18px; }
@@ -153,9 +153,9 @@
   .partnership-topic-list { list-style:none; padding:0; margin:0; border-bottom:1px solid var(--line); }
   .partnership-topic { display:grid; grid-template-columns:minmax(0,1fr) 22px; gap:24px; padding-block:30px; border-top:1px solid var(--line); text-decoration:none; }
   .partnership-topic-copy { display:flex; flex-direction:column; min-width:0; gap:14px; }
-  .partnership-topic-copy strong { color:var(--text); font-size:1.35rem; font-weight:500; line-height:1.35; }
+  .partnership-topic-copy strong { color:var(--text); font-size:var(--text-xl); font-weight:500; line-height:1.35; }
   .partnership-topic-detail { color:var(--muted); font-size:var(--text-md); max-width:52ch; }
-  .partnership-topic-arrow { color:var(--accent); font-size:1.35rem; transition:transform var(--motion-fast) var(--motion-ease); }
+  .partnership-topic-arrow { color:var(--accent); font-size:var(--text-xl); transition:transform var(--motion-fast) var(--motion-ease); }
   .partnership-topic:hover strong,.partnership-topic:focus-visible strong { color:var(--accent); }
   .partnership-topic:hover .partnership-topic-arrow { transform:translateX(4px); }
   .investor-faq { display:grid; grid-template-columns:minmax(0,.72fr) minmax(0,1.28fr); gap:64px; padding-block:var(--space-section); }
@@ -346,7 +346,7 @@
   .ledger-print { width:72px; height:90px; object-fit:cover; object-position:50% 22%; border-radius:var(--radius-control); padding:4px; background:var(--raised); box-shadow:var(--elev-object); }
   /* Today is lit evidence; Ahead is drawn in outline and never brighter. */
   .today-ahead { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px; margin-top:clamp(28px,4vw,48px); }
-  .today-card, .ahead-card { display:grid; align-content:start; gap:14px; padding:clamp(24px,3vw,40px); border-radius:var(--radius-panel); }
+  .today-card, .ahead-card { display:grid; align-content:start; gap:14px; padding:var(--pad-panel); border-radius:var(--radius-panel); }
   .today-card { background:radial-gradient(60% 70% at var(--key-x) 0,rgb(255 190 110/.10),transparent 70%),var(--elev-panel); box-shadow:var(--elev-panel-edge); }
   .ahead-card { border:1px dashed var(--bronze); background:transparent; }
   .today-card h3, .ahead-card h3 { font-family:var(--font-display); font-weight:400; font-size:var(--type-sub); }

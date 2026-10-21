@@ -20,7 +20,7 @@
   .career-section-heading h2 br { display: none; }
   .career-section-heading .eyebrow { flex: none; margin: 0; }
   .career-benefit-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(14px, 1.6vw, 22px); margin: 0; }
-  .career-benefit-list > div { padding: clamp(24px, 2.4vw, 32px); border-radius: var(--radius-panel); background: var(--elev-panel); box-shadow: var(--elev-panel-edge); }
+  .career-benefit-list > div { padding: var(--pad-panel); border-radius: var(--radius-panel); background: var(--elev-panel); box-shadow: var(--elev-panel-edge); }
   .career-benefit-list dt { display: grid; gap: 22px; color: var(--text); font-size: var(--text-base); font-weight: 500; line-height: 1.5; margin-block-end: 13px; }
   .career-benefit-icon { display: grid; place-items: center; width: 48px; height: 48px; border-radius: var(--radius-plate); color: var(--sun-core); background: rgb(255 207 122/.07); box-shadow: inset 0 0 0 1px var(--line); }
   .career-benefit-icon svg { width: 24px; height: 24px; }

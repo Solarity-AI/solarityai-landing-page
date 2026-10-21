@@ -107,7 +107,7 @@
 .feature-section-heading{margin-bottom:36px}
 .illustrated-features{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,1.6vw,22px)}
 /* Each feature is a panel in the product's world light: a glowing icon tile, a quiet numeral, the copy. */
-.feature-tile{position:relative;isolation:isolate;overflow:hidden;min-width:0;padding:clamp(24px,2.4vw,34px);border-radius:var(--radius-panel);background:var(--elev-panel);box-shadow:var(--elev-panel-edge)}
+.feature-tile{position:relative;isolation:isolate;overflow:hidden;min-width:0;padding:var(--pad-panel);border-radius:var(--radius-panel);background:var(--elev-panel);box-shadow:var(--elev-panel-edge)}
 .feature-tile::before{content:"";position:absolute;z-index:-1;pointer-events:none;inset:-45% 30% 35% -30%;background:radial-gradient(closest-side,color-mix(in srgb,var(--world) 36%,transparent),transparent)}
 .feature-index{position:absolute;top:clamp(22px,2.2vw,30px);right:clamp(22px,2.4vw,32px);font-family:var(--font-display);font-size:var(--type-sub);line-height:1;color:var(--world-tint);opacity:.6}
 .feature-symbol{display:grid;place-items:center;width:52px;height:52px;margin-bottom:28px;border-radius:var(--radius-plate);color:var(--world-tint);background:color-mix(in srgb,var(--world) 24%,transparent);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--world-tint) 24%,transparent)}
