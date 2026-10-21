@@ -68,7 +68,7 @@ function harness({ readyState = 'loading', mobile = true, header = true, pathnam
     documentElement: { classList: classList() },
     querySelector(selector) {
       lookups.push(selector);
-      if (headerAvailable && hero && selector === '.vision-hero') return heroElement;
+      if (headerAvailable && hero && selector === '.vision-story') return heroElement;
       return headerAvailable && header && selector === '.menu-toggle' ? toggle : null;
     },
     getElementById(id) {
@@ -308,11 +308,11 @@ test('a restored scroll position or #fragment on Home starts with the solid head
   }
 });
 
-test('the header turns solid once the hero passes under it, and floats again at the top', () => {
+test('the header turns solid once the hero credits reach it, and floats again at the top', () => {
   const view = harness({ pathname: '/' });
   view.ready();
   assert.equal(view.observers.length, 1);
-  assert.equal(view.observers[0].options.rootMargin, '-220px 0px 0px 0px');
+  assert.equal(view.observers[0].options.rootMargin, '-88px 0px 0px 0px');
   view.observers[0].report(false);
   assert.equal(view.document.documentElement.classList.contains('header-over-hero'), false);
   view.observers[0].report(true);
@@ -332,5 +332,5 @@ test('interior pages never observe the hero', () => {
   const view = harness({ pathname: '/investors-partners/' });
   view.ready();
   assert.equal(view.observers.length, 0);
-  assert.equal(view.lookups.includes('.vision-hero'), false);
+  assert.equal(view.lookups.includes('.vision-story'), false);
 });
