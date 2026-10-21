@@ -26,16 +26,17 @@
 
   function initializeHeroHeader() {
     if (!onHome) return;
-    const hero = document.querySelector('.vision-hero');
-    if (!hero || typeof window.IntersectionObserver !== 'function') {
+    const story = document.querySelector('.vision-story');
+    if (!story || typeof window.IntersectionObserver !== 'function') {
       root.classList.remove('header-over-hero');
       return;
     }
-    // Solid before the hero's bottom credits row (about 130px) slides under the 88px bar.
+    // Solid as soon as the hero's credits row (130px on desktop, nearly 300px on phones)
+    // reaches the 88px bar: the story above it is the only part the bar may float over.
     const observer = new window.IntersectionObserver((entries) => {
       entries.forEach((entry) => root.classList.toggle('header-over-hero', entry.isIntersecting));
-    }, { rootMargin: '-220px 0px 0px 0px' });
-    observer.observe(hero);
+    }, { rootMargin: '-88px 0px 0px 0px' });
+    observer.observe(story);
   }
 
   function initializeNavigation() {
