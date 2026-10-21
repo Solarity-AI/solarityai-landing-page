@@ -192,6 +192,9 @@
   .founder-booking h2 { color:var(--text); }
   .founder-booking p:not(.eyebrow) { color:var(--muted); font-size:var(--text-md); margin:24px 0 0; max-width:49ch; }
   .founder-booking-action .button { width:100%; justify-content:space-between; background:var(--sun-core); border-color:var(--sun-core); color:var(--ink); box-shadow:inset 0 1px 0 rgb(255 255 255/.45); }
+  /* "Email Ata" opens a mail app; the address and Copy stay in reach without one. */
+  .booking-fallback { margin-top:16px; font-size:var(--text-sm); color:var(--muted); }
+  .booking-fallback .contact-address { color:var(--text); user-select:all; overflow-wrap:anywhere; }
   .founder-booking-action .button:hover { background:var(--haze); border-color:var(--haze); box-shadow:inset 0 1px 0 rgb(255 255 255/.45),0 8px 30px rgb(236 160 80/.30); }
   .founder-booking .founder-booking-action>p { font-size:var(--text-xs); margin-top:16px; max-width:43ch; }
 
