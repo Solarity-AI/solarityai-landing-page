@@ -176,6 +176,8 @@
 /* The web apps: three across on desktop, stacked on phones with a shorter window. */
 @media(max-width:1100px){.saas-heading{gap:24px 48px}.saas-grid{gap:16px}}
 @media(max-width:850px){.saas-heading{grid-template-columns:minmax(0,1fr)}.saas-grid{grid-template-columns:minmax(0,1fr);gap:20px}.saas-card .web-shot{aspect-ratio:16/9}}
+/* Tablets: the screen sits beside the name, so three stacked cards no longer run to 1,800px. */
+@media(min-width:561px) and (max-width:850px){.saas-card-link{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);align-items:center;gap:22px}.saas-card .web-shot{aspect-ratio:16/10}}
 @media(forced-colors:active){.saas-card{border:1px solid CanvasText}.web-window{border:1px solid CanvasText}}
 /* Hero proof (program readiness): what is live, in the first screen at every width. */
 .vision-description{max-width:42ch}
