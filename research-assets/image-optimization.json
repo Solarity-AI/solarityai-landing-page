@@ -1,5 +1,5 @@
 {
-  "settings_version": 10,
+  "settings_version": 11,
   "source_hashes": {
     "looks-max-screen-4.webp": "81cac84815b71ada75480170e88b18858c84ddfe276076250a03e1e1b06af125",
     "looks-max-detail-screen-6.webp": "b2f9afdfd41b8cf591a9c39361cc4d7dc60bb6ecbb71fc2e5baccc2715150ae8",
@@ -603,6 +603,14 @@
           "bytes": 5232,
           "sha256": "32f68b46806d31d3707b172d08604506418a878bf7cdab1b24f6c1c317ee811e",
           "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/looks-max-icon-400.e8e9d62efe57.webp",
+          "width": 400,
+          "height": 400,
+          "bytes": 5638,
+          "sha256": "e8e9d62efe57b70b74327a00b478c8b417c5d9f1fb0d5e261a9162f1ad285351",
+          "mime": "image/webp"
         }
       ],
       "avif": []
@@ -655,6 +663,14 @@
           "height": 320,
           "bytes": 12432,
           "sha256": "789d4f7ee8e2f378a793bc3cfef53dbdef9d5791ff4ae9a347c2cac4c4f45b00",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/iq-max-icon-400.cddb6fd7884e.webp",
+          "width": 400,
+          "height": 400,
+          "bytes": 13922,
+          "sha256": "cddb6fd7884eaeb84f559971399deeb2ba45e02f18515d44a3c5575abcc7e5d8",
           "mime": "image/webp"
         }
       ],
@@ -709,6 +725,14 @@
           "bytes": 2722,
           "sha256": "9069b7496fbb594ee2e3639e4102d19b9a3f338e7f18a2ef54a9de6168d4b57e",
           "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/sleep-max-icon-400.7002a0651b19.webp",
+          "width": 400,
+          "height": 400,
+          "bytes": 3158,
+          "sha256": "7002a0651b19f25d3131f35cd966bcfc5f1ef6c7363bc136ea9b5969a42f0201",
+          "mime": "image/webp"
         }
       ],
       "avif": []
@@ -761,6 +785,14 @@
           "height": 320,
           "bytes": 12422,
           "sha256": "f16c5d36921053e69f0968bdedd85678d6e521b6ec799363d062b7a8ea88941a",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/fitness-max-icon-400.a5ec14e72f7a.webp",
+          "width": 400,
+          "height": 400,
+          "bytes": 14020,
+          "sha256": "a5ec14e72f7a014b715149d360d09b6f106ee5d6a55180ea2c90393794fbb271",
           "mime": "image/webp"
         }
       ],

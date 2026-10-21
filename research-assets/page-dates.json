@@ -1,11 +1,11 @@
 {
   "/": {
-    "sha": "d1c840faf6da5564",
-    "date": "2026-10-20"
+    "sha": "ed5abb5311640e6c",
+    "date": "2026-10-21"
   },
   "/apps": {
-    "sha": "a7b0be4a6d5df7df",
-    "date": "2026-10-20"
+    "sha": "3005eb805252560f",
+    "date": "2026-10-21"
   },
   "/apps/looks-max": {
     "sha": "6c134d9bea2a6758",
@@ -28,20 +28,20 @@
     "date": "2026-10-20"
   },
   "/company": {
-    "sha": "0ad87d1b62aa73ce",
+    "sha": "2a3c9645f9ab256c",
     "date": "2026-10-21"
   },
   "/investors-partners": {
-    "sha": "292f790be561d05f",
+    "sha": "bb04a710b43a46a8",
     "date": "2026-10-21"
   },
   "/careers": {
-    "sha": "eb69e3816b324bd1",
+    "sha": "ff300376edef15c8",
     "date": "2026-10-21"
   },
   "/press": {
-    "sha": "1010bfacb4ca5701",
-    "date": "2026-10-20"
+    "sha": "b10f07025e94fbef",
+    "date": "2026-10-21"
   },
   "/accessibility": {
     "sha": "df0a81025e05ac58",

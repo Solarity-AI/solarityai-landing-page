@@ -274,6 +274,11 @@ All values below are tokens on `:root` in `design/system/foundation.css`. `check
   - **Mobile menu.** The current page's label is gold, like the desktop hairline.
   - **Policy headings** on /accessibility and /website-data use `--type-sub` at 500; they were 18 px, the body size.
   - **Arrow spacing.** "App Store listing ↗" has its 6 px gap (it was 0), and "Four apps in twelve weeks ↓" matches the 20 px of the link beside it.
+- **Image sharpness pass (October 21, 2026).** Declared `sizes` checked against drawn widths at 375, 768, 1024 and 1440, and each image's largest file against 2× its drawn width.
+  - The founder portrait (Company, Home strip, Careers) adds the published 800 px original to its srcset; Company draws it at 440 px.
+  - Press app icons gain a 400 px variant (the source's full size) and a `sizes` hint matching their tile (67–266 px). Sharper icons need larger masters from the founder.
+  - Press screens declare their grid width, with tall app screens hinted at the narrower width they draw at inside square frames.
+  - Web app cards declare 46vw from 561 to 850 px, where round 1's tablet layout draws them at about 330 px (they still asked for 672).
 - **Team portraits (October 21, 2026).** The Company roster gains one 4:5 print per person, from the founder's Drive folder (`research-assets/team-portraits.json`).
   - Crops put every pair of eyes on the 40% line at a matching face scale. Masters (`source-assets/team/<slug>.webp`, at most 960 px) feed a `portrait` role in `optimize_images.py` at 120, 240 and 360 px, about 5–11 KB each; the build publishes only the derivatives.
   - Redesigned the same day as a grid of portrait cards: three per row (two up to 650 px), each a lit panel (`--elev-panel`, `--radius-panel`) with the full 4:5 print, the name in the display face at `--type-sub` (`--type-deck` on phones), the title, and the profile link at the card's foot so links line up across a row. Cards lift and light on hover and keyboard focus like the other cards, and rise in with the scroll reveal. Portraits load at 320–800 px for cards up to 405 px wide; `alt=""`, because the name beneath says who it is.

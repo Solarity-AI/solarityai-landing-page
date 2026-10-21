@@ -19,8 +19,8 @@
       "speculation_rules": "Prefetch same-origin pages on intent (moderate); never prerender",
       "external_scripts": [],
       "javascript_bytes": 5017,
-      "html_bytes": 99447,
-      "html_gzip_bytes": 21689
+      "html_bytes": 100422,
+      "html_gzip_bytes": 21782
     },
     "/apps": {
       "source_bytes": 167402,
@@ -40,8 +40,8 @@
       "speculation_rules": "Prefetch same-origin pages on intent (moderate); never prerender",
       "external_scripts": [],
       "javascript_bytes": 5017,
-      "html_bytes": 96057,
-      "html_gzip_bytes": 21123
+      "html_bytes": 96744,
+      "html_gzip_bytes": 21198
     },
     "/apps/looks-max": {
       "source_bytes": 167402,
@@ -64,8 +64,8 @@
         "gallery"
       ],
       "javascript_bytes": 9096,
-      "html_bytes": 86024,
-      "html_gzip_bytes": 20204
+      "html_bytes": 86328,
+      "html_gzip_bytes": 20274
     },
     "/apps/iq-max": {
       "source_bytes": 167402,
@@ -88,8 +88,8 @@
         "gallery"
       ],
       "javascript_bytes": 9096,
-      "html_bytes": 85817,
-      "html_gzip_bytes": 20162
+      "html_bytes": 86118,
+      "html_gzip_bytes": 20233
     },
     "/apps/sleep-max": {
       "source_bytes": 167402,
@@ -112,8 +112,8 @@
         "gallery"
       ],
       "javascript_bytes": 9096,
-      "html_bytes": 79971,
-      "html_gzip_bytes": 19309
+      "html_bytes": 80275,
+      "html_gzip_bytes": 19379
     },
     "/apps/fitness-max": {
       "source_bytes": 167402,
@@ -136,8 +136,8 @@
         "gallery"
       ],
       "javascript_bytes": 9096,
-      "html_bytes": 88064,
-      "html_gzip_bytes": 20432
+      "html_bytes": 88370,
+      "html_gzip_bytes": 20501
     },
     "/platform": {
       "source_bytes": 167402,
@@ -161,8 +161,8 @@
         "gallery"
       ],
       "javascript_bytes": 11647,
-      "html_bytes": 96039,
-      "html_gzip_bytes": 22523
+      "html_bytes": 96282,
+      "html_gzip_bytes": 22598
     },
     "/company": {
       "source_bytes": 167402,
@@ -182,8 +182,8 @@
       "speculation_rules": "Prefetch same-origin pages on intent (moderate); never prerender",
       "external_scripts": [],
       "javascript_bytes": 5017,
-      "html_bytes": 69591,
-      "html_gzip_bytes": 17379
+      "html_bytes": 69636,
+      "html_gzip_bytes": 17388
     },
     "/investors-partners": {
       "source_bytes": 167402,
@@ -207,8 +207,8 @@
         "copy"
       ],
       "javascript_bytes": 9030,
-      "html_bytes": 116821,
-      "html_gzip_bytes": 25494
+      "html_bytes": 117508,
+      "html_gzip_bytes": 25567
     },
     "/careers": {
       "source_bytes": 167402,
@@ -233,8 +233,8 @@
         "copy"
       ],
       "javascript_bytes": 16833,
-      "html_bytes": 73438,
-      "html_gzip_bytes": 18591
+      "html_bytes": 73483,
+      "html_gzip_bytes": 18602
     },
     "/press": {
       "source_bytes": 167402,
@@ -257,8 +257,8 @@
         "copy"
       ],
       "javascript_bytes": 6479,
-      "html_bytes": 68455,
-      "html_gzip_bytes": 16701
+      "html_bytes": 69329,
+      "html_gzip_bytes": 16807
     },
     "/accessibility": {
       "source_bytes": 167402,
