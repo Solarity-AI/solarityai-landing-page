@@ -231,7 +231,7 @@ def llms_txt(pages, *, apps, saas, email, full=False):
         if full:
             out += [f'  - {p["summary"]}'] + [f'  - {fact}' for fact in p['facts']] + [f'  - {p["availability"]}']
     out += ['', '## Company', '',
-            f'- [Company and team]({link("/company")}): founder Ata Turhan, with Emrecan Özkan, Ali Yılmaz, Hasan Ak, Eren Öz, Batuhan Yücetürk, and Melik Kaplan.',
+            f'- [Company and team]({link("/company")}): founder Ata Turhan, with Hasan Ak, Ali Yılmaz, Emrecan Özkan, Eren Öz, Melik Kaplan, and Batuhan Yücetürk.',
             f'- [App factory platform]({link("/platform")}): how the three web apps came from building the consumer apps.',
             f'- [Investors and partners]({link("/investors-partners")}): company thesis, business model and partnership paths.',
             f'- [Press kit]({link("/press")}): approved descriptions, facts, the sun mark, founder portrait, and app icons.',
