@@ -221,3 +221,12 @@ The homepage portfolio-to-platform relationship is explicitly conceptual company
 - Treatment: a 4:5 crop per person, eyes on the 40% line and faces at a matching scale; no retouching. Checksums and crop boxes: `research-assets/team-portraits.json`.
 - Emrecan Özkan: no photo supplied; the roster shows his initials in the same frame. The earlier site's Ali Yılmaz and Hasan Ak portraits are retired to `source-assets/retired/team/`.
 - Titles and LinkedIn profiles: supplied by the founder in chat on 2026-10-21 (`TEAM_DETAILS` in `company_facts.py`). Melik Kaplan's profile URL is under his full name, Egehan Melik Kaplan; the site keeps the approved name. Batuhan Yücetürk: title only, no profile supplied.
+
+## App icons at full resolution (2026-10-22)
+
+- The four icon masters (`<slug>-icon.webp`, previously 400 × 400) are now Apple's own 1024 × 1024 artwork for each listing. Each was fetched from the iTunes lookup API's `artworkUrl512` at the 1024 size, compared side by side with the 400px icon (same artwork), and saved as WebP q95. The site rounds icon corners in CSS, so Fitness Max's square App Store file renders like the old file with its baked-in corners. The press kit PNGs are regenerated from these masters at 1024 × 1024.
+- Sources (sha256 of the downloaded PNG):
+  - looks-max: https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/f5/52/60/f5526091-c9f6-6763-10a9-307124cec9ac/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/1024x1024bb.png (b8eb000ce06b7a23…)
+  - iq-max: https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/12/14/17/1214177d-45be-246f-6c6c-b3720fe93ae7/AppIcon-0-0-1x_U007emarketing-0-8-0-85-220.png/1024x1024bb.png (c747a4ea2cea9bf7…)
+  - sleep-max: https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/ed/d4/d0/edd4d064-2cf6-cfa5-29e4-558597a161a5/AppIcon-0-0-1x_U007emarketing-0-11-0-85-220.png/1024x1024bb.png (2e8c9ac19daebd43…)
+  - fitness-max: https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/86/b9/47/86b9471a-ff13-f4ae-dd99-654cb77868f8/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/1024x1024bb.png (d0c3b84f0ede3f5f…)

@@ -1,5 +1,5 @@
 {
-  "settings_version": 11,
+  "settings_version": 13,
   "source_hashes": {
     "looks-max-screen-4.webp": "81cac84815b71ada75480170e88b18858c84ddfe276076250a03e1e1b06af125",
     "looks-max-detail-screen-6.webp": "b2f9afdfd41b8cf591a9c39361cc4d7dc60bb6ecbb71fc2e5baccc2715150ae8",
@@ -10,10 +10,10 @@
     "iq-max-screen-1.webp": "3c899f575903dd89f8f2421d88e45b90a49aec87cc8de77c0f8a850d6a1b8d29",
     "sleep-max-screen-4.webp": "9ecc8623016fb9f4c0732918218528fefa3359548394587fbc3af29e50e31fdb",
     "fitness-max-screen-2.webp": "945104949e664df7b62e89788c556df7094ca8f3c9d596112d1834b606fa88b7",
-    "looks-max-icon.webp": "0a873e6c30a21ff2f2ac45895a52f20546c4fe43c68c0ec93956635cd9d77f7e",
-    "iq-max-icon.webp": "ca765c2fc4c1907475c4542e42cafcc0e302452ecf8e5786689adff761484f01",
-    "sleep-max-icon.webp": "291d2db282087249bd6ba1fee24325de7cc7abc6030b2a8e3a73523e6ec29d11",
-    "fitness-max-icon.webp": "7122f8246316b4a446fd4fe166e9dfb816b35f9e932968e629da461daa3e47e0",
+    "looks-max-icon.webp": "018d956171091b00367be6d0a20493ebc9b90f440cdf04b05462f1444ebbf9a0",
+    "iq-max-icon.webp": "118c9e4d4afaefe7e6035d7e30d2fe8f8b670c292e4ba89243b395966c7cdbbd",
+    "sleep-max-icon.webp": "2742032e6270486154b092d246c5dee00458f8391614fe81647688a6bddb6488",
+    "fitness-max-icon.webp": "3ab394be857c56093f256b68c87a77e1a419bca5e675e11a2527624e3c85d81b",
     "solar-ascent.webp": "51c5646c2913a004394f142f16c3f1b5ae32b14cdae148c505f5cae768709b83",
     "badges/google-play-badge.png": "f72611e2df8e88204009fd896d05d5e8e83c77009c63943bbffa169559934849",
     "engineering-max-overview.webp": "dde4cecd3baebca07aac38dfa44f2fc94baec52e6e0f17bc975810911f47b051",
@@ -557,59 +557,75 @@
     "/assets/looks-max-icon.webp": {
       "source": "/assets/looks-max-icon.webp",
       "role": "icon",
-      "width": 400,
-      "height": 400,
-      "original_bytes": 8170,
+      "width": 1024,
+      "height": 1024,
+      "original_bytes": 31682,
       "crop": null,
-      "derivative_width": 400,
-      "derivative_height": 400,
+      "derivative_width": 1024,
+      "derivative_height": 1024,
       "webp": [
         {
-          "url": "/assets/optimized/looks-max-icon-48.c4acd53f50ca.webp",
+          "url": "/assets/optimized/looks-max-icon-48.e01fae792df6.webp",
           "width": 48,
           "height": 48,
-          "bytes": 682,
-          "sha256": "c4acd53f50ca2add4c3554f0f917c5b9389f187570540ec96803efad53156397",
+          "bytes": 678,
+          "sha256": "e01fae792df6249e8077633e58f9b97011e49c645daeb2e3cd3cee4448caeec8",
           "mime": "image/webp"
         },
         {
-          "url": "/assets/optimized/looks-max-icon-96.b5d76428edc0.webp",
+          "url": "/assets/optimized/looks-max-icon-96.5d937d753a4a.webp",
           "width": 96,
           "height": 96,
-          "bytes": 1516,
-          "sha256": "b5d76428edc0d7642cb8fb930610a9db31720975a4e2e07975bf23d05474e4c7",
+          "bytes": 1524,
+          "sha256": "5d937d753a4a20abbe898104afb3af945d96349eca2fde41a529d7b4c6f7a691",
           "mime": "image/webp"
         },
         {
-          "url": "/assets/optimized/looks-max-icon-144.6e029fa80180.webp",
+          "url": "/assets/optimized/looks-max-icon-144.d33cb33cc7ba.webp",
           "width": 144,
           "height": 144,
-          "bytes": 2338,
-          "sha256": "6e029fa8018076c9021c687ef3c4069b0790e8a6cfda7071458c5dfa4b39fc67",
+          "bytes": 2368,
+          "sha256": "d33cb33cc7ba1137f70b9b04d80529cedcc7e63739fdca1393a3efcd709b5683",
           "mime": "image/webp"
         },
         {
-          "url": "/assets/optimized/looks-max-icon-224.0a90d793e4d5.webp",
+          "url": "/assets/optimized/looks-max-icon-224.0938b7f3c87c.webp",
           "width": 224,
           "height": 224,
-          "bytes": 3676,
-          "sha256": "0a90d793e4d5fe78dd16fa952a59aa2328b979f2e1dd61cffa8c01aa3a4ac474",
+          "bytes": 3780,
+          "sha256": "0938b7f3c87c70c8168fc157debabbff280e55a9ee015345ffab39c7b7c5ab8d",
           "mime": "image/webp"
         },
         {
-          "url": "/assets/optimized/looks-max-icon-320.32f68b46806d.webp",
+          "url": "/assets/optimized/looks-max-icon-320.02444001debf.webp",
           "width": 320,
           "height": 320,
-          "bytes": 5232,
-          "sha256": "32f68b46806d31d3707b172d08604506418a878bf7cdab1b24f6c1c317ee811e",
+          "bytes": 5554,
+          "sha256": "02444001debffdbcf1ff229d1f9ad871b50ffa32831875521050375106b0c57c",
           "mime": "image/webp"
         },
         {
-          "url": "/assets/optimized/looks-max-icon-400.e8e9d62efe57.webp",
+          "url": "/assets/optimized/looks-max-icon-400.53abf50360d0.webp",
           "width": 400,
           "height": 400,
-          "bytes": 5638,
-          "sha256": "e8e9d62efe57b70b74327a00b478c8b417c5d9f1fb0d5e261a9162f1ad285351",
+          "bytes": 7026,
+          "sha256": "53abf50360d0e35d542b732a417c876102db843adf051542fcf109bdcdb4f1be",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/looks-max-icon-560.ed67f0b43536.webp",
+          "width": 560,
+          "height": 560,
+          "bytes": 9872,
+          "sha256": "ed67f0b43536cb41fb2d60c71ef23c604929355b2c0a2b2e3564d810664ea3ce",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/looks-max-icon-800.d41bc1961e73.webp",
+          "width": 800,
+          "height": 800,
+          "bytes": 14414,
+          "sha256": "d41bc1961e73940091e168800bb4991f4e1d8172ee324c732ecb281adfb6b418",
           "mime": "image/webp"
         }
       ],
@@ -618,59 +634,75 @@
     "/assets/iq-max-icon.webp": {
       "source": "/assets/iq-max-icon.webp",
       "role": "icon",
-      "width": 400,
-      "height": 400,
-      "original_bytes": 14474,
+      "width": 1024,
+      "height": 1024,
+      "original_bytes": 114112,
       "crop": null,
-      "derivative_width": 400,
-      "derivative_height": 400,
+      "derivative_width": 1024,
+      "derivative_height": 1024,
       "webp": [
         {
-          "url": "/assets/optimized/iq-max-icon-48.180c846c135e.webp",
+          "url": "/assets/optimized/iq-max-icon-48.9a9b4e8637d1.webp",
           "width": 48,
           "height": 48,
-          "bytes": 1126,
-          "sha256": "180c846c135e397c4ab87edb4c4a5315107451cef0f6a83707c1b9455ae4ac25",
+          "bytes": 1148,
+          "sha256": "9a9b4e8637d125d0ff53bc9f3725bba92f29f8134d6f38f7d0da32bb0b41a7ea",
           "mime": "image/webp"
         },
         {
-          "url": "/assets/optimized/iq-max-icon-96.aac6e5022f6b.webp",
+          "url": "/assets/optimized/iq-max-icon-96.ad10c91f7861.webp",
           "width": 96,
           "height": 96,
-          "bytes": 2638,
-          "sha256": "aac6e5022f6b8392d3835949c5cc5a456a744055d04170022d83d04c5373a416",
+          "bytes": 2674,
+          "sha256": "ad10c91f78619effb17c25f94034498b2c49c1c0dcc524116c38f6bc2e2dc77d",
           "mime": "image/webp"
         },
         {
-          "url": "/assets/optimized/iq-max-icon-144.c76f356ba199.webp",
+          "url": "/assets/optimized/iq-max-icon-144.cd57f5562964.webp",
           "width": 144,
           "height": 144,
-          "bytes": 4476,
-          "sha256": "c76f356ba1991a1fa7ebecf61ae9e2ed3e2872d243d999e0ff7836c2b876efdd",
+          "bytes": 4618,
+          "sha256": "cd57f55629649e0a78a1f72dc3739cdc3f612c895a45514e9e7dfa33f7e278a3",
           "mime": "image/webp"
         },
         {
-          "url": "/assets/optimized/iq-max-icon-224.2dd39d8c7a1d.webp",
+          "url": "/assets/optimized/iq-max-icon-224.af295a104689.webp",
           "width": 224,
           "height": 224,
-          "bytes": 7956,
-          "sha256": "2dd39d8c7a1df5a4e3e0b48efd11ac36618a4bb14f6c89d4072c35245cf11964",
+          "bytes": 8194,
+          "sha256": "af295a104689562602c17cf9ba19451d2f69dcde89837757c09a8d66abb24948",
           "mime": "image/webp"
         },
         {
-          "url": "/assets/optimized/iq-max-icon-320.789d4f7ee8e2.webp",
+          "url": "/assets/optimized/iq-max-icon-320.7e58c6ca2fed.webp",
           "width": 320,
           "height": 320,
-          "bytes": 12432,
-          "sha256": "789d4f7ee8e2f378a793bc3cfef53dbdef9d5791ff4ae9a347c2cac4c4f45b00",
+          "bytes": 13044,
+          "sha256": "7e58c6ca2fed6b3b6e838b19a299c72698f3751b5ce5eb3122ca1375544a9654",
           "mime": "image/webp"
         },
         {
-          "url": "/assets/optimized/iq-max-icon-400.cddb6fd7884e.webp",
+          "url": "/assets/optimized/iq-max-icon-400.47a4eebd8ac8.webp",
           "width": 400,
           "height": 400,
-          "bytes": 13922,
-          "sha256": "cddb6fd7884eaeb84f559971399deeb2ba45e02f18515d44a3c5575abcc7e5d8",
+          "bytes": 17702,
+          "sha256": "47a4eebd8ac877650f92dd81bc51f523ce74377dbe7f24f6d409fd677779531d",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/iq-max-icon-560.5913bb68d6f8.webp",
+          "width": 560,
+          "height": 560,
+          "bytes": 27102,
+          "sha256": "5913bb68d6f82c5c219caa9d90625eade396fa3bbf7a1416064ac3804216cf1e",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/iq-max-icon-800.acdbfd25de75.webp",
+          "width": 800,
+          "height": 800,
+          "bytes": 40770,
+          "sha256": "acdbfd25de7541afe94cf358038a44416fdd306c3a9434ec7b08e0c5b2d303f5",
           "mime": "image/webp"
         }
       ],
@@ -679,59 +711,75 @@
     "/assets/sleep-max-icon.webp": {
       "source": "/assets/sleep-max-icon.webp",
       "role": "icon",
-      "width": 400,
-      "height": 400,
-      "original_bytes": 5840,
+      "width": 1024,
+      "height": 1024,
+      "original_bytes": 29472,
       "crop": null,
-      "derivative_width": 400,
-      "derivative_height": 400,
+      "derivative_width": 1024,
+      "derivative_height": 1024,
       "webp": [
         {
-          "url": "/assets/optimized/sleep-max-icon-48.b11fcaf98bce.webp",
+          "url": "/assets/optimized/sleep-max-icon-48.791c38cdb2d1.webp",
           "width": 48,
           "height": 48,
-          "bytes": 428,
-          "sha256": "b11fcaf98bcee8010cc8ad16a59b9b1b4d407e6a84d0b77970b38e6142bc881b",
+          "bytes": 438,
+          "sha256": "791c38cdb2d103d556da671d5cd3ea1a23d99fe1e246a1ef6ff42ebe5a423b94",
           "mime": "image/webp"
         },
         {
-          "url": "/assets/optimized/sleep-max-icon-96.6e0de30b5905.webp",
+          "url": "/assets/optimized/sleep-max-icon-96.e6fb8e0f04f8.webp",
           "width": 96,
           "height": 96,
-          "bytes": 790,
-          "sha256": "6e0de30b590549c5050a4856ece88b8e481b25acdd03df6155330a40324d1729",
+          "bytes": 792,
+          "sha256": "e6fb8e0f04f88b7c7e6b206327c4b7646f7012f5e1358a48cc466e07ef2e0dac",
           "mime": "image/webp"
         },
         {
-          "url": "/assets/optimized/sleep-max-icon-144.ae97748b1e77.webp",
+          "url": "/assets/optimized/sleep-max-icon-144.1a057a5c3b87.webp",
           "width": 144,
           "height": 144,
-          "bytes": 1228,
-          "sha256": "ae97748b1e77a6fda5f9d4c9badc7deb90a0699f885edabde496e645f116277b",
+          "bytes": 1192,
+          "sha256": "1a057a5c3b87a23463912b8ece8536d108f9be4b5af73bba39f1bcee77fca652",
           "mime": "image/webp"
         },
         {
-          "url": "/assets/optimized/sleep-max-icon-224.cb77a132d4cb.webp",
+          "url": "/assets/optimized/sleep-max-icon-224.da5f8a836671.webp",
           "width": 224,
           "height": 224,
-          "bytes": 1914,
-          "sha256": "cb77a132d4cb9d3e326c324c15495a846553503157f93319c4dc78634e002969",
+          "bytes": 1868,
+          "sha256": "da5f8a836671e9a6494de2ba2ce6f4e06f0d2e94f61402b55d3b449d5ae8eb0c",
           "mime": "image/webp"
         },
         {
-          "url": "/assets/optimized/sleep-max-icon-320.9069b7496fbb.webp",
+          "url": "/assets/optimized/sleep-max-icon-320.cdc0e9887395.webp",
           "width": 320,
           "height": 320,
-          "bytes": 2722,
-          "sha256": "9069b7496fbb594ee2e3639e4102d19b9a3f338e7f18a2ef54a9de6168d4b57e",
+          "bytes": 2778,
+          "sha256": "cdc0e9887395cbd0fadc51b67d2fe089065020a4c25be1782c8a3663cf992d18",
           "mime": "image/webp"
         },
         {
-          "url": "/assets/optimized/sleep-max-icon-400.7002a0651b19.webp",
+          "url": "/assets/optimized/sleep-max-icon-400.80cb72eec431.webp",
           "width": 400,
           "height": 400,
-          "bytes": 3158,
-          "sha256": "7002a0651b19f25d3131f35cd966bcfc5f1ef6c7363bc136ea9b5969a42f0201",
+          "bytes": 3704,
+          "sha256": "80cb72eec431158fcff1c6905d6d115b8554caf95babe4bf8814c94e969f22dd",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/sleep-max-icon-560.9246c6c3b3b2.webp",
+          "width": 560,
+          "height": 560,
+          "bytes": 5738,
+          "sha256": "9246c6c3b3b2616678c86e0d267e0b3d212675c1549a02dd0c7b3e7c3509dc43",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/sleep-max-icon-800.8ca79226ddd2.webp",
+          "width": 800,
+          "height": 800,
+          "bytes": 9504,
+          "sha256": "8ca79226ddd21c6cedf004d909d789c10c649a5ce1c267595b68fde78bc119c9",
           "mime": "image/webp"
         }
       ],
@@ -740,59 +788,75 @@
     "/assets/fitness-max-icon.webp": {
       "source": "/assets/fitness-max-icon.webp",
       "role": "icon",
-      "width": 400,
-      "height": 400,
-      "original_bytes": 17204,
+      "width": 1024,
+      "height": 1024,
+      "original_bytes": 56202,
       "crop": null,
-      "derivative_width": 400,
-      "derivative_height": 400,
+      "derivative_width": 1024,
+      "derivative_height": 1024,
       "webp": [
         {
-          "url": "/assets/optimized/fitness-max-icon-48.87bd57d8e532.webp",
+          "url": "/assets/optimized/fitness-max-icon-48.46c880fe2dd6.webp",
           "width": 48,
           "height": 48,
-          "bytes": 1234,
-          "sha256": "87bd57d8e5324d5891222c256aa49bffada408bbf704aec742d1af7ac6f07695",
+          "bytes": 890,
+          "sha256": "46c880fe2dd620b6f7001958b71a1f44cc6fc864acb62641b2b886f31444b7e1",
           "mime": "image/webp"
         },
         {
-          "url": "/assets/optimized/fitness-max-icon-96.7e9493fe73f9.webp",
+          "url": "/assets/optimized/fitness-max-icon-96.a7f3160c8bae.webp",
           "width": 96,
           "height": 96,
-          "bytes": 2956,
-          "sha256": "7e9493fe73f9bf1675cc962d2f00fb2c65f6a7a3ad3a95e88df941cf412da225",
+          "bytes": 2072,
+          "sha256": "a7f3160c8bae181f1712a0b7541c76d5d4ae606fa2dde6b2964213c634a3db2a",
           "mime": "image/webp"
         },
         {
-          "url": "/assets/optimized/fitness-max-icon-144.e637a846d707.webp",
+          "url": "/assets/optimized/fitness-max-icon-144.fc37e789370d.webp",
           "width": 144,
           "height": 144,
-          "bytes": 4928,
-          "sha256": "e637a846d707b04e40d10df71702cbfc40763ffb458271e0074438cb07a821d9",
+          "bytes": 3530,
+          "sha256": "fc37e789370d280458c0f77d31954268e2752e3d910f96ab381097eaaee99f01",
           "mime": "image/webp"
         },
         {
-          "url": "/assets/optimized/fitness-max-icon-224.beaaf2071e1a.webp",
+          "url": "/assets/optimized/fitness-max-icon-224.cfc0c0233ac7.webp",
           "width": 224,
           "height": 224,
-          "bytes": 8374,
-          "sha256": "beaaf2071e1aa07a9b989f61948e02ad33c34b974eebbf9a19a88f10a182ae94",
+          "bytes": 6136,
+          "sha256": "cfc0c0233ac72df7dc9c8e38def27ee8240e2796155fd8f504c4c72a829a0cec",
           "mime": "image/webp"
         },
         {
-          "url": "/assets/optimized/fitness-max-icon-320.f16c5d369210.webp",
+          "url": "/assets/optimized/fitness-max-icon-320.53beda323b6c.webp",
           "width": 320,
           "height": 320,
-          "bytes": 12422,
-          "sha256": "f16c5d36921053e69f0968bdedd85678d6e521b6ec799363d062b7a8ea88941a",
+          "bytes": 9360,
+          "sha256": "53beda323b6c57ae868fa2242c4b185277b2e77c84939155cef37b6aa127d491",
           "mime": "image/webp"
         },
         {
-          "url": "/assets/optimized/fitness-max-icon-400.a5ec14e72f7a.webp",
+          "url": "/assets/optimized/fitness-max-icon-400.7ccd417ddb00.webp",
           "width": 400,
           "height": 400,
-          "bytes": 14020,
-          "sha256": "a5ec14e72f7a014b715149d360d09b6f106ee5d6a55180ea2c90393794fbb271",
+          "bytes": 12006,
+          "sha256": "7ccd417ddb0050fa934ec896d3dcfd3512a3681f87ac01e1a50e4e3e6d829e55",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/fitness-max-icon-560.56ab1ee753ad.webp",
+          "width": 560,
+          "height": 560,
+          "bytes": 16930,
+          "sha256": "56ab1ee753ad6a24b8c8c5d7131319e40f2435951d3c2d136102f33b23133dc7",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/fitness-max-icon-800.5c5c349b36db.webp",
+          "width": 800,
+          "height": 800,
+          "bytes": 24626,
+          "sha256": "5c5c349b36db2fe179ee85adb0bfced57a406c8234daab4f1f4eb976f5bfe669",
           "mime": "image/webp"
         }
       ],
@@ -964,6 +1028,14 @@
           "height": 140,
           "bytes": 4794,
           "sha256": "e78bce53d38135a06371e675cdc767c41c981cd8ec4edfc639b3ddbb7011cac2",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/google-play-badge-543.b91390762bf8.webp",
+          "width": 543,
+          "height": 210,
+          "bytes": 6786,
+          "sha256": "b91390762bf893249ac43437f03e8c30c62d46d8e8bff79badc6f2ddc956d3c3",
           "mime": "image/webp"
         }
       ],

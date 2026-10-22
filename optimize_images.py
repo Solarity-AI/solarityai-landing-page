@@ -32,11 +32,11 @@ ASSETS = ROOT / 'dist' / 'assets'
 SOURCE_ASSETS = ROOT / 'source-assets'
 DESTINATION = ASSETS / 'optimized'
 REPORT = ROOT / 'research-assets' / 'image-optimization.json'
-SETTINGS_VERSION = 11
+SETTINGS_VERSION = 13
 # Native-resolution screenshots (1284x2778), confirmed by the founder on 2026-10-19.
 # 260 (the smallest width every screen passes the edge check at) and 600 serve the small Home wall and Investors showroom windows on phones (measured 119 and 180 CSS px).
 SCREEN_WIDTHS = (260, 400, 600, 800, 1200)
-ICON_WIDTHS = (48, 96, 144, 224, 320, 400)
+ICON_WIDTHS = (48, 96, 144, 224, 320, 400, 560, 800)
 EDGE_BAND = 8
 EDGE_LIMIT = 40
 # Trim against a stricter limit so resampled derivatives still pass the 40-level check.
@@ -44,8 +44,8 @@ EDGE_TRIM_LIMIT = 30
 EDGE_MAX_INSET = 32
 # The hero master is the approved artwork upscaled 2x (research-assets/solar-ascent-artwork.json).
 SUNRISE_WIDTHS = (480, 768, 1200, 1440, 1860, 2560, 3200, 3720)
-# The official Google Play badge (646 x 250 PNG) is drawn about 165 CSS px wide: 1x and 2x WebP, resized only.
-BADGE_WIDTHS = (181, 362)
+# The official Google Play badge (646 x 250 PNG) is drawn about 165 CSS px wide: 1x, 2x and 3x WebP, resized only.
+BADGE_WIDTHS = (181, 362, 543)
 # Team portraits: the roster card is at most 405 px wide (about 160 px on phones), up to 2× of each; never enlarged.
 PORTRAIT_WIDTHS = (320, 480, 640, 800)
 # Web app screenshots from the products' own sites (research-assets/saas-evidence.json).

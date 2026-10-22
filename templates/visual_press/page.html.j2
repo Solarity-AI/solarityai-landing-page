@@ -24,7 +24,7 @@
 <li class="press-image press-image--{{ kind }}"><span class="press-image-frame"><img src="{{ preview }}" alt="{{ label }}" width="320" height="320" loading="lazy" decoding="async"></span><strong>{{ label }}</strong><small>{{ meta }}</small><span class="press-downloads"><a href="{{ href }}" download>Download <span aria-hidden="true">→</span></a>{% if original %}<a href="{{ original }}" download>WebP <span aria-hidden="true">→</span></a>{% endif %}</span></li>
 {%- endfor -%}
 {%- for href, original, name in icons -%}
-<li class="press-image press-image--icon"><span class="press-image-frame"><img src="{{ original }}" alt="{{ name }} app icon" width="320" height="320" sizes="(max-width: 850px) calc(36vw - 26px), (max-width: 1440px) calc(19vw - 8px), 266px" loading="lazy" decoding="async"></span><strong>{{ name }} app icon</strong><small>PNG · 400 × 400</small><span class="press-downloads"><a href="{{ href }}" download>Download <span aria-hidden="true">→</span></a><a href="{{ original }}" download>WebP <span aria-hidden="true">→</span></a></span></li>
+<li class="press-image press-image--icon"><span class="press-image-frame"><img src="{{ original }}" alt="{{ name }} app icon" width="320" height="320" sizes="(max-width: 850px) calc(36vw - 26px), (max-width: 1440px) calc(19vw - 8px), 266px" loading="lazy" decoding="async"></span><strong>{{ name }} app icon</strong><small>PNG · 1024 × 1024</small><span class="press-downloads"><a href="{{ href }}" download>Download <span aria-hidden="true">→</span></a><a href="{{ original }}" download>WebP <span aria-hidden="true">→</span></a></span></li>
 {%- endfor -%}
 </ul>
 <h3 class="press-subhead" id="press-screens-title">Product screens</h3>

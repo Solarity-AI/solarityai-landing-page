@@ -29,38 +29,38 @@
     "/assets/press/looks-max-icon.png": {
       "from": "/assets/looks-max-icon.webp",
       "size": [
-        400,
-        400
+        1024,
+        1024
       ],
-      "bytes": 47026,
-      "sha256": "286e95acdc624a0c3138395c06e0054b9caca1290e9530c4b8cdb6d279e95458"
+      "bytes": 137597,
+      "sha256": "41e689be6b48135fd1a0056ce2f83e6db7e7ed7d80f2badf0da9d82ec4a93929"
     },
     "/assets/press/iq-max-icon.png": {
       "from": "/assets/iq-max-icon.webp",
       "size": [
-        400,
-        400
+        1024,
+        1024
       ],
-      "bytes": 147858,
-      "sha256": "ffd091d5732d79b257cdb414bdca2c3ba3d35ce672cf4569e2f864dfbba576c4"
+      "bytes": 707245,
+      "sha256": "8706e1dcede5c231474bb3520d4b91031318496086aa9b331be68f2c49a12fac"
     },
     "/assets/press/sleep-max-icon.png": {
       "from": "/assets/sleep-max-icon.webp",
       "size": [
-        400,
-        400
+        1024,
+        1024
       ],
-      "bytes": 49878,
-      "sha256": "430dc01b26a44a7cff09e07e2734c05db10ef47921f610b9bfc6fc603acb1f3d"
+      "bytes": 180818,
+      "sha256": "4a0c03881bf7cbb4c5db0ea24c869036a2de93ecb5f81fd801c7ab59287a1257"
     },
     "/assets/press/fitness-max-icon.png": {
       "from": "/assets/fitness-max-icon.webp",
       "size": [
-        400,
-        400
+        1024,
+        1024
       ],
-      "bytes": 87581,
-      "sha256": "9ef9d0139014e77982b37df117c8c49d85ae3342df663952fe6d4a2dcf6c26d9"
+      "bytes": 256256,
+      "sha256": "dbbe2c3ca05ada5b4e40222c7b938425c52f5311e383467aa098e9564c256404"
     },
     "/assets/press/looks-max-screen.jpg": {
       "from": "/assets/looks-max-screen-4.webp",
