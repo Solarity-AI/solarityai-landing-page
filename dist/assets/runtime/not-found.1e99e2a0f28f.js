@@ -3,7 +3,7 @@
 
   // The 404 page suggests the page a mistyped or outdated address most likely meant.
   // Routes come from the page itself (data-routes), so the suggestion never points at a missing page.
-  const ALIASES = { about: '/company/', team: '/company/', jobs: '/careers/', privacy: '/website-data/', cookies: '/website-data/' };
+  const ALIASES = { about: '/company/', aboutus: '/company/', team: '/company/', jobs: '/careers/', privacy: '/website-data/', cookies: '/website-data/' };
 
   function normalize(path) {
     let value = String(path || '');
@@ -49,7 +49,14 @@
         bestScore = score;
       }
     });
-    return best;
+    if (best) return best;
+    // Nothing close: an address below a real page (an old subpage, a stray segment) means that page.
+    let parent = null;
+    routes.forEach((route) => {
+      const target = normalize(route[0]);
+      if (target !== '/' && wanted.startsWith(target + '/') && (!parent || target.length > normalize(parent[0]).length)) parent = route;
+    });
+    return parent;
   }
 
   // A route is a lowercase same-site path such as /apps/sleep-max/; anything else is refused.

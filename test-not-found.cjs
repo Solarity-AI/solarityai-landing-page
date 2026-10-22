@@ -37,6 +37,13 @@ test('suggests the page a typo or shortcut meant', () => {
   assert.equal(target('/privacy'), '/website-data/');
 });
 
+test('an address under a real page suggests that page', () => {
+  assert.equal(target('/apps/looks-max/extra'), '/apps/looks-max/');
+  assert.equal(target('/company/team/hasan'), '/company/');
+  assert.equal(target('/careers/full-stack-engineer'), '/careers/');
+  assert.equal(target('/about-us'), '/company/');
+});
+
 test('stays quiet when nothing is close', () => {
   assert.equal(suggest('/wp-login.php', ROUTES), null);
   assert.equal(suggest('/blog/2019/hello-world', ROUTES), null);

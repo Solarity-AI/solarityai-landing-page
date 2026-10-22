@@ -55,7 +55,7 @@ def press_kit_zip(apps):
     files = [('solarity-sun-mark.png', IMAGES[0][0]), ('ata-turhan-founder.jpg', IMAGES[1][0])]
     files += [(f'{a["slug"]}-icon.png', f'/assets/press/{a["slug"]}-icon.png') for a in apps if a.get('apple')]
     files += [(f'screens/{copy}', f'/assets/press/{copy}') for _, copy, *_ in SCREENS]
-    text = (f'Solarity AI press kit\n\nOne line\n{ONE_LINE}\n\nShort description\n{SHORT}\n\n'
+    text = (f'Solarity AI press kit\n\n1 line\n{ONE_LINE}\n\nShort description\n{SHORT}\n\n'
             'Write the name as Solarity AI. Use the sun mark as supplied; do not recolor, stretch, or redraw it.\n'
             'Fitness Max appears in the app stores as Only Fitness.\n'
             'Product screens show sample content: app screens are official App Store images; web app screens come from each\n'

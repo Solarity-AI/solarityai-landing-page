@@ -359,6 +359,15 @@ for file,d in docs.items():
     for n in graph:
         for banned in ('aggregateRating','review','offers'):
             if banned in n:errors.append(f'{rel}: schema.org states {banned}, which the pages do not show')
+# The press kit README is text people download and quote, so the digits rule covers it too.
+import zipfile
+for kit in sorted((DIST/'assets'/'press').glob('*.zip')):
+    with zipfile.ZipFile(kit) as archive:
+        for member in archive.namelist():
+            if member.endswith('README.txt'):
+                readme=archive.read(member).decode('utf-8')
+                for word in sorted(set(m.group().lower() for m in NUMBER_WORDS.finditer(readme))):errors.append(f'{kit.name}: README number written as a word: {word}')
+                if re.search(r'^One line$',readme,re.M):errors.append(f'{kit.name}: README heading must read "1 line", as the press page does')
 for name in ('llms.txt','llms-full.txt'):
     llm=(DIST/name).read_text(encoding='utf-8') if (DIST/name).is_file() else ''
     for word in spelled_numbers(llm):errors.append(f'{name}: number written as a word: {word}')
