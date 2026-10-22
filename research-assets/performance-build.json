@@ -233,8 +233,8 @@
         "copy"
       ],
       "javascript_bytes": 17359,
-      "html_bytes": 80181,
-      "html_gzip_bytes": 19900
+      "html_bytes": 80199,
+      "html_gzip_bytes": 19907
     },
     "/press": {
       "source_bytes": 161649,
@@ -257,8 +257,8 @@
         "copy"
       ],
       "javascript_bytes": 6500,
-      "html_bytes": 73660,
-      "html_gzip_bytes": 17654
+      "html_bytes": 74192,
+      "html_gzip_bytes": 17872
     },
     "/accessibility": {
       "source_bytes": 161649,
