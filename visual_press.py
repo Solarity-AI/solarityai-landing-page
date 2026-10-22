@@ -73,8 +73,13 @@ def press_kit_zip(apps):
 
 def press_page(apps, email, btn):
     icons = [(f'/assets/press/{a["slug"]}-icon.png', f'/assets/{a["slug"]}-icon.webp', a['name']) for a in apps if a.get('apple')]
+    # Each screen keeps the description the site gives the same image elsewhere: the apps' store imagery line,
+    # and each SaaS product's own screen description (saas_products.py).
+    saas_alts = {screen['file']: screen['alt'] for product in SAAS for screen in product['screens']}
     screens = [{'preview': '/assets/' + original, 'href': '/assets/press/' + copy, 'original': '/assets/' + original, 'name': name,
-                'width': width, 'height': height, 'caption': caption} for original, copy, name, width, height, caption in SCREENS]
+                'width': width, 'height': height, 'caption': caption,
+                'alt': saas_alts.get(original, f'{name} official App Store imagery with sample app content')}
+               for original, copy, name, width, height, caption in SCREENS]
     return str(render('visual_press/page.html.j2', one_line=ONE_LINE, short=SHORT, images=IMAGES, icons=icons, screens=screens,
                       copy_one=copy_button(ONE_LINE, 'press-one-line-status', 'Copy', 'The 1-line description'),
                       copy_short=copy_button(SHORT, 'press-short-status', 'Copy', 'The short description'),
