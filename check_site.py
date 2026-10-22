@@ -115,6 +115,8 @@ for file,d in docs.items():
         else:assets_checked+=1
     text=file.read_text(encoding='utf-8')
     if '\u2014' in text:errors.append(f'{rel}: long dash')
+    # The founder's portrait appears only on Company and in the Press kit (founder, 2026-10-22).
+    if route not in ('/company', '/press') and any(t=='img' and 'ata-turhan' in (a.get('src','')+a.get('srcset','')) for t,a in d.tags):errors.append(f'{rel}: founder portrait outside Company and the Press kit')
     # Numbers are written as digits (founder, 2026-10-22). "One" is left out: on this site it is mostly a pronoun.
     for word in spelled_numbers(text):errors.append(f'{rel}: number written as a word: {word}')
     # Cloudflare skips Email Address Obfuscation inside email_off, keeping mailto links intact.

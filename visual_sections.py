@@ -85,9 +85,9 @@ FOUNDER_PORTRAIT = {'src': '/assets/brand/ata-turhan-640.742556487789.webp',
                     'srcset': '/assets/brand/ata-turhan-320.db6d27d9b9b3.webp 320w, /assets/brand/ata-turhan-640.742556487789.webp 640w, /assets/brand/ata-turhan-original.webp 800w'}
 
 
-def founder_portrait(compact=False):
-    """Official company portrait, uncropped and with reserved square geometry."""
-    return str(render('visual_sections/founder_portrait.html.j2', compact=compact, portrait=FOUNDER_PORTRAIT))
+def founder_portrait():
+    """Official company portrait, uncropped and with reserved square geometry (Company only)."""
+    return str(render('visual_sections/founder_portrait.html.j2', portrait=FOUNDER_PORTRAIT))
 
 
 def founder_card():

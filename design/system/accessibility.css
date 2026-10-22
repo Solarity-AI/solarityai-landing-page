@@ -26,7 +26,7 @@
   @supports (animation-timeline:view()){
    /* Movement only: text keeps full contrast in every state, including content not yet scrolled to. */
    @keyframes rise-in{from{transform:translateY(36px)}to{transform:none}}
-   .wall-card,.saas-card,.world-band,.saas-chapter-copy,.saas-chapter-art,.today-card,.ahead-card,.ledger,.partnership-topic,.pmap-stage,.strategy-story-steps>li,.selected-team-member,.feature-card,.feature-tile,.operating-principles li,.career-benefit-list>div,.contact-topic,.closing-scene .wrap{animation:rise-in linear both;animation-timeline:view();animation-range:entry 5% entry 55%}
+   .wall-card,.saas-card,.world-band,.saas-chapter-copy,.saas-chapter-art,.today-card,.ahead-card,.ledger,.partnership-topic,.pmap-stage,.strategy-story-steps>li,.selected-team-member,.feature-tile,.operating-principles li,.career-benefit-list>div,.contact-topic{animation:rise-in linear both;animation-timeline:view();animation-range:entry 5% entry 55%}
   }
   /* Motion language (October 20, 2026): the sunrise. Light rises, surfaces settle on one expo ease-out
      (--ease-sunrise), and everything is either tied to the scroll position (it cannot lag, loop or delay
@@ -75,7 +75,7 @@
    @keyframes light-rise{from{opacity:0;transform:translateY(10%)}to{opacity:1;transform:none}}
    @keyframes light-on{from{opacity:0}to{opacity:1}}
    .world-band::before{animation:light-on linear both;animation-timeline:view();animation-range:entry 0% entry 60%}
-   .founder-strip::before,.feature-tile::before{animation:light-rise linear both;animation-timeline:view();animation-range:entry 0% entry 100%}
+   .feature-tile::before{animation:light-rise linear both;animation-timeline:view();animation-range:entry 0% entry 100%}
    /* Lines draw: eyebrow rules from the left, the closing horizon from the centre. */
    @keyframes draw{from{transform:scaleX(0)}to{transform:none}}
    .eyebrow::before{transform-origin:left center;animation:draw linear both;animation-timeline:view();animation-range:entry 30% entry 100%}

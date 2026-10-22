@@ -34,7 +34,7 @@
  h1{font-family:var(--font-display);font-weight:400;font-size:var(--type-title);line-height:.98;letter-spacing:-.015em;word-spacing:.03em}
  h2{font-size:var(--type-section);line-height:1.08;letter-spacing:-.015em}
  h3{font-size:var(--type-sub);line-height:1.2;letter-spacing:-.005em}
- .platform-opening-copy h1,.wall-heading h2,.world-band h2,.strategy-copy h2,.founder-strip h2,.founder-section>div>h2,.founder-identity h2,.founder-booking h2,.investor-evidence-heading h2,.partnership-agenda-heading h2,.investor-faq .section-heading h2,.conversation-band h2,.product-story-heading h2,.product-close h2,.career-opportunities-heading h2,.career-apply-copy h2,.module-num{font-family:var(--font-display);font-weight:400;font-size:var(--type-chapter);line-height:1.02;letter-spacing:-.01em;word-spacing:.03em}
+ .platform-opening-copy h1,.wall-heading h2,.world-band h2,.strategy-copy h2,.founder-section>div>h2,.founder-identity h2,.founder-booking h2,.investor-evidence-heading h2,.partnership-agenda-heading h2,.investor-faq .section-heading h2,.conversation-band h2,.product-story-heading h2,.product-close h2,.career-opportunities-heading h2,.career-apply-copy h2,.module-num{font-family:var(--font-display);font-weight:400;font-size:var(--type-chapter);line-height:1.02;letter-spacing:-.01em;word-spacing:.03em}
  /* Section headings share the display face with the chapters, at section size. */
  .apps-web h2,.feature-section-heading h2,.related-intro h2,.strategy-story-intro h2,.selected-team-intro h2,.operating-principles-heading h2,.career-section-heading h2,.contact-person h2,.contact-topics-heading h2{font-family:var(--font-display);font-weight:400;letter-spacing:-.01em;word-spacing:.03em;line-height:1.06}
  p,li,dd,figcaption,.lede{text-wrap:pretty}
@@ -90,7 +90,6 @@
  .page-intro>.actions{margin-top:30px}
  .section-heading{display:flex;align-items:end;justify-content:space-between;gap:48px;margin-bottom:clamp(36px,4.4vw,64px)}
  .section-lede{max-width:43ch;font-size:var(--text-base);line-height:1.8}
- .two-col{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:40px}
  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
  .skip-link{position:fixed;z-index:200;left:var(--gutter);top:8px;padding:12px 20px;background:var(--sun-core);color:var(--ink);border-radius:var(--radius-control);transform:translateY(-180%)}
  .skip-link:focus{transform:translateY(0)}
@@ -99,7 +98,7 @@
  body[data-page='/apps/sleep-max'],[data-product-accent='indigo'],.indigo{--product-accent:var(--sleep-accent);--world-deep:var(--sleep-deep);--world:var(--sleep-world);--world-tint:var(--sleep-tint)}
  body[data-page='/apps/fitness-max'],[data-product-accent='amber'],.amber{--product-accent:var(--fitness-accent);--world-deep:var(--fitness-deep);--world:var(--fitness-world);--world-tint:var(--fitness-tint)}
  @media(max-width:850px){.section-heading{align-items:start;flex-direction:column;gap:22px}.section-lede{max-width:var(--measure)}}
- @media(max-width:560px){.eyebrow{margin-bottom:16px}.two-col{grid-template-columns:1fr;gap:24px}.page-intro>.lede{margin-top:23px}}
+ @media(max-width:560px){.eyebrow{margin-bottom:16px}.page-intro>.lede{margin-top:23px}}
 }
 @layer components {
  .actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px}
