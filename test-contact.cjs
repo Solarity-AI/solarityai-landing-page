@@ -28,8 +28,8 @@ test('only the site\'s own topics are shown, so a crafted link cannot put its te
   }
   // Known topics keep their canonical spelling, whatever the case or spacing in the link.
   assert.equal(readInquiryContext('?type=Product+inquiry&product=looks%20%20max').product, 'Looks Max');
-  assert.equal(readInquiryContext('?type=Strategic+partner&product=WEB+APPS').product, 'Web apps');
-  assert.deepEqual([...CONTEXT_TOPICS].sort(), ['App factory', 'Distribution', 'Fitness Max', 'IQ Max', 'Looks Max', 'Sleep Max', 'Technology collaboration', 'Web apps']);
+  assert.equal(readInquiryContext('?type=Strategic+partner&product=SAAS+PRODUCTS').product, 'SaaS products');
+  assert.deepEqual([...CONTEXT_TOPICS].sort(), ['App factory', 'Distribution', 'Fitness Max', 'IQ Max', 'Looks Max', 'SaaS products', 'Sleep Max', 'Technology collaboration']);
 });
 
 test('untrusted type and line breaks cannot create email recipients or headers', () => {

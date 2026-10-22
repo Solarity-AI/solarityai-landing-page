@@ -64,13 +64,13 @@ MAP_NOTE = ('Engineering Max and Marketing Max were built and tried first on Sol
 
 
 def _status_label(status):
-    """The last part of a web app's status, with its first letter capitalized."""
+    """The last part of a SaaS product's status, with its first letter capitalized."""
     label = status.split(' · ')[-1]
     return label[:1].upper() + label[1:]
 
 
 def platform_map(apps, saas):
-    """The app factory as light: the store-listed apps are the lit source on a horizon, and the three web apps
+    """The app factory as light: the store-listed apps are the lit source on a horizon, and the three SaaS products
     they shaped sit below, each with its own status from its site. The dashed connectors read as "informs",
     never as integrations. The icons link to the apps and the nodes to the Platform chapters.
     """

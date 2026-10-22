@@ -1,8 +1,8 @@
 # Solarity AI
 
-> Solarity AI builds AI-powered self-improvement apps for iOS and Android (Looks Max, IQ Max, Sleep Max, and Fitness Max) and 3 web apps for engineering, managing, and marketing mobile products (Engineering Max, Management Max, and Marketing Max).
+> Solarity AI builds AI-powered self-improvement apps for iOS and Android (Looks Max, IQ Max, Sleep Max, and Fitness Max) and 3 SaaS products for engineering, managing, and marketing mobile products (Engineering Max, Management Max, and Marketing Max).
 
-Solarity AI LLC was founded by Ata Turhan in Irving, Texas, United States. The 4 mobile apps are listed on the App Store and Google Play. The 3 web apps run on the web today; mobile versions are planned. Contact: ata.turhan@solarityai.com (founder Ata Turhan).
+Solarity AI LLC was founded by Ata Turhan in Dallas, Texas, United States. The 4 mobile apps are listed on the App Store and Google Play. The 3 SaaS products run on the web today; mobile versions are planned. Contact: ata.turhan@solarityai.com (founder Ata Turhan).
 
 ## Mobile apps (iOS and Android)
 
@@ -11,16 +11,16 @@ Solarity AI LLC was founded by Ata Turhan in Irving, Texas, United States. The 4
 - [Sleep Max](https://solarityai.com/apps/sleep-max/): Sleep & daily routines. A sleep diary, habit tracking, and coaching to support a more consistent routine. On the App Store since 2026-09-16. [App Store](https://apps.apple.com/us/app/sleep-max-rest-best/id6806709872), [Google Play](https://play.google.com/store/apps/details?id=com.solarityai.sleepmax)
 - [Fitness Max](https://solarityai.com/apps/fitness-max/): Fitness & nutrition. Meal insights, training logs, and AI coaching to help you follow your fitness routine. Listed in the app stores as Only Fitness. On the App Store since 2026-08-15. [App Store](https://apps.apple.com/us/app/only-fitness-ai-coach/id6789095658), [Google Play](https://play.google.com/store/apps/details?id=com.solarityai.onlyfitness)
 
-## Web apps
+## SaaS products
 
-- [Engineering Max](https://engineeringmax.solarityai.com/): App engineering, Web app · early access. Find and fix what keeps a mobile app out of the App Store.
-- [Management Max](https://managementmax.solarityai.com/): Metrics for app portfolios, Web app · early access. Governed weekly metrics for mobile app companies.
-- [Marketing Max](https://marketingmax.solarityai.com/): Short-form video marketing, Web app · early access. Your next Reel, made from one that already worked.
+- [Engineering Max](https://engineeringmax.solarityai.com/): App engineering, SaaS · early access. Find and fix what keeps a mobile app out of the App Store.
+- [Management Max](https://managementmax.solarityai.com/): Metrics for app portfolios, SaaS · early access. Governed weekly metrics for mobile app companies.
+- [Marketing Max](https://marketingmax.solarityai.com/): Short-form video marketing, SaaS · early access. Your next Reel, made from one that already worked.
 
 ## Company
 
 - [Company and team](https://solarityai.com/company/): founder Ata Turhan, with Hasan Ak (engineering manager and principal software engineer), Ali Yılmaz (staff software engineer), Emrecan Özkan (staff software engineer), Eren Öz (senior software engineer), Melik Kaplan (marketing engineer), and Batuhan Yücetürk (marketing engineer).
-- [App factory platform](https://solarityai.com/platform/): how the 3 web apps came from building the consumer apps.
+- [App factory platform](https://solarityai.com/platform/): how the 3 SaaS products came from building the consumer apps.
 - [Investors and partners](https://solarityai.com/investors-partners/): company thesis, business model and partnership paths.
 - [Press kit](https://solarityai.com/press/): approved descriptions, facts, the sun mark, founder portrait, and app icons.
 - [Careers](https://solarityai.com/careers/): fully remote roles for a Full Stack Engineer and a Marketing Specialist, full-time, part-time, or as an intern.

@@ -1,7 +1,7 @@
 """Search and answer-engine metadata: schema.org graph, robots.txt, sitemap dates, llms.txt and IndexNow.
 
 Everything here restates facts the pages already show, the official store and developer listings
-(REFERENCE_SITE_REVIEW.md), or the web apps' own sites (research-assets/saas-evidence.json).
+(REFERENCE_SITE_REVIEW.md), or the SaaS products' own sites (research-assets/saas-evidence.json).
 No ratings, prices, store categories, users or results.
 """
 import datetime
@@ -36,7 +36,7 @@ STORE_NAMES = {
     'fitness-max': 'Only Fitness: AI Coach',
 }
 ORG_DESCRIPTION = ('Solarity AI builds AI-powered self-improvement apps for iOS and Android (Looks Max, IQ Max, '
-                   'Sleep Max, and Fitness Max) and 3 web apps for engineering, managing, and marketing mobile '
+                   'Sleep Max, and Fitness Max) and 3 SaaS products for engineering, managing, and marketing mobile '
                    'products (Engineering Max, Management Max, and Marketing Max).')
 
 # Crawlers of search engines and AI assistants. All are welcome; robots.txt names them so the intent is explicit.
@@ -90,8 +90,8 @@ def organization(email, logo):
         '@type': 'Organization', '@id': ORG_ID, 'name': 'Solarity AI', 'legalName': 'Solarity AI LLC',
         'url': ORIGIN + '/', 'logo': {'@type': 'ImageObject', 'url': ORIGIN + logo, 'width': 320, 'height': 320},
         'description': ORG_DESCRIPTION, 'founder': {'@id': FOUNDER_ID}, 'email': email,
-        'address': {'@type': 'PostalAddress', 'addressLocality': 'Irving', 'addressRegion': 'Texas', 'addressCountry': 'US'},
-        'foundingLocation': {'@type': 'Place', 'name': 'Irving, Texas, United States'},
+        'address': {'@type': 'PostalAddress', 'addressLocality': 'Dallas', 'addressRegion': 'Texas', 'addressCountry': 'US'},
+        'foundingLocation': {'@type': 'Place', 'name': 'Dallas, Texas, United States'},
         'contactPoint': {'@type': 'ContactPoint', 'contactType': 'founder', 'email': email, 'url': ORIGIN + '/contact/',
                          'availableLanguage': 'English'},
         'sameAs': ORG_PROFILES,
@@ -101,7 +101,7 @@ def organization(email, logo):
 def founder(portrait):
     return {'@type': 'Person', '@id': FOUNDER_ID, 'name': 'Ata Turhan', 'jobTitle': 'Founder',
             'worksFor': {'@id': ORG_ID}, 'image': ORIGIN + portrait, 'url': ORIGIN + '/company/',
-            'homeLocation': {'@type': 'Place', 'name': 'Irving, Texas, United States'}, 'sameAs': FOUNDER_PROFILES}
+            'homeLocation': {'@type': 'Place', 'name': 'Dallas, Texas, United States'}, 'sameAs': FOUNDER_PROFILES}
 
 
 def team_member(m):
@@ -196,7 +196,7 @@ def graph(path, title, desc, *, apps, saas, faq, email, logo, portrait, social_i
         page['mainEntity'] = {'@id': url + '#app'}
     elif path == '/platform':
         page['mainEntity'] = {'@id': url + '#web-apps'}
-        nodes.append({'@type': 'ItemList', '@id': url + '#web-apps', 'name': 'Solarity AI web apps',
+        nodes.append({'@type': 'ItemList', '@id': url + '#web-apps', 'name': 'Solarity AI SaaS products',
                       'itemListElement': [{'@type': 'ListItem', 'position': i + 1, 'item': web_app(p)} for i, p in enumerate(saas)]})
     elif path == '/company':
         page['mainEntity'] = {'@id': ORG_ID}
@@ -239,8 +239,8 @@ def llms_txt(pages, *, apps, saas, email, team=(), full=False):
     link = lambda p: f'{ORIGIN}{public_path(p)}'
     store_apps = [a for a in apps if a.get('apple')]
     out = ['# Solarity AI', '', f'> {ORG_DESCRIPTION}', '',
-           'Solarity AI LLC was founded by Ata Turhan in Irving, Texas, United States. '
-           'The 4 mobile apps are listed on the App Store and Google Play. The 3 web apps run on the web today; '
+           'Solarity AI LLC was founded by Ata Turhan in Dallas, Texas, United States. '
+           'The 4 mobile apps are listed on the App Store and Google Play. The 3 SaaS products run on the web today; '
            f'mobile versions are planned. Contact: {email} (founder Ata Turhan).', '']
     out += ['## Mobile apps (iOS and Android)', '']
     for a in store_apps:
@@ -254,14 +254,14 @@ def llms_txt(pages, *, apps, saas, email, team=(), full=False):
             note = a.get('note')
             if note:
                 out.append(f'  - Context: {plain(note)}')
-    out += ['', '## Web apps', '']
+    out += ['', '## SaaS products', '']
     for p in saas:
         out.append(f'- [{p["name"]}]({p["url"]}): {p["category"]}, {p["status"]}. {p["tagline"]}')
         if full:
             out += [f'  - {p["summary"]}'] + [f'  - {fact}' for fact in p['facts']] + [f'  - {p["availability"]}']
     out += ['', '## Company', '',
             f'- [Company and team]({link("/company")}): founder Ata Turhan, with {team_line(team)}.',
-            f'- [App factory platform]({link("/platform")}): how the 3 web apps came from building the consumer apps.',
+            f'- [App factory platform]({link("/platform")}): how the 3 SaaS products came from building the consumer apps.',
             f'- [Investors and partners]({link("/investors-partners")}): company thesis, business model and partnership paths.',
             f'- [Press kit]({link("/press")}): approved descriptions, facts, the sun mark, founder portrait, and app icons.',
             f'- [Careers]({link("/careers")}): fully remote roles for a Full Stack Engineer and a Marketing Specialist, full-time, part-time, or as an intern.',

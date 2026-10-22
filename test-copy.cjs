@@ -97,7 +97,7 @@ test('each button copies its own address into its own status', async () => {
 });
 
 test('a named button announces its name instead of reading a long passage aloud', async () => {
-  const passage = 'Solarity AI LLC, based in Irving, Texas, builds apps. '.repeat(4);
+  const passage = 'Solarity AI LLC, based in Dallas, Texas, builds apps. '.repeat(4);
   const view = harness({ clipboard: 'resolves', addresses: [{ text: passage, name: 'The short description' }] });
   view.buttons[0].click();
   await settle();

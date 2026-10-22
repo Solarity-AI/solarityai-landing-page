@@ -8,11 +8,11 @@
 {#- -#}
 <section class="press-section wrap" aria-labelledby="press-facts-title"><h2 id="press-facts-title">Facts</h2>
 <dl class="facts-list">
-<div><dt>Company</dt><dd>Solarity AI LLC, Irving, Texas, United States</dd></div>
+<div><dt>Company</dt><dd>Solarity AI LLC, Dallas, Texas, United States</dd></div>
 <div><dt>Founder</dt><dd>Ata Turhan</dd></div>
 <div class="facts-wide"><dt>Team</dt><dd>{% for member in team %}<span lang="tr">{{ member.name }}</span>{% if not loop.last %}, {% endif %}{% endfor %} · <a href="/company#team">Meet the team <span aria-hidden="true">→</span></a></dd></div>
 <div><dt>Mobile apps</dt><dd>{{ record.count }} on the App Store and Google Play, launched in {{ record.weeks }} weeks from {{ record.first }}</dd></div>
-<div><dt>Web apps</dt><dd>{% for product in saas %}{{ product.name }} ({{ product.status.split(' · ')[-1] }}){% if not loop.last %}, {% endif %}{% endfor %}</dd></div>
+<div><dt>SaaS products</dt><dd>{% for product in saas %}{{ product.name }} ({{ product.status.split(' · ')[-1] }}){% if not loop.last %}, {% endif %}{% endfor %}</dd></div>
 <div><dt>Website</dt><dd>solarityai.com</dd></div>
 <div><dt>Press contact</dt><dd><a href="mailto:{{ email }}">{{ email }} <span aria-hidden="true">↗</span></a></dd></div>
 </dl></section>

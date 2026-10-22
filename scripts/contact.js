@@ -7,7 +7,7 @@
   const validType = (value) => INQUIRY_TYPES.includes(value) ? value : 'Other';
   // The topics the site's own links pass (the apps and the partnership topics; check_site.py keeps this in step).
   // Anything else is dropped, so a crafted link cannot put its own text on the page or in the subject.
-  const CONTEXT_TOPICS = ['Looks Max', 'IQ Max', 'Sleep Max', 'Fitness Max', 'App factory', 'Distribution', 'Technology collaboration', 'Web apps'];
+  const CONTEXT_TOPICS = ['Looks Max', 'IQ Max', 'Sleep Max', 'Fitness Max', 'App factory', 'Distribution', 'Technology collaboration', 'SaaS products'];
   const topicKey = (value) => cleanTopic(value).toLowerCase();
   const knownTopic = (value) => CONTEXT_TOPICS.find((topic) => topic.toLowerCase() === topicKey(value)) || '';
 

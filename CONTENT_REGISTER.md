@@ -234,3 +234,11 @@ The homepage portfolio-to-platform relationship is explicitly conceptual company
 ## Home hero artwork (2026-10-22)
 
 - The founder supplied a new hero image in chat with the instruction "change the hero with this new image perfectly": a person walking up a lit stairway above the clouds toward a rising sun. It is illustrative brand artwork and shows no product, person or claim. It is stored unchanged as `research-assets/stairway-ascent-approved.webp` (1672×941, sha256 d7f472fa…). The upscale method and checks are in `research-assets/stairway-ascent-artwork.json`. Alt text: "A person walking up a lit stairway above the clouds toward a rising sun". The same master feeds the Investors booking reprise and the default link preview (`/assets/social/default.jpg`).
+
+## SaaS naming and Dallas (2026-10-22)
+
+- Founder request with a marked-up hero screenshot: name Engineering Max, Management Max and Marketing Max as "SaaS products" rather than only "web apps", link them like the mobile apps, and replace Irving with Dallas everywhere.
+- Every visible mention, the metadata, schema.org, `llms.txt`, the press kit README, the contact topic (`SaaS products`) and the Apps link preview now say "SaaS products" (status label "SaaS · early access"). Fragment ids such as `#web-apps` are unchanged so existing links keep working; the renamed FAQ answer keeps its earlier anchor `#faq-can-other-teams-use-the-web-apps` (`ux_content.LEGACY_ANSWER_IDS`).
+- The Home hero sentence is now "...and 3 SaaS products that help teams build, run, and grow mobile apps." (the build, operate and grow stages each product's own site describes), and the proof line links "3 SaaS products" to the Home SaaS section, as "4 apps live on iOS & Android" links to the shipping record.
+- Location: Dallas, Texas, United States, on every page, the `PostalAddress` and `foundingLocation`, the founder vCard and the press kit. The earlier Irving entries above are history.
+

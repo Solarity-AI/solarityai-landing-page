@@ -1,10 +1,10 @@
 <section class="investor-ledger wrap" id="at-a-glance" aria-labelledby="investor-ledger-title">
 <h2 class="sr-only" id="investor-ledger-title">At a glance</h2>
 <dl class="ledger">
-<div><dt>Company</dt><dd>{% if company %}{{ company }}{% else %}Solarity AI LLC{% endif %} · Irving, Texas</dd></div>
+<div><dt>Company</dt><dd>{% if company %}{{ company }}{% else %}Solarity AI LLC{% endif %} · Dallas, Texas</dd></div>
 <div><dt>Team</dt><dd><a href="/company#team">{{ team_size }} people</a>, founder-led</dd></div>
 <div><dt>Shipping</dt><dd><a href="#shipping-record">{{ record.count }} apps in {{ record.weeks }} weeks</a> · first release {{ record.first }}</dd></div>
-<div><dt>Portfolio</dt><dd><a href="/apps">{{ listed|length }} mobile apps</a> on the App Store and Google Play, and <a href="/platform">{{ web_app_count }} web apps</a></dd></div>
+<div><dt>Portfolio</dt><dd><a href="/apps">{{ listed|length }} mobile apps</a> on the App Store and Google Play, and <a href="/platform">{{ web_app_count }} SaaS products</a></dd></div>
 </dl>
 </section>
 <section class="investor-evidence wrap" id="thesis" aria-labelledby="investor-evidence-title">
@@ -13,14 +13,14 @@
 <h2 id="investor-evidence-title">Build the product.<br>Learn from the work.</h2></div>
 <p>Develop focused consumer experiences while exploring more repeatable ways to build, operate, and grow mobile products.</p></div>
 <div class="today-ahead">
-<article class="today-card" aria-labelledby="today-title"><p class="eyebrow">Today</p><h3 id="today-title">4 consumer apps. 3 web apps.</h3><p>Self-care, cognitive practice, sleep, and fitness on iOS and Android, and Engineering Max, Management Max, and Marketing Max on the web.</p><div class="today-icons">
+<article class="today-card" aria-labelledby="today-title"><p class="eyebrow">Today</p><h3 id="today-title">4 consumer apps. 3 SaaS products.</h3><p>Self-care, cognitive practice, sleep, and fitness on iOS and Android, and Engineering Max, Management Max, and Marketing Max on the web.</p><div class="today-icons">
 {%- for app in listed -%}
 <img src="/assets/{{ app.slug }}-icon.webp" width="48" height="48" alt="" loading="lazy" decoding="async">
 {%- endfor -%}
 </div><span class="status"><i aria-hidden="true"></i>Available on iOS&nbsp;&amp;&nbsp;Android</span></article>
-<article class="ahead-card" aria-labelledby="investor-vision-title"><p class="eyebrow">Ahead</p><h3 id="investor-vision-title">The web apps, on mobile.</h3><p>Engineering Max, Management Max, and Marketing Max run on the web today. Mobile versions are planned, and Marketing Max plans a commercial version for other teams.</p><span class="status vision"><i aria-hidden="true"></i>Planned</span><a class="text-link" href="/platform">Explore the app factory <span aria-hidden="true">→</span></a></article>
+<article class="ahead-card" aria-labelledby="investor-vision-title"><p class="eyebrow">Ahead</p><h3 id="investor-vision-title">The SaaS products, on mobile.</h3><p>Engineering Max, Management Max, and Marketing Max run on the web today. Mobile versions are planned, and Marketing Max plans a commercial version for other teams.</p><span class="status vision"><i aria-hidden="true"></i>Planned</span><a class="text-link" href="/platform">Explore the app factory <span aria-hidden="true">→</span></a></article>
 </div>
-<div class="investor-commercial"><div><p class="eyebrow">Consumer model</p><h3>Subscriptions and in-app purchases.</h3><p>The apps have live listings with in-app purchases. Current plans, prices, and terms are available through their official store pages.</p></div><div><p class="eyebrow">Web apps</p><h3>Plans set by each product.</h3><p>Management Max has a free plan for 1 app and paid plans for larger portfolios. All 3 are in early access; Engineering Max is free during it, and neither it nor Marketing Max has a price yet.</p></div></div>
+<div class="investor-commercial"><div><p class="eyebrow">Consumer model</p><h3>Subscriptions and in-app purchases.</h3><p>The apps have live listings with in-app purchases. Current plans, prices, and terms are available through their official store pages.</p></div><div><p class="eyebrow">SaaS products</p><h3>Plans set by each product.</h3><p>Management Max has a free plan for 1 app and paid plans for larger portfolios. All 3 are in early access; Engineering Max is free during it, and neither it nor Marketing Max has a price yet.</p></div></div>
 
 </section>
 <section class="partnership-agenda wrap" id="conversation-paths" aria-labelledby="partnership-agenda-title"><div class="partnership-agenda-heading"><h2 id="partnership-agenda-title">Where we can build together.</h2><p>A useful conversation starts with a product, a shared problem, or a relevant audience.</p></div>

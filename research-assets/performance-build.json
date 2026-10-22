@@ -19,8 +19,8 @@
       "speculation_rules": "Prefetch same-origin pages on intent (moderate); never prerender",
       "external_scripts": [],
       "javascript_bytes": 5038,
-      "html_bytes": 103502,
-      "html_gzip_bytes": 22110
+      "html_bytes": 103586,
+      "html_gzip_bytes": 22125
     },
     "/apps": {
       "source_bytes": 161215,
@@ -40,8 +40,8 @@
       "speculation_rules": "Prefetch same-origin pages on intent (moderate); never prerender",
       "external_scripts": [],
       "javascript_bytes": 5038,
-      "html_bytes": 101930,
-      "html_gzip_bytes": 21970
+      "html_bytes": 101978,
+      "html_gzip_bytes": 21974
     },
     "/apps/looks-max": {
       "source_bytes": 161215,
@@ -64,8 +64,8 @@
         "gallery"
       ],
       "javascript_bytes": 9117,
-      "html_bytes": 90787,
-      "html_gzip_bytes": 21060
+      "html_bytes": 90807,
+      "html_gzip_bytes": 21061
     },
     "/apps/iq-max": {
       "source_bytes": 161215,
@@ -88,8 +88,8 @@
         "gallery"
       ],
       "javascript_bytes": 9117,
-      "html_bytes": 90568,
-      "html_gzip_bytes": 21014
+      "html_bytes": 90588,
+      "html_gzip_bytes": 21013
     },
     "/apps/sleep-max": {
       "source_bytes": 161215,
@@ -112,7 +112,7 @@
         "gallery"
       ],
       "javascript_bytes": 9117,
-      "html_bytes": 84733,
+      "html_bytes": 84758,
       "html_gzip_bytes": 20153
     },
     "/apps/fitness-max": {
@@ -136,8 +136,8 @@
         "gallery"
       ],
       "javascript_bytes": 9117,
-      "html_bytes": 92835,
-      "html_gzip_bytes": 21289
+      "html_bytes": 92855,
+      "html_gzip_bytes": 21291
     },
     "/platform": {
       "source_bytes": 161215,
@@ -161,8 +161,8 @@
         "gallery"
       ],
       "javascript_bytes": 11668,
-      "html_bytes": 100114,
-      "html_gzip_bytes": 23276
+      "html_bytes": 100186,
+      "html_gzip_bytes": 23277
     },
     "/company": {
       "source_bytes": 161215,
@@ -182,8 +182,8 @@
       "speculation_rules": "Prefetch same-origin pages on intent (moderate); never prerender",
       "external_scripts": [],
       "javascript_bytes": 5038,
-      "html_bytes": 75777,
-      "html_gzip_bytes": 18183
+      "html_bytes": 75825,
+      "html_gzip_bytes": 18190
     },
     "/investors-partners": {
       "source_bytes": 161215,
@@ -207,8 +207,8 @@
         "copy"
       ],
       "javascript_bytes": 9051,
-      "html_bytes": 121616,
-      "html_gzip_bytes": 26147
+      "html_bytes": 121768,
+      "html_gzip_bytes": 26160
     },
     "/careers": {
       "source_bytes": 161215,
@@ -233,7 +233,7 @@
         "copy"
       ],
       "javascript_bytes": 17359,
-      "html_bytes": 80161,
+      "html_bytes": 80181,
       "html_gzip_bytes": 19902
     },
     "/press": {
@@ -257,8 +257,8 @@
         "copy"
       ],
       "javascript_bytes": 6500,
-      "html_bytes": 73633,
-      "html_gzip_bytes": 17655
+      "html_bytes": 73668,
+      "html_gzip_bytes": 17659
     },
     "/accessibility": {
       "source_bytes": 161215,
@@ -278,8 +278,8 @@
       "speculation_rules": "Prefetch same-origin pages on intent (moderate); never prerender",
       "external_scripts": [],
       "javascript_bytes": 5038,
-      "html_bytes": 53764,
-      "html_gzip_bytes": 14625
+      "html_bytes": 53789,
+      "html_gzip_bytes": 14623
     },
     "/website-data": {
       "source_bytes": 161215,
@@ -299,8 +299,8 @@
       "speculation_rules": "Prefetch same-origin pages on intent (moderate); never prerender",
       "external_scripts": [],
       "javascript_bytes": 5038,
-      "html_bytes": 54563,
-      "html_gzip_bytes": 14770
+      "html_bytes": 54593,
+      "html_gzip_bytes": 14769
     },
     "/contact": {
       "source_bytes": 161215,
@@ -324,9 +324,9 @@
         "contact",
         "copy"
       ],
-      "javascript_bytes": 10019,
-      "html_bytes": 71332,
-      "html_gzip_bytes": 17093
+      "javascript_bytes": 10024,
+      "html_bytes": 71362,
+      "html_gzip_bytes": 17096
     },
     "/404": {
       "source_bytes": 161215,
@@ -349,8 +349,8 @@
         "not-found"
       ],
       "javascript_bytes": 8791,
-      "html_bytes": 54742,
-      "html_gzip_bytes": 14466
+      "html_bytes": 54767,
+      "html_gzip_bytes": 14468
     }
   }
 }

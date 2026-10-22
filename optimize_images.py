@@ -48,7 +48,7 @@ SUNRISE_WIDTHS = (480, 768, 1200, 1440, 1860, 2560, 3200, 3344)
 BADGE_WIDTHS = (181, 362, 543)
 # Team portraits: the roster card is at most 405 px wide (about 160 px on phones), up to 2× of each; never enlarged.
 PORTRAIT_WIDTHS = (320, 480, 640, 800)
-# Web app screenshots from the products' own sites (research-assets/saas-evidence.json).
+# SaaS product screenshots from the products' own sites (research-assets/saas-evidence.json).
 WEB_WIDTHS = (640, 960, 1440, 1920, 2560)
 WEBP_QUALITY = 86
 AVIF_QUALITY = 70

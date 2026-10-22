@@ -1,15 +1,15 @@
-"""The three Solarity AI web apps: Engineering Max, Management Max, and Marketing Max.
+"""The three Solarity AI SaaS products: Engineering Max, Management Max, and Marketing Max.
 
 Every statement here comes from the product's own site, read on 2026-10-19
 (research-assets/saas-evidence.json), or from the founder's instruction of the
-same day that the three web apps will also be released as mobile apps. The founder set all three
+same day that the three SaaS products will also be released as mobile apps. The founder set all three
 statuses to early access on 2026-10-20. Keep the status lines in step with that and with the sites; never add metrics, customers or prices
 that a site does not state.
 """
 
-MOBILE_PLAN = 'Web apps today. Mobile versions are planned.'
-# Shown under every row of web app cards: the screens carry figures, and only some are real
-SCREEN_NOTE = 'Screens from each web app’s own site. Management Max and Marketing Max show sample apps and figures.'
+MOBILE_PLAN = 'SaaS on the web today. Mobile versions are planned.'
+# Shown under every row of SaaS product cards: the screens carry figures, and only some are real
+SCREEN_NOTE = 'Screens from each SaaS product’s own site. Management Max and Marketing Max show sample apps and figures.'
 
 SAAS = [
     dict(
@@ -20,7 +20,7 @@ SAAS = [
         url='https://engineeringmax.solarityai.com/',
         domain='engineeringmax.solarityai.com',
         category='App engineering',
-        status='Web app · early access',
+        status='SaaS · early access',
         tagline='Find and fix what keeps a mobile app out of the App Store.',
         summary=('Your own Claude Code or Codex writes a read-only report on the app, with no source code. '
                  'Engineering Max checks it against 155 rules across 12 areas, ranks the problems, and returns '
@@ -43,7 +43,7 @@ SAAS = [
         url='https://managementmax.solarityai.com/',
         domain='managementmax.solarityai.com',
         category='Metrics for app portfolios',
-        status='Web app · early access',
+        status='SaaS · early access',
         tagline='Governed weekly metrics for mobile app companies.',
         summary=('Management Max holds a company’s weekly metric set per app, checks every figure on the way in, '
                  'and combines it across any selection of apps. Where combining would be dishonest, it shows '
@@ -67,7 +67,7 @@ SAAS = [
         url='https://marketingmax.solarityai.com/',
         domain='marketingmax.solarityai.com',
         category='Short-form video marketing',
-        status='Web app · early access',
+        status='SaaS · early access',
         tagline='Your next Reel, made from one that already worked.',
         summary=('Marketing Max finds the Reels that performed, writes the caption and the line on the video in '
                  'the brand’s voice, and posts to Instagram at the chosen time. A person approves each of the '

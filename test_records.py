@@ -58,7 +58,7 @@ class SummariesTest(unittest.TestCase):
 
     def test_web_compare_keeps_status_capitals(self):
         saas = [dict(slug='m', name='Marketing Max', domain='marketingmax.solarityai.com', stage='Grow', category='Video',
-                     tagline='Reels.', status='Web app · internal V1', availability='Early access.')]
+                     tagline='Reels.', status='SaaS · internal V1', availability='Early access.')]
         html = visual_record.web_compare(saas)
         self.assertIn('Internal V1', html)
         self.assertNotIn('Internal v1', html)

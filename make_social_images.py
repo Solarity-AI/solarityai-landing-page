@@ -1,7 +1,7 @@
 """Write the 1200x630 link-preview images into source-assets/social/ (run by hand, then commit).
 
 Each image is composed only from published, approved material: the hero master, the official app
-icons and store screenshots, the web app screenshots (research-assets/saas-evidence.json), the
+icons and store screenshots, the SaaS product screenshots (research-assets/saas-evidence.json), the
 official sun mark and the site's own fonts. The text is limited to product and page names. The
 build publishes these files when a page references them, so the committed bytes are what deploys.
 
@@ -163,7 +163,7 @@ def default_card() -> Image.Image:
 def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     cards = {'default': default_card(), 'platform': platform_card(),
-             'apps': portfolio_card(['Apps for', 'everyday ambition.'], '4 mobile apps · 3 web apps'),
+             'apps': portfolio_card(['Apps for', 'everyday ambition.'], '4 mobile apps · 3 SaaS products'),
              'investors': portfolio_card(['4 apps in', '12 weeks.'], 'Investors & partners · Solarity AI')}
     for app in APPS:
         cards[app[0]] = product_card(*app)
