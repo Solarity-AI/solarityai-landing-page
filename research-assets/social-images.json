@@ -14,28 +14,28 @@
       "sha256": "f449196a568f21c0e1f9be858a1167041361c335bf6245a934739ae81a03ff8f"
     },
     "/assets/social/apps.jpg": {
-      "bytes": 58190,
-      "sha256": "08991fbbd2fe3829ca3a417b480b0f18746380cf5457aa661f25b9fd051d79a6"
+      "bytes": 57075,
+      "sha256": "56cab29902cbdbfce00b1017db0f7f0dd0555e8a805f78d150cc3873ca387564"
     },
     "/assets/social/investors.jpg": {
-      "bytes": 57211,
-      "sha256": "fb401ffd889bbc7397f0c70add2926149d2ec253f9ca9ee6897488583b9a3179"
+      "bytes": 52321,
+      "sha256": "460e09e5b8d0658fe419ab2299b22cb0e9d2a3a2c9386a7963bee66857ee0590"
     },
     "/assets/social/looks-max.jpg": {
-      "bytes": 54982,
-      "sha256": "e518d55c93a30a429c8a2a767506ac3b2f80ab40d23019863398009da71195d8"
+      "bytes": 54976,
+      "sha256": "72dd06c29db2f5f6dda773c075e41860e8433737ebc46cb2cd9bd27876830bbb"
     },
     "/assets/social/iq-max.jpg": {
-      "bytes": 51938,
-      "sha256": "4af54804498d413df6bdfbb3bd219b463c9b496359a1a5d09eefc142edd81142"
+      "bytes": 51997,
+      "sha256": "4c8fa2931092104b7cedeb7abb9956a05766c67777ac5c410187bce4f309f747"
     },
     "/assets/social/sleep-max.jpg": {
-      "bytes": 51440,
-      "sha256": "f83cd6f6228b169c9899e4a239acec578d0d5b9cbdeaebebe8b22f50aed374f7"
+      "bytes": 51362,
+      "sha256": "bbab98a318efb0ff378a020e25f53ec284de3deb406061bb356ac81e8871255d"
     },
     "/assets/social/fitness-max.jpg": {
-      "bytes": 53175,
-      "sha256": "fee560c83f502b6072a8d96ff931571dbb31efd46c40ce1fd6cd68d1d4e4626d"
+      "bytes": 52911,
+      "sha256": "04e8015b93ab82c04797a168756ec913db63368a5d611c3a9966433a6c2abdd5"
     }
   }
 }
