@@ -37,6 +37,10 @@ test('LinkedIn validation requires HTTPS and a personal-profile path on the exac
     assert.equal(isLinkedInProfile(linkedin), false, linkedin);
   }
   assert.equal(isLinkedInProfile('https://WWW.LINKEDIN.COM/in/person-name/'), true);
+  // Phone keyboards capitalise; LinkedIn treats the /in/ path segment case-insensitively.
+  assert.equal(isLinkedInProfile('HTTPS://WWW.LINKEDIN.COM/IN/PERSON-NAME'), true);
+  assert.equal(isLinkedInProfile('https://www.linkedin.com/In/person-name'), true);
+  assert.equal(isLinkedInProfile('https://www.linkedin.com/INX/person-name'), false);
   assert.equal(isLinkedInProfile('https://linkedin.com/in/cagri-%C3%B6z'), true);
 });
 

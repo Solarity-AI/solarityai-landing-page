@@ -26,7 +26,7 @@
     const url = parseWebUrl(value);
     // Country subdomains such as tr.linkedin.com are standard profile links.
     if (!url || url.protocol !== 'https:' || url.port || !/^(?:(?:www|[a-z]{2})\.)?linkedin\.com$/.test(url.hostname)) return false;
-    const match = url.pathname.match(/^\/in\/([^/]+)\/?$/);
+    const match = url.pathname.match(/^\/in\/([^/]+)\/?$/i);
     if (!match) return false;
     try {
       const profile = decodeURIComponent(match[1]);
