@@ -117,40 +117,13 @@
   .page-index a { display:inline-flex; align-items:center; gap:8px; min-height:44px; color:var(--muted); font-size:var(--text-sm); text-decoration:underline; text-decoration-color:var(--line); text-underline-offset:5px; transition:color var(--motion-fast),text-decoration-color var(--motion-fast); }
   .page-index a:hover { color:var(--text); text-decoration-color:var(--accent); }
   .page-index a>span { display:inline-block; color:var(--accent); }
-  .investor-opening-proof { margin-top:64px; padding:clamp(24px,3.5vw,48px); background:var(--surface); border-top:1px solid var(--line); }
-  .investor-opening-proof-heading { display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap; gap:16px; margin-bottom:32px; }
-  .investor-opening-proof-heading>.eyebrow { margin:0; }
-  .investor-opening-proof-heading>span { color:var(--dim); font-size:var(--text-xs); }
-  .investor-opening-products { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); align-items:start; gap:clamp(20px,3vw,44px); padding:0; margin:0; list-style:none; }
-  .investor-opening-products>li { min-width:0; }
-  .investor-opening-product { display:block; text-decoration:none; }
-  .investor-opening-screen { display:flex; align-items:center; justify-content:center; width:100%; max-width:216px; margin-inline:auto; aspect-ratio:600 / 1298; transition:transform var(--motion-detail) var(--motion-ease); }
-  .investor-opening-screen img { display:block; width:100%; height:auto; aspect-ratio:600 / 1298; border-radius:var(--radius-plate); }
-  .investor-opening-product-name { display:flex; align-items:baseline; justify-content:space-between; gap:8px; font-size:var(--text-lg); line-height:1.4; font-weight:500; margin-top:20px; }
-  .investor-opening-product-name>span { color:var(--product-accent); }
-  .investor-opening-alias { display:block; color:var(--dim); font-size:var(--text-xs); line-height:1.5; margin-top:7px; }
-  .investor-opening-product:hover .investor-opening-product-name,.investor-opening-product:focus-visible .investor-opening-product-name { color:var(--product-accent); }
-  .investor-opening-caption { margin-top:32px; max-width:var(--measure); }
   .investor-evidence { padding-block:var(--space-section); }
   .investor-evidence-heading { display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr); align-items:end; gap:72px; margin-bottom:48px; }
   .investor-evidence-heading>p { max-width:45ch; margin:0; }
-  .investor-evidence-body { display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr); gap:64px; align-items:start; }
-  .investor-evidence-current { min-width:0; }
-  .investor-evidence-label { display:flex; justify-content:space-between; gap:20px; font-size:var(--text-xs); padding-bottom:18px; margin:0; }
-  .investor-evidence-label>span:last-child { color:var(--accent); }
-  .investor-thesis-list { list-style:none; padding:0; margin:0; border-bottom:1px solid var(--line); }
-  .investor-thesis-list>li { display:grid; grid-template-columns:24px minmax(0,1fr); gap:24px; padding-block:28px; border-top:1px solid var(--line); }
-  .investor-thesis-list>li>span { color:var(--sand); font-size:var(--text-2xs); font-variant-numeric:lining-nums tabular-nums; padding-top:5px; }
-  .investor-thesis-list h3 { font-size:var(--text-xl); line-height:1.4; margin-bottom:14px; }
-  .investor-thesis-list p { font-size:var(--text-md); max-width:52ch; }
   .investor-evidence-vision { min-width:0; padding:clamp(28px,3vw,44px); background:transparent; color:var(--text); border:1px dashed var(--bronze); border-radius:var(--radius-panel); }
   
   .investor-evidence-vision h3 { color:var(--text); margin:0 0 24px; }
   .investor-evidence-vision>p:not(.eyebrow) { color:var(--muted); font-size:var(--text-md); margin:0 0 24px; }
-  .investor-vision-disciplines { margin:0 0 20px; }
-  .investor-vision-disciplines>div { display:grid; grid-template-columns:65px minmax(0,1fr); gap:18px; padding-block:16px; border-top:1px dashed var(--line); }
-  .investor-vision-disciplines dt { font-size:var(--text-xs); color:var(--sand); }
-  .investor-vision-disciplines dd { color:var(--text); margin:0; font-size:var(--text-sm); }
   .investor-evidence-vision>.text-link { color:var(--gold); font-size:var(--text-sm); }
   .investor-commercial { display:grid; grid-template-columns:1fr 1fr; gap:64px; padding-block:32px; border-block:1px solid var(--line); margin-top:52px; }
   .investor-commercial .eyebrow { margin-bottom:16px; }
@@ -202,10 +175,8 @@
     .platform-opening { grid-template-columns:1fr; gap:48px; }
     .platform-opening-copy { max-width:740px; }
     .platform-opening-copy>.lede { max-width:var(--measure); }
-    .investor-evidence-body { gap:36px; }
     .operating-principles>ol,.strategy-story-steps { gap:28px; }
     .investor-opening-copy .actions { flex-direction:column; align-items:start; }
-    .investor-opening-products { gap:24px; }
   }
   @media (max-width:850px) {
     .strategy-story-steps>li:not(:last-child)::after { display:none; }
@@ -234,18 +205,11 @@
     .founder-section>div>p:not(.eyebrow) { font-size:var(--text-md); }
     .founder-sheet { padding:24px; }
     .selected-team-intro,.investor-evidence-heading { gap:36px; }
-    .strategy-story-intro,.investor-evidence-heading,.investor-evidence-body,.partnership-agenda,.investor-faq { grid-template-columns:1fr; gap:32px; }
+    .strategy-story-intro,.investor-evidence-heading,.partnership-agenda,.investor-faq { grid-template-columns:1fr; gap:32px; }
     .strategy-story-intro>h2,.strategy-story-intro>p:not(.eyebrow),.strategy-story-intro>.text-link { grid-column:1; grid-row:auto; }
     .strategy-story-intro { gap:0; }
     .strategy-story-intro>p:not(.eyebrow) { margin-block:24px 10px; max-width:var(--measure); }
     .strategy-story-bottom { flex-direction:column; align-items:start; gap:24px; }
-    .investor-opening-products { grid-template-columns:repeat(2,minmax(0,1fr)); gap:36px 40px; }
-    .investor-opening-product-name { font-size:var(--text-lg); }
-    .investor-opening-screen { max-width:250px; }
-    .investor-opening-proof { padding:32px; }
-    .investor-vision-disciplines { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px; }
-    .investor-vision-disciplines>div { display:block; }
-    .investor-vision-disciplines dt { margin-bottom:8px; }
     .investor-commercial { gap:36px; }
     .partnership-agenda-heading>p:not(.eyebrow),.investor-faq .section-lede { max-width:var(--measure); }
     .founder-booking { gap:36px; }
@@ -267,21 +231,9 @@
     .platform-portfolio-link { font-size:var(--text-xs); gap:12px; }
     .module-num { font-size:var(--type-section); }
     .strategy-story-bottom .button { width:100%; justify-content:space-between; }
-    .investor-opening-proof { margin-top:44px; padding:24px 16px; }
-    .investor-opening-products { gap:30px 18px; }
-    .investor-opening-product-name { font-size:var(--text-md); margin-top:16px; }
-    .investor-opening-alias { font-size:var(--text-2xs); }
-    .investor-opening-proof-heading { gap:10px; margin-bottom:26px; }
-    .investor-opening-proof-heading>span { font-size:var(--text-2xs); }
     .investor-opening-copy .actions { display:grid; grid-template-columns:1fr; }
     .investor-opening-copy .button { justify-content:space-between; }
-    .investor-evidence-label { font-size:var(--text-2xs); gap:14px; }
-    .investor-thesis-list>li { grid-template-columns:22px minmax(0,1fr); gap:16px; }
-    .investor-thesis-list h3 { font-size:var(--text-xl); }
     .investor-evidence-vision { padding:28px 24px; }
-    .investor-vision-disciplines { display:block; }
-    .investor-vision-disciplines>div { display:grid; grid-template-columns:60px minmax(0,1fr); gap:16px; }
-    .investor-vision-disciplines dt { margin:0; }
     .partnership-topic { grid-template-columns:minmax(0,1fr) 18px; gap:14px; }
     .partnership-topic-copy strong { font-size:var(--text-xl); }
     .faq-item summary { grid-template-columns:34px minmax(0,1fr) 22px; gap:12px; }
@@ -289,24 +241,19 @@
     .faq-answer { padding:0 0 26px 34px; font-size:var(--text-md); }
     .founder-booking { padding:30px 24px; }
   }
-  @media (prefers-reduced-motion:no-preference) and (hover:hover) and (pointer:fine) {
-    .investor-opening-product:hover .investor-opening-screen { transform:translateY(-5px); }
-  }
+  
   @media (prefers-reduced-motion:reduce) {
-    .faq-marker,.investor-opening-screen,.partnership-topic-arrow { transition:none; }
+    .faq-marker,.partnership-topic-arrow { transition:none; }
     .partnership-topic:hover .partnership-topic-arrow { transform:none; }
   }
   @media (forced-colors:active) {
     .founder-panel,.investor-evidence-vision,.founder-booking { border:1px solid CanvasText; }
   }
   @media print {
-    .company-intro,.platform-opening,.investor-opening-copy,.founder-section,.selected-team,.operating-principles,.strategy-story-intro,.investor-evidence-heading,.investor-evidence-body,.partnership-agenda,.investor-faq,.founder-booking { display:block; padding-block:16pt; margin-block:0; }
-    .investor-opening-proof { margin-top:20pt; }
+    .company-intro,.platform-opening,.investor-opening-copy,.founder-section,.selected-team,.operating-principles,.strategy-story-intro,.investor-evidence-heading,.partnership-agenda,.investor-faq,.founder-booking { display:block; padding-block:16pt; margin-block:0; }
     /* A printed or PDF brief keeps the web app cards compact: the screenshots are on the live page. */
     .showroom .saas-grid { grid-template-columns:repeat(3,minmax(0,1fr)); gap:12pt; }
     .showroom .web-window { max-height:45mm; overflow:hidden; }
-    .investor-opening-products { grid-template-columns:repeat(4,minmax(0,1fr)); max-width:160mm; gap:12pt; }
-    .investor-opening-product-name { font-size:10pt; }
     .founder-panel { max-width:85mm; margin-bottom:18pt; break-inside:avoid; }
     .founder-sheet { padding:12pt; }
     .selected-team-list { grid-template-columns:repeat(3,minmax(0,1fr)); gap:10pt; }
@@ -317,7 +264,7 @@
     .strategy-story-bottom,.investor-commercial { display:block; margin-top:18pt; }
     .investor-evidence-vision { padding:18pt; margin-top:18pt; }
     .investor-commercial>div+div { margin-top:18pt; }
-    .investor-thesis-list>li,.partnership-topic,.operating-principles li,.strategy-story-steps>li { break-inside:avoid; }
+    .partnership-topic,.operating-principles li,.strategy-story-steps>li { break-inside:avoid; }
   }
   /* P6a. The screening room: thesis and actions side by side, then the four apps under one light. */
   /* Top-aligned, so the headline stays under its eyebrow however tall the aside's links grow. */
@@ -349,8 +296,6 @@
   .ledger dt { font-size:var(--type-label); font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--sand); margin-bottom:10px; }
   .ledger dd { margin:0; font-family:var(--font-display); font-weight:400; font-size:var(--type-sub); line-height:1.25; color:var(--text); }
   .ledger dd a { color:inherit; text-decoration:underline; text-decoration-color:var(--bronze); text-underline-offset:5px; }
-  .ledger-founder dd a { display:flex; align-items:center; gap:16px; text-decoration:none; }
-  .ledger-print { width:72px; height:90px; object-fit:cover; object-position:50% 22%; border-radius:var(--radius-control); padding:4px; background:var(--raised); box-shadow:var(--elev-object); }
   /* Today is lit evidence; Ahead is drawn in outline and never brighter. */
   .today-ahead { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px; margin-top:clamp(28px,4vw,48px); }
   .today-card, .ahead-card { display:grid; align-content:start; gap:14px; padding:var(--pad-panel); border-radius:var(--radius-panel); }

@@ -14,7 +14,6 @@
   .careers-team-grid img, .careers-team-monogram { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; border-radius: var(--radius-control); box-shadow: var(--shadow-portrait); }
   .careers-team-monogram { display: grid; place-items: center; background: var(--raised); color: var(--sand); font-family: var(--font-display); font-size: var(--type-sub); }
   .careers-team figcaption { margin-block-start: 26px; padding-inline-start: 8px; }
-  .careers-team .eyebrow { margin-block-end: 12px; }
   .careers-team figcaption > p:not(.eyebrow) { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; }
   .careers-team strong { color: var(--text); font-size: var(--text-base); font-weight: 500; }
   .careers-team figcaption > p > span { color: var(--muted); font-size: var(--text-2xs); }
@@ -103,7 +102,6 @@
     .careers-opening .lede { margin-block: 23px 25px; font-size: var(--text-base); }
     .careers-opening .actions { align-items: start; gap: 10px 18px; }
     .careers-team { grid-template-columns: 200px minmax(0, 1fr); gap: 20px; }
-    .careers-team figcaption .eyebrow { display: none; }
     .careers-team strong { font-size: var(--text-sm); }
     .careers-team figcaption > p > span { font-size: var(--text-2xs); }
     .careers-team .text-link { gap: 8px; font-size: var(--text-2xs); }
