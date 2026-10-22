@@ -11,6 +11,7 @@ maintenance. Only GET requests are sent.
 from __future__ import annotations
 
 import gzip
+import time
 from pathlib import Path
 import re
 import sys
@@ -30,6 +31,7 @@ SECURITY = {
     'referrer-policy': 'strict-origin-when-cross-origin',
     'x-frame-options': 'SAMEORIGIN',
 }
+FRESH = time.time_ns()
 # cf-cache-status values for a response served from Cloudflare's edge copy.
 EDGE_CACHED = {'HIT', 'REVALIDATED', 'STALE', 'UPDATING'}
 # Equivalent registrations of the same format differ between servers.
@@ -208,7 +210,8 @@ def main(base: str) -> int:
             # A file whose bytes did not change keeps the headers Cloudflare cached with it until that
             # copy expires, even after a deploy changes _headers (for example a new inline-script hash
             # in the CSP). Check what the deployment itself serves, and note the lag.
-            _, headers, _ = get(base, f'{path}?smoke-fresh')
+            # A query unique to this run: a fixed one would itself be cached at the edge after the first run.
+            _, headers, _ = get(base, f'{path}?smoke-fresh={FRESH}')
             edge_notes.add(f'cached files still carry the previous {", ".join(sorted(stale))} until their edge copies expire')
         for name, value in expected.items():
             expect(headers.get(name) == value, f'{path}: {name} is {headers.get(name)!r}, expected {value!r}')
