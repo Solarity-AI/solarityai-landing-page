@@ -1,0 +1,24 @@
+{
+  "approved_source": "research-assets/stairway-ascent-approved.webp",
+  "source_sha256": "d7f472fa7e58cc39e90459e54b61a0f2f57da98ec5434c393617c98b58a59dbe",
+  "dimensions": [
+    1672,
+    941
+  ],
+  "classification": "Illustrative brand artwork supplied by the founder on 2026-10-22",
+  "approval": "Founder: \"change the hero with this new image perfectly\" (2026-10-22), with the image attached.",
+  "description": "A person walking up a lit stairway above the clouds toward a rising sun; dark sky on the left for the headline.",
+  "asset": "/assets/stairway-ascent.webp (published only as /assets/optimized/stairway-ascent-* variants)",
+  "social_asset": "/assets/social/default.jpg (1200x630, from the build master; make_social_images.py)",
+  "transforms": "Build master: AI upscale as described in build_master. Published variants: format conversion and proportional resizing only; no crop or content modification.",
+  "build_master": {
+    "file": "source-assets/stairway-ascent.webp",
+    "dimensions": [
+      3344,
+      1882
+    ],
+    "sha256": "fb37ab563b89baa535e0fba2af5a04dae487b46d5b95d75827a7a4b5d03b680c",
+    "derivation": "The supplied image upscaled 4x with Real-ESRGAN realesrgan-x4plus (realesrgan-ncnn-vulkan 20220424, exe sha256 07e49f7cbb4ede01ae4dd4c399d3a7e5846e3d2085c3128eff881e55cb7b1a0c, 256px tiles), then Lanczos-resized to 2x and saved as WebP q92: the same method as the previous hero. Downscaled back to 1672 px it matches the supplied image at 37.3 dB PSNR (mean channel difference about 2 levels). Composition, crop and colour are unchanged; fine detail above the original resolution is AI-inferred."
+  },
+  "replaces": "research-assets/solar-ascent-artwork.json (the natural-sunrise artwork, retired 2026-10-22; its master moved to source-assets/retired/solar-ascent.webp)"
+}
