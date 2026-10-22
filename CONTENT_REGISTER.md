@@ -230,3 +230,7 @@ The homepage portfolio-to-platform relationship is explicitly conceptual company
   - iq-max: https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/12/14/17/1214177d-45be-246f-6c6c-b3720fe93ae7/AppIcon-0-0-1x_U007emarketing-0-8-0-85-220.png/1024x1024bb.png (c747a4ea2cea9bf7…)
   - sleep-max: https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/ed/d4/d0/edd4d064-2cf6-cfa5-29e4-558597a161a5/AppIcon-0-0-1x_U007emarketing-0-11-0-85-220.png/1024x1024bb.png (2e8c9ac19daebd43…)
   - fitness-max: https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/86/b9/47/86b9471a-ff13-f4ae-dd99-654cb77868f8/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/1024x1024bb.png (d0c3b84f0ede3f5f…)
+
+## Home hero artwork (2026-10-22)
+
+- The founder supplied a new hero image in chat with the instruction "change the hero with this new image perfectly": a person walking up a lit stairway above the clouds toward a rising sun. It is illustrative brand artwork and shows no product, person or claim. It is stored unchanged as `research-assets/stairway-ascent-approved.webp` (1672×941, sha256 d7f472fa…). The upscale method and checks are in `research-assets/stairway-ascent-artwork.json`. Alt text: "A person walking up a lit stairway above the clouds toward a rising sun". The same master feeds the Investors booking reprise and the default link preview (`/assets/social/default.jpg`).
