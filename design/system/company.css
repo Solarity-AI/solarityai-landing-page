@@ -445,8 +445,8 @@
   /* Reviewer paths and print. */
   .conversation-program { grid-column:1 / -1; justify-self:end; font-size:var(--text-sm); }
   .conversation-overview { grid-column:1 / -1; justify-self:end; font-size:var(--text-sm); }
-  .print-page { min-height:44px; padding:0; border:0; background:none; color:var(--gold); font:inherit; font-size:var(--text-sm); cursor:pointer; }
-  .print-page:hover { text-decoration:underline; }
+  /* Button-built text links take the .text-link look (weight 500, colour and rule on hover) like the links beside them. */
+  .print-page, .faq-toggle { padding:0; border:0; border-bottom:1px solid transparent; border-radius:0; background:none; font-family:inherit; cursor:pointer; }
   /* Press kit. */
   .press-intro .actions { align-items:center; gap:12px 24px; }
   .press-section { padding-block:calc(var(--space-section) * .7); border-top:1px solid var(--line); }
@@ -495,8 +495,7 @@
   .saas-index a[aria-current] { color:var(--text); background:rgb(255 207 122/.12); }
   @media (forced-colors:active) { .saas-index a[aria-current] { outline:1px solid CanvasText; outline-offset:-3px; } }
   /* Investors answers: one control for all, and a link to each. */
-  .faq-toggle { display:inline-flex; align-items:center; min-height:44px; margin-top:18px; padding:0; border:0; background:none; color:var(--gold); font:inherit; font-size:var(--text-sm); cursor:pointer; }
-  .faq-toggle:hover { text-decoration:underline; }
+  .faq-toggle { margin-top:18px; }
   .faq-permalink { margin-top:12px; font-size:var(--text-xs); }
   .faq-permalink a { display:inline-flex; align-items:center; min-height:32px; color:var(--dim); text-decoration:underline; text-decoration-color:var(--line); text-underline-offset:4px; }
   .faq-permalink a:hover { color:var(--text); }
