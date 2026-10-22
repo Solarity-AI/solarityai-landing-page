@@ -1,7 +1,7 @@
 {
   "/": {
     "title": "Solarity AI: AI-powered self-improvement apps and web apps",
-    "description": "Solarity AI builds AI self-improvement apps for iOS and Android, Looks Max, IQ Max, Sleep Max, and Fitness Max, and three web apps for building mobile products."
+    "description": "Solarity AI builds AI self-improvement apps for iOS and Android, Looks Max, IQ Max, Sleep Max, and Fitness Max, and 3 web apps for building mobile products."
   },
   "/apps": {
     "title": "AI self-improvement apps for iOS and Android",
@@ -25,7 +25,7 @@
   },
   "/platform": {
     "title": "Engineering Max, Management Max, Marketing Max",
-    "description": "Engineering Max, Management Max, and Marketing Max: three Solarity AI web apps for engineering, managing, and marketing mobile products."
+    "description": "Engineering Max, Management Max, and Marketing Max: 3 Solarity AI web apps for engineering, managing, and marketing mobile products."
   },
   "/company": {
     "title": "About Solarity AI and founder Ata Turhan",
