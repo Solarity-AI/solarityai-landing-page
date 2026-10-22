@@ -12,4 +12,10 @@
 <a class="contact-topic" data-inquiry-type="{{ topic.kind }}" href="{{ topic.href }}"><span class="contact-topic-icon">{{ symbol(topic.icon)|safe }}</span><span><strong>{{ topic.title }}</strong><span>{{ topic.description }}</span></span><span class="contact-topic-arrow" aria-hidden="true">↗</span></a>
 {%- endfor -%}
 </div></section>
-<div class="contact-data-note wrap" id="data-note"><h2>About this contact experience</h2><p>Email links open your email app. You review and send the message there. This website does not collect or submit contact messages. Booking opens Google Calendar.</p><p>For job opportunities, visit <a href="/careers">careers</a> or email <a href="mailto:careers@solarityai.com">careers@solarityai.com</a>.</p></div>
+<section class="contact-topics contact-more wrap" aria-labelledby="contact-more-title"><div class="contact-topics-heading"><h2 id="contact-more-title">More ways to connect</h2><p>Forms open Google Forms in a new tab.</p></div><div><div class="contact-topic-list">
+{%- for form in forms -%}
+<a class="contact-topic" href="{{ form.href }}" target="_blank" rel="noopener noreferrer"><span class="contact-topic-icon">{{ symbol(form.icon)|safe }}</span><span><strong>{{ form.title }}</strong><span>{{ form.description }}</span></span><span class="contact-topic-arrow" aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a>
+{%- endfor -%}
+</div><p class="contact-follow">Follow Solarity AI on
+{%- for label, href in profiles %} <a href="{{ href }}" target="_blank" rel="noopener noreferrer">{{ label }}<span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a>{% if not loop.last %} ·{% endif %}{% endfor %}</p></div></section>
+<div class="contact-data-note wrap" id="data-note"><h2>About this contact experience</h2><p>Email links open your email app. You review and send the message there. This website does not collect or submit contact messages. Booking opens Google Calendar, and the feedback, mentorship and certificate forms open Google Forms.</p><p>For job opportunities, visit <a href="/careers">careers</a> or email <a href="mailto:careers@solarityai.com">careers@solarityai.com</a>.</p></div>
