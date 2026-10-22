@@ -3,7 +3,7 @@ from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urlsplit, unquote
 from collections import Counter
-from performance_build import compact_script
+from performance_build import compact_script, inline_scripts
 import ast,html,json,re
 from hashlib import sha256
 from urllib.robotparser import RobotFileParser
@@ -163,7 +163,7 @@ for file,d in docs.items():
     if wants_sections!=bool(sections_startup) or (sections_startup and sections_startup.group(1)!=compact_script((ROOT/'scripts/sections.js').read_text(encoding='utf-8'))):
         errors.append(f'{rel}: sections script must be inlined, current, exactly where answers or a section index appear')
     # Intent-based prefetch speeds page-to-page moves; prerender would run analytics for unseen visits.
-    speculation=[m.group(2) for m in re.finditer(r'<script\b([^>]*)>(.*?)</script>',text,re.S) if re.search(r'\btype="speculationrules"',m.group(1))]
+    speculation=[body for attrs,body in inline_scripts(text) if attrs.get('type')=='speculationrules']
     try:rules=json.loads(speculation[0]) if len(speculation)==1 else None
     except ValueError:rules=None
     if not isinstance(rules,dict) or set(rules)!={'prefetch'} or not rules['prefetch']:errors.append(f'{rel}: expected one prefetch-only speculation rules block')
@@ -266,7 +266,7 @@ for file,d in docs.items():
             control=by_id.get(control_id,('',{}))[1]
             if control.get('name')!=name or 'required' in control:errors.append(f'{rel}: {control_id} must be an optional application detail')
         if by_id.get('career-email',('',{}))[1].get('type')!='email':errors.append(f'{rel}: careers email requires native email validation')
-        if 'gmail.com' in by_id.get('career-email',('',{}))[1].get('pattern',''):errors.append(f'{rel}: careers must accept non-Gmail applicants')
+        if re.search(r'gmail\.com',by_id.get('career-email',('',{}))[1].get('pattern',''),re.I):errors.append(f'{rel}: careers must accept non-Gmail applicants')
         hidden={a.get('name'):a.get('value') for t,a in d.tags if t=='input' and a.get('type')=='hidden'}
         if hidden.get('_captcha')!='true' or '_next' in hidden:errors.append(f'{rel}: use provider verification and confirmation without a local success redirect')
         honey=by_id.get('career-honey',('',{}))[1]
@@ -336,7 +336,7 @@ for file,d in docs.items():
     if 'Solarity AI' not in title:errors.append(f'{rel}: title must name Solarity AI')
     desc=next((a.get('content','') for t,a in d.tags if t=='meta' and a.get('name')=='description'),'')
     if not 70<=len(html.unescape(desc))<=165:errors.append(f'{rel}: description is {len(html.unescape(desc))} characters; aim for 70-165')
-    blocks=re.findall(r'<script type="application/ld\+json">(.*?)</script>',text,re.S)
+    blocks=[body for attrs,body in inline_scripts(text) if attrs.get('type')=='application/ld+json']
     try:graph=[n for b in blocks for n in json.loads(b).get('@graph',[])]
     except ValueError as exc:errors.append(f'{rel}: invalid JSON-LD: {exc}');continue
     types={n.get('@type') for n in graph}
@@ -409,8 +409,8 @@ for directive,expected in (('object-src',["'none'"]),('base-uri',["'self'"]),('f
 if 'https://formsubmit.co' not in directives.get('form-action',[]):errors.append('CSP form-action must allow the careers form provider')
 import base64 as _b64
 for page in DIST.rglob('*.html'):
-    for attrs,body in re.findall(r'<script([^>]*)>(.*?)</script>',page.read_text(encoding='utf-8'),re.S):
-        if 'src=' in attrs or 'application/ld+json' in attrs:continue
+    for attrs,body in inline_scripts(page.read_text(encoding='utf-8')):
+        if 'src' in attrs or attrs.get('type')=='application/ld+json':continue
         digest="'sha256-"+_b64.b64encode(sha256(body.encode('utf-8')).digest()).decode()+"'"
         if digest not in script_sources:errors.append(f'{page.relative_to(DIST).as_posix()}: inline script is not allowed by the CSP hash list')
 # COOP stays off: it breaks Lighthouse and PageSpeed Insights traces (NO_NAVSTART) and the site opens no cross-origin popups.
