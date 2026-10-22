@@ -34,7 +34,7 @@ Shared findings included 34 stylesheet sources, repeated declarations across suc
 | --- | --- |
 | `foundation.css` | Tokens, reset, semantics, type scale, grids, controls, dialog, shared closing invitation |
 | `chrome.css` | Header, active navigation, mobile disclosure and no-JS fallback, footer |
-| `home.css` | Home opening and credits row, portfolio wall, platform teaser, thesis, founder strip |
+| `home.css` | Home opening and credits row, portfolio wall, platform teaser, thesis |
 | `products.css` | Apps directory and all four product detail compositions |
 | `company.css` | Company, Platform, Investors & Partners |
 | `contact.css` | Contact page (direct email and booking links, topic choices), 404 recovery |
@@ -189,6 +189,7 @@ All values below are tokens on `:root` in `design/system/foundation.css`. `check
   - Platform: the map's nodes are solid hairline panels with each product's stage status, and the legend says the lines show where the work comes from, not data integrations. Each web app has a numbered chapter with the category, name, status, tagline, summary, facts, availability, "Visit <domain> ↗" and its real screens with a caption. Chapters alternate sides and stack on phones.
   - Footer: the portfolio is two groups, Mobile apps (four) and Web apps (three, linking to their Platform chapters). Desktop shows four columns; phones show a 2×2 grid.
   - `check_site.py` requires the three Home cards in order with their screens and links, the three Platform chapters with a screen and a link to their own site, a status on every map node, and the three web apps in every footer.
+- **Founder presence and footer signature (October 22, 2026).** At the founder's request the portrait appears only on Company and in the Press kit (`check_site.py` fails anywhere else). Home no longer has the founder strip, Careers opens with a mosaic of the team's 4:5 portraits (Emrecan's monogram included) linking to `/company#team`, and the Investors summary shows "Team: 7 people, founder-led". The footer signature is still until pointed at: on fine pointers with motion allowed, a sunlight follows the cursor over SOLARITY AI and the sun mark. A gold tint is multiplied onto the letters, and a warm halo sits behind them on its own layer that reaches past the box. It trails the pointer through registered `--sx`/`--sy` transitions and fades in and out with `--sa`. `navigation.js` writes `--mx`/`--my` exactly as for the cards. The earlier scroll-driven sun turn, rising letters and timed light sweep are retired.
 - **Home hero (October 22, 2026): the stairway.** The founder replaced the hero with a person walking up a lit stairway above the clouds toward a rising sun (`research-assets/stairway-ascent-artwork.json`). The master is the supplied 1672×941 image upscaled 2× to 3344×1882 with Real-ESRGAN x4plus. The 16:9 frame keeps the walker (76% across) and the sun (82%) inside the existing crop anchors (`object-position` 78% 42% on desktop, 74% centre on phones). `sizes` follows the drawn cover width: 995px on phones (560px tall), 1351px on tablets, and `max(100vw, 178vh)` on desktop, where cover makes the image wider than the viewport. The CSS grade and overlay are unchanged. The October 19 entry below describes the retired sunrise.
 - **Home hero (October 19, 2026).** The founder removed the "Conceptual brand artwork" caption, and `check_site.py` now fails if it returns. The grade is CSS only, so the approved pixels are untouched: film grain, a warm bloom at the sun and a soft edge vignette. The build master is the approved artwork upscaled 2× to 3720×1690 with Real-ESRGAN x4plus (founder-approved; `research-assets/solar-ascent-artwork.json`). Variants run from 480 to 3720. A 2× desktop now loads 3720, at 1.07 device pixels per image pixel instead of 2.13. A 3× phone loads 2560 (1.44 instead of 2.0), and a 2× phone keeps the same 1860 file (the phone `sizes` is 853px for that reason). Lighthouse mobile is unchanged for the hero (the same 1860 AVIF, 128 KB). The Home web app cards add about 150 ms of lab LCP (3,010 to 3,160 ms) through their three 640px screens, which are lazy and low priority.
 - **Ten improvements (October 19, 2026).**
@@ -241,7 +242,7 @@ All values below are tokens on `:root` in `design/system/foundation.css`. `check
   - **Light:**
     - Product world fields, the founder glow and feature-tile glows brighten on arrival.
     - Eyebrow rules draw from the left, and the closing horizon draws from the centre.
-    - The footer sun turns into place.
+    - The footer sun turned into place (retired 2026-10-22; see the footer signature entry below).
   - **Responses (fine pointers only):** cards light up where the pointer is (`navigation.js` writes `--mx`/`--my` on the hovered card, at most once a frame), and primary buttons catch a sweep of light.
   - **Mobile menu:** it settles 12 px and its links follow one after another (`@starting-style`).
   - **Page transitions:** same-site navigations use a cross-document view transition. The new page rises 18 px in 520 ms with no fade, and the header holds still. The block is unlayered so `@view-transition` is honoured.
@@ -257,7 +258,7 @@ All values below are tokens on `:root` in `design/system/foundation.css`. `check
   - **Apps world bands.** The invisible screenshot stage added 48 px above and below every product. Each band is now 72 px shorter at desktop.
   - **Platform.** The giant outlined stage words ("Build", "Operate", "Grow") bled out of each chapter into the next one and under the sticky index. They are removed; each chapter keeps its number and stage label.
   - **Company opening.** Its grid reserves a row for an eyebrow, but the page had none, so the headline sat a row below the intro. It now has the "Company" eyebrow like every other page.
-  - **Founder strip (Home).** It has a "Founder" eyebrow, and the portrait has a hairline print frame (`outline-offset: 8px`) that ties the white studio background to the dark page.
+  - **Founder strip (Home, retired 2026-10-22 at the founder's request).** It had a "Founder" eyebrow, and the portrait has a hairline print frame (`outline-offset: 8px`) that ties the white studio background to the dark page.
   - **Home wall caption.** It sits on a hairline rule instead of floating.
   - **Product pages.** On phones the stacked feature tiles are 12 px apart (they nearly touched), and titles clear the corner number. The context note runs to 88ch.
   - **Phone hero credits.** "Four mobile apps · iOS & Android" and "Explore the portfolio" no longer break mid-phrase.
