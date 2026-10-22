@@ -153,7 +153,7 @@ def portfolio_card(title_lines, kicker) -> Image.Image:
 
 def default_card() -> Image.Image:
     """The approved sunrise at link-preview proportions, with the sun mark; no added text beyond the name."""
-    canvas = cover(asset('solar-ascent.webp'), (W, H), (0.78, 0.42))
+    canvas = cover(asset('stairway-ascent.webp'), (W, H), (0.78, 0.42))
     shade = Image.linear_gradient('L').rotate(-90).resize((W, H)).point(lambda v: int(v * 0.55))
     canvas.paste(Image.new('RGB', (W, H), (12, 9, 6)), (0, 0), shade)
     signature(canvas, (72, 72))

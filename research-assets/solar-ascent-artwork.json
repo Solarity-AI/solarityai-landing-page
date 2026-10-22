@@ -12,7 +12,7 @@
   "social_asset": "/assets/social/default.jpg (1200x630, from the build master; make_social_images.py). The earlier 1200x545 file is kept in source-assets/.",
   "transforms": "Build master: AI upscale 2x as described in build_master. Published variants: format conversion and proportional resizing only; no crop or content modification.",
   "build_master": {
-    "file": "source-assets/solar-ascent.webp",
+    "file": "source-assets/retired/solar-ascent.webp",
     "dimensions": [
       3720,
       1690
@@ -20,5 +20,6 @@
     "sha256": "51c5646c2913a004394f142f16c3f1b5ae32b14cdae148c505f5cae768709b83",
     "derivation": "The approved PNG upscaled 4x with Real-ESRGAN x4plus (official release v0.1.0, weights sha256 4fa0d38905f75ac06eb49a7951b426670021be3018265fd191d2125df9d682f1, CPU, 256px tiles with 16px overlap), then Lanczos-resized to 2x and saved as WebP q92. Composition, crop and colour are unchanged. Fine detail above the original resolution is AI-inferred.",
     "approved": "Founder chose the local AI upscale on 2026-10-19 to make the hero higher resolution."
-  }
+  },
+  "retired": "2026-10-22: replaced by the stairway artwork (research-assets/stairway-ascent-artwork.json). The master moved to source-assets/retired/solar-ascent.webp."
 }
