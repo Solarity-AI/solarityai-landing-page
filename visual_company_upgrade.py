@@ -11,6 +11,7 @@ from templating import render
 from ux_components import copy_button
 from visual_saas import showroom_web
 from visual_record import company_line, program_brief, record_summary
+from visual_team import TEAM_MEMBERS
 
 
 def page_index(sections):
@@ -63,14 +64,15 @@ def investor_evidence(apps):
                    for title, detail, context in topics]
     listed = [app for app in apps if app.get('apple') and app.get('google')]
     return str(render('visual_company_upgrade/investor_evidence.html.j2',
-                      listed=listed, web_app_count=len(SAAS), topics=topic_links, company=company_line(), record=record_summary()))
+                      listed=listed, web_app_count=len(SAAS), topics=topic_links, company=company_line(), record=record_summary(),
+                      team_size=1 + len(TEAM_MEMBERS)))  # the founder and the approved roster
 
 
 def founder_booking(btn, booking, email='ata.turhan@solarityai.com'):
     """The close: speak with the founder, beside the one reprise of the approved sunrise."""
     return str(render('visual_company_upgrade/founder_booking.html.j2',
                       booking_button=btn('View available times', booking, 'primary', True),
-                      email_button=btn('Email Ata', 'mailto:' + email, 'outline'),
+                      email_button=btn('Email us', 'mailto:' + email, 'outline'),
                       email=email, copy=copy_button(email, 'booking-email-copy-status')))
 
 

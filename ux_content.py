@@ -22,7 +22,7 @@ FAQ = [
         '<p>Solarity AI LLC, based in Irving, Texas, builds AI self-improvement apps for iOS and Android: '
         '<a href="/apps/looks-max">Looks Max</a>, <a href="/apps/iq-max">IQ Max</a>, <a href="/apps/sleep-max">Sleep Max</a>, '
         'and <a href="/apps/fitness-max">Fitness Max</a>. Building them shaped 3 web apps for teams that build mobile '
-        'products: <a href="/platform">Engineering Max, Management Max, and Marketing Max</a>. Ata Turhan is the founder.</p>',
+        'products: <a href="/platform">Engineering Max, Management Max, and Marketing Max</a>.</p>',
     ),
     (
         "Which products can I explore today?",

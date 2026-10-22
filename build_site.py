@@ -7,7 +7,7 @@ from ux_content import investor_faq, recovery_links
 from visual_home import hero_section, closing_scene
 from visual_saas import saas_wall, saas_chapters, apps_web_band
 from saas_products import SAAS
-from visual_sections import feature_grid, founder_card, founder_portrait
+from visual_sections import feature_grid, founder_card
 from visual_team import selected_team, TEAM_MEMBERS
 from company_facts import TEAM_DETAILS
 from visual_careers import careers_page
@@ -95,7 +95,7 @@ def page(name,**context):
 # Page bodies stay plain strings: seo.page_dates() hashes them together with the title and description.
 pages={}
 pages['/']=('Solarity AI: AI-powered self-improvement apps and web apps','Solarity AI builds AI self-improvement apps for iOS and Android, Looks Max, IQ Max, Sleep Max, and Fitness Max, and 3 web apps for building mobile products.',
-            page('home',hero_section=hero_section,portfolio_wall=portfolio_wall,shipping_record=shipping_record,saas_wall=saas_wall,founder_portrait=founder_portrait))
+            page('home',hero_section=hero_section,portfolio_wall=portfolio_wall,shipping_record=shipping_record,saas_wall=saas_wall))
 
 pages['/apps']=('AI self-improvement apps for iOS and Android','Discover Looks Max, IQ Max, Sleep Max, and Fitness Max, and the Engineering Max, Management Max, and Marketing Max web apps from Solarity AI.',
                 page('apps',app_compare=app_compare,portfolio_page=portfolio_page,app_art=app_art,product_status=product_status,apps_web_band=apps_web_band))
