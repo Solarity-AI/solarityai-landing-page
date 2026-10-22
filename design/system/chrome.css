@@ -49,35 +49,11 @@
  .footer-signature{position:relative;display:flex;align-items:flex-end;gap:2.45cqi;padding-block:clamp(28px,4vw,56px) clamp(20px,3vw,40px);font-size:14.75cqi;line-height:.8;letter-spacing:.005em;font-weight:500;color:var(--text);user-select:none}
  .footer-signature::after{content:'';position:absolute;z-index:-1;pointer-events:none;left:10%;right:10%;bottom:-10px;height:60%;background:radial-gradient(closest-side,var(--glow-ember),transparent)}
  .footer-sun{width:12.75cqi;height:auto;flex:none;margin-block-end:-.4cqi}
- @media(prefers-reduced-motion:no-preference){
-  @keyframes signature-light{0%{background-position:140% 0}24%,100%{background-position:-40% 0}}
-  .footer-signature-word::after{animation:signature-light 9s cubic-bezier(.45,0,.25,1) 1.2s infinite}
-  @keyframes signature-rise{from{transform:translateY(.32em)}to{transform:none}}
-  @supports (animation-timeline:view()){
-   /* One timeline for the whole word: the signature's own arrival, so the letters' movement never feeds back into it. */
-   .footer-signature{view-timeline:--signature block}
-   .footer-signature-letters>span,.footer-signature-word>span:last-child{animation:signature-rise cubic-bezier(.2,.7,.2,1) both;animation-timeline:--signature;animation-range:entry 0% entry 55%}
-   .footer-signature-letters>span+span{animation-range:entry 5% entry 60%}
-   .footer-signature-letters>span+span+span{animation-range:entry 10% entry 65%}
-   .footer-signature-letters>span+span+span+span{animation-range:entry 15% entry 70%}
-   .footer-signature-letters>span+span+span+span+span{animation-range:entry 20% entry 75%}
-   .footer-signature-letters>span+span+span+span+span+span{animation-range:entry 25% entry 80%}
-   .footer-signature-letters>span+span+span+span+span+span+span{animation-range:entry 30% entry 85%}
-   .footer-signature-letters>span+span+span+span+span+span+span+span{animation-range:entry 35% entry 90%}
-   .footer-signature-word>span:last-child{animation-range:entry 45% entry 100%}
-  }
-  @media(hover:hover) and (pointer:fine){.footer-sun{transition:rotate 1.4s cubic-bezier(.3,.7,.2,1)}.footer-signature:hover .footer-sun{rotate:1turn}}
- }
  .footer-signature-word{display:flex;gap:.18em;white-space:nowrap;font-family:'Manrope','Signature Fallback',Arial,sans-serif}
- .footer-signature-word{position:relative}
- .footer-signature-word>span:last-child{color:var(--sand)}
- .footer-signature-letters{display:flex}
- .footer-signature-letters>span{display:inline-block}
- /* Sunlight crossing the word: a band of sun-gold multiplied over the letters, so white letters turn gold where it
-    passes while the near-black ground stays as it is. */
- .footer-signature-word::after{content:'';position:absolute;inset:-12% -2%;pointer-events:none;background:linear-gradient(105deg,transparent 36%,rgb(255 196 92) 47%,rgb(255 168 60) 50%,rgb(255 196 92) 53%,transparent 64%) 140% 0/260% 100% no-repeat;mix-blend-mode:multiply}
- @media(forced-colors:active){.footer-signature-word::after{display:none}}
- @media print{.footer-signature-word::after{display:none}}
+ .footer-signature-word>span{color:var(--sand)}
+ .footer-signature-light{display:none}
+ .chrome-footer{overflow-x:clip}
+ @media print{.footer-signature::before{display:none}}
  .footer-profiles a{display:inline-flex;align-items:center;gap:4px;min-height:24px;color:var(--muted);text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:4px}
  .footer-profiles a:is(:hover,:focus-visible){color:var(--text)}
  .footer-legal{display:grid;gap:2px;border-top:1px solid var(--line-soft);padding-top:16px;font-size:var(--text-2xs);color:var(--dim)}

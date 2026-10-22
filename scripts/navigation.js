@@ -101,9 +101,9 @@
     syncViewport();
   }
 
-  // Cards catch a warm light where the pointer is (design/system/accessibility.css). Fine pointers with
+  // Cards and the footer signature catch a warm light where the pointer is (design/system/accessibility.css). Fine pointers with
   // motion allowed only; one passive listener, and at most one style write per animation frame.
-  const LIT_CARDS = '.saas-card,.feature-tile,.today-card,.ahead-card,.operating-principles li,.strategy-story-steps>li,.career-benefit-list>div,.contact-topic';
+  const LIT_CARDS = '.saas-card,.feature-tile,.today-card,.ahead-card,.operating-principles li,.strategy-story-steps>li,.career-benefit-list>div,.contact-topic,.footer-signature';
   function initializePointerLight() {
     if (typeof window.matchMedia !== 'function' || typeof window.requestAnimationFrame !== 'function') return;
     if (!window.matchMedia('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)').matches) return;
