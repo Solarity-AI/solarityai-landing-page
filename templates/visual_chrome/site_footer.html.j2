@@ -10,7 +10,7 @@
   {%- endfor -%}
   </nav><div class="footer-signature" aria-hidden="true"><img class="footer-sun" src="/assets/brand/solarity-sun-320.2513ba060440.webp" srcset="/assets/brand/solarity-sun-192.91c59bec3b73.webp 192w, /assets/brand/solarity-sun-320.2513ba060440.webp 320w" sizes="(min-width: 1384px) 161px, 12vw" width="320" height="320" alt="" loading="lazy" decoding="async">
   {#- -#}
-  <span class="footer-signature-word">SOLARITY<span>AI</span></span></div>
+  <span class="footer-signature-word"><span class="footer-signature-letters">{% for letter in "SOLARITY" %}<span>{{ letter }}</span>{% endfor %}</span><span>AI</span></span></div>
   {#- -#}
   <div class="footer-legal"><p>© 2026 {% if company %}{{ company }}{% else %}Solarity AI LLC{% endif %} · Irving, Texas, United States{% if updated %} · Updated <time datetime="{{ updated_iso }}">{{ updated }}</time>{% endif %} · <a href="/website-data">Website data</a> · <a href="/accessibility">Accessibility</a></p>
   {#- -#}
