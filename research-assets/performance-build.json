@@ -19,8 +19,8 @@
       "speculation_rules": "Prefetch same-origin pages on intent (moderate); never prerender",
       "external_scripts": [],
       "javascript_bytes": 5020,
-      "html_bytes": 104628,
-      "html_gzip_bytes": 22182
+      "html_bytes": 104818,
+      "html_gzip_bytes": 22241
     },
     "/apps": {
       "source_bytes": 171176,
@@ -207,8 +207,8 @@
         "copy"
       ],
       "javascript_bytes": 9033,
-      "html_bytes": 122907,
-      "html_gzip_bytes": 26365
+      "html_bytes": 122932,
+      "html_gzip_bytes": 26369
     },
     "/careers": {
       "source_bytes": 171176,
