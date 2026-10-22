@@ -1,7 +1,7 @@
 """Direct, verified contact paths with lightweight inquiry context enhancement."""
 from urllib.parse import quote, urlencode
 
-from company_facts import FOUNDER
+from company_facts import COMPANY_FORMS, COMPANY_PROFILES, FOUNDER
 from templating import render
 from ux_components import copy_button
 from visual_sections import symbol
@@ -16,6 +16,14 @@ CONTACT_TOPICS = (
     ('Product inquiry', 'Product questions', 'The four mobile apps, or Engineering Max, Management Max, and Marketing Max.'),
     ('Press', 'Press and media', 'Articles, program pages, and event listings. The press kit has approved descriptions and images.'),
     ('Other', 'Something else in mind?', 'A clear introduction is a good place to start.'),
+)
+
+
+# The Linktree's Google Forms, described as each form describes itself.
+CONTACT_FORMS = (
+    ('feedback', 'message', 'Product feedback', 'Share your thoughts on the apps and web apps.'),
+    ('mentorship', 'spark', 'Mentorship program', 'A pilot program mentoring university students.'),
+    ('certificate', 'calendar', 'Certificate of participation', 'Attended a Solarity AI event? Request your certificate.'),
 )
 
 
@@ -45,4 +53,6 @@ def contact_page(email, booking, btn):
     ]
     # A plain str, like the other page bodies: seo.page_dates prepends a str, which Markup would escape.
     return str(render('visual_contact/page.html.j2', vcard=VCARD_PATH, linkedin=FOUNDER.get('linkedin', ''), email=email, booking=booking, topics=topics,
-                      btn=btn, symbol=symbol, copy_button=copy_button))
+                      forms=[{'href': COMPANY_FORMS[key], 'icon': icon, 'title': title, 'description': description}
+                             for key, icon, title, description in CONTACT_FORMS],
+                      profiles=COMPANY_PROFILES, btn=btn, symbol=symbol, copy_button=copy_button))

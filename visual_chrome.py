@@ -1,6 +1,7 @@
 """Shared navigation, footer, and verified contact method presentation."""
 
 from saas_products import SAAS
+from company_facts import COMPANY_PROFILES
 from templating import render
 from visual_record import company_line
 
@@ -35,7 +36,7 @@ def site_footer(email, path='/', booking='', updated='', updated_iso=''):
                      ('/contact?type=Strategic+partner#prepare-inquiry', 'Partnership inquiries'),
                      ('mailto:' + email, 'Email Ata')] + ([(booking, 'Book a conversation')] if booking else [])),
     ]
-    from seo import ORG_PROFILES
-    profiles = list(zip(ORG_PROFILES, ['the App Store', 'Google Play', 'GitHub']))
+    from seo import STORE_PROFILES
+    profiles = [(url, label) for label, url in STORE_PROFILES + list(COMPANY_PROFILES)]
     return str(render('visual_chrome/site_footer.html.j2', groups=groups, path=path, company=company_line(), updated=updated,
                       updated_iso=updated_iso, profiles=profiles))

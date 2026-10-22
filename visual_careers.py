@@ -3,6 +3,7 @@
 The native form hands off to the founder-selected recruiting address via FormSubmit.
 The provider, rather than this page, confirms verification and acceptance.
 """
+from company_facts import COMPANY_FORMS
 from templating import render
 from visual_sections import FOUNDER_PORTRAIT
 from ux_components import copy_button
@@ -33,4 +34,5 @@ def careers_page(btn):
     """Return the /careers content inside the site's shared page shell."""
     # A plain str, like the other page bodies: seo.page_dates prepends a str, which Markup would escape.
     return str(render('visual_careers/page.html.j2', roles=CAREER_ROLES, posters_url=POSTERS_URL,
+                      mentorship_url=COMPANY_FORMS['mentorship'], certificate_url=COMPANY_FORMS['certificate'],
                       btn=btn, symbol=symbol, copy_button=copy_button, portrait=FOUNDER_PORTRAIT))

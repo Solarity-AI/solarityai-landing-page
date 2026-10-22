@@ -22,6 +22,31 @@ APP_STORE_RELEASES = [
 # a list of dicts with 'slug' (from saas_products.SAAS), 'date' (ISO) and 'label' (e.g. 'Private testing opened').
 WEB_APP_MILESTONES = []
 
+# The company's channels, from its official Linktree (https://linktr.ee/solarity_ai, read 2026-10-22), in the
+# Linktree's order. Each URL answered live that day (Medium blocks scripted checks); the Linktree's second X
+# address, x.com/solarity_ai_company, returns 404 and is left out.
+COMPANY_PROFILES = (
+    ('LinkedIn', 'https://www.linkedin.com/company/solarity-ai-company'),
+    ('Instagram', 'https://www.instagram.com/solarity_ai'),
+    ('X', 'https://x.com/solarity_ai'),
+    ('WhatsApp', 'https://whatsapp.com/channel/0029Vb6z14n42DcffGUs9x3R'),
+    ('Telegram', 'https://t.me/solarity_ai'),
+    ('Medium', 'https://medium.com/solarity-ai'),
+    ('YouTube', 'https://www.youtube.com/@solarity_ai'),
+    ('GitHub', 'https://github.com/Solarity-AI'),
+    ('TikTok', 'https://www.tiktok.com/@solarityai'),
+    ('Facebook', 'https://www.facebook.com/solarity.ai.company'),
+    ('Pinterest', 'https://www.pinterest.com/solarity_ai'),
+)
+
+# Google Forms from the same Linktree; titles and purposes as each form describes itself. The Linktree's
+# "Book a call with our CEO" is the booking page the site already links (build_site.BOOKING).
+COMPANY_FORMS = {
+    'feedback': 'https://forms.gle/Xm7uAKg8sRRuRRfc9',     # Product Feedbacks: thoughts on the products
+    'mentorship': 'https://forms.gle/8iamagPxXodEzP1ZA',   # Mentorship Program: a pilot for university students
+    'certificate': 'https://forms.gle/CPYKbufGrpGn1Em28',  # Certificate of Participation: for event attendees
+}
+
 # Founder (recommendation 3). bio: 3-4 plain sentences on background, prior builds and fit for this work.
 FOUNDER = {
     'bio': '',

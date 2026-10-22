@@ -1363,6 +1363,10 @@
   .contact-booking > span { font-size: var(--text-2xs); color: var(--dim); }
   .contact-topics { display: grid; grid-template-columns: minmax(0, .75fr) minmax(0, 1.25fr); gap: clamp(32px, 6vw, 88px); padding-block: var(--space-section); }
   .contact-topics-heading h2 { max-width: 18ch; }
+  .contact-more { padding-block-start: 0; }
+  .contact-follow { margin-top: 28px; font-size: var(--text-sm); line-height: 2; color: var(--muted); }
+  .contact-follow a { display: inline-flex; align-items: center; gap: 4px; min-height: 24px; color: var(--text); text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 4px; }
+  .contact-follow a:is(:hover, :focus-visible) { text-decoration-color: currentColor; }
   /* Topic links open a mail app; the address stays in reach for visitors without one. */
   .contact-topics-heading .contact-topics-fallback { margin-top: 12px; }
   .contact-address { color: var(--text); user-select: all; overflow-wrap: anywhere; }
@@ -1479,6 +1483,8 @@
   .career-role-action > span[aria-hidden] { font-size: var(--text-xl); font-weight: 400; line-height: 1; }
   .career-posters { display: flex; justify-content: space-between; align-items: center; gap: 12px 24px; margin-block-start: 20px; font-size: var(--text-xs); }
   .career-posters .text-link { font-size: var(--text-xs); }
+  .career-programs { margin-block-start: 4px; }
+  .career-program-links { display: flex; flex-wrap: wrap; justify-content: flex-end; column-gap: 24px; }
   .career-apply { display: grid; grid-template-columns: minmax(0, .73fr) minmax(0, 1.27fr); align-items: start; gap: clamp(32px, 6vw, 84px); padding-block: clamp(40px, 6vw, 80px) var(--space-section); border-block-start: 1px solid var(--line); }
   .career-apply-copy { padding-block-start: 14px; }
   .career-apply-copy > p:not(.eyebrow) { max-width: 38ch; margin-block-start: 25px; font-size: var(--text-md); line-height: 1.8; }
@@ -1551,6 +1557,7 @@
     .career-role-copy > p { font-size: var(--text-sm); }
     .career-role-action { justify-self: start; min-width: 128px; margin-block-start: 5px; }
     .career-posters { align-items: start; flex-direction: column; gap: 3px; }
+    .career-program-links { flex-direction: column; }
     .career-apply-copy { padding: 0; }
     .career-email-alternative { margin-block-start: 22px; }
     .career-form { padding: 25px 19px; }

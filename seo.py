@@ -11,7 +11,7 @@ import json
 import re
 from pathlib import Path
 
-from company_facts import APP_STORE_RELEASES
+from company_facts import APP_STORE_RELEASES, COMPANY_PROFILES
 from site_urls import public_path
 
 ORIGIN = 'https://solarityai.com'
@@ -20,11 +20,12 @@ SITE_ID = ORIGIN + '/#website'
 FOUNDER_ID = ORIGIN + '/company/#ata-turhan'
 
 # Official profiles. Developer listings name Solarity AI LLC and list all four apps (checked 2026-10-19).
-ORG_PROFILES = [
-    'https://apps.apple.com/us/developer/solarity-ai-llc/id1870988348',
-    'https://play.google.com/store/apps/developer?id=Solarity+AI+LLC',
-    'https://github.com/Solarity-AI',
+STORE_PROFILES = [
+    ('the App Store', 'https://apps.apple.com/us/developer/solarity-ai-llc/id1870988348'),
+    ('Google Play', 'https://play.google.com/store/apps/developer?id=Solarity+AI+LLC'),
 ]
+# The developer listings, then the company's own channels (company_facts.COMPANY_PROFILES).
+ORG_PROFILES = [url for _, url in STORE_PROFILES] + [url for _, url in COMPANY_PROFILES]
 # The founder profile the earlier solarityai.com paired with his portrait (research-assets/brand-evidence.json).
 FOUNDER_PROFILES = ['https://www.linkedin.com/in/ataturhan/']
 # App Store listing names, as the developer listing shows them on 2026-10-19.

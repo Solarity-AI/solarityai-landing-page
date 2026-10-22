@@ -8,20 +8,20 @@
     "date": "2026-10-21"
   },
   "/apps/looks-max": {
-    "sha": "6c134d9bea2a6758",
-    "date": "2026-10-20"
+    "sha": "f95ccbeec01db2a5",
+    "date": "2026-10-21"
   },
   "/apps/iq-max": {
-    "sha": "87526de3c26f9bad",
-    "date": "2026-10-20"
+    "sha": "e04e3754e237db2c",
+    "date": "2026-10-21"
   },
   "/apps/sleep-max": {
-    "sha": "2c369cfdd05ec96b",
-    "date": "2026-10-20"
+    "sha": "081ff14ad94aade0",
+    "date": "2026-10-21"
   },
   "/apps/fitness-max": {
-    "sha": "ee562270e5b3bfee",
-    "date": "2026-10-20"
+    "sha": "566137bbe64f0caa",
+    "date": "2026-10-21"
   },
   "/platform": {
     "sha": "66fcc6fe9835da70",
@@ -36,7 +36,7 @@
     "date": "2026-10-21"
   },
   "/careers": {
-    "sha": "ff300376edef15c8",
+    "sha": "8652414f667e2558",
     "date": "2026-10-21"
   },
   "/press": {
@@ -48,11 +48,11 @@
     "date": "2026-10-20"
   },
   "/website-data": {
-    "sha": "e303c2db9b410877",
-    "date": "2026-10-20"
+    "sha": "7289b8294c41613c",
+    "date": "2026-10-21"
   },
   "/contact": {
-    "sha": "b213849e673389f7",
+    "sha": "4bba16f702c35d4f",
     "date": "2026-10-21"
   },
   "/404": {
