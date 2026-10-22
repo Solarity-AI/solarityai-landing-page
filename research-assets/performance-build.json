@@ -19,8 +19,8 @@
       "speculation_rules": "Prefetch same-origin pages on intent (moderate); never prerender",
       "external_scripts": [],
       "javascript_bytes": 5020,
-      "html_bytes": 103136,
-      "html_gzip_bytes": 22106
+      "html_bytes": 105080,
+      "html_gzip_bytes": 22298
     },
     "/apps": {
       "source_bytes": 168347,
@@ -40,8 +40,8 @@
       "speculation_rules": "Prefetch same-origin pages on intent (moderate); never prerender",
       "external_scripts": [],
       "javascript_bytes": 5020,
-      "html_bytes": 99458,
-      "html_gzip_bytes": 21523
+      "html_bytes": 101172,
+      "html_gzip_bytes": 21721
     },
     "/apps/looks-max": {
       "source_bytes": 168347,
@@ -64,8 +64,8 @@
         "gallery"
       ],
       "javascript_bytes": 9099,
-      "html_bytes": 89256,
-      "html_gzip_bytes": 20640
+      "html_bytes": 89992,
+      "html_gzip_bytes": 20791
     },
     "/apps/iq-max": {
       "source_bytes": 168347,
@@ -88,8 +88,8 @@
         "gallery"
       ],
       "javascript_bytes": 9099,
-      "html_bytes": 89043,
-      "html_gzip_bytes": 20596
+      "html_bytes": 89773,
+      "html_gzip_bytes": 20742
     },
     "/apps/sleep-max": {
       "source_bytes": 168347,
@@ -112,8 +112,8 @@
         "gallery"
       ],
       "javascript_bytes": 9099,
-      "html_bytes": 83203,
-      "html_gzip_bytes": 19744
+      "html_bytes": 83939,
+      "html_gzip_bytes": 19889
     },
     "/apps/fitness-max": {
       "source_bytes": 168347,
@@ -136,8 +136,8 @@
         "gallery"
       ],
       "javascript_bytes": 9099,
-      "html_bytes": 91300,
-      "html_gzip_bytes": 20866
+      "html_bytes": 92040,
+      "html_gzip_bytes": 21017
     },
     "/platform": {
       "source_bytes": 168347,
@@ -161,8 +161,8 @@
         "gallery"
       ],
       "javascript_bytes": 11650,
-      "html_bytes": 98924,
-      "html_gzip_bytes": 22893
+      "html_bytes": 99410,
+      "html_gzip_bytes": 23023
     },
     "/company": {
       "source_bytes": 168347,
@@ -207,8 +207,8 @@
         "copy"
       ],
       "javascript_bytes": 9033,
-      "html_bytes": 119930,
-      "html_gzip_bytes": 25861
+      "html_bytes": 121388,
+      "html_gzip_bytes": 26023
     },
     "/careers": {
       "source_bytes": 168347,
@@ -257,8 +257,8 @@
         "copy"
       ],
       "javascript_bytes": 6482,
-      "html_bytes": 72363,
-      "html_gzip_bytes": 17251
+      "html_bytes": 72857,
+      "html_gzip_bytes": 17381
     },
     "/accessibility": {
       "source_bytes": 168347,
