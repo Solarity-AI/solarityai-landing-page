@@ -34,7 +34,7 @@ def site_footer(email, path='/', booking='', updated='', updated_iso=''):
         ('Contact', [('/contact?type=Investor#prepare-inquiry', 'Investor inquiries'),
                      ('/contact?type=Program#prepare-inquiry', 'Program inquiries'),
                      ('/contact?type=Strategic+partner#prepare-inquiry', 'Partnership inquiries'),
-                     ('mailto:' + email, 'Email Ata')] + ([(booking, 'Book a conversation')] if booking else [])),
+                     ('mailto:' + email, 'Email us')] + ([(booking, 'Book a conversation')] if booking else [])),
     ]
     from seo import STORE_PROFILES
     profiles = [(url, label) for label, url in STORE_PROFILES + list(COMPANY_PROFILES)]
