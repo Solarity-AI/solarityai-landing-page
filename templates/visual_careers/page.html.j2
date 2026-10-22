@@ -17,7 +17,7 @@
 
 <section class="career-opportunities wrap" id="opportunities" aria-labelledby="career-opportunities-title">
 <div class="career-opportunities-heading"><div><p class="eyebrow">Open roles</p><h2 id="career-opportunities-title">Find your place.</h2></div>
-<p>Two disciplines. One product direction. Read the role introductions, then tell us where you could contribute.</p></div>
+<p>2 disciplines. 1 product direction. Read the role introductions, then tell us where you could contribute.</p></div>
 <div class="career-role-list">
 {%- for slug, title, discipline, detail in roles -%}
 <article class="career-role" aria-labelledby="role-{{ slug|safe }}"><div class="career-role-meta">{{ discipline }}</div><div class="career-role-copy"><h3 id="role-{{ slug|safe }}">{{ title }}</h3><p>{{ detail }}</p><ul class="career-role-tags" aria-label="Work arrangements"><li>Fully remote</li><li>Full-time / Part-time / Internship</li></ul></div><a class="career-role-action" href="/careers?role={{ slug|safe }}#apply" data-career-role="{{ slug|safe }}"><span>Apply<span class="sr-only"> for {{ title }}</span></span><span aria-hidden="true">↓</span></a></article>
@@ -33,7 +33,7 @@
 <div class="career-email-alternative"><p>Prefer to contact us directly?</p><a href="mailto:careers@solarityai.com?subject=Career%20inquiry%20-%20Solarity%20AI">careers@solarityai.com <span aria-hidden="true">↗</span></a>{{ copy_button('careers@solarityai.com', 'careers-email-copy-status') }}</div></div>
 
 <form id="career-form" class="career-form" action="https://formsubmit.co/careers@solarityai.com" method="POST" aria-labelledby="career-form-title" aria-describedby="career-form-intro career-disclosure">
-<div class="career-form-heading"><h3 id="career-form-title">Introduce yourself.</h3><p id="career-form-intro">Four details to get started. Work links are optional.</p></div>
+<div class="career-form-heading"><h3 id="career-form-title">Introduce yourself.</h3><p id="career-form-intro">4 details to get started. Work links are optional.</p></div>
 <input type="hidden" name="_subject" value="New Job Application - Solarity AI">
 <input type="hidden" name="_captcha" value="true">
 <input type="hidden" name="_template" value="box">

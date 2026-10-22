@@ -12,7 +12,7 @@ APPS = [dict(slug=s, name=n, category='Category', color='amber', apple=f'https:/
 class ShippingRecordTest(unittest.TestCase):
     def test_counts_launches_and_weeks_from_the_dates(self):
         html = visual_record.shipping_record(APPS)
-        self.assertIn('Four apps in twelve weeks.', html)
+        self.assertIn('4 apps in 12 weeks.', html)
         self.assertIn('June 23, 2026', html)
         self.assertIn('September 16, 2026', html)
         self.assertEqual(html.count('class="record-step"'), 4)
@@ -42,7 +42,6 @@ class RecordHelpersTest(unittest.TestCase):
     def test_summary_matches_the_release_dates(self):
         summary = visual_record.record_summary()
         self.assertEqual((summary['count'], summary['weeks'], summary['first']), (4, 12, 'June 23, 2026'))
-        self.assertEqual((summary['count_word'], summary['weeks_word']), ('four', 'twelve'))
 
     def test_since_dates_only_for_recorded_apps(self):
         self.assertEqual(visual_record.app_store_since('sleep-max'), 'September 16, 2026')

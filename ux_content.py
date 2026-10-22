@@ -21,7 +21,7 @@ FAQ = [
         "What is Solarity AI?",
         '<p>Solarity AI LLC, based in Irving, Texas, builds AI self-improvement apps for iOS and Android: '
         '<a href="/apps/looks-max">Looks Max</a>, <a href="/apps/iq-max">IQ Max</a>, <a href="/apps/sleep-max">Sleep Max</a>, '
-        'and <a href="/apps/fitness-max">Fitness Max</a>. Building them shaped three web apps for teams that build mobile '
+        'and <a href="/apps/fitness-max">Fitness Max</a>. Building them shaped 3 web apps for teams that build mobile '
         'products: <a href="/platform">Engineering Max, Management Max, and Marketing Max</a>. Ata Turhan is the founder.</p>',
     ),
     (
@@ -36,7 +36,7 @@ FAQ = [
     ),
     (
         "How quickly has Solarity AI shipped?",
-        f'<p>{_RECORD["count_word"].capitalize()} apps launched on the App Store in {_RECORD["weeks_word"]} weeks: '
+        f'<p>{_RECORD["count"]} apps launched on the App Store in {_RECORD["weeks"]} weeks: '
         + ', '.join(_LAUNCHES[:-1]) + ', and ' + _LAUNCHES[-1] + '. Each is also on Google Play. '
         '<a href="/investors-partners#shipping-record">See the shipping record</a>.</p>',
     ),
@@ -48,10 +48,10 @@ FAQ = [
     ),
     (
         "Can other teams use the web apps?",
-        '<p>Yes. All three are in early access. <a href="/platform#management-max">Management Max</a> '
-        'has a free plan for one app; <a href="/platform#engineering-max">Engineering Max</a> and '
+        '<p>Yes. All 3 are in early access. <a href="/platform#management-max">Management Max</a> '
+        'has a free plan for 1 app; <a href="/platform#engineering-max">Engineering Max</a> and '
         '<a href="/platform#marketing-max">Marketing Max</a> take requests on their own sites. '
-        'Mobile versions of all three are planned.</p>'
+        'Mobile versions of all 3 are planned.</p>'
         '<p><a href="/platform">Explore the app factory</a> '
         'or <a href="/contact?type=Strategic+partner&amp;product=Web+apps#prepare-inquiry">'
         'discuss the web apps for your team</a>.</p>',

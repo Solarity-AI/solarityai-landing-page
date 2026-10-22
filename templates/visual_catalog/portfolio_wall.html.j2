@@ -1,5 +1,5 @@
 <section class="portfolio-wall wrap" id="our-products" aria-labelledby="wall-title">
-      <div class="wall-heading"><div><p class="eyebrow">The app portfolio</p><h2 id="wall-title">Your ambition.<br><span class="muted">Your daily practice.</span></h2></div><p>Self-care, cognitive practice, sleep, and fitness. Four focused products, each built around a different part of everyday life.</p></div>
+      <div class="wall-heading"><div><p class="eyebrow">The app portfolio</p><h2 id="wall-title">Your ambition.<br><span class="muted">Your daily practice.</span></h2></div><p>Self-care, cognitive practice, sleep, and fitness. 4 focused products, each built around a different part of everyday life.</p></div>
       <ul class="wall-grid" aria-label="Solarity AI apps">{% for card in cards %}{% set app = card['app'] %}<li class="wall-card" data-product-accent="{{ app['color'] }}">
           <a class="wall-link" href="/apps/{{ app['slug'] }}"><span class="wall-window screenshot-stage">{{ card['window']|safe }}</span>
             <span class="wall-identity"><img src="/assets/{{ app['slug'] }}-icon.webp" width="56" height="56" alt="" loading="lazy" decoding="async"><span><strong>{{ app['name'] }}</strong><small>{{ app['category'] }}</small></span></span></a>

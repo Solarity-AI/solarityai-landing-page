@@ -13,7 +13,7 @@ CONTACT_TOPICS = (
     ('Investor', 'Investment conversations', 'The portfolio, company strategy, and future priorities.'),
     ('Program', 'Accelerators, incubators, and grants', 'Application reviews, program questions, and introductions.'),
     ('Strategic partner', 'Strategic partnerships', 'Distribution, technology, and the web apps for your team.'),
-    ('Product inquiry', 'Product questions', 'The four mobile apps, or Engineering Max, Management Max, and Marketing Max.'),
+    ('Product inquiry', 'Product questions', 'The 4 mobile apps, or Engineering Max, Management Max, and Marketing Max.'),
     ('Press', 'Press and media', 'Articles, program pages, and event listings. The press kit has approved descriptions and images.'),
     ('Other', 'Something else in mind?', 'A clear introduction is a good place to start.'),
 )

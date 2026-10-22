@@ -10,4 +10,4 @@
 {%- endfor -%}
 </ol></div><figcaption class="pmap-legend"><span class="pmap-keys" aria-hidden="true"><span class="status"><i></i>Mobile apps</span><span class="status"><i></i>Web apps</span></span><span class="pmap-note"><strong>How the work connects.</strong> {{ note }}</span>
 {#- Screen-reader summary of the diagram. -#}
-<span class="sr-only"> The diagram shows {{ listed|length }} store-listed mobile apps ({% for app in listed %}{{ app.name }}{% if not loop.last %}, {% endif %}{% endfor %}) above the three web apps they shaped: {% for product in saas %}{{ product.stage }}, {{ product.name }} ({{ product.status }}){% if not loop.last %}; {% endif %}{% endfor %}.</span></figcaption></figure>
+<span class="sr-only"> The diagram shows {{ listed|length }} store-listed mobile apps ({% for app in listed %}{{ app.name }}{% if not loop.last %}, {% endif %}{% endfor %}) above the 3 web apps they shaped: {% for product in saas %}{{ product.stage }}, {{ product.name }} ({{ product.status }}){% if not loop.last %}; {% endif %}{% endfor %}.</span></figcaption></figure>

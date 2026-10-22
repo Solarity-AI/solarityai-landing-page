@@ -9,6 +9,31 @@ from hashlib import sha256
 from urllib.robotparser import RobotFileParser
 import xml.etree.ElementTree as ET
 from site_urls import public_path
+
+NUMBER_WORDS=re.compile(r'\b(?:two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty|thirty|forty|fifty|sixty|seventy|eighty|ninety|hundred|thousand|million|billion|dozen)\b',re.I)
+class _VisibleText(HTMLParser):
+    """What a reader or crawler sees: element text (not scripts or styles, except schema.org JSON-LD),
+    plus the content, alt, aria-label and title attributes."""
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.parts, self.hidden = [], 0
+    def handle_starttag(self, tag, attrs):
+        a = dict(attrs)
+        if tag in ('script', 'style') and a.get('type') != 'application/ld+json':
+            self.hidden += 1
+        self.parts += [a[k] for k in ('content', 'alt', 'aria-label', 'title') if a.get(k)]
+    def handle_endtag(self, tag):
+        if tag in ('script', 'style') and self.hidden:
+            self.hidden -= 1
+    def handle_data(self, data):
+        if not self.hidden:
+            self.parts.append(data)
+def spelled_numbers(markup):
+    """Spelled-out numbers (two and up) in a page's visible text and metadata."""
+    reader = _VisibleText()
+    reader.feed(markup)
+    reader.close()
+    return sorted(set(m.group().lower() for m in NUMBER_WORDS.finditer(' '.join(reader.parts))))
 import seo
 
 ROOT=Path(__file__).parent
@@ -90,6 +115,8 @@ for file,d in docs.items():
         else:assets_checked+=1
     text=file.read_text(encoding='utf-8')
     if '\u2014' in text:errors.append(f'{rel}: long dash')
+    # Numbers are written as digits (founder, 2026-10-22). "One" is left out: on this site it is mostly a pronoun.
+    for word in spelled_numbers(text):errors.append(f'{rel}: number written as a word: {word}')
     # Cloudflare skips Email Address Obfuscation inside email_off, keeping mailto links intact.
     if not re.search(r'<body\b[^>]*><!--email_off-->.*<!--/email_off--></body>',text,re.S):errors.append(f'{rel}: page body must be wrapped in email_off')
     if re.search(r'lorem ipsum|href=[\"\x27]#(?:[\"\x27])',text,re.I):errors.append(f'{rel}: placeholder content/link')
@@ -332,6 +359,7 @@ for file,d in docs.items():
             if banned in n:errors.append(f'{rel}: schema.org states {banned}, which the pages do not show')
 for name in ('llms.txt','llms-full.txt'):
     llm=(DIST/name).read_text(encoding='utf-8') if (DIST/name).is_file() else ''
+    for word in spelled_numbers(llm):errors.append(f'{name}: number written as a word: {word}')
     if not llm.startswith('# Solarity AI\n\n> '):errors.append(f'{name}: must open with the llmstxt.org title and summary')
     for product in ['Looks Max','IQ Max','Sleep Max','Fitness Max','Only Fitness','Engineering Max','Management Max','Marketing Max']:
         if product not in llm:errors.append(f'{name}: missing {product}')
