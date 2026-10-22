@@ -12,7 +12,7 @@ from visual_team import TEAM_MEMBERS
 ONE_LINE = 'Solarity AI builds AI self-improvement apps and the tools that let its small team ship them fast.'
 SHORT = ('Solarity AI LLC, based in Dallas, Texas, builds AI-powered self-improvement apps: Looks Max, IQ Max, Sleep Max, '
          'and Fitness Max (listed in the app stores as Only Fitness), all on iOS and Android. Building them shaped 3 SaaS products '
-         'for teams that build mobile products: Engineering Max, Management Max, and Marketing Max. Founder: Ata Turhan.')
+         'for teams that build mobile apps: Engineering Max, Management Max, and Marketing Max. Founder: Ata Turhan.')
 
 # Approved images only: the official sun mark (make_press_assets.py), the founder portrait from the company's own
 # site, and the official app icons from the store listings (research-assets/downloaded-assets.json).
