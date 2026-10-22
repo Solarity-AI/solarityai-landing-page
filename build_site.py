@@ -24,7 +24,7 @@ from visual_policies import accessibility_page, website_data_page
 import seo
 from templating import render
 from optimize_images import ensure_optimized_images, image_record, write_favicon
-from performance_build import optimize_page, RUNTIME, WRITTEN_RUNTIME
+from performance_build import optimize_page, inline_scripts, RUNTIME, WRITTEN_RUNTIME
 from site_urls import public_path, normalize_page_links
 
 ROOT = Path(__file__).parent
@@ -184,8 +184,8 @@ def content_security_policy():
     route inlines its own CSS and a few images set their focus with a style attribute."""
     hashes=set()
     for page in DIST.rglob('*.html'):
-        for attrs,body in re.findall(r'<script([^>]*)>(.*?)</script>',page.read_text(encoding='utf-8'),re.S):
-            if 'src=' in attrs or 'application/ld+json' in attrs: continue
+        for attrs,body in inline_scripts(page.read_text(encoding='utf-8')):
+            if 'src' in attrs or attrs.get('type')=='application/ld+json': continue
             hashes.add("'sha256-"+base64.b64encode(hashlib.sha256(body.encode('utf-8')).digest()).decode()+"'")
     return '; '.join([
         "default-src 'self'",
