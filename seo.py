@@ -36,7 +36,7 @@ STORE_NAMES = {
     'fitness-max': 'Only Fitness: AI Coach',
 }
 ORG_DESCRIPTION = ('Solarity AI builds AI-powered self-improvement apps for iOS and Android (Looks Max, IQ Max, '
-                   'Sleep Max, and Fitness Max) and three web apps for engineering, managing, and marketing mobile '
+                   'Sleep Max, and Fitness Max) and 3 web apps for engineering, managing, and marketing mobile '
                    'products (Engineering Max, Management Max, and Marketing Max).')
 
 # Crawlers of search engines and AI assistants. All are welcome; robots.txt names them so the intent is explicit.
@@ -240,7 +240,7 @@ def llms_txt(pages, *, apps, saas, email, team=(), full=False):
     store_apps = [a for a in apps if a.get('apple')]
     out = ['# Solarity AI', '', f'> {ORG_DESCRIPTION}', '',
            'Solarity AI LLC was founded by Ata Turhan in Irving, Texas, United States. '
-           'The four mobile apps are listed on the App Store and Google Play. The three web apps run on the web today; '
+           'The 4 mobile apps are listed on the App Store and Google Play. The 3 web apps run on the web today; '
            f'mobile versions are planned. Contact: {email} (founder Ata Turhan).', '']
     out += ['## Mobile apps (iOS and Android)', '']
     for a in store_apps:
@@ -261,7 +261,7 @@ def llms_txt(pages, *, apps, saas, email, team=(), full=False):
             out += [f'  - {p["summary"]}'] + [f'  - {fact}' for fact in p['facts']] + [f'  - {p["availability"]}']
     out += ['', '## Company', '',
             f'- [Company and team]({link("/company")}): founder Ata Turhan, with {team_line(team)}.',
-            f'- [App factory platform]({link("/platform")}): how the three web apps came from building the consumer apps.',
+            f'- [App factory platform]({link("/platform")}): how the 3 web apps came from building the consumer apps.',
             f'- [Investors and partners]({link("/investors-partners")}): company thesis, business model and partnership paths.',
             f'- [Press kit]({link("/press")}): approved descriptions, facts, the sun mark, founder portrait, and app icons.',
             f'- [Careers]({link("/careers")}): fully remote roles for a Full Stack Engineer and a Marketing Specialist, full-time, part-time, or as an intern.',

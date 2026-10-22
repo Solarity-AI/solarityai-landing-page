@@ -66,9 +66,9 @@ def social_for(path):
     if path.startswith('/apps/') and path[6:] in by_slug:
         a=by_slug[path[6:]]
         return f'social/{a["slug"]}.jpg', f'{a["name"]}, {a["category"]}: the app icon beside official App Store imagery'
-    return {'/apps':('social/apps.jpg','The four Solarity AI app icons'),
+    return {'/apps':('social/apps.jpg','The 4 Solarity AI app icons'),
             '/platform':('social/platform.jpg','Engineering Max, Management Max, and Marketing Max product screens'),
-            '/investors-partners':('social/investors.jpg','The four Solarity AI app icons')}.get(
+            '/investors-partners':('social/investors.jpg','The 4 Solarity AI app icons')}.get(
             path,('social/default.jpg','A person climbing mountain steps toward a golden sunrise above the clouds'))
 
 NAV=[('/apps','Apps'),('/platform','Platform'),('/company','Company'),('/investors-partners','Investors & Partners'),('/careers','Careers')]
@@ -94,7 +94,7 @@ def page(name,**context):
 
 # Page bodies stay plain strings: seo.page_dates() hashes them together with the title and description.
 pages={}
-pages['/']=('Solarity AI: AI-powered self-improvement apps and web apps','Solarity AI builds AI self-improvement apps for iOS and Android, Looks Max, IQ Max, Sleep Max, and Fitness Max, and three web apps for building mobile products.',
+pages['/']=('Solarity AI: AI-powered self-improvement apps and web apps','Solarity AI builds AI self-improvement apps for iOS and Android, Looks Max, IQ Max, Sleep Max, and Fitness Max, and 3 web apps for building mobile products.',
             page('home',hero_section=hero_section,portfolio_wall=portfolio_wall,shipping_record=shipping_record,saas_wall=saas_wall,founder_portrait=founder_portrait))
 
 pages['/apps']=('AI self-improvement apps for iOS and Android','Discover Looks Max, IQ Max, Sleep Max, and Fitness Max, and the Engineering Max, Management Max, and Marketing Max web apps from Solarity AI.',
@@ -106,7 +106,7 @@ for a in APPS:
     features=feature_grid(a)
     pages['/apps/'+a['slug']]=(a['seo_title'],a['seo_description'],str(product_page(a,APPS,btn,contact,stores,status,features,app_breadcrumbs(a),related_apps(a,APPS))))
 
-pages['/platform']=('Engineering Max, Management Max, Marketing Max','Engineering Max, Management Max, and Marketing Max: three Solarity AI web apps for engineering, managing, and marketing mobile products.',
+pages['/platform']=('Engineering Max, Management Max, Marketing Max','Engineering Max, Management Max, and Marketing Max: 3 Solarity AI web apps for engineering, managing, and marketing mobile products.',
                     page('platform',web_compare=web_compare,platform_opening=platform_opening,saas_chapters=saas_chapters,strategy_story=strategy_story))
 
 pages['/company']=('About Solarity AI and founder Ata Turhan','Solarity AI LLC was founded by Ata Turhan in Irving, Texas. Meet the founder and the team building self-improvement apps and web apps for mobile products.',

@@ -11,7 +11,7 @@ from visual_team import TEAM_MEMBERS
 
 ONE_LINE = 'Solarity AI builds AI self-improvement apps and the tools that let its small team ship them fast.'
 SHORT = ('Solarity AI LLC, based in Irving, Texas, builds AI-powered self-improvement apps: Looks Max, IQ Max, Sleep Max, '
-         'and Fitness Max (listed in the app stores as Only Fitness), all on iOS and Android. Building them shaped three web apps '
+         'and Fitness Max (listed in the app stores as Only Fitness), all on iOS and Android. Building them shaped 3 web apps '
          'for teams that build mobile products: Engineering Max, Management Max, and Marketing Max. Founder: Ata Turhan.')
 
 # Approved images only: the official sun mark (make_press_assets.py), the founder portrait from the company's own
@@ -76,7 +76,7 @@ def press_page(apps, email, btn):
     screens = [{'preview': '/assets/' + original, 'href': '/assets/press/' + copy, 'original': '/assets/' + original, 'name': name,
                 'width': width, 'height': height, 'caption': caption} for original, copy, name, width, height, caption in SCREENS]
     return str(render('visual_press/page.html.j2', one_line=ONE_LINE, short=SHORT, images=IMAGES, icons=icons, screens=screens,
-                      copy_one=copy_button(ONE_LINE, 'press-one-line-status', 'Copy', 'The one-line description'),
+                      copy_one=copy_button(ONE_LINE, 'press-one-line-status', 'Copy', 'The 1-line description'),
                       copy_short=copy_button(SHORT, 'press-short-status', 'Copy', 'The short description'),
                       record=record_summary(), saas=SAAS, email=email, team=TEAM_MEMBERS,
                       copy_link=copy_button('https://solarityai.com/press/', 'press-link-status', 'Copy page link', 'The page link'),

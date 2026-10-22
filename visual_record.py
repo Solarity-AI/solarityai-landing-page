@@ -5,10 +5,6 @@ from company_facts import APP_STORE_RELEASES, COMPANY, FOUNDER, PROGRAM_BRIEF, T
 from saas_products import SAAS
 from templating import render
 
-_WORDS = {2: 'two', 3: 'three', 4: 'four', 5: 'five', 6: 'six', 7: 'seven', 8: 'eight', 9: 'nine', 10: 'ten',
-          11: 'eleven', 12: 'twelve', 13: 'thirteen', 14: 'fourteen', 15: 'fifteen', 16: 'sixteen'}
-
-
 def long_date(iso):
     """'June 23, 2026' from an ISO date."""
     d = date.fromisoformat(iso)
@@ -21,7 +17,7 @@ def _short_date(iso):
 
 
 def shipping_record(apps):
-    """Four store launches in order, each linked to its public listing: progress against time, verifiable."""
+    """The store launches in order, each linked to its public listing: progress against time, verifiable."""
     by_slug = {a['slug']: a for a in apps}
     launches = [dict(app=by_slug[slug], iso=iso, label=_short_date(iso)) for slug, iso in APP_STORE_RELEASES]
     first, last = date.fromisoformat(launches[0]['iso']), date.fromisoformat(launches[-1]['iso'])
@@ -30,8 +26,7 @@ def shipping_record(apps):
     web = [dict(product=saas[m['slug']], iso=m['date'], label=_short_date(m['date']), text=m['label'])
            for m in WEB_APP_MILESTONES if m.get('slug') in saas and m.get('date') and m.get('label')]
     return str(render('visual_record/shipping_record.html.j2', launches=launches, web=web,
-                      count=_WORDS.get(len(launches), str(len(launches))).capitalize(),
-                      weeks=_WORDS.get(weeks, str(weeks)),
+                      count=len(launches), weeks=weeks,
                       first=long_date(launches[0]['iso']), last=long_date(launches[-1]['iso'])))
 
 
@@ -44,8 +39,6 @@ def record_summary():
     """Launch count, weeks between the first and latest launch, and the first launch date."""
     dates = [date.fromisoformat(iso) for _, iso in APP_STORE_RELEASES]
     return {'count': len(dates), 'weeks': round((max(dates) - min(dates)).days / 7),
-            'count_word': _WORDS.get(len(dates), str(len(dates))),
-            'weeks_word': _WORDS.get(round((max(dates) - min(dates)).days / 7), ''),
             'first': long_date(min(dates).isoformat())}
 
 
