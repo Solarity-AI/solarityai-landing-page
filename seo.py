@@ -50,7 +50,7 @@ INDEXNOW_KEY = '5b1f0c7e9a4d4e2f8c3b6a1d7e0f9c42'
 PAGE_TYPES = {'/apps': 'CollectionPage', '/platform': 'CollectionPage', '/company': 'AboutPage',
               '/contact': 'ContactPage', '/investors-partners': 'FAQPage'}
 CRUMB_NAMES = {'/apps': 'Apps', '/platform': 'Platform', '/company': 'Company', '/press': 'Press kit', '/accessibility': 'Accessibility', '/website-data': 'Website data',
-               '/investors-partners': 'Investors & Partners', '/careers': 'Careers', '/contact': 'Contact'}
+               '/investors-partners': 'Investors & partners', '/careers': 'Careers', '/contact': 'Contact'}
 
 
 def plain(markup):

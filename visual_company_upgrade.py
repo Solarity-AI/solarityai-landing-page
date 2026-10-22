@@ -71,7 +71,7 @@ def investor_evidence(apps):
 def founder_booking(btn, booking, email='ata.turhan@solarityai.com'):
     """The close: speak with the founder, beside the one reprise of the approved sunrise."""
     return str(render('visual_company_upgrade/founder_booking.html.j2',
-                      booking_button=btn('View available times', booking, 'primary', True),
+                      booking_button=btn('Book a conversation', booking, 'primary', True),
                       email_button=btn('Email us', 'mailto:' + email, 'outline'),
                       email=email, copy=copy_button(email, 'booking-email-copy-status')))
 

@@ -20,7 +20,7 @@
       "external_scripts": [],
       "javascript_bytes": 5020,
       "html_bytes": 104628,
-      "html_gzip_bytes": 22185
+      "html_gzip_bytes": 22182
     },
     "/apps": {
       "source_bytes": 171176,
@@ -41,7 +41,7 @@
       "external_scripts": [],
       "javascript_bytes": 5020,
       "html_bytes": 103246,
-      "html_gzip_bytes": 22112
+      "html_gzip_bytes": 22110
     },
     "/apps/looks-max": {
       "source_bytes": 171176,
@@ -64,8 +64,8 @@
         "gallery"
       ],
       "javascript_bytes": 9099,
-      "html_bytes": 92098,
-      "html_gzip_bytes": 21195
+      "html_bytes": 92103,
+      "html_gzip_bytes": 21191
     },
     "/apps/iq-max": {
       "source_bytes": 171176,
@@ -88,8 +88,8 @@
         "gallery"
       ],
       "javascript_bytes": 9099,
-      "html_bytes": 91879,
-      "html_gzip_bytes": 21147
+      "html_bytes": 91884,
+      "html_gzip_bytes": 21142
     },
     "/apps/sleep-max": {
       "source_bytes": 171176,
@@ -112,8 +112,8 @@
         "gallery"
       ],
       "javascript_bytes": 9099,
-      "html_bytes": 86045,
-      "html_gzip_bytes": 20309
+      "html_bytes": 86049,
+      "html_gzip_bytes": 20306
     },
     "/apps/fitness-max": {
       "source_bytes": 171176,
@@ -136,8 +136,8 @@
         "gallery"
       ],
       "javascript_bytes": 9099,
-      "html_bytes": 94146,
-      "html_gzip_bytes": 21417
+      "html_bytes": 94151,
+      "html_gzip_bytes": 21414
     },
     "/platform": {
       "source_bytes": 171176,
@@ -161,8 +161,8 @@
         "gallery"
       ],
       "javascript_bytes": 11650,
-      "html_bytes": 101436,
-      "html_gzip_bytes": 23421
+      "html_bytes": 101430,
+      "html_gzip_bytes": 23423
     },
     "/company": {
       "source_bytes": 171176,
@@ -183,7 +183,7 @@
       "external_scripts": [],
       "javascript_bytes": 5020,
       "html_bytes": 77093,
-      "html_gzip_bytes": 18339
+      "html_gzip_bytes": 18333
     },
     "/investors-partners": {
       "source_bytes": 171176,
@@ -207,8 +207,8 @@
         "copy"
       ],
       "javascript_bytes": 9033,
-      "html_bytes": 122908,
-      "html_gzip_bytes": 26378
+      "html_bytes": 122907,
+      "html_gzip_bytes": 26365
     },
     "/careers": {
       "source_bytes": 171176,
@@ -234,7 +234,7 @@
       ],
       "javascript_bytes": 17340,
       "html_bytes": 81573,
-      "html_gzip_bytes": 20073
+      "html_gzip_bytes": 20071
     },
     "/press": {
       "source_bytes": 171176,
@@ -258,7 +258,7 @@
       ],
       "javascript_bytes": 6482,
       "html_bytes": 74949,
-      "html_gzip_bytes": 17786
+      "html_gzip_bytes": 17783
     },
     "/accessibility": {
       "source_bytes": 171176,
@@ -279,7 +279,7 @@
       "external_scripts": [],
       "javascript_bytes": 5020,
       "html_bytes": 54999,
-      "html_gzip_bytes": 14728
+      "html_gzip_bytes": 14725
     },
     "/website-data": {
       "source_bytes": 171176,
@@ -300,7 +300,7 @@
       "external_scripts": [],
       "javascript_bytes": 5020,
       "html_bytes": 55879,
-      "html_gzip_bytes": 14911
+      "html_gzip_bytes": 14908
     },
     "/contact": {
       "source_bytes": 171176,
@@ -326,7 +326,7 @@
       ],
       "javascript_bytes": 9443,
       "html_bytes": 72648,
-      "html_gzip_bytes": 17291
+      "html_gzip_bytes": 17288
     },
     "/404": {
       "source_bytes": 171176,
@@ -349,8 +349,8 @@
         "not-found"
       ],
       "javascript_bytes": 8378,
-      "html_bytes": 56053,
-      "html_gzip_bytes": 14622
+      "html_bytes": 56058,
+      "html_gzip_bytes": 14617
     }
   }
 }
