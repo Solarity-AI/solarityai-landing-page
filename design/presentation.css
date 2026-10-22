@@ -24,7 +24,7 @@
  /* Interior pages open at blue hour under the key light; Home opens on the sunrise itself. */
  body:not([data-page='/']){background:var(--grain),radial-gradient(72rem 40rem at var(--key-x) -8rem,rgb(255 190 110/.15),transparent 70%) no-repeat,linear-gradient(var(--tone-blue),var(--bg) 56rem) no-repeat,var(--bg)}
  h1,h2,h3,h4,p,figure,blockquote{margin:0}
- h1,h2,h3,h4{font-family:var(--font-body);font-weight:500;color:var(--text);text-wrap:balance}
+ h1,h2,h3,h4{font-family:var(--font-body);font-weight:500;color:var(--text);text-wrap:balance;overflow-wrap:break-word}
  /* A line after a forced break balances on its own instead of against the line above. */
  :is(h1,h2,h3) br+span{display:block}
  /* Emphasis is color on a phrase, never a weight or face change. */
