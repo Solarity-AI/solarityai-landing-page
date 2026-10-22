@@ -94,7 +94,7 @@ def page(name,**context):
 
 # Page bodies stay plain strings: seo.page_dates() hashes them together with the title and description.
 pages={}
-pages['/']=('Solarity AI: AI self-improvement apps and SaaS products','Solarity AI builds AI self-improvement apps for iOS and Android, Looks Max, IQ Max, Sleep Max, and Fitness Max, and 3 SaaS products for building mobile products.',
+pages['/']=('Solarity AI: AI self-improvement apps and SaaS products','Solarity AI builds AI self-improvement apps for iOS and Android: Looks Max, IQ Max, Sleep Max, and Fitness Max, plus 3 SaaS products for mobile app teams.',
             page('home',hero_section=hero_section,portfolio_wall=portfolio_wall,shipping_record=shipping_record,saas_wall=saas_wall))
 
 pages['/apps']=('AI self-improvement apps for iOS and Android','Discover Looks Max, IQ Max, Sleep Max, and Fitness Max, and the Engineering Max, Management Max, and Marketing Max SaaS products from Solarity AI.',
