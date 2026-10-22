@@ -1,13 +1,14 @@
 name: Production
 
 # Cloudflare Pages deploys main to solarityai.com. This workflow waits until the live site serves the
-# committed dist/, then verifies it. It also runs daily, and files an issue when production drifts.
+# committed dist/, then verifies it. It also runs every 3 hours, so a merge whose push event GitHub never
+# delivered (no workflow run, no Cloudflare deploy) is caught within hours, and files an issue when production drifts.
 on:
   push:
     branches:
       - main
   schedule:
-    - cron: '17 6 * * *'
+    - cron: '17 */3 * * *'
   workflow_dispatch:
 
 permissions:
