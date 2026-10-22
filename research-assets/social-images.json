@@ -6,8 +6,8 @@
   "note": "Write the 1200x630 link-preview images into source-assets/social/ (run by hand, then commit).",
   "files": {
     "/assets/social/default.jpg": {
-      "bytes": 125614,
-      "sha256": "58796408e2e00152985ce5455ef7ae0664262bf49cb57e5addb61549650a0b0c"
+      "bytes": 86735,
+      "sha256": "504e00146b19e819a72a41aaa75df528e7a07886b647e2ff2da4bf70da0b85bd"
     },
     "/assets/social/platform.jpg": {
       "bytes": 78864,
