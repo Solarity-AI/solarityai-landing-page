@@ -146,6 +146,15 @@ class TeamTest(unittest.TestCase):
         self.assertEqual(seo.team_line(TEAM), 'Hasan Ak (staff engineer) and Batuhan Yücetürk (marketing engineer)')
 
 
+class ProfilesTest(unittest.TestCase):
+    def test_organization_lists_store_pages_then_every_company_channel(self):
+        from company_facts import COMPANY_PROFILES
+        self.assertEqual(seo.ORG_PROFILES[:2], [url for _, url in seo.STORE_PROFILES])
+        self.assertEqual(seo.ORG_PROFILES[2:], [url for _, url in COMPANY_PROFILES])
+        self.assertEqual(len(set(seo.ORG_PROFILES)), len(seo.ORG_PROFILES))
+        self.assertNotIn('https://x.com/solarity_ai_company', seo.ORG_PROFILES)
+
+
 class CrawlerFilesTest(unittest.TestCase):
     def test_robots_welcomes_search_and_ai_crawlers(self):
         robots = RobotFileParser()
