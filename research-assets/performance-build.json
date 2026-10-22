@@ -324,9 +324,9 @@
         "contact",
         "copy"
       ],
-      "javascript_bytes": 9461,
+      "javascript_bytes": 10019,
       "html_bytes": 71332,
-      "html_gzip_bytes": 17094
+      "html_gzip_bytes": 17093
     },
     "/404": {
       "source_bytes": 161215,
