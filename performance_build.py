@@ -34,6 +34,34 @@ def _attributes(attrs):
                     for name, value in attrs.items())
 
 
+class _ScriptReader(HTMLParser):
+    def __init__(self):
+        super().__init__(convert_charrefs=False)
+        self.scripts, self._open = [], None
+
+    def handle_starttag(self, tag, attrs):
+        if tag == 'script':
+            self._open = ({name: value or '' for name, value in attrs}, [])
+
+    def handle_data(self, data):
+        if self._open is not None:
+            self._open[1].append(data)
+
+    def handle_endtag(self, tag):
+        if tag == 'script' and self._open is not None:
+            self.scripts.append((self._open[0], ''.join(self._open[1])))
+            self._open = None
+
+
+def inline_scripts(document):
+    """Every <script> in a page as (attributes, raw text), read by an HTML parser so tag case and spacing
+    cannot hide one. The text is exactly what the page carries, so CSP hashes computed from it match."""
+    reader = _ScriptReader()
+    reader.feed(document)
+    reader.close()
+    return reader.scripts
+
+
 def compact_script(source):
     """An inline script as shipped: comment lines and indentation removed. Line breaks stay, so automatic
     semicolon insertion reads the code exactly as written (the sources use no template literals)."""
