@@ -7,7 +7,7 @@ const { normalize, distance, suggest } = require('./scripts/not-found.js');
 // The routes the 404 page carries in data-routes.
 const ROUTES = [['/', 'Home'], ['/apps/', 'Apps'], ['/apps/looks-max/', 'Looks Max'], ['/apps/iq-max/', 'IQ Max'],
   ['/apps/sleep-max/', 'Sleep Max'], ['/apps/fitness-max/', 'Fitness Max'], ['/platform/', 'Platform'],
-  ['/company/', 'Company'], ['/investors-partners/', 'Investors & Partners'], ['/careers/', 'Careers'],
+  ['/company/', 'Company'], ['/investors-partners/', 'Investors & partners'], ['/careers/', 'Careers'],
   ['/contact/', 'Contact'], ['/press/', 'Press kit'], ['/accessibility/', 'Accessibility'], ['/website-data/', 'Website data']];
 const target = (path) => (suggest(path, ROUTES) || [null])[0];
 
