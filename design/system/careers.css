@@ -12,7 +12,7 @@
   .careers-team-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(6px, 1vw, 10px); margin: 0; padding: 0; list-style: none; }
   .careers-team-grid > li { min-width: 0; }
   .careers-team-grid img, .careers-team-monogram { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; border-radius: var(--radius-control); box-shadow: var(--shadow-portrait); }
-  .careers-team-monogram { display: grid; place-items: center; background: var(--raised); color: var(--sand); font-family: var(--font-display); font-size: clamp(18px, 2.2vw, 28px); }
+  .careers-team-monogram { display: grid; place-items: center; background: var(--raised); color: var(--sand); font-family: var(--font-display); font-size: var(--type-sub); }
   .careers-team figcaption { margin-block-start: 26px; padding-inline-start: 8px; }
   .careers-team .eyebrow { margin-block-end: 12px; }
   .careers-team figcaption > p:not(.eyebrow) { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; }
