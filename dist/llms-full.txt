@@ -1,8 +1,8 @@
 # Solarity AI
 
-> Solarity AI builds AI-powered self-improvement apps for iOS and Android (Looks Max, IQ Max, Sleep Max, and Fitness Max) and 3 web apps for engineering, managing, and marketing mobile products (Engineering Max, Management Max, and Marketing Max).
+> Solarity AI builds AI-powered self-improvement apps for iOS and Android (Looks Max, IQ Max, Sleep Max, and Fitness Max) and 3 SaaS products for engineering, managing, and marketing mobile products (Engineering Max, Management Max, and Marketing Max).
 
-Solarity AI LLC was founded by Ata Turhan in Irving, Texas, United States. The 4 mobile apps are listed on the App Store and Google Play. The 3 web apps run on the web today; mobile versions are planned. Contact: ata.turhan@solarityai.com (founder Ata Turhan).
+Solarity AI LLC was founded by Ata Turhan in Dallas, Texas, United States. The 4 mobile apps are listed on the App Store and Google Play. The 3 SaaS products run on the web today; mobile versions are planned. Contact: ata.turhan@solarityai.com (founder Ata Turhan).
 
 ## Mobile apps (iOS and Android)
 
@@ -31,23 +31,23 @@ Solarity AI LLC was founded by Ata Turhan in Irving, Texas, United States. The 4
   - Follow your progress: Review coaching reports and progress photos as you work toward your own goals.
   - Context: Fitness Max is listed in app stores as Only Fitness. Nutrition estimates and AI coaching are general guidance, not medical advice or a guarantee of fitness results.
 
-## Web apps
+## SaaS products
 
-- [Engineering Max](https://engineeringmax.solarityai.com/): App engineering, Web app · early access. Find and fix what keeps a mobile app out of the App Store.
+- [Engineering Max](https://engineeringmax.solarityai.com/): App engineering, SaaS · early access. Find and fix what keeps a mobile app out of the App Store.
   - Your own Claude Code or Codex writes a read-only report on the app, with no source code. Engineering Max checks it against 155 rules across 12 areas, ranks the problems, and returns 1 focused fix prompt at a time, then checks each fix.
   - 155 rules across 12 areas, store blockers and security first
   - For Expo, React Native, Flutter, and native apps
   - Reads the agent’s report, never the source code
   - Tested first on Solarity AI’s own Sleep Max
   - Free during early access. Pricing is not set yet.
-- [Management Max](https://managementmax.solarityai.com/): Metrics for app portfolios, Web app · early access. Governed weekly metrics for mobile app companies.
+- [Management Max](https://managementmax.solarityai.com/): Metrics for app portfolios, SaaS · early access. Governed weekly metrics for mobile app companies.
   - Management Max holds a company’s weekly metric set per app, checks every figure on the way in, and combines it across any selection of apps. Where combining would be dishonest, it shows the spread instead and names the reason.
   - 50 metric definitions and 16 validation rules
   - Syncs from RevenueCat, AppsFlyer, App Store Connect, Google Play, Firebase, GitHub, and YouTube
   - Roles for the whole team, and every change is signed
   - Plans count apps, not seats
   - Free for 1 app and 2 seats, with paid plans for larger portfolios.
-- [Marketing Max](https://marketingmax.solarityai.com/): Short-form video marketing, Web app · early access. Your next Reel, made from one that already worked.
+- [Marketing Max](https://marketingmax.solarityai.com/): Short-form video marketing, SaaS · early access. Your next Reel, made from one that already worked.
   - Marketing Max finds the Reels that performed, writes the caption and the line on the video in the brand’s voice, and posts to Instagram at the chosen time. A person approves each of the 4 steps.
   - Built for Solarity AI’s own apps first
   - 4 recorded approvals: video, reason, caption, and send
@@ -58,7 +58,7 @@ Solarity AI LLC was founded by Ata Turhan in Irving, Texas, United States. The 4
 ## Company
 
 - [Company and team](https://solarityai.com/company/): founder Ata Turhan, with Hasan Ak (engineering manager and principal software engineer), Ali Yılmaz (staff software engineer), Emrecan Özkan (staff software engineer), Eren Öz (senior software engineer), Melik Kaplan (marketing engineer), and Batuhan Yücetürk (marketing engineer).
-- [App factory platform](https://solarityai.com/platform/): how the 3 web apps came from building the consumer apps.
+- [App factory platform](https://solarityai.com/platform/): how the 3 SaaS products came from building the consumer apps.
 - [Investors and partners](https://solarityai.com/investors-partners/): company thesis, business model and partnership paths.
 - [Press kit](https://solarityai.com/press/): approved descriptions, facts, the sun mark, founder portrait, and app icons.
 - [Careers](https://solarityai.com/careers/): fully remote roles for a Full Stack Engineer and a Marketing Specialist, full-time, part-time, or as an intern.
@@ -68,7 +68,7 @@ Solarity AI LLC was founded by Ata Turhan in Irving, Texas, United States. The 4
 
 ### What is Solarity AI?
 
-Solarity AI LLC, based in Irving, Texas, builds AI self-improvement apps for iOS and Android: Looks Max, IQ Max, Sleep Max, and Fitness Max. Building them shaped 3 web apps for teams that build mobile products: Engineering Max, Management Max, and Marketing Max.
+Solarity AI LLC, based in Dallas, Texas, builds AI self-improvement apps for iOS and Android: Looks Max, IQ Max, Sleep Max, and Fitness Max. Building them shaped 3 SaaS products for teams that build mobile products: Engineering Max, Management Max, and Marketing Max.
 
 Link: https://solarityai.com/investors-partners/#faq-what-is-solarity-ai
 
@@ -86,15 +86,15 @@ Link: https://solarityai.com/investors-partners/#faq-how-quickly-has-solarity-ai
 
 ### Who builds Solarity AI?
 
-Founder Ata Turhan leads Solarity AI from Irving, Texas, with Hasan Ak, Ali Yılmaz, Emrecan Özkan, Eren Öz, Melik Kaplan, and Batuhan Yücetürk. Meet the team.
+Founder Ata Turhan leads Solarity AI from Dallas, Texas, with Hasan Ak, Ali Yılmaz, Emrecan Özkan, Eren Öz, Melik Kaplan, and Batuhan Yücetürk. Meet the team.
 
 Link: https://solarityai.com/investors-partners/#faq-who-builds-solarity-ai
 
-### Can other teams use the web apps?
+### Can other teams use the SaaS products?
 
-Yes. All 3 are in early access. Management Max has a free plan for 1 app; Engineering Max and Marketing Max take requests on their own sites. Mobile versions of all 3 are planned. Explore the app factory or discuss the web apps for your team.
+Yes. All 3 are in early access. Management Max has a free plan for 1 app; Engineering Max and Marketing Max take requests on their own sites. Mobile versions of all 3 are planned. Explore the app factory or discuss the SaaS products for your team.
 
-Link: https://solarityai.com/investors-partners/#faq-can-other-teams-use-the-web-apps
+Link: https://solarityai.com/investors-partners/#faq-can-other-teams-use-the-saas-products
 
 ### What is the business model direction?
 
@@ -104,7 +104,7 @@ Link: https://solarityai.com/investors-partners/#faq-what-is-the-business-model-
 
 ### What kinds of partnerships are relevant?
 
-We welcome conversations about product distribution, technology collaboration, and web app partnerships around Engineering Max, Management Max, or Marketing Max. A useful introduction describes your audience or team, the product or workflow involved, and the collaboration you have in mind. Start a partnership inquiry.
+We welcome conversations about product distribution, technology collaboration, and SaaS partnerships around Engineering Max, Management Max, or Marketing Max. A useful introduction describes your audience or team, the product or workflow involved, and the collaboration you have in mind. Start a partnership inquiry.
 
 Link: https://solarityai.com/investors-partners/#faq-what-kinds-of-partnerships-are-relevant
 
