@@ -5,7 +5,7 @@ The provider, rather than this page, confirms verification and acceptance.
 """
 from company_facts import COMPANY_FORMS
 from templating import render
-from visual_sections import FOUNDER_PORTRAIT
+from visual_team import TEAM_MEMBERS
 from ux_components import copy_button
 from visual_sections import symbol
 
@@ -35,4 +35,4 @@ def careers_page(btn):
     # A plain str, like the other page bodies: seo.page_dates prepends a str, which Markup would escape.
     return str(render('visual_careers/page.html.j2', roles=CAREER_ROLES, posters_url=POSTERS_URL,
                       mentorship_url=COMPANY_FORMS['mentorship'], certificate_url=COMPANY_FORMS['certificate'],
-                      btn=btn, symbol=symbol, copy_button=copy_button, portrait=FOUNDER_PORTRAIT))
+                      btn=btn, symbol=symbol, copy_button=copy_button, team=TEAM_MEMBERS))
