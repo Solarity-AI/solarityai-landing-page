@@ -19,9 +19,9 @@ _TEAM = [f'<span lang="tr">{member["name"]}</span>' for member in TEAM_MEMBERS]
 FAQ = [
     (
         "What is Solarity AI?",
-        '<p>Solarity AI LLC, based in Irving, Texas, builds AI self-improvement apps for iOS and Android: '
+        '<p>Solarity AI LLC, based in Dallas, Texas, builds AI self-improvement apps for iOS and Android: '
         '<a href="/apps/looks-max">Looks Max</a>, <a href="/apps/iq-max">IQ Max</a>, <a href="/apps/sleep-max">Sleep Max</a>, '
-        'and <a href="/apps/fitness-max">Fitness Max</a>. Building them shaped 3 web apps for teams that build mobile '
+        'and <a href="/apps/fitness-max">Fitness Max</a>. Building them shaped 3 SaaS products for teams that build mobile '
         'products: <a href="/platform">Engineering Max, Management Max, and Marketing Max</a>.</p>',
     ),
     (
@@ -42,19 +42,19 @@ FAQ = [
     ),
     (
         "Who builds Solarity AI?",
-        '<p>Founder Ata Turhan leads Solarity AI from Irving, Texas, with '
+        '<p>Founder Ata Turhan leads Solarity AI from Dallas, Texas, with '
         + ', '.join(_TEAM[:-1]) + ', and ' + _TEAM[-1] + '. '
         '<a href="/company#team">Meet the team</a>.</p>',
     ),
     (
-        "Can other teams use the web apps?",
+        "Can other teams use the SaaS products?",
         '<p>Yes. All 3 are in early access. <a href="/platform#management-max">Management Max</a> '
         'has a free plan for 1 app; <a href="/platform#engineering-max">Engineering Max</a> and '
         '<a href="/platform#marketing-max">Marketing Max</a> take requests on their own sites. '
         'Mobile versions of all 3 are planned.</p>'
         '<p><a href="/platform">Explore the app factory</a> '
-        'or <a href="/contact?type=Strategic+partner&amp;product=Web+apps#prepare-inquiry">'
-        'discuss the web apps for your team</a>.</p>',
+        'or <a href="/contact?type=Strategic+partner&amp;product=SaaS+products#prepare-inquiry">'
+        'discuss the SaaS products for your team</a>.</p>',
     ),
     (
         "What is the business model direction?",
@@ -67,7 +67,7 @@ FAQ = [
     (
         "What kinds of partnerships are relevant?",
         '<p>We welcome conversations about product distribution, '
-        'technology collaboration, and web app partnerships around Engineering Max, '
+        'technology collaboration, and SaaS partnerships around Engineering Max, '
         'Management Max, or Marketing Max. '
         'A useful introduction describes your audience or team, the '
         'product or workflow involved, and the collaboration you have in mind.</p>'
@@ -89,6 +89,10 @@ FAQ = [
 ]
 
 
+# Answers whose question was reworded keep their earlier fragment, so links already shared still open them.
+LEGACY_ANSWER_IDS = {'faq-can-other-teams-use-the-saas-products': 'faq-can-other-teams-use-the-web-apps'}
+
+
 def answer_id(question):
     """A stable fragment for an answer, from its question: "What is Solarity AI?" is #faq-what-is-solarity-ai."""
     words = re.sub(r'<[^>]+>', '', question).lower()
@@ -97,7 +101,7 @@ def answer_id(question):
 
 def investor_faq():
     """Answer common investor and partner questions with native disclosures, each one linkable."""
-    return render('ux_content/investor_faq.html.j2', questions=[(answer_id(q), q, a) for q, a in FAQ])
+    return render('ux_content/investor_faq.html.j2', questions=[(answer_id(q), q, a) for q, a in FAQ], legacy=LEGACY_ANSWER_IDS)
 
 
 def recovery_links():

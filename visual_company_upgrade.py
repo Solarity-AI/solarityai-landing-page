@@ -1,6 +1,6 @@
 """Evidence-led editorial sections adapted from the reference-site review.
 
-The app lists remain data-driven. The web apps are described from their own sites
+The app lists remain data-driven. The SaaS products are described from their own sites
 (saas_products.py): no customer traction, prices or integrations beyond what those sites state.
 """
 from urllib.parse import urlencode
@@ -57,7 +57,7 @@ def investor_evidence(apps):
     topics = [
         ('Distribution', 'Discuss an audience, channel, or distribution opportunity for one of the apps.', 'Distribution'),
         ('Technology collaboration', 'Explore a specific integration or product collaboration around shared interests.', 'Technology collaboration'),
-        ('Web app partnership', 'Discuss Engineering Max, Management Max, or Marketing Max for your team or portfolio.', 'Web apps'),
+        ('SaaS partnership', 'Discuss Engineering Max, Management Max, or Marketing Max for your team or portfolio.', 'SaaS products'),
     ]
     topic_links = [{'title': title, 'detail': detail,
                     'href': '/contact?' + urlencode({'type': 'Strategic partner', 'product': context}) + '#prepare-inquiry'}

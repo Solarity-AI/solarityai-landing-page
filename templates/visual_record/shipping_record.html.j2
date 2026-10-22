@@ -11,7 +11,7 @@
 {%- endfor -%}
 </ol>
 {%- if web -%}
-<ol class="record-track record-track--web" aria-label="Web app milestones">
+<ol class="record-track record-track--web" aria-label="SaaS milestones">
 {%- for milestone in web -%}
 <li class="record-step"><time class="record-date" datetime="{{ milestone.iso }}">{{ milestone.label }}</time><span class="record-dot" aria-hidden="true"></span><a class="record-app" href="/platform#{{ milestone.product.slug }}"><span><strong>{{ milestone.product.name }}</strong><small>{{ milestone.text }}</small></span></a></li>
 {%- endfor -%}

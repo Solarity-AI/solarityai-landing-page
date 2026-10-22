@@ -6,7 +6,7 @@ until the founder provides the fact. Record each new fact's source in CONTENT_RE
 """
 
 # App Store Connect provider token (App Analytics > Sources > Campaigns). While empty, App Store links
-# carry no campaign tag; Google Play and the web apps are tagged regardless (site_urls.attributed).
+# carry no campaign tag; Google Play and the SaaS products are tagged regardless (site_urls.attributed).
 APPLE_CAMPAIGN_PROVIDER = ''
 
 # App Store release dates, from Apple's public lookup for each listing (checked 2026-10-20).
@@ -18,7 +18,7 @@ APP_STORE_RELEASES = [
     ('sleep-max', '2026-09-16'),
 ]
 
-# Web app milestones for the shipping record, supplied by the founder:
+# SaaS milestones for the shipping record, supplied by the founder:
 # a list of dicts with 'slug' (from saas_products.SAAS), 'date' (ISO) and 'label' (e.g. 'Private testing opened').
 WEB_APP_MILESTONES = []
 

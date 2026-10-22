@@ -12,7 +12,7 @@ def public_path(route):
 def attributed(url, campaign, apple_provider=''):
     """The store or web-app link a visible control uses, tagged with where on this site the visit came from.
 
-    Google Play and the web apps take utm_source/utm_medium/utm_campaign (Play Console's tracked channels
+    Google Play and the SaaS products take utm_source/utm_medium/utm_campaign (Play Console's tracked channels
     report installs per tag). The App Store only attributes a campaign link that carries the owner's
     App Store Connect provider token (pt) beside ct, so without one the link stays as listed.
     The tags name the site surface, never the visitor; schema.org keeps the untagged URLs."""

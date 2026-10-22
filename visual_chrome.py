@@ -8,7 +8,7 @@ from visual_record import company_line
 
 def site_header(path, nav_items, btn):
     """Keep the existing disclosure-navigation IDs and JS class contracts."""
-    descriptions = {'/apps': 'The consumer portfolio', '/platform': 'The app factory: 3 web apps',
+    descriptions = {'/apps': 'The consumer portfolio', '/platform': 'The app factory: 3 SaaS products',
                     '/company': 'Our purpose, founder and team', '/investors-partners': 'Thesis and collaboration', '/careers': 'Roles and applications'}
     links = []
     for url, label in nav_items:
@@ -23,12 +23,12 @@ def site_header(path, nav_items, btn):
 
 
 def site_footer(email, path='/', booking='', updated='', updated_iso=''):
-    """Footer directory: the whole portfolio (mobile and web apps), the company routes and direct contact.
+    """Footer directory: the whole portfolio (mobile and SaaS products), the company routes and direct contact.
     Links that leave the Site (mailto:, https:) carry ↗; https: links also open in a new tab."""
     groups = [
         ('Mobile apps', [('/apps/looks-max', 'Looks Max'), ('/apps/iq-max', 'IQ Max'),
                          ('/apps/sleep-max', 'Sleep Max'), ('/apps/fitness-max', 'Fitness Max')]),
-        ('Web apps', [('/platform#' + p['slug'], p['name']) for p in SAAS]),
+        ('SaaS products', [('/platform#' + p['slug'], p['name']) for p in SAAS]),
         ('Company', [('/apps', 'Apps'), ('/platform', 'Platform'),
                      ('/company', 'Company'), ('/investors-partners', 'Investors & partners'), ('/careers', 'Careers'), ('/press', 'Press kit')]),
         ('Contact', [('/contact?type=Investor#prepare-inquiry', 'Investor inquiries'),

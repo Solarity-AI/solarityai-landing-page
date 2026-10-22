@@ -14,11 +14,11 @@ APP = dict(slug='sleep-max', name='Sleep Max', category='Sleep & daily routines'
            apple='https://apps.apple.com/us/app/sleep-max-rest-best/id6806709872',
            google='https://play.google.com/store/apps/details?id=com.solarityai.sleepmax')
 WEB = dict(slug='engineering-max', name='Engineering Max', url='https://engineeringmax.solarityai.com/',
-           category='App engineering', status='Web app · private testing', tagline='Find and fix.',
+           category='App engineering', status='SaaS · private testing', tagline='Find and fix.',
            summary='Checks a report.', facts=('155 rules',), availability='Free during private testing.')
 PAGES = {'/': ('Solarity AI: home', 'Home description.', '<main>home</main>'),
          '/apps/sleep-max': ('Sleep Max: app', 'Sleep description.', '<main>sleep</main>'),
-         '/platform': ('Web apps', 'Platform description.', '<main>platform</main>'),
+         '/platform': ('SaaS products', 'Platform description.', '<main>platform</main>'),
          '/404': ('Page not found', 'Missing.', '<main>404</main>')}
 
 

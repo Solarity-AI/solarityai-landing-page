@@ -10,8 +10,8 @@ from visual_record import record_summary
 from visual_team import TEAM_MEMBERS
 
 ONE_LINE = 'Solarity AI builds AI self-improvement apps and the tools that let its small team ship them fast.'
-SHORT = ('Solarity AI LLC, based in Irving, Texas, builds AI-powered self-improvement apps: Looks Max, IQ Max, Sleep Max, '
-         'and Fitness Max (listed in the app stores as Only Fitness), all on iOS and Android. Building them shaped 3 web apps '
+SHORT = ('Solarity AI LLC, based in Dallas, Texas, builds AI-powered self-improvement apps: Looks Max, IQ Max, Sleep Max, '
+         'and Fitness Max (listed in the app stores as Only Fitness), all on iOS and Android. Building them shaped 3 SaaS products '
          'for teams that build mobile products: Engineering Max, Management Max, and Marketing Max. Founder: Ata Turhan.')
 
 # Approved images only: the official sun mark (make_press_assets.py), the founder portrait from the company's own
@@ -58,7 +58,7 @@ def press_kit_zip(apps):
     text = (f'Solarity AI press kit\n\n1 line\n{ONE_LINE}\n\nShort description\n{SHORT}\n\n'
             'Write the name as Solarity AI. Use the sun mark as supplied; do not recolor, stretch, or redraw it.\n'
             'Fitness Max appears in the app stores as Only Fitness.\n'
-            'Product screens show sample content: app screens are official App Store images; web app screens come from each\n'
+            'Product screens show sample content: app screens are official App Store images; SaaS screens come from each\n'
             'product\'s own site (Engineering Max shows its scan of Solarity AI\'s Sleep Max).\n\nSource: https://solarityai.com/press/\n')
     entries = [('README.txt', text.encode('utf-8'))] + [(name, _asset_bytes(public)) for name, public in files]
     buffer = io.BytesIO()

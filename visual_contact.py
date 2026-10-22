@@ -12,7 +12,7 @@ TOPIC_ICONS = {'Investor': 'invest', 'Program': 'spark', 'Strategic partner': 'p
 CONTACT_TOPICS = (
     ('Investor', 'Investment conversations', 'The portfolio, company strategy, and future priorities.'),
     ('Program', 'Accelerators, incubators, and grants', 'Application reviews, program questions, and introductions.'),
-    ('Strategic partner', 'Strategic partnerships', 'Distribution, technology, and the web apps for your team.'),
+    ('Strategic partner', 'Strategic partnerships', 'Distribution, technology, and the SaaS products for your team.'),
     ('Product inquiry', 'Product questions', 'The 4 mobile apps, or Engineering Max, Management Max, and Marketing Max.'),
     ('Press', 'Press and media', 'Articles, program pages, and event listings. The press kit has approved descriptions and images.'),
     ('Other', 'Something else in mind?', 'A clear introduction is a good place to start.'),
@@ -21,7 +21,7 @@ CONTACT_TOPICS = (
 
 # The Linktree's Google Forms, described as each form describes itself.
 CONTACT_FORMS = (
-    ('feedback', 'message', 'Product feedback', 'Share your thoughts on the apps and web apps.'),
+    ('feedback', 'message', 'Product feedback', 'Share your thoughts on the apps and SaaS products.'),
     ('mentorship', 'spark', 'Mentorship program', 'A pilot program mentoring university students.'),
     ('certificate', 'calendar', 'Certificate of participation', 'Attended a Solarity AI event? Request your certificate.'),
 )
@@ -35,7 +35,7 @@ def founder_vcard(email):
     lines = ['BEGIN:VCARD', 'VERSION:3.0', 'N:Turhan;Ata;;;', 'FN:Ata Turhan', 'ORG:Solarity AI LLC', 'TITLE:Founder',
              'EMAIL;TYPE=INTERNET,WORK:' + email, 'URL:https://solarityai.com/',
              *(['X-SOCIALPROFILE;TYPE=linkedin:' + FOUNDER['linkedin']] if FOUNDER.get('linkedin') else []),
-             'ADR;TYPE=WORK:;;;Irving;Texas;;United States', 'END:VCARD']
+             'ADR;TYPE=WORK:;;;Dallas;Texas;;United States', 'END:VCARD']
     return '\r\n'.join(lines) + '\r\n'
 
 

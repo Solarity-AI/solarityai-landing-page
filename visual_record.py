@@ -51,7 +51,7 @@ def app_compare(apps):
 
 
 def web_compare(saas):
-    """The three web apps in one table: stage, who each is for, and its plans, from their own sites."""
+    """The three SaaS products in one table: stage, who each is for, and its plans, from their own sites."""
     return str(render('visual_record/web_compare.html.j2', saas=saas))
 
 
