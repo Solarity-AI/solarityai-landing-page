@@ -124,6 +124,9 @@
  .web-bar{display:flex;align-items:center;gap:6px;height:30px;padding:0 12px;border-bottom:1px solid var(--line-soft);background:rgb(255 255 255/.03);font-size:var(--type-label);line-height:1;color:var(--dim)}
  .web-bar i{flex:none;width:7px;height:7px;border-radius:50%;background:rgb(255 255 255/.16)}
  .web-bar span{flex:1;min-width:0;overflow:hidden;padding-right:33px;text-align:center;white-space:nowrap;text-overflow:ellipsis;letter-spacing:.02em}
+ /* On phones narrower than 390px the window dots (and the padding that balances them) give way, so each
+    product's full domain fits (Management Max needs 216px; a 360px phone leaves 210px with the dots). */
+ @media(max-width:389px){.web-bar i{display:none}.web-bar span{padding-right:0}}
  .web-shot{display:block;width:100%;height:auto}
  /* Phones: a compact vertical map, with the icons above a glowing line that runs past three outlined nodes. */
  @media(max-width:560px){

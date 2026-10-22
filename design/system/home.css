@@ -172,6 +172,8 @@
 .vision-description{max-width:42ch}
 .vision-proof{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;max-width:none;margin-top:22px;font-size:var(--type-meta);font-weight:500;color:var(--text)}
 .vision-proof-icons{display:flex}
+/* Each fact stays whole when the line wraps: a link never splits, and its separator stays with it. */
+.vision-proof-fact{white-space:nowrap}
 .vision-proof-icons img{width:28px;height:28px;border-radius:var(--radius-icon);box-shadow:0 0 0 2px var(--bg)}
 .vision-proof-icons img+img{margin-left:-6px}
 /* Shipping record: dated launches on one horizon line, each linked to its public listing. */

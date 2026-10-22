@@ -6,7 +6,7 @@
         <div class="vision-copy">
           <h1 id="hero-title">Building for<br>human <em>potential.</em></h1>
           <p class="vision-description">Solarity AI builds AI self-improvement apps, 4 of them live on iOS and Android, and 3 SaaS products that help teams build, run, and grow mobile apps.</p>
-          <p class="vision-proof"><span class="vision-proof-icons" aria-hidden="true">{%- for a in apps if a.get('apple') -%}<img src="/assets/{{ a['slug'] }}-icon.webp" alt="" width="48" height="48">{%- endfor -%}</span><span><a href="#shipping-record">4 apps live on iOS &amp; Android</a> · <a href="#web-apps">3 SaaS products</a> · Dallas, Texas</span></p>
+          <p class="vision-proof"><span class="vision-proof-icons" aria-hidden="true">{%- for a in apps if a.get('apple') -%}<img src="/assets/{{ a['slug'] }}-icon.webp" alt="" width="48" height="48">{%- endfor -%}</span><span><span class="vision-proof-fact"><a href="#shipping-record">4 apps live on iOS &amp; Android</a> ·</span> <span class="vision-proof-fact"><a href="#web-apps">3 SaaS products</a> ·</span> <span class="vision-proof-fact">Dallas, Texas</span></span></p>
         </div>
         <div class="vision-actions">
           <div class="actions">{{ btn('Investor inquiries', contact('Investor'))|safe }}{{ btn('Partnership inquiries', contact('Strategic partner'), 'outline')|safe }}</div>
