@@ -5,17 +5,22 @@
   const unicodeText = (value) => String(value || '').replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]|[\uD800-\uDFFF]/g, (character) => character.length === 2 ? character : '\uFFFD');
   const cleanTopic = (value) => unicodeText(value).replace(/[\u0000-\u001f\u007f]/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 100).replace(/[\uD800-\uDBFF]$/, '');
   const validType = (value) => INQUIRY_TYPES.includes(value) ? value : 'Other';
+  // The topics the site's own links pass (the apps and the partnership topics; check_site.py keeps this in step).
+  // Anything else is dropped, so a crafted link cannot put its own text on the page or in the subject.
+  const CONTEXT_TOPICS = ['Looks Max', 'IQ Max', 'Sleep Max', 'Fitness Max', 'App factory', 'Distribution', 'Technology collaboration', 'Web apps'];
+  const topicKey = (value) => cleanTopic(value).toLowerCase();
+  const knownTopic = (value) => CONTEXT_TOPICS.find((topic) => topic.toLowerCase() === topicKey(value)) || '';
 
   function readInquiryContext(search) {
     const params = new URLSearchParams(search);
     const type = validType(params.get('type'));
     const acceptsContext = type === 'Product inquiry' || type === 'Strategic partner';
-    return { type, product: acceptsContext ? cleanTopic(params.get('product')) : '' };
+    return { type, product: acceptsContext ? knownTopic(params.get('product')) : '' };
   }
 
   function buildContactMailto(context) {
     const type = validType(context.type);
-    const product = ['Product inquiry', 'Strategic partner'].includes(type) ? cleanTopic(context.product) : '';
+    const product = ['Product inquiry', 'Strategic partner'].includes(type) ? knownTopic(context.product) : '';
     const subject = 'Solarity AI | ' + type + (product ? ' | ' + product : '');
     return 'mailto:' + CONTACT_EMAIL + '?subject=' + encodeURIComponent(subject);
   }
@@ -30,13 +35,13 @@
       Other: 'Start with an introduction.'
     };
     const type = validType(context.type);
-    const product = ['Product inquiry', 'Strategic partner'].includes(type) ? cleanTopic(context.product) : '';
+    const product = ['Product inquiry', 'Strategic partner'].includes(type) ? knownTopic(context.product) : '';
     // The topic follows the type's own sentence, as visitors read it, not the internal type name
     return product ? labels[type].replace(/\.$/, '') + ': ' + product + '.' : labels[type];
   }
 
   if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { readInquiryContext, buildContactMailto, contactContextLabel };
+    module.exports = { readInquiryContext, buildContactMailto, contactContextLabel, CONTEXT_TOPICS };
   }
   if (typeof document === 'undefined') return;
   const emailLink = document.getElementById('contact-email');

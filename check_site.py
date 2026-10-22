@@ -359,6 +359,17 @@ for file,d in docs.items():
     for n in graph:
         for banned in ('aggregateRating','review','offers'):
             if banned in n:errors.append(f'{rel}: schema.org states {banned}, which the pages do not show')
+# Contact accepts only the topics in scripts/contact.js CONTEXT_TOPICS (founder, 2026-10-22); every topic the
+# site's own contact links pass must be on that list, or the page would silently drop it.
+from urllib.parse import parse_qs
+_topics_source=(ROOT/'scripts'/'contact.js').read_text(encoding='utf-8')
+_topics_match=re.search(r'const CONTEXT_TOPICS = \[(.*?)\];',_topics_source)
+CONTEXT_TOPICS=set(re.findall(r"'([^']+)'",_topics_match.group(1))) if _topics_match else set()
+if not CONTEXT_TOPICS:errors.append('scripts/contact.js: CONTEXT_TOPICS list not found')
+for page in sorted(DIST.rglob('*.html')):
+    for href in re.findall(r'href="(/contact/?\?[^"#]*)',page.read_text(encoding='utf-8')):
+        topic=parse_qs(html.unescape(href).split('?',1)[1]).get('product',[''])[0]
+        if topic and topic not in CONTEXT_TOPICS:errors.append(f'{page.relative_to(DIST).as_posix()}: contact topic {topic!r} is missing from CONTEXT_TOPICS in scripts/contact.js')
 # The press kit README is text people download and quote, so the digits rule covers it too.
 import zipfile
 for kit in sorted((DIST/'assets'/'press').glob('*.zip')):
