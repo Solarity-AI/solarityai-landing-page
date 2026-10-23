@@ -121,11 +121,11 @@ pages['/press']=('Solarity AI press kit: descriptions, facts, and images','Appro
 
 pages['/accessibility']=('Accessibility statement','How solarityai.com is built and checked to meet WCAG 2.2 level AA, its known limitations, and how to report an accessibility problem.',accessibility_page(EMAIL))
 
-pages['/privacy']=('Solarity AI privacy policy','What personal information Solarity AI receives through solarityai.com, why, who else handles it, how long it is kept, and how to see, correct or delete it.',privacy_page(EMAIL))
+pages['/privacy']=('Solarity AI privacy policy','What personal information Solarity AI receives through solarityai.com, why, who else handles it, how long it is kept, and how to see, correct, or delete it.',privacy_page(EMAIL))
 
 pages['/website-data']=('How the Solarity AI website handles data','What solarityai.com collects and does not: no cookies, cookieless page counts, email links, the careers form provider, hosting, and security.',website_data_page(EMAIL,APPS))
 
-pages['/contact']=('Contact Solarity AI and founder Ata Turhan','Contact Solarity AI about investment, strategic partnerships or its consumer apps. Reach founder Ata Turhan directly.',str(contact_page(EMAIL,BOOKING,btn)))
+pages['/contact']=('Contact Solarity AI and founder Ata Turhan','Contact Solarity AI about investment, strategic partnerships, its consumer apps, or its SaaS products. Reach founder Ata Turhan directly.',str(contact_page(EMAIL,BOOKING,btn)))
 pages['/404']=('Page not found','This page is not here. Find your way back to Solarity AI’s apps, app factory platform, company story, investor information, or contact page.',page('not_found',recovery_links=recovery_links,
     routes=json.dumps([[public_path(p),'Home' if p=='/' else next((a['name'] for a in APPS if p=='/apps/'+a['slug']),seo.CRUMB_NAMES.get(p,''))] for p in pages if p!='/404'],ensure_ascii=False,separators=(',',':'))))
 
