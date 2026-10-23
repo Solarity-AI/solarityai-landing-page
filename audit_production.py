@@ -22,18 +22,21 @@ import re
 import subprocess
 import sys
 import tempfile
+import time
 from urllib.error import HTTPError, URLError
 from urllib.parse import urljoin, urlsplit
 from urllib.request import Request, build_opener
 import xml.etree.ElementTree as ET
 
-from hosting_rules import TYPE_ALIASES, NoRedirect, declared as expected_headers, header_rules as _header_rules
+from hosting_rules import EDGE_CACHED, TYPE_ALIASES, NoRedirect, declared as expected_headers, header_rules as _header_rules
 
 ROOT = Path(__file__).parent
 DIST = ROOT / 'dist'
 ORIGIN = 'https://solarityai.com'
 REPORT = ROOT / 'research-assets' / 'production-audit.json'
 SEPARATION = ROOT / 'research-assets' / 'deploy-separation.json'
+# A query unique to this run: a fixed one would itself be cached at the edge after the first run.
+FRESH = time.time_ns()
 USER_AGENT = 'Mozilla/5.0 (compatible; SolarityProductionAudit/1.0; read-only)'
 EXPECTED_TYPES = {
     '.html': 'text/html', '.css': 'text/css', '.js': 'text/javascript',
@@ -219,12 +222,19 @@ def audit_assets(assets: set[str], origin: str, rules: dict, findings: list[str]
     for path in sorted(assets):
         result = fetch(origin + path, body=False)
         headers = result.get('headers', {})
+        missing = compare_headers(path, headers, rules)
         record = {
             'status': result.get('status'),
             'content_type': headers.get('content-type'),
             'cache_control': headers.get('cache-control'),
-            'missing_expected_headers': compare_headers(path, headers, rules),
         }
+        if missing and headers.get('cf-cache-status') in EDGE_CACHED:
+            # An unchanged file keeps the headers Cloudflare cached with it, even after a deploy changes _headers
+            # (for example a new inline-script hash in the CSP). Judge what the deployment serves, and record the lag.
+            fresh = fetch(f'{origin}{path}?audit-fresh={FRESH}', body=False)
+            record['edge_copy_missing_headers'] = missing
+            missing = compare_headers(path, fresh.get('headers', {}), rules)
+        record['missing_expected_headers'] = missing
         record['content_type_ok'] = content_type_ok(path, headers.get('content-type', ''))
         asset_results[path] = record
         if result.get('status') != 200:

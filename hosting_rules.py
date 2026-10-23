@@ -7,6 +7,9 @@ from urllib.request import HTTPRedirectHandler
 # Equivalent registrations of the same format differ between servers.
 TYPE_ALIASES = {'application/javascript': 'text/javascript', 'text/xml': 'application/xml',
                 'image/vnd.microsoft.icon': 'image/x-icon'}
+# cf-cache-status values for a response served from Cloudflare's edge copy. Such a copy keeps the headers it was
+# cached with until it expires, even after a deploy changes _headers.
+EDGE_CACHED = {'HIT', 'REVALIDATED', 'STALE', 'UPDATING'}
 
 
 class NoRedirect(HTTPRedirectHandler):
