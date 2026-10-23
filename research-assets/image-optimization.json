@@ -1,5 +1,5 @@
 {
-  "settings_version": 14,
+  "settings_version": 15,
   "source_hashes": {
     "looks-max-screen-4.webp": "81cac84815b71ada75480170e88b18858c84ddfe276076250a03e1e1b06af125",
     "looks-max-detail-screen-6.webp": "b2f9afdfd41b8cf591a9c39361cc4d7dc60bb6ecbb71fc2e5baccc2715150ae8",
@@ -1293,6 +1293,22 @@
       "derivative_height": 1200,
       "webp": [
         {
+          "url": "/assets/optimized/ali-yilmaz-128.90dfbafae80c.webp",
+          "width": 128,
+          "height": 160,
+          "bytes": 3898,
+          "sha256": "90dfbafae80ce5d3a49605ad02d1fb58dc0f181eff677cd588cee2c63338e6e4",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/ali-yilmaz-224.0e3d55ffaeff.webp",
+          "width": 224,
+          "height": 280,
+          "bytes": 8144,
+          "sha256": "0e3d55ffaeffcc84e54325aa218a4530d66367a1ba8ce82da4607faf422fd4d1",
+          "mime": "image/webp"
+        },
+        {
           "url": "/assets/optimized/ali-yilmaz-320.628cfd602817.webp",
           "width": 320,
           "height": 400,
@@ -1337,6 +1353,22 @@
       "derivative_width": 800,
       "derivative_height": 1000,
       "webp": [
+        {
+          "url": "/assets/optimized/hasan-ak-128.3ce7d32953c9.webp",
+          "width": 128,
+          "height": 160,
+          "bytes": 2574,
+          "sha256": "3ce7d32953c9733450dd501798660c6a4fd00fad05a644364f4b88c4adb468ea",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/hasan-ak-224.a5c9c4038f78.webp",
+          "width": 224,
+          "height": 280,
+          "bytes": 5070,
+          "sha256": "a5c9c4038f7867cc2c69d8a02c50aca44c4c8376b72f1b418b6e02782cc68171",
+          "mime": "image/webp"
+        },
         {
           "url": "/assets/optimized/hasan-ak-320.9bac99e03a3a.webp",
           "width": 320,
@@ -1383,6 +1415,22 @@
       "derivative_height": 1200,
       "webp": [
         {
+          "url": "/assets/optimized/eren-oz-128.2baea3bba556.webp",
+          "width": 128,
+          "height": 160,
+          "bytes": 3556,
+          "sha256": "2baea3bba55630d3f89589d61428772f9c204c81e406ee91bf5dbe22c8ac57fd",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/eren-oz-224.1bc5c4f1e921.webp",
+          "width": 224,
+          "height": 280,
+          "bytes": 7676,
+          "sha256": "1bc5c4f1e921b6aa8d317dd6b05f5fd63509d0743164afc581fad73a1991cdf0",
+          "mime": "image/webp"
+        },
+        {
           "url": "/assets/optimized/eren-oz-320.0fc7df54a54b.webp",
           "width": 320,
           "height": 400,
@@ -1428,6 +1476,22 @@
       "derivative_height": 1200,
       "webp": [
         {
+          "url": "/assets/optimized/batuhan-yuceturk-128.6d9f641dd275.webp",
+          "width": 128,
+          "height": 160,
+          "bytes": 3294,
+          "sha256": "6d9f641dd2751136489a1c077b153d3d423e845c12b044045b98d5b9af393710",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/batuhan-yuceturk-224.dd5c9f99ac17.webp",
+          "width": 224,
+          "height": 280,
+          "bytes": 7584,
+          "sha256": "dd5c9f99ac179d91f0bd94c8294519809fbc88674fd8d9a46651fe0626c7b4ef",
+          "mime": "image/webp"
+        },
+        {
           "url": "/assets/optimized/batuhan-yuceturk-320.215b9e8852bd.webp",
           "width": 320,
           "height": 400,
@@ -1472,6 +1536,22 @@
       "derivative_width": 800,
       "derivative_height": 1000,
       "webp": [
+        {
+          "url": "/assets/optimized/melik-kaplan-128.6dce4d94db4f.webp",
+          "width": 128,
+          "height": 160,
+          "bytes": 3776,
+          "sha256": "6dce4d94db4fed2003238a24c136bb5267d038c7cf7b3b3e1dc1d8fac2937a4c",
+          "mime": "image/webp"
+        },
+        {
+          "url": "/assets/optimized/melik-kaplan-224.265b9449d078.webp",
+          "width": 224,
+          "height": 280,
+          "bytes": 7914,
+          "sha256": "265b9449d078c124ae4bfd24e13e19412083bb98fe81dde2064eebc4133f5a3f",
+          "mime": "image/webp"
+        },
         {
           "url": "/assets/optimized/melik-kaplan-320.82da701d1efc.webp",
           "width": 320,
