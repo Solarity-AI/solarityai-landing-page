@@ -17,13 +17,14 @@ import re
 import sys
 from urllib.error import HTTPError
 from urllib.parse import urlsplit
-from urllib.request import HTTPRedirectHandler, Request, build_opener
+from urllib.request import Request, build_opener
 import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parent.parent
 DIST = ROOT / 'dist'
 sys.path.insert(0, str(ROOT))
 import seo  # noqa: E402
+from hosting_rules import TYPE_ALIASES, NoRedirect, declared, header_rules as _header_rules  # noqa: E402
 IMMUTABLE = 'public, max-age=31536000, immutable'
 USER_AGENT = 'Mozilla/5.0 (compatible; SolaritySmokeTest/1.0)'
 SECURITY = {
@@ -34,17 +35,7 @@ SECURITY = {
 FRESH = time.time_ns()
 # cf-cache-status values for a response served from Cloudflare's edge copy.
 EDGE_CACHED = {'HIT', 'REVALIDATED', 'STALE', 'UPDATING'}
-# Equivalent registrations of the same format differ between servers.
-TYPE_ALIASES = {'application/javascript': 'text/javascript', 'text/xml': 'application/xml',
-                'image/vnd.microsoft.icon': 'image/x-icon'}
-
-
-class _NoRedirect(HTTPRedirectHandler):
-    def redirect_request(self, *args, **kwargs):
-        return None
-
-
-OPENER = build_opener(_NoRedirect)
+OPENER = build_opener(NoRedirect)
 failures: list[str] = []
 
 
@@ -70,26 +61,6 @@ def location(base: str, headers: dict) -> str:
     """Location as a path, whether the server sent it relative or absolute."""
     value = headers.get('location', '')
     return value[len(base):] if value.startswith(base) else value
-
-
-def header_rules() -> dict[str, dict[str, str]]:
-    rules, current = {}, None
-    for line in (DIST / '_headers').read_text(encoding='utf-8').splitlines():
-        if line and not line[0].isspace():
-            current = line
-            rules[current] = {}
-        elif line.strip() and current:
-            name, value = line.strip().split(':', 1)
-            rules[current][name.lower()] = value.strip()
-    return rules
-
-
-def declared(path: str, rules: dict) -> dict[str, str]:
-    expected = {}
-    for pattern, headers in rules.items():
-        if pattern == path or (pattern.endswith('*') and path.startswith(pattern[:-1])):
-            expected.update(headers)
-    return expected
 
 
 def legacy_redirects() -> dict[str, str]:
@@ -132,7 +103,7 @@ def main(base: str) -> int:
     base = base.rstrip('/')
     # _redirects rules answer 301; Pages normalizes slashes and /index.html with 308.
     moved = {301, 308}
-    rules = header_rules()
+    rules = _header_rules(DIST)
     namespace = '{http://www.sitemaps.org/schemas/sitemap/0.9}'
     routes = [urlsplit(node.text).path for node in ET.parse(DIST / 'sitemap.xml').iter(namespace + 'loc')]
     checked = 0

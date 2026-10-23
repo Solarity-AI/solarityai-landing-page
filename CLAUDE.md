@@ -27,6 +27,7 @@ This repository holds the complete source of the public Solarity AI corporate si
 - `source-assets/`: build inputs and unpublished approved files that are never deployed. This covers app-icon and hero masters, original brand files, team portraits, unused brand variants, and font provenance. If a page references `/assets/<path>` and only `source-assets/<path>` exists, the build publishes it automatically. `source-assets/retired/` holds retired artwork and scripts, which are never republished. `research-assets/deploy-separation.json` records every move.
 - The build writes `dist/favicon.ico` from the documented sun crop of the original lockup. It also prunes stale content-addressed files in `dist/assets/optimized/` and `dist/assets/runtime/`.
 - `research-assets/`: original approved hero, asset provenance, content evidence, optimization manifests, measured source-byte reports, and `production-audit.json`.
+- `hosting_rules.py`: how Pages reads `dist/_headers` (rule parsing and matching), shared by `check_site.py`, `deploy/smoke_test.py` and `audit_production.py`; `test_hosting_rules.py` covers it and the smoke test's comparison helpers.
 - `audit_production.py`: read-only audit of the live origin (routes, redirects, 404, headers vs `_headers`, MIME types, caching, favicon, exposed legacy files). Pass `--lighthouse <cli>` to add Lighthouse mobile/desktop runs. Results are summarized in `PRODUCTION_AUDIT.md`.
 
 ## Validation

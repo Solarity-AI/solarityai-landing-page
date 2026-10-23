@@ -24,8 +24,10 @@ import sys
 import tempfile
 from urllib.error import HTTPError, URLError
 from urllib.parse import urljoin, urlsplit
-from urllib.request import HTTPRedirectHandler, Request, build_opener
+from urllib.request import Request, build_opener
 import xml.etree.ElementTree as ET
+
+from hosting_rules import TYPE_ALIASES, NoRedirect, declared as expected_headers, header_rules as _header_rules
 
 ROOT = Path(__file__).parent
 DIST = ROOT / 'dist'
@@ -39,20 +41,7 @@ EXPECTED_TYPES = {
     '.png': 'image/png', '.svg': 'image/svg+xml', '.ico': 'image/x-icon',
     '.woff2': 'font/woff2', '.txt': 'text/plain', '.xml': 'application/xml',
 }
-# Accept common equivalent registrations for the same format.
-TYPE_ALIASES = {
-    'application/javascript': 'text/javascript',
-    'text/xml': 'application/xml',
-    'image/vnd.microsoft.icon': 'image/x-icon',
-}
-
-
-class _NoRedirect(HTTPRedirectHandler):
-    def redirect_request(self, *args, **kwargs):
-        return None
-
-
-_OPENER = build_opener(_NoRedirect)
+_OPENER = build_opener(NoRedirect)
 
 
 def fetch(url: str, body: bool = True) -> dict:
@@ -109,27 +98,6 @@ def head_of(text: str) -> _Head:
     parser = _Head()
     parser.feed(text)
     return parser
-
-
-def header_rules() -> dict[str, dict[str, str]]:
-    """Parse the local Netlify/Cloudflare-style _headers file."""
-    rules, current = {}, None
-    for line in (DIST / '_headers').read_text(encoding='utf-8').splitlines():
-        if line and not line[0].isspace():
-            current = line
-            rules[current] = {}
-        elif line.strip() and current:
-            name, value = line.strip().split(':', 1)
-            rules[current][name.lower()] = value.strip()
-    return rules
-
-
-def expected_headers(path: str, rules: dict) -> dict[str, str]:
-    expected = {}
-    for pattern, headers in rules.items():
-        if pattern == path or (pattern.endswith('*') and path.startswith(pattern[:-1])):
-            expected.update(headers)
-    return expected
 
 
 def compare_headers(path: str, actual: dict, rules: dict) -> list[str]:
@@ -191,7 +159,7 @@ def main() -> int:
     parser.add_argument('--lighthouse', help='Path to a local Lighthouse CLI index.js')
     args = parser.parse_args()
     origin = args.origin.rstrip('/')
-    rules = header_rules()
+    rules = _header_rules(DIST)
     findings: list[str] = []
     report = {
         'measured_at': datetime.now(timezone.utc).isoformat(timespec='seconds'),
