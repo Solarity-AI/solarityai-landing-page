@@ -29,5 +29,6 @@ Solarity AI LLC was founded by Ata Turhan in Dallas, Texas, United States. The 4
 ## Optional
 
 - [Full product facts and FAQ](https://solarityai.com/llms-full.txt)
+- [Privacy](https://solarityai.com/privacy/): what personal information Solarity AI receives, who else handles it, and how to ask for it to be deleted.
 - [Website data](https://solarityai.com/website-data/): no cookies, cookieless page counts, and the services the site links to.
 - [Accessibility](https://solarityai.com/accessibility/): the WCAG 2.2 AA target, how it is checked, and known limitations.

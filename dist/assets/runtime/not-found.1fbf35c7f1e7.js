@@ -3,7 +3,7 @@
 
   // The 404 page suggests the page a mistyped or outdated address most likely meant.
   // Routes come from the page itself (data-routes), so the suggestion never points at a missing page.
-  const ALIASES = { about: '/company/', aboutus: '/company/', team: '/company/', jobs: '/careers/', privacy: '/website-data/', cookies: '/website-data/' };
+  const ALIASES = { about: '/company/', aboutus: '/company/', team: '/company/', jobs: '/careers/', cookies: '/website-data/' };
 
   function normalize(path) {
     let value = String(path || '');

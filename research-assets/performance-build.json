@@ -19,8 +19,8 @@
       "speculation_rules": "Prefetch same-origin pages on intent (moderate); never prerender",
       "external_scripts": [],
       "javascript_bytes": 5038,
-      "html_bytes": 104287,
-      "html_gzip_bytes": 22242
+      "html_bytes": 104322,
+      "html_gzip_bytes": 22252
     },
     "/apps": {
       "source_bytes": 160821,
@@ -40,8 +40,8 @@
       "speculation_rules": "Prefetch same-origin pages on intent (moderate); never prerender",
       "external_scripts": [],
       "javascript_bytes": 5038,
-      "html_bytes": 102056,
-      "html_gzip_bytes": 21997
+      "html_bytes": 102091,
+      "html_gzip_bytes": 22007
     },
     "/apps/looks-max": {
       "source_bytes": 160821,
@@ -64,8 +64,8 @@
         "gallery"
       ],
       "javascript_bytes": 9117,
-      "html_bytes": 90714,
-      "html_gzip_bytes": 21057
+      "html_bytes": 90749,
+      "html_gzip_bytes": 21067
     },
     "/apps/iq-max": {
       "source_bytes": 160821,
@@ -88,8 +88,8 @@
         "gallery"
       ],
       "javascript_bytes": 9117,
-      "html_bytes": 90492,
-      "html_gzip_bytes": 21010
+      "html_bytes": 90527,
+      "html_gzip_bytes": 21020
     },
     "/apps/sleep-max": {
       "source_bytes": 160821,
@@ -112,8 +112,8 @@
         "gallery"
       ],
       "javascript_bytes": 9117,
-      "html_bytes": 84622,
-      "html_gzip_bytes": 20143
+      "html_bytes": 84657,
+      "html_gzip_bytes": 20153
     },
     "/apps/fitness-max": {
       "source_bytes": 160821,
@@ -136,8 +136,8 @@
         "gallery"
       ],
       "javascript_bytes": 9117,
-      "html_bytes": 92764,
-      "html_gzip_bytes": 21288
+      "html_bytes": 92799,
+      "html_gzip_bytes": 21298
     },
     "/platform": {
       "source_bytes": 160821,
@@ -161,8 +161,8 @@
         "gallery"
       ],
       "javascript_bytes": 11668,
-      "html_bytes": 100264,
-      "html_gzip_bytes": 23304
+      "html_bytes": 100299,
+      "html_gzip_bytes": 23313
     },
     "/company": {
       "source_bytes": 160821,
@@ -182,8 +182,8 @@
       "speculation_rules": "Prefetch same-origin pages on intent (moderate); never prerender",
       "external_scripts": [],
       "javascript_bytes": 5038,
-      "html_bytes": 74440,
-      "html_gzip_bytes": 17854
+      "html_bytes": 74475,
+      "html_gzip_bytes": 17864
     },
     "/investors-partners": {
       "source_bytes": 160821,
@@ -207,8 +207,8 @@
         "copy"
       ],
       "javascript_bytes": 9051,
-      "html_bytes": 122834,
-      "html_gzip_bytes": 26286
+      "html_bytes": 122869,
+      "html_gzip_bytes": 26296
     },
     "/careers": {
       "source_bytes": 160821,
@@ -233,8 +233,8 @@
         "copy"
       ],
       "javascript_bytes": 17359,
-      "html_bytes": 80063,
-      "html_gzip_bytes": 19894
+      "html_bytes": 80167,
+      "html_gzip_bytes": 19914
     },
     "/press": {
       "source_bytes": 160821,
@@ -257,8 +257,8 @@
         "copy"
       ],
       "javascript_bytes": 6500,
-      "html_bytes": 75294,
-      "html_gzip_bytes": 17985
+      "html_bytes": 75329,
+      "html_gzip_bytes": 17997
     },
     "/accessibility": {
       "source_bytes": 160821,
@@ -278,8 +278,29 @@
       "speculation_rules": "Prefetch same-origin pages on intent (moderate); never prerender",
       "external_scripts": [],
       "javascript_bytes": 5038,
-      "html_bytes": 53653,
-      "html_gzip_bytes": 14604
+      "html_bytes": 53688,
+      "html_gzip_bytes": 14613
+    },
+    "/privacy": {
+      "source_bytes": 160821,
+      "html_classes": 35,
+      "selector_branches_examined": 1772,
+      "selector_branches_removed": 1419,
+      "output_bytes": 33123,
+      "bytes_removed": 127698,
+      "css_gzip_bytes": 8788,
+      "css_delivery": "Inline route-specific CSS; no blocking stylesheet request",
+      "scripts": [
+        "navigation"
+      ],
+      "inline_scripts": [
+        "navigation"
+      ],
+      "speculation_rules": "Prefetch same-origin pages on intent (moderate); never prerender",
+      "external_scripts": [],
+      "javascript_bytes": 5038,
+      "html_bytes": 55862,
+      "html_gzip_bytes": 15204
     },
     "/website-data": {
       "source_bytes": 160821,
@@ -299,8 +320,8 @@
       "speculation_rules": "Prefetch same-origin pages on intent (moderate); never prerender",
       "external_scripts": [],
       "javascript_bytes": 5038,
-      "html_bytes": 54457,
-      "html_gzip_bytes": 14749
+      "html_bytes": 54639,
+      "html_gzip_bytes": 14794
     },
     "/contact": {
       "source_bytes": 160821,
@@ -325,8 +346,8 @@
         "copy"
       ],
       "javascript_bytes": 10024,
-      "html_bytes": 71248,
-      "html_gzip_bytes": 17093
+      "html_bytes": 71283,
+      "html_gzip_bytes": 17104
     },
     "/404": {
       "source_bytes": 160821,
@@ -348,9 +369,9 @@
       "external_scripts": [
         "not-found"
       ],
-      "javascript_bytes": 8791,
-      "html_bytes": 54631,
-      "html_gzip_bytes": 14452
+      "javascript_bytes": 8764,
+      "html_bytes": 54710,
+      "html_gzip_bytes": 14469
     }
   }
 }
