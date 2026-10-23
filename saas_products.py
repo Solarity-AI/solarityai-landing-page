@@ -51,7 +51,7 @@ SAAS = [
         facts=('50 metric definitions and 16 validation rules',
                'Syncs from RevenueCat, AppsFlyer, App Store Connect, Google Play, Firebase, GitHub, and YouTube',
                'Roles for the whole team, and every change is signed',
-               'Plans count apps, not seats'),
+               'Paid plans count apps, not seats'),
         availability='Free for 1 app and 2 seats, with paid plans for larger portfolios.',
         screens=(dict(file='management-max-overview.webp', width=1160, height=1280,
                       alt='Management Max overview of a sample week: active users, MRR and crash-free sessions across 7 sample apps, and a retention spread it declines to average.'),
