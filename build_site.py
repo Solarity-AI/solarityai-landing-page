@@ -201,12 +201,19 @@ def content_security_policy():
         "upgrade-insecure-requests",
     ])
 
-SECURITY_HEADERS=('  Content-Security-Policy: '+content_security_policy()+'\n'
-                  '  Strict-Transport-Security: max-age=31536000\n'
-                  '  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), browsing-topics=()\n')
+IMMUTABLE={'Cache-Control':'public, max-age=31536000, immutable'}
+NOINDEX={'X-Robots-Tag':'noindex, follow'}
+# Cloudflare Pages header rules: a path pattern, then its headers (hosting_rules.py reads them back).
 # No Cross-Origin-Opener-Policy: the site opens no cross-origin popups, and COOP's process swap breaks
 # Lighthouse and PageSpeed Insights traces (NO_NAVSTART), measured on 2026-10-19.
-(DIST/'_headers').write_text('/*\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n  X-Frame-Options: SAMEORIGIN\n'+SECURITY_HEADERS+'/404\n  X-Robots-Tag: noindex, follow\n/404.html\n  X-Robots-Tag: noindex, follow\n/assets/optimized/*\n  Cache-Control: public, max-age=31536000, immutable\n/assets/runtime/*\n  Cache-Control: public, max-age=31536000, immutable\n'+FONT_URL+'\n  Cache-Control: public, max-age=31536000, immutable\n'+DISPLAY_FONT_URL+'\n  Cache-Control: public, max-age=31536000, immutable\n', encoding='utf-8', newline='\n')
+HEADER_RULES=[
+    ('/*',{'X-Content-Type-Options':'nosniff','Referrer-Policy':'strict-origin-when-cross-origin','X-Frame-Options':'SAMEORIGIN',
+           'Content-Security-Policy':content_security_policy(),'Strict-Transport-Security':'max-age=31536000',
+           'Permissions-Policy':'camera=(), microphone=(), geolocation=(), payment=(), usb=(), browsing-topics=()'}),
+    ('/404',NOINDEX),('/404.html',NOINDEX),
+    ('/assets/optimized/*',IMMUTABLE),('/assets/runtime/*',IMMUTABLE),(FONT_URL,IMMUTABLE),(DISPLAY_FONT_URL,IMMUTABLE),
+]
+(DIST/'_headers').write_text(''.join(pattern+'\n'+''.join(f'  {name}: {value}\n' for name,value in headers.items()) for pattern,headers in HEADER_RULES), encoding='utf-8', newline='\n')
 # dist/ holds exactly what pages reference. An unpublished approved file in
 # source-assets/ is published once a page references it; retired files never are.
 for url in sorted(referenced_assets):
