@@ -99,15 +99,15 @@ def revalidates(cache: str) -> bool:
     return 'no-cache' in cache or 'max-age=0' in cache
 
 
-def main(base: str) -> int:
-    base = base.rstrip('/')
-    # _redirects rules answer 301; Pages normalizes slashes and /index.html with 308.
-    moved = {301, 308}
-    rules = _header_rules(DIST)
+# _redirects rules answer 301; Pages normalizes slashes and /index.html with 308.
+MOVED = {301, 308}
+
+
+def check_pages(base: str, rules: dict) -> int:
+    """Every sitemap route: status, type, revalidation, headers, bytes, and the slashless redirect."""
     namespace = '{http://www.sitemaps.org/schemas/sitemap/0.9}'
     routes = [urlsplit(node.text).path for node in ET.parse(DIST / 'sitemap.xml').iter(namespace + 'loc')]
     checked = 0
-
     for path in routes:
         status, headers, body = get(base, path)
         checked += 1
@@ -122,31 +122,42 @@ def main(base: str) -> int:
         if path != '/':
             status, headers, _ = get(base, path.rstrip('/'))
             checked += 1
-            expect(status in moved and location(base, headers) == path,
+            expect(status in MOVED and location(base, headers) == path,
                    f'{path.rstrip("/")}: expected redirect to {path}, got {status} {headers.get("location")}')
+    return checked
 
-    for old, new in legacy_redirects().items():
+
+def check_legacy_redirects(base: str) -> int:
+    redirects = legacy_redirects()
+    for old, new in redirects.items():
         status, headers, _ = get(base, old)
-        checked += 1
-        expect(status in moved and location(base, headers).split('?')[0] == new,
+        expect(status in MOVED and location(base, headers).split('?')[0] == new,
                f'{old}: expected redirect to {new}, got {status} {headers.get("location")}')
+    return len(redirects)
 
-    for path in ('/__missing-page', '/_headers', '/_redirects'):
+
+def check_not_found(base: str) -> int:
+    """Missing pages and the host files get the custom noindex 404; /404 itself is noindex."""
+    paths = ('/__missing-page', '/_headers', '/_redirects')
+    for path in paths:
         status, headers, body = get(base, path)
-        checked += 1
         expect(status == 404, f'{path}: status {status}, expected 404')
         expect(b'is not here' in body and b'noindex' in body, f'{path}: custom noindex 404 page not served')
         expect(headers.get('x-content-type-options') == 'nosniff', f'{path}: missing nosniff on 404')
-
     status, headers, _ = get(base, '/404')
-    checked += 1
     expect(headers.get('x-robots-tag') == 'noindex, follow',
            f'/404: status {status}, X-Robots-Tag {headers.get("x-robots-tag")!r}')
+    return len(paths) + 1
 
+
+def check_compression(base: str) -> int:
     status, headers, body = get(base, '/', **{'Accept-Encoding': 'gzip'})
-    checked += 1
     expect(headers.get('content-encoding') == 'gzip' and b'<html' in gzip.decompress(body), '/: response is not gzip-compressed')
+    return 1
 
+
+def check_assets(base: str, rules: dict) -> int:
+    """One file of each published kind: type, caching, bytes and headers."""
     # (content type, whether _headers marks the file immutable)
     assets = {
         first('assets/optimized/*.webp'): ('image/webp', True),
@@ -166,7 +177,6 @@ def main(base: str) -> int:
     }
     for path, (content_type, immutable) in assets.items():
         status, headers, body = get(base, path)
-        checked += 1
         actual = headers.get('cache-control', '')
         expect(status == 200, f'{path}: status {status}')
         expect(mime(headers) == content_type, f'{path}: content-type {headers.get("content-type")!r}, expected {content_type}')
@@ -186,7 +196,14 @@ def main(base: str) -> int:
             edge_notes.add(f'cached files still carry the previous {", ".join(sorted(stale))} until their edge copies expire')
         for name, value in expected.items():
             expect(headers.get(name) == value, f'{path}: {name} is {headers.get(name)!r}, expected {value!r}')
+    return len(assets)
 
+
+def main(base: str) -> int:
+    base = base.rstrip('/')
+    rules = _header_rules(DIST)
+    checked = (check_pages(base, rules) + check_legacy_redirects(base) + check_not_found(base)
+               + check_compression(base) + check_assets(base, rules))
     if failures:
         print(f'{len(failures)} problems in {checked} server checks:')
         print('\n'.join('  - ' + failure for failure in failures))
@@ -195,7 +212,6 @@ def main(base: str) -> int:
     for note in sorted(edge_notes):
         print('  note: ' + note)
     return 0
-
 
 if __name__ == '__main__':
     raise SystemExit(main(sys.argv[1] if len(sys.argv) > 1 else 'https://solarityai.com'))
