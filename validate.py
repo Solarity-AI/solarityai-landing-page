@@ -6,6 +6,7 @@ Test files are found by name (test_*.py and test-*.cjs in the project root), so 
 without editing this script, the docs or CI. Exits non-zero at the first failing step.
 """
 import json
+import shutil
 import subprocess
 import sys
 from pathlib import Path
@@ -38,6 +39,9 @@ def main():
     run(f'Python tests ({len(python_tests)} files)', [python, '-m', 'unittest', *python_tests])
 
     node_tests = sorted(path.name for path in ROOT.glob('test-*.cjs'))
+    if not shutil.which('node'):
+        print('\nNode tests need Node.js 24 (.nvmrc) on PATH; install it and run validate.py again.')
+        sys.exit(1)
     run(f'Node tests ({len(node_tests)} files)', ['node', '--test', *node_tests])
     print('\nAll checks passed.')
 

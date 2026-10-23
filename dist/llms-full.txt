@@ -45,7 +45,7 @@ Solarity AI LLC was founded by Ata Turhan in Dallas, Texas, United States. The 4
   - 50 metric definitions and 16 validation rules
   - Syncs from RevenueCat, AppsFlyer, App Store Connect, Google Play, Firebase, GitHub, and YouTube
   - Roles for the whole team, and every change is signed
-  - Plans count apps, not seats
+  - Paid plans count apps, not seats
   - Free for 1 app and 2 seats, with paid plans for larger portfolios.
 - [Marketing Max](https://marketingmax.solarityai.com/): Short-form video marketing, SaaS · early access. Your next Reel, made from one that already worked.
   - Marketing Max finds the Reels that performed, writes the caption and the line on the video in the brand’s voice, and posts to Instagram at the chosen time. A person approves each of the 4 steps.

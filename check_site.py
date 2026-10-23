@@ -9,6 +9,7 @@ from hashlib import sha256
 from urllib.robotparser import RobotFileParser
 import xml.etree.ElementTree as ET
 from site_urls import public_path
+from hosting_rules import header_rules as parse_header_rules
 
 NUMBER_WORDS=re.compile(r'\b(?:two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty|thirty|forty|fifty|sixty|seventy|eighty|ninety|hundred|thousand|million|billion|dozen)\b',re.I)
 class _VisibleText(HTMLParser):
@@ -71,14 +72,14 @@ for file,d in docs.items():
     for value,n in Counter(d.ids).items():
         if n>1:errors.append(f'{rel}: duplicate id {value}')
     meta={a.get('name') or a.get('property'):a.get('content','') for t,a in d.tags if t=='meta'}
-    for name in ['description','viewport','og:title','og:description','og:url','og:image']:
+    for name in ['description','viewport','og:title','og:description','og:image']:
         if not meta.get(name):errors.append(f'{rel}: missing {name}')
     canonical=[a.get('href','') for t,a in d.tags if t=='link' and a.get('rel')=='canonical']
     route='/' if file==DIST/'index.html' else '/404' if file==DIST/'404.html' else '/'+file.parent.relative_to(DIST).as_posix()
     expected_url=ORIGIN+public_path(route)
-    # The error page is noindex and names no canonical: it is not a page search engines should keep.
+    # The error page is noindex and names no canonical or og:url: it is not a page search engines or link previews should keep.
     if canonical!=([] if route=='/404' else [expected_url]):errors.append(f'{rel}: unexpected canonical {canonical}')
-    if meta.get('og:url')!=expected_url:errors.append(f'{rel}: Open Graph URL must match the final canonical URL')
+    if meta.get('og:url')!=(None if route=='/404' else expected_url):errors.append(f'{rel}: Open Graph URL must match the final canonical URL')
     if meta.get('referrer')!='strict-origin-when-cross-origin':errors.append(f'{rel}: missing browser referrer policy')
     labels={a['for'] for t,a in d.tags if t=='label' and a.get('for')}
     for tag_index,(t,a) in enumerate(d.tags):
@@ -388,12 +389,7 @@ for name in ('llms.txt','llms-full.txt'):
     for link in re.findall(r'\]\((https://solarityai\.com[^)]*)\)',llm):
         if link not in expected_public_urls and link!=ORIGIN+'/llms-full.txt':errors.append(f'{name}: links to {link}, which is not a public page')
 if ((DIST/(seo.INDEXNOW_KEY+'.txt')).read_text(encoding='utf-8') if (DIST/(seo.INDEXNOW_KEY+'.txt')).is_file() else '')!=seo.INDEXNOW_KEY:errors.append('IndexNow key file must contain exactly its key')
-header_rules={};current_rule=None
-for line in (DIST/'_headers').read_text(encoding='utf-8').splitlines():
-    if line and not line[0].isspace():
-        current_rule=line;header_rules[current_rule]={}
-    elif line.strip() and current_rule:
-        name,value=line.strip().split(':',1);header_rules[current_rule][name.lower()]=value.strip()
+header_rules=parse_header_rules(DIST)
 if 'x-robots-tag' in header_rules.get('/*',{}):errors.append('Global crawler exclusion must not apply to public content')
 for error_path in ['/404','/404.html']:
     if header_rules.get(error_path,{}).get('x-robots-tag')!='noindex, follow':errors.append(f'{error_path}: missing error-page noindex header')

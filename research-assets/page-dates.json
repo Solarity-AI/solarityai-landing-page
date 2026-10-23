@@ -24,16 +24,16 @@
     "date": "2026-10-22"
   },
   "/platform": {
-    "sha": "f34a1e61d5007456",
-    "date": "2026-10-22"
+    "sha": "b175c5b4dc4668fc",
+    "date": "2026-10-23"
   },
   "/company": {
     "sha": "256440d766ba0f41",
     "date": "2026-10-22"
   },
   "/investors-partners": {
-    "sha": "cf93badbcf33d799",
-    "date": "2026-10-22"
+    "sha": "b503a31c4ace8420",
+    "date": "2026-10-23"
   },
   "/careers": {
     "sha": "9c7c9c89f6ce180a",
@@ -44,20 +44,20 @@
     "date": "2026-10-22"
   },
   "/accessibility": {
-    "sha": "82b2ef0f42fe009b",
-    "date": "2026-10-22"
+    "sha": "35fdac4846958af9",
+    "date": "2026-10-23"
   },
   "/privacy": {
-    "sha": "1ac511eacf211937",
+    "sha": "e8c0376e8feff14d",
     "date": "2026-10-23"
   },
   "/website-data": {
-    "sha": "e6fe67058e903e0e",
+    "sha": "1107170fc50fdd11",
     "date": "2026-10-23"
   },
   "/contact": {
-    "sha": "1eefb07024da08f0",
-    "date": "2026-10-22"
+    "sha": "d29c698b12c6073b",
+    "date": "2026-10-23"
   },
   "/404": {
     "sha": "613b137d498903c0",
