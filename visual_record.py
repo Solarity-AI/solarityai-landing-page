@@ -62,11 +62,11 @@ def company_facts(email):
                       record=record_summary(), saas=SAAS, email=email))
 
 
-def founder_record():
-    """Founder bio, motivation and profile link. Empty until supplied."""
-    if not (FOUNDER.get('bio') or FOUNDER.get('why') or FOUNDER.get('linkedin')):
+def founder_record(linkedin=True):
+    """Founder bio, motivation and (unless the founder's team card carries it) profile link. Empty until supplied."""
+    if not (FOUNDER.get('bio') or FOUNDER.get('why') or (linkedin and FOUNDER.get('linkedin'))):
         return ''
-    return str(render('visual_record/founder_record.html.j2', founder=FOUNDER))
+    return str(render('visual_record/founder_record.html.j2', founder=FOUNDER, linkedin=linkedin))
 
 
 def team_detail(name):
