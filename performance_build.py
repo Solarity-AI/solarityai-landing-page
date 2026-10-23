@@ -127,10 +127,6 @@ def optimize_page(document, path, css):
         if path.startswith('/apps/') and 'store-screen' in classes:
             attrs['loading'] = 'eager'
             attrs['fetchpriority'] = 'high'
-        # The founder now opens Company; conceptual artwork is below the team.
-        if path == '/company' and 'founder-photo' in classes:
-            attrs['loading'] = 'eager'
-            attrs['fetchpriority'] = 'high'
         if is_hero:
             attrs['loading'] = 'eager'
             attrs['fetchpriority'] = 'high'

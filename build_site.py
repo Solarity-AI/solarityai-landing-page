@@ -7,7 +7,7 @@ from ux_content import investor_faq, recovery_links
 from visual_home import hero_section, closing_scene
 from visual_saas import saas_wall, saas_chapters, apps_web_band
 from saas_products import SAAS
-from visual_sections import feature_grid, founder_card
+from visual_sections import feature_grid
 from visual_team import selected_team, TEAM_MEMBERS
 from company_facts import TEAM_DETAILS
 from visual_careers import careers_page
@@ -110,7 +110,7 @@ pages['/platform']=('Engineering Max, Management Max, Marketing Max','Engineerin
                     page('platform',web_compare=web_compare,platform_opening=platform_opening,saas_chapters=saas_chapters,strategy_story=strategy_story))
 
 pages['/company']=('About Solarity AI and founder Ata Turhan','Solarity AI LLC was founded by Ata Turhan in Dallas, Texas. Meet the founder and the team building self-improvement apps and SaaS products for mobile app teams.',
-                   page('company',record=record_summary(),company_facts=company_facts,email=EMAIL,founder_card=founder_card,founder_record=founder_record,selected_team=selected_team,operating_principles=operating_principles))
+                   page('company',record=record_summary(),company_facts=company_facts,email=EMAIL,founder_record=founder_record,selected_team=selected_team,operating_principles=operating_principles))
 
 pages['/investors-partners']=('Invest in or partner with Solarity AI','Explore the Solarity AI product thesis and opportunities for investment, distribution, technology collaboration, and platform design partnerships.',
                               page('investors_partners',investor_opening=investor_opening,section_index=section_index,shipping_record=shipping_record,program_brief=program_brief,investor_evidence=investor_evidence,investor_faq=investor_faq,founder_booking=founder_booking,booking=BOOKING))
