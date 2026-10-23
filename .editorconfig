@@ -1,0 +1,11 @@
+# Matches .gitattributes: script fingerprints and inline-script hashes use raw bytes (CLAUDE.md).
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+
+[*.py]
+indent_style = space
+indent_size = 4
