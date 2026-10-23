@@ -18,7 +18,7 @@ def product_art(app, small=False, hero=False):
     if not screen:
         return ''
     alt = app.get('hero_alt') if hero and app.get('hero_alt') else app['name'] + ' official App Store imagery with sample app content'
-    sizes = ('(max-width: 390px) calc(100vw - 72px), (max-width: 640px) 318px, (max-width: 1024px) 300px, 440px' if hero else
+    sizes = ('(max-width: 390px) calc(100vw - 72px), (max-width: 640px) 318px, (max-width: 1024px) 340px, 440px' if hero else
              '(max-width: 390px) calc(100vw - 72px), (max-width: 640px) 318px, '
              '(max-width: 1024px) 290px, ' + ('320px' if small else '340px'))
     return str(render('visual_products/product_art.html.j2', app=app, hero=hero, image='/assets/' + screen, alt=alt,

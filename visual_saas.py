@@ -19,8 +19,11 @@ def web_window(product, screen, sizes, eager=False, low=False):
                       eager=eager, low=low, tall=tall))
 
 
-CARD_SIZES = '(max-width: 560px) calc(100vw - 72px), (max-width: 850px) 46vw, 400px'
-CHAPTER_SIZES = '(max-width: 850px) 92vw, 720px'
+# Measured rendered widths, so browsers pick a file neither soft nor oversized.
+CARD_SIZES = '(max-width: 560px) calc(100vw - 72px), (max-width: 850px) 46vw, (max-width: 1100px) 26vw, 400px'
+CHAPTER_SIZES = '(max-width: 850px) 92vw, (max-width: 1100px) 48vw, 720px'
+# A tall screen's frame stops at 478 px wide.
+TALL_CHAPTER_SIZES = '(max-width: 520px) 92vw, 478px'
 
 
 def saas_cards(saas, prefix, label='Solarity AI SaaS products', compact=False):
@@ -51,7 +54,7 @@ def showroom_web(saas):
 def saas_chapter(product, index):
     """Platform: one numbered chapter per SaaS product, its copy beside its real screens.
     Each screen opens in the page's screenshot viewer, with the full-size image as its native link."""
-    shots = [{'screen': screen, 'window': web_window(product, screen, CHAPTER_SIZES)} for screen in product['screens']]
+    shots = [{'screen': screen, 'window': web_window(product, screen, TALL_CHAPTER_SIZES if screen['height'] > screen['width'] * 0.9 else CHAPTER_SIZES)} for screen in product['screens']]
     return str(render('visual_saas/chapter.html.j2', product=product, flip=index % 2, shots=shots,
                       status=saas_status(product),
                       link=site_link(product, 'Visit ' + product['domain'], 'button outline')))
