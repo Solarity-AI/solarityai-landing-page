@@ -182,8 +182,8 @@
       "speculation_rules": "Prefetch same-origin pages on intent (moderate); never prerender",
       "external_scripts": [],
       "javascript_bytes": 5038,
-      "html_bytes": 74475,
-      "html_gzip_bytes": 17864
+      "html_bytes": 75051,
+      "html_gzip_bytes": 18038
     },
     "/investors-partners": {
       "source_bytes": 160821,
@@ -233,8 +233,8 @@
         "copy"
       ],
       "javascript_bytes": 17359,
-      "html_bytes": 80167,
-      "html_gzip_bytes": 19914
+      "html_bytes": 80743,
+      "html_gzip_bytes": 20084
     },
     "/press": {
       "source_bytes": 160821,
