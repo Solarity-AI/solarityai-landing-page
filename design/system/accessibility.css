@@ -95,7 +95,7 @@
  @media(forced-colors:active){
   .feature-tile,.operating-principles li,.strategy-story-steps>li,.strategy-story-bottom,.career-benefit-list>div,.contact-topic-icon,.career-benefit-icon,.feature-symbol,.saas-index,.today-card,.ahead-card,.team-monogram,.selected-team-member{border:1px solid CanvasText}
   :root{--bg:Canvas;--surface:Canvas;--raised:Canvas;--surface-raised:Canvas;--text:CanvasText;--muted:CanvasText;--dim:CanvasText;--ink:CanvasText;--accent:LinkText;--sun-core:LinkText;--gold:LinkText;--sand:CanvasText;--bronze:CanvasText;--haze:LinkText;--line:CanvasText;--line-soft:CanvasText;--control-border:ButtonText;--control-border-hover:Highlight;--focus:Highlight;--product-accent:LinkText;--world-deep:Canvas;--world:CanvasText;--world-tint:CanvasText;--tone-golden:Canvas;--tone-footer:Canvas;--tone-blue:Canvas;--danger:CanvasText;--danger-text:CanvasText;--danger-surface:Canvas;--notice-surface:Canvas;--notice-text:CanvasText;--elev-panel:Canvas;--grain:none;--light-field:none;--horizon:linear-gradient(CanvasText,CanvasText)}
-  .founder-panel,.founder-booking,.career-form,.screenshot-stage,.product-story-image{border:1px solid CanvasText}
+  .founder-booking,.career-form,.screenshot-stage,.product-story-image{border:1px solid CanvasText}
   .button,.menu-toggle,input,select,textarea{border:1px solid ButtonText!important;box-shadow:none!important}
   :focus-visible{outline:3px solid Highlight!important;outline-offset:3px}
   #site-nav>a[aria-current],.footer-group a[aria-current]{text-decoration:underline!important;color:LinkText}

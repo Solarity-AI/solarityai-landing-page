@@ -4,7 +4,6 @@ These symbols are decorative UI illustrations. They do not represent app screens
 product results, a company emblem, or a deployed platform architecture.
 """
 
-from markupsafe import Markup
 
 from templating import render
 
@@ -83,13 +82,3 @@ def platform_map(apps, saas):
 # The founder's published portrait files, shared by every page that shows him at a photo size.
 FOUNDER_PORTRAIT = {'src': '/assets/brand/ata-turhan-640.742556487789.webp',
                     'srcset': '/assets/brand/ata-turhan-320.db6d27d9b9b3.webp 320w, /assets/brand/ata-turhan-640.742556487789.webp 640w, /assets/brand/ata-turhan-original.webp 800w'}
-
-
-def founder_portrait():
-    """Official company portrait, uncropped and with reserved square geometry (Company only)."""
-    return str(render('visual_sections/founder_portrait.html.j2', portrait=FOUNDER_PORTRAIT))
-
-
-def founder_card():
-    """Return the verified portrait and a concise founder identity panel."""
-    return str(render('visual_sections/founder_card.html.j2', portrait=Markup(founder_portrait())))

@@ -6,6 +6,8 @@
   {#- -#}
   <p>Meet the team helping bring Solarity AI’s products and company vision to life.</p></div>
   {#- -#}
+  <div class="team-founder"><div class="selected-team-member team-founder-card"><img class="team-portrait team-founder-photo" src="{{ founder.src }}" srcset="{{ founder.srcset }}" width="640" height="640" sizes="(max-width: 560px) calc(50vw - 30px), (max-width: 650px) calc(50vw - 50px), (max-width: 1100px) calc(33vw - 40px), 405px" alt="Ata Turhan, founder of Solarity AI" loading="lazy" decoding="async"><div class="selected-team-identity"><h3 lang="tr">Ata Turhan</h3><p class="team-detail"><span class="team-role">Founder</span>{%- if founder_linkedin %}<a href="{{ founder_linkedin }}" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span><span class="sr-only"> profile of Ata Turhan (opens in a new tab)</span></a>{% endif %}</p></div></div>{%- if founder_story %}<div class="team-founder-story">{{ founder_story|safe }}</div>{% endif %}</div>
+  {#- -#}
   <ul class="selected-team-list">
     {%- for member in members -%}
     <li class="selected-team-member" data-member="{{ member['slug']|safe }}">

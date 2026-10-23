@@ -34,7 +34,7 @@
  h1{font-family:var(--font-display);font-weight:400;font-size:var(--type-title);line-height:.98;letter-spacing:-.015em;word-spacing:.03em}
  h2{font-size:var(--type-section);line-height:1.08;letter-spacing:-.015em}
  h3{font-size:var(--type-sub);line-height:1.2;letter-spacing:-.005em}
- .platform-opening-copy h1,.wall-heading h2,.world-band h2,.strategy-copy h2,.founder-section>div>h2,.founder-identity h2,.founder-booking h2,.investor-evidence-heading h2,.partnership-agenda-heading h2,.investor-faq .section-heading h2,.conversation-band h2,.product-story-heading h2,.product-close h2,.career-opportunities-heading h2,.career-apply-copy h2,.module-num{font-family:var(--font-display);font-weight:400;font-size:var(--type-chapter);line-height:1.02;letter-spacing:-.01em;word-spacing:.03em}
+ .platform-opening-copy h1,.wall-heading h2,.world-band h2,.strategy-copy h2,.founder-booking h2,.investor-evidence-heading h2,.partnership-agenda-heading h2,.investor-faq .section-heading h2,.conversation-band h2,.product-story-heading h2,.product-close h2,.career-opportunities-heading h2,.career-apply-copy h2,.module-num{font-family:var(--font-display);font-weight:400;font-size:var(--type-chapter);line-height:1.02;letter-spacing:-.01em;word-spacing:.03em}
  /* Section headings share the display face with the chapters, at section size. */
  .apps-web h2,.feature-section-heading h2,.related-intro h2,.strategy-story-intro h2,.selected-team-intro h2,.operating-principles-heading h2,.career-section-heading h2,.contact-person h2,.contact-topics-heading h2{font-family:var(--font-display);font-weight:400;letter-spacing:-.01em;word-spacing:.03em;line-height:1.06}
  p,li,dd,figcaption,.lede{text-wrap:pretty}
@@ -770,24 +770,8 @@
   .company-intro>h1 { grid-column:1; grid-row:2 / 5; }
   .company-intro>.lede { grid-column:2; margin:8px 0 20px; max-width:41ch; font-size:var(--text-base); }
   .company-intro>.text-link { grid-column:2; justify-self:start; margin:0; }
-  .founder-section { display:grid; grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr); align-items:center; gap:clamp(40px,7vw,104px); padding-block:20px var(--space-section); }
-  .founder-section>div { min-width:0; }
-  .founder-section>div>h2 { max-width:16ch; }
-  .founder-section>div>p:not(.eyebrow) { max-width:47ch; margin-block:26px; font-size:var(--text-base); }
-  .founder-section>div>.button { margin-top:8px; }
-  .founder-panel { background:var(--elev-panel); box-shadow:var(--elev-panel-edge); color:var(--text); overflow:hidden; border-radius:var(--radius-panel); }
   /* An editorial print: 4:5, at a size that frames the founder rather than filling the screen with a face. */
-  .founder-panel { max-width:440px; }
-  .founder-panel .founder-photo { display:block; width:100%; height:auto; aspect-ratio:4/5; object-fit:cover; object-position:50% 20%; }
-  .founder-sheet { padding:clamp(24px,3vw,40px); }
-  .founder-sheet>.eyebrow { margin-bottom:18px; }
-  .founder-identity h2 { color:var(--text); margin:0 0 10px; }
-  .founder-identity h2>span { color:var(--sun-core); }
-  .founder-identity>p { color:var(--muted); font-size:var(--text-md); margin:0; }
-  .founder-card-footer { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px 24px; border-top:1px solid var(--line); margin-top:28px; padding-top:20px; }
-  .founder-card-footer p { color:var(--text); font-size:var(--text-sm); margin:0; }
-  .founder-card-footer p>span { display:block; font-size:var(--text-2xs); letter-spacing:.06em; margin-bottom:5px; color:var(--sand); }
-  .founder-card-footer .text-link { color:var(--gold); font-size:var(--text-sm); gap:14px; }
+  
 
   /* All approved people receive the same considered type treatment. */
   .selected-team { padding-block:var(--space-section); border-block:1px solid var(--line); }
@@ -804,6 +788,18 @@
   @media (max-width:1050px) { .selected-team-list { gap:16px; } .selected-team-identity { padding:16px 16px 14px; } }
   @media (max-width:650px) { .selected-team-list { grid-template-columns:repeat(2,minmax(0,1fr)); } }
   @media (max-width:560px) { .selected-team-list { gap:12px; } .selected-team-identity { gap:6px; padding:12px 12px 10px; } .selected-team-member h3 { font-size:var(--type-deck); } }
+  /* The founder leads the team (founder, 2026-10-22): a card the size of every team card, in the grid's first
+     column, with the company story beside it across the other two; on phones the story follows the card. */
+  .team-founder { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px; align-items:center; margin-bottom:24px; }
+  .team-founder-photo { object-position:50% 30%; }
+  .team-founder-story { grid-column:2 / -1; min-width:0; padding-inline:clamp(8px,3vw,48px) 0; }
+  .team-founder-story h3 { max-width:16ch; font-family:var(--font-display); font-size:var(--type-section); line-height:1.08; font-weight:400; }
+  .team-founder-story p { max-width:52ch; margin-block:20px 0; font-size:var(--text-base); }
+  .team-founder-story .founder-record { margin-top:16px; }
+  .team-founder-story .button { margin-top:24px; }
+  @media (max-width:1050px) { .team-founder { gap:16px; margin-bottom:16px; } .team-founder-story p { font-size:var(--text-md); } }
+  @media (max-width:650px) { .team-founder { grid-template-columns:repeat(2,minmax(0,1fr)); } .team-founder-story { grid-column:1 / -1; padding-inline:0; } }
+  @media (max-width:560px) { .team-founder { gap:12px; margin-bottom:12px; } }
   .operating-principles { padding-block:var(--space-section); }
   .operating-principles-heading { margin-bottom:56px; }
   /* Principles: numbered editorial panels; the headings share two lines so the paragraphs align. */
@@ -925,7 +921,7 @@
   .faq-answer a { color:var(--text); text-decoration:underline; text-underline-offset:4px; overflow-wrap:anywhere; }
   .founder-booking { display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr); gap:64px; align-items:center; position:relative; isolation:isolate; overflow:hidden; background:radial-gradient(70% 95% at var(--key-x) 0,var(--glow-sun),rgb(255 190 110/.06) 55%,transparent 75%),var(--light-field); box-shadow:var(--elev-panel-edge); border-radius:var(--radius-panel); color:var(--text); padding:clamp(30px,5vw,72px); margin-bottom:var(--space-section); }
   /* One label color on every panel. */
-  .founder-sheet>.eyebrow,.investor-evidence-vision>.eyebrow,.founder-booking .eyebrow { color:var(--sand); }
+  .investor-evidence-vision>.eyebrow,.founder-booking .eyebrow { color:var(--sand); }
   .founder-booking h2 { color:var(--text); }
   .founder-booking p:not(.eyebrow) { color:var(--muted); font-size:var(--text-md); margin:24px 0 0; max-width:49ch; }
   .founder-booking-action .button { width:100%; justify-content:space-between; background:var(--sun-core); border-color:var(--sun-core); color:var(--ink); box-shadow:inset 0 1px 0 rgb(255 255 255/.45); }
@@ -946,7 +942,6 @@
   @media (max-width:850px) {
     .strategy-story-steps>li:not(:last-child)::after { display:none; }
     .operating-principles h3 { min-height:0; }
-    .founder-panel { max-width:none; }
   }
   @media (max-width:560px) {
     .saas-index { position:static; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); width:auto; border-radius:var(--radius-plate); }
@@ -966,9 +961,6 @@
     .company-intro>h1,.company-intro>.lede,.company-intro>.text-link,.investor-opening-copy>h1,.investor-opening-copy>.lede,.investor-opening-copy>.actions,.page-index { grid-column:1; grid-row:auto; }
     .company-intro>.lede,.investor-opening-copy>.lede { margin-top:28px; max-width:var(--measure); }
     .investor-opening-copy .actions { flex-direction:row; }
-    .founder-section { gap:36px; }
-    .founder-section>div>p:not(.eyebrow) { font-size:var(--text-md); }
-    .founder-sheet { padding:24px; }
     .selected-team-intro,.investor-evidence-heading { gap:36px; }
     .strategy-story-intro,.investor-evidence-heading,.partnership-agenda,.investor-faq { grid-template-columns:1fr; gap:32px; }
     .strategy-story-intro>h2,.strategy-story-intro>p:not(.eyebrow),.strategy-story-intro>.text-link { grid-column:1; grid-row:auto; }
@@ -980,8 +972,6 @@
     .founder-booking { gap:36px; }
   }
   @media (max-width:650px) {
-    .founder-section { grid-template-columns:1fr; gap:36px; }
-    .founder-panel { width:100%; }
     .selected-team-intro { grid-template-columns:1fr; gap:24px; margin-bottom:36px; }
     .operating-principles>ol,.strategy-story-steps { grid-template-columns:1fr; gap:32px; }
     .operating-principles-heading { margin-bottom:36px; }
@@ -1012,15 +1002,13 @@
     .partnership-topic:hover .partnership-topic-arrow { transform:none; }
   }
   @media (forced-colors:active) {
-    .founder-panel,.investor-evidence-vision,.founder-booking { border:1px solid CanvasText; }
+    .investor-evidence-vision,.founder-booking { border:1px solid CanvasText; }
   }
   @media print {
-    .company-intro,.platform-opening,.investor-opening-copy,.founder-section,.selected-team,.operating-principles,.strategy-story-intro,.investor-evidence-heading,.partnership-agenda,.investor-faq,.founder-booking { display:block; padding-block:16pt; margin-block:0; }
+    .company-intro,.platform-opening,.investor-opening-copy,.selected-team,.operating-principles,.strategy-story-intro,.investor-evidence-heading,.partnership-agenda,.investor-faq,.founder-booking { display:block; padding-block:16pt; margin-block:0; }
     /* A printed or PDF brief keeps the web app cards compact: the screenshots are on the live page. */
     .showroom .saas-grid { grid-template-columns:repeat(3,minmax(0,1fr)); gap:12pt; }
     .showroom .web-window { max-height:45mm; overflow:hidden; }
-    .founder-panel { max-width:85mm; margin-bottom:18pt; break-inside:avoid; }
-    .founder-sheet { padding:12pt; }
     .selected-team-list { grid-template-columns:repeat(3,minmax(0,1fr)); gap:10pt; }
     .selected-team-member { break-inside:avoid; box-shadow:none; border:1px solid #999; }
     .selected-team-identity { padding:6pt 8pt; }
@@ -1594,7 +1582,7 @@
  @media(forced-colors:active){
   .feature-tile,.operating-principles li,.strategy-story-steps>li,.strategy-story-bottom,.career-benefit-list>div,.contact-topic-icon,.career-benefit-icon,.feature-symbol,.saas-index,.today-card,.ahead-card,.team-monogram,.selected-team-member{border:1px solid CanvasText}
   :root{--bg:Canvas;--surface:Canvas;--raised:Canvas;--surface-raised:Canvas;--text:CanvasText;--muted:CanvasText;--dim:CanvasText;--ink:CanvasText;--accent:LinkText;--sun-core:LinkText;--gold:LinkText;--sand:CanvasText;--bronze:CanvasText;--haze:LinkText;--line:CanvasText;--line-soft:CanvasText;--control-border:ButtonText;--control-border-hover:Highlight;--focus:Highlight;--product-accent:LinkText;--world-deep:Canvas;--world:CanvasText;--world-tint:CanvasText;--tone-golden:Canvas;--tone-footer:Canvas;--tone-blue:Canvas;--danger:CanvasText;--danger-text:CanvasText;--danger-surface:Canvas;--notice-surface:Canvas;--notice-text:CanvasText;--elev-panel:Canvas;--grain:none;--light-field:none;--horizon:linear-gradient(CanvasText,CanvasText)}
-  .founder-panel,.founder-booking,.career-form,.screenshot-stage,.product-story-image{border:1px solid CanvasText}
+  .founder-booking,.career-form,.screenshot-stage,.product-story-image{border:1px solid CanvasText}
   .button,.menu-toggle,input,select,textarea{border:1px solid ButtonText!important;box-shadow:none!important}
   :focus-visible{outline:3px solid Highlight!important;outline-offset:3px}
   #site-nav>a[aria-current],.footer-group a[aria-current]{text-decoration:underline!important;color:LinkText}

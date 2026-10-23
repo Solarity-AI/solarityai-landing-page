@@ -83,9 +83,13 @@ class TeamRosterTest(unittest.TestCase):
     def test_every_member_has_a_title_and_only_supplied_profiles(self):
         import visual_team
         html = str(visual_team.selected_team())
-        self.assertEqual(html.count('class="team-role"'), 6)
-        self.assertEqual(html.count('href="https://www.linkedin.com/in/'), 5)
+        # The founder's card leads (founder, 2026-10-22), then the 6 approved members.
+        self.assertEqual(html.count('class="team-role"'), 7)
+        self.assertEqual(html.count('href="https://www.linkedin.com/in/'), 6)
+        self.assertLess(html.index('team-founder-card'), html.index('selected-team-list'))
         self.assertIn('Engineering manager and principal software engineer', html)
+        self.assertNotIn('team-founder-story', html)
+        self.assertIn('team-founder-story', str(visual_team.selected_team('<h3>Story</h3>')))
 
 
 class HiddenUntilSuppliedTest(unittest.TestCase):

@@ -34,7 +34,7 @@
  h1{font-family:var(--font-display);font-weight:400;font-size:var(--type-title);line-height:.98;letter-spacing:-.015em;word-spacing:.03em}
  h2{font-size:var(--type-section);line-height:1.08;letter-spacing:-.015em}
  h3{font-size:var(--type-sub);line-height:1.2;letter-spacing:-.005em}
- .platform-opening-copy h1,.wall-heading h2,.world-band h2,.strategy-copy h2,.founder-section>div>h2,.founder-identity h2,.founder-booking h2,.investor-evidence-heading h2,.partnership-agenda-heading h2,.investor-faq .section-heading h2,.conversation-band h2,.product-story-heading h2,.product-close h2,.career-opportunities-heading h2,.career-apply-copy h2,.module-num{font-family:var(--font-display);font-weight:400;font-size:var(--type-chapter);line-height:1.02;letter-spacing:-.01em;word-spacing:.03em}
+ .platform-opening-copy h1,.wall-heading h2,.world-band h2,.strategy-copy h2,.founder-booking h2,.investor-evidence-heading h2,.partnership-agenda-heading h2,.investor-faq .section-heading h2,.conversation-band h2,.product-story-heading h2,.product-close h2,.career-opportunities-heading h2,.career-apply-copy h2,.module-num{font-family:var(--font-display);font-weight:400;font-size:var(--type-chapter);line-height:1.02;letter-spacing:-.01em;word-spacing:.03em}
  /* Section headings share the display face with the chapters, at section size. */
  .apps-web h2,.feature-section-heading h2,.related-intro h2,.strategy-story-intro h2,.selected-team-intro h2,.operating-principles-heading h2,.career-section-heading h2,.contact-person h2,.contact-topics-heading h2{font-family:var(--font-display);font-weight:400;letter-spacing:-.01em;word-spacing:.03em;line-height:1.06}
  p,li,dd,figcaption,.lede{text-wrap:pretty}
