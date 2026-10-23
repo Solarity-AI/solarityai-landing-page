@@ -49,7 +49,7 @@ INDEXNOW_KEY = '5b1f0c7e9a4d4e2f8c3b6a1d7e0f9c42'
 
 PAGE_TYPES = {'/apps': 'CollectionPage', '/platform': 'CollectionPage', '/company': 'AboutPage',
               '/contact': 'ContactPage', '/investors-partners': 'FAQPage'}
-CRUMB_NAMES = {'/apps': 'Apps', '/platform': 'Platform', '/company': 'Company', '/press': 'Press kit', '/accessibility': 'Accessibility', '/website-data': 'Website data',
+CRUMB_NAMES = {'/apps': 'Apps', '/platform': 'Platform', '/company': 'Company', '/press': 'Press kit', '/accessibility': 'Accessibility', '/privacy': 'Privacy', '/website-data': 'Website data',
                '/investors-partners': 'Investors & partners', '/careers': 'Careers', '/contact': 'Contact'}
 
 
@@ -273,6 +273,7 @@ def llms_txt(pages, *, apps, saas, email, team=(), full=False):
             out += [f'### {plain(q)}', '', plain(a), '', f'Link: {link("/investors-partners")}#{answer_id(q)}', '']
     else:
         out += ['', '## Optional', '', f'- [Full product facts and FAQ]({ORIGIN}/llms-full.txt)',
+                f'- [Privacy]({link("/privacy")}): what personal information Solarity AI receives, who else handles it, and how to ask for it to be deleted.',
                 f'- [Website data]({link("/website-data")}): no cookies, cookieless page counts, and the services the site links to.',
                 f'- [Accessibility]({link("/accessibility")}): the WCAG 2.2 AA target, how it is checked, and known limitations.']
     return '\n'.join(out).rstrip() + '\n'

@@ -47,6 +47,10 @@
     "title": "Accessibility statement",
     "description": "How solarityai.com is built and checked to meet WCAG 2.2 level AA, its known limitations, and how to report an accessibility problem."
   },
+  "/privacy": {
+    "title": "Solarity AI privacy policy",
+    "description": "What personal information Solarity AI receives through solarityai.com, why, who else handles it, how long it is kept, and how to see, correct or delete it."
+  },
   "/website-data": {
     "title": "How the Solarity AI website handles data",
     "description": "What solarityai.com collects and does not: no cookies, cookieless page counts, email links, the careers form provider, hosting, and security."

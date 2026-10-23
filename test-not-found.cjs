@@ -8,7 +8,7 @@ const { normalize, distance, suggest } = require('./scripts/not-found.js');
 const ROUTES = [['/', 'Home'], ['/apps/', 'Apps'], ['/apps/looks-max/', 'Looks Max'], ['/apps/iq-max/', 'IQ Max'],
   ['/apps/sleep-max/', 'Sleep Max'], ['/apps/fitness-max/', 'Fitness Max'], ['/platform/', 'Platform'],
   ['/company/', 'Company'], ['/investors-partners/', 'Investors & partners'], ['/careers/', 'Careers'],
-  ['/contact/', 'Contact'], ['/press/', 'Press kit'], ['/accessibility/', 'Accessibility'], ['/website-data/', 'Website data']];
+  ['/contact/', 'Contact'], ['/press/', 'Press kit'], ['/accessibility/', 'Accessibility'], ['/privacy/', 'Privacy'], ['/website-data/', 'Website data']];
 const target = (path) => (suggest(path, ROUTES) || [null])[0];
 
 test('normalizes case, file names, encoding and slashes', () => {
@@ -34,7 +34,8 @@ test('suggests the page a typo or shortcut meant', () => {
   assert.equal(target('/carrers/'), '/careers/');
   assert.equal(target('/Platform.html'), '/platform/');
   assert.equal(target('/about'), '/company/');
-  assert.equal(target('/privacy'), '/website-data/');
+  assert.equal(target('/privacy'), '/privacy/');
+  assert.equal(target('/cookies'), '/website-data/');
 });
 
 test('an address under a real page suggests that page', () => {
