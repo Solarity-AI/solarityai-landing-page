@@ -20,7 +20,7 @@ from visual_company_upgrade import strategy_story, investor_evidence, investor_o
 from visual_strategy import platform_opening
 from visual_record import shipping_record, founder_record, program_brief, record_summary, long_date, app_compare, web_compare, company_facts
 from visual_press import press_page, press_kit_zip
-from visual_policies import accessibility_page, website_data_page
+from visual_policies import accessibility_page, privacy_page, website_data_page
 import seo
 from templating import render
 from optimize_images import ensure_optimized_images, image_record, write_favicon
@@ -121,6 +121,8 @@ pages['/press']=('Solarity AI press kit: descriptions, facts, and images','Appro
 
 pages['/accessibility']=('Accessibility statement','How solarityai.com is built and checked to meet WCAG 2.2 level AA, its known limitations, and how to report an accessibility problem.',accessibility_page(EMAIL))
 
+pages['/privacy']=('Solarity AI privacy policy','What personal information Solarity AI receives through solarityai.com, why, who else handles it, how long it is kept, and how to see, correct or delete it.',privacy_page(EMAIL))
+
 pages['/website-data']=('How the Solarity AI website handles data','What solarityai.com collects and does not: no cookies, cookieless page counts, email links, the careers form provider, hosting, and security.',website_data_page(EMAIL,APPS))
 
 pages['/contact']=('Contact Solarity AI and founder Ata Turhan','Contact Solarity AI about investment, strategic partnerships or its consumer apps. Reach founder Ata Turhan directly.',str(contact_page(EMAIL,BOOKING,btn)))
@@ -143,7 +145,7 @@ if retired_product.parent.is_dir() and not any(retired_product.parent.iterdir())
 
 # Inner pages directly under Home show the same trail as their BreadcrumbList data.
 for _path,_name in [('/apps','Apps'),('/platform','Platform'),('/company','Company'),('/investors-partners','Investors & partners'),
-                    ('/careers','Careers'),('/contact','Contact'),('/press','Press kit'),('/accessibility','Accessibility'),('/website-data','Website data')]:
+                    ('/careers','Careers'),('/contact','Contact'),('/press','Press kit'),('/accessibility','Accessibility'),('/privacy','Privacy'),('/website-data','Website data')]:
     _title,_desc,_body=pages[_path]
     pages[_path]=(_title,_desc,page_breadcrumbs(_name)+_body)
 PAGE_DATES=seo.page_dates(pages)
