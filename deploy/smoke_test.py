@@ -24,7 +24,7 @@ ROOT = Path(__file__).resolve().parent.parent
 DIST = ROOT / 'dist'
 sys.path.insert(0, str(ROOT))
 import seo  # noqa: E402
-from hosting_rules import TYPE_ALIASES, NoRedirect, declared, header_rules as _header_rules  # noqa: E402
+from hosting_rules import EDGE_CACHED, TYPE_ALIASES, NoRedirect, declared, header_rules as _header_rules  # noqa: E402
 IMMUTABLE = 'public, max-age=31536000, immutable'
 USER_AGENT = 'Mozilla/5.0 (compatible; SolaritySmokeTest/1.0)'
 SECURITY = {
@@ -33,8 +33,6 @@ SECURITY = {
     'x-frame-options': 'SAMEORIGIN',
 }
 FRESH = time.time_ns()
-# cf-cache-status values for a response served from Cloudflare's edge copy.
-EDGE_CACHED = {'HIT', 'REVALIDATED', 'STALE', 'UPDATING'}
 OPENER = build_opener(NoRedirect)
 failures: list[str] = []
 
