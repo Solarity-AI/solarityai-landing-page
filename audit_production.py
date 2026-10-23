@@ -153,6 +153,129 @@ def run_lighthouse(cli: str, urls: list[str]) -> dict:
     return results
 
 
+def audit_pages(routes: list[str], origin: str, rules: dict, findings: list[str]) -> tuple[dict, set[str]]:
+    """Each sitemap route: status, type, caching, canonical, robots and headers. Also returns the assets they reference."""
+    pages, assets = {}, set()
+    for url in routes:
+        result = fetch(url)
+        head = head_of(result.get('text', ''))
+        path = urlsplit(url).path
+        missing = compare_headers(path, result.get('headers', {}), rules)
+        pages[path] = {
+            'status': result.get('status'),
+            'content_type': result.get('headers', {}).get('content-type'),
+            'cache_control': result.get('headers', {}).get('cache-control'),
+            'bytes': result.get('bytes'),
+            'canonical_ok': head.canonical == ORIGIN + path,
+            'robots': head.robots,
+            'missing_expected_headers': missing,
+        }
+        if result.get('status') != 200:
+            findings.append(f'{path}: status {result.get("status")}')
+        # Pages always name the production origin as canonical, also on a preview.
+        if head.canonical != ORIGIN + path:
+            findings.append(f'{path}: canonical {head.canonical!r} does not match {ORIGIN + path}')
+        assets |= asset_urls(result.get('text', ''), origin)
+    return pages, assets
+
+
+def audit_trailing_slash_redirects(routes: list[str], origin: str, findings: list[str]) -> dict:
+    redirects = {}
+    for url in routes:
+        path = urlsplit(url).path
+        if path != '/':
+            result = fetch(origin + path.rstrip('/'), body=False)
+            target = urljoin(origin + path, result.get('headers', {}).get('location', ''))
+            redirects[path.rstrip('/')] = {'status': result.get('status'), 'location': target}
+            if result.get('status') not in (301, 302, 307, 308) or target != url:
+                findings.append(f'{path.rstrip("/")}: does not redirect to {url}')
+    return redirects
+
+
+def audit_not_found(origin: str, rules: dict, findings: list[str]) -> dict:
+    missing_page = fetch(origin + '/__solarity-audit-missing-page')
+    missing_head = head_of(missing_page.get('text', ''))
+    not_found = {
+        'status': missing_page.get('status'),
+        'custom_page': 'is not here' in missing_head.h1,
+        'meta_robots': missing_head.robots,
+        'x_robots_tag': missing_page.get('headers', {}).get('x-robots-tag'),
+        'missing_expected_headers': compare_headers('/404', missing_page.get('headers', {}), rules),
+    }
+    error_page = fetch(origin + '/404')
+    not_found['direct_404_status'] = error_page.get('status')
+    not_found['direct_404_missing_expected_headers'] = compare_headers('/404', error_page.get('headers', {}), rules)
+    if not_found['status'] != 404:
+        findings.append(f'Missing pages return status {not_found["status"]}, not 404')
+    if not not_found['custom_page']:
+        findings.append('Missing pages do not render the custom 404 document')
+    if 'noindex' not in (not_found['meta_robots'] or '') and 'noindex' not in (not_found['x_robots_tag'] or ''):
+        findings.append('404 responses are indexable')
+    return not_found
+
+
+def audit_assets(assets: set[str], origin: str, rules: dict, findings: list[str]) -> dict:
+    asset_results = {}
+    for path in sorted(assets):
+        result = fetch(origin + path, body=False)
+        headers = result.get('headers', {})
+        record = {
+            'status': result.get('status'),
+            'content_type': headers.get('content-type'),
+            'cache_control': headers.get('cache-control'),
+            'missing_expected_headers': compare_headers(path, headers, rules),
+        }
+        record['content_type_ok'] = content_type_ok(path, headers.get('content-type', ''))
+        asset_results[path] = record
+        if result.get('status') != 200:
+            findings.append(f'{path}: status {result.get("status")}')
+    wrong_types = sorted(path for path, item in asset_results.items() if not item['content_type_ok'])
+    if wrong_types:
+        findings.append(f'{len(wrong_types)} referenced assets have an unexpected Content-Type, e.g. '
+                        f'{wrong_types[0]} -> {asset_results[wrong_types[0]]["content_type"]}')
+    return asset_results
+
+
+def audit_favicon(origin: str, findings: list[str]) -> dict:
+    favicon = fetch(origin + '/favicon.ico', body=False)
+    if favicon.get('status') != 200:
+        findings.append(f'/favicon.ico: status {favicon.get("status")}')
+    return {'status': favicon.get('status'), 'content_type': favicon.get('headers', {}).get('content-type')}
+
+
+def audit_unpublished_files(origin: str, findings: list[str]) -> dict:
+    """Files that local builds no longer publish but an older deployment may still expose."""
+    exposed = {}
+    probe = ['/_headers']
+    if SEPARATION.exists():
+        separation = json.loads(SEPARATION.read_text(encoding='utf-8'))
+        probe += [item['published_path'] for item in separation['moved'] + separation['removed_generated']]
+    for path in probe:
+        if (DIST / path.lstrip('/')).is_file():
+            continue
+        result = fetch(origin + path, body=False)
+        if result.get('status') == 200:
+            exposed[path] = result.get('headers', {}).get('content-type')
+    if exposed:
+        findings.append(f'{len(exposed)} files outside the current publish set are publicly reachable')
+    return exposed
+
+
+def add_lighthouse(report: dict, cli: str | None, routes: list[str], origin: str) -> None:
+    """Run Lighthouse when a CLI is given; otherwise carry over earlier results for the same origin."""
+    if cli:
+        report['lighthouse'] = run_lighthouse(cli, routes)
+    elif REPORT.exists():
+        previous = json.loads(REPORT.read_text(encoding='utf-8'))
+        # Lab results describe one host; never attribute them to another origin.
+        if 'lighthouse' in previous and previous.get('origin') == origin:
+            report['lighthouse'] = previous['lighthouse']
+            report['lighthouse_measured_at'] = previous.get('lighthouse_measured_at', previous['measured_at'])
+            report['lighthouse_note'] = 'Carried over from measured_at ' + report['lighthouse_measured_at']
+    if cli:
+        report['lighthouse_measured_at'] = report['measured_at']
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__.split('\n')[0])
     parser.add_argument('--origin', default=ORIGIN)
@@ -175,124 +298,25 @@ def main() -> int:
         return 1
     # The sitemap names the canonical origin; audit the same paths on the origin requested.
     routes = [origin + urlsplit(node.text).path for node in ET.fromstring(sitemap['text']).iter(namespace + 'loc')]
-    pages, assets = {}, set()
-    for url in routes:
-        result = fetch(url)
-        head = head_of(result.get('text', ''))
-        path = urlsplit(url).path
-        missing = compare_headers(path, result.get('headers', {}), rules)
-        pages[path] = {
-            'status': result.get('status'),
-            'content_type': result.get('headers', {}).get('content-type'),
-            'cache_control': result.get('headers', {}).get('cache-control'),
-            'bytes': result.get('bytes'),
-            'canonical_ok': head.canonical == ORIGIN + path,
-            'robots': head.robots,
-            'missing_expected_headers': missing,
-        }
-        if result.get('status') != 200:
-            findings.append(f'{path}: status {result.get("status")}')
-        # Pages always name the production origin as canonical, also on a preview.
-        if head.canonical != ORIGIN + path:
-            findings.append(f'{path}: canonical {head.canonical!r} does not match {ORIGIN + path}')
-        assets |= asset_urls(result.get('text', ''), origin)
+    pages, assets = audit_pages(routes, origin, rules, findings)
     report['pages'] = pages
-
-    redirects = {}
-    for url in routes:
-        path = urlsplit(url).path
-        if path != '/':
-            result = fetch(origin + path.rstrip('/'), body=False)
-            target = urljoin(origin + path, result.get('headers', {}).get('location', ''))
-            redirects[path.rstrip('/')] = {'status': result.get('status'), 'location': target}
-            if result.get('status') not in (301, 302, 307, 308) or target != url:
-                findings.append(f'{path.rstrip("/")}: does not redirect to {url}')
-    report['trailing_slash_redirects'] = redirects
-
-    missing_page = fetch(origin + '/__solarity-audit-missing-page')
-    missing_head = head_of(missing_page.get('text', ''))
-    not_found = {
-        'status': missing_page.get('status'),
-        'custom_page': 'is not here' in missing_head.h1,
-        'meta_robots': missing_head.robots,
-        'x_robots_tag': missing_page.get('headers', {}).get('x-robots-tag'),
-        'missing_expected_headers': compare_headers('/404', missing_page.get('headers', {}), rules),
-    }
-    error_page = fetch(origin + '/404')
-    not_found['direct_404_status'] = error_page.get('status')
-    not_found['direct_404_missing_expected_headers'] = compare_headers('/404', error_page.get('headers', {}), rules)
-    if not_found['status'] != 404:
-        findings.append(f'Missing pages return status {not_found["status"]}, not 404')
-    if not not_found['custom_page']:
-        findings.append('Missing pages do not render the custom 404 document')
-    if 'noindex' not in (not_found['meta_robots'] or '') and 'noindex' not in (not_found['x_robots_tag'] or ''):
-        findings.append('404 responses are indexable')
-    report['not_found'] = not_found
-
-    asset_results = {}
-    for path in sorted(assets):
-        result = fetch(origin + path, body=False)
-        headers = result.get('headers', {})
-        record = {
-            'status': result.get('status'),
-            'content_type': headers.get('content-type'),
-            'cache_control': headers.get('cache-control'),
-            'missing_expected_headers': compare_headers(path, headers, rules),
-        }
-        record['content_type_ok'] = content_type_ok(path, headers.get('content-type', ''))
-        asset_results[path] = record
-        if result.get('status') != 200:
-            findings.append(f'{path}: status {result.get("status")}')
+    report['trailing_slash_redirects'] = audit_trailing_slash_redirects(routes, origin, findings)
+    report['not_found'] = audit_not_found(origin, rules, findings)
+    asset_results = audit_assets(assets, origin, rules, findings)
     report['assets'] = asset_results
-    wrong_types = sorted(path for path, item in asset_results.items() if not item['content_type_ok'])
-    if wrong_types:
-        findings.append(f'{len(wrong_types)} referenced assets have an unexpected Content-Type, e.g. '
-                        f'{wrong_types[0]} -> {asset_results[wrong_types[0]]["content_type"]}')
-
-    favicon = fetch(origin + '/favicon.ico', body=False)
-    report['favicon_ico'] = {'status': favicon.get('status'), 'content_type': favicon.get('headers', {}).get('content-type')}
-    if favicon.get('status') != 200:
-        findings.append(f'/favicon.ico: status {favicon.get("status")}')
-
-    # Files that local builds no longer publish but an older deployment may still expose.
-    exposed = {}
-    probe = ['/_headers']
-    if SEPARATION.exists():
-        separation = json.loads(SEPARATION.read_text(encoding='utf-8'))
-        probe += [item['published_path'] for item in separation['moved'] + separation['removed_generated']]
-    for path in probe:
-        if (DIST / path.lstrip('/')).is_file():
-            continue
-        result = fetch(origin + path, body=False)
-        if result.get('status') == 200:
-            exposed[path] = result.get('headers', {}).get('content-type')
-    report['publicly_reachable_unpublished_files'] = exposed
-    if exposed:
-        findings.append(f'{len(exposed)} files outside the current publish set are publicly reachable')
-
+    report['favicon_ico'] = audit_favicon(origin, findings)
+    report['publicly_reachable_unpublished_files'] = audit_unpublished_files(origin, findings)
     unapplied = sorted({item.split(':')[0] for record in [*pages.values(), *asset_results.values()]
                         for item in record['missing_expected_headers']})
     if unapplied:
         findings.append('Host does not apply _headers rules for: ' + ', '.join(unapplied))
-
-    if args.lighthouse:
-        report['lighthouse'] = run_lighthouse(args.lighthouse, routes)
-    elif REPORT.exists():
-        previous = json.loads(REPORT.read_text(encoding='utf-8'))
-        # Lab results describe one host; never attribute them to another origin.
-        if 'lighthouse' in previous and previous.get('origin') == origin:
-            report['lighthouse'] = previous['lighthouse']
-            report['lighthouse_measured_at'] = previous.get('lighthouse_measured_at', previous['measured_at'])
-            report['lighthouse_note'] = 'Carried over from measured_at ' + report['lighthouse_measured_at']
-    if args.lighthouse:
-        report['lighthouse_measured_at'] = report['measured_at']
+    add_lighthouse(report, args.lighthouse, routes, origin)
 
     report['findings'] = findings
     REPORT.write_text(json.dumps(report, indent=2, ensure_ascii=False) + '\n', encoding='utf-8', newline='\n')
     sys.stdout.reconfigure(encoding='utf-8')
     print(json.dumps({'origin': origin, 'pages': len(pages), 'assets': len(asset_results), 'findings': findings}, indent=2, ensure_ascii=False))
     return 0
-
 
 if __name__ == '__main__':
     raise SystemExit(main())
