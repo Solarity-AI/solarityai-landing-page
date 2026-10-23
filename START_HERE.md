@@ -1,14 +1,14 @@
 # Continue this project in Claude
 
-This is the git repository `github.com/Solarity-AI/solarityai-landing-page`. It holds the complete source: build scripts, the 15 generated pages (14 routes and the 404), CSS, JavaScript, tests, original and optimized assets, the font licenses, and the design and content records.
+This is the git repository `github.com/Solarity-AI/solarityai-landing-page`. It holds the complete source: build scripts, the 16 generated pages (15 routes and the 404), CSS, JavaScript, tests, original and optimized assets, the font licenses, and the design and content records.
 
 ## 1. Open the folder
 
 Clone the repository (`git clone https://github.com/Solarity-AI/solarityai-landing-page.git solarity-ai-project`), open `solarity-ai-project` in your editor, and give Claude access to that folder. Ask Claude to read `CLAUDE.md` before making changes.
 
-## 2. Install the dependency
+## 2. Install the dependencies
 
-Use Python 3.12+ and Node.js. This export was verified with Python 3.12.14 and Node 24.19.0 (`.python-version`, `.nvmrc`); `requirements.txt` pins Pillow 13.0.0. Node is used only for tests; there are no npm packages to install.
+Use Python 3.12+ and Node.js. This export was verified with Python 3.12.14 and Node 24.19.0 (`.python-version`, `.nvmrc`); `requirements.txt` pins Pillow 13.0.0, Jinja2 and MarkupSafe. Node is used only for tests; there are no npm packages to install.
 
 Windows PowerShell:
 
