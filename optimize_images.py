@@ -32,7 +32,7 @@ ASSETS = ROOT / 'dist' / 'assets'
 SOURCE_ASSETS = ROOT / 'source-assets'
 DESTINATION = ASSETS / 'optimized'
 REPORT = ROOT / 'research-assets' / 'image-optimization.json'
-SETTINGS_VERSION = 14
+SETTINGS_VERSION = 15
 # Native-resolution screenshots (1284x2778), confirmed by the founder on 2026-10-19.
 # 260 (the smallest width every screen passes the edge check at) and 600 serve the small Home wall and Investors showroom windows on phones (measured 119 and 180 CSS px).
 SCREEN_WIDTHS = (260, 400, 600, 800, 1200)
@@ -47,7 +47,8 @@ SUNRISE_WIDTHS = (480, 768, 1200, 1440, 1860, 2560, 3200, 3344)
 # The official Google Play badge (646 x 250 PNG) is drawn about 165 CSS px wide: 1x, 2x and 3x WebP, resized only.
 BADGE_WIDTHS = (181, 362, 543)
 # Team portraits: the roster card is at most 405 px wide (about 160 px on phones), up to 2× of each; never enlarged.
-PORTRAIT_WIDTHS = (320, 480, 640, 800)
+# 128 and 224 serve the Careers avatars at 2× (50–62 px on phones, 105 px on desktop).
+PORTRAIT_WIDTHS = (128, 224, 320, 480, 640, 800)
 # SaaS product screenshots from the products' own sites (research-assets/saas-evidence.json).
 WEB_WIDTHS = (640, 960, 1440, 1920, 2560)
 WEBP_QUALITY = 86
@@ -287,6 +288,9 @@ def responsive_image_attrs(src: str, *, sizes: str | None = None) -> dict:
     variants = record['webp']
     # A modest fallback is efficient in legacy clients that ignore srcset.
     fallback = variants[1] if len(variants) > 1 else variants[0]
+    if record['role'] == 'portrait':
+        # Portraits keep the 480w the sitemap and the team schema name; the small widths only serve avatars.
+        fallback = next((item for item in variants if item['width'] >= 480), variants[-1])
     attrs = {
         'src': fallback['url'],
         'srcset': ', '.join(f'{item["url"]} {item["width"]}w' for item in variants),
