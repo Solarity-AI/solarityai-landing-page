@@ -49,7 +49,7 @@
   },
   "/privacy": {
     "title": "Solarity AI privacy policy",
-    "description": "What personal information Solarity AI receives through solarityai.com, why, who else handles it, how long it is kept, and how to see, correct or delete it."
+    "description": "What personal information Solarity AI receives through solarityai.com, why, who else handles it, how long it is kept, and how to see, correct, or delete it."
   },
   "/website-data": {
     "title": "How the Solarity AI website handles data",
@@ -57,7 +57,7 @@
   },
   "/contact": {
     "title": "Contact Solarity AI and founder Ata Turhan",
-    "description": "Contact Solarity AI about investment, strategic partnerships or its consumer apps. Reach founder Ata Turhan directly."
+    "description": "Contact Solarity AI about investment, strategic partnerships, its consumer apps, or its SaaS products. Reach founder Ata Turhan directly."
   },
   "/404": {
     "title": "Page not found",

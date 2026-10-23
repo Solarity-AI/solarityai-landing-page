@@ -161,8 +161,8 @@
         "gallery"
       ],
       "javascript_bytes": 11668,
-      "html_bytes": 100299,
-      "html_gzip_bytes": 23313
+      "html_bytes": 100309,
+      "html_gzip_bytes": 23312
     },
     "/company": {
       "source_bytes": 160821,
@@ -207,8 +207,8 @@
         "copy"
       ],
       "javascript_bytes": 9051,
-      "html_bytes": 122869,
-      "html_gzip_bytes": 26296
+      "html_bytes": 122883,
+      "html_gzip_bytes": 26300
     },
     "/careers": {
       "source_bytes": 160821,
@@ -278,8 +278,8 @@
       "speculation_rules": "Prefetch same-origin pages on intent (moderate); never prerender",
       "external_scripts": [],
       "javascript_bytes": 5038,
-      "html_bytes": 53688,
-      "html_gzip_bytes": 14613
+      "html_bytes": 53689,
+      "html_gzip_bytes": 14614
     },
     "/privacy": {
       "source_bytes": 160821,
@@ -299,7 +299,7 @@
       "speculation_rules": "Prefetch same-origin pages on intent (moderate); never prerender",
       "external_scripts": [],
       "javascript_bytes": 5038,
-      "html_bytes": 55862,
+      "html_bytes": 55868,
       "html_gzip_bytes": 15204
     },
     "/website-data": {
@@ -320,7 +320,7 @@
       "speculation_rules": "Prefetch same-origin pages on intent (moderate); never prerender",
       "external_scripts": [],
       "javascript_bytes": 5038,
-      "html_bytes": 54639,
+      "html_bytes": 54640,
       "html_gzip_bytes": 14794
     },
     "/contact": {
@@ -346,8 +346,8 @@
         "copy"
       ],
       "javascript_bytes": 10024,
-      "html_bytes": 71283,
-      "html_gzip_bytes": 17104
+      "html_bytes": 71344,
+      "html_gzip_bytes": 17118
     },
     "/404": {
       "source_bytes": 160821,
@@ -370,8 +370,8 @@
         "not-found"
       ],
       "javascript_bytes": 8764,
-      "html_bytes": 54710,
-      "html_gzip_bytes": 14469
+      "html_bytes": 54649,
+      "html_gzip_bytes": 14460
     }
   }
 }
