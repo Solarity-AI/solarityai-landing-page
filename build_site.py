@@ -3,7 +3,7 @@ import base64, hashlib, json, re, shutil
 from urllib.parse import urlencode
 from ux_components import app_breadcrumbs, related_apps, page_breadcrumbs
 from image_provenance import provenance
-from ux_content import investor_faq, recovery_links
+from ux_content import FAQ, investor_faq, recovery_links
 from visual_home import hero_section, closing_scene
 from visual_saas import saas_wall, saas_chapters, apps_web_band
 from saas_products import SAAS
@@ -77,7 +77,6 @@ TEAM=[{**m,**TEAM_DETAILS.get(m['name'],{}),'image':next((v['url'] for v in (ima
 def shell(path,title,desc,body):
     """The complete document, as a plain string for the link and delivery passes that follow."""
     social_image, social_alt = social_for(path)
-    from ux_content import FAQ
     full_title=title if 'Solarity AI' in title else title+' | Solarity AI'
     app=next((a for a in APPS if path=='/apps/'+a['slug'] and a.get('apple')),None)
     app_store_id=re.search(r'/id(\d+)',app['apple']).group(1) if app else ''
@@ -143,9 +142,8 @@ retired_product.unlink(missing_ok=True)
 if retired_product.parent.is_dir() and not any(retired_product.parent.iterdir()):
     retired_product.parent.rmdir()
 
-# Inner pages directly under Home show the same trail as their BreadcrumbList data.
-for _path,_name in [('/apps','Apps'),('/platform','Platform'),('/company','Company'),('/investors-partners','Investors & partners'),
-                    ('/careers','Careers'),('/contact','Contact'),('/press','Press kit'),('/accessibility','Accessibility'),('/privacy','Privacy'),('/website-data','Website data')]:
+# Inner pages directly under Home show the same trail as their BreadcrumbList data (seo.CRUMB_NAMES).
+for _path,_name in seo.CRUMB_NAMES.items():
     _title,_desc,_body=pages[_path]
     pages[_path]=(_title,_desc,page_breadcrumbs(_name)+_body)
 PAGE_DATES=seo.page_dates(pages)
