@@ -33,7 +33,7 @@
   .team-founder-story .founder-record { margin-top:16px; }
   .team-founder-story .button { margin-top:24px; }
   @media (max-width:1050px) { .team-founder { gap:16px; margin-bottom:16px; } .team-founder-story p { font-size:var(--text-md); } }
-  @media (max-width:650px) { .team-founder { grid-template-columns:repeat(2,minmax(0,1fr)); } .team-founder-story { grid-column:1 / -1; padding-inline:0; } }
+  @media (max-width:650px) { .team-founder { grid-template-columns:repeat(2,minmax(0,1fr)); } .team-founder-story { grid-column:1 / -1; padding-inline:0; margin-block:16px 28px; } }
   @media (max-width:560px) { .team-founder { gap:12px; margin-bottom:12px; } }
   .operating-principles { padding-block:var(--space-section); }
   .operating-principles-heading { margin-bottom:56px; }
