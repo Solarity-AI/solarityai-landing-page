@@ -42,6 +42,8 @@ jobs:
 
       - name: Wait for the deploy, then smoke-test it
         id: smoke
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           # The smoke test compares every file with dist/, so it passes only once this commit is live.
           for attempt in $(seq 1 20); do
@@ -50,12 +52,30 @@ jobs:
               { echo '### solarityai.com'; echo; tail -n 3 smoke.txt; } >> "$GITHUB_STEP_SUMMARY"
               exit 0
             fi
+            # A newer merge replaces this commit on Cloudflare, so it will never be live; that merge's own run verifies production.
+            latest=$(gh api "repos/${GITHUB_REPOSITORY}/commits/main" --jq .sha || true)
+            if [ "$GITHUB_EVENT_NAME" = push ] && [ -n "$latest" ] && [ "$latest" != "$GITHUB_SHA" ]; then
+              echo "superseded=true" >> "$GITHUB_OUTPUT"
+              { echo '### solarityai.com'; echo; echo "${GITHUB_SHA::7} was superseded by ${latest::7}, whose run verifies production."; } >> "$GITHUB_STEP_SUMMARY"
+              exit 0
+            fi
             echo "Attempt $attempt: not live or not matching yet"
             sleep 30
           done
           cat smoke.txt
           { echo '### solarityai.com failed the smoke test'; echo; echo '```'; tail -n 40 smoke.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
           exit 1
+
+      - name: Close the production issue once production passes
+        if: success() && steps.smoke.outputs.superseded != 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          existing=$(gh issue list --state open --label production --search '"Production smoke test failing" in:title' --json number --jq '.[0].number')
+          if [ -n "$existing" ]; then
+            gh issue close "$existing" --comment "Production passes the smoke test again on ${GITHUB_SHA::7} (${GITHUB_EVENT_NAME}). Run: ${RUN_URL}"
+          fi
 
       - name: File an issue when production fails
         if: failure()

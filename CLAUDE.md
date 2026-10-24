@@ -75,7 +75,7 @@ This project lives in `github.com/Solarity-AI/solarityai-landing-page`, which al
     | `dependency-review` | Reviews dependency changes in pull requests. |
     | `labeler` | Labels pull requests by area. |
     | `preview` | Waits for the PR's Cloudflare preview, smoke-tests it, and records informational Lighthouse runs. |
-    | `production` | After each deploy and every 3 hours, smoke-tests solarityai.com and opens or updates a `production` issue when it fails (the schedule also catches a merge whose push event never triggered a deploy). |
+    | `production` | After each deploy and every 3 hours, smoke-tests solarityai.com and opens or updates a `production` issue when it fails and closes it once production passes again. A push run whose commit a newer merge replaced stands down, since that merge's run verifies production (the schedule also catches a merge whose push event never triggered a deploy). |
     | `indexnow` | Submits changed pages after a deploy. |
     | `release` | Manual: tags `main` and publishes the live `dist/` with generated notes. |
 
